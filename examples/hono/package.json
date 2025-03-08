@@ -1,0 +1,22 @@
+{
+  "name": "ai-toolkit-hono-example",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@ai-toolkit/openai": "1.2.1",
+    "@hono/node-server": "1.13.7",
+    "ai-toolkit": "1.1.1",
+    "dotenv": "16.4.5",
+    "hono": "4.6.9"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "curl": "curl -i -X POST http://localhost:8080",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.20",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3"
+  }
+}
