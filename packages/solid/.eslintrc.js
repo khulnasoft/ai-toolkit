@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['vercel-ai'],
+  extends: ['khulnasoft-ai'],
   rules: {
     'react-hooks/rules-of-hooks': 'off',
   },
