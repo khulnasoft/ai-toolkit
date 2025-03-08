@@ -39,7 +39,7 @@ describe('toDataStreamResponse', () => {
 
     assert.deepStrictEqual(Object.fromEntries(response.headers.entries()), {
       'content-type': 'text/plain; charset=utf-8',
-      'x-vercel-ai-data-stream': 'v1',
+      'x-khulnasoft-ai-data-stream': 'v1',
     });
 
     assert.strictEqual(
