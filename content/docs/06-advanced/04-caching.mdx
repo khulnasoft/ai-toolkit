@@ -15,7 +15,7 @@ and the [`simulateReadableStream`](/docs/reference/ai-toolkit-core/simulate-read
 Language model middleware is a way to enhance the behavior of language models by intercepting and modifying the calls to the language model.
 Let's see how you can use language model middleware to cache responses.
 
-```ts filename="ai/middleware.ts"
+```ts filename="ai-toolkit/middleware.ts"
 import { Redis } from '@upstash/redis';
 import {
   type LanguageModelV1,

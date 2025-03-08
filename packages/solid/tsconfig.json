@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@vercel/ai-tsconfig/react-library.json",
+  "extends": "./node_modules/@khulnasoft/ai-tsconfig/react-library.json",
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "solid-js",

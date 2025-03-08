@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.19.54",
-    "@vercel/ai-tsconfig": "workspace:*",
+    "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8.3.0",
     "typescript": "5.6.3",
     "zod": "3.23.8"

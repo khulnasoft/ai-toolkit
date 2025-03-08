@@ -1,36 +1,46 @@
-![hero illustration](./assets/hero.gif)
+# 🚀 AI TOOLKIT
 
-# AI TOOLKIT
+[![GitHub Discussions](https://img.shields.io/github/discussions/khulnasoft/ai-toolkit?style=for-the-badge)](https://github.com/khulnasoft/ai-toolkit/discussions)
+[![Documentation](https://img.shields.io/badge/Docs-Available-blue?style=for-the-badge)](https://sdk.khulnasoft.com/docs)
+[![License](https://img.shields.io/github/license/khulnasoft/ai-toolkit?style=for-the-badge)](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE)
 
-The [AI TOOLKIT](https://sdk.khulnasoft.com/docs) is a TypeScript toolkit designed to help you build AI-powered applications using popular frameworks like Next.js, React, Svelte, Vue and runtimes like Node.js.
+The [AI TOOLKIT](https://sdk.khulnasoft.com/docs) is a powerful TypeScript toolkit for building AI-powered applications with popular frameworks like **Next.js, React, Svelte, Vue** and runtimes like **Node.js**.
 
-To learn more about how to use the AI TOOLKIT, check out our [API Reference](https://sdk.khulnasoft.com/docs/reference) and [Documentation](https://sdk.khulnasoft.com/docs).
+🔹 **Seamless AI Integrations** with OpenAI, Anthropic, Google Generative AI, and more  
+🔹 **Framework Agnostic** - Works with multiple frontend and backend environments  
+🔹 **Developer Friendly** - Easy installation, clear API, and comprehensive documentation  
 
-## Installation
+📖 Learn more in our [API Reference](https://sdk.khulnasoft.com/docs/reference) and [Documentation](https://sdk.khulnasoft.com/docs).
 
-You will need Node.js 18+ and pnpm installed on your local development machine.
+---
 
-```shell
-npm install ai
+## 📥 Installation
+
+Ensure you have **Node.js 18+** and **pnpm** installed on your machine.
+
+```sh
+npm install ai-toolkit
 ```
 
-## Usage
+---
 
-### AI TOOLKIT Core
+## 🛠 Usage
 
-The [AI TOOLKIT Core](https://sdk.khulnasoft.com/docs/ai-toolkit-core/overview) module provides a unified API to interact with model providers like [OpenAI](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/openai), [Anthropic](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/anthropic), [Google](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai), and more.
+### 🔹 AI TOOLKIT Core
+The [AI TOOLKIT Core](https://sdk.khulnasoft.com/docs/ai-toolkit-core/overview) provides a unified API to interact with model providers like:
+- [OpenAI](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/openai)
+- [Anthropic](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/anthropic)
+- [Google Generative AI](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai)
 
-You will then install the model provider of your choice.
-
-```shell
+Install your preferred model provider:
+```sh
 npm install @ai-toolkit/openai
 ```
 
-###### @/index.ts (Node.js Runtime)
-
+#### ⚡ Example: Node.js Runtime
 ```ts
 import { generateText } from 'ai-toolkit';
-import { openai } from '@ai-toolkit/openai'; // Ensure OPENAI_API_KEY environment variable is set
+import { openai } from '@ai-toolkit/openai'; // Ensure OPENAI_API_KEY is set
 
 const { text } = await generateText({
   model: openai('gpt-4o'),
@@ -41,27 +51,22 @@ const { text } = await generateText({
 console.log(text);
 ```
 
-### AI TOOLKIT UI
+### 🔹 AI TOOLKIT UI
+The [AI TOOLKIT UI](https://sdk.khulnasoft.com/docs/ai-toolkit-ui/overview) provides framework-agnostic hooks to build AI chatbots and generative UI components.
 
-The [AI TOOLKIT UI](https://sdk.khulnasoft.com/docs/ai-toolkit-ui/overview) module provides a set of hooks that help you build chatbots and generative user interfaces. These hooks are framework agnostic, so they can be used in Next.js, React, Svelte, Vue, and SolidJS.
-
-###### @/app/page.tsx (Next.js App Router)
-
+#### ⚡ Example: Next.js App Router
 ```tsx
 'use client';
-
-import { useChat } from 'ai/react';
+import { useChat } from 'ai-toolkit/react';
 
 export default function Page() {
-  const { messages, input, handleSubmit, handleInputChange, status } =
-    useChat();
+  const { messages, input, handleSubmit, handleInputChange, status } = useChat();
 
   return (
     <div>
       {messages.map(message => (
         <div key={message.id}>
-          <div>{message.role}</div>
-          <div>{message.content}</div>
+          <strong>{message.role}</strong>: {message.content}
         </div>
       ))}
 
@@ -78,8 +83,7 @@ export default function Page() {
 }
 ```
 
-###### @/app/api/chat/route.ts (Next.js App Router)
-
+#### ⚡ Example: Next.js API Route
 ```ts
 import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
@@ -97,18 +101,38 @@ export async function POST(req: Request) {
 }
 ```
 
-## Templates
+---
 
-We've built [templates](https://khulnasoft.com/templates?type=ai) that include AI TOOLKIT integrations for different use cases, providers, and frameworks. You can use these templates to get started with your AI-powered application.
+## 📦 Templates
 
-## Community
+We provide **ready-to-use templates** with AI TOOLKIT integrations for different frameworks, providers, and use cases.  
+Check them out [here](https://khulnasoft.com/templates?type=ai).
 
-The AI TOOLKIT community can be found on [GitHub Discussions](https://github.com/khulnasoft/ai-toolkit/discussions) where you can ask questions, voice ideas, and share your projects with other people.
+---
 
-## Contributing
+## 🌎 Community
 
-Contributions to the AI TOOLKIT are welcome and highly appreciated. However, before you jump right into it, we would like you to review our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md) to make sure you have smooth experience contributing to AI TOOLKIT.
+Join the **AI TOOLKIT** community to discuss, share ideas, and contribute!  
+💬 [GitHub Discussions](https://github.com/khulnasoft/ai-toolkit/discussions)  
+🐦 [Follow us on Twitter](https://twitter.com/khulnasoft)  
+🚀 [Join our Discord](https://discord.gg/khulnasoft)
 
-## Authors
+---
 
-This library is created by [Khulnasoft](https://khulnasoft.com) and [Next.js](https://nextjs.org) team members, with contributions from the [Open Source Community](https://github.com/khulnasoft/ai-toolkit/graphs/contributors).
+## 🤝 Contributing
+
+We welcome contributions! Before you start, please read our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md).
+
+---
+
+## 👨‍💻 Authors & Credits
+
+Developed by **[Khulnasoft](https://khulnasoft.com)** and **[Next.js](https://nextjs.org)** team members, with valuable contributions from the **Open Source Community**.  
+[View Contributors](https://github.com/khulnasoft/ai-toolkit/graphs/contributors) 💙
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the full [LICENSE](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE) for details.
+

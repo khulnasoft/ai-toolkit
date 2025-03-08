@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { experimental_useAssistant, Message } from 'ai/react';
+import { experimental_useAssistant, Message } from 'ai-toolkit/react';
 
 export default function Page() {
   const { status, messages, input, submitMessage, handleInputChange } =
