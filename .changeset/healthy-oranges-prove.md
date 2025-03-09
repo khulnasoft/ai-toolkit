@@ -1,0 +1,55 @@
+---
+'next-openai-telemetry-sentry': major
+'ai-core-examples': major
+'ai-toolkit-express-example': major
+'ai-toolkit-fastify-example': major
+'ai-toolkit-hono-example': major
+'ai-toolkit-nest-example': major
+'next-fastapi': major
+'next-google-vertex': major
+'next-langchain': major
+'next-openai': major
+'next-openai-kasada-bot-protection': major
+'next-openai-pages': major
+'next-openai-telemetry': major
+'next-openai-rate-limits': major
+'ai-toolkit-http-server-example': major
+'nuxt-openai': major
+'solidstart-openai': major
+'sveltekit-openai': major
+'ai-toolkit': major
+'ai-core-e2e-next-server': major
+'@ai-toolkit/amazon-bedrock': major
+'@ai-toolkit/anthropic': major
+'@ai-toolkit/azure': major
+'@ai-toolkit/cerebras': major
+'@ai-toolkit/codemod': major
+'@ai-toolkit/cohere': major
+'@ai-toolkit/deepinfra': major
+'@ai-toolkit/deepseek': major
+'@ai-toolkit/fal': major
+'@ai-toolkit/fireworks': major
+'@ai-toolkit/google': major
+'@ai-toolkit/google-vertex': major
+'@ai-toolkit/groq': major
+'@ai-toolkit/luma': major
+'@ai-toolkit/mistral': major
+'@ai-toolkit/openai': major
+'@ai-toolkit/openai-compatible': major
+'@ai-toolkit/perplexity': major
+'@ai-toolkit/provider': major
+'@ai-toolkit/provider-utils': major
+'@ai-toolkit/react': major
+'@ai-toolkit/replicate': major
+'@ai-toolkit/solid': major
+'@ai-toolkit/svelte': major
+'@ai-toolkit/togetherai': major
+'@ai-toolkit/ui-utils': major
+'@ai-toolkit/valibot': major
+'@ai-toolkit/vue': major
+'@ai-toolkit/xai': major
+'eslint-config-khulnasoft-ai': major
+'@khulnasoft/ai-tsconfig': major
+---
+
+fast release version (beta)
