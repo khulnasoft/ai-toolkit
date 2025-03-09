@@ -61,5 +61,8 @@
     "singleQuote": true,
     "arrowParens": "avoid",
     "trailingComma": "all"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "1.8.0"
   }
 }
