@@ -4,7 +4,7 @@ import {
   embed,
   embedMany,
   cosineSimilarity,
-} from 'ai-toolkit';
+} from 'ai';
 
 export interface Route<NAME extends string> {
   name: NAME;
@@ -97,6 +97,5 @@ export class SemanticRouter<ROUTES extends Array<Route<string>>> {
   }
 }
 
-type RouteNames<ROUTES> = ROUTES extends Array<Route<infer NAME>>
-  ? NAME
-  : never;
+type RouteNames<ROUTES> =
+  ROUTES extends Array<Route<infer NAME>> ? NAME : never;

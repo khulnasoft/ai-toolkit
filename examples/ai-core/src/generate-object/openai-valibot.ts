@@ -1,6 +1,6 @@
 import { openai } from '@ai-toolkit/openai';
 import { valibotSchema } from '@ai-toolkit/valibot';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import 'dotenv/config';
 import * as v from 'valibot';
 

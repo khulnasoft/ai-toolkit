@@ -40,7 +40,7 @@ The AI TOOLKIT abstracts away the differences between model providers, eliminate
 At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call OpenAI GPT-4.5 with the AI TOOLKIT:
 
 ```ts
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -54,7 +54,7 @@ const { text } = await generateText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -78,7 +78,7 @@ This code snippet will generate a type-safe recipe that conforms to the specifie
 GPT-4.5 supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. Here's an example of using tool calling with the AI TOOLKIT:
 
 ```ts
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -113,13 +113,13 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 In a new Next.js application, first install the AI TOOLKIT and the OpenAI provider:
 
-<Snippet text="npm install ai-toolkit @ai-toolkit/openai" />
+<Snippet text="npm install ai @ai-toolkit/openai" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 // Allow responses up to 30 seconds
 export const maxDuration = 30;
@@ -172,4 +172,4 @@ Ready to get started? Here's how you can dive in:
 1. Explore the documentation at [sdk.khulnasoft.com/docs](/docs) to understand the full capabilities of the AI TOOLKIT.
 2. Check out practical examples at [sdk.khulnasoft.com/examples](/examples) to see the SDK in action and get inspired for your own projects.
 3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [sdk.khulnasoft.com/docs/guides](/docs/guides).
-4. Check out ready-to-deploy AI templates at [khulnasoft.com/templates?type=ai](https://khulnasoft.com/templates?type=ai).
+4. Check out ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

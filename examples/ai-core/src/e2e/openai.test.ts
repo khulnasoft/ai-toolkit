@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { expect } from 'vitest';
 import { openai as provider } from '@ai-toolkit/openai';
-import { APICallError, LanguageModelV1 } from 'ai-toolkit';
+import { APICallError, LanguageModelV1 } from 'ai';
 import {
   ModelWithCapabilities,
   createEmbeddingModelWithCapabilities,

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { CoreMessage, generateText } from 'ai-toolkit';
+import { CoreMessage, generateText } from 'ai';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';
 

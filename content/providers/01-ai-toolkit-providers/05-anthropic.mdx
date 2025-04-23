@@ -78,7 +78,7 @@ You can use Anthropic language models to generate text with the `generateText` f
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: anthropic('claude-3-haiku-20240307'),
@@ -87,7 +87,7 @@ const { text } = await generateText({
 ```
 
 Anthropic language models can also be used in the `streamText`, `generateObject`, and `streamObject` functions
-(see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 <Note>
   The Anthropic API returns streaming tool calls all at once after a delay. This
@@ -112,8 +112,8 @@ You can enable it using the `thinking` provider option
 and specifying a thinking budget in tokens.
 
 ```ts
-import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
+import { generateText } from 'ai';
 
 const { text, reasoning, reasoningDetails } = await generateText({
   model: anthropic('claude-3-7-sonnet-20250219'),
@@ -121,7 +121,7 @@ const { text, reasoning, reasoningDetails } = await generateText({
   providerOptions: {
     anthropic: {
       thinking: { type: 'enabled', budgetTokens: 12000 },
-    },
+    } satisfies AnthropicProviderOptions,
   },
 });
 
@@ -153,7 +153,7 @@ that resolves to the metadata. Alternatively you can receive it in the
 
 ```ts highlight="8,18-20,29-30"
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const errorMessage = '... long error message ...';
 
@@ -207,7 +207,22 @@ const result = await generateText({
 });
 ```
 
+The minimum cacheable prompt length is:
+
+- 1024 tokens for Claude 3.7 Sonnet, Claude 3.5 Sonnet and Claude 3 Opus
+- 2048 tokens for Claude 3.5 Haiku and Claude 3 Haiku
+
+Shorter prompts cannot be cached, even if marked with `cacheControl`. Any requests to cache fewer than this number of tokens will be processed without caching.
+
 For more on prompt caching with Anthropic, see [Anthropic's Cache Control documentation](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching).
+
+<Note type="warning">
+  Because the `UIMessage` type (used by AI TOOLKIT UI hooks like `useChat`) does
+  not support the `providerOptions` property, you can use
+  `convertToCoreMessages` first before passing the messages to functions like
+  `generateText` or `streamText`. For more details on `providerOptions` usage,
+  see [here](/docs/foundations/prompts#provider-options).
+</Note>
 
 ### Computer Use
 
@@ -268,6 +283,19 @@ Parameters:
 - `old_str` (string, optional): Required for `str_replace` command, containing the string to replace.
 - `view_range` (number[], optional): Optional for `view` command to specify line range to show.
 
+When using the Text Editor Tool, make sure to name the key in the tools object `str_replace_editor`.
+
+```ts
+const response = await generateText({
+  model: anthropic('claude-3-5-sonnet-20241022'),
+  prompt:
+    "Create a new file called example.txt, write 'Hello World' to it, and run 'cat example.txt' in the terminal",
+  tools: {
+    str_replace_editor: textEditorTool,
+  },
+});
+```
+
 #### Computer Tool
 
 The Computer Tool enables control of keyboard and mouse actions on a computer:
@@ -323,6 +351,34 @@ These tools can be used in conjunction with the `sonnet-3-5-sonnet-20240620` mod
 
 Anthropic Sonnet `claude-3-5-sonnet-20241022` supports reading PDF files.
 You can pass PDF files as part of the message content using the `file` type:
+
+Option 1: URL-based PDF document
+
+```ts
+const result = await generateText({
+  model: anthropic('claude-3-5-sonnet-20241022'),
+  messages: [
+    {
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: 'What is an embedding model according to this document?',
+        },
+        {
+          type: 'file',
+          data: new URL(
+            'https://github.com/khulnasoft/ai/blob/main/examples/ai-core/data/ai.pdf?raw=true',
+          ),
+          mimeType: 'application/pdf',
+        },
+      ],
+    },
+  ],
+});
+```
+
+Option 2: Base64-encoded PDF document
 
 ```ts
 const result = await generateText({

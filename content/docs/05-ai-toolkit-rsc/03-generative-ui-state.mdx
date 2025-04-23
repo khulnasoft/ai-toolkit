@@ -79,7 +79,7 @@ export const sendMessage = async (input: string): Promise<ClientMessage> => {
 ```
 
 ```tsx filename='app/ai.ts'
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { ClientMessage, ServerMessage, sendMessage } from './actions';
 
 export type AIState = ServerMessage[];
@@ -125,7 +125,7 @@ The UI state can be accessed in Client Components using the [`useUIState`](/docs
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { useUIState } from 'ai-toolkit/rsc';
+import { useUIState } from 'ai/rsc';
 
 export default function Page() {
   const [messages, setMessages] = useUIState();
@@ -147,7 +147,7 @@ The AI state can be accessed in Client Components using the [`useAIState`](/docs
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { useAIState } from 'ai-toolkit/rsc';
+import { useAIState } from 'ai/rsc';
 
 export default function Page() {
   const [messages, setMessages] = useAIState();
@@ -167,7 +167,7 @@ export default function Page() {
 The AI State can be accessed within any Server Action provided to the `createAI` context using the [`getAIState`](/docs/reference/ai-toolkit-rsc/get-ai-state) function. It returns the current AI state as a read-only value:
 
 ```tsx filename='app/actions.ts'
-import { getAIState } from 'ai-toolkit/rsc';
+import { getAIState } from 'ai/rsc';
 
 export async function sendMessage(message: string) {
   'use server';
@@ -193,7 +193,7 @@ export async function sendMessage(message: string) {
 The AI State can also be updated from within your Server Action with the [`getMutableAIState`](/docs/reference/ai-toolkit-rsc/get-mutable-ai-state) function. This function is similar to `getAIState`, but it returns the state with methods to read and update it:
 
 ```tsx filename='app/actions.ts'
-import { getMutableAIState } from 'ai-toolkit/rsc';
+import { getMutableAIState } from 'ai/rsc';
 
 export async function sendMessage(message: string) {
   'use server';
@@ -227,7 +227,7 @@ To call the `sendMessage` action from the client, you can use the [`useActions`]
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { useActions, useUIState } from 'ai-toolkit/rsc';
+import { useActions, useUIState } from 'ai/rsc';
 import { AI } from './ai';
 
 export default function Page() {

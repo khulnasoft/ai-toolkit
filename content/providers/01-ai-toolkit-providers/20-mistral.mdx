@@ -111,7 +111,7 @@ const result = await generateText({
         {
           type: 'file',
           data: new URL(
-            'https://github.com/khulnasoft/ai-toolkit/blob/main/examples/ai-core/data/ai.pdf?raw=true',
+            'https://github.com/khulnasoft/ai/blob/main/examples/ai-core/data/ai.pdf?raw=true',
           ),
           mimeType: 'application/pdf',
         },
@@ -134,7 +134,7 @@ You can use Mistral language models to generate text with the `generateText` fun
 
 ```ts
 import { mistral } from '@ai-toolkit/mistral';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: mistral('mistral-large-latest'),
@@ -142,8 +142,8 @@ const { text } = await generateText({
 });
 ```
 
-Mistral language models can also be used in the `streamText`, `generateObject`, `streamObject`, and `streamUI` functions
-(see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+Mistral language models can also be used in the `streamText`, `generateObject`, and `streamObject` functions
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ### Model Capabilities
 

@@ -17,7 +17,7 @@ The last message is the user's message, and we add the image URL to it.
 
 ```tsx filename='app/api/chat/route.ts' highlight="8,9,23"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export const maxDuration = 60;
 

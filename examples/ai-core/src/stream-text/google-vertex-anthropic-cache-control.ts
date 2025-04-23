@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import fs from 'node:fs';
 
 const errorMessage = fs.readFileSync('data/error-message.txt', 'utf8');

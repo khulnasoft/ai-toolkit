@@ -1,11 +1,11 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import fs from 'node:fs';
 
 async function main() {
   const result = streamText({
-    model: vertexAnthropic('claude-3-5-sonnet-v2@20241022'),
+    model: vertexAnthropic('claude-3-7-sonnet@20250219'),
     messages: [
       {
         role: 'user',

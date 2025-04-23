@@ -1,4 +1,4 @@
-import type { LanguageModelV1Middleware } from 'ai-toolkit';
+import type { LanguageModelV1Middleware } from 'ai';
 
 export const yourGuardrailMiddleware: LanguageModelV1Middleware = {
   wrapGenerate: async ({ doGenerate }) => {

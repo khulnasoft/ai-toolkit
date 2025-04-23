@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

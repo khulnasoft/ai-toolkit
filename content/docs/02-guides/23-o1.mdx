@@ -53,7 +53,7 @@ The AI TOOLKIT abstracts away the differences between model providers, eliminate
 At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call OpenAI o1-mini with the AI TOOLKIT:
 
 ```tsx
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -70,7 +70,7 @@ const { text } = await generateText({
 AI TOOLKIT Core abstracts away the differences between model providers, allowing you to focus on building great applications. The unified interface also means that you can easily switch between models by changing just one line of code.
 
 ```tsx highlight="5"
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -89,7 +89,7 @@ You can control the amount of reasoning effort expended by o1 through the `reaso
 This parameter can be set to `'low'`, `'medium'`, or `'high'` to adjust how much time and computation the model spends on internal reasoning before producing a response.
 
 ```tsx highlight="9"
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 // Reduce reasoning effort for faster responses
@@ -112,7 +112,7 @@ const { text } = await generateText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```tsx
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -147,7 +147,7 @@ The AI TOOLKIT supports tool usage across several of its functions, like [`gener
 Here's an example of how you can use a tool with the AI TOOLKIT and o1:
 
 ```tsx
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -184,7 +184,7 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 // Allow responses up to 5 minutes
 export const maxDuration = 300;
@@ -236,4 +236,4 @@ Ready to get started? Here's how you can dive in:
 1. Check out our support for the o1 series of reasoning models in the [OpenAI Provider](/providers/ai-toolkit-providers/openai#reasoning-models).
 1. Check out practical examples at [sdk.khulnasoft.com/examples](/examples) to see the SDK in action and get inspired for your own projects.
 1. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [sdk.khulnasoft.com/docs/guides](/docs/guides).
-1. Check out ready-to-deploy AI templates at [khulnasoft.com/templates?type=ai](https://khulnasoft.com/templates?type=ai).
+1. Check out ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

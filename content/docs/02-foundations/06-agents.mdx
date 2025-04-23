@@ -63,7 +63,7 @@ The simplest workflow pattern executes steps in a predefined order. Each step's 
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText, generateObject } from 'ai-toolkit';
+import { generateText, generateObject } from 'ai';
 import { z } from 'zod';
 
 async function generateMarketingCopy(input: string) {
@@ -119,7 +119,7 @@ This pattern allows the model to make decisions about which path to take through
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateObject, generateText } from 'ai-toolkit';
+import { generateObject, generateText } from 'ai';
 import { z } from 'zod';
 
 async function handleCustomerQuery(query: string) {
@@ -170,7 +170,7 @@ Some tasks can be broken down into independent subtasks that can be executed sim
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText, generateObject } from 'ai-toolkit';
+import { generateText, generateObject } from 'ai';
 import { z } from 'zod';
 
 // Example: Parallel code review with multiple specialized reviewers
@@ -244,7 +244,7 @@ In this pattern, a primary model (orchestrator) coordinates the execution of spe
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { z } from 'zod';
 
 async function implementFeature(featureRequest: string) {
@@ -314,7 +314,7 @@ This pattern introduces quality control into workflows by having dedicated evalu
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText, generateObject } from 'ai-toolkit';
+import { generateText, generateObject } from 'ai';
 import { z } from 'zod';
 
 async function translateWithFeedback(text: string, targetLanguage: string) {
@@ -406,7 +406,7 @@ It has a calculator tool (using [math.js](https://mathjs.org/)) that it can call
 
 ```ts file='main.ts'
 import { openai } from '@ai-toolkit/openai';
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import * as mathjs from 'mathjs';
 import { z } from 'zod';
 
@@ -445,7 +445,7 @@ When building an agent for tasks like mathematical analysis or report generation
 
 ```ts highlight="6,16-29,31,45"
 import { openai } from '@ai-toolkit/openai';
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 
@@ -503,7 +503,7 @@ Calling `generateText` with `maxSteps` can result in several calls to the LLM (s
 You can access information from all steps by using the `steps` property of the response.
 
 ```ts highlight="3,9-10"
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { steps } = await generateText({
   model: openai('gpt-4o'),
@@ -522,7 +522,7 @@ It is triggered when a step is finished,
 i.e. all text deltas, tool calls, and tool results for the step are available.
 
 ```tsx highlight="6-8"
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const result = await generateText({
   model: yourModel,

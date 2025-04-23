@@ -6,7 +6,7 @@ import { zodSchema } from './zod-schema';
 /**
  * Used to mark schemas so we can support both Zod and custom schemas.
  */
-const schemaSymbol = Symbol.for('vercel.ai.schema');
+const schemaSymbol = Symbol.for('khulnasoft.com.schema');
 
 export type Schema<OBJECT = unknown> = Validator<OBJECT> & {
   /**

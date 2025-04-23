@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import fs from 'node:fs';
 
 async function main() {

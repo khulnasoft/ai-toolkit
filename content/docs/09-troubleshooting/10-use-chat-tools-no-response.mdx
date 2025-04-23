@@ -25,7 +25,7 @@ To resolve this issue, convert the incoming messages to the `CoreMessage` format
 
 ```tsx highlight="9"
 import { openai } from '@ai-toolkit/openai';
-import { convertToCoreMessages, streamText } from 'ai-toolkit';
+import { convertToCoreMessages, streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();

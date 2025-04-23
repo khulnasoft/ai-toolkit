@@ -22,7 +22,7 @@ import { azure } from '@ai-toolkit/azure';
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: azure('gpt-4o'), // your deployment name

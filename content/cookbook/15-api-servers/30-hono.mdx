@@ -21,7 +21,7 @@ curl -X POST http://localhost:8080
   set in the `OPENAI_API_KEY` environment variable.
 </Note>
 
-**Full example**: [github.com/khulnasoft/ai-toolkit/examples/hono](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/hono)
+**Full example**: [github.com/khulnasoft/ai/examples/hono](https://github.com/khulnasoft/ai/tree/main/examples/hono)
 
 ### Data Stream
 
@@ -30,7 +30,7 @@ You can use the `toDataStream` method to get a data stream from the result and t
 ```ts filename='index.ts'
 import { openai } from '@ai-toolkit/openai';
 import { serve } from '@hono/node-server';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { Hono } from 'hono';
 import { stream } from 'hono/streaming';
 
@@ -59,7 +59,7 @@ serve({ fetch: app.fetch, port: 8080 });
 ```ts filename='index.ts' highlight="10-13,20"
 import { openai } from '@ai-toolkit/openai';
 import { serve } from '@hono/node-server';
-import { createDataStream, streamText } from 'ai-toolkit';
+import { createDataStream, streamText } from 'ai';
 import { Hono } from 'hono';
 import { stream } from 'hono/streaming';
 
@@ -104,7 +104,7 @@ You can use the `textStream` property to get a text stream from the result and t
 ```ts filename='index.ts' highlight="17"
 import { openai } from '@ai-toolkit/openai';
 import { serve } from '@hono/node-server';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { Hono } from 'hono';
 import { stream } from 'hono/streaming';
 
@@ -123,3 +123,7 @@ app.post('/', async c => {
 
 serve({ fetch: app.fetch, port: 8080 });
 ```
+
+## Troubleshooting
+
+- Streaming not working when [proxied](/docs/troubleshooting/streaming-not-working-when-proxied)

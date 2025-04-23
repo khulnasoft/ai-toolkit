@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { generateObject, LanguageModelResponseMetadataWithHeaders } from 'ai-toolkit';
+import { generateObject, LanguageModelResponseMetadataWithHeaders } from 'ai';
 import { LanguageModelResponseMetadataWithHeaders as MetadataWithHeaders } from 'other-pkg';
 
 // Direct type usage

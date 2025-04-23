@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 const deepSeek = createOpenAICompatible({

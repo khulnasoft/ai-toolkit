@@ -18,7 +18,7 @@ There is also an `error` parameter that contains error when e.g. the object does
 
 ```ts file='index.ts' highlight={"15-23"}
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { z } from 'zod';
 
 const result = streamObject({
@@ -50,7 +50,7 @@ The object is fully typed. When the type validation according to the schema fail
 
 ```ts file='index.ts' highlight={"17-26"}
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { z } from 'zod';
 
 const result = streamObject({

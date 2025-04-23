@@ -12,7 +12,7 @@ Use of LangChain's open-source frameworks is not necessary, and LangSmith integr
 
 <Note>
   A version of this guide is also available in the [LangSmith
-  documentation](https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_with_vercel_ai_toolkit).
+  documentation](https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_with_khulnasoft_ai_sdk).
 </Note>
 
 ## Setup
@@ -61,7 +61,7 @@ import { AITOOLKITExporter } from 'langsmith/vercel';
 
 export function register() {
   registerOTel({
-    serviceName: 'langsmith-vercel-ai-toolkit-example',
+    serviceName: 'langsmith-khulnasoft-ai-toolkit-example',
     traceExporter: new AITOOLKITExporter(),
   });
 }
@@ -73,7 +73,7 @@ Afterwards, add the `experimental_telemetry` argument to your AI TOOLKIT calls t
 
 ```ts highlight="8"
 import { AITOOLKITExporter } from 'langsmith/vercel';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 await streamText({
@@ -89,7 +89,7 @@ You can also trace tool calls:
 
 ```ts
 import { AITOOLKITExporter } from 'langsmith/vercel';
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -148,7 +148,7 @@ Afterwards, add the `experimental_telemetry` argument to your AI TOOLKIT calls t
 </Note>
 
 ```ts
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { AITOOLKITExporter } from 'langsmith/vercel';
 
@@ -191,7 +191,7 @@ You can customize the run name by passing the `runName` argument to the `AITOOLK
 ```ts
 import { AITOOLKITExporter } from 'langsmith/vercel';
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 await generateText({
   model: openai('gpt-4o-mini'),
@@ -211,7 +211,7 @@ You can customize the run ID by passing the `runId` argument to the `AITOOLKITEx
 ```ts
 import { AITOOLKITExporter } from 'langsmith/vercel';
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { v4 as uuidv4 } from 'uuid';
 
 await generateText({
@@ -231,7 +231,7 @@ Here's an example using the [`traceable`](https://docs.smith.langchain.com/obser
 ```ts
 import { AITOOLKITExporter } from 'langsmith/vercel';
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 import { traceable } from 'langsmith/traceable';
 
@@ -273,7 +273,7 @@ You can also pass a LangSmith client instance into the `AITOOLKITExporter` const
 import { AITOOLKITExporter } from 'langsmith/vercel';
 import { Client } from 'langsmith';
 
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';
@@ -311,7 +311,7 @@ You can add metadata to your traces to help organize and filter them in the Lang
 
 ```ts
 import { AITOOLKITExporter } from 'langsmith/vercel';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 await generateText({
@@ -328,7 +328,7 @@ Metadata will be visible in your LangSmith dashboard and can be used to filter a
 ## Further reading
 
 - [LangSmith docs](https://docs.smith.langchain.com)
-- [LangSmith guide on tracing with the AI TOOLKIT](https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_with_vercel_ai_toolkit)
+- [LangSmith guide on tracing with the AI TOOLKIT](https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_with_khulnasoft_ai_sdk)
 - [LangSmith guide on tracing without environment variables](https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_without_env_vars)
 
 Once you've set up LangSmith tracing for your project, try gathering a dataset and evaluating it:

@@ -1,5 +1,5 @@
-import { generateObject, JSONParseError } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { generateObject, JSONParseError } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 import 'dotenv/config';
 import { z } from 'zod';
 

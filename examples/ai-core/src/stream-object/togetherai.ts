@@ -1,5 +1,5 @@
 import { togetherai } from '@ai-toolkit/togetherai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

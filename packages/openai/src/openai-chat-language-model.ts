@@ -133,15 +133,15 @@ export class OpenAIChatLanguageModel implements LanguageModelV1 {
       });
     }
 
-    if (
-      getSystemMessageMode(this.modelId) === 'remove' &&
-      prompt.some(message => message.role === 'system')
-    ) {
-      warnings.push({
-        type: 'other',
-        message: 'system messages are removed for this model',
-      });
-    }
+    const { messages, warnings: messageWarnings } = convertToOpenAIChatMessages(
+      {
+        prompt,
+        useLegacyFunctionCalling,
+        systemMessageMode: getSystemMessageMode(this.modelId),
+      },
+    );
+
+    warnings.push(...messageWarnings);
 
     const baseArgs = {
       // model id:
@@ -158,10 +158,10 @@ export class OpenAIChatLanguageModel implements LanguageModelV1 {
         typeof this.settings.logprobs === 'number'
           ? this.settings.logprobs
           : typeof this.settings.logprobs === 'boolean'
-          ? this.settings.logprobs
-            ? 0
-            : undefined
-          : undefined,
+            ? this.settings.logprobs
+              ? 0
+              : undefined
+            : undefined,
       user: this.settings.user,
       parallel_tool_calls: this.settings.parallelToolCalls,
 
@@ -199,11 +199,7 @@ export class OpenAIChatLanguageModel implements LanguageModelV1 {
         this.settings.reasoningEffort,
 
       // messages:
-      messages: convertToOpenAIChatMessages({
-        prompt,
-        useLegacyFunctionCalling,
-        systemMessageMode: getSystemMessageMode(this.modelId),
-      }),
+      messages,
     };
 
     if (isReasoningModel(this.modelId)) {
@@ -270,8 +266,17 @@ export class OpenAIChatLanguageModel implements LanguageModelV1 {
         }
         baseArgs.max_tokens = undefined;
       }
+    } else if (this.modelId.startsWith('gpt-4o-search-preview')) {
+      if (baseArgs.temperature != null) {
+        baseArgs.temperature = undefined;
+        warnings.push({
+          type: 'unsupported-setting',
+          setting: 'temperature',
+          details:
+            'temperature is not supported for the gpt-4o-search-preview model and has been removed.',
+        });
+      }
     }
-
     switch (type) {
       case 'regular': {
         const { tools, tool_choice, functions, function_call, toolWarnings } =

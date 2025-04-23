@@ -9,7 +9,7 @@ import {
   embedMany,
   APICallError,
   ToolExecutionError,
-} from 'ai-toolkit';
+} from 'ai';
 import fs from 'fs';
 import { describe, expect, it, vi } from 'vitest';
 import type {
@@ -737,7 +737,7 @@ export function createFeatureTestSuite({
                         {
                           type: 'image',
                           image:
-                            'https://github.com/khulnasoft/ai-toolkit/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
+                            'https://github.com/khulnasoft/ai/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
                         },
                       ],
                     },
@@ -794,7 +794,7 @@ export function createFeatureTestSuite({
                         {
                           type: 'image',
                           image:
-                            'https://github.com/khulnasoft/ai-toolkit/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
+                            'https://github.com/khulnasoft/ai/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
                         },
                       ],
                     },

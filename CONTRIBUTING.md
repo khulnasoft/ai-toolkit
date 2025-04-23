@@ -20,7 +20,7 @@ We're always looking for suggestions to make our project better. If you have an 
 ## Improving Documentation
 
 Documentation is crucial for understanding and using our project effectively.
-You can find the content of our docs under [`content`](https://github.com/khulnasoft/ai-toolkit/tree/main/content).
+You can find the content of our docs under [`content`](https://github.com/khulnasoft/ai/tree/main/content).
 
 To fix smaller typos, you can edit the code directly in GitHub or use Github.dev (press `.` in Github).
 
@@ -63,17 +63,28 @@ Once built, the new code is picked up by the examples.
 
 To test the package that you're working on, run `pnpm test` in the package folder.
 You do not need to rebuild your package to test it (only dependencies need to be built).
-Some packages like `ai-toolkit` also have more details tests and watch mode, see their `package.json` for more information.
+Some packages like `ai` also have more details tests and watch mode, see their `package.json` for more information.
 
 ### Submitting Pull Requests
 
 We greatly appreciate your pull requests. Here are the steps to submit them:
 
 1. **Create a New Branch**: Initiate your changes in a fresh branch. It's recommended to name the branch in a manner that signifies the changes you're implementing.
-2. **Commit Your Changes**: Ensure your commits are succinct and clear, detailing what modifications have been made and the reasons behind them.
-3. **Push the Changes to Your GitHub Repository**: After committing your changes, push them to your GitHub repository.
-4. **Open a Pull Request**: Propose your changes for review. Furnish a lucid title and description of your contributions. Make sure to link any relevant issues your PR resolves.
-5. **Respond to Feedback**: Stay receptive to and address any feedback or alteration requests from the project maintainers.
+2. **Add a patch changeset**: If you're updating any packages and want to ensure they're released, add a **patch** changeset to your branch by running `pnpm changeset` in the workspace root.
+
+   - **Please do not use minor or major changesets**, we'll let you know when you need to use a different changeset type than patch.
+   - You don't need to select any of the `examples/*` packages, as they are not released.
+
+3. **Commit Your Changes**: Ensure your commits are succinct and clear, detailing what modifications have been made and the reasons behind them. We don't require a specific commit message format, but please be descriptive.
+4. **Fix prettier issues**: Run `pnpm prettier-fix` to fix any formatting issues in your code.
+5. **Push the Changes to Your GitHub Repository**: After committing your changes, push them to your GitHub repository.
+6. **Open a Pull Request**: Propose your changes for review. Furnish a lucid title and description of your contributions. Make sure to link any relevant issues your PR resolves. We use the following PR title format:
+
+   - `fix(package-name): description` or
+   - `feat(package-name): description` or
+   - `chore(package-name): description` etc.
+
+7. **Respond to Feedback**: Stay receptive to and address any feedback or alteration requests from the project maintainers.
 
 ### Fixing Prettier Issues
 

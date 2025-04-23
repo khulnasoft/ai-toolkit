@@ -18,7 +18,7 @@ On the server, you use a simple route handler that streams the response from the
 
 ```tsx filename='app/api/chat/route.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export const maxDuration = 60;
 
@@ -77,7 +77,7 @@ MemoizedMarkdown.displayName = 'MemoizedMarkdown';
 
 ## Client
 
-Finally, on the client, use the `useChat` hook to manage the chat state and render the chat interface. You can use the `MemoizedMarkdown` component to render the message contents in Markdown format without compromising on performance. Additionally, you can render the form in it's own component so as to not trigger unnecessary re-renders of the chat messages. You can also use the `experimental_throttle` option that will throttle data updates to a specified interval, helping to manage rendering performance.
+Finally, on the client, use the `useChat` hook to manage the chat state and render the chat interface. You can use the `MemoizedMarkdown` component to render the message contents in Markdown format without compromising on performance. Additionally, you can render the form in its own component so as to not trigger unnecessary re-renders of the chat messages. You can also use the `experimental_throttle` option that will throttle data updates to a specified interval, helping to manage rendering performance.
 
 ```typescript filename='app/page.tsx'
 'use client';

@@ -1,5 +1,5 @@
 import { xai } from '@ai-toolkit/xai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
@@ -18,7 +18,7 @@ async function main() {
     messages.push({ role: 'user', content: userInput });
 
     const result = streamText({
-      model: xai('grok-2-1212'),
+      model: xai('grok-3-beta'),
       tools: {
         weather: tool({
           description: 'Get the weather in a location',

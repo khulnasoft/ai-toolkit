@@ -13,7 +13,7 @@ It can be used to force the language model to return structured data, e.g. for i
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { z } from 'zod';
 
 const { partialObjectStream } = streamObject({
@@ -41,7 +41,7 @@ You can use `elementStream` to get the stream of complete array elements.
 
 ```ts highlight="7,18"
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { z } from 'zod';
 
 const { elementStream } = streamObject({
@@ -66,7 +66,7 @@ for await (const hero of elementStream) {
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 
 const { partialObjectStream } = streamObject({
   model: openai('gpt-4-turbo'),
@@ -84,7 +84,7 @@ To see `streamObject` in action, check out the [additional examples](#more-examp
 
 ## Import
 
-<Snippet text={`import { streamObject } from "ai-toolkit"`} prompt={false} />
+<Snippet text={`import { streamObject } from "ai"`} prompt={false} />
 
 ## API Signature
 

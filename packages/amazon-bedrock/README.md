@@ -23,7 +23,7 @@ import { bedrock } from '@ai-toolkit/amazon-bedrock';
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: bedrock('meta.llama3-8b-instruct-v1:0'),

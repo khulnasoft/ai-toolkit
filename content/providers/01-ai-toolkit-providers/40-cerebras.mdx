@@ -69,7 +69,7 @@ You can create language models using a provider instance:
 
 ```ts
 import { cerebras } from '@ai-toolkit/cerebras';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: cerebras('llama3.1-8b'),
@@ -77,7 +77,8 @@ const { text } = await generateText({
 });
 ```
 
-Cerebras language models can be used in the `streamText` and `streamUI` functions (see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+Cerebras language models can be used in the `streamText` function
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ## Model Capabilities
 

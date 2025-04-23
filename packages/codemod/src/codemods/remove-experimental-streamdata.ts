@@ -3,13 +3,13 @@ import { createTransformer } from './lib/create-transformer';
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Track imports from 'ai-toolkit' package only
+  // Track imports from 'ai' package only
   const targetImports = new Set<string>();
 
-  // First pass - collect imports from 'ai-toolkit' package
+  // First pass - collect imports from 'ai' package
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai-toolkit')
+    .filter(path => path.node.source.value === 'ai')
     .forEach(path => {
       path.node.specifiers?.forEach(spec => {
         if (
@@ -24,10 +24,10 @@ export default createTransformer((fileInfo, api, options, context) => {
       });
     });
 
-  // Second pass - replace imports from 'ai-toolkit' package only
+  // Second pass - replace imports from 'ai' package only
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai-toolkit')
+    .filter(path => path.node.source.value === 'ai')
     .forEach(path => {
       const newSpecifiers = path.node.specifiers?.map(spec => {
         if (
@@ -51,7 +51,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     .find(j.Identifier)
     .filter(path => {
       // Only replace if:
-      // 1. It's one of our tracked imports from 'ai-toolkit'
+      // 1. It's one of our tracked imports from 'ai'
       // 2. It's not part of an import declaration (to avoid replacing other imports)
       return (
         targetImports.has(path.node.name) &&

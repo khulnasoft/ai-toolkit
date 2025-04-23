@@ -1,5 +1,5 @@
 import { createAnthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 const anthropic = createAnthropic({

@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 /*
  * This route is used to upload files to Khulnasoft's Blob Storage.
- * Example from https://khulnasoft.com/docs/storage/vercel-blob/client-upload#create-a-client-upload-route
+ * Example from https://vercel.com/docs/storage/vercel-blob/client-upload#create-a-client-upload-route
  */
 export async function POST(request: Request): Promise<NextResponse> {
   const body = (await request.json()) as HandleUploadBody;

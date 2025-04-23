@@ -15,7 +15,7 @@ Laminar features:
 
 <Note>
   A version of this guide is available in [Laminar's
-  docs](https://docs.lmnr.ai/tracing/vercel-ai-toolkit).
+  docs](https://docs.lmnr.ai/tracing/khulnasoft-ai-toolkit).
 </Note>
 
 ## Setup
@@ -71,7 +71,7 @@ Then, if you call AI TOOLKIT functions in any of your API routes, calls will be 
 ```javascript highlight="8-10"
 // /api/.../route.ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: openai('gpt-4o-mini'),
@@ -104,7 +104,7 @@ Now enable `experimentalTelemetry` in your `generateText` call:
 
 ```javascript highlight="7-9"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: openai('gpt-4o-mini'),

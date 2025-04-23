@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { generateText, streamText, generateObject, streamObject } from 'ai-toolkit';
+import { generateText, streamText, generateObject, streamObject } from 'ai';
 
 async function main() {
   const result = await generateText({

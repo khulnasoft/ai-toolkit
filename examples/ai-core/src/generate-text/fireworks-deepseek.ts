@@ -1,5 +1,5 @@
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

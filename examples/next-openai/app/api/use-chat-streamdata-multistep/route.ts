@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { createDataStreamResponse, streamText, tool } from 'ai-toolkit';
+import { createDataStreamResponse, streamText, tool } from 'ai';
 import { z } from 'zod';
 
 export async function POST(req: Request) {

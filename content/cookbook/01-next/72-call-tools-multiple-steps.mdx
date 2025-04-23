@@ -49,14 +49,14 @@ export default function Page() {
 
 ## Server
 
-You will create a new route at `/api/chat` that will use the `streamText` function from the `ai-toolkit` module to generate the assistant's response based on the conversation history.
+You will create a new route at `/api/chat` that will use the `streamText` function from the `ai` module to generate the assistant's response based on the conversation history.
 
 You will use the [`tools`](/docs/reference/ai-toolkit-core/generate-text#tools) parameter to specify two tools called `getLocation` and `getWeather` that will first get the user's location and then use it to get the weather.
 
 You will add the two functions mentioned earlier and use zod to specify the schema for its parameters.
 
 ```ts filename='app/api/chat/route.ts'
-import { ToolInvocation, streamText } from 'ai-toolkit';
+import { ToolInvocation, streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 

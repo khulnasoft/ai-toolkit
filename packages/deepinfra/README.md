@@ -23,7 +23,7 @@ import { deepinfra } from '@ai-toolkit/deepinfra';
 
 ```ts
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: deepinfra('meta-llama/Llama-3.3-70B-Instruct'),

@@ -112,7 +112,12 @@ that the assistant made as part of this message.
    */
   // note: optional on the Message type (which serves as input)
   parts?: Array<
-    TextUIPart | ReasoningUIPart | ToolInvocationUIPart | SourceUIPart
+    | TextUIPart
+    | ReasoningUIPart
+    | ToolInvocationUIPart
+    | SourceUIPart
+    | FileUIPart
+    | StepStartUIPart
   >;
 }
 
@@ -124,7 +129,12 @@ export type UIMessage = Message & {
    * User messages can have text parts.
    */
   parts: Array<
-    TextUIPart | ReasoningUIPart | ToolInvocationUIPart | SourceUIPart
+    | TextUIPart
+    | ReasoningUIPart
+    | ToolInvocationUIPart
+    | SourceUIPart
+    | FileUIPart
+    | StepStartUIPart
   >;
 };
 
@@ -180,6 +190,22 @@ export type SourceUIPart = {
    * The source.
    */
   source: LanguageModelV1Source;
+};
+
+/**
+ * A file part of a message.
+ */
+export type FileUIPart = {
+  type: 'file';
+  mimeType: string;
+  data: string; // base64 encoded data
+};
+
+/**
+ * A step boundary part of a message.
+ */
+export type StepStartUIPart = {
+  type: 'step-start';
 };
 
 export type CreateMessage = Omit<Message, 'id'> & {
@@ -475,7 +501,7 @@ export type AssistantMessage = {
  * a map.
  */
 export type DataMessage = {
-  id?: string; // optional id, implement if needed (e.g. for persistance)
+  id?: string; // optional id, implement if needed (e.g. for persistence)
   role: 'data';
   data: JSONValue; // application-specific data
 };

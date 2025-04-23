@@ -1,5 +1,5 @@
 import { mistral } from '@ai-toolkit/mistral';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 import fs from 'node:fs';
 

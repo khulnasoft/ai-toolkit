@@ -1,4 +1,4 @@
-import { ToolInvocation, streamText } from 'ai-toolkit';
+import { ToolInvocation, streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 

@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { smoothStream, streamText } from 'ai-toolkit';
+import { smoothStream, streamText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

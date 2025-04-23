@@ -1,7 +1,7 @@
 'use server';
 
-import { generateId } from 'ai-toolkit';
-import { createStreamableUI, createStreamableValue } from 'ai-toolkit/rsc';
+import { generateId } from 'ai';
+import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { OpenAI } from 'openai';
 import { ReactNode } from 'react';
 import { Message } from './message';

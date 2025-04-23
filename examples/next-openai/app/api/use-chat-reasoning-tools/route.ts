@@ -1,5 +1,5 @@
-import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText, tool } from 'ai-toolkit';
+import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
+import { streamText, tool } from 'ai';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     providerOptions: {
       anthropic: {
         thinking: { type: 'enabled', budgetTokens: 12000 },
-      },
+      } satisfies AnthropicProviderOptions,
     },
   });
 

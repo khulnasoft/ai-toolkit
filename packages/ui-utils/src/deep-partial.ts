@@ -3,7 +3,7 @@
 // MIT License
 //
 // Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-// Copyright (c) KhulnaSoft, Ltd. (https://khulnasoft.com)
+// Copyright (c) Khulnasoft, Inc. (https://vercel.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 // documentation files (the "Software"), to deal in the Software without restriction, including without limitation
@@ -47,22 +47,22 @@ type DeepPartialInternal<T> = T extends
   | (new (...arguments_: any[]) => unknown)
   ? T
   : T extends Map<infer KeyType, infer ValueType>
-  ? PartialMap<KeyType, ValueType>
-  : T extends Set<infer ItemType>
-  ? PartialSet<ItemType>
-  : T extends ReadonlyMap<infer KeyType, infer ValueType>
-  ? PartialReadonlyMap<KeyType, ValueType>
-  : T extends ReadonlySet<infer ItemType>
-  ? PartialReadonlySet<ItemType>
-  : T extends object
-  ? T extends ReadonlyArray<infer ItemType> // Test for arrays/tuples, per https://github.com/microsoft/TypeScript/issues/35156
-    ? ItemType[] extends T // Test for arrays (non-tuples) specifically
-      ? readonly ItemType[] extends T // Differentiate readonly and mutable arrays
-        ? ReadonlyArray<DeepPartialInternal<ItemType | undefined>>
-        : Array<DeepPartialInternal<ItemType | undefined>>
-      : PartialObject<T> // Tuples behave properly
-    : PartialObject<T>
-  : unknown;
+    ? PartialMap<KeyType, ValueType>
+    : T extends Set<infer ItemType>
+      ? PartialSet<ItemType>
+      : T extends ReadonlyMap<infer KeyType, infer ValueType>
+        ? PartialReadonlyMap<KeyType, ValueType>
+        : T extends ReadonlySet<infer ItemType>
+          ? PartialReadonlySet<ItemType>
+          : T extends object
+            ? T extends ReadonlyArray<infer ItemType> // Test for arrays/tuples, per https://github.com/microsoft/TypeScript/issues/35156
+              ? ItemType[] extends T // Test for arrays (non-tuples) specifically
+                ? readonly ItemType[] extends T // Differentiate readonly and mutable arrays
+                  ? ReadonlyArray<DeepPartialInternal<ItemType | undefined>>
+                  : Array<DeepPartialInternal<ItemType | undefined>>
+                : PartialObject<T> // Tuples behave properly
+              : PartialObject<T>
+            : unknown;
 
 type PartialMap<KeyType, ValueType> = {} & Map<
   DeepPartialInternal<KeyType>,

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { For, Show } from 'solid-js';
 import { useChat } from '@ai-toolkit/solid';
-import { createIdGenerator } from 'ai-toolkit';
+import { createIdGenerator } from 'ai';
 
 export default function Chat() {
   const {

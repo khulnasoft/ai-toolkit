@@ -13,7 +13,7 @@ A high value (close to 1) indicates that the vectors are very similar, while a l
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { cosineSimilarity, embedMany } from 'ai-toolkit';
+import { cosineSimilarity, embedMany } from 'ai';
 
 const { embeddings } = await embedMany({
   model: openai.embedding('text-embedding-3-small'),
@@ -27,10 +27,7 @@ console.log(
 
 ## Import
 
-<Snippet
-  text={`import { cosineSimilarity } from "ai-toolkit"`}
-  prompt={false}
-/>
+<Snippet text={`import { cosineSimilarity } from "ai"`} prompt={false} />
 
 ## API Signature
 

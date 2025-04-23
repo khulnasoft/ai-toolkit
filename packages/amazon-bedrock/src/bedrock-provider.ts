@@ -26,7 +26,10 @@ import {
   BedrockImageModelId,
   BedrockImageSettings,
 } from './bedrock-image-settings';
-import { createSigV4FetchFunction } from './bedrock-sigv4-fetch';
+import {
+  BedrockCredentials,
+  createSigV4FetchFunction,
+} from './bedrock-sigv4-fetch';
 
 export interface AmazonBedrockProviderSettings {
   /**
@@ -37,6 +40,7 @@ The AWS region to use for the Bedrock provider. Defaults to the value of the
 
   /**
 The AWS access key ID to use for the Bedrock provider. Defaults to the value of the
+`AWS_ACCESS_KEY_ID` environment variable.
    */
   accessKeyId?: string;
 
@@ -67,6 +71,14 @@ Custom fetch implementation. You can use it as a middleware to intercept request
 or to provide a custom fetch implementation for e.g. testing.
 */
   fetch?: FetchFunction;
+
+  /**
+The AWS credential provider to use for the Bedrock provider to get dynamic
+credentials similar to the AWS SDK. Setting a provider here will cause its
+credential values to be used instead of the `accessKeyId`, `secretAccessKey`,
+and `sessionToken` settings.
+   */
+  credentialProvider?: () => PromiseLike<Omit<BedrockCredentials, 'region'>>;
 
   // for testing
   generateId?: () => string;
@@ -105,14 +117,22 @@ Create an Amazon Bedrock provider instance.
 export function createAmazonBedrock(
   options: AmazonBedrockProviderSettings = {},
 ): AmazonBedrockProvider {
-  const sigv4Fetch = createSigV4FetchFunction(
-    () => ({
-      region: loadSetting({
-        settingValue: options.region,
-        settingName: 'region',
-        environmentVariableName: 'AWS_REGION',
-        description: 'AWS region',
-      }),
+  const sigv4Fetch = createSigV4FetchFunction(async () => {
+    const region = loadSetting({
+      settingValue: options.region,
+      settingName: 'region',
+      environmentVariableName: 'AWS_REGION',
+      description: 'AWS region',
+    });
+    // If a credential provider is provided, use it to get the credentials.
+    if (options.credentialProvider) {
+      return {
+        ...(await options.credentialProvider()),
+        region,
+      };
+    }
+    return {
+      region,
       accessKeyId: loadSetting({
         settingValue: options.accessKeyId,
         settingName: 'accessKeyId',
@@ -129,9 +149,8 @@ export function createAmazonBedrock(
         settingValue: options.sessionToken,
         environmentVariableName: 'AWS_SESSION_TOKEN',
       }),
-    }),
-    options.fetch,
-  );
+    };
+  }, options.fetch);
 
   const getBaseUrl = (): string =>
     withoutTrailingSlash(

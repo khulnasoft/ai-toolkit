@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { embed } from 'ai-toolkit';
+import { embed } from 'ai';
 
 async function main() {
   const togetherai = createOpenAICompatible({

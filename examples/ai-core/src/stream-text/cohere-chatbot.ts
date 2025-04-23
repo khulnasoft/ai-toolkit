@@ -1,5 +1,5 @@
 import { cohere } from '@ai-toolkit/cohere';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
@@ -16,7 +16,7 @@ async function main() {
     messages.push({ role: 'user', content: await terminal.question('You: ') });
 
     const result = streamText({
-      model: cohere('command-r-plus'),
+      model: cohere('command-a-03-2025'),
       tools: {
         weather: tool({
           description: 'Get the weather in a location',

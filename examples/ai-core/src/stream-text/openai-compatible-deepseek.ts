@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 async function main() {
   const deepseek = createOpenAICompatible({

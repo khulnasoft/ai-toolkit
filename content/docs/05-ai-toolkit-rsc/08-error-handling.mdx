@@ -21,7 +21,7 @@ To handle errors while generating UI, the [`streamableUI`](/docs/reference/ai-to
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { createStreamableUI } from 'ai-toolkit/rsc';
+import { createStreamableUI } from 'ai/rsc';
 
 export async function getStreamedUI() {
   const ui = createStreamableUI();
@@ -71,7 +71,7 @@ To handle other errors while streaming, you can return an error object that the 
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { createStreamableValue } from 'ai-toolkit/rsc';
+import { createStreamableValue } from 'ai/rsc';
 import { fetchData, emptyData } from '../utils/data';
 
 export const getStreamedData = async () => {

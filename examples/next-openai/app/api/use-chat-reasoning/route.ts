@@ -1,9 +1,5 @@
 import { fireworks } from '@ai-toolkit/fireworks';
-import {
-  extractReasoningMiddleware,
-  streamText,
-  wrapLanguageModel,
-} from 'ai-toolkit';
+import { extractReasoningMiddleware, streamText, wrapLanguageModel } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -32,7 +28,7 @@ export async function POST(req: Request) {
   //   providerOptions: {
   //     anthropic: {
   //       thinking: { type: 'enabled', budgetTokens: 12000 },
-  //     },
+  //     } satisfies AnthropicProviderOptions,
   //   },
   // });
 

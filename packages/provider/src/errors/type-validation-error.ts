@@ -2,7 +2,7 @@ import { AITOOLKITError } from './ai-toolkit-error';
 import { getErrorMessage } from './get-error-message';
 
 const name = 'AI_TypeValidationError';
-const marker = `vercel.ai.error.${name}`;
+const marker = `khulnasoft.com.error.${name}`;
 const symbol = Symbol.for(marker);
 
 export class TypeValidationError extends AITOOLKITError {

@@ -1,5 +1,5 @@
 import { mistral } from '@ai-toolkit/mistral';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 import 'dotenv/config';
 
 async function main() {

@@ -81,7 +81,7 @@ You can use Qwen language models to generate text with the `generateText` functi
 
 ```ts
 import { qwen } from 'qwen-ai-provider';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: qwen('qwen-plus'),
@@ -89,8 +89,8 @@ const { text } = await generateText({
 });
 ```
 
-Qwen language models can also be used in the `streamText`, `generateObject`, `streamObject`, and `streamUI` functions
-(see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+Qwen language models can also be used in the `streamText`, `generateObject`, and `streamObject` functions
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ### Model Capabilities
 

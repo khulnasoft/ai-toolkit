@@ -2,7 +2,7 @@ import { AITOOLKITError } from './ai-toolkit-error';
 import { getErrorMessage } from './get-error-message';
 
 const name = 'AI_JSONParseError';
-const marker = `vercel.ai.error.${name}`;
+const marker = `khulnasoft.com.error.${name}`;
 const symbol = Symbol.for(marker);
 
 // TODO v5: rename to ParseError

@@ -15,11 +15,11 @@ We introduced support for using [React Server Components](https://react.dev/refe
 
 However, given we're pushing the boundaries of this technology, AI TOOLKIT RSC currently faces significant limitations that make it unsuitable for stable production use.
 
-- It is not possible to abort a stream using server actions. This will be improved in future releases of React and Next.js [(1122)](https://github.com/khulnasoft/ai-toolkit/issues/1122).
-- When using `createStreamableUI` and `streamUI`, components remount on `.done()`, causing them to flicker [(2939)](https://github.com/khulnasoft/ai-toolkit/issues/2939).
-- Many suspense boundaries can lead to crashes [(2843)](https://github.com/khulnasoft/ai-toolkit/issues/2843).
+- It is not possible to abort a stream using server actions. This will be improved in future releases of React and Next.js [(1122)](https://github.com/khulnasoft/ai/issues/1122).
+- When using `createStreamableUI` and `streamUI`, components remount on `.done()`, causing them to flicker [(2939)](https://github.com/khulnasoft/ai/issues/2939).
+- Many suspense boundaries can lead to crashes [(2843)](https://github.com/khulnasoft/ai/issues/2843).
 - Using `createStreamableUI` can lead to quadratic data transfer. You can avoid this using createStreamableValue instead, and rendering the component client-side.
-- Closed RSC streams cause update issues [(3007)](https://github.com/khulnasoft/ai-toolkit/issues/3007).
+- Closed RSC streams cause update issues [(3007)](https://github.com/khulnasoft/ai/issues/3007).
 
 Due to these limitations, AI TOOLKIT RSC is marked as experimental, and we do not recommend using it for stable production environments.
 
@@ -37,7 +37,7 @@ The `streamUI` function executes as part of a server action as illustrated below
 
 ```tsx filename="@/app/actions.tsx"
 import { openai } from '@ai-toolkit/openai';
-import { getMutableAIState, streamUI } from 'ai-toolkit/rsc';
+import { getMutableAIState, streamUI } from 'ai/rsc';
 
 export async function sendMessage(message: string) {
   'use server';
@@ -70,7 +70,7 @@ The chat interface calls the server action. The response is then saved using the
 'use client';
 
 import { useState, ReactNode } from 'react';
-import { useActions, useUIState } from 'ai-toolkit/rsc';
+import { useActions, useUIState } from 'ai/rsc';
 
 export default function Page() {
   const { sendMessage } = useActions();
@@ -102,7 +102,7 @@ The `streamUI` function combines generating text and rendering the user interfac
 The `streamText` function executes as part of a route handler and streams the response to the client. The `useChat` hook on the client decodes this stream and renders the response within the chat interface.
 
 ```ts filename="@/app/api/chat/route.ts"
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(request) {
@@ -175,7 +175,7 @@ The `streamUI` function uses `tools` as a way to execute functions based on user
 
 ```tsx filename="@/app/actions.tsx"
 import { z } from 'zod';
-import { streamUI } from 'ai-toolkit/rsc';
+import { streamUI } from 'ai/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { getWeather } from '@/utils/queries';
 import { Weather } from '@/components/weather';
@@ -216,7 +216,7 @@ The `streamText` function streams the props data as response to the client, whil
 import { z } from 'zod';
 import { openai } from '@ai-toolkit/openai';
 import { getWeather } from '@/utils/queries';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(request) {
   const { messages } = await request.json();
@@ -314,7 +314,7 @@ With AI TOOLKIT RSC, components streamed to the client can trigger subsequent ge
 ```tsx filename="@/app/components/list-flights.tsx"
 'use client';
 
-import { useActions, useUIState } from 'ai-toolkit/rsc';
+import { useActions, useUIState } from 'ai/rsc';
 
 export function ListFlights({ flights }) {
   const { sendMessage } = useActions();
@@ -385,7 +385,7 @@ In AI TOOLKIT RSC, you can use the `initial` parameter of `streamUI` to define t
 
 ```tsx filename="@/app/actions.tsx"
 import { openai } from '@ai-toolkit/openai';
-import { streamUI } from 'ai-toolkit/rsc';
+import { streamUI } from 'ai/rsc';
 
 const { value: stream } = await streamUI({
   model: openai('gpt-4o'),
@@ -457,7 +457,7 @@ Before implementing `streamUI` as a server action, you should create an `<AI/>` 
 #### Before: Save chats using callback function of context provider
 
 ```ts filename="@/app/actions.ts"
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { saveChat } from '@/utils/queries';
 
 export const AI = createAI({
@@ -483,7 +483,7 @@ With AI TOOLKIT UI, you will save chats using the `onFinish` callback function o
 ```ts filename="@/app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
 import { saveChat } from '@/utils/queries';
-import { streamText, convertToCoreMessages } from 'ai-toolkit';
+import { streamText, convertToCoreMessages } from 'ai';
 
 export async function POST(request) {
   const { id, messages } = await request.json();
@@ -519,7 +519,7 @@ Similar to how you typically save chats in AI TOOLKIT RSC, you should use the `o
 #### Before: Load chat from database using callback function of context provider
 
 ```ts filename="@/app/actions.ts"
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { loadChatFromDB, convertToUIState } from '@/utils/queries';
 
 export const AI = createAI({
@@ -547,7 +547,7 @@ As messages are typically loaded from the database, we can use a server actions 
 import { Chat } from '@/app/components/chat';
 import { getChatById } from '@/utils/queries';
 
-// link to example implementation: https://github.com/khulnasoft/ai-toolkit-chatbot/blob/00b125378c998d19ef60b73fe576df0fe5a0e9d4/lib/utils.ts#L87-L127
+// link to example implementation: https://github.com/khulnasoft/ai-chatbot/blob/00b125378c998d19ef60b73fe576df0fe5a0e9d4/lib/utils.ts#L87-L127
 import { convertToUIMessages } from '@/utils/functions';
 
 export default async function Page({ params }: { params: any }) {
@@ -568,7 +568,7 @@ export default async function Page({ params }: { params: any }) {
 ```tsx filename="@/app/components/chat.tsx"
 'use client';
 
-import { Message } from 'ai-toolkit';
+import { Message } from 'ai';
 import { useChat } from '@ai-toolkit/react';
 
 export function Chat({
@@ -603,9 +603,9 @@ The `createStreamableValue` function streams any serializable data from the serv
 #### Before: Use streamable value to stream object generations
 
 ```ts filename="@/app/actions.ts"
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { createStreamableValue } from 'ai-toolkit/rsc';
+import { createStreamableValue } from 'ai/rsc';
 import { notificationsSchema } from '@/utils/schemas';
 
 export async function generateSampleNotifications() {
@@ -638,7 +638,7 @@ export async function generateSampleNotifications() {
 'use client';
 
 import { useState } from 'react';
-import { readStreamableValue } from 'ai-toolkit/rsc';
+import { readStreamableValue } from 'ai/rsc';
 import { generateSampleNotifications } from '@/app/actions';
 
 export default function Page() {
@@ -672,7 +672,7 @@ To migrate to AI TOOLKIT UI, you should use the `useObject` hook and implement `
 #### After: Replace with route handler and stream text response
 
 ```ts filename="@/app/api/object/route.ts"
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { notificationSchema } from '@/utils/schemas';
 

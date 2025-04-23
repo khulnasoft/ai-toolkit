@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { z } from 'zod';
 
 async function main() {

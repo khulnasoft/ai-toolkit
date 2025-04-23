@@ -62,7 +62,7 @@ You can use LM Studio language models to generate text with the `generateText` f
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const lmstudio = createOpenAICompatible({
   name: 'lmstudio',
@@ -91,7 +91,7 @@ const model = lmstudio.embedding('text-embedding-nomic-embed-text-v1.5');
 
 ```tsx
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { embed } from 'ai-toolkit';
+import { embed } from 'ai';
 
 const lmstudio = createOpenAICompatible({
   name: 'lmstudio',
@@ -116,7 +116,7 @@ e.g. `lmstudio.textEmbeddingModel('text-embedding-nomic-embed-text-v1.5')` or `l
 
 ```tsx
 import { createOpenAICompatible } from '@ai-toolkit/openai';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 
 const lmstudio = createOpenAICompatible({
   name: 'lmstudio',

@@ -200,6 +200,15 @@ export async function processChatResponse({
 
       execUpdate();
     },
+    onFilePart(value) {
+      message.parts.push({
+        type: 'file',
+        mimeType: value.mimeType,
+        data: value.data,
+      });
+
+      execUpdate();
+    },
     onSourcePart(value) {
       message.parts.push({
         type: 'source',
@@ -359,6 +368,10 @@ export async function processChatResponse({
       if (!replaceLastMessage) {
         message.id = value.messageId;
       }
+
+      // add a step boundary part to the message
+      message.parts.push({ type: 'step-start' });
+      execUpdate();
     },
     onFinishMessagePart(value) {
       finishReason = value.finishReason;

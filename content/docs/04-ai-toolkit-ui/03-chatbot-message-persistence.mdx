@@ -35,7 +35,7 @@ and get the chat ID from the database.
 That being said, the function interfaces are designed to be easily replaced with other implementations.
 
 ```tsx filename="tools/chat-store.ts"
-import { generateId } from 'ai-toolkit';
+import { generateId } from 'ai';
 import { existsSync, mkdirSync } from 'fs';
 import { writeFile } from 'fs/promises';
 import path from 'path';
@@ -71,7 +71,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
 The `loadChat` function in our file-based chat store is implemented as follows:
 
 ```tsx filename="tools/chat-store.ts"
-import { Message } from 'ai-toolkit';
+import { Message } from 'ai';
 import { readFile } from 'fs/promises';
 
 export async function loadChat(id: string): Promise<Message[]> {
@@ -137,7 +137,7 @@ helper to append the AI response messages to the chat messages.
 
 ```tsx filename="app/api/chat/route.ts" highlight="6,11-19"
 import { openai } from '@ai-toolkit/openai';
-import { appendResponseMessages, streamText } from 'ai-toolkit';
+import { appendResponseMessages, streamText } from 'ai';
 import { saveChat } from '@tools/chat-store';
 
 export async function POST(req: Request) {
@@ -165,7 +165,7 @@ The actual storage of the messages is done in the `saveChat` function, which in
 our file-based chat store is implemented as follows:
 
 ```tsx filename="tools/chat-store.ts"
-import { Message } from 'ai-toolkit';
+import { Message } from 'ai';
 import { writeFile } from 'fs/promises';
 
 export async function saveChat({
@@ -194,7 +194,7 @@ You can control the ID format by providing ID generators
 (see [`createIdGenerator()`](/docs/reference/ai-toolkit-core/create-id-generator):
 
 ```tsx filename="ui/chat.tsx" highlight="8-12"
-import { createIdGenerator } from 'ai-toolkit';
+import { createIdGenerator } from 'ai';
 import { useChat } from '@ai-toolkit/react';
 
 const {
@@ -210,7 +210,7 @@ const {
 ```
 
 ```tsx filename="app/api/chat/route.ts" highlight="7-11"
-import { createIdGenerator, streamText } from 'ai-toolkit';
+import { createIdGenerator, streamText } from 'ai';
 
 export async function POST(req: Request) {
   // ...
@@ -251,7 +251,7 @@ const {
 On the server, you can then load the previous messages and append the new message to the previous messages:
 
 ```tsx filename="app/api/chat/route.ts" highlight="2-9"
-import { appendClientMessage } from 'ai-toolkit';
+import { appendClientMessage } from 'ai';
 
 export async function POST(req: Request) {
   // get the last message from the client:
@@ -289,7 +289,7 @@ and then save the result as usual.
 meaning that the result is stored even when the client has already disconnected.
 
 ```tsx filename="app/api/chat/route.ts" highlight="21-23"
-import { appendResponseMessages, streamText } from 'ai-toolkit';
+import { appendResponseMessages, streamText } from 'ai';
 import { saveChat } from '@tools/chat-store';
 
 export async function POST(req: Request) {

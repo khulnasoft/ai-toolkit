@@ -1,5 +1,5 @@
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

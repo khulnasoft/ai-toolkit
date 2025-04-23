@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
@@ -13,9 +13,7 @@ const messages: CoreMessage[] = [];
 
 async function main() {
   while (true) {
-    const userInput = await terminal.question('You: ');
-
-    messages.push({ role: 'user', content: userInput });
+    messages.push({ role: 'user', content: await terminal.question('You: ') });
 
     const result = streamText({
       model: openai('gpt-4o'),

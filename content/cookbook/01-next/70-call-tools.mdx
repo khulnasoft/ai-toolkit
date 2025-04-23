@@ -67,14 +67,14 @@ export default function Page() {
 
 ## Server
 
-You will create a new route at `/api/chat` that will use the `streamText` function from the `ai-toolkit` module to generate the assistant's response based on the conversation history.
+You will create a new route at `/api/chat` that will use the `streamText` function from the `ai` module to generate the assistant's response based on the conversation history.
 
 You will use the [`tools`](/docs/reference/ai-toolkit-core/generate-text#tools) parameter to specify a tool called `celsiusToFahrenheit` that will convert a user given value in celsius to fahrenheit.
 
 You will also use zod to specify the schema for the `celsiusToFahrenheit` function's parameters.
 
 ```tsx filename='app/api/chat/route.ts'
-import { ToolInvocation, streamText } from 'ai-toolkit';
+import { ToolInvocation, streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -118,4 +118,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/tools/call-tool/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/tools/call-tool/index.tsx" />

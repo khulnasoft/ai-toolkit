@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CoreMessage, CoreUserMessage, CoreAssistantMessage, CoreToolMessage } from 'ai-toolkit';
+import { CoreMessage, CoreUserMessage, CoreAssistantMessage, CoreToolMessage } from 'ai';
 
 function processMessage(message: CoreMessage) {
   console.log(message);

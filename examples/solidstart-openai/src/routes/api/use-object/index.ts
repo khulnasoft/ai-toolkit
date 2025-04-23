@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import { notificationSchema } from './schema';
 import { APIHandler } from '@solidjs/start/server';
 

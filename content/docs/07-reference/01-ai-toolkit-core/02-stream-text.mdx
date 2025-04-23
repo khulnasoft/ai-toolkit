@@ -11,7 +11,7 @@ You can use the streamText function for interactive use cases such as chat bots 
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 const { textStream } = streamText({
   model: openai('gpt-4o'),
@@ -27,7 +27,7 @@ To see `streamText` in action, check out [these examples](#examples).
 
 ## Import
 
-<Snippet text={`import { streamText } from "ai-toolkit"`} prompt={false} />
+<Snippet text={`import { streamText } from "ai"`} prompt={false} />
 
 ## API Signature
 
@@ -943,6 +943,33 @@ To see `streamText` in action, check out [these examples](#examples).
               ],
             },
             {
+              name: 'files',
+              type: 'Array<GeneratedFile>',
+              description: 'All files that were generated in this step.',
+              properties: [
+                {
+                  type: 'GeneratedFile',
+                  parameters: [
+                    {
+                      name: 'base64',
+                      type: 'string',
+                      description: 'File as a base64 encoded string.',
+                    },
+                    {
+                      name: 'uint8Array',
+                      type: 'Uint8Array',
+                      description: 'File as a Uint8Array.',
+                    },
+                    {
+                      name: 'mimeType',
+                      type: 'string',
+                      description: 'MIME type of the file.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               name: 'toolCalls',
               type: 'ToolCall[]',
               description: 'The tool calls that have been executed.',
@@ -1154,6 +1181,33 @@ To see `streamText` in action, check out [these examples](#examples).
                       isOptional: true,
                       description:
                         'Additional provider metadata for the source.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'files',
+              type: 'Array<GeneratedFile>',
+              description: 'Files that were generated in the final step.',
+              properties: [
+                {
+                  type: 'GeneratedFile',
+                  parameters: [
+                    {
+                      name: 'base64',
+                      type: 'string',
+                      description: 'File as a base64 encoded string.',
+                    },
+                    {
+                      name: 'uint8Array',
+                      type: 'Uint8Array',
+                      description: 'File as a Uint8Array.',
+                    },
+                    {
+                      name: 'mimeType',
+                      type: 'string',
+                      description: 'MIME type of the file.',
                     },
                   ],
                 },
@@ -1374,6 +1428,34 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
+      name: 'files',
+      type: 'Promise<Array<GeneratedFile>>',
+      description:
+        'Files that were generated in the final step. Resolved when the response is finished.',
+      properties: [
+        {
+          type: 'GeneratedFile',
+          parameters: [
+            {
+              name: 'base64',
+              type: 'string',
+              description: 'File as a base64 encoded string.',
+            },
+            {
+              name: 'uint8Array',
+              type: 'Uint8Array',
+              description: 'File as a Uint8Array.',
+            },
+            {
+              name: 'mimeType',
+              type: 'string',
+              description: 'MIME type of the file.',
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'toolCalls',
       type: 'Promise<ToolCall[]>',
       description:
@@ -1515,6 +1597,33 @@ To see `streamText` in action, check out [these examples](#examples).
                       isOptional: true,
                       description:
                         'Additional provider metadata for the source.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'files',
+              type: 'Array<GeneratedFile>',
+              description: 'Files that were generated in this step.',
+              properties: [
+                {
+                  type: 'GeneratedFile',
+                  parameters: [
+                    {
+                      name: 'base64',
+                      type: 'string',
+                      description: 'File as a base64 encoded string.',
+                    },
+                    {
+                      name: 'uint8Array',
+                      type: 'Uint8Array',
+                      description: 'File as a Uint8Array.',
+                    },
+                    {
+                      name: 'mimeType',
+                      type: 'string',
+                      description: 'MIME type of the file.',
                     },
                   ],
                 },
@@ -1735,6 +1844,31 @@ To see `streamText` in action, check out [these examples](#examples).
               name: 'source',
               type: 'Source',
               description: 'The source.',
+            },
+          ],
+        },
+        {
+          type: 'TextStreamPart',
+          parameters: [
+            {
+              name: 'type',
+              type: "'file'",
+              description: 'The type to identify the object as file.',
+            },
+            {
+              name: 'base64',
+              type: 'string',
+              description: 'File as a base64 encoded string.',
+            },
+            {
+              name: 'uint8Array',
+              type: 'Uint8Array',
+              description: 'File as a Uint8Array.',
+            },
+            {
+              name: 'mimeType',
+              type: 'string',
+              description: 'MIME type of the file.',
             },
           ],
         },
@@ -2140,13 +2274,26 @@ To see `streamText` in action, check out [these examples](#examples).
     },
     {
       name: 'consumeStream',
-      type: '() => Promise<void>',
+      type: '(options?: ConsumeStreamOptions) => Promise<void>',
       description:
-        'Consumes the stream without processing the parts. This is useful to force the stream to finish.',
+        'Consumes the stream without processing the parts. This is useful to force the stream to finish. If an error occurs, it is passed to the optional `onError` callback.',
+      properties: [
+        {
+          type: 'ConsumeStreamOptions',
+          parameters: [
+            {
+              name: 'onError',
+              type: '(error: unknown) => void',
+              isOptional: true,
+              description: 'The error callback.',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'pipeDataStreamToResponse',
-      type: '(response: ServerResponse, options: PipeDataStreamToResponseOptions } => void',
+      type: '(response: ServerResponse, options: PipeDataStreamToResponseOptions) => void',
       description:
         'Writes stream data output to a Node.js response-like object. It sets a `Content-Type` header to `text/plain; charset=utf-8` and writes each stream data part as a separate chunk.',
       properties: [

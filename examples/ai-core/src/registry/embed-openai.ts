@@ -1,4 +1,4 @@
-import { embed } from 'ai-toolkit';
+import { embed } from 'ai';
 import { registry } from './setup-registry';
 
 async function main() {

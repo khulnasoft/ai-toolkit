@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import 'dotenv/config';
 import fs from 'node:fs';
 
@@ -7,9 +7,7 @@ const errorMessage = fs.readFileSync('data/error-message.txt', 'utf8');
 
 async function main() {
   const result = streamText({
-    model: anthropic('claude-3-5-sonnet-20240620', {
-      cacheControl: true,
-    }),
+    model: anthropic('claude-3-5-sonnet-20240620'),
     messages: [
       {
         role: 'user',

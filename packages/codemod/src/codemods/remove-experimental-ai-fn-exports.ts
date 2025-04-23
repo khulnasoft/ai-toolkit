@@ -12,7 +12,7 @@ export default createTransformer((fileInfo, api, options, context) => {
 
   // Replace imports of experimental functions
   root.find(j.ImportDeclaration).forEach(path => {
-    if (path.node.source.value === 'ai-toolkit') {
+    if (path.node.source.value === 'ai') {
       path.node.specifiers?.forEach(specifier => {
         if (
           specifier.type === 'ImportSpecifier' &&

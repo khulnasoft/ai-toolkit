@@ -5,7 +5,7 @@ import {
   ToolCallPart,
   ToolResultPart,
   wrapLanguageModel,
-} from 'ai-toolkit';
+} from 'ai';
 import 'dotenv/config';
 import { weatherTool } from '../tools/weather-tool';
 

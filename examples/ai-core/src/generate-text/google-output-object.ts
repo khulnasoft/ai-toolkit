@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { generateText, Output } from 'ai-toolkit';
+import { generateText, Output } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

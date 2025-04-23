@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateObject, jsonSchema } from 'ai-toolkit';
+import { generateObject, jsonSchema } from 'ai';
 import 'dotenv/config';
 
 async function main() {

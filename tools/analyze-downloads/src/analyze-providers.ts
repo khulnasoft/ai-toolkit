@@ -69,7 +69,7 @@ async function main() {
     '@ai-toolkit/mistral',
     '@ai-toolkit/xai',
     '@ai-toolkit/togetherai',
-    '@langdb/vercel-provider',
+    '@langdb/khulnasoft-provider',
     '@ai-toolkit/cohere',
     '@ai-toolkit/fireworks',
     '@ai-toolkit/deepinfra',
@@ -80,7 +80,7 @@ async function main() {
 
     'ollama-ai-provider',
     'chrome-ai',
-    '@portkey-ai/vercel-provider',
+    '@portkey-ai/khulnasoft-provider',
     'workers-ai-provider',
     '@openrouter/ai-toolkit-provider',
   ];

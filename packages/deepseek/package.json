@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/deepseek",
-  "version": "0.1.13",
+  "version": "0.2.10",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -30,12 +30,12 @@
     }
   },
   "dependencies": {
-    "@ai-toolkit/openai-compatible": "0.1.13",
-    "@ai-toolkit/provider": "1.0.10",
-    "@ai-toolkit/provider-utils": "2.1.11"
+    "@ai-toolkit/openai-compatible": "0.2.10",
+    "@ai-toolkit/provider": "1.1.3",
+    "@ai-toolkit/provider-utils": "2.2.7"
   },
   "devDependencies": {
-    "@types/node": "^18",
+    "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",
     "typescript": "5.6.3",
@@ -53,12 +53,12 @@
   "homepage": "https://sdk.khulnasoft.com/docs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khulnasoft/ai-toolkit.git"
+    "url": "git+https://github.com/khulnasoft/ai.git"
   },
   "bugs": {
-    "url": "https://github.com/khulnasoft/ai-toolkit/issues"
+    "url": "https://github.com/khulnasoft/ai/issues"
   },
   "keywords": [
-    "ai-toolkit"
+    "ai"
   ]
 }

@@ -2,10 +2,10 @@
 
 import { Fragment, useState } from 'react';
 import type { AI } from './ai';
-import { useActions } from 'ai-toolkit/rsc';
+import { useActions } from 'ai/rsc';
 
-import { useAIState, useUIState } from 'ai-toolkit/rsc';
-import { generateId } from 'ai-toolkit';
+import { useAIState, useUIState } from 'ai/rsc';
+import { generateId } from 'ai';
 import { Message } from './message';
 
 export default function Home() {

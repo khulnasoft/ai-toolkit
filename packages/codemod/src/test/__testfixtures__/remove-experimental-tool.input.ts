@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ExperimentalTool } from 'ai-toolkit';
+import { ExperimentalTool } from 'ai';
 
 interface Config {
   tool: ExperimentalTool;

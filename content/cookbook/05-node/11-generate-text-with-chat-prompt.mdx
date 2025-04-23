@@ -11,7 +11,7 @@ Previously, we were able to generate text and objects using either a single mess
 A chat completion allows you to generate text based on a series of messages. This series of messages can be any series of interactions between any number of systems, but the most popular and relatable use case has been a series of messages that represent a conversation between a user and a model.
 
 ```ts file='index.ts'
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateText({

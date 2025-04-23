@@ -79,10 +79,10 @@ export default function Page() {
 
 ## Server
 
-Let's create a route handler for `/api/completion` that will generate an object based on the input prompt. The route will call the `generateObject` function from the `ai-toolkit` module, which will then generate an object based on the input prompt and return it.
+Let's create a route handler for `/api/completion` that will generate an object based on the input prompt. The route will call the `generateObject` function from the `ai` module, which will then generate an object based on the input prompt and return it.
 
 ```typescript filename='app/api/completion/route.ts'
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -110,4 +110,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/basics/generate-object/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/basics/generate-object/index.tsx" />

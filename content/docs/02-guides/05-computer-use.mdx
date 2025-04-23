@@ -146,7 +146,7 @@ For streaming responses, use `streamText` to receive updates in real-time:
 ```ts
 const result = streamText({
   model: anthropic('claude-3-5-sonnet-20241022'),
-  prompt: 'Open the browser and navigate to khulnasoft.com',
+  prompt: 'Open the browser and navigate to vercel.com',
   tools: { computer: computerTool },
 });
 
@@ -162,7 +162,7 @@ To allow the model to perform multiple steps without user intervention, specify 
 ```ts highlight="5"
 const stream = streamText({
   model: anthropic('claude-3-5-sonnet-20241022'),
-  prompt: 'Open the browser and navigate to khulnasoft.com',
+  prompt: 'Open the browser and navigate to vercel.com',
   tools: { computer: computerTool },
   maxSteps: 10, // experiment with this value based on your use case
 });
@@ -212,8 +212,8 @@ const response = await generateText({
   prompt: "Create a new file called example.txt, write 'Hello World' to it, and run 'cat example.txt' in the terminal",
   tools: {
     computer: computerTool,
-    textEditor: textEditorTool,
     bash: bashTool
+    str_replace_editor: textEditorTool,
   },
 });
 ```

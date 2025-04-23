@@ -1,5 +1,5 @@
 import { vertex } from '@ai-toolkit/google-vertex';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 import 'dotenv/config';
 
 async function main() {

@@ -30,7 +30,7 @@ This project uses the following stack:
 
 - [AI TOOLKIT by Khulnasoft](https://sdk.khulnasoft.com/docs)
 - [Slack Web API](https://api.slack.com/web)
-- [Khulnasoft](https://khulnasoft.com)
+- [Khulnasoft](https://vercel.com)
 - [OpenAI](https://openai.com)
 
 ## Getting Started
@@ -318,7 +318,7 @@ Here's how to implement it:
 
 ```typescript filename="lib/generate-response.ts"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, generateText } from 'ai-toolkit';
+import { CoreMessage, generateText } from 'ai';
 
 export const generateResponse = async (
   messages: CoreMessage[],
@@ -349,7 +349,7 @@ The real power of the AI TOOLKIT comes from tools that enable your bot to perfor
 
 ```typescript filename="lib/generate-response.ts"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, generateText, tool } from 'ai-toolkit';
+import { CoreMessage, generateText, tool } from 'ai';
 import { z } from 'zod';
 import { exa } from './utils';
 

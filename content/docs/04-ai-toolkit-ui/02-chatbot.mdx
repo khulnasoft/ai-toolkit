@@ -47,7 +47,7 @@ export default function Page() {
 
 ```ts filename='app/api/chat/route.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -389,7 +389,7 @@ You can forward error messages or send your own error message by providing a `ge
 
 ```ts filename="app/api/chat/route.ts" highlight="13-27"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -425,7 +425,7 @@ By default, the usage information is sent back to the client. You can disable it
 
 ```ts filename="app/api/chat/route.ts" highlight="13"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -509,7 +509,7 @@ You can forward them to the client with the `sendReasoning` option:
 
 ```ts filename="app/api/chat/route.ts" highlight="13"
 import { deepseek } from '@ai-toolkit/deepseek';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -565,7 +565,7 @@ You can forward them to the client with the `sendSources` option:
 
 ```ts filename="app/api/chat/route.ts" highlight="13"
 import { perplexity } from '@ai-toolkit/perplexity';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -606,6 +606,30 @@ messages.map(message => (
           ]
         </span>
       ))}
+  </div>
+));
+```
+
+## Image Generation
+
+Some models such as Google `gemini-2.0-flash-exp` support image generation.
+When images are generated, they are exposed as files to the client.
+On the client side, you can access file parts of the message object
+and render them as images.
+
+```tsx filename="app/page.tsx"
+messages.map(message => (
+  <div key={message.id}>
+    {message.role === 'user' ? 'User: ' : 'AI: '}
+    {message.parts.map((part, index) => {
+      if (part.type === 'text') {
+        return <div key={index}>{part.text}</div>;
+      } else if (part.type === 'file' && part.mimeType.startsWith('image/')) {
+        return (
+          <img key={index} src={`data:${part.mimeType};base64,${part.data}`} />
+        );
+      }
+    })}
   </div>
 ));
 ```

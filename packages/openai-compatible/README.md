@@ -24,7 +24,7 @@ import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: createOpenAICompatible({
@@ -42,7 +42,7 @@ You can further customize headers if desired. For example, here is an alternate 
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: createOpenAICompatible({
@@ -60,7 +60,7 @@ const { text } = await generateText({
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 type ExampleChatModelIds =
   | 'meta-llama/Llama-3-70b-chat-hf'

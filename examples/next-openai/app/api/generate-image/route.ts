@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 
 // Allow responses up to 60 seconds
 export const maxDuration = 60;

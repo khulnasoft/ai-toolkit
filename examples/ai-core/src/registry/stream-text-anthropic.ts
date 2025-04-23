@@ -1,4 +1,4 @@
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { registry } from './setup-registry';
 
 async function main() {

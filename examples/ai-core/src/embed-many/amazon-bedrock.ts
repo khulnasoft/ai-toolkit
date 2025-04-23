@@ -1,5 +1,5 @@
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 import 'dotenv/config';
 
 async function main() {

@@ -21,7 +21,7 @@ export default createTransformer((fileInfo, api, options, context) => {
   // Replace imports at ImportDeclaration level
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai-toolkit')
+    .filter(path => path.node.source.value === 'ai')
     .forEach(path => {
       const importSpecifiers = path.node.specifiers || [];
       const newSpecifiers: (

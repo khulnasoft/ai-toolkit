@@ -15,6 +15,8 @@ export type OpenAIChatModelId =
   | 'gpt-4o-audio-preview'
   | 'gpt-4o-audio-preview-2024-10-01'
   | 'gpt-4o-audio-preview-2024-12-17'
+  | 'gpt-4o-search-preview'
+  | 'gpt-4o-search-preview-2025-03-11'
   | 'gpt-4o-mini'
   | 'gpt-4o-mini-2024-07-18'
   | 'gpt-4-turbo'
@@ -29,6 +31,7 @@ export type OpenAIChatModelId =
   | 'gpt-3.5-turbo-0125'
   | 'gpt-3.5-turbo'
   | 'gpt-3.5-turbo-1106'
+  | 'chatgpt-4o-latest'
   | (string & {});
 
 export interface OpenAIChatSettings {
@@ -106,6 +109,8 @@ Simulates streaming by using a normal generate call and returning it as a stream
 Enable this if the model that you are using does not support streaming.
 
 Defaults to `false`.
+
+@deprecated Use `simulateStreamingMiddleware` instead.
    */
   simulateStreaming?: boolean;
 

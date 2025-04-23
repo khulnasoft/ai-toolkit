@@ -1,5 +1,5 @@
-import { generateText } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { generateText } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 import 'dotenv/config';
 
 async function main() {

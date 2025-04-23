@@ -3,10 +3,10 @@ import { createTransformer } from './lib/create-transformer';
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Find and replace import specifiers from 'ai-toolkit'
+  // Find and replace import specifiers from 'ai'
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai-toolkit')
+    .filter(path => path.node.source.value === 'ai')
     .forEach(path => {
       j(path)
         .find(j.ImportSpecifier)

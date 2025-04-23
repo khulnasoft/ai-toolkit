@@ -1,10 +1,10 @@
 import { xai } from '@ai-toolkit/xai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import 'dotenv/config';
 
 async function main() {
   const result = streamText({
-    model: xai('grok-2-1212'),
+    model: xai('grok-3-beta'),
     prompt: 'Invent a new holiday and describe its traditions.',
   });
 

@@ -5,11 +5,11 @@ description: Learn how to write a custom provider for the AI TOOLKIT
 
 # Writing a Custom Provider
 
-The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v1).
+The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai/tree/main/packages/provider/src/language-model/v1).
 You can write your own provider that adheres to the specification and it will be compatible with the AI TOOLKIT.
 
-You can find the Language Model Specification in the [AI TOOLKIT repository](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v1).
-It can be imported from `'@ai-toolkit/provider'`. We also provide utilities that make it easier to implement a custom provider. You can find them in the `@ai-toolkit/provider-utils` package ([source code](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider-utils)).
+You can find the Language Model Specification in the [AI TOOLKIT repository](https://github.com/khulnasoft/ai/tree/main/packages/provider/src/language-model/v1).
+It can be imported from `'@ai-toolkit/provider'`. We also provide utilities that make it easier to implement a custom provider. You can find them in the `@ai-toolkit/provider-utils` package ([source code](https://github.com/khulnasoft/ai/tree/main/packages/provider-utils)).
 
 <Note>
   If you open-source a provider, we'd love to promote it here. Please send us a
@@ -28,7 +28,7 @@ Implementing a custom language model provider involves several steps:
 - Supporting object generation
 
 The best way to get started is to copy a reference implementation and modify it to fit your needs.
-Check out the [Mistral reference implementation](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/mistral)
+Check out the [Mistral reference implementation](https://github.com/khulnasoft/ai/tree/main/packages/mistral)
 to see how the project is structured, and feel free to copy the setup.
 
 ### Creating an Entry Point
@@ -126,7 +126,7 @@ export const customProvider = createCustomProvider();
 
 ### Implementing the Language Model
 
-A [language model](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/provider/src/language-model/v1/language-model-v1.ts) needs to implement:
+A [language model](https://github.com/khulnasoft/ai/blob/main/packages/provider/src/language-model/v1/language-model-v1.ts) needs to implement:
 
 - metadata fields
   - `specificationVersion: 'v1'` - always `'v1'`
@@ -136,7 +136,7 @@ A [language model](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/p
 - `doGenerate` method
 - `doStream` method
 
-Check out the [Mistral language model](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/mistral/src/mistral-chat-language-model.ts) as an example.
+Check out the [Mistral language model](https://github.com/khulnasoft/ai/blob/main/packages/mistral/src/mistral-chat-language-model.ts) as an example.
 
 At a high level, both `doGenerate` and `doStream` methods should:
 
@@ -146,7 +146,7 @@ At a high level, both `doGenerate` and `doStream` methods should:
 
 ### Errors
 
-The AI TOOLKIT provides [standardized errors](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/errors) that should be used by providers where possible. This will make it easy for user to debug them.
+The AI TOOLKIT provides [standardized errors](https://github.com/khulnasoft/ai/tree/main/packages/provider/src/errors) that should be used by providers where possible. This will make it easy for user to debug them.
 
 ### Retries, timeouts, and abort signals
 

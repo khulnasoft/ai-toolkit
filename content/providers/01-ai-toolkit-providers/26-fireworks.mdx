@@ -78,7 +78,7 @@ You can use the `extractReasoningMiddleware` to extract this reasoning and expos
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai-toolkit';
+import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
 
 const enhancedModel = wrapLanguageModel({
   model: fireworks('accounts/fireworks/models/deepseek-r1'),
@@ -94,7 +94,7 @@ You can use Fireworks language models to generate text with the `generateText` f
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: fireworks('accounts/fireworks/models/firefunction-v1'),
@@ -102,7 +102,8 @@ const { text } = await generateText({
 });
 ```
 
-Fireworks language models can also be used in the `streamText` and `streamUI` functions (see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+Fireworks language models can also be used in the `streamText` function
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ### Completion Models
 
@@ -150,7 +151,7 @@ For more on image generation with the AI TOOLKIT see [generateImage()](/docs/ref
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 
 const { image } = await generateImage({
   model: fireworks.image('accounts/fireworks/models/flux-1-dev-fp8'),

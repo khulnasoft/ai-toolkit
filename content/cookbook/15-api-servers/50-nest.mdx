@@ -12,7 +12,7 @@ You can use the AI TOOLKIT in a [Nest.js](https://nestjs.com/) server to generat
 
 The examples show how to implement a Nest.js controller that uses the AI TOOLKIT to stream text and objects to the client.
 
-**Full example**: [github.com/khulnasoft/ai-toolkit/examples/nest](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/nest)
+**Full example**: [github.com/khulnasoft/ai/examples/nest](https://github.com/khulnasoft/ai/tree/main/examples/nest)
 
 ### Data Stream
 
@@ -21,7 +21,7 @@ You can use the `pipeDataStreamToResponse` method to get a data stream from the 
 ```ts filename='app.controller.ts'
 import { Controller, Post, Res } from '@nestjs/common';
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { Response } from 'express';
 
 @Controller()
@@ -45,7 +45,7 @@ export class AppController {
 ```ts filename='app.controller.ts' highlight="10-12,19"
 import { Controller, Post, Res } from '@nestjs/common';
 import { openai } from '@ai-toolkit/openai';
-import { pipeDataStreamToResponse, streamText } from 'ai-toolkit';
+import { pipeDataStreamToResponse, streamText } from 'ai';
 import { Response } from 'express';
 
 @Controller()
@@ -80,7 +80,7 @@ You can use the `pipeTextStreamToResponse` method to get a text stream from the 
 ```ts filename='app.controller.ts' highlight="15"
 import { Controller, Post, Res } from '@nestjs/common';
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { Response } from 'express';
 
 @Controller()
@@ -96,3 +96,7 @@ export class AppController {
   }
 }
 ```
+
+## Troubleshooting
+
+- Streaming not working when [proxied](/docs/troubleshooting/streaming-not-working-when-proxied)
