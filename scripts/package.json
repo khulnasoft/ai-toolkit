@@ -1,0 +1,32 @@
+{
+    "name": "@ai-toolkit/scripts",
+    "version": "1.0.0",
+    "description": "AI Toolkit Scripts. Packaged for easy dependency installation.",
+    "scripts": {
+      "start": "vite-node src/cli.ts",
+      "test": "vitest ."
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+      "stdout-update": "catalog:*",
+      "@ai-toolkit/create-ai": "workspace:*",
+      "ansis": "catalog:*",
+      "commander": "catalog:*",
+      "nanoid": "catalog:*",
+      "picomatch": "catalog:*",
+      "prettier": "catalog:*",
+      "semver": "catalog:*",
+      "vite-node": "catalog:*",
+      "yaml": "catalog:*",
+      "zod": "catalog:*",
+      "concurrently": "catalog:*"
+    },
+    "devDependencies": {
+      "@types/semver": "^7.5.8",
+      "vite": "catalog:*"
+    }
+  }

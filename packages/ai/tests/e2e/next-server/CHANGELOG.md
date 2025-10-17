@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - Updated dependencies [a611690]
-  - ai@4.3.6
+  - ai@2.0.0
 
 ## 0.0.1
 

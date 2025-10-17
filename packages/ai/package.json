@@ -1,6 +1,6 @@
 {
-  "name": "ai",
-  "version": "4.3.6",
+  "name": "ai-toolkit",
+  "version": "2.0.0",
   "description": "AI TOOLKIT by Khulnasoft - The AI Toolkit for TypeScript and JavaScript",
   "license": "Apache-2.0",
   "sideEffects": false,
