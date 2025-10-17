@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ExperimentalMessage, ExperimentalUserMessage, ExperimentalAssistantMessage, ExperimentalToolMessage } from 'ai-toolkit';
+import { ExperimentalMessage, ExperimentalUserMessage, ExperimentalAssistantMessage, ExperimentalToolMessage } from 'ai';
 
 function processMessage(message: ExperimentalMessage) {
   console.log(message);

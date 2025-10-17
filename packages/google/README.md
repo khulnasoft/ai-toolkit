@@ -22,7 +22,7 @@ import { google } from '@ai-toolkit/google';
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: google('gemini-1.5-pro-latest'),

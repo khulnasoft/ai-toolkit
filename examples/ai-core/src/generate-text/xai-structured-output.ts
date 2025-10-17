@@ -1,11 +1,11 @@
 import 'dotenv/config';
-import { generateText, Output } from 'ai-toolkit';
+import { generateText, Output } from 'ai';
 import { xai } from '@ai-toolkit/xai';
 import { z } from 'zod';
 
 async function main() {
   const { experimental_output } = await generateText({
-    model: xai('grok-2-1212'),
+    model: xai('grok-3-beta'),
     experimental_output: Output.object({
       schema: z.object({
         name: z.string(),

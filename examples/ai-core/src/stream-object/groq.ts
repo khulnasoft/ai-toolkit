@@ -1,5 +1,5 @@
 import { groq } from '@ai-toolkit/groq';
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

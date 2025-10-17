@@ -92,6 +92,9 @@ Abort the current request immediately, keep the generated tokens if any.
   error: Accessor<undefined | Error>;
 };
 
+/**
+ * @deprecated `@ai-toolkit/solid` has been deprecated and will be removed in AI TOOLKIT 5.
+ */
 export function useAssistant(
   rawUseAssistantOptions: UseAssistantOptions | Accessor<UseAssistantOptions>,
 ): UseAssistantHelpers {

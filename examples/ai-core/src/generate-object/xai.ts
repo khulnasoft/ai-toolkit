@@ -1,11 +1,11 @@
 import { xai } from '@ai-toolkit/xai';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 
 async function main() {
   const result = await generateObject({
-    model: xai('grok-2-1212'),
+    model: xai('grok-3-beta'),
     schema: z.object({
       recipe: z.object({
         name: z.string(),

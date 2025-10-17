@@ -54,7 +54,7 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai-toolkit` and `@ai-toolkit/openai`, the Khulnasoft AI package and the AI TOOLKIT's [ OpenAI provider ](/providers/ai-toolkit-providers/openai) respectively.
+Install `ai` and `@ai-toolkit/openai`, the Khulnasoft AI package and the AI TOOLKIT's [ OpenAI provider ](/providers/ai-toolkit-providers/openai) respectively.
 
 <Note>
   The AI TOOLKIT is designed to be a unified interface to interact with any
@@ -70,7 +70,7 @@ Install `ai-toolkit` and `@ai-toolkit/openai`, the Khulnasoft AI package and the
     </Tab>
     <Tab>
       <Snippet
-        text="npm install ai-toolkit @ai-toolkit/react @ai-toolkit/openai"
+        text="npm install ai @ai-toolkit/react @ai-toolkit/openai"
         dark
       />
     </Tab>
@@ -81,7 +81,7 @@ Install `ai-toolkit` and `@ai-toolkit/openai`, the Khulnasoft AI package and the
 </div>
 
 <Note type="secondary" fill>
-  Make sure you are using `ai-toolkit` version 3.2.27 or higher.
+  Make sure you are using `ai` version 3.2.27 or higher.
 </Note>
 
 ### Configure OpenAI API key
@@ -117,7 +117,7 @@ Create a route handler, `app/api/chat/route.ts` and add the following code:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { streamText, Message } from 'ai-toolkit';
+import { streamText, Message } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -137,7 +137,7 @@ export async function POST(req: Request) {
 Let's take a look at what is happening in this code:
 
 1. Define an asynchronous `POST` request handler and extract `messages` from the body of the request. The `messages` variable contains a history of the conversation between you and the chatbot and provides the chatbot with the necessary context to make the next generation.
-2. Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai-toolkit` package. This function accepts a configuration object that contains a `model` provider (imported from `@ai-toolkit/openai`) and `messages` (defined in step 1). You can pass additional [settings](/docs/ai-toolkit-core/settings) to further customise the model's behaviour.
+2. Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider (imported from `@ai-toolkit/openai`) and `messages` (defined in step 1). You can pass additional [settings](/docs/ai-toolkit-core/settings) to further customise the model's behaviour.
 3. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-toolkit-core/stream-text#result-object). This result object contains the [ `toDataStreamResponse` ](/docs/reference/ai-toolkit-core/stream-text#to-ai-stream-response) function which converts the result to a streamed response object.
 4. Finally, return the result to the client to stream the response.
 
@@ -277,7 +277,7 @@ In this code, you:
 
 1. Create state to hold the files and create a ref to the file input field.
 2. Display the "uploaded" files in the UI.
-3. Update the `onSubmit` function, to call the `handleSubmit` function manually, passing the the files as an option using the `experimental_attachments` key.
+3. Update the `onSubmit` function, to call the `handleSubmit` function manually, passing the files as an option using the `experimental_attachments` key.
 4. Add a file input field to the form, including an `onChange` handler to handle updating the files state.
 
 ## Running Your Application
@@ -310,7 +310,7 @@ ANTHROPIC_API_KEY=xxxxxxxxx
 ```tsx filename="app/api/chat/route.ts" highlight="2,10-15,18-20"
 import { openai } from '@ai-toolkit/openai';
 import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText } from 'ai-toolkit';
+import { streamText, type Message } from 'ai';
 
 export const maxDuration = 30;
 

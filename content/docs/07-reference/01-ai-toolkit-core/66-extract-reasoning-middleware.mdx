@@ -8,7 +8,7 @@ description: Middleware that extracts XML-tagged reasoning sections from generat
 `extractReasoningMiddleware` is a middleware function that extracts XML-tagged reasoning sections from generated text and exposes them separately from the main text content. This is particularly useful when you want to separate an AI model's reasoning process from its final output.
 
 ```ts
-import { extractReasoningMiddleware } from 'ai-toolkit';
+import { extractReasoningMiddleware } from 'ai';
 
 const middleware = extractReasoningMiddleware({
   tagName: 'reasoning',
@@ -19,7 +19,7 @@ const middleware = extractReasoningMiddleware({
 ## Import
 
 <Snippet
-  text={`import { extractReasoningMiddleware } from "ai-toolkit"`}
+  text={`import { extractReasoningMiddleware } from "ai"`}
   prompt={false}
 />
 

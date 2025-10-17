@@ -1,5 +1,5 @@
 import { togetherai } from '@ai-toolkit/togetherai';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 import { presentImages } from '../lib/present-image';
 import 'dotenv/config';
 

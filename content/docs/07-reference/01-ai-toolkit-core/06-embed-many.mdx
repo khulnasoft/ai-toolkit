@@ -13,7 +13,7 @@ has a limit on how many embeddings can be generated in a single call.
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 
 const { embeddings } = await embedMany({
   model: openai.embedding('text-embedding-3-small'),
@@ -27,7 +27,7 @@ const { embeddings } = await embedMany({
 
 ## Import
 
-<Snippet text={`import { embedMany } from "ai-toolkit"`} prompt={false} />
+<Snippet text={`import { embedMany } from "ai"`} prompt={false} />
 
 ## API Signature
 

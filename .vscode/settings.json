@@ -1,8 +1,3 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "github.copilot.chat.languageContext.typescript.enabled": true,
-  "github.copilot.chat.generateTests.codeLens": true,
-  "github.copilot.chat.edits.temporalContext.enabled": true,
-  "github.copilot.chat.newWorkspaceCreation.enabled": true,
-  "github.copilot.chat.search.semanticTextResults": true
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

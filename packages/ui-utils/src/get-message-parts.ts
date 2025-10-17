@@ -1,8 +1,10 @@
 import {
   CreateMessage,
+  FileUIPart,
   Message,
   ReasoningUIPart,
   SourceUIPart,
+  StepStartUIPart,
   TextUIPart,
   ToolInvocationUIPart,
   UIMessage,
@@ -10,7 +12,14 @@ import {
 
 export function getMessageParts(
   message: Message | CreateMessage | UIMessage,
-): (TextUIPart | ReasoningUIPart | ToolInvocationUIPart | SourceUIPart)[] {
+): (
+  | TextUIPart
+  | ReasoningUIPart
+  | ToolInvocationUIPart
+  | SourceUIPart
+  | FileUIPart
+  | StepStartUIPart
+)[] {
   return (
     message.parts ?? [
       ...(message.toolInvocations

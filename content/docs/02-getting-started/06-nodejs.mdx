@@ -30,7 +30,7 @@ pnpm init
 
 ### Install Dependencies
 
-Install `ai-toolkit` and `@ai-toolkit/openai`, the AI TOOLKIT's OpenAI provider, along with other necessary dependencies.
+Install `ai` and `@ai-toolkit/openai`, the AI TOOLKIT's OpenAI provider, along with other necessary dependencies.
 
 <Note>
   The AI TOOLKIT is designed to be a unified interface to interact with any
@@ -46,10 +46,10 @@ pnpm add -D @types/node tsx typescript
 ```
 
 <Note type="secondary" fill>
-  Make sure you are using `ai-toolkit` version 3.1 or higher.
+  Make sure you are using `ai` version 3.1 or higher.
 </Note>
 
-The `ai-toolkit` and `@ai-toolkit/openai` packages contain the AI TOOLKIT and the [ AI TOOLKIT OpenAI provider](/providers/ai-toolkit-providers/openai), respectively. You will use `zod` to define type-safe schemas that you will pass to the large language model (LLM). You will use `dotenv` to access environment variables (your OpenAI key) within your application. There are also three development dependencies, installed with the `-D` flag, that are necessary to run your Typescript code.
+The `ai` and `@ai-toolkit/openai` packages contain the AI TOOLKIT and the [ AI TOOLKIT OpenAI provider](/providers/ai-toolkit-providers/openai), respectively. You will use `zod` to define type-safe schemas that you will pass to the large language model (LLM). You will use `dotenv` to access environment variables (your OpenAI key) within your application. There are also three development dependencies, installed with the `-D` flag, that are necessary to run your Typescript code.
 
 ### Configure OpenAI API key
 
@@ -76,7 +76,7 @@ Create an `index.ts` file in the root of your project and add the following code
 
 ```ts filename="index.ts"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText } from 'ai-toolkit';
+import { CoreMessage, streamText } from 'ai';
 import dotenv from 'dotenv';
 import * as readline from 'node:readline/promises';
 
@@ -123,7 +123,7 @@ Let's take a look at what is happening in this code:
 
 - Prompt for and capture user input, storing it in `userInput`.
 - Add user input to the `messages` array as a user message.
-- Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai-toolkit` package. This function accepts a configuration object that contains a `model` provider and `messages`.
+- Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider and `messages`.
 - Iterate over the text stream returned by the `streamText` function (`result.textStream`) and print the contents of the stream to the terminal.
 - Add the assistant's response to the `messages` array.
 
@@ -149,9 +149,9 @@ Let's enhance your chatbot by adding a simple weather tool.
 
 Modify your `index.ts` file to include the new weather tool:
 
-```ts filename="index.ts" highlight="2,4,25-36"
+```ts filename="index.ts" highlight="2,4,25-38"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 import * as readline from 'node:readline/promises';
@@ -207,7 +207,7 @@ main().catch(console.error);
 
 In this updated code:
 
-1. You import the `tool` function from the `ai-toolkit` package.
+1. You import the `tool` function from the `ai` package.
 2. You define a `tools` object with a `weather` tool. This tool:
    - Has a description that helps the model understand when to use it.
    - Defines parameters using a Zod schema, specifying that it requires a `location` string to execute this tool.
@@ -221,7 +221,7 @@ Notice the blank "assistant" response? This is because instead of generating a t
 
 ```typescript highlight="47-48"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 import * as readline from 'node:readline/promises';
@@ -289,9 +289,9 @@ To solve this, you can enable multi-step tool calls using `maxSteps`. This featu
 
 Modify your `index.ts` file to include the `maxSteps` option:
 
-```ts filename="index.ts" highlight="37-40"
+```ts filename="index.ts" highlight="39-42"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 import * as readline from 'node:readline/promises';
@@ -362,9 +362,9 @@ By setting `maxSteps` to 5, you're allowing the model to use up to 5 "steps" for
 
 Update your `index.ts` file to add a new tool to convert the temperature from Celsius to Fahrenheit:
 
-```ts filename="index.ts" highlight="36-45"
+```ts filename="index.ts" highlight="38-49"
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, streamText, tool } from 'ai-toolkit';
+import { CoreMessage, streamText, tool } from 'ai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 import * as readline from 'node:readline/promises';
@@ -451,4 +451,4 @@ You've built an AI chatbot using the AI TOOLKIT! From here, you have several pat
 
 - To learn more about the AI TOOLKIT, read through the [documentation](/docs).
 - If you're interested in diving deeper with guides, check out the [RAG (retrieval-augmented generation)](/docs/guides/rag-chatbot) and [multi-modal chatbot](/docs/guides/multi-modal-chatbot) guides.
-- To jumpstart your first AI project, explore available [templates](https://khulnasoft.com/templates?type=ai).
+- To jumpstart your first AI project, explore available [templates](https://vercel.com/templates?type=ai).

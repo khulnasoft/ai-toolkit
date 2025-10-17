@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 import fs from 'node:fs';
 

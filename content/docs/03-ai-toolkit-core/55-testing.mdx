@@ -11,8 +11,8 @@ and calling them is slow and expensive.
 To enable you to unit test your code that uses the AI TOOLKIT, the AI TOOLKIT Core
 includes mock providers and test helpers. You can import the following helpers from `ai/test`:
 
-- `MockEmbeddingModelV1`: A mock embedding model using the [embedding model v1 specification](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/provider/src/embedding-model/v1/embedding-model-v1.ts).
-- `MockLanguageModelV1`: A mock language model using the [language model v1 specification](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/provider/src/language-model/v1/language-model-v1.ts).
+- `MockEmbeddingModelV1`: A mock embedding model using the [embedding model v1 specification](https://github.com/khulnasoft/ai/blob/main/packages/provider/src/embedding-model/v1/embedding-model-v1.ts).
+- `MockLanguageModelV1`: A mock language model using the [language model v1 specification](https://github.com/khulnasoft/ai/blob/main/packages/provider/src/language-model/v1/language-model-v1.ts).
 - `mockId`: Provides an incrementing integer ID.
 - `mockValues`: Iterates over an array of values with each call. Returns the last value when the array is exhausted.
 - [`simulateReadableStream`](/docs/reference/ai-toolkit-core/simulate-readable-stream): Simulates a readable stream with delays.
@@ -28,8 +28,8 @@ You can use the test helpers with the AI Core functions in your unit tests:
 ### generateText
 
 ```ts
-import { generateText } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { generateText } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 
 const result = await generateText({
   model: new MockLanguageModelV1({
@@ -47,8 +47,8 @@ const result = await generateText({
 ### streamText
 
 ```ts
-import { streamText, simulateReadableStream } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { streamText, simulateReadableStream } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 
 const result = streamText({
   model: new MockLanguageModelV1({
@@ -76,8 +76,8 @@ const result = streamText({
 ### generateObject
 
 ```ts
-import { generateObject } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { generateObject } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 import { z } from 'zod';
 
 const result = await generateObject({
@@ -98,8 +98,8 @@ const result = await generateObject({
 ### streamObject
 
 ```ts
-import { streamObject, simulateReadableStream } from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { streamObject, simulateReadableStream } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 import { z } from 'zod';
 
 const result = streamObject({
@@ -138,7 +138,7 @@ debugging, or demonstration purposes.
 Here is a Next example:
 
 ```ts filename="route.ts"
-import { simulateReadableStream } from 'ai-toolkit';
+import { simulateReadableStream } from 'ai';
 
 export async function POST(req: Request) {
   return new Response(

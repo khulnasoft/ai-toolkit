@@ -90,7 +90,7 @@ You can use provider language models to generate text with the `generateText` fu
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const provider = createOpenAICompatible({
   name: 'provider-name',
@@ -108,7 +108,7 @@ const { text } = await generateText({
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 type ExampleChatModelIds =
   | 'meta-llama/Llama-3-70b-chat-hf'

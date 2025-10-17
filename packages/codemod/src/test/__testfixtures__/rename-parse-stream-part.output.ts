@@ -1,4 +1,4 @@
 // @ts-nocheck
-import { parseDataStreamPart } from 'ai-toolkit';
+import { parseDataStreamPart } from 'ai';
 
 const result = parseDataStreamPart(data);

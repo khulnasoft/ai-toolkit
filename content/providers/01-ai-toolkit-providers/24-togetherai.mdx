@@ -81,7 +81,7 @@ You can use the `extractReasoningMiddleware` to extract this reasoning and expos
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai-toolkit';
+import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
 
 const enhancedModel = wrapLanguageModel({
   model: togetherai('deepseek-ai/DeepSeek-R1'),
@@ -97,7 +97,7 @@ You can use Together.ai language models to generate text with the `generateText`
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: togetherai('meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo'),
@@ -105,7 +105,8 @@ const { text } = await generateText({
 });
 ```
 
-Together.ai language models can also be used in the `streamText` and `streamUI` functions (see [AI TOOLKIT Core](/docs/ai-toolkit-core) and [AI TOOLKIT RSC](/docs/ai-toolkit-rsc)).
+Together.ai language models can also be used in the `streamText` function
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 The Together.ai provider also supports [completion models](https://docs.together.ai/docs/serverless-models#language-models) via (following the above example code) `togetherai.completionModel()` and [embedding models](https://docs.together.ai/docs/serverless-models#embedding-models) via `togetherai.textEmbeddingModel()`.
 
@@ -136,7 +137,7 @@ For more on image generation with the AI TOOLKIT see [generateImage()](/docs/ref
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 
 const { images } = await generateImage({
   model: togetherai.image('black-forest-labs/FLUX.1-dev'),
@@ -148,7 +149,7 @@ You can pass optional provider-specific request parameters using the `providerOp
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 
 const { images } = await generateImage({
   model: togetherai.image('black-forest-labs/FLUX.1-dev'),

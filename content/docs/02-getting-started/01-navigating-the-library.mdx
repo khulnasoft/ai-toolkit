@@ -60,7 +60,7 @@ AI TOOLKIT UI supports the following frameworks: [React](https://react.dev/), 
 | [useAssistant](/docs/reference/ai-toolkit-ui/use-assistant)    | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> | <Cross size={18} /> |
 
 <Note>
-  [Contributions](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md)
+  [Contributions](https://github.com/khulnasoft/ai/blob/main/CONTRIBUTING.md)
   are welcome to implement missing features for non-React frameworks.
 </Note>
 
@@ -83,6 +83,6 @@ AI TOOLKIT RSC provides a number of utilities that allow you to stream values an
 
 - **Cancellation**: currently, it is not possible to abort a stream using Server Actions. This will be improved in future releases of React and Next.js.
 - **Increased Data Transfer**: using [`createStreamableUI`](/docs/reference/ai-toolkit-rsc/create-streamable-ui) can lead to quadratic data transfer (quadratic to the length of generated text). You can avoid this using [ `createStreamableValue` ](/docs/reference/ai-toolkit-rsc/create-streamable-value) instead, and rendering the component client-side.
-- **Re-mounting Issue During Streaming**: when using `createStreamableUI`, components re-mount on `.done()`, causing [flickering](https://github.com/khulnasoft/ai-toolkit/issues/2232).
+- **Re-mounting Issue During Streaming**: when using `createStreamableUI`, components re-mount on `.done()`, causing [flickering](https://github.com/khulnasoft/ai/issues/2232).
 
 Given these limitations, **we recommend using [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview) for production applications**.

@@ -1,11 +1,6 @@
 import { openai } from '@ai-toolkit/openai';
-import {
-  generateObject,
-  generateText,
-  NoSuchToolError,
-  tool,
-} from 'ai-toolkit';
-import { MockLanguageModelV1 } from 'ai-toolkit/test';
+import { generateObject, generateText, NoSuchToolError, tool } from 'ai';
+import { MockLanguageModelV1 } from 'ai/test';
 import 'dotenv/config';
 import { z } from 'zod';
 

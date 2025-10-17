@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/vue",
-  "version": "1.1.20",
+  "version": "1.2.8",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -29,15 +29,15 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@ai-toolkit/provider-utils": "2.1.11",
-    "@ai-toolkit/ui-utils": "1.1.17",
+    "@ai-toolkit/provider-utils": "2.2.7",
+    "@ai-toolkit/ui-utils": "1.2.8",
     "swrv": "^1.0.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.5.2",
     "@testing-library/vue": "^8.1.0",
-    "@types/node": "^18",
+    "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "@vitejs/plugin-vue": "5.2.0",
     "eslint": "8.57.1",
@@ -65,13 +65,13 @@
   "homepage": "https://sdk.khulnasoft.com/docs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khulnasoft/ai-toolkit.git"
+    "url": "git+https://github.com/khulnasoft/ai.git"
   },
   "bugs": {
-    "url": "https://github.com/khulnasoft/ai-toolkit/issues"
+    "url": "https://github.com/khulnasoft/ai/issues"
   },
   "keywords": [
-    "ai-toolkit",
+    "ai",
     "vue"
   ]
 }

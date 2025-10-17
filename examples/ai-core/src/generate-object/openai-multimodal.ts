@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import 'dotenv/config';
 import fs from 'node:fs';
 import { z } from 'zod';

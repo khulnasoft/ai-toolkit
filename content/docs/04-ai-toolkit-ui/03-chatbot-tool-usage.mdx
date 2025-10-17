@@ -51,7 +51,7 @@ In this example, we'll use three tools:
 
 ```tsx filename='app/api/chat/route.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
@@ -117,7 +117,7 @@ There are three things worth mentioning:
 ```tsx filename='app/page.tsx' highlight="9,12,31"
 'use client';
 
-import { ToolInvocation } from 'ai-toolkit';
+import { ToolInvocation } from 'ai';
 import { useChat } from '@ai-toolkit/react';
 
 export default function Chat() {
@@ -301,6 +301,32 @@ export default function Chat() {
 }
 ```
 
+## Step start parts
+
+When you are using multi-step tool calls, the AI TOOLKIT will add step start parts to the assistant messages.
+If you want to display boundaries between tool invocations, you can use the `step-start` parts as follows:
+
+```tsx filename='app/page.tsx'
+// ...
+// where you render the message parts:
+message.parts.map((part, index) => {
+  switch (part.type) {
+    case 'step-start':
+      // show step boundaries as horizontal lines:
+      return index > 0 ? (
+        <div key={index} className="text-gray-500">
+          <hr className="my-2 border-gray-300" />
+        </div>
+      ) : null;
+    case 'text':
+    // ...
+    case 'tool-invocation':
+    // ...
+  }
+});
+// ...
+```
+
 ## Server-side Multi-Step Calls
 
 You can also use multi-step calls on the server-side with `streamText`.
@@ -308,7 +334,7 @@ This works when all invoked tools have an `execute` function on the server side.
 
 ```tsx filename='app/api/chat/route.ts' highlight="15-21,24"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { z } from 'zod';
 
 export async function POST(req: Request) {

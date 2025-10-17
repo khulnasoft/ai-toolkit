@@ -1,5 +1,5 @@
 import { ChatOpenAI } from '@langchain/openai';
-import { LangChainAdapter } from 'ai-toolkit';
+import { LangChainAdapter } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;

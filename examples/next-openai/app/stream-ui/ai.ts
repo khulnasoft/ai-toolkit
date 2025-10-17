@@ -1,6 +1,6 @@
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { AIState, submitUserMessage, UIState } from './actions';
-import { generateId } from 'ai-toolkit';
+import { generateId } from 'ai';
 
 export const AI = createAI({
   actions: { submitUserMessage },

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { experimental_StreamData } from 'ai-toolkit';
+import { experimental_StreamData } from 'ai';
 import { experimental_StreamData as StreamDataLegacy } from 'other-pkg';
 
 // Should rename - class extension

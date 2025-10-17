@@ -23,7 +23,7 @@
 # Make sure you have a branch pushed to GitHub, and make sure that branch has
 # a changeset committed. You can generate a changeset with "pnpm changeset".
 #
-# Then open github.com/khulnasoft/ai-toolkit and click on Actions > Release Snapshot
+# Then open github.com/khulnasoft/ai and click on Actions > Release Snapshot
 # Then click "Run workflow" on the right and select the branch you want to
 # create a snapshot release for and click the "Run workflow" button.
 
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -47,10 +47,10 @@ jobs:
         with:
           version: 9.12.3
 
-      - name: Setup Node.js 18.x
-        uses: actions/setup-node@v2
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22
 
       - name: Add npm auth token to pnpm
         run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN_ELEVATED}"

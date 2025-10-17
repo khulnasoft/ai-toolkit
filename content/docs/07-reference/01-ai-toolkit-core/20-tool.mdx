@@ -13,7 +13,7 @@ Without this helper function, TypeScript is unable to connect the `parameters` p
 and the argument types of `execute` cannot be inferred.
 
 ```ts highlight={"1,4,9,10"}
-import { tool } from 'ai-toolkit';
+import { tool } from 'ai';
 import { z } from 'zod';
 
 export const weatherTool = tool({
@@ -31,7 +31,7 @@ export const weatherTool = tool({
 
 ## Import
 
-<Snippet text={`import { tool } from "ai-toolkit"`} prompt={false} />
+<Snippet text={`import { tool } from "ai"`} prompt={false} />
 
 ## API Signature
 

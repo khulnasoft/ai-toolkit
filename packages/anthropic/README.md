@@ -22,7 +22,7 @@ import { anthropic } from '@ai-toolkit/anthropic';
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: anthropic('claude-3-haiku-20240307'),

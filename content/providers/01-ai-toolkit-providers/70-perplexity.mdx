@@ -69,7 +69,7 @@ You can create Perplexity models using a provider instance:
 
 ```ts
 import { perplexity } from '@ai-toolkit/perplexity';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: perplexity('sonar-pro'),
@@ -83,7 +83,7 @@ Websites that have been used to generate the response are included in the `sourc
 
 ```ts
 import { perplexity } from '@ai-toolkit/perplexity';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text, sources } = await generateText({
   model: perplexity('sonar-pro'),

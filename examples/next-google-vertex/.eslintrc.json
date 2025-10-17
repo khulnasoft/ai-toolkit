@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals"],
+  "extends": ["khulnasoft-ai"],
   "settings": {
     "next": {
       "rootDir": "."

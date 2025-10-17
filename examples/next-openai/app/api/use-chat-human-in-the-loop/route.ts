@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { createDataStreamResponse, Message, streamText } from 'ai-toolkit';
+import { createDataStreamResponse, Message, streamText } from 'ai';
 import { processToolCalls } from './utils';
 import { tools } from './tools';
 

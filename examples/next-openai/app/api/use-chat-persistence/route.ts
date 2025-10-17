@@ -1,9 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import {
-  appendResponseMessages,
-  createIdGenerator,
-  streamText,
-} from 'ai-toolkit';
+import { appendResponseMessages, createIdGenerator, streamText } from 'ai';
 import { saveChat } from '@util/chat-store';
 
 export async function POST(req: Request) {

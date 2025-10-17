@@ -16,4 +16,4 @@ Individual codemods can be run by specifying the name of the codemod:
 npx @ai-toolkit/codemod <codemod-name> <path>
 ```
 
-The latest set of codemods can be found in the [`@ai-toolkit/codemod`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/codemod/src/codemods) repository.
+The latest set of codemods can be found in the [`@ai-toolkit/codemod`](https://github.com/khulnasoft/ai/tree/main/packages/codemod/src/codemods) repository.

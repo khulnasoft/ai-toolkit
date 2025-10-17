@@ -5,7 +5,7 @@ import {
   ToolCallPart,
   ToolResultPart,
   tool,
-} from 'ai-toolkit';
+} from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

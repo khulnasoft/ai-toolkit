@@ -1,5 +1,5 @@
-import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {
@@ -10,7 +10,7 @@ async function main() {
     providerOptions: {
       anthropic: {
         thinking: { type: 'enabled', budgetTokens: 12000 },
-      },
+      } satisfies AnthropicProviderOptions,
     },
     maxRetries: 0,
   });

@@ -67,14 +67,14 @@ export default function Page() {
 
 ## Server
 
-You will create a new route at `/api/chat` that will use the `streamText` function from the `ai-toolkit` module to generate the assistant's response based on the conversation history.
+You will create a new route at `/api/chat` that will use the `streamText` function from the `ai` module to generate the assistant's response based on the conversation history.
 
 You will use the [`tools`](/docs/reference/ai-toolkit-core/generate-text#tools) parameter to specify a tool called `getWeather` that will get the weather for a location.
 
 You will add the `getWeather` function and use zod to specify the schema for its parameters.
 
 ```ts filename='app/api/chat/route.ts'
-import { ToolInvocation, streamText } from 'ai-toolkit';
+import { ToolInvocation, streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -118,4 +118,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/tools/call-tools-in-parallel/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/tools/call-tools-in-parallel/index.tsx" />

@@ -3,13 +3,13 @@ import { createTransformer } from './lib/create-transformer';
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Track if parseStreamPart is imported from 'ai-toolkit'
+  // Track if parseStreamPart is imported from 'ai'
   const targetImports = new Set<string>();
 
-  // Find and update imports from 'ai-toolkit'
+  // Find and update imports from 'ai'
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai-toolkit')
+    .filter(path => path.node.source.value === 'ai')
     .forEach(path => {
       path.node.specifiers?.forEach(specifier => {
         if (
@@ -30,7 +30,7 @@ export default createTransformer((fileInfo, api, options, context) => {
       });
     });
 
-  // Update function calls only if imported from 'ai-toolkit'
+  // Update function calls only if imported from 'ai'
   root
     .find(j.CallExpression)
     .filter(

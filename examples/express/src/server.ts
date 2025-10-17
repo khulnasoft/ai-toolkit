@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { pipeDataStreamToResponse, streamText } from 'ai-toolkit';
+import { pipeDataStreamToResponse, streamText } from 'ai';
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
 

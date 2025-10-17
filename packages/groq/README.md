@@ -23,7 +23,7 @@ import { groq } from '@ai-toolkit/groq';
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: groq('gemma2-9b-it'),

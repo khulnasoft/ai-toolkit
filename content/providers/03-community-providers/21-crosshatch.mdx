@@ -61,7 +61,7 @@ You can use Crosshatch to get generated text based on permissioned user context 
 This example uses `gpt-4o-mini` to generate text.
 
 ```ts
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import createCrosshatch from '@crosshatch/ai-provider':
 const crosshatch = createCrosshatch();
 
@@ -92,7 +92,7 @@ const { text } = await generateText({
 Use crosshatch to re-rank items based on recent user purchases.
 
 ```ts
-import { streamObject } from 'ai-toolkit';
+import { streamObject } from 'ai';
 import createCrosshatch from `@crosshatch/ai-provider`
 const crosshatch = createCrosshatch();
 

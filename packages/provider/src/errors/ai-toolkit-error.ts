@@ -2,7 +2,7 @@
  * Symbol used for identifying AI TOOLKIT Error instances.
  * Enables checking if an error is an instance of AITOOLKITError across package versions.
  */
-const marker = 'vercel.ai.error';
+const marker = 'khulnasoft.com.error';
 const symbol = Symbol.for(marker);
 
 /**

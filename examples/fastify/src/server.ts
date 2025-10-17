@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { createDataStream, streamText } from 'ai-toolkit';
+import { createDataStream, streamText } from 'ai';
 import 'dotenv/config';
 import Fastify from 'fastify';
 

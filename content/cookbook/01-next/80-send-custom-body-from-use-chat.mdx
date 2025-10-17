@@ -66,7 +66,7 @@ The rest of the message history can be loaded from storage.
 
 ```tsx filename='app/api/chat/route.ts' highlight="8,9,23"
 import { openai } from '@ai-toolkit/openai'
-import { streamText } from 'ai-toolkit'
+import { streamText } from 'ai'
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30

@@ -5,7 +5,7 @@ import {
   CoreMessage,
   ToolCallPart,
   ToolResultPart,
-} from 'ai-toolkit';
+} from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

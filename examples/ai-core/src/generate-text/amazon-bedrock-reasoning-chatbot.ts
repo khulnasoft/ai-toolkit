@@ -1,5 +1,5 @@
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { CoreMessage, generateText } from 'ai-toolkit';
+import { CoreMessage, generateText } from 'ai';
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';

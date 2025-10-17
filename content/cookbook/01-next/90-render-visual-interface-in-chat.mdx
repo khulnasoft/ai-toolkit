@@ -44,7 +44,7 @@ Let's build an assistant that gets the weather for any city by calling the `getW
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { ToolInvocation } from 'ai-toolkit';
+import { ToolInvocation } from 'ai';
 import { Message, useChat } from '@ai-toolkit/react';
 
 export default function Chat() {
@@ -186,7 +186,7 @@ export default function Chat() {
 
 ```tsx filename='api/chat.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { z } from 'zod';
 
 export default async function POST(request: Request) {

@@ -5,7 +5,7 @@ description: Learn how to use the Cohere provider for the AI TOOLKIT.
 
 # Cohere Provider
 
-The [Cohere](https://cohere.com/) provider contains language and emdedding model support for the Cohere chat API.
+The [Cohere](https://cohere.com/) provider contains language and embedding model support for the Cohere chat API.
 
 ## Setup
 
@@ -81,7 +81,7 @@ You can use Cohere language models to generate text with the `generateText` func
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: cohere('command-r-plus'),
@@ -89,13 +89,19 @@ const { text } = await generateText({
 });
 ```
 
-Cohere language models can also be used in the `streamText` function (see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
+Cohere language models can also be used in the `streamText`, `generateObject`, and `streamObject` functions
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core).
 
 ### Model Capabilities
 
-| Model            | Image Input         | Object Generation   | Tool Usage          | Tool Streaming      |
-| ---------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `command-r-plus` | <Cross size={18} /> | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> |
+| Model               | Image Input         | Object Generation   | Tool Usage          | Tool Streaming      |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `command-a-03-2025` | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
+| `command-r-plus`    | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
+| `command-r`         | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
+| `command-a-03-2025` | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
+| `command`           | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> |
+| `command-light`     | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> |
 
 <Note>
   The table above lists popular models. Please see the [Cohere

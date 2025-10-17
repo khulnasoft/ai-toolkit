@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { generateText } from 'ai-toolkit';
-import { generateText as genText } from 'ai-toolkit';
+import { generateText } from 'ai';
+import { generateText as genText } from 'ai';
 import { generateText as otherGen } from 'other-pkg';
 
 // Should rename - direct import

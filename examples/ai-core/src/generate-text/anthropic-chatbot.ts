@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { CoreMessage, generateText } from 'ai-toolkit';
+import { CoreMessage, generateText } from 'ai';
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';

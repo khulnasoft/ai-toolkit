@@ -31,7 +31,7 @@ Let's start by creating a simple chat interface with an input field that sends t
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { CoreMessage } from 'ai-toolkit';
+import { CoreMessage } from 'ai';
 import { useState } from 'react';
 
 export default function Page() {
@@ -90,7 +90,7 @@ export default function Page() {
 Next, let's create the `/api/chat` endpoint that generates the assistant's response based on the conversation history.
 
 ```typescript filename='app/api/chat/route.ts'
-import { CoreMessage, generateText } from 'ai-toolkit';
+import { CoreMessage, generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {
@@ -108,4 +108,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/chat/generate-chat/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/chat/generate-chat/index.tsx" />

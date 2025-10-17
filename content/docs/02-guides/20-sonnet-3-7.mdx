@@ -23,7 +23,7 @@ At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overv
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text, reasoning, reasoningDetails } = await generateText({
   model: anthropic('claude-3-7-sonnet-20250219'),
@@ -36,7 +36,7 @@ The unified interface also means that you can easily switch between providers by
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { reasoning, text } = await generateText({
   model: bedrock('anthropic.claude-3-7-sonnet-20250219-v1:0'),
@@ -49,8 +49,8 @@ const { reasoning, text } = await generateText({
 Claude 3.7 Sonnet introduces a new extended thinking—the ability to solve complex problems with careful, step-by-step reasoning. You can enable it using the `thinking` provider option and specifying a thinking budget in tokens:
 
 ```ts
-import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai-toolkit';
+import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
+import { generateText } from 'ai';
 
 const { text, reasoning, reasoningDetails } = await generateText({
   model: anthropic('claude-3-7-sonnet-20250219'),
@@ -58,7 +58,7 @@ const { text, reasoning, reasoningDetails } = await generateText({
   providerOptions: {
     anthropic: {
       thinking: { type: 'enabled', budgetTokens: 12000 },
-    },
+    } satisfies AnthropicProviderOptions,
   },
 });
 
@@ -79,13 +79,13 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 In a new Next.js application, first install the AI TOOLKIT and the Anthropic provider:
 
-<Snippet text="npm install ai-toolkit @ai-toolkit/anthropic" />
+<Snippet text="npm install ai @ai-toolkit/anthropic" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
-import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText } from 'ai-toolkit';
+import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
     providerOptions: {
       anthropic: {
         thinking: { type: 'enabled', budgetTokens: 12000 },
-      },
+      } satisfies AnthropicProviderOptions,
     },
   });
 
@@ -167,6 +167,6 @@ Ready to dive in? Here's how you can begin:
 1. Explore the documentation at [sdk.khulnasoft.com/docs](/docs) to understand the capabilities of the AI TOOLKIT.
 2. Check out practical examples at [sdk.khulnasoft.com/examples](/examples) to see the SDK in action.
 3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [sdk.khulnasoft.com/docs/guides](/docs/guides).
-4. Use ready-to-deploy AI templates at [khulnasoft.com/templates?type=ai](https://khulnasoft.com/templates?type=ai).
+4. Use ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).
 
 Claude 3.7 Sonnet opens new opportunities for reasoning-intensive AI applications. Start building today and leverage the power of advanced reasoning in your AI projects.

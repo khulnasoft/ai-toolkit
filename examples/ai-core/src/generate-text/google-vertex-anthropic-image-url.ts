@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 async function main() {
   const result = await generateText({
@@ -14,7 +14,7 @@ async function main() {
           {
             type: 'image',
             image:
-              'https://github.com/khulnasoft/ai-toolkit/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
+              'https://github.com/khulnasoft/ai/blob/main/examples/ai-core/data/comic-cat.png?raw=true',
           },
         ],
       },

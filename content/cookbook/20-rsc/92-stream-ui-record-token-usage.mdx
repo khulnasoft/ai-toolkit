@@ -19,8 +19,8 @@ It is called when the stream is finished.
 
 import { useState } from 'react';
 import { ClientMessage } from './actions';
-import { useActions, useUIState } from 'ai-toolkit/rsc';
-import { generateId } from 'ai-toolkit';
+import { useActions, useUIState } from 'ai/rsc';
+import { generateId } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -76,11 +76,11 @@ export default function Home() {
 ```tsx filename='app/actions.tsx' highlight={"57-63"}
 'use server';
 
-import { createAI, getMutableAIState, streamUI } from 'ai-toolkit/rsc';
+import { createAI, getMutableAIState, streamUI } from 'ai/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { ReactNode } from 'react';
 import { z } from 'zod';
-import { generateId } from 'ai-toolkit';
+import { generateId } from 'ai';
 
 export interface ServerMessage {
   role: 'user' | 'assistant';
@@ -119,7 +119,9 @@ export async function continueConversation(
         parameters: z.object({
           repositoryName: z
             .string()
-            .describe('The name of the repository, example: vercel/ai-chatbot'),
+            .describe(
+              'The name of the repository, example: khulnasoft/ai-chatbot',
+            ),
         }),
         generate: async function* ({ repositoryName }) {
           yield <div>Cloning repository {repositoryName}...</div>; // [!code highlight:5]
@@ -148,7 +150,7 @@ export async function continueConversation(
 ```
 
 ```typescript filename='app/ai.ts'
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 
 export const AI = createAI<ServerMessage[], ClientMessage[]>({

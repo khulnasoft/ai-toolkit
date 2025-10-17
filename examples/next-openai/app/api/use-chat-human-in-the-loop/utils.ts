@@ -4,7 +4,7 @@ import {
   DataStreamWriter,
   ToolExecutionOptions,
   ToolSet,
-} from 'ai-toolkit';
+} from 'ai';
 import { z } from 'zod';
 
 // Approval string to be shared across frontend and backend

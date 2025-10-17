@@ -67,7 +67,7 @@ export default function Page() {
 On the server, create an API route that receives the PDF, sends it to the LLM, and returns the result. This example uses the [ `generateObject` ](/docs/reference/ai-toolkit-core/generate-object) function to generate the summary as part of a structured output.
 
 ```typescript file="app/api/analyze/route.ts"
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { anthropic } from '@ai-toolkit/anthropic';
 import { z } from 'zod';
 

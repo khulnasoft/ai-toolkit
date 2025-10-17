@@ -1,5 +1,5 @@
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { streamText, ToolCallPart, ToolResultPart } from 'ai-toolkit';
+import { streamText, ToolCallPart, ToolResultPart } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';

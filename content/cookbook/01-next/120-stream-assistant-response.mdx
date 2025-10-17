@@ -47,11 +47,11 @@ export default function Page() {
 
 ## Server
 
-Next, you will create an API route for `api/assistant` to handle the assistant's messages and responses. You will use the `AssistantResponse` function from `ai-toolkit` to stream the assistant's responses back to the `useAssistant` hook on the client.
+Next, you will create an API route for `api/assistant` to handle the assistant's messages and responses. You will use the `AssistantResponse` function from `ai` to stream the assistant's responses back to the `useAssistant` hook on the client.
 
 ```tsx filename='app/api/assistant/route.ts'
 import OpenAI from 'openai';
-import { AssistantResponse } from 'ai-toolkit';
+import { AssistantResponse } from 'ai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || '',
@@ -89,4 +89,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/assistants/stream-assistant-response/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/assistants/stream-assistant-response/index.tsx" />

@@ -5,7 +5,7 @@ description: Learn how to deploy an AI application to production on Khulnasoft
 
 # Khulnasoft Deployment Guide
 
-In this guide, you will deploy an AI application to [Khulnasoft](https://khulnasoft.com) using [Next.js](https://nextjs.org) (App Router).
+In this guide, you will deploy an AI application to [Khulnasoft](https://vercel.com) using [Next.js](https://nextjs.org) (App Router).
 
 Khulnasoft is a platform for developers that provides the tools, workflows, and infrastructure you need to build and deploy your web apps faster, without the need for additional configuration.
 
@@ -63,7 +63,7 @@ Rerun the code snippet from the previous step.
 
 ## Import Project in Khulnasoft
 
-On the [New Project](https://khulnasoft.com/new) page, under the **Import Git Repository** section, select the Git provider that you would like to import your project from. Follow the prompts to sign in to your GitHub account.
+On the [New Project](https://vercel.com/new) page, under the **Import Git Repository** section, select the Git provider that you would like to import your project from. Follow the prompts to sign in to your GitHub account.
 
 Once you have signed in, you should see your newly created repository from the previous step in the "Import Git Repository" section. Click the "Import" button next to that project.
 
@@ -93,7 +93,7 @@ You can specify the maximum duration of your Khulnasoft function using [route se
 export const maxDuration = 30;
 ```
 
-You can increase the max duration to 60 seconds on the Hobby Tier. For other tiers, [see the documentation](https://khulnasoft.com/docs/functions/runtimes#max-duration) for limits.
+You can increase the max duration to 60 seconds on the Hobby Tier. For other tiers, [see the documentation](https://vercel.com/docs/functions/runtimes#max-duration) for limits.
 
 ## Security Considerations
 
@@ -103,15 +103,15 @@ Given the high cost of calling an LLM, it's important to have measures in place 
 
 Rate limiting is a method used to regulate network traffic by defining a maximum number of requests that a client can send to a server within a given time frame.
 
-Follow [this guide](https://khulnasoft.com/guides/securing-ai-app-rate-limiting) to add rate limiting to your application.
+Follow [this guide](https://vercel.com/guides/securing-ai-app-rate-limiting) to add rate limiting to your application.
 
 ### Firewall
 
 A firewall helps protect your applications and websites from DDoS attacks and unauthorized access.
 
-[Khulnasoft Firewall](https://khulnasoft.com/docs/security/vercel-firewall) is a set of tools and infrastructure, created specifically with security in mind. It automatically mitigates DDoS attacks and Enterprise teams can get further customization for their site, including dedicated support and custom rules for IP blocking.
+[Khulnasoft Firewall](https://vercel.com/docs/security/vercel-firewall) is a set of tools and infrastructure, created specifically with security in mind. It automatically mitigates DDoS attacks and Enterprise teams can get further customization for their site, including dedicated support and custom rules for IP blocking.
 
 ## Troubleshooting
 
-- Streaming not working ([App Router](/docs/troubleshooting/common-issues/streaming-not-working-on-vercel) / [Pages Router](/docs/troubleshooting/common-issues/streaming-not-working-on-vercel-pages-router))
-- Experiencing [Timeouts](/docs/troubleshooting/common-issues/timeout-on-vercel)
+- Streaming not working when [proxied](/docs/troubleshooting/streaming-not-working-when-proxied)
+- Experiencing [Timeouts](/docs/troubleshooting/timeout-on-vercel)

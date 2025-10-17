@@ -14,7 +14,7 @@ The `convertToCoreMessages` function is used to transform an array of UI message
 
 ```ts filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { convertToCoreMessages, streamText } from 'ai-toolkit';
+import { convertToCoreMessages, streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -30,10 +30,7 @@ export async function POST(req: Request) {
 
 ## Import
 
-<Snippet
-  text={`import { convertToCoreMessages } from "ai-toolkit"`}
-  prompt={false}
-/>
+<Snippet text={`import { convertToCoreMessages } from "ai"`} prompt={false} />
 
 ## API Signature
 
@@ -75,7 +72,7 @@ An array of [`CoreMessage`](/docs/reference/ai-toolkit-core/core-message) object
 The `convertToCoreMessages` function supports tools that can return multi-modal content. This is useful when tools need to return non-text content like images.
 
 ```ts
-import { tool } from 'ai-toolkit';
+import { tool } from 'ai';
 import { z } from 'zod';
 
 const screenshotTool = tool({

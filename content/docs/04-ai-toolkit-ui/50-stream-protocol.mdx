@@ -13,7 +13,7 @@ This page describes both protocols and how to use them in the backend and fronte
 You can use this information to develop custom backends and frontends for your use case, e.g.,
 to provide compatible API endpoints that are implemented in a different language such as Python.
 
-For instance, here's an example using [FastAPI](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-fastapi) as a backend.
+For instance, here's an example using [FastAPI](https://github.com/khulnasoft/ai/tree/main/examples/next-fastapi) as a backend.
 
 ## Text Stream Protocol
 
@@ -58,7 +58,7 @@ export default function Page() {
 ```
 
 ```ts filename='app/api/completion/route.ts' highlight="15"
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 // Allow streaming responses up to 30 seconds
@@ -142,6 +142,14 @@ The source parts are appended to the message as they are received. The source pa
 Format: `h:Source\n`
 
 Example: `h:{"sourceType":"url","id":"source-id","url":"https://example.com","title":"Example"}\n`
+
+### File Part
+
+The file parts contain binary data encoded as base64 strings along with their MIME type. The file part is available through `file`.
+
+Format: `k:{data:string; mimeType:string}\n`
+
+Example: `k:{"data":"base64EncodedData","mimeType":"image/png"}\n`
 
 ### Data Part
 
@@ -317,7 +325,7 @@ export default function Page() {
 ```
 
 ```ts filename='app/api/completion/route.ts' highlight="15"
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 // Allow streaming responses up to 30 seconds

@@ -55,10 +55,10 @@ export default function Page() {
 
 ## Server
 
-Let's create a route handler for `/api/completion` that will generate text based on the input prompt. The route will call the `generateText` function from the `ai-toolkit` module, which will then generate text based on the input prompt and return it.
+Let's create a route handler for `/api/completion` that will generate text based on the input prompt. The route will call the `generateText` function from the `ai` module, which will then generate text based on the input prompt and return it.
 
 ```typescript filename='app/api/completion/route.ts'
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {
@@ -76,4 +76,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/basics/generate-text/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/basics/generate-text/index.tsx" />

@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 const openai = createOpenAI({

@@ -16,17 +16,17 @@ LangDB provides OpenAI-compatible APIs, enabling developers to connect with mult
 
 ## Setup
 
-The LangDB provider is available via the `@langdb/vercel-provider` module. You can install it with:
+The LangDB provider is available via the `@langdb/khulnasoft-provider` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @langdb/vercel-provider" dark />
+    <Snippet text="pnpm add @langdb/khulnasoft-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @langdb/vercel-provider" dark />
+    <Snippet text="npm install @langdb/khulnasoft-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @langdb/vercel-provider" dark />
+    <Snippet text="yarn add @langdb/khulnasoft-provider" dark />
   </Tab>
 </Tabs>
 
@@ -35,7 +35,7 @@ The LangDB provider is available via the `@langdb/vercel-provider` module. You c
 To create a LangDB provider instance, use the `createLangDB` function:
 
 ```tsx
-import { createLangDB } from '@langdb/vercel-provider';
+import { createLangDB } from '@langdb/khulnasoft-provider';
 
 const langdb = createLangDB({
   apiKey: process.env.LANGDB_API_KEY, // Required
@@ -56,8 +56,8 @@ You can use LangDB with the `generateText` or `streamText` function:
 ### `generateText`
 
 ```tsx
-import { createLangDB } from '@langdb/vercel-provider';
-import { generateText } from 'ai-toolkit';
+import { createLangDB } from '@langdb/khulnasoft-provider';
+import { generateText } from 'ai';
 
 const langdb = createLangDB({
   apiKey: process.env.LANGDB_API_KEY,
@@ -77,8 +77,8 @@ export async function generateTextExample() {
 ### generateImage
 
 ```tsx
-import { createLangDB } from '@langdb/vercel-provider';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { createLangDB } from '@langdb/khulnasoft-provider';
+import { experimental_generateImage as generateImage } from 'ai';
 import fs from 'fs';
 import path from 'path';
 
@@ -102,8 +102,8 @@ export async function generateImageExample() {
 ### embed
 
 ```tsx
-import { createLangDB } from '@langdb/vercel-provider';
-import { embed } from 'ai-toolkit';
+import { createLangDB } from '@langdb/khulnasoft-provider';
+import { embed } from 'ai';
 
 const langdb = createLangDB({
   apiKey: process.env.LANGDB_API_KEY,

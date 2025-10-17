@@ -1,5 +1,4 @@
 import {
-  InvalidArgumentError,
   LanguageModelV1,
   LanguageModelV1CallWarning,
   LanguageModelV1FinishReason,
@@ -15,6 +14,7 @@ import {
   combineHeaders,
   createEventSourceResponseHandler,
   createJsonResponseHandler,
+  parseProviderOptions,
   postJsonToApi,
   resolve,
 } from '@ai-toolkit/provider-utils';
@@ -32,6 +32,7 @@ type AnthropicMessagesConfig = {
   provider: string;
   baseURL: string;
   headers: Resolvable<Record<string, string | undefined>>;
+  supportsImageUrls: boolean;
   fetch?: FetchFunction;
   buildRequestUrl?: (baseURL: string, isStreaming: boolean) => string;
   transformRequestBody?: (args: Record<string, any>) => Record<string, any>;
@@ -40,7 +41,6 @@ type AnthropicMessagesConfig = {
 export class AnthropicMessagesLanguageModel implements LanguageModelV1 {
   readonly specificationVersion = 'v1';
   readonly defaultObjectGenerationMode = 'tool';
-  readonly supportsImageUrls = true;
 
   readonly modelId: AnthropicMessagesModelId;
   readonly settings: AnthropicMessagesSettings;
@@ -57,8 +57,16 @@ export class AnthropicMessagesLanguageModel implements LanguageModelV1 {
     this.config = config;
   }
 
+  supportsUrl(url: URL): boolean {
+    return url.protocol === 'https:';
+  }
+
   get provider(): string {
     return this.config.provider;
+  }
+
+  get supportsImageUrls(): boolean {
+    return this.config.supportsImageUrls;
   }
 
   private async getArgs({
@@ -115,20 +123,14 @@ export class AnthropicMessagesLanguageModel implements LanguageModelV1 {
         warnings,
       });
 
-    const thinkingOptions = thinkingOptionsSchema.safeParse(
-      providerOptions?.anthropic?.thinking,
-    );
+    const anthropicOptions = parseProviderOptions({
+      provider: 'anthropic',
+      providerOptions,
+      schema: anthropicProviderOptionsSchema,
+    });
 
-    if (!thinkingOptions.success) {
-      throw new InvalidArgumentError({
-        argument: 'providerOptions.anthropic.thinking',
-        message: 'invalid thinking options',
-        cause: thinkingOptions.error,
-      });
-    }
-
-    const isThinking = thinkingOptions.data?.type === 'enabled';
-    const thinkingBudget = thinkingOptions.data?.budgetTokens;
+    const isThinking = anthropicOptions?.thinking?.type === 'enabled';
+    const thinkingBudget = anthropicOptions?.thinking?.budgetTokens;
 
     const baseArgs = {
       // model id:
@@ -714,9 +716,15 @@ const anthropicMessagesChunkSchema = z.discriminatedUnion('type', [
   }),
 ]);
 
-const thinkingOptionsSchema = z
-  .object({
-    type: z.union([z.literal('enabled'), z.literal('disabled')]),
-    budgetTokens: z.number().optional(),
-  })
-  .optional();
+const anthropicProviderOptionsSchema = z.object({
+  thinking: z
+    .object({
+      type: z.union([z.literal('enabled'), z.literal('disabled')]),
+      budgetTokens: z.number().optional(),
+    })
+    .optional(),
+});
+
+export type AnthropicProviderOptions = z.infer<
+  typeof anthropicProviderOptionsSchema
+>;

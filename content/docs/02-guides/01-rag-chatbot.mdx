@@ -114,7 +114,7 @@ This project will use the following stack:
 
 ### Clone Repo
 
-To reduce the scope of this guide, you will be starting with a [repository](https://github.com/khulnasoft/ai-toolkit-toolkit-rag-starter) that already has a few things set up for you:
+To reduce the scope of this guide, you will be starting with a [repository](https://github.com/khulnasoft/ai-toolkit-rag-starter) that already has a few things set up for you:
 
 - Drizzle ORM (`lib/db`) including an initial migration and a script to migrate (`db:migrate`)
 - a basic schema for the `resources` table (this will be for source material)
@@ -124,7 +124,7 @@ To get started, clone the starter repository with the following command:
 
 <Snippet
   text={[
-    'git clone https://github.com/khulnasoft/ai-toolkit-toolkit-rag-starter',
+    'git clone https://github.com/khulnasoft/ai-toolkit-rag-starter',
     'cd ai-toolkit-rag-starter',
   ]}
 />
@@ -137,7 +137,7 @@ First things first, run the following command to install the project’s depende
 
 You will need a Postgres database to complete this tutorial. If you don’t have Postgres setup on your local machine you can:
 
-- Create a free Postgres database with [Khulnasoft Postgres](https://khulnasoft.com/docs/storage/vercel-postgres); or
+- Create a free Postgres database with [Khulnasoft Postgres](https://vercel.com/docs/storage/khulnasoft-postgres); or
 - Follow [this guide](https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database) to set it up locally
 
 ### Migrate Database
@@ -161,7 +161,7 @@ This will first add the `pgvector` extension to your database. Then it will crea
   (`lib/db/migrations/0000_yielding_bloodaxe.sql`), cut (copy and remove) the
   first line, and run it directly on your postgres instance. You should now be
   able to run the updated migration. [More
-  info](https://github.com/khulnasoft/ai-toolkit-toolkit-rag-starter/issues/1).
+  info](https://github.com/khulnasoft/ai-toolkit-rag-starter/issues/1).
 </Note>
 
 ### OpenAI API Key
@@ -269,7 +269,7 @@ This will install the [AI TOOLKIT](https://sdk.khulnasoft.com/docs), AI TOOLKIT'
 Let’s add a function to generate embeddings. Copy the following code into your `lib/ai/embedding.ts` file.
 
 ```tsx filename="lib/ai/embedding.ts" highlight="1-2,4,13-22"
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 const embeddingModel = openai.embedding('text-embedding-ada-002');
@@ -433,7 +433,7 @@ Open the file and add the following code:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -462,7 +462,7 @@ Let’s add system instructions to refine and restrict the model’s behavior. I
 
 ```tsx filename="app/api/chat/route.ts" highlight="12-14"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -499,7 +499,7 @@ Update your route handler with the following code:
 ```tsx filename="app/api/chat/route.ts" highlight="18-29"
 import { createResource } from '@/lib/actions/resources';
 import { openai } from '@ai-toolkit/openai';
-import { streamText, tool } from 'ai-toolkit';
+import { streamText, tool } from 'ai';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
@@ -618,7 +618,7 @@ The model can now add and embed arbitrary information to your knowledge base. Ho
 To find similar content, you will need to embed the users query, search the database for semantic similarities, then pass those items to the model as context alongside the query. To achieve this, let’s update your embedding logic file (`lib/ai/embedding.ts`):
 
 ```tsx filename="lib/ai/embedding.ts" highlight="1,3-5,27-34,36-49"
-import { embed, embedMany } from 'ai-toolkit';
+import { embed, embedMany } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { db } from '../db';
 import { cosineDistance, desc, gt, sql } from 'drizzle-orm';
@@ -681,7 +681,7 @@ Go back to your route handler (`api/chat/route.ts`) and add a new tool called `g
 ```ts filename="api/chat/route.ts" highlight="5,30-36"
 import { createResource } from '@/lib/actions/resources';
 import { openai } from '@ai-toolkit/openai';
-import { streamText, tool } from 'ai-toolkit';
+import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { findRelevantContent } from '@/lib/ai/embedding';
 

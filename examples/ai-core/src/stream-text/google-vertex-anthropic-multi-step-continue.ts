@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 async function main() {
   const result = streamText({

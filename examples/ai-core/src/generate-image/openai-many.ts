@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { experimental_generateImage as generateImage } from 'ai-toolkit';
+import { experimental_generateImage as generateImage } from 'ai';
 import { presentImages } from '../lib/present-image';
 import 'dotenv/config';
 

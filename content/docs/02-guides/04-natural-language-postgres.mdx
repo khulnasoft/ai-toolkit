@@ -23,7 +23,7 @@ This project uses the following stack:
 - [AI TOOLKIT](https://sdk.khulnasoft.com/docs)
 - [OpenAI](https://openai.com)
 - [Zod](https://zod.dev)
-- [Postgres](https://www.postgresql.org/) with [ Khulnasoft Postgres ](https://khulnasoft.com/postgres)
+- [Postgres](https://www.postgresql.org/) with [ Khulnasoft Postgres ](https://vercel.com/postgres)
 - [shadcn-ui](https://ui.shadcn.com) and [TailwindCSS](https://tailwindcss.com) for styling
 - [Recharts](https://recharts.org) for data visualization
 
@@ -69,7 +69,7 @@ POSTGRES_DATABASE="..."
 
 <Note>
   This project uses Khulnasoft Postgres. You can learn more about how to set up
-  at the [Khulnasoft Postgres documentation](https://khulnasoft.com/postgres).
+  at the [Khulnasoft Postgres documentation](https://vercel.com/postgres).
 </Note>
 
 4. This project uses CB Insights' Unicorn Companies dataset. You can download the dataset by following these instructions:
@@ -237,7 +237,7 @@ In this action, you'll use the `generateObject` function from the AI TOOLKIT whi
 
 ```ts filename="app/actions.ts"
 /* ...other imports... */
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 

@@ -1,11 +1,11 @@
 import { openai } from '@ai-toolkit/openai';
-import { CoreMessage, generateId } from 'ai-toolkit';
+import { CoreMessage, generateId } from 'ai';
 import {
   createAI,
   createStreamableValue,
   getMutableAIState as $getMutableAIState,
   streamUI,
-} from 'ai-toolkit/rsc';
+} from 'ai/rsc';
 import { Message, BotMessage } from './message';
 import { z } from 'zod';
 
@@ -41,7 +41,7 @@ export async function submitUserMessage(content: string) {
     system: 'You are a weather assistant.',
     messages: aiState
       .get()
-      .messages.map(({ role, content }) => ({ role, content } as CoreMessage)),
+      .messages.map(({ role, content }) => ({ role, content }) as CoreMessage),
 
     text: ({ content, done, delta }) => {
       if (!textStream) {

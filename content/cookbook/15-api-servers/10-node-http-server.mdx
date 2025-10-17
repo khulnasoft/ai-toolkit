@@ -21,7 +21,7 @@ curl -X POST http://localhost:8080
   set in the `OPENAI_API_KEY` environment variable.
 </Note>
 
-**Full example**: [github.com/khulnasoft/ai-toolkit/examples/node-http-server](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/node-http-server)
+**Full example**: [github.com/khulnasoft/ai/examples/node-http-server](https://github.com/khulnasoft/ai/tree/main/examples/node-http-server)
 
 ### Data Stream
 
@@ -29,7 +29,7 @@ You can use the `pipeDataStreamToResponse` method to pipe the stream data to the
 
 ```ts filename='index.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { createServer } from 'http';
 
 createServer(async (req, res) => {
@@ -48,7 +48,7 @@ createServer(async (req, res) => {
 
 ```ts filename='index.ts' highlight="6-9,16"
 import { openai } from '@ai-toolkit/openai';
-import { pipeDataStreamToResponse, streamText } from 'ai-toolkit';
+import { pipeDataStreamToResponse, streamText } from 'ai';
 import { createServer } from 'http';
 
 createServer(async (req, res) => {
@@ -79,7 +79,7 @@ You can send a text stream to the client using `pipeTextStreamToResponse`.
 
 ```ts filename='index.ts'
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { createServer } from 'http';
 
 createServer(async (req, res) => {
@@ -91,3 +91,7 @@ createServer(async (req, res) => {
   result.pipeTextStreamToResponse(res);
 }).listen(8080);
 ```
+
+## Troubleshooting
+
+- Streaming not working when [proxied](/docs/troubleshooting/streaming-not-working-when-proxied)

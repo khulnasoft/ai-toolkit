@@ -1,6 +1,6 @@
 export const runtime = 'edge';
 
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { vertex } from '@ai-toolkit/google-vertex/edge';
 
 export async function GET() {

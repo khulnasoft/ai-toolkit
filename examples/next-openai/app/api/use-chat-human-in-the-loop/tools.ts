@@ -1,4 +1,4 @@
-import { tool } from 'ai-toolkit';
+import { tool } from 'ai';
 import { z } from 'zod';
 
 const getWeatherInformation = tool({

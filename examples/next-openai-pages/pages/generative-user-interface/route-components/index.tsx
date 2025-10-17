@@ -1,4 +1,4 @@
-import { ToolInvocation } from 'ai-toolkit';
+import { ToolInvocation } from 'ai';
 import { useChat } from '@ai-toolkit/react';
 
 export default function Page() {

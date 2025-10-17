@@ -16,10 +16,7 @@ It supports:
 
 ## Import
 
-<Snippet
-  text={`import { LangChainAdapter } from "ai-toolkit"`}
-  prompt={false}
-/>
+<Snippet text={`import { LangChainAdapter } from "ai"`} prompt={false} />
 
 ## API Signature
 
@@ -52,7 +49,7 @@ It supports:
 
 ```tsx filename="app/api/completion/route.ts" highlight={"14"}
 import { ChatOpenAI } from '@langchain/openai';
-import { LangChainAdapter } from 'ai-toolkit';
+import { LangChainAdapter } from 'ai';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
@@ -72,7 +69,7 @@ export async function POST(req: Request) {
 
 ```tsx filename="app/api/completion/route.ts" highlight={"16"}
 import { ChatOpenAI } from '@langchain/openai';
-import { LangChainAdapter } from 'ai-toolkit';
+import { LangChainAdapter } from 'ai';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 
 export async function POST(req: Request) {

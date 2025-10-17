@@ -23,7 +23,7 @@ import { openai } from '@ai-toolkit/openai';
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { text } = await generateText({
   model: openai('gpt-4-turbo'),

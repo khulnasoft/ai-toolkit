@@ -89,7 +89,7 @@ You can use the following optional settings to customize:
 You can use Chrome built-in language models to generate text with the `generateText` or `streamText` function:
 
 ```javascript
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { chromeai } from 'chrome-ai';
 
 const { text } = await generateText({
@@ -101,7 +101,7 @@ console.log(text); //  I am a large language model, trained by Google.
 ```
 
 ```javascript
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import { chromeai } from 'chrome-ai';
 
 const { textStream } = streamText({
@@ -121,7 +121,7 @@ console.log(result);
 Chrome built-in language models can also be used in the `generateObject` function:
 
 ```javascript
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import { chromeai } from 'chrome-ai';
 import { z } from 'zod';
 

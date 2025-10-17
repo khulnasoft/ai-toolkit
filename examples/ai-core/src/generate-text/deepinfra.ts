@@ -1,5 +1,5 @@
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

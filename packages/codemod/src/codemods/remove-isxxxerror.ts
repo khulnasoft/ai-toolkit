@@ -35,7 +35,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     .find(j.ImportDeclaration)
     .filter(
       path =>
-        path.node.source.value === 'ai-toolkit' ||
+        path.node.source.value === 'ai' ||
         (typeof path.node.source.value === 'string' &&
           path.node.source.value.startsWith('@ai-toolkit/')),
     )

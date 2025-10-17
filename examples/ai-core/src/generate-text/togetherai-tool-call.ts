@@ -1,5 +1,5 @@
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';

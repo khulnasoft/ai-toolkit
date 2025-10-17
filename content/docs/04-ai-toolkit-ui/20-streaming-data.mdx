@@ -32,7 +32,7 @@ Here is an example:
 
 ```tsx filename="route.ts" highlight="7-10,16,19-23,25-26,30"
 import { openai } from '@ai-toolkit/openai';
-import { generateId, createDataStreamResponse, streamText } from 'ai-toolkit';
+import { generateId, createDataStreamResponse, streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -83,7 +83,7 @@ You can send custom sources to the client using the `writeSource` method on the 
 
 ```tsx filename="route.ts" highlight="9-15"
 import { openai } from '@ai-toolkit/openai';
-import { createDataStreamResponse, streamText } from 'ai-toolkit';
+import { createDataStreamResponse, streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();

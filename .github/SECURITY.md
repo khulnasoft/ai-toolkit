@@ -4,6 +4,6 @@ If you believe you have found a security vulnerability in the AI TOOLKIT, we enc
 
 We will investigate all legitimate reports and do our best to quickly fix the problem.
 
-Email `security@khulnasoft.com` to disclose any security vulnerabilities.
+Email `security@vercel.com` to disclose any security vulnerabilities.
 
-https://khulnasoft.com/security
+https://vercel.com/security

@@ -1,5 +1,5 @@
 import { createGoogleGenerativeAI } from '@ai-toolkit/google';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 const google = createGoogleGenerativeAI({

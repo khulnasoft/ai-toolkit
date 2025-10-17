@@ -1,5 +1,5 @@
 import { toJsonSchema as valibotToJsonSchema } from '@valibot/to-json-schema';
-import { jsonSchema, Schema } from 'ai-toolkit';
+import { jsonSchema, Schema } from 'ai';
 import * as v from 'valibot';
 
 export function valibotSchema<OBJECT>(

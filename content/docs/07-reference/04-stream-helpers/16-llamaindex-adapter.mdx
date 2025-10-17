@@ -15,10 +15,7 @@ It supports:
 
 ## Import
 
-<Snippet
-  text={`import { LlamaIndexAdapter } from "ai-toolkit"`}
-  prompt={false}
-/>
+<Snippet text={`import { LlamaIndexAdapter } from "ai"`} prompt={false} />
 
 ## API Signature
 
@@ -52,7 +49,7 @@ It supports:
 
 ```tsx filename="app/api/completion/route.ts" highlight="15"
 import { OpenAI, SimpleChatEngine } from 'llamaindex';
-import { LlamaIndexAdapter } from 'ai-toolkit';
+import { LlamaIndexAdapter } from 'ai';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();

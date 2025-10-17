@@ -1,11 +1,10 @@
 import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
 import { describe, expect, it, vi } from 'vitest';
 import { formatDataStreamPart } from './data-stream-parts';
+import { LanguageModelUsage } from './duplicated/usage';
 import { processChatResponse } from './process-chat-response';
 import { createDataProtocolStream } from './test/create-data-protocol-stream';
 import { JSONValue, Message } from './types';
-import { LanguageModelUsage } from './duplicated/usage';
-import { format } from 'path';
 
 let updateCalls: Array<{
   message: Message;
@@ -664,6 +663,49 @@ describe('scenario: server provides sources', () => {
         id: 'source-id',
         url: 'https://example.com',
         title: 'Example',
+      }),
+      formatDataStreamPart('finish_step', {
+        finishReason: 'stop',
+        usage: { completionTokens: 2, promptTokens: 4 },
+        isContinued: false,
+      }),
+      formatDataStreamPart('finish_message', {
+        finishReason: 'stop',
+        usage: { completionTokens: 7, promptTokens: 14 },
+      }),
+    ]);
+
+    await processChatResponse({
+      stream,
+      update,
+      onFinish,
+      generateId: mockId(),
+      getCurrentDate: vi.fn().mockReturnValue(new Date('2023-01-01')),
+      lastMessage: undefined,
+    });
+  });
+
+  it('should call the update function with the correct arguments', async () => {
+    expect(updateCalls).toMatchSnapshot();
+  });
+
+  it('should call the onFinish function with the correct arguments', async () => {
+    expect(finishCalls).toMatchSnapshot();
+  });
+});
+
+describe('scenario: server provides file parts', () => {
+  beforeEach(async () => {
+    const stream = createDataProtocolStream([
+      formatDataStreamPart('text', 'Here is a file:'),
+      formatDataStreamPart('file', {
+        data: 'Hello World',
+        mimeType: 'text/plain',
+      }),
+      formatDataStreamPart('text', 'And another one:'),
+      formatDataStreamPart('file', {
+        data: '{"key": "value"}',
+        mimeType: 'application/json',
       }),
       formatDataStreamPart('finish_step', {
         finishReason: 'stop',

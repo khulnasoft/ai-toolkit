@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Provider, experimental_createProviderRegistry } from 'ai-toolkit';
+import { Provider, experimental_createProviderRegistry } from 'ai';
 
 function createProvider(): Provider {
   return {

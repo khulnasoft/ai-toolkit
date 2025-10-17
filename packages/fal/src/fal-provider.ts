@@ -4,14 +4,14 @@ import {
   ProviderV1,
 } from '@ai-toolkit/provider';
 import type { FetchFunction } from '@ai-toolkit/provider-utils';
-import { loadApiKey, withoutTrailingSlash } from '@ai-toolkit/provider-utils';
+import { withoutTrailingSlash } from '@ai-toolkit/provider-utils';
 import { FalImageModel } from './fal-image-model';
 import { FalImageModelId, FalImageSettings } from './fal-image-settings';
 
 export interface FalProviderSettings {
   /**
 fal.ai API key. Default value is taken from the `FAL_API_KEY` environment
-variable.
+variable, falling back to `FAL_KEY`.
   */
   apiKey?: string;
 
@@ -50,16 +50,55 @@ Creates a model for image generation.
 
 const defaultBaseURL = 'https://fal.run';
 
+function loadFalApiKey({
+  apiKey,
+  description = 'fal.ai',
+}: {
+  apiKey: string | undefined;
+  description?: string;
+}): string {
+  if (typeof apiKey === 'string') {
+    return apiKey;
+  }
+
+  if (apiKey != null) {
+    throw new Error(`${description} API key must be a string.`);
+  }
+
+  if (typeof process === 'undefined') {
+    throw new Error(
+      `${description} API key is missing. Pass it using the 'apiKey' parameter. Environment variables are not supported in this environment.`,
+    );
+  }
+
+  let envApiKey = process.env.FAL_API_KEY;
+  if (envApiKey == null) {
+    envApiKey = process.env.FAL_KEY;
+  }
+
+  if (envApiKey == null) {
+    throw new Error(
+      `${description} API key is missing. Pass it using the 'apiKey' parameter or set either the FAL_API_KEY or FAL_KEY environment variable.`,
+    );
+  }
+
+  if (typeof envApiKey !== 'string') {
+    throw new Error(
+      `${description} API key must be a string. The value of the environment variable is not a string.`,
+    );
+  }
+
+  return envApiKey;
+}
+
 /**
 Create a fal.ai provider instance.
  */
 export function createFal(options: FalProviderSettings = {}): FalProvider {
   const baseURL = withoutTrailingSlash(options.baseURL ?? defaultBaseURL);
   const getHeaders = () => ({
-    Authorization: `Key ${loadApiKey({
+    Authorization: `Key ${loadFalApiKey({
       apiKey: options.apiKey,
-      environmentVariableName: 'FAL_API_KEY',
-      description: 'fal.ai',
     })}`,
     ...options.headers,
   });

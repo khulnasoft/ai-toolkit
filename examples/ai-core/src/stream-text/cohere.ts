@@ -1,5 +1,5 @@
 import { cohere } from '@ai-toolkit/cohere';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

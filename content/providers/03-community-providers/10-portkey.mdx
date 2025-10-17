@@ -18,17 +18,17 @@ Learn more at [Portkey docs for the AI TOOLKIT](https://docs.portkey.ai/docs/int
 
 ## Setup
 
-The Portkey provider is available in the `@portkey-ai/vercel-provider` module. You can install it with:
+The Portkey provider is available in the `@portkey-ai/khulnasoft-provider` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @portkey-ai/vercel-provider" dark />
+    <Snippet text="pnpm add @portkey-ai/khulnasoft-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @portkey-ai/vercel-provider" dark />
+    <Snippet text="npm install @portkey-ai/khulnasoft-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @portkey-ai/vercel-provider" dark />
+    <Snippet text="yarn add @portkey-ai/khulnasoft-provider" dark />
   </Tab>
 </Tabs>
 
@@ -37,7 +37,7 @@ The Portkey provider is available in the `@portkey-ai/vercel-provider` module. Y
 To create a Portkey provider instance, use the `createPortkey` function:
 
 ```typescript
-import { createPortkey } from '@portkey-ai/vercel-provider';
+import { createPortkey } from '@portkey-ai/khulnasoft-provider';
 
 const portkeyConfig = {
   provider: 'openai', //enter provider of choice
@@ -73,8 +73,8 @@ You can use Portkey language models with the `generateText` or `streamText` func
 ### `generateText`
 
 ```javascript
-import { createPortkey } from '@portkey-ai/vercel-provider';
-import { generateText } from 'ai-toolkit';
+import { createPortkey } from '@portkey-ai/khulnasoft-provider';
+import { generateText } from 'ai';
 
 const portkey = createPortkey({
   apiKey: 'YOUR_PORTKEY_API_KEY',
@@ -92,8 +92,8 @@ console.log(text);
 ### `streamText`
 
 ```javascript
-import { createPortkey } from '@portkey-ai/vercel-provider';
-import { streamText } from 'ai-toolkit';
+import { createPortkey } from '@portkey-ai/khulnasoft-provider';
+import { streamText } from 'ai';
 
 const portkey = createPortkey({
   apiKey: 'YOUR_PORTKEY_API_KEY',

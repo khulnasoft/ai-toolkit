@@ -1,5 +1,5 @@
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

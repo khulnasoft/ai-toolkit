@@ -49,7 +49,7 @@ You can import `createStreamableValue` from `ai/rsc` and use it to create a stre
 ```tsx file='app/actions.ts'
 'use server';
 
-import { createStreamableValue } from 'ai-toolkit/rsc';
+import { createStreamableValue } from 'ai/rsc';
 
 export const runThread = async () => {
   const streamableStatus = createStreamableValue('thread.init');
@@ -72,7 +72,7 @@ export const runThread = async () => {
 You can read streamable values on the client using `readStreamableValue`. It returns an async iterator that yields the value of the streamable as it is updated:
 
 ```tsx file='app/page.tsx'
-import { readStreamableValue } from 'ai-toolkit/rsc';
+import { readStreamableValue } from 'ai/rsc';
 import { runThread } from '@/actions';
 
 export default function Page() {
@@ -105,7 +105,7 @@ Let's look at how you can use the `createStreamableUI` function with a Server Ac
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { createStreamableUI } from 'ai-toolkit/rsc';
+import { createStreamableUI } from 'ai/rsc';
 
 export async function getWeather() {
   const weatherUI = createStreamableUI();
@@ -120,7 +120,7 @@ export async function getWeather() {
 }
 ```
 
-First, you create a streamable UI with an empty state and then update it with a loading message. After 1 second, you mark the stream as done passing in the actual weather information as it's final value. The `.value` property contains the actual UI that can be sent to the client.
+First, you create a streamable UI with an empty state and then update it with a loading message. After 1 second, you mark the stream as done passing in the actual weather information as its final value. The `.value` property contains the actual UI that can be sent to the client.
 
 ## Reading a Streamable UI
 
@@ -130,7 +130,7 @@ On the client side, you can call the `getWeather` Server Action and render the r
 'use client';
 
 import { useState } from 'react';
-import { readStreamableValue } from 'ai-toolkit/rsc';
+import { readStreamableValue } from 'ai/rsc';
 import { getWeather } from '@/actions';
 
 export default function Page() {

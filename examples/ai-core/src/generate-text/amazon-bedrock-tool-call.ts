@@ -1,4 +1,4 @@
-import { generateText, tool } from 'ai-toolkit';
+import { generateText, tool } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
@@ -53,6 +53,7 @@ async function main() {
 
   console.log(result.text);
   console.log(JSON.stringify(result.toolCalls, null, 2));
+  console.log(JSON.stringify(result.toolResults, null, 2));
 }
 
 main().catch(console.error);

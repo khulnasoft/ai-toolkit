@@ -11,7 +11,7 @@ This is ideal for use cases where you need to embed a single value to e.g. retri
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai-toolkit';
+import { embed } from 'ai';
 
 const { embedding } = await embed({
   model: openai.embedding('text-embedding-3-small'),
@@ -21,7 +21,7 @@ const { embedding } = await embed({
 
 ## Import
 
-<Snippet text={`import { embed } from "ai-toolkit"`} prompt={false} />
+<Snippet text={`import { embed } from "ai"`} prompt={false} />
 
 ## API Signature
 

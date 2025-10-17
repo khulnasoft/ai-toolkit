@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 
@@ -19,7 +19,7 @@ async function main() {
         }),
       ),
     }),
-    prompt: 'List 5 important events from the the year 2000.',
+    prompt: 'List 5 important events from the year 2000.',
   });
 
   console.log(events);

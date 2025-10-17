@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateObject } from 'ai-toolkit';
+import { generateObject } from 'ai';
 import 'dotenv/config';
 import { z } from 'zod';
 

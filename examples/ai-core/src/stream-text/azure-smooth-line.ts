@@ -1,5 +1,5 @@
 import { azure } from '@ai-toolkit/azure';
-import { smoothStream, streamText } from 'ai-toolkit';
+import { smoothStream, streamText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

@@ -20,7 +20,7 @@ A situation may arise when you need to generate text based on a prompt. For exam
 
 ## Client
 
-Let's create a simple React component that will call the `getAnswer` function when a button is clicked. The `getAnswer` function will call the `generateText` function from the `ai-toolkit` module, which will then generate text based on the input prompt.
+Let's create a simple React component that will call the `getAnswer` function when a button is clicked. The `getAnswer` function will call the `generateText` function from the `ai` module, which will then generate text based on the input prompt.
 
 ```tsx filename="app/page.tsx"
 'use client';
@@ -52,12 +52,12 @@ export default function Home() {
 
 ## Server
 
-On the server side, we need to implement the `getAnswer` function, which will call the `generateText` function from the `ai-toolkit` module. The `generateText` function will generate text based on the input prompt.
+On the server side, we need to implement the `getAnswer` function, which will call the `generateText` function from the `ai` module. The `generateText` function will generate text based on the input prompt.
 
 ```typescript filename='app/actions.ts'
 'use server';
 
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
 export async function getAnswer(question: string) {

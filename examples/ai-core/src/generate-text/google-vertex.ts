@@ -1,5 +1,5 @@
 import { vertex } from '@ai-toolkit/google-vertex';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 import 'dotenv/config';
 
 async function main() {

@@ -1,6 +1,6 @@
 'use client';
 
-import { ToolInvocation } from 'ai-toolkit';
+import { ToolInvocation } from 'ai';
 import { Message, useChat } from '@ai-toolkit/react';
 
 export default function Chat() {

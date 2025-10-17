@@ -17,8 +17,8 @@ When we define multiple functions in [`tools`](/docs/reference/ai-toolkit-core/g
 
 import { useState } from 'react';
 import { ClientMessage } from './actions';
-import { useActions, useUIState } from 'ai-toolkit/rsc';
-import { generateId } from 'ai-toolkit';
+import { useActions, useUIState } from 'ai/rsc';
+import { generateId } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -112,11 +112,11 @@ export async function Flight({ flightNumber }) {
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { getMutableAIState, streamUI } from 'ai-toolkit/rsc';
+import { getMutableAIState, streamUI } from 'ai/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { ReactNode } from 'react';
 import { z } from 'zod';
-import { generateId } from 'ai-toolkit';
+import { generateId } from 'ai';
 import { Stock } from '@/components/stock';
 import { Flight } from '@/components/flight';
 
@@ -206,7 +206,7 @@ export async function continueConversation(
 ```
 
 ```typescript filename='app/ai.ts'
-import { createAI } from 'ai-toolkit/rsc';
+import { createAI } from 'ai/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 
 export const AI = createAI<ServerMessage[], ClientMessage[]>({

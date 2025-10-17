@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { embedMany } from 'ai-toolkit';
+import { embedMany } from 'ai';
 import 'dotenv/config';
 
 async function main() {

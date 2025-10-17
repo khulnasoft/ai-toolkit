@@ -47,7 +47,7 @@ At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overv
 
 ```ts
 import { deepseek } from '@ai-toolkit/deepseek';
-import { generateText } from 'ai-toolkit';
+import { generateText } from 'ai';
 
 const { reasoning, text } = await generateText({
   model: deepseek('deepseek-reasoner'),
@@ -63,7 +63,7 @@ import {
   generateText,
   wrapLanguageModel,
   extractReasoningMiddleware,
-} from 'ai-toolkit';
+} from 'ai';
 
 // middleware to extract reasoning tokens
 const enhancedModel = wrapLanguageModel({
@@ -85,7 +85,7 @@ import {
   generateText,
   wrapLanguageModel,
   extractReasoningMiddleware,
-} from 'ai-toolkit';
+} from 'ai';
 
 // middleware to extract reasoning tokens
 const enhancedModel = wrapLanguageModel({
@@ -121,7 +121,7 @@ You can use DeepSeek R1 with the AI TOOLKIT through various providers. Here's a 
 | [Azure](/providers/ai-toolkit-providers/azure)            | [`DeepSeek-R1`](https://ai.azure.com/explore/models/DeepSeek-R1/version/1/registry/azureml-deepseek#code-samples) | Requires Middleware |
 | [Together AI](/providers/ai-toolkit-providers/togetherai) | [`deepseek-ai/DeepSeek-R1`](https://www.together.ai/models/deepseek-r1)                                           | Requires Middleware |
 | [FriendliAI](/providers/community-providers/friendliai)   | [`deepseek-r1`](https://huggingface.co/deepseek-ai/DeepSeek-R1)                                                   | Requires Middleware |
-| [LangDB](/providers/ai-toolkit-providers/langdb)          | [`deepseek/deepseek-reasoner`](https://docs.langdb.ai/guides/deepseek)                                            | Requires Middleware |
+| [LangDB](/providers/community-providers/langdb)           | [`deepseek/deepseek-reasoner`](https://docs.langdb.ai/guides/deepseek)                                            | Requires Middleware |
 
 ### Building Interactive Interfaces
 
@@ -135,13 +135,13 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 In a new Next.js application, first install the AI TOOLKIT and the DeepSeek provider:
 
-<Snippet text="npm install ai-toolkit @ai-toolkit/deepseek" />
+<Snippet text="npm install ai @ai-toolkit/deepseek" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
 import { deepseek } from '@ai-toolkit/deepseek';
-import { streamText } from 'ai-toolkit';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -211,6 +211,6 @@ Ready to dive in? Here's how you can begin:
 1. Explore the documentation at [sdk.khulnasoft.com/docs](/docs) to understand the capabilities of the AI TOOLKIT.
 2. Check out practical examples at [sdk.khulnasoft.com/examples](/examples) to see the SDK in action.
 3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [sdk.khulnasoft.com/docs/guides](/docs/guides).
-4. Use ready-to-deploy AI templates at [khulnasoft.com/templates?type=ai](https://khulnasoft.com/templates?type=ai).
+4. Use ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).
 
 DeepSeek R1 opens new opportunities for reasoning-intensive AI applications. Start building today and leverage the power of advanced reasoning in your AI projects.
