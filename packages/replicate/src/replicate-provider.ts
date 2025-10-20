@@ -1,8 +1,8 @@
-import { NoSuchModelError, ProviderV1 } from '@ai-toolkit/provider';
+import { NoSuchModelError, type ProviderV1 } from '@ai-toolkit/provider';
 import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { ReplicateImageModel } from './replicate-image-model';
-import {
+import type {
   ReplicateImageModelId,
   ReplicateImageSettings,
 } from './replicate-image-settings';
