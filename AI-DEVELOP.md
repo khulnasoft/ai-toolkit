@@ -3,11 +3,13 @@
 ## Working Process
 
 ### 1. Requirements & Architecture
+
 - Define main features for both dev-ai and micro-ai.
 - Choose tech stack (e.g., TypeScript/Node.js, React, etc.).
 - Plan integration and shared components.
 
 ### 2. dev-ai: Developer Improvement Toolkit
+
 - Scaffold frontend (React/Vite or Next.js).
 - Scaffold backend (Node.js/Express/Fastify).
 - Implement real-time communication (WebSockets, Socket.IO).
@@ -15,6 +17,7 @@
 - Build developer dashboard (usage stats, error tracking, suggestions).
 
 ### 3. micro-ai: AI Provider Data Analysis & Agentic System
+
 - Scaffold backend for data ingestion and agent logic.
 - Set up real-time data pipelines (WebSockets, message queues).
 - Build frontend dashboard for monitoring and controlling agents.
@@ -22,21 +25,25 @@
 - Connect to multiple AI providers (OpenAI, Anthropic, etc.).
 
 ### 4. Shared/Integration
+
 - Implement shared authentication/authorization.
 - Create shared UI components or libraries.
 - Define and implement API contracts between dev-ai and micro-ai.
 
 ### 5. Real-Time & Agentic Features
+
 - Use WebSockets or server-sent events for real-time updates.
 - Implement agent framework for autonomous actions.
 - Enable both projects to send/receive real-time data.
 
 ### 6. Data Analysis
+
 - Set up data storage (database, time-series DB, etc.).
 - Implement analytics pipelines (ETL, aggregation, visualization).
 - Integrate with AI provider APIs for data fetching and analysis.
 
 ### 7. Testing & Deployment
+
 - Write unit and integration tests.
 - Set up CI/CD pipelines.
 - Deploy to staging/production environments.

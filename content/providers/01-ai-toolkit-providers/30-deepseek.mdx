@@ -72,8 +72,8 @@ import { deepseek } from '@ai-toolkit/deepseek';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
-  model: deepseek('deepseek-chat'),
-  prompt: 'Write a vegetarian lasagna recipe for 4 people.',
+  model: deepseek('deepseek-coder'),
+  prompt: 'Write a function to calculate fibonacci numbers in Python.',
 });
 ```
 
@@ -133,6 +133,7 @@ The metrics include:
 | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
 | `deepseek-chat`     | <Check size={18} /> | <Check size={18} /> | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | `deepseek-reasoner` | <Check size={18} /> | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> | <Cross size={18} /> |
+| `deepseek-coder`    | <Check size={18} /> | <Check size={18} /> | <Cross size={18} /> | <Check size={18} /> | <Check size={18} /> |
 
 <Note>
   Please see the [DeepSeek docs](https://api-docs.deepseek.com) for a full list
