@@ -7,10 +7,13 @@ import { runConfigMenu } from './configMenu';
 import prompts from 'prompts';
 import { execSync } from 'child_process';
 
-console.log('\x1b[36m%s\x1b[0m', 'create-ai: Quickly scaffold new AI applications!');
+console.log(
+  '\x1b[36m%s\x1b[0m',
+  'create-ai: Quickly scaffold new AI applications!',
+);
 
 type StarterKey = 'react-vite' | 'next-app-router' | 'next-pages-router';
-const [,, starterArg, projectName] = process.argv;
+const [, , starterArg, projectName] = process.argv;
 
 const starters: Record<StarterKey, string> = {
   'react-vite': 'react-vite',
@@ -35,7 +38,11 @@ const starters: Record<StarterKey, string> = {
     }
 
     const starter = starterArg as StarterKey;
-    const templateDir = path.resolve(__dirname, '../../../starters', starters[starter]);
+    const templateDir = path.resolve(
+      __dirname,
+      '../../../starters',
+      starters[starter],
+    );
     const targetDir = path.resolve(process.cwd(), projectName);
 
     if (fs.existsSync(targetDir)) {
@@ -49,7 +56,10 @@ const starters: Record<StarterKey, string> = {
 
     // Run interactive config menu
     const config = await runConfigMenu();
-    fs.writeFileSync(path.join(targetDir, 'ai-toolkit.config.json'), JSON.stringify(config, null, 2));
+    fs.writeFileSync(
+      path.join(targetDir, 'ai-toolkit.config.json'),
+      JSON.stringify(config, null, 2),
+    );
     console.log('\nConfig saved to ai-toolkit.config.json');
 
     // Post-setup automation prompt
@@ -85,4 +95,4 @@ const starters: Record<StarterKey, string> = {
     console.error('An error occurred:', err.message || err);
     process.exit(1);
   }
-})(); 
+})();

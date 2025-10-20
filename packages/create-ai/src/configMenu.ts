@@ -18,10 +18,22 @@ export async function runConfigMenu() {
       name: 'menuItem',
       message: '',
       choices: [
-        { title: `OpenAI Key${config.openaiKey ? ' (set)' : ''}`, value: 'openaiKey' },
-        { title: `OpenAI API Endpoint${config.apiEndpoint ? ' (set)' : ''}`, value: 'apiEndpoint' },
-        { title: `Silent Mode${config.silentMode ? ' (on)' : ''}`, value: 'silentMode' },
-        { title: kleur.green().bold(`Model (${config.model})`), value: 'model' },
+        {
+          title: `OpenAI Key${config.openaiKey ? ' (set)' : ''}`,
+          value: 'openaiKey',
+        },
+        {
+          title: `OpenAI API Endpoint${config.apiEndpoint ? ' (set)' : ''}`,
+          value: 'apiEndpoint',
+        },
+        {
+          title: `Silent Mode${config.silentMode ? ' (on)' : ''}`,
+          value: 'silentMode',
+        },
+        {
+          title: kleur.green().bold(`Model (${config.model})`),
+          value: 'model',
+        },
         { title: `Language (${config.language})`, value: 'language' },
         { title: kleur.red('Cancel'), value: 'cancel' },
       ],
@@ -35,7 +47,10 @@ export async function runConfigMenu() {
           type: 'password',
           name: 'value',
           message: 'Enter your OpenAI API Key:',
-          validate: (val: string) => val && val.startsWith('sk-') ? true : 'Key must start with sk- and not be empty',
+          validate: (val: string) =>
+            val && val.startsWith('sk-')
+              ? true
+              : 'Key must start with sk- and not be empty',
         });
         if (value) config.openaiKey = value;
         break;
@@ -45,7 +60,8 @@ export async function runConfigMenu() {
           type: 'text',
           name: 'value',
           message: 'Enter OpenAI API Endpoint:',
-          initial: config.apiEndpoint || 'https://api.openai.com/v1/completions',
+          initial:
+            config.apiEndpoint || 'https://api.openai.com/v1/completions',
         });
         if (value) config.apiEndpoint = value;
         break;
@@ -81,4 +97,4 @@ export async function runConfigMenu() {
     }
   }
   return config;
-} 
+}

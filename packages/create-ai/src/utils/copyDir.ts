@@ -14,4 +14,4 @@ export function copyDir(src: string, dest: string) {
       fs.copyFileSync(srcPath, destPath);
     }
   }
-} 
+}
