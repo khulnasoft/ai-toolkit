@@ -47,7 +47,6 @@
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
-    "prepare": "husky install",
     "postinstall": "npx playwright install"
   },
   "devDependencies": {

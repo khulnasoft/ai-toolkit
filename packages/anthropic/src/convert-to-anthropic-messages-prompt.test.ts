@@ -1135,9 +1135,225 @@ describe('cache control', () => {
               ],
             },
           ],
+          system: undefined,
         },
         betas: new Set(),
       });
+    });
+  });
+
+  describe('cache control validation', () => {
+    it('should accept valid ephemeral cache control', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+            providerMetadata: {
+              anthropic: {
+                cacheControl: { type: 'ephemeral' },
+              },
+            },
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: { type: 'ephemeral' },
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([]);
+    });
+
+    it('should accept valid ephemeral cache control using cache_control key', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+            providerMetadata: {
+              anthropic: {
+                cache_control: { type: 'ephemeral' },
+              },
+            },
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: { type: 'ephemeral' },
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([]);
+    });
+
+    it('should reject invalid cache control type', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+            providerMetadata: {
+              anthropic: {
+                cacheControl: { type: 'permanent' } as any,
+              },
+            },
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: undefined,
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([
+        {
+          type: 'unsupported-setting',
+          setting: 'anthropic.cacheControl',
+          details:
+            'Invalid cache control value: [\n  {\n    "received": "permanent",\n    "code": "invalid_literal",\n    "expected": "ephemeral",\n    "path": [\n      "type"\n    ],\n    "message": "Invalid literal value, expected \\"ephemeral\\""\n  }\n]. Expected { type: \'ephemeral\' }',
+        },
+      ]);
+    });
+
+    it('should reject cache control with extra properties', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+            providerMetadata: {
+              anthropic: {
+                cacheControl: { type: 'ephemeral', extra: 'property' } as any,
+              },
+            },
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: undefined,
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([
+        {
+          type: 'unsupported-setting',
+          setting: 'anthropic.cacheControl',
+          details:
+            'Invalid cache control value: [\n  {\n    "code": "unrecognized_keys",\n    "keys": [\n      "extra"\n    ],\n    "path": [],\n    "message": "Unrecognized key(s) in object: \'extra\'"\n  }\n]. Expected { type: \'ephemeral\' }',
+        },
+      ]);
+    });
+
+    it('should handle missing cache control gracefully', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: undefined,
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([]);
+    });
+
+    it('should handle null cache control gracefully', async () => {
+      const warnings: LanguageModelV1CallWarning[] = [];
+
+      const result = convertToAnthropicMessagesPrompt({
+        prompt: [
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+            providerMetadata: {
+              anthropic: {
+                cacheControl: null,
+              },
+            },
+          },
+        ],
+        sendReasoning: true,
+        warnings,
+      });
+
+      expect(result.prompt.messages).toEqual([
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello',
+              cache_control: undefined,
+            },
+          ],
+        },
+      ]);
+      expect(warnings).toEqual([]);
     });
   });
 });

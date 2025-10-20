@@ -11,14 +11,14 @@ describe('cli', () => {
     const mockLlmRecordFile = 'test/fixtures/add.json';
     const mockLlmRecordFileContents = await readFile(
       mockLlmRecordFile,
-      'utf-8'
+      'utf-8',
     );
     const jsonLlmRecording = JSON.parse(mockLlmRecordFileContents.toString());
 
     const testContents = jsonLlmRecording.completions[1].output;
     await writeFile(
       `${integrationTestPath}/add.test.ts`,
-      removeBackticks(testContents)
+      removeBackticks(testContents),
     );
 
     // Execute the CLI command
@@ -27,7 +27,7 @@ describe('cli', () => {
       {
         input: '\x03',
         shell: process.env.SHELL || true,
-      }
+      },
     );
 
     const output = result.stdout;
@@ -44,21 +44,21 @@ describe('cli', () => {
   it('should work on spec file', async () => {
     await writeFile(
       `${integrationTestPath}/add.test.ts`,
-      "import { test, expect } from 'vitest';\n\ntest('pass', () => {\nexpect(true)\n});"
+      "import { test, expect } from 'vitest';\n\ntest('pass', () => {\nexpect(true)\n});",
     );
 
     // Write the test file using the mock LLM record
     const mockLlmRecordFile = 'test/fixtures/add.json';
     const mockLlmRecordFileContents = await readFile(
       mockLlmRecordFile,
-      'utf-8'
+      'utf-8',
     );
     const jsonLlmRecording = JSON.parse(mockLlmRecordFileContents.toString());
 
     const testContents = jsonLlmRecording.completions[1].output;
     await writeFile(
       `${integrationTestPath}/add.spec.ts`,
-      removeBackticks(testContents)
+      removeBackticks(testContents),
     );
 
     // Execute the CLI command
@@ -67,7 +67,7 @@ describe('cli', () => {
       {
         input: '\x03',
         shell: process.env.SHELL || true,
-      }
+      },
     );
 
     const output = result.stdout;
@@ -86,7 +86,7 @@ describe('cli', () => {
     await writeFile(`${integrationTestPath}/add.test.ts`, '');
     await writeFile(
       `${integrationTestPath}/add.spec.ts`,
-      "import {describe, test} from 'vitest'\n describe('spec', () => {test.todo('please pass');});"
+      "import {describe, test} from 'vitest'\n describe('spec', () => {test.todo('please pass');});",
     );
   });
 });

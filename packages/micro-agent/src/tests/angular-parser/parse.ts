@@ -19,7 +19,7 @@ function getTypeText(type: ts.TypeNode | undefined): string {
 }
 
 function extractSelectorFromComponentDecorator(
-  componentNode: ts.ClassDeclaration
+  componentNode: ts.ClassDeclaration,
 ): string | undefined {
   for (const decorator of ts.getDecorators(componentNode) ?? []) {
     if (ts.isCallExpression(decorator.expression)) {
@@ -52,7 +52,7 @@ function extractEnumOptions(componentString: string): Record<string, string[]> {
     'temp.ts',
     componentString,
     ts.ScriptTarget.Latest,
-    true
+    true,
   );
 
   ts.forEachChild(sourceFile, (node) => {
@@ -62,11 +62,11 @@ function extractEnumOptions(componentString: string): Record<string, string[]> {
       node.type.types.every(
         (t) =>
           ts.isLiteralTypeNode(t) &&
-          ts.isStringLiteral((t as ts.LiteralTypeNode).literal)
+          ts.isStringLiteral((t as ts.LiteralTypeNode).literal),
       )
     ) {
       enumOptions[node.name.text] = node.type.types.map(
-        (t) => ((t as ts.LiteralTypeNode).literal as ts.StringLiteral).text
+        (t) => ((t as ts.LiteralTypeNode).literal as ts.StringLiteral).text,
       );
     }
   });
@@ -81,7 +81,7 @@ export function parse(componentString: string) {
     'temp.ts',
     componentString,
     ts.ScriptTarget.Latest,
-    true
+    true,
   );
 
   const component: any = {};

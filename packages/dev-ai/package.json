@@ -2,6 +2,11 @@
   "name": "@ai-toolkit/dev-ai",
   "description": "A CLI that converts natural language to shell commands.",
   "version": "1.0.12",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khulnasoft/ai-toolkit.git",
+    "directory": "packages/dev-ai"
+  },
   "type": "module",
   "dependencies": {
     "@clack/core": "latest",

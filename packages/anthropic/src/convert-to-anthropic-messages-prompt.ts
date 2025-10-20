@@ -6,12 +6,20 @@ import {
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
 import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
+import { z } from 'zod';
 import {
   AnthropicAssistantMessage,
   AnthropicCacheControl,
   AnthropicMessagesPrompt,
   AnthropicUserMessage,
 } from './anthropic-api-types';
+
+// Validation schema for cache control
+const anthropicCacheControlSchema = z
+  .object({
+    type: z.literal('ephemeral'),
+  })
+  .strict();
 
 export function convertToAnthropicMessagesPrompt({
   prompt,
@@ -40,9 +48,24 @@ export function convertToAnthropicMessagesPrompt({
     const cacheControlValue =
       anthropic?.cacheControl ?? anthropic?.cache_control;
 
-    // Pass through value assuming it is of the correct type.
-    // The Anthropic API will validate the value.
-    return cacheControlValue as AnthropicCacheControl | undefined;
+    if (cacheControlValue == null) {
+      return undefined;
+    }
+
+    // Validate the cache control value
+    const validationResult =
+      anthropicCacheControlSchema.safeParse(cacheControlValue);
+
+    if (!validationResult.success) {
+      warnings.push({
+        type: 'unsupported-setting',
+        setting: 'anthropic.cacheControl',
+        details: `Invalid cache control value: ${validationResult.error.message}. Expected { type: 'ephemeral' }`,
+      });
+      return undefined;
+    }
+
+    return validationResult.data;
   }
 
   for (let i = 0; i < blocks.length; i++) {

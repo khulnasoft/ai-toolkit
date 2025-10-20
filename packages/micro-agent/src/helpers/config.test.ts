@@ -54,7 +54,7 @@ describe('getConfig', () => {
 
   it('should return an object with defaults and the env if no config is provided', async () => {
     mocks.lstat.mockRejectedValueOnce(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     const result = await getConfig();
     expect(result).toEqual({
@@ -65,7 +65,7 @@ describe('getConfig', () => {
 
   it('should return the parsed config object if a valid config is provided', async () => {
     mocks.lstat.mockRejectedValueOnce(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     const cliConfig = {
       OPENAI_KEY: 'my-openai-key',
@@ -82,7 +82,7 @@ describe('getConfig', () => {
 
   it('should ignore invalid config keys', async () => {
     mocks.lstat.mockRejectedValueOnce(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     const cliConfig = {
       OPENAI_KEY: 'my-openai-key',
@@ -122,7 +122,7 @@ describe('getConfig', () => {
     };
     mocks.lstat.mockResolvedValueOnce(true);
     mocks.readFile.mockResolvedValueOnce(
-      `OPENAI_KEY=my-openai-key${newline}MODEL=gpt-3.5-turbo${newline}LANGUAGE=en${newline}`
+      `OPENAI_KEY=my-openai-key${newline}MODEL=gpt-3.5-turbo${newline}LANGUAGE=en${newline}`,
     );
 
     const result = await getConfig();
@@ -137,7 +137,7 @@ describe('getConfig', () => {
   it('should ignore invalid config keys in the config file', async () => {
     mocks.lstat.mockResolvedValueOnce(true);
     mocks.readFile.mockResolvedValueOnce(
-      'OPENAI_KEY=my-openai-key\nINVALID_KEY=invalid-value\n'
+      'OPENAI_KEY=my-openai-key\nINVALID_KEY=invalid-value\n',
     );
     const result = await getConfig();
     expect(result).toEqual({
@@ -163,7 +163,7 @@ describe('setConfigs', () => {
     expect(mocks.writeFile).toHaveBeenCalledWith(
       configFilePath,
       `OPENAI_KEY=my-openai-key${newline}MODEL=gpt-3.5-turbo${newline}LANGUAGE=en${newline}`,
-      'utf8'
+      'utf8',
     );
   });
 
@@ -176,7 +176,7 @@ describe('setConfigs', () => {
     ];
 
     await expect(setConfigs(keyValues)).rejects.toThrow(
-      'Invalid config property: INVALID_KEY'
+      'Invalid config property: INVALID_KEY',
     );
   });
 });
@@ -184,7 +184,7 @@ describe('setConfigs', () => {
 describe('showConfigUI', () => {
   it('should show the basic config options', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select.mockResolvedValueOnce('cancel');
 
@@ -224,7 +224,7 @@ describe('showConfigUI', () => {
 
   it('should return nothing if the user cancels', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select.mockResolvedValueOnce('cancel');
 
@@ -233,7 +233,7 @@ describe('showConfigUI', () => {
 
   it('should ask the user to set the OpenAI key', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select
       .mockResolvedValueOnce('OPENAI_KEY')
@@ -251,7 +251,7 @@ describe('showConfigUI', () => {
 
   it('should set the OpenAI key if the user provides one', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select
       .mockResolvedValueOnce('OPENAI_KEY')
@@ -264,13 +264,13 @@ describe('showConfigUI', () => {
     expect(mocks.writeFile).toHaveBeenCalledWith(
       configFilePath,
       `OPENAI_KEY=my-openai-key${newline}`,
-      'utf8'
+      'utf8',
     );
   });
 
   it('should ask the user to set the OpenAI API endpoint', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select
       .mockResolvedValueOnce('OPENAI_API_ENDPOINT')
@@ -287,7 +287,7 @@ describe('showConfigUI', () => {
 
   it('should set the OpenAI API endpoint if the user provides one', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select
       .mockResolvedValueOnce('OPENAI_API_ENDPOINT')
@@ -300,13 +300,13 @@ describe('showConfigUI', () => {
     expect(mocks.writeFile).toHaveBeenCalledWith(
       configFilePath,
       `OPENAI_API_ENDPOINT=https://api.openai.com/v1${newline}`,
-      'utf8'
+      'utf8',
     );
   });
 
   it('should ask the user to set the model', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select.mockResolvedValueOnce('MODEL').mockResolvedValueOnce('cancel');
     mocks.text.mockResolvedValueOnce('gpt-4o');
@@ -321,7 +321,7 @@ describe('showConfigUI', () => {
 
   it('should set the model if the user provides one', async () => {
     mocks.lstat.mockRejectedValue(
-      new Error('ENOENT: no such file or directory')
+      new Error('ENOENT: no such file or directory'),
     );
     mocks.select.mockResolvedValueOnce('MODEL').mockResolvedValueOnce('cancel');
     mocks.text.mockResolvedValueOnce('gpt-4o');
@@ -332,7 +332,7 @@ describe('showConfigUI', () => {
     expect(mocks.writeFile).toHaveBeenCalledWith(
       configFilePath,
       `MODEL=gpt-4o${newline}`,
-      'utf8'
+      'utf8',
     );
   });
 

@@ -6,7 +6,7 @@ function simplify(inputCode: string): string {
     inputCode,
     ts.ScriptTarget.Latest,
     true,
-    ts.ScriptKind.TS
+    ts.ScriptKind.TS,
   );
 
   interface ConditionEvaluation {
@@ -33,7 +33,7 @@ function simplify(inputCode: string): string {
   }
 
   function simplifyConditions(
-    conditions: ConditionEvaluation[]
+    conditions: ConditionEvaluation[],
   ): string | null {
     const conditionMap: Record<string, Set<string>> = {};
     const resultMap: Record<string, string[]> = {};
@@ -76,7 +76,7 @@ function simplify(inputCode: string): string {
     }
 
     const primaryResult = Array.from(finalResultSet).find(
-      (res) => res !== resultMap[primaryKey][0]
+      (res) => res !== resultMap[primaryKey][0],
     );
     const primaryConditions = Array.from(conditionMap[primaryKey])
       .map((val) => `${primaryKey} === '${val}'`)

@@ -14,7 +14,7 @@ describe('interactive cli', () => {
     if (!configFileExists) {
       await writeFile(
         `${process.env.HOME}/.micro-agent`,
-        'OPENAI_KEY=sk-1234567890abcdef1234567890abcdef'
+        'OPENAI_KEY=sk-1234567890abcdef1234567890abcdef',
       );
     }
   });

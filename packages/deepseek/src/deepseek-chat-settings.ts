@@ -4,6 +4,7 @@ import { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
 export type DeepSeekChatModelId =
   | 'deepseek-chat'
   | 'deepseek-reasoner'
+  | 'deepseek-coder'
   | (string & {});
 
 export interface DeepSeekChatSettings extends OpenAICompatibleChatSettings {}
