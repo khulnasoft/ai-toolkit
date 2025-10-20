@@ -510,6 +510,58 @@ function computerTool_20250124<RESULT>(options: {
   };
 }
 
+const MemoryParameters = z.object({
+  action: z.enum(['store', 'retrieve', 'list', 'delete']),
+  key: z.string().optional(),
+  value: z.string().optional(),
+});
+
+/**
+ * Creates a tool for managing memory storage. Must have name "memory".
+ *
+ * @param execute - The function to execute the tool. Optional.
+ */
+function memoryTool<RESULT>(
+  options: {
+    execute?: ExecuteFunction<
+      {
+        /**
+         * The action to perform. Allowed options are: `store`, `retrieve`, `list`, `delete`.
+         */
+        action: 'store' | 'retrieve' | 'list' | 'delete';
+
+        /**
+         * The key for storing or retrieving data. Required for `store`, `retrieve`, and `delete` actions.
+         */
+        key?: string;
+
+        /**
+         * The value to store. Required for `store` action.
+         */
+        value?: string;
+      },
+      RESULT
+    >;
+    experimental_toToolResultContent?: (result: RESULT) => ToolResultContent;
+  } = {},
+): {
+  type: 'provider-defined';
+  id: 'anthropic.memory';
+  args: {};
+  parameters: typeof MemoryParameters;
+  execute: ExecuteFunction<z.infer<typeof MemoryParameters>, RESULT>;
+  experimental_toToolResultContent?: (result: RESULT) => ToolResultContent;
+} {
+  return {
+    type: 'provider-defined',
+    id: 'anthropic.memory',
+    args: {},
+    parameters: MemoryParameters,
+    execute: options.execute,
+    experimental_toToolResultContent: options.experimental_toToolResultContent,
+  };
+}
+
 export const anthropicTools = {
   bash_20241022: bashTool_20241022,
   bash_20250124: bashTool_20250124,
@@ -517,4 +569,5 @@ export const anthropicTools = {
   textEditor_20250124: textEditorTool_20250124,
   computer_20241022: computerTool_20241022,
   computer_20250124: computerTool_20250124,
+  memory: memoryTool,
 };
