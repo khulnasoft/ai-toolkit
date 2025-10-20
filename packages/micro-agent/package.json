@@ -27,8 +27,18 @@
     "probe-image-size": "^7.2.3",
     "sharp": "^0.33.4"
   },
-  "files": [
-    "dist"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khulnasoft/ai.git"
+  },
+  "homepage": "https://github.com/khulnasoft/ai/tree/main/packages/micro-agent#readme",
+  "bugs": {
+    "url": "https://github.com/khulnasoft/ai/issues"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "micro-agent"
   ],
   "bin": {
     "micro-agent": "./dist/cli.mjs",
