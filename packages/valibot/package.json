@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "ai-toolkit": "2.0.0"
+    "ai-toolkit": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "20.17.24",

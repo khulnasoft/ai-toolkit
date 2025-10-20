@@ -1,6 +1,7 @@
 import { TypeValidationError } from '@ai-toolkit/provider';
 import { z } from 'zod';
-import { Validator, asValidator } from './validator';
+import type { Validator } from './validator';
+import { asValidator } from './validator';
 
 /**
  * Validates the types of an unknown object using a schema and

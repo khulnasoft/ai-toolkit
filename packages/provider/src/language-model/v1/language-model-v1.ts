@@ -1,10 +1,10 @@
-import { LanguageModelV1CallOptions } from './language-model-v1-call-options';
-import { LanguageModelV1CallWarning } from './language-model-v1-call-warning';
-import { LanguageModelV1FinishReason } from './language-model-v1-finish-reason';
-import { LanguageModelV1FunctionToolCall } from './language-model-v1-function-tool-call';
-import { LanguageModelV1LogProbs } from './language-model-v1-logprobs';
-import { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
-import { LanguageModelV1Source } from './language-model-v1-source';
+import type { LanguageModelV1CallOptions } from './language-model-v1-call-options';
+import type { LanguageModelV1CallWarning } from './language-model-v1-call-warning';
+import type { LanguageModelV1FinishReason } from './language-model-v1-finish-reason';
+import type { LanguageModelV1FunctionToolCall } from './language-model-v1-function-tool-call';
+import type { LanguageModelV1LogProbs } from './language-model-v1-logprobs';
+import type { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
+import type { LanguageModelV1Source } from './language-model-v1-source';
 
 /**
 Specification for a language model that implements the language model interface version 1.

@@ -1,6 +1,6 @@
-import { JSONValue } from '../../json-value';
-import { SpeechModelV1CallOptions } from './speech-model-v1-call-options';
-import { SpeechModelV1CallWarning } from './speech-model-v1-call-warning';
+import type { JSONValue } from '../../json-value';
+import type { SpeechModelV1CallOptions } from './speech-model-v1-call-options';
+import type { SpeechModelV1CallWarning } from './speech-model-v1-call-warning';
 
 /**
  * Speech model specification version 1.

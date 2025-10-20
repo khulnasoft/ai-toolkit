@@ -1,10 +1,10 @@
-import { JSONSchema7 } from 'json-schema';
-import { LanguageModelV1CallSettings } from './language-model-v1-call-settings';
-import { LanguageModelV1FunctionTool } from './language-model-v1-function-tool';
-import { LanguageModelV1Prompt } from './language-model-v1-prompt';
-import { LanguageModelV1ProviderDefinedTool } from './language-model-v1-provider-defined-tool';
-import { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
-import { LanguageModelV1ToolChoice } from './language-model-v1-tool-choice';
+import type { JSONSchema7 } from 'json-schema';
+import type { LanguageModelV1CallSettings } from './language-model-v1-call-settings';
+import type { LanguageModelV1FunctionTool } from './language-model-v1-function-tool';
+import type { LanguageModelV1Prompt } from './language-model-v1-prompt';
+import type { LanguageModelV1ProviderDefinedTool } from './language-model-v1-provider-defined-tool';
+import type { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
+import type { LanguageModelV1ToolChoice } from './language-model-v1-tool-choice';
 
 export type LanguageModelV1CallOptions = LanguageModelV1CallSettings & {
   /**

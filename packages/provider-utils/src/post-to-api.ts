@@ -1,9 +1,9 @@
 import { APICallError } from '@ai-toolkit/provider';
 import { extractResponseHeaders } from './extract-response-headers';
-import { FetchFunction } from './fetch-function';
+import type { FetchFunction } from './fetch-function';
 import { isAbortError } from './is-abort-error';
 import { removeUndefinedEntries } from './remove-undefined-entries';
-import { ResponseHandler } from './response-handler';
+import type { ResponseHandler } from './response-handler';
 
 // use function to allow for mocking in tests:
 const getOriginalFetch = () => globalThis.fetch;

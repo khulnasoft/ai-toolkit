@@ -1,4 +1,4 @@
-import { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
+import type { LanguageModelV1ProviderMetadata } from './language-model-v1-provider-metadata';
 
 /**
  * A source that has been used as input to generate the response.

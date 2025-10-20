@@ -1,4 +1,4 @@
-import { ImageModelV1CallOptions } from './image-model-v1-call-options';
+import type { ImageModelV1CallOptions } from './image-model-v1-call-options';
 
 /**
 Warning from the model provider for this call. The call will proceed, but e.g.

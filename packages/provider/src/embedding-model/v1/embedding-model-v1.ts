@@ -1,4 +1,4 @@
-import { EmbeddingModelV1Embedding } from './embedding-model-v1-embedding';
+import type { EmbeddingModelV1Embedding } from './embedding-model-v1-embedding';
 
 /**
 Specification for an embedding model that implements the embedding model 

@@ -1,5 +1,5 @@
-import { ImageModelV1CallOptions } from './image-model-v1-call-options';
-import { ImageModelV1CallWarning } from './image-model-v1-call-warning';
+import type { ImageModelV1CallOptions } from './image-model-v1-call-options';
+import type { ImageModelV1CallWarning } from './image-model-v1-call-warning';
 
 /**
 Image generation model specification version 1.

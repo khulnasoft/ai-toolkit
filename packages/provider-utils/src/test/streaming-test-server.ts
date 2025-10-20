@@ -1,5 +1,7 @@
+import { beforeAll, beforeEach, afterEach, afterAll, expect } from 'vitest';
 import { HttpResponse, http } from 'msw';
-import { SetupServer, setupServer } from 'msw/node';
+import type { SetupServer } from 'msw/node';
+import { setupServer } from 'msw/node';
 
 /**
  * @deprecated Use createTestServer instead

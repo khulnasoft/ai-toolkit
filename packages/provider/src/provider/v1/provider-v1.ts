@@ -1,8 +1,8 @@
-import { EmbeddingModelV1 } from '../../embedding-model/v1/embedding-model-v1';
-import { ImageModelV1 } from '../../image-model/v1/image-model-v1';
-import { LanguageModelV1 } from '../../language-model/v1/language-model-v1';
-import { TranscriptionModelV1 } from '../../transcription-model/v1/transcription-model-v1';
-import { SpeechModelV1 } from '../../speech-model/v1/speech-model-v1';
+import type { EmbeddingModelV1 } from '../../embedding-model/v1/embedding-model-v1';
+import type { ImageModelV1 } from '../../image-model/v1/image-model-v1';
+import type { LanguageModelV1 } from '../../language-model/v1/language-model-v1';
+import type { TranscriptionModelV1 } from '../../transcription-model/v1/transcription-model-v1';
+import type { SpeechModelV1 } from '../../speech-model/v1/speech-model-v1';
 /**
  * Provider for language, text embedding, and image generation models.
  */

@@ -1,6 +1,6 @@
-import { LanguageModelV1CallSettings } from './language-model-v1-call-settings';
-import { LanguageModelV1FunctionTool } from './language-model-v1-function-tool';
-import { LanguageModelV1ProviderDefinedTool } from './language-model-v1-provider-defined-tool';
+import type { LanguageModelV1CallSettings } from './language-model-v1-call-settings';
+import type { LanguageModelV1FunctionTool } from './language-model-v1-function-tool';
+import type { LanguageModelV1ProviderDefinedTool } from './language-model-v1-provider-defined-tool';
 
 /**
 Warning from the model provider for this call. The call will proceed, but e.g.

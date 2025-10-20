@@ -1,12 +1,12 @@
 import {
   JSONParseError,
-  JSONValue,
+  type JSONValue,
   TypeValidationError,
 } from '@ai-toolkit/provider';
 import SecureJSON from 'secure-json-parse';
 import { ZodSchema } from 'zod';
 import { safeValidateTypes, validateTypes } from './validate-types';
-import { Validator } from './validator';
+import type { Validator } from './validator';
 
 /**
  * Parses a JSON string into an unknown object.

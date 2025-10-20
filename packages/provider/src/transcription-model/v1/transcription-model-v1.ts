@@ -1,6 +1,6 @@
-import { JSONValue } from '../../json-value';
-import { TranscriptionModelV1CallOptions } from './transcription-model-v1-call-options';
-import { TranscriptionModelV1CallWarning } from './transcription-model-v1-call-warning';
+import type { JSONValue } from '../../json-value';
+import type { TranscriptionModelV1CallOptions } from './transcription-model-v1-call-options';
+import type { TranscriptionModelV1CallWarning } from './transcription-model-v1-call-warning';
 
 /**
 Transcription model specification version 1.

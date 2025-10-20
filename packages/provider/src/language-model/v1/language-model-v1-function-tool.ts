@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema';
+import type { JSONSchema7 } from 'json-schema';
 
 /**
 A tool has a name, a description, and a set of parameters.

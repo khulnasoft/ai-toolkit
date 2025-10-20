@@ -1,7 +1,7 @@
 import { APICallError } from '@ai-toolkit/provider';
-import { FetchFunction } from './fetch-function';
+import type { FetchFunction } from './fetch-function';
 import { removeUndefinedEntries } from './remove-undefined-entries';
-import { ResponseHandler } from './response-handler';
+import type { ResponseHandler } from './response-handler';
 import { isAbortError } from './is-abort-error';
 import { extractResponseHeaders } from './extract-response-headers';
 
