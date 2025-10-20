@@ -13,7 +13,10 @@
     "react/dist/**/*",
     "rsc/dist/**/*",
     "test/dist/**/*",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "internal.d.ts",
+    "mcp-stdio.d.ts",
+    "test.d.ts"
   ],
   "scripts": {
     "build": "tsup",

@@ -1,4 +1,5 @@
 import { createResolvablePromise } from '../../util/create-resolvable-promise';
+import { InvalidArgumentError } from '../../errors/invalid-argument-error';
 
 /**
  * Creates a stitchable stream that can pipe one stream at a time.
@@ -76,7 +77,11 @@ export function createStitchableStream<T>(): {
     }),
     addStream: (innerStream: ReadableStream<T>) => {
       if (isClosed) {
-        throw new Error('Cannot add inner stream: outer stream is closed');
+        throw new InvalidArgumentError({
+          parameter: 'innerStream',
+          value: innerStream,
+          message: 'Cannot add inner stream: outer stream is closed',
+        });
       }
 
       innerStreamReaders.push(innerStream.getReader());

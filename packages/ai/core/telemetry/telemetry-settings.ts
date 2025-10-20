@@ -1,4 +1,5 @@
 import { AttributeValue, Tracer } from '@opentelemetry/api';
+import { PerformanceMonitoringConfig } from './performance-monitor';
 
 /**
  * Telemetry configuration.
@@ -41,4 +42,39 @@ export type TelemetrySettings = {
    * A custom tracer to use for the telemetry data.
    */
   tracer?: Tracer;
+
+  /**
+   * Enhanced telemetry settings for detailed analytics.
+   */
+  enhanced?: {
+    /**
+     * Enable detailed performance metrics collection.
+     */
+    enablePerformanceMonitoring?: boolean;
+
+    /**
+     * Enable token usage tracking.
+     */
+    enableTokenTracking?: boolean;
+
+    /**
+     * Enable cache hit/miss tracking.
+     */
+    enableCacheTracking?: boolean;
+
+    /**
+     * Enable detailed timing metrics.
+     */
+    enableDetailedTiming?: boolean;
+
+    /**
+     * Custom analytics endpoint for exporting metrics.
+     */
+    analyticsEndpoint?: string;
+
+    /**
+     * Performance monitoring configuration.
+     */
+    performanceMonitoring?: PerformanceMonitoringConfig;
+  };
 };

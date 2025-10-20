@@ -17,3 +17,29 @@ export type {
 } from './rsc-client';
 
 export type { StreamableValue } from './streamable-value/streamable-value';
+
+// Enhanced utilities
+export {
+  AIActionError,
+  AIRateLimitError,
+  AIAuthenticationError,
+  AIAuthorizationError,
+  AIValidationError,
+  withErrorHandling,
+  createSafeAction,
+} from './error-handling';
+
+export {
+  EnhancedStreamableValue,
+  createEnhancedStreamableValue,
+  withStreamProgress,
+  createDebouncedStream,
+} from './enhanced-streaming';
+
+export {
+  LoadingStateManager,
+  OptimisticUpdateManager,
+  withOptimisticUpdates,
+  useLoadingState,
+  createLoadingUI,
+} from './loading-states';

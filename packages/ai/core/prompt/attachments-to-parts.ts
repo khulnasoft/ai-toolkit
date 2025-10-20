@@ -1,4 +1,5 @@
 import { Attachment } from '@ai-toolkit/ui-utils';
+import { InvalidArgumentError } from '../../errors/invalid-argument-error';
 import { FilePart, ImagePart, TextPart } from './content-part';
 import {
   convertDataContentToUint8Array,
@@ -21,7 +22,11 @@ export function attachmentsToParts(attachments: Attachment[]): ContentPart[] {
     try {
       url = new URL(attachment.url);
     } catch (error) {
-      throw new Error(`Invalid URL: ${attachment.url}`);
+      throw new InvalidArgumentError({
+        message: `Invalid URL provided for attachment: ${attachment.url}`,
+        parameter: 'url',
+        value: attachment.url,
+      });
     }
 
     switch (url.protocol) {
@@ -31,9 +36,11 @@ export function attachmentsToParts(attachments: Attachment[]): ContentPart[] {
           parts.push({ type: 'image', image: url });
         } else {
           if (!attachment.contentType) {
-            throw new Error(
-              'If the attachment is not an image, it must specify a content type',
-            );
+            throw new InvalidArgumentError({
+              message: `Attachment must specify a content type when not an image`,
+              parameter: 'contentType',
+              value: attachment.contentType,
+            });
           }
 
           parts.push({
@@ -54,7 +61,11 @@ export function attachmentsToParts(attachments: Attachment[]): ContentPart[] {
           [header, base64Content] = attachment.url.split(',');
           mimeType = header.split(';')[0].split(':')[1];
         } catch (error) {
-          throw new Error(`Error processing data URL: ${attachment.url}`);
+          throw new InvalidArgumentError({
+            message: `Invalid data URL format: unable to parse header and content`,
+            parameter: 'url',
+            value: attachment.url,
+          });
         }
 
         if (mimeType == null || base64Content == null) {

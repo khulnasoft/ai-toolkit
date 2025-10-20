@@ -7,6 +7,23 @@ import { mergeObjects } from '../util/merge-objects';
 
 /**
  * Applies default settings for a language model.
+ *
+ * This middleware merges provided settings with default values, ensuring
+ * consistent behavior across different language model calls.
+ *
+ * @param options - Configuration object containing default settings
+ * @param options.settings - Default settings to apply when not provided in params
+ * @returns Language model middleware that applies the default settings
+ *
+ * @example
+ * ```typescript
+ * const middleware = defaultSettingsMiddleware({
+ *   settings: {
+ *     temperature: 0.7,
+ *     maxTokens: 1000,
+ *   }
+ * });
+ * ```
  */
 export function defaultSettingsMiddleware({
   settings,
@@ -20,21 +37,23 @@ export function defaultSettingsMiddleware({
   return {
     middlewareVersion: 'v1',
     transformParams: async ({ params }) => {
-      return {
+      // Merge settings with params, with params taking precedence
+      const mergedSettings = {
         ...settings,
         ...params,
         providerMetadata: mergeObjects(
           settings.providerMetadata,
           params.providerMetadata,
         ),
-
-        // special case for temperature 0
-        // TODO remove when temperature defaults to undefined
-        temperature:
-          params.temperature === 0 || params.temperature == null
-            ? (settings.temperature ?? 0)
-            : params.temperature,
       };
+
+      // Handle temperature special case for backwards compatibility
+      // TODO: Remove when temperature defaults to undefined in provider
+      if (params.temperature === 0 || params.temperature == null) {
+        mergedSettings.temperature = settings.temperature ?? 0;
+      }
+
+      return mergedSettings;
     },
   };
 }

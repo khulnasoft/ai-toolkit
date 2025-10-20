@@ -1,13 +1,19 @@
-import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
-import { jsonSchema } from '@ai-toolkit/ui-utils';
+import { JSONParseError, TypeValidationError } from '@ai-toolkit/provider';
 import assert, { fail } from 'node:assert';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vitest,
+  vi,
+} from 'vitest';
 import { z } from 'zod';
 import { verifyNoObjectGeneratedError as originalVerifyNoObjectGeneratedError } from '../../errors/no-object-generated-error';
 import { MockLanguageModelV1 } from '../test/mock-language-model-v1';
 import { MockTracer } from '../test/mock-tracer';
 import { generateObject } from './generate-object';
-import { JSONParseError, TypeValidationError } from '@ai-toolkit/provider';
-
 const dummyResponseValues = {
   rawCall: { rawPrompt: 'prompt', rawSettings: {} },
   finishReason: 'stop' as const,

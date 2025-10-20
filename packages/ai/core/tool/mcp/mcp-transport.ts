@@ -1,6 +1,7 @@
 import { MCPClientError } from '../../../errors';
 import { JSONRPCMessage } from './json-rpc-message';
 import { SseMCPTransport } from './mcp-sse-transport';
+import { WebSocketMCPTransport } from './mcp-websocket-transport';
 
 /**
  * Transport interface for MCP (Model Context Protocol) communication.
@@ -39,21 +40,39 @@ export interface MCPTransport {
   onmessage?: (message: JSONRPCMessage) => void;
 }
 
-export type MCPTransportConfig = {
-  type: 'sse';
+export type MCPTransportConfig =
+  | {
+      type: 'sse';
 
-  /**
-   * The URL of the MCP server.
-   */
-  url: string;
+      /**
+       * The URL of the MCP server.
+       */
+      url: string;
 
-  /**
-   * Additional HTTP headers to be sent with requests.
-   */
-  headers?: Record<string, string>;
-};
+      /**
+       * Additional HTTP headers to be sent with requests.
+       */
+      headers?: Record<string, string>;
+    }
+  | {
+      type: 'websocket';
+
+      /**
+       * The URL of the MCP WebSocket server.
+       */
+      url: string;
+
+      /**
+       * Additional headers to be sent during WebSocket handshake.
+       */
+      headers?: Record<string, string>;
+    };
 
 export function createMcpTransport(config: MCPTransportConfig): MCPTransport {
+  if (config.type === 'websocket') {
+    return new WebSocketMCPTransport(config);
+  }
+
   if (config.type !== 'sse') {
     throw new MCPClientError({
       message:

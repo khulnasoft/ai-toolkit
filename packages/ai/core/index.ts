@@ -46,8 +46,9 @@ export * from './tool';
 export * from './types';
 export * from './agent';
 
-// telemetry types:
-export type { TelemetrySettings } from './telemetry/telemetry-settings';
+// Enhanced telemetry and monitoring:
+export * from './telemetry/enhanced-telemetry';
+export * from './telemetry/performance-monitor';
 
 // util exports:
 export { cosineSimilarity } from './util/cosine-similarity';

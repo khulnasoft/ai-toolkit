@@ -129,12 +129,18 @@ async function gatherContext(task: AgentTask): Promise<AgentContext> {
   // Simulate MCP, codebase, and shell context gathering
   // In a real implementation, replace these with actual integrations
   const mcpContext = { summary: `MCP context for task ${task.id}` };
-  const codebaseContext = { files: [`file1.ts`, `file2.ts`], summary: `Codebase context for task ${task.id}` };
-  const shellContext = { env: process.env.NODE_ENV, info: `Shell context for task ${task.id}` };
+  const codebaseContext = {
+    files: [`file1.ts`, `file2.ts`],
+    summary: `Codebase context for task ${task.id}`,
+  };
+  const shellContext = {
+    env: process.env.NODE_ENV,
+    info: `Shell context for task ${task.id}`,
+  };
   console.log(`[Context] Gathered for task ${task.id}`);
   return {
     mcpContext,
     codebaseContext,
     shellContext,
   };
-} 
+}
