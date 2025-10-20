@@ -9,6 +9,7 @@ import {
 import {
   FetchFunction,
   loadApiKey,
+  loadOptionalSetting,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { OpenAIChatLanguageModel } from './openai-chat-language-model';
@@ -186,7 +187,12 @@ export function createOpenAI(
   options: OpenAIProviderSettings = {},
 ): OpenAIProvider {
   const baseURL =
-    withoutTrailingSlash(options.baseURL) ?? 'https://api.openai.com/v1';
+    withoutTrailingSlash(
+      loadOptionalSetting({
+        settingValue: options.baseURL,
+        environmentVariableName: 'OPENAI_BASE_URL',
+      }),
+    ) ?? 'https://api.openai.com/v1';
 
   // we default to compatible, because strict breaks providers like Groq:
   const compatibility = options.compatibility ?? 'compatible';

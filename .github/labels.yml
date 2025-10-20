@@ -1,0 +1,185 @@
+# Core labels for the AI Toolkit repository
+- name: 'ai-toolkit/core'
+  description: 'Core functionality of the AI Toolkit'
+  color: '0366d6'  # Blue
+
+- name: 'ai-toolkit/gateway'
+  description: 'API Gateway related changes'
+  color: '1d76db'  # Darker blue
+
+- name: 'ai-toolkit/mcp'
+  description: 'Model Control Plane related changes'
+  color: '1a5fb4'  # Deep blue
+
+- name: 'ai-toolkit/provider'
+  description: 'Provider-specific implementations'
+  color: '7057ff'  # Purple
+
+- name: 'ai-toolkit/provider/amazon-bedrock'
+  description: 'Amazon Bedrock provider implementation'
+  color: 'FF9900'  # Amazon Orange
+
+- name: 'ai-toolkit/provider/anthropic'
+  description: 'Anthropic provider implementation'
+  color: '1C1C1C'  # Dark Gray
+
+- name: 'ai-toolkit/provider/assemblyai'
+  description: 'AssemblyAI provider implementation'
+  color: '0CF'    # AssemblyAI Blue
+
+- name: 'ai-toolkit/provider/meta-llama'
+  description: 'Meta LLaMA models implementation'
+  color: '0866FF'  # Meta Blue
+
+- name: 'ai-toolkit/provider/mistral'
+  description: 'Mistral AI models implementation'
+  color: '1E1E1E'  # Dark Gray
+
+- name: 'ai-toolkit/provider/stability-ai'
+  description: 'Stability AI models implementation'
+  color: 'A7FFEB'  # Stability AI Teal
+
+- name: 'ai-toolkit/provider/replicate'
+  description: 'Replicate API implementation'
+  color: 'F26207'  # Replicate Orange
+
+- name: 'ai-toolkit/provider/together'
+  description: 'Together AI implementation'
+  color: '000000'  # Black
+
+- name: 'ai-toolkit/provider/openai'
+  description: 'OpenAI provider implementation'
+  color: '412991'  # OpenAI Purple
+
+- name: 'ai-toolkit/provider/google-ai'
+  description: 'Google AI provider implementation'
+  color: '4285F4'  # Google Blue
+
+- name: 'ai-toolkit/provider/huggingface'
+  description: 'Hugging Face provider implementation'
+  color: 'FFD21E'  # Hugging Face Yellow
+
+- name: 'ai-toolkit/provider/cohere'
+  description: 'Cohere provider implementation'
+  color: 'C42127'  # Cohere Red
+
+- name: 'ai-toolkit/provider/mistral'
+  description: 'Mistral AI provider implementation'
+  color: '000000'  # Mistral Black
+
+- name: 'ai-toolkit/rsc'
+  description: 'React Server Components related'
+  color: '8a5cf6'  # Light purple
+
+- name: 'ai-toolkit/telemetry'
+  description: 'Telemetry and monitoring'
+  color: '06b6d4'  # Cyan
+
+- name: 'ai-toolkit/ui'
+  description: 'User interface components'
+  color: '06b6d4'  # Cyan
+
+# Common labels for better issue/PR management
+- name: 'bug'
+  description: 'Something isn\'t working'
+  color: 'd73a4a'  # Red
+
+- name: 'documentation'
+  description: 'Improvements or additions to documentation'
+  color: '0075ca'  # Light blue
+
+- name: 'enhancement'
+  description: 'New feature or improvement'
+  color: 'a2eeef'  # Light blue
+
+- name: 'support'
+  description: 'Support request or question'
+  color: 'f9c513'  # Yellow
+
+- name: 'good first issue'
+  description: 'Good for newcomers'
+  color: '7057ff'  # Purple
+
+- name: 'help wanted'
+  description: 'Extra attention is needed'
+  color: '008672'  # Teal
+
+- name: 'question'
+  description: 'Further information is requested'
+  color: 'd876e3'  # Pink
+
+- name: 'reproduction provided'
+  description: 'Issue includes a reproduction case'
+  color: '0E8A16'  # Green
+
+- name: 'resumability'
+  description: 'Related to resumable operations or state management'
+  color: '1D76DB'  # Blue
+
+- name: 'wontfix'
+  description: 'This will not be worked on'
+  color: 'ffffff'  # White
+
+# Status Labels
+- name: 'status: blocked'
+  description: 'Blocked by other work'
+  color: 'd93f0b'  # Red-Orange
+
+- name: 'status: in progress'
+  description: 'Currently being worked on'
+  color: '1d76db'  # Blue
+
+- name: 'status: on hold'
+  description: 'Work paused temporarily'
+  color: 'fbca04'  # Yellow
+
+- name: 'status: needs review'
+  description: 'Ready for review'
+  color: '0e8a16'  # Green
+
+# Type Labels
+- name: 'type: performance'
+  description: 'Performance improvements'
+  color: 'bfd4f2'  # Light Blue
+
+- name: 'type: security'
+  description: 'Security related issue'
+  color: 'b60205'  # Red
+
+- name: 'type: refactor'
+  description: 'Code refactoring'
+  color: 'e4e669'  # Light Yellow
+
+- name: 'type: dependencies'
+  description: 'Dependency updates'
+  color: '0366d6'  # Blue
+
+# Area Labels
+- name: 'area: api'
+  description: 'API related changes'
+  color: 'd4c5f9'  # Light Purple
+
+- name: 'area: auth'
+  description: 'Authentication/Authorization'
+  color: 'c2e0c6'  # Light Green
+
+- name: 'area: database'
+  description: 'Database related changes'
+  color: 'fef2c0'  # Light Yellow
+
+- name: 'area: testing'
+  description: 'Testing related changes'
+  color: 'e99695'  # Light Red
+
+# Priority Labels
+- name: 'priority: high'
+  description: 'High priority'
+  color: 'b60205'  # Red
+
+- name: 'priority: medium'
+  description: 'Medium priority'
+  color: 'fbca04'  # Yellow
+
+- name: 'priority: low'
+  description: 'Low priority'
+  color: '0e8a16'  # Green

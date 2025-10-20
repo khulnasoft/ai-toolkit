@@ -1,0 +1,68 @@
+name: Backport
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'PR number to backport'
+        required: true
+        type: string
+      target-branch:
+        description: 'Target branch to backport to (leave empty to use latest release)'
+        required: false
+        type: string
+
+jobs:
+  backport:
+    name: Backport PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install semver
+        run: npm install semver@latest --save-dev
+
+      - name: Find latest release branch
+        id: find-release
+        run: |
+          if [ -z "${{ github.event.inputs.target-branch }}" ]; then
+            echo "Finding latest release branch..."
+            LATEST_RELEASE=$(node .github/scripts/find-latest-release-branch.js)
+            echo "LATEST_RELEASE=$LATEST_RELEASE" >> $GITHUB_OUTPUT
+          else
+            echo "Using provided target branch: ${{ github.event.inputs.target-branch }}"
+            echo "LATEST_RELEASE=${{ github.event.inputs.target-branch }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Backport PR
+        uses: korthout/backport-action@v2.1.1
+        with:
+          # The PR number to backport
+          pr_number: ${{ github.event.inputs.pr-number }}
+          # The target branch to backport to
+          target_branch: ${{ steps.find-release.outputs.LATEST_RELEASE }}
+          # GitHub token for API access
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Auto-merge the backport PR if possible
+          auto_merge: true
+          # Add labels to the backport PR
+          labels: 'backport'
+          # Add a comment to the original PR
+          add_comment: true
+          comment: '✅ Backported to `${{ steps.find-release.outputs.LATEST_RELEASE }}` in #${{ github.run_id }}'
+
+      - name: Output result
+        run: |
+          echo "Backport PR created to ${{ steps.find-release.outputs.LATEST_RELEASE }}"
