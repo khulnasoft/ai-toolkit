@@ -30,7 +30,7 @@ export class MathAgent implements Agent {
       'Extract relevant numbers and operations',
       'Perform calculations step by step',
       'Check the result for correctness',
-      'Report the final answer with explanation'
+      'Report the final answer with explanation',
     ];
   }
 
@@ -47,14 +47,17 @@ export class MathAgent implements Agent {
     this.status = 'running';
     try {
       const { text: answer } = await generateText({
-        model: this.selectedModel || openai('gpt-4o-2024-08-06', { structuredOutputs: true }),
+        model:
+          this.selectedModel ||
+          openai('gpt-4o-2024-08-06', { structuredOutputs: true }),
         tools: {
           calculate: tool({
             description:
               'A tool for evaluating mathematical expressions. Example expressions: ' +
               "'1.2 * (2 + 4.5)', '12.7 cm to inch', 'sin(45 deg) ^ 2'.",
             parameters: z.object({ expression: z.string() }),
-            execute: async ({ expression }: { expression: string }) => mathjs.evaluate(expression),
+            execute: async ({ expression }: { expression: string }) =>
+              mathjs.evaluate(expression),
           }),
         },
         maxSteps: 10,

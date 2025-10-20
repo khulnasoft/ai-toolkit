@@ -37,12 +37,15 @@ function getAnalytics() {
   const completed = results.filter(a => a.status === 'completed');
   const failed = results.filter(a => a.status === 'failed');
   const durations = results.map(a => a.duration || 0);
-  const avg = durations.length ? (durations.reduce((a, b) => a + b, 0) / durations.length) : 0;
+  const avg = durations.length
+    ? durations.reduce((a, b) => a + b, 0) / durations.length
+    : 0;
   const min = durations.length ? Math.min(...durations) : 0;
   const max = durations.length ? Math.max(...durations) : 0;
   const modelCounts: Record<string, number> = {};
   for (const a of results) {
-    if (a.selectedModel) modelCounts[a.selectedModel] = (modelCounts[a.selectedModel] || 0) + 1;
+    if (a.selectedModel)
+      modelCounts[a.selectedModel] = (modelCounts[a.selectedModel] || 0) + 1;
   }
   return {
     total: results.length,
@@ -83,7 +86,7 @@ function logAgentRun(agent: any) {
 
 // Patch MathAgentManager to call logAgentRun on completion/failure
 const origRunAgent = manager.runAgent.bind(manager);
-manager.runAgent = async function(task: any) {
+manager.runAgent = async function (task: any) {
   await origRunAgent(task);
   // @ts-ignore: Accessing protected/private property for monitoring
   const agent = this['agents'].get(task.id);
@@ -121,20 +124,31 @@ app.get('/analytics', (req: any, res: any) => {
 
 app.get('/history', (req: any, res: any) => {
   if (!fs.existsSync(HISTORY_FILE)) return res.json([]);
-  const lines = fs.readFileSync(HISTORY_FILE, 'utf8').split('\n').filter(Boolean);
-  const entries = lines.map(line => {
-    try { return JSON.parse(line); } catch { return null; }
-  }).filter(Boolean);
+  const lines = fs
+    .readFileSync(HISTORY_FILE, 'utf8')
+    .split('\n')
+    .filter(Boolean);
+  const entries = lines
+    .map(line => {
+      try {
+        return JSON.parse(line);
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
   res.json(entries);
 });
 
 wss.on('connection', (ws: any) => {
-  ws.send(JSON.stringify({
-    agents: getAgentList(),
-    analytics: getAnalytics(),
-  }));
+  ws.send(
+    JSON.stringify({
+      agents: getAgentList(),
+      analytics: getAnalytics(),
+    }),
+  );
 });
 
 server.listen(port, () => {
   console.log(`Dashboard server listening at http://localhost:${port}`);
-}); 
+});

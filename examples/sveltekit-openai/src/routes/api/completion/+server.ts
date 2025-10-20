@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { env } from '$env/dynamic/private';
 
 const openai = createOpenAI({
