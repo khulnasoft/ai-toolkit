@@ -9,7 +9,8 @@
   "files": [
     "dist/**/*",
     "internal/dist/**/*",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "internal.d.ts"
   ],
   "scripts": {
     "build": "tsup",
