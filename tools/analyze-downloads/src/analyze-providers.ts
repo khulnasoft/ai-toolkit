@@ -21,9 +21,21 @@ function fetchPage(url: string, retries = 10, delay = 4000): Promise<string> {
           return;
         }
 
+        if (res.statusCode === 403 && retries > 0) {
+          // Handle forbidden errors (might be temporary blocks) with exponential backoff
+          const retryDelay = delay * 2;
+          console.log(`Request forbidden, retrying in ${delay}ms...`);
+          setTimeout(() => {
+            fetchPage(url, retries - 1, retryDelay)
+              .then(resolve)
+              .catch(reject);
+          }, delay);
+          return;
+        }
+
         if (res.statusCode !== 200) {
           reject(
-            new Error(`Failed to fetch page. Status code: ${res.statusCode}`),
+            new Error(`Failed to fetch ${url}. Status code: ${res.statusCode}`),
           );
           return;
         }
@@ -34,6 +46,24 @@ function fetchPage(url: string, retries = 10, delay = 4000): Promise<string> {
       })
       .on('error', err => reject(err));
   });
+}
+
+/**
+ * Fetches package download stats from the npm package page using web scraping
+ */
+async function fetchPackageStats(
+  packageName: string,
+): Promise<{ weekly: number }> {
+  const url = `https://www.npmjs.com/package/${encodeURIComponent(packageName)}`;
+
+  try {
+    const html = await fetchPage(url);
+    const weeklyDownloads = parseWeeklyDownloads(html);
+    return { weekly: weeklyDownloads };
+  } catch (error) {
+    console.error(`Failed to fetch stats for ${packageName}:`, error);
+    return { weekly: 0 };
+  }
 }
 
 /**
@@ -50,7 +80,7 @@ function parseWeeklyDownloads(html: string): number {
     return 0;
   }
 
-  const downloadsStr = match[1].replace(/[^\d]/g, ''); // remove commas
+  const downloadsStr = match[1].replace(/[^0-9]/g, ''); // remove commas
   return parseInt(downloadsStr, 10) || 0;
 }
 
@@ -92,15 +122,15 @@ async function main() {
 
   try {
     for (const pkg of packages) {
-      const url = `https://www.npmjs.com/package/${pkg}`;
-      const html = await fetchPage(url);
-      const weeklyDownloads = parseWeeklyDownloads(html);
-
+      const stats = await fetchPackageStats(pkg);
       results.push({
         package: pkg,
-        'weekly downloads': weeklyDownloads,
+        'weekly downloads': stats.weekly,
         percentage: '0%', // Initial placeholder
       });
+
+      // Add a small delay between requests to be respectful to the server
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
     // Calculate total downloads

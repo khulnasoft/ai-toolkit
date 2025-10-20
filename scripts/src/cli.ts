@@ -1,21 +1,21 @@
-import { cat } from '@/commands/cat'
-import { packages } from '@/commands/packages'
-import { run } from '@/commands/run'
-import { updateTestSnapshots } from '@/commands/update-snapshots'
-import { wait } from '@/commands/wait'
-import { Command } from 'commander'
-import { version } from '../package.json'
+import { cat } from '@/commands/cat';
+import { packages } from '@/commands/packages';
+import { run } from '@/commands/run';
+import { updateTestSnapshots } from '@/commands/update-snapshots';
+import { wait } from '@/commands/wait';
+import { Command } from 'commander';
+import { version } from '../package.json';
 
-const program = new Command()
+const program = new Command();
 
 program
   .name('@ai-toolkit/scripts')
   .description('AI Toolkit Scripts')
-  .version(version)
+  .version(version);
 
-program.addCommand(packages)
-program.addCommand(wait)
-program.addCommand(updateTestSnapshots)
-program.addCommand(cat)
-program.addCommand(run)
-program.parse()
+program.addCommand(packages);
+program.addCommand(wait);
+program.addCommand(updateTestSnapshots);
+program.addCommand(cat);
+program.addCommand(run);
+program.parse();
