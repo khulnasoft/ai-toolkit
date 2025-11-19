@@ -10,20 +10,6 @@
   ],
   "exclude": [
     "dist",
-    "build",
-    "node_modules",
-    "tsup.config.ts",
-    "internal.d.ts"
-  ],
-  "references": [
-    {
-      "path": "../provider"
-    },
-    {
-      "path": "../provider-utils"
-    },
-    {
-      "path": "../gateway"
-    }
+    "node_modules"
   ]
 }
