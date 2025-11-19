@@ -12,6 +12,8 @@
         "ANTHROPIC_API_KEY",
         "ASSISTANT_ID",
         "AWS_REGION",
+        "AZURE_RESOURCE_NAME",
+        "AZURE_API_KEY",
         "AWS_ACCESS_KEY_ID",
         "AWS_SECRET_ACCESS_KEY",
         "BASETEN_API_KEY",

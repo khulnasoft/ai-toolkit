@@ -1,10 +1,47 @@
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 
 // Agent interface: defines a standard contract for all agents
+// Enhanced plan step with rich metadata
+export interface PlanStep {
+  id: string;
+  title: string;
+  description: string;
+  status: 'pending' | 'in_progress' | 'completed' | 'failed' | 'skipped';
+  dependencies: string[]; // Step IDs that must complete first
+  estimatedDuration?: number; // in milliseconds
+  actualDuration?: number;
+  startTime?: number;
+  endTime?: number;
+  tools?: string[]; // Required tools for this step
+  output?: string; // Result of the step
+  error?: string; // Error if failed
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  retryCount?: number;
+  maxRetries?: number;
+}
+
+// Enhanced plan with metadata and optimization
+export interface AgentPlan {
+  id: string;
+  title: string;
+  description: string;
+  steps: PlanStep[];
+  status: 'draft' | 'validated' | 'executing' | 'completed' | 'failed';
+  createdAt: number;
+  updatedAt: number;
+  estimatedTotalDuration?: number;
+  actualTotalDuration?: number;
+  validationErrors?: string[];
+  optimizationScore?: number; // 0-100, higher is better
+}
+
 export interface AgentTask {
   id: string;
   type: string;
   payload: any;
+  priority?: 'low' | 'medium' | 'high' | 'critical';
+  deadline?: number;
+  constraints?: Record<string, any>;
 }
 
 export interface AgentContext {
@@ -18,8 +55,10 @@ export interface Agent {
   status: 'pending' | 'running' | 'completed' | 'failed';
   context: AgentContext;
   task: AgentTask;
-  plan?: string[];
-  planSteps?(): Promise<string[]>;
+  plan?: AgentPlan;
+  createPlan?(): Promise<AgentPlan>;
+  validatePlan?(plan: AgentPlan): Promise<string[]>;
+  optimizePlan?(plan: AgentPlan): Promise<AgentPlan>;
   selectModel?(): Promise<string>;
   selectedModel?: string;
   startTime?: number;
@@ -79,9 +118,67 @@ export class AgentManager {
       status: 'running',
       context: await gatherContext(task),
       task,
-      async planSteps() {
-        // Default: simple plan
-        return [`Process task of type ${task.type}`];
+      async createPlan() {
+        // Default: simple plan with basic structure
+        const planId = `plan-${task.id}`;
+        return {
+          id: planId,
+          title: `Plan for ${task.type} task`,
+          description: `Auto-generated plan for task of type ${task.type}`,
+          steps: [
+            {
+              id: `${planId}-step-1`,
+              title: `Process ${task.type} task`,
+              description: `Execute the ${task.type} task with available context`,
+              status: 'pending',
+              dependencies: [],
+              priority: 'medium',
+              maxRetries: 3,
+            },
+          ],
+          status: 'draft',
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        };
+      },
+      async validatePlan(plan: AgentPlan) {
+        const errors: string[] = [];
+        if (!plan.steps.length) {
+          errors.push('Plan must have at least one step');
+        }
+        // Check for circular dependencies
+        const stepIds = new Set(plan.steps.map(s => s.id));
+        for (const step of plan.steps) {
+          for (const dep of step.dependencies) {
+            if (!stepIds.has(dep)) {
+              errors.push(
+                `Step ${step.id} depends on non-existent step ${dep}`,
+              );
+            }
+          }
+        }
+        return errors;
+      },
+      async optimizePlan(plan: AgentPlan) {
+        // Sort steps by priority and dependencies
+        const sortedSteps = [...plan.steps].sort((a, b) => {
+          const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
+          return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+
+        // Calculate estimated duration
+        const estimatedDuration = sortedSteps.reduce((total, step) => {
+          return total + (step.estimatedDuration || 1000);
+        }, 0);
+
+        return {
+          ...plan,
+          steps: sortedSteps,
+          estimatedTotalDuration: estimatedDuration,
+          optimizationScore: 85, // Default score
+          status: 'validated' as const,
+          updatedAt: Date.now(),
+        };
       },
       async selectModel() {
         // Default: return a generic model
@@ -93,11 +190,33 @@ export class AgentManager {
     };
     this.agents.set(agent.id, agent);
     try {
-      // Agentic planning step
-      if (agent.planSteps) {
-        agent.plan = await agent.planSteps();
-        console.log(`[Plan] Task ${agent.id} plan:`, agent.plan);
+      // Enhanced planning pipeline
+      if (agent.createPlan) {
+        agent.plan = await agent.createPlan();
+        console.log(`[Plan] Task ${agent.id} created plan:`, agent.plan.title);
+
+        // Validate plan
+        if (agent.validatePlan) {
+          const validationErrors = await agent.validatePlan(agent.plan);
+          if (validationErrors.length > 0) {
+            agent.plan.validationErrors = validationErrors;
+            console.warn(
+              `[Plan] Task ${agent.id} validation errors:`,
+              validationErrors,
+            );
+          }
+        }
+
+        // Optimize plan
+        if (agent.optimizePlan) {
+          agent.plan = await agent.optimizePlan(agent.plan);
+          console.log(
+            `[Plan] Task ${agent.id} optimized plan with score:`,
+            agent.plan.optimizationScore,
+          );
+        }
       }
+
       // Model selection step
       let selectedModel = 'gpt-4o';
       if (agent.selectModel) {

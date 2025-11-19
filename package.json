@@ -5,7 +5,7 @@
     "build": "turbo build",
     "changeset": "changeset",
     "clean": "turbo clean",
-    "dev": "turbo dev --no-cache  --concurrency 19 --continue",
+    "dev": "turbo dev --no-cache --concurrency 20 --continue",
     "lint": "turbo lint",
     "format-and-lint": "biome check .",
     "format-and-lint:fix": "biome check . --write",

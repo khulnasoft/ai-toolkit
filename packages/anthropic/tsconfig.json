@@ -6,14 +6,15 @@
     "outDir": "dist"
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
     "dist",
     "build",
     "node_modules",
     "tsup.config.ts",
-    "internal.d.ts"
+    "internal.d.ts",
+    "**/*.test.ts"
   ],
   "references": [
     {

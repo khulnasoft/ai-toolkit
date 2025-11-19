@@ -40,7 +40,7 @@ const starters: Record<StarterKey, string> = {
     const starter = starterArg as StarterKey;
     const templateDir = path.resolve(
       __dirname,
-      '../../../starters',
+      '../../../create-ai',
       starters[starter],
     );
     const targetDir = path.resolve(process.cwd(), projectName);

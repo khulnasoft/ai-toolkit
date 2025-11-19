@@ -1,6 +1,6 @@
 import { openai } from '@ai-toolkit/openai';
 import { serve } from '@hono/node-server';
-import { createDataStream, streamText } from 'ai';
+import { createDataStream, streamText } from 'ai-toolkit';
 import 'dotenv/config';
 import { Hono } from 'hono';
 import { stream } from 'hono/streaming';
