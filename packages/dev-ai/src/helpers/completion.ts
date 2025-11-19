@@ -20,7 +20,7 @@ const explainInSecondRequest = true;
 
 function getOpenAi(key: string, apiEndpoint: string) {
   const openAi = new OpenAIApi(
-    new Configuration({ apiKey: key, basePath: apiEndpoint }),
+    new Configuration({ apiKey: key, basePath: apiEndpoint })
   );
   return openAi;
 }
@@ -79,7 +79,7 @@ export async function generateCompletion({
         n: Math.min(number, 10),
         stream: true,
       },
-      { responseType: 'stream' },
+      { responseType: 'stream' }
     );
 
     return completion.data as unknown as IncomingMessage;
@@ -88,7 +88,7 @@ export async function generateCompletion({
 
     if (error.code === 'ENOTFOUND') {
       throw new KnownError(
-        `Error connecting to ${error.request.hostname} (${error.request.syscall}). Are you connected to the internet?`,
+        `Error connecting to ${error.request.hostname} (${error.request.syscall}). Are you connected to the internet?`
       );
     }
 
@@ -96,7 +96,7 @@ export async function generateCompletion({
     let message = response?.data as string | object | IncomingMessage;
     if (response && message instanceof IncomingMessage) {
       message = await streamToString(
-        response.data as unknown as IncomingMessage,
+        response.data as unknown as IncomingMessage
       );
       try {
         // Handle if the message is JSON. It should be but occasionally will
@@ -119,7 +119,7 @@ export async function generateCompletion({
       ` +
           '\n\n' +
           messageString +
-          '\n',
+          '\n'
       );
     } else if (response && message) {
       throw new KnownError(
@@ -128,7 +128,7 @@ export async function generateCompletion({
       ` +
           '\n\n' +
           messageString +
-          '\n',
+          '\n'
       );
     }
 
@@ -239,7 +239,7 @@ export const readData =
             if (dataStart && content) {
               const contentWithoutExcluded = stripRegexPatterns(
                 content,
-                excluded,
+                excluded
               );
 
               data += contentWithoutExcluded;
@@ -321,7 +321,7 @@ function getRevisionPrompt(prompt: string, code: string) {
 
 export async function getModels(
   key: string,
-  apiEndpoint: string,
+  apiEndpoint: string
 ): Promise<Model[]> {
   const openAi = getOpenAi(key, apiEndpoint);
   const response = await openAi.listModels();

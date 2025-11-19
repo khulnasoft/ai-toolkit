@@ -81,7 +81,7 @@ export function createCommandString(options: RunOptions) {
   }
   if (options.testCommand) {
     command.push(
-      argPrefix + `-t "${options.testCommand.replace(/"/g, '\\"')}"`,
+      argPrefix + `-t "${options.testCommand.replace(/"/g, '\\"')}"`
     );
   }
   if (options.testFile) {
@@ -126,7 +126,7 @@ export async function* run(options: RunOptions) {
 export async function runAll(
   options: RunOptions & {
     skipIntro?: boolean;
-  },
+  }
 ) {
   if (!options.skipIntro) {
     intro('🦾 Micro Agent');

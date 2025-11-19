@@ -23,7 +23,7 @@ test.skip('simplifies ternaries correctly', () => {
   : type === 'Default' && status === 'Alert'
   ? '71px'
   : '71px'
-  `),
+  `)
   ).toBe(`type === 'With Icon' ? '79px' : '71px'`);
 
   expect(
@@ -47,7 +47,7 @@ test.skip('simplifies ternaries correctly', () => {
               : type === "Default" && status === "Alert"
               ? "start"
               : "start"
-  `),
+  `)
   ).toBe(`type === 'With Icon' ? 'stretch' : 'start'`);
   expect(
     simplify(`
@@ -82,8 +82,8 @@ test.skip('simplifies ternaries correctly', () => {
             : type === "Detailed" && size === "8px" && status === "Error"
             ? undefined
             : undefined
-  `),
+  `)
   ).toBe(
-    `type === 'Baseline' && ((size === '4px' || size === '8px') && status === 'Default') ? '400' : undefined`,
+    `type === 'Baseline' && ((size === '4px' || size === '8px') && status === 'Default') ? '400' : undefined`
   );
 });

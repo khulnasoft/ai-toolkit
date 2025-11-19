@@ -14,11 +14,11 @@ export const handleCliError = (error: any) => {
     console.error(`\n${indent}${dim(`dev-toolkit v${version}`)}`);
     console.error(
       `\n${indent}${i18n.t(
-        'Please open a Bug report with the information above',
-      )}:`,
+        'Please open a Bug report with the information above'
+      )}:`
     );
     console.error(
-      `${indent}https://github.com/khulnasoft/ai-toolkit/issues/new`,
+      `${indent}https://github.com/khulnasoft/ai-toolkit/issues/new`
     );
   }
 };

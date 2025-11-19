@@ -23,7 +23,7 @@ const languagesOptions = Object.entries(i18n.languages).map(([key, value]) => ({
 const parseAssert = (name: string, condition: any, message: string) => {
   if (!condition) {
     throw new KnownError(
-      `${i18n.t('Invalid config property')} ${name}: ${message}`,
+      `${i18n.t('Invalid config property')} ${name}: ${message}`
     );
   }
 };
@@ -32,7 +32,7 @@ const configParsers = {
   OPENAI_KEY(key?: string) {
     if (!key) {
       throw new KnownError(
-        `Please set your OpenAI API key via \`${commandName} config set OPENAI_KEY=<your token>\``, // TODO: i18n
+        `Please set your OpenAI API key via \`${commandName} config set OPENAI_KEY=<your token>\`` // TODO: i18n
       );
     }
 
@@ -71,7 +71,7 @@ const configPath = path.join(os.homedir(), '.dev-toolkit');
 const fileExists = (filePath: string) =>
   fs.lstat(filePath).then(
     () => true,
-    () => false,
+    () => false
   );
 
 const readConfigFile = async (): Promise<RawConfig> => {
@@ -85,7 +85,7 @@ const readConfigFile = async (): Promise<RawConfig> => {
 };
 
 export const getConfig = async (
-  cliConfig?: RawConfig,
+  cliConfig?: RawConfig
 ): Promise<ValidConfig> => {
   const config = await readConfigFile();
   const parsedConfig: Record<string, unknown> = {};

@@ -17,6 +17,7 @@ import {
   isAssistantMessageWithCompletedToolCalls,
 } from '@ai-toolkit/ui-utils';
 import { isAbortError } from '@ai-toolkit/provider-utils';
+import { SvelteDate } from 'svelte/reactivity';
 import {
   KeyedChatStore,
   getChatContext,
@@ -128,7 +129,7 @@ export class Chat {
     const messages = this.messages.concat({
       ...message,
       id: message.id ?? this.#generateId(),
-      createdAt: message.createdAt ?? new Date(),
+      createdAt: message.createdAt ?? new SvelteDate(),
       experimental_attachments:
         attachmentsForRequest.length > 0 ? attachmentsForRequest : undefined,
       parts: getMessageParts(message),
@@ -187,7 +188,7 @@ export class Chat {
 
     const messages = this.messages.concat({
       id: this.#generateId(),
-      createdAt: new Date(),
+      createdAt: new SvelteDate(),
       role: 'user',
       content: this.input,
       experimental_attachments:
