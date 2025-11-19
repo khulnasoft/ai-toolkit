@@ -1,17 +1,17 @@
-import { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
+import type { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAIConfig } from './openai-config';
+import type { OpenAIConfig } from './openai-config';
 import { openaiFailedResponseHandler } from './openai-error';
-import {
+import type {
   OpenAIImageModelId,
   OpenAIImageSettings,
-  modelMaxImagesPerCall,
 } from './openai-image-settings';
+import { modelMaxImagesPerCall } from './openai-image-settings';
 
 interface OpenAIImageModelConfig extends OpenAIConfig {
   _internal?: {

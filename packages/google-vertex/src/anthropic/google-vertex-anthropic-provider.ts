@@ -1,20 +1,26 @@
-import {
+import type {
   LanguageModelV1,
-  NoSuchModelError,
   ProviderV1,
 } from '@ai-toolkit/provider';
 import {
+  NoSuchModelError,
+} from '@ai-toolkit/provider';
+import type {
   FetchFunction,
   Resolvable,
+} from '@ai-toolkit/provider-utils';
+import {
   loadOptionalSetting,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import {
   anthropicTools,
   AnthropicMessagesLanguageModel,
+} from '@ai-toolkit/anthropic/internal';
+import type {
   AnthropicMessagesModelId,
 } from '@ai-toolkit/anthropic/internal';
-import {
+import type {
   GoogleVertexAnthropicMessagesModelId,
   GoogleVertexAnthropicMessagesSettings,
 } from './google-vertex-anthropic-messages-settings';

@@ -1,6 +1,8 @@
 import { convertHeadersToRecord, extractHeaders } from './headers-utils';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   combineHeaders,
   removeUndefinedEntries,
 } from '@ai-toolkit/provider-utils';

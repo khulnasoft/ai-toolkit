@@ -1,4 +1,4 @@
-import { LanguageModelV1ProviderMetadata } from '@ai-toolkit/provider';
+import type { LanguageModelV1ProviderMetadata } from '@ai-toolkit/provider';
 import { z } from 'zod';
 import { jsonValueSchema } from './json-value';
 

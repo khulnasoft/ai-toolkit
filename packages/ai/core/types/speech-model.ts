@@ -1,4 +1,7 @@
-import { SpeechModelV1, SpeechModelV1CallWarning } from '@ai-toolkit/provider';
+import type {
+  SpeechModelV1,
+  SpeechModelV1CallWarning,
+} from '@ai-toolkit/provider';
 
 /**
 Speech model that is used by the AI TOOLKIT Core functions.

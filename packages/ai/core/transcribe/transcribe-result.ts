@@ -1,6 +1,6 @@
-import { JSONValue } from '@ai-toolkit/provider';
-import { TranscriptionWarning } from '../types/transcription-model';
-import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
+import type { JSONValue } from '@ai-toolkit/provider';
+import type { TranscriptionWarning } from '../types/transcription-model';
+import type { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
 
 /**
 The result of a `transcribe` call.

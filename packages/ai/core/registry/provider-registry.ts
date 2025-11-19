@@ -1,5 +1,10 @@
-import { NoSuchModelError, ProviderV1 } from '@ai-toolkit/provider';
-import { EmbeddingModel, ImageModel, LanguageModel } from '../types';
+import { NoSuchModelError } from '@ai-toolkit/provider';
+import type { ProviderV1 } from '@ai-toolkit/provider';
+import type {
+  EmbeddingModel,
+  ImageModel,
+  LanguageModel,
+} from '../types';
 import { NoSuchProviderError } from './no-such-provider-error';
 
 type ExtractLiteralUnion<T> = T extends string

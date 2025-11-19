@@ -1,17 +1,20 @@
-import { JSONValue, TranscriptionModelV1 } from '@ai-toolkit/provider';
+import type { JSONValue, TranscriptionModelV1 } from '@ai-toolkit/provider';
 import { NoTranscriptGeneratedError } from '../../errors/no-transcript-generated-error';
 import { download } from '../../util/download';
-import { DataContent } from '../prompt';
+import type { DataContent } from '../prompt';
+import '../prompt/data-content';
 import { convertDataContentToUint8Array } from '../prompt/data-content';
+import '../prompt/prepare-retries';
 import { prepareRetries } from '../prompt/prepare-retries';
-import { ProviderOptions } from '../types/provider-metadata';
-import { TranscriptionWarning } from '../types/transcription-model';
-import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
+import type { ProviderOptions } from '../types/provider-metadata';
+import type { TranscriptionWarning } from '../types/transcription-model';
+import type { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
+import '../util/detect-mimetype';
 import {
   audioMimeTypeSignatures,
   detectMimeType,
 } from '../util/detect-mimetype';
-import { TranscriptionResult } from './transcribe-result';
+import type { TranscriptionResult } from './transcribe-result';
 
 /**
 Generates transcripts using a transcription model.

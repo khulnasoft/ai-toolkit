@@ -1,13 +1,13 @@
-import {
+import type {
   LanguageModelV1FinishReason,
   LanguageModelV1Source,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
   ToolCall,
   ToolResult,
 } from '@ai-toolkit/provider-utils';
-import { LanguageModelUsage } from './duplicated/usage';
+import type { LanguageModelUsage } from './duplicated/usage';
 
 export * from './use-assistant-types';
 

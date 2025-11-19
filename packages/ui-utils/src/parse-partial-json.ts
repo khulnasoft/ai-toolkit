@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-toolkit/provider';
+import type { JSONValue } from '@ai-toolkit/provider';
 import { safeParseJSON } from '@ai-toolkit/provider-utils';
 import { fixJson } from './fix-json';
 

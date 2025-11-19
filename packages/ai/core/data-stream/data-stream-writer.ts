@@ -1,6 +1,6 @@
-import { JSONValue } from '@ai-toolkit/provider';
-import { DataStreamString } from '@ai-toolkit/ui-utils';
-import { Source } from '../types/language-model';
+import type { JSONValue } from '@ai-toolkit/provider';
+import type { DataStreamString } from '@ai-toolkit/ui-utils';
+import type { Source } from '../types/language-model';
 
 export interface DataStreamWriter {
   /**

@@ -1,12 +1,12 @@
-import {
+import type {
   ImageModelV1,
-  NoSuchModelError,
   ProviderV1,
 } from '@ai-toolkit/provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
 import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import { withoutTrailingSlash } from '@ai-toolkit/provider-utils';
 import { FalImageModel } from './fal-image-model';
-import { FalImageModelId, FalImageSettings } from './fal-image-settings';
+import type { FalImageModelId, FalImageSettings } from './fal-image-settings';
 
 export interface FalProviderSettings {
   /**

@@ -1,4 +1,4 @@
-import { OpenAICompatibleCompletionSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleCompletionSettings } from '@ai-toolkit/openai-compatible';
 
 // Below is just a subset of the available models.
 export type FireworksCompletionModelId =

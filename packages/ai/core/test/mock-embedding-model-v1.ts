@@ -1,6 +1,6 @@
-import { EmbeddingModelV1 } from '@ai-toolkit/provider';
-import { Embedding } from '../types';
-import { EmbeddingModelUsage } from '../types/usage';
+import type { EmbeddingModelV1 } from '@ai-toolkit/provider';
+import type { Embedding } from '../types';
+import type { EmbeddingModelUsage } from '../types/usage';
 import { notImplemented } from './not-implemented';
 
 export class MockEmbeddingModelV1<VALUE> implements EmbeddingModelV1<VALUE> {

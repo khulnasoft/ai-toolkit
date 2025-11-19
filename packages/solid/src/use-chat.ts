@@ -1,4 +1,4 @@
-import { FetchFunction } from '@ai-toolkit/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import type {
   ChatRequest,
   ChatRequestOptions,
@@ -20,14 +20,16 @@ import {
   updateToolCallResult,
 } from '@ai-toolkit/ui-utils';
 import {
-  Accessor,
   createEffect,
   createMemo,
   createSignal,
+} from 'solid-js';
+import type {
+  Accessor,
   JSX,
   Setter,
 } from 'solid-js';
-import { createStore, reconcile, Store } from 'solid-js/store';
+import { createStore, reconcile, type Store } from 'solid-js/store';
 import { convertToAccessorOptions } from './utils/convert-to-accessor-options';
 import { ReactiveLRU } from './utils/reactive-lru';
 

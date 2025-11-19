@@ -1,4 +1,4 @@
-import { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
 
 // https://console.x.ai and see "View models"
 export type XaiChatModelId =

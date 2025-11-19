@@ -1,11 +1,15 @@
 import { resolve } from '@ai-toolkit/provider-utils';
 import {
   createVertex as createVertexOriginal,
+} from '../google-vertex-provider';
+import type {
   GoogleVertexProvider,
   GoogleVertexProviderSettings as GoogleVertexProviderSettingsOriginal,
 } from '../google-vertex-provider';
 import {
   generateAuthToken,
+} from './google-vertex-auth-edge';
+import type {
   GoogleCredentials,
 } from './google-vertex-auth-edge';
 

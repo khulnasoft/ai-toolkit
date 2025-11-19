@@ -1,9 +1,11 @@
 import { isAbortError } from '@ai-toolkit/provider-utils';
-import {
+import type {
   AssistantStatus,
   CreateMessage,
   Message,
   UseAssistantOptions,
+} from '@ai-toolkit/ui-utils';
+import {
   generateId,
   processAssistantStream,
 } from '@ai-toolkit/ui-utils';

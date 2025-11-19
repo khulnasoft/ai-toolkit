@@ -1,5 +1,5 @@
-import { Attributes, Tracer } from '@opentelemetry/api';
-import { TelemetrySettings } from './telemetry-settings';
+import type { Attributes, Tracer } from '@opentelemetry/api';
+import type { TelemetrySettings } from './telemetry-settings';
 
 /**
  * System performance metrics.

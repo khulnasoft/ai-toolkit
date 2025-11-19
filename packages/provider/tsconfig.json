@@ -1,8 +1,8 @@
 {
   "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
   "compilerOptions": {
-    "composite": true
+    "composite": false
   },
-  "include": ["."],
+  "include": ["src/**/*"],
   "exclude": ["*/dist", "dist", "build", "node_modules"]
 }

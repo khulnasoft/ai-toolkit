@@ -1,33 +1,37 @@
-import {
-  APICallError,
+import type {
   LanguageModelV1,
   LanguageModelV1CallWarning,
   LanguageModelV1FinishReason,
   LanguageModelV1StreamPart,
+} from '@ai-toolkit/provider';
+import {
+  APICallError,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
+import type {
+  FetchFunction,
+  ParseResult,
+  ResponseHandler,
+} from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
-  FetchFunction,
-  ParseResult,
   postJsonToApi,
-  ResponseHandler,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
 import { convertToOpenAICompatibleCompletionPrompt } from './convert-to-openai-compatible-completion-prompt';
 import { getResponseMetadata } from './get-response-metadata';
 import { mapOpenAICompatibleFinishReason } from './map-openai-compatible-finish-reason';
-import {
+import type {
   OpenAICompatibleCompletionModelId,
   OpenAICompatibleCompletionSettings,
 } from './openai-compatible-completion-settings';
 import {
   defaultOpenAICompatibleErrorStructure,
-  ProviderErrorStructure,
 } from './openai-compatible-error';
+import type { ProviderErrorStructure } from './openai-compatible-error';
 
 type OpenAICompatibleCompletionConfig = {
   provider: string;

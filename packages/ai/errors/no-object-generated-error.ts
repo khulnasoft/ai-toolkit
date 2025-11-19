@@ -1,7 +1,7 @@
 import { AITOOLKITError } from '@ai-toolkit/provider';
-import { LanguageModelResponseMetadata } from '../core/types/language-model-response-metadata';
-import { LanguageModelUsage } from '../core/types/usage';
-import { FinishReason } from '../core';
+import type { LanguageModelResponseMetadata } from '../core/types/language-model-response-metadata';
+import type { LanguageModelUsage } from '../core/types/usage';
+import type { FinishReason } from '../core';
 
 const name = 'AI_NoObjectGeneratedError';
 const marker = `khulnasoft.com.error.${name}`;

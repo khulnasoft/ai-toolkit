@@ -1,0 +1,174 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question
+    url: https://github.com/khulnasoft/ai/discussions/categories/q-a
+    about: Please ask and answer questions in our Q&A category.
+  - name: Report a bug
+    url: https://github.com/khulnasoft/ai/issues/new?assignees=&labels=bug&template=bug_report.yml
+    about: Report a bug or unexpected behavior.
+  - name: Request a feature
+    url: https://github.com/khulnasoft/ai/issues/new?assignees=&labels=enhancement&template=feature_request.yml
+    about: Suggest a new feature or enhancement.
+
+---
+name: 🆘 Help & Support
+description: Get help with AI Toolkit usage, troubleshooting, or general questions
+title: "[Help] "
+labels: ["help", "question"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to the AI Toolkit Help & Support!
+        
+        Thanks for reaching out! This discussion category is designed for:
+        - General questions about using the AI Toolkit
+        - Troubleshooting help
+        - Best practices and guidance
+        - Clarification on features and functionality
+        
+        Before posting, please:
+        - [ ] Check the [documentation](https://sdk.vercel.ai/docs)
+        - [ ] Search existing [discussions](https://github.com/khulnasoft/ai/discussions)
+        - [ ] Search existing [issues](https://github.com/khulnasoft/ai/issues)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What's your question or issue?
+      description: Please describe what you need help with in detail
+      placeholder: |
+        I'm trying to...
+        I expected...
+        But instead...
+        
+        Here's what I've tried...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: What category does this fall under?
+      description: This helps us route your question to the right people
+      options:
+        - General usage question
+        - Installation/Setup issue
+        - Troubleshooting
+        - Best practices
+        - API question
+        - Provider-specific question
+        - Configuration question
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: providers
+    attributes:
+      label: Which providers are involved? (if applicable)
+      description: Select all that apply
+      multiple: true
+      options:
+        - OpenAI
+        - Anthropic
+        - Google
+        - Azure OpenAI
+        - Groq
+        - Cohere
+        - Replicate
+        - Together AI
+        - ElevenLabs
+        - Perplexity
+        - FAL
+        - Fireworks
+        - Mistral
+        - Amazon Bedrock
+        - DeepInfra
+        - DeepSeek
+        - Luma
+        - xAI
+        - Cerebras
+        - OpenAI Compatible
+        - Multiple providers
+        - Not provider-related
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context that might help us understand your question
+      placeholder: |
+        - What are you trying to accomplish?
+        - What's your use case?
+        - Are there any constraints or requirements?
+        - Have you found any workarounds?
+    validations:
+      required: false
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code example (if applicable)
+      description: Share relevant code snippets that help illustrate your question
+      render: typescript
+      placeholder: |
+        ```typescript
+        import { openai } from '@ai-toolkit/openai';
+        
+        // Your code here...
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment information
+      description: Please share your environment details
+      placeholder: |
+        - AI Toolkit version:
+        - Node.js version:
+        - Package manager (pnpm/npm/yarn) and version:
+        - Operating system:
+        - Browser (if applicable):
+        - Any other relevant environment details:
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmations
+      description: Please confirm the following
+      options:
+        - label: I have searched the documentation for relevant information
+          required: true
+        - label: I have searched existing discussions for similar questions
+          required: true
+        - label: I have searched existing issues for related problems
+          required: true
+        - label: I understand this is a help discussion, not a bug report
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## What happens next?
+        
+        Our team and community members will review your question and provide assistance. You might receive:
+        - Direct answers to your questions
+        - Guidance on best practices
+        - Links to relevant documentation
+        - Suggestions for alternative approaches
+        
+        ### Community Guidelines
+        - Be respectful and constructive
+        - Provide as much detail as possible
+        - Update your discussion if you find a solution
+        - Help others by sharing what you learn
+        
+        Thank you for being part of the AI Toolkit community! 🚀

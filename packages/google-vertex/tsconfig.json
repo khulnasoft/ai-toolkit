@@ -1,7 +1,7 @@
 {
   "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
   "compilerOptions": {
-    "composite": true,
+    "composite": false,
     "rootDir": "src",
     "outDir": "dist"
   },
@@ -16,19 +16,5 @@
     "edge.d.ts",
     "anthropic/edge.d.ts",
     "anthropic/index.d.ts"
-  ],
-  "references": [
-    {
-      "path": "../anthropic"
-    },
-    {
-      "path": "../google"
-    },
-    {
-      "path": "../provider"
-    },
-    {
-      "path": "../provider-utils"
-    }
   ]
 }

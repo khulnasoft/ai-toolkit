@@ -1,4 +1,4 @@
-import { FetchFunction } from '@ai-toolkit/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import type {
   JSONValue,
   Message,
@@ -7,13 +7,15 @@ import type {
 } from '@ai-toolkit/ui-utils';
 import { callCompletionApi } from '@ai-toolkit/ui-utils';
 import {
-  Accessor,
-  JSX,
-  Setter,
   createEffect,
   createMemo,
   createSignal,
   createUniqueId,
+} from 'solid-js';
+import type {
+  Accessor,
+  JSX,
+  Setter,
 } from 'solid-js';
 import { ReactiveLRU } from './utils/reactive-lru';
 import { convertToAccessorOptions } from './utils/convert-to-accessor-options';

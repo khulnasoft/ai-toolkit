@@ -1,10 +1,12 @@
-import {
+import type {
   LanguageModelV1Prompt,
   LanguageModelV1ProviderMetadata,
+} from '@ai-toolkit/provider';
+import {
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
 import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
-import { OpenAICompatibleChatPrompt } from './openai-compatible-api-types';
+import type { OpenAICompatibleChatPrompt } from './openai-compatible-api-types';
 
 function getOpenAIMetadata(message: {
   providerMetadata?: LanguageModelV1ProviderMetadata;

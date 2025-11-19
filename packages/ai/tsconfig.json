@@ -12,9 +12,10 @@
       "@types/node",
       "vitest/globals"
     ],
-    "composite": true,
+    "composite": false,
     "rootDir": ".",
-    "outDir": "dist"
+    "outDir": "dist",
+    "jsx": "react-jsx"
   },
   "include": [
     "**/*"

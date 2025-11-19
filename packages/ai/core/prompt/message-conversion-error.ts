@@ -1,5 +1,5 @@
 import { AITOOLKITError } from '@ai-toolkit/provider';
-import { Message } from '@ai-toolkit/ui-utils';
+import type { Message } from '@ai-toolkit/ui-utils';
 
 const name = 'AI_MessageConversionError';
 const marker = `khulnasoft.com.error.${name}`;

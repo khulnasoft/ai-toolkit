@@ -1,6 +1,8 @@
-import { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
-import {
+import type { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
+import type {
   Resolvable,
+} from '@ai-toolkit/provider-utils';
+import {
   combineHeaders,
   createJsonResponseHandler,
   parseProviderOptions,
@@ -9,7 +11,7 @@ import {
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
-import {
+import type {
   GoogleVertexImageModelId,
   GoogleVertexImageSettings,
 } from './google-vertex-image-settings';

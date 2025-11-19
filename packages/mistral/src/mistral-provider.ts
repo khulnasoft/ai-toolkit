@@ -1,20 +1,22 @@
-import {
+import type {
   EmbeddingModelV1,
   LanguageModelV1,
   ProviderV1,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { MistralChatLanguageModel } from './mistral-chat-language-model';
-import {
+import type {
   MistralChatModelId,
   MistralChatSettings,
 } from './mistral-chat-settings';
 import { MistralEmbeddingModel } from './mistral-embedding-model';
-import {
+import type {
   MistralEmbeddingModelId,
   MistralEmbeddingSettings,
 } from './mistral-embedding-settings';

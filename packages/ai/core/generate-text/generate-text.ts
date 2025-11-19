@@ -1,41 +1,44 @@
-import { createIdGenerator, IDGenerator } from '@ai-toolkit/provider-utils';
-import { Tracer } from '@opentelemetry/api';
+import { createIdGenerator } from '@ai-toolkit/provider-utils';
+import type { IDGenerator } from '@ai-toolkit/provider-utils';
+import type { Tracer } from '@opentelemetry/api';
 import { InvalidArgumentError } from '../../errors/invalid-argument-error';
 import { NoOutputSpecifiedError } from '../../errors/no-output-specified-error';
 import { ToolExecutionError } from '../../errors/tool-execution-error';
-import { CoreAssistantMessage, CoreMessage } from '../prompt';
-import { CallSettings } from '../prompt/call-settings';
+import type { CoreAssistantMessage, CoreMessage } from '../prompt';
+import type { CallSettings } from '../prompt/call-settings';
 import { convertToLanguageModelPrompt } from '../prompt/convert-to-language-model-prompt';
 import { prepareCallSettings } from '../prompt/prepare-call-settings';
 import { prepareRetries } from '../prompt/prepare-retries';
 import { prepareToolsAndToolChoice } from '../prompt/prepare-tools-and-tool-choice';
-import { Prompt } from '../prompt/prompt';
+import type { Prompt } from '../prompt/prompt';
 import { standardizePrompt } from '../prompt/standardize-prompt';
 import { assembleOperationName } from '../telemetry/assemble-operation-name';
 import { getBaseTelemetryAttributes } from '../telemetry/get-base-telemetry-attributes';
 import { getTracer } from '../telemetry/get-tracer';
 import { recordSpan } from '../telemetry/record-span';
 import { selectTelemetryAttributes } from '../telemetry/select-telemetry-attributes';
-import { TelemetrySettings } from '../telemetry/telemetry-settings';
-import { LanguageModel, ToolChoice } from '../types';
-import { ProviderMetadata, ProviderOptions } from '../types/provider-metadata';
+import type { TelemetrySettings } from '../telemetry/telemetry-settings';
+import type { LanguageModel, ToolChoice } from '../types';
+import type { ProviderMetadata, ProviderOptions } from '../types/provider-metadata';
 import {
   addLanguageModelUsage,
   calculateLanguageModelUsage,
   LanguageModelUsage,
 } from '../types/usage';
 import { removeTextAfterLastWhitespace } from '../util/remove-text-after-last-whitespace';
-import { GenerateTextResult } from './generate-text-result';
-import { DefaultGeneratedFile, GeneratedFile } from './generated-file';
-import { Output } from './output';
+import type { GenerateTextResult } from './generate-text-result';
+import { DefaultGeneratedFile } from './generated-file';
+import type { GeneratedFile } from './generated-file';
+import type { Output } from './output';
 import { parseToolCall } from './parse-tool-call';
-import { asReasoningText, ReasoningDetail } from './reasoning-detail';
-import { ResponseMessage, StepResult } from './step-result';
+import { asReasoningText } from './reasoning-detail';
+import type { ReasoningDetail } from './reasoning-detail';
+import type { ResponseMessage, StepResult } from './step-result';
 import { toResponseMessages } from './to-response-messages';
-import { ToolCallArray } from './tool-call';
-import { ToolCallRepairFunction } from './tool-call-repair';
-import { ToolResultArray } from './tool-result';
-import { ToolSet } from './tool-set';
+import type { ToolCallArray } from './tool-call';
+import type { ToolCallRepairFunction } from './tool-call-repair';
+import type { ToolResultArray } from './tool-result';
+import type { ToolSet } from './tool-set';
 
 const originalGenerateId = createIdGenerator({
   prefix: 'aitxt',

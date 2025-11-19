@@ -1,56 +1,53 @@
+import { NoSuchModelError } from '@ai-toolkit/provider';
+import type { LanguageModelV1, ProviderV1 } from '@ai-toolkit/provider';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
-  LanguageModelV1,
-  NoSuchModelError,
-  ProviderV1,
-} from '@ai-toolkit/provider';
-import {
-  FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { GroqChatLanguageModel } from './groq-chat-language-model';
-import { GroqChatModelId, GroqChatSettings } from './groq-chat-settings';
+import type { GroqChatModelId, GroqChatSettings } from './groq-chat-settings';
 
 export interface GroqProvider extends ProviderV1 {
   /**
-Creates a model for text generation.
-*/
+   * Creates a model for text generation.
+   */
   (modelId: GroqChatModelId, settings?: GroqChatSettings): LanguageModelV1;
 
   /**
-Creates an Groq chat model for text generation.
+   * Creates an Groq chat model for text generation.
    */
   languageModel(
     modelId: GroqChatModelId,
-    settings?: GroqChatSettings,
+    settings?: GroqChatSettings
   ): LanguageModelV1;
 }
 
 export interface GroqProviderSettings {
   /**
-Base URL for the Groq API calls.
-     */
+   * Base URL for the Groq API calls.
+   */
   baseURL?: string;
 
   /**
-API key for authenticating requests.
-     */
+   * API key for authenticating requests.
+   */
   apiKey?: string;
 
   /**
-Custom headers to include in the requests.
-     */
+   * Custom headers to include in the requests.
+   */
   headers?: Record<string, string>;
 
   /**
-Custom fetch implementation. You can use it as a middleware to intercept requests,
-or to provide a custom fetch implementation for e.g. testing.
-    */
+   * Custom fetch implementation. You can use it as a middleware to intercept requests,
+   * or to provide a custom fetch implementation for e.g. testing.
+   */
   fetch?: FetchFunction;
 }
 
 /**
-Create an Groq provider instance.
+ * Create an Groq provider instance.
  */
 export function createGroq(options: GroqProviderSettings = {}): GroqProvider {
   const baseURL =
@@ -99,13 +96,16 @@ export function createGroq(options: GroqProviderSettings = {}): GroqProvider {
   provider.languageModel = createLanguageModel;
   provider.chat = createChatModel;
   provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+    throw new NoSuchModelError({
+      modelId,
+      modelType: 'textEmbeddingModel',
+    });
   };
 
   return provider;
 }
 
 /**
-Default Groq provider instance.
+ * Default Groq provider instance.
  */
 export const groq = createGroq();

@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-toolkit/provider';
+import type { JSONValue } from '@ai-toolkit/provider';
 
 export type OpenAICompatibleChatPrompt = Array<OpenAICompatibleMessage>;
 

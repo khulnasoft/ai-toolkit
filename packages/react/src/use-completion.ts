@@ -1,7 +1,9 @@
-import {
+import type {
   JSONValue,
   RequestOptions,
   UseCompletionOptions,
+} from '@ai-toolkit/ui-utils';
+import {
   callCompletionApi,
 } from '@ai-toolkit/ui-utils';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';

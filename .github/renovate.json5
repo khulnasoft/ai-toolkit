@@ -1,0 +1,392 @@
+{
+  // Renovate configuration for KhulnaSoft AI Toolkit
+  // This file configures automated dependency updates for the monorepo
+  
+  // Global settings
+  extends: [
+    "config:base",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":automergeDigest",
+    ":automergeBranch",
+    ":maintainLockFilesWeekly",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimit10",
+    "group:allNonMajor",
+    "group:monorepoArchived",
+    "group:recommended",
+    "group:typescriptMonorepo",
+  ],
+  
+  // Repository settings
+  platform: "github",
+  username: "renovate[bot]",
+  gitAuthor: "renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+  
+  // Branch settings
+  baseBranches: ["main", "dev"],
+  branchPrefix: "renovate/",
+  branchTopic: "{{depName}}-{{newVersion}}",
+  
+  // PR settings
+  prConcurrentLimit: 5,
+  prHourlyLimit: 10,
+  prCreation: "immediate",
+  prNotPendingHours: 1,
+  
+  // Auto-merge settings
+  automerge: true,
+  automergeType: "pr",
+  automergeComment: "Auto-merging Renovate dependencies",
+  requireUpToDate: true,
+  
+  // Dependency dashboard
+  dependencyDashboard: true,
+  dependencyDashboardTitle: "Renovate Dependency Dashboard",
+  dependencyDashboardFooter: "This issue provides visibility into Renovate updates and their status.",
+  
+  // Package rules
+  packageRules: [
+    // TypeScript and related packages
+    {
+      description: "TypeScript ecosystem",
+      groupName: "TypeScript",
+      matchPackageNames: [
+        "typescript",
+        "@types/*",
+        "tsup",
+        "ts-node",
+        "ts-node-dev",
+        "@tsconfig/*"
+      ],
+      matchPackagePatterns: ["^@types/"],
+      stabilityDays: 3,
+      minimumReleaseAge: "3 days"
+    },
+    
+    // Testing packages
+    {
+      description: "Testing packages",
+      groupName: "Testing",
+      matchPackageNames: [
+        "@playwright/test",
+        "vitest",
+        "jest",
+        "@jest/*",
+        "testing-library/*",
+        "@testing-library/*",
+        "c8",
+        "nyc"
+      ],
+      stabilityDays: 7,
+      minimumReleaseAge: "7 days"
+    },
+    
+    // ESLint and linting packages
+    {
+      description: "Linting and formatting",
+      groupName: "Linting",
+      matchPackageNames: [
+        "eslint",
+        "@eslint/*",
+        "eslint-plugin-*",
+        "eslint-config-*",
+        "prettier",
+        "@biomejs/biome",
+        "lint-staged",
+        "husky"
+      ],
+      stabilityDays: 5,
+      minimumReleaseAge: "5 days"
+    },
+    
+    // Build tools
+    {
+      description: "Build tools",
+      groupName: "Build tools",
+      matchPackageNames: [
+        "rollup",
+        "@rollup/*",
+        "vite",
+        "@vitejs/*",
+        "webpack",
+        "@webpack-cli/*",
+        "esbuild",
+        "swc",
+        "@swc/*",
+        "turbo",
+        "pnpm"
+      ],
+      stabilityDays: 7,
+      minimumReleaseAge: "7 days"
+    },
+    
+    // Changeset packages
+    {
+      description: "Changeset ecosystem",
+      groupName: "Changesets",
+      matchPackageNames: [
+        "@changesets/*",
+        "changesets"
+      ],
+      stabilityDays: 3,
+      minimumReleaseAge: "3 days"
+    },
+    
+    // KhulnaSoft packages (internal)
+    {
+      description: "KhulnaSoft internal packages",
+      groupName: "KhulnaSoft packages",
+      matchPackageNames: [
+        "@khulnasoft/*"
+      ],
+      matchPackagePatterns: ["^@khulnasoft/"],
+      enabled: false // Don't update internal packages automatically
+    },
+    
+    // AI Toolkit packages (workspace)
+    {
+      description: "AI Toolkit workspace packages",
+      groupName: "AI Toolkit packages",
+      matchPackageNames: [
+        "@ai-toolkit/*"
+      ],
+      matchPackagePatterns: ["^@ai-toolkit/"],
+      enabled: false // Don't update workspace packages automatically
+    },
+    
+    // Major version updates
+    {
+      description: "Major version updates",
+      groupName: "Major updates",
+      matchUpdateTypes: ["major"],
+      stabilityDays: 14,
+      minimumReleaseAge: "14 days",
+      automerge: false
+    },
+    
+    // Minor version updates
+    {
+      description: "Minor version updates",
+      groupName: "Minor updates",
+      matchUpdateTypes: ["minor"],
+      stabilityDays: 7,
+      minimumReleaseAge: "7 days"
+    },
+    
+    // Patch version updates
+    {
+      description: "Patch version updates",
+      groupName: "Patch updates",
+      matchUpdateTypes: ["patch"],
+      stabilityDays: 1,
+      minimumReleaseAge: "1 day"
+    },
+    
+    // Pin dependencies
+    {
+      description: "Pin dependencies",
+      matchPackagePatterns: ["*"],
+      rangeStrategy: "pin"
+    },
+    
+    // Development dependencies
+    {
+      description: "Development dependencies",
+      groupName: "Dev dependencies",
+      matchDepTypes: ["devDependencies"],
+      automerge: true,
+      stabilityDays: 3,
+      minimumReleaseAge: "3 days"
+    },
+    
+    // Production dependencies
+    {
+      description: "Production dependencies",
+      groupName: "Prod dependencies",
+      matchDepTypes: ["dependencies", "peerDependencies"],
+      automerge: false,
+      stabilityDays: 7,
+      minimumReleaseAge: "7 days"
+    },
+    
+    // Node.js updates
+    {
+      description: "Node.js updates",
+      groupName: "Node.js",
+      matchPackageNames: ["node", "@types/node"],
+      stabilityDays: 14,
+      minimumReleaseAge: "14 days",
+      automerge: false
+    },
+    
+    // GitHub Actions
+    {
+      description: "GitHub Actions",
+      groupName: "GitHub Actions",
+      matchDatasources: ["github-tags"],
+      matchPackagePatterns: ["^actions/"],
+      stabilityDays: 3,
+      minimumReleaseAge: "3 days"
+    },
+    
+    // Docker images
+    {
+      description: "Docker images",
+      groupName: "Docker",
+      matchDatasources: ["docker"],
+      stabilityDays: 7,
+      minimumReleaseAge: "7 days"
+    }
+  ],
+  
+  // Regex manager for custom patterns
+  regexManagers: [
+    // Update Node.js version in workflows
+    {
+      description: "Update Node.js version in GitHub Actions",
+      fileMatch: ["^\\.github/workflows/.*\\.yml$", "^\\.github/workflows/.*\\.yaml$"],
+      matchStrings: [
+        "node-version: (?<currentVersion>\\d+)"
+      ],
+      datasourceTemplate: "node",
+      depNameTemplate: "node",
+      versioningTemplate: "node"
+    },
+    
+    // Update pnpm version
+    {
+      description: "Update pnpm version in workflows",
+      fileMatch: ["^\\.github/workflows/.*\\.yml$", "^\\.github/workflows/.*\\.yaml$"],
+      matchStrings: [
+        "version: (?<currentVersion>[\\d.]+)"
+      ],
+      datasourceTemplate: "npm",
+      depNameTemplate: "pnpm",
+      versioningTemplate: "npm"
+    }
+  ],
+  
+  // Lock file maintenance
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true,
+    schedule: ["before 6am on monday"],
+    stabilityDays: 3
+  },
+  
+  // Schedule
+  schedule: [
+    "before 6am on monday",
+    "before 6am on wednesday",
+    "before 6am on friday"
+  ],
+  
+  // Timezone
+  timezone: "UTC",
+  
+  // Labels
+  labels: ["dependencies", "renovate"],
+  
+  // Assignees and reviewers
+  assignees: [],
+  reviewers: [],
+  
+  // Custom labels for different update types
+  addLabels: ["dependencies"],
+  prBodyNotes: [
+    "This PR was created by Renovate.",
+    "Please review the changes carefully before merging.",
+    "If you have any questions, please ask in the #renovate channel."
+  ],
+  
+  // Ignore certain packages
+  ignoreDeps: [
+    // Internal packages that should be updated manually
+    "@ai-toolkit/create-ai",
+    "@ai-toolkit/scripts",
+    
+    // Packages that require careful consideration
+    "react",
+    "react-dom",
+    "vue",
+    "svelte",
+    "solid-js",
+    
+    // Experimental or beta packages
+    "next",
+    "@next/*"
+  ],
+  
+  // Force updates for certain packages
+  force: {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "pnpm": "^9.0.0"
+  },
+  
+  // Custom versioning
+  versioning: "semver",
+  
+  // Minimum versions
+  minimumReleaseAge: "3 days",
+  stabilityDays: 3,
+  
+  // PR body template
+  prBodyTemplate: "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configSummary}}}{{{footer}}}",
+  
+  // Footer template
+  footerTemplate: "---\n\nThis PR was generated by [Renovate Bot](https://github.com/renovatebot/renovate).",
+  
+  // Header template
+  headerTemplate: "### Summary\n\n{{#each upgrades}}\n- Update {{{depName}}} from {{{currentVersion}}} to {{{newVersion}}}\n{{/each}}",
+  
+  // Onboarding
+  onboarding: true,
+  onboardingBranch: "renovate/configure",
+  onboardingPrTitle: "Configure Renovate",
+  onboardingConfigFileName: ".github/renovate.json5",
+  
+  // Rebase strategy
+  rebaseWhen: "conflicted",
+  rebaseLabel: "rebase",
+  
+  // Stale PR settings
+  stalePr: true,
+  stalePrDays: 30,
+  
+  // Closed PR settings
+  deleteClosedPrs: true,
+  
+  // Rate limiting
+  prConcurrentLimit: 5,
+  prHourlyLimit: 10,
+  
+  // Logging
+  logLevel: "info",
+  
+  // Host rules
+  hostRules: [
+    {
+      hostType: "github",
+      matchHost: "github.com",
+      token: "{{ secrets.RENOVATE_TOKEN }}"
+    }
+  ],
+  
+  // Custom managers
+  customManagers: [
+    // Update package.json engines field
+    {
+      customType: "regex",
+      description: "Update Node.js version in engines field",
+      fileMatch: ["package\\.json$"],
+      matchStrings: [
+        "\"engines\"\\s*:\\s*\\{[^}]*\"node\"\\s*:\\s*\"(?<currentVersion>[^\"]+)\"[^}]*\\}"
+      ],
+      datasourceTemplate: "node",
+      depNameTemplate: "node",
+      versioningTemplate: "node"
+    }
+  ]
+}

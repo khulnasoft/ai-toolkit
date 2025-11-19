@@ -1,5 +1,5 @@
 import { AITOOLKITError } from '@ai-toolkit/provider';
-import { SingleRequestTextStreamPart } from '../core/generate-text/run-tools-transformation';
+import type { SingleRequestTextStreamPart } from '../core/generate-text/run-tools-transformation';
 
 const name = 'AI_InvalidStreamPartError';
 const marker = `khulnasoft.com.error.${name}`;

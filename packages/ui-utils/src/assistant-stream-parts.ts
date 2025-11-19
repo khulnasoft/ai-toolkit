@@ -1,4 +1,4 @@
-import { AssistantMessage, DataMessage, JSONValue } from './types';
+import type { AssistantMessage, DataMessage, JSONValue } from './types';
 
 export type AssistantStreamString =
   `${(typeof StreamStringPrefixes)[keyof typeof StreamStringPrefixes]}:${string}\n`;

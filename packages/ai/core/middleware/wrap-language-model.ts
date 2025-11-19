@@ -1,8 +1,8 @@
-import {
+import type {
   LanguageModelV1,
   LanguageModelV1CallOptions,
 } from '@ai-toolkit/provider';
-import { LanguageModelV1Middleware } from './language-model-v1-middleware';
+import type { LanguageModelV1Middleware } from './language-model-v1-middleware';
 import { asArray } from '../../util/as-array';
 
 /**

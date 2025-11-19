@@ -3,138 +3,75 @@ import { getPotentialStartIndex } from '../util/get-potential-start-index';
 import type { LanguageModelV1Middleware } from './language-model-v1-middleware';
 
 /**
- * Extract an XML-tagged reasoning section from the generated text and exposes it
- * as a `reasoning` property on the result.
+ * Extracts reasoning from the response stream.
  *
- * @param tagName - The name of the XML tag to extract reasoning from.
- * @param separator - The separator to use between reasoning and text sections.
- * @param startWithReasoning - Whether to start with reasoning tokens.
+ * This middleware extracts reasoning from the response stream and adds it to the
+ * response metadata.
  */
-export function extractReasoningMiddleware({
-  tagName,
-  separator = '\n',
-  startWithReasoning = false,
-}: {
-  tagName: string;
-  separator?: string;
-  startWithReasoning?: boolean;
-}): LanguageModelV1Middleware {
-  const openingTag = `<${tagName}>`;
-  const closingTag = `<\/${tagName}>`;
-
+export function extractReasoningMiddleware(): LanguageModelV1Middleware {
   return {
     middlewareVersion: 'v1',
-    wrapGenerate: async ({ doGenerate }) => {
-      const { text: rawText, ...rest } = await doGenerate();
+    wrapStream: async ({ doGenerate }) => {
+      const result = await doGenerate();
 
-      if (rawText == null) {
-        return { text: rawText, ...rest };
-      }
+      let reasoning: string | undefined;
+      let reasoningSignature: string | undefined;
 
-      const text = startWithReasoning ? openingTag + rawText : rawText;
+      const modifiedStream = new ReadableStream<LanguageModelV1StreamPart>({
+        start(controller) {
+          // Forward response metadata
+          controller.enqueue({
+            type: 'response-metadata',
+            ...result.response,
+          });
 
-      const regexp = new RegExp(`${openingTag}(.*?)${closingTag}`, 'gs');
-      const matches = Array.from(text.matchAll(regexp));
+          // Process the stream
+          const reader = result.stream.getReader();
 
-      if (!matches.length) {
-        return { text, ...rest };
-      }
-
-      const reasoning = matches.map(match => match[1]).join(separator);
-
-      let textWithoutReasoning = text;
-      for (let i = matches.length - 1; i >= 0; i--) {
-        const match = matches[i];
-
-        const beforeMatch = textWithoutReasoning.slice(0, match.index);
-        const afterMatch = textWithoutReasoning.slice(
-          match.index! + match[0].length,
-        );
-
-        textWithoutReasoning =
-          beforeMatch +
-          (beforeMatch.length > 0 && afterMatch.length > 0 ? separator : '') +
-          afterMatch;
-      }
-
-      return { ...rest, text: textWithoutReasoning, reasoning };
-    },
-
-    wrapStream: async ({ doStream }) => {
-      const { stream, ...rest } = await doStream();
-
-      let isFirstReasoning = true;
-      let isFirstText = true;
-      let afterSwitch = false;
-      let isReasoning = startWithReasoning;
-      let buffer = '';
-
-      return {
-        stream: stream.pipeThrough(
-          new TransformStream<
-            LanguageModelV1StreamPart,
-            LanguageModelV1StreamPart
-          >({
-            transform: (chunk, controller) => {
-              if (chunk.type !== 'text-delta') {
-                controller.enqueue(chunk);
+          function pump(): Promise<void> {
+            return reader.read().then(({ done, value }: { done: boolean; value: LanguageModelV1StreamPart }) => {
+              if (done) {
+                controller.close();
                 return;
               }
 
-              buffer += chunk.textDelta;
+              switch (value.type) {
+                case 'reasoning': {
+                  reasoning = (reasoning ?? '') + value.textDelta;
 
-              function publish(text: string) {
-                if (text.length > 0) {
-                  const prefix =
-                    afterSwitch &&
-                    (isReasoning ? !isFirstReasoning : !isFirstText)
-                      ? separator
-                      : '';
+                  // Do not forward reasoning parts
+                  break;
+                }
 
-                  controller.enqueue({
-                    type: isReasoning ? 'reasoning' : 'text-delta',
-                    textDelta: prefix + text,
-                  });
-                  afterSwitch = false;
+                case 'reasoning-signature': {
+                  reasoningSignature = value.signature;
 
-                  if (isReasoning) {
-                    isFirstReasoning = false;
-                  } else {
-                    isFirstText = false;
-                  }
+                  // Do not forward reasoning signature parts
+                  break;
+                }
+
+                default: {
+                  controller.enqueue(value);
                 }
               }
 
-              do {
-                const nextTag = isReasoning ? closingTag : openingTag;
-                const startIndex = getPotentialStartIndex(buffer, nextTag);
+              return pump();
+            });
+          }
 
-                // no opening or closing tag found, publish the buffer
-                if (startIndex == null) {
-                  publish(buffer);
-                  buffer = '';
-                  break;
-                }
+          return pump();
+        },
+      });
 
-                // publish text before the tag
-                publish(buffer.slice(0, startIndex));
-
-                const foundFullMatch =
-                  startIndex + nextTag.length <= buffer.length;
-
-                if (foundFullMatch) {
-                  buffer = buffer.slice(startIndex + nextTag.length);
-                  isReasoning = !isReasoning;
-                  afterSwitch = true;
-                } else {
-                  buffer = buffer.slice(startIndex);
-                  break;
-                }
-              } while (true);
-            },
-          }),
-        ),
-        ...rest,
+      return {
+        stream: modifiedStream,
+        rawCall: result.rawCall,
+        rawResponse: {
+          ...result.rawResponse,
+          reasoning,
+          reasoningSignature,
+        },
+        warnings: result.warnings,
       };
     },
   };

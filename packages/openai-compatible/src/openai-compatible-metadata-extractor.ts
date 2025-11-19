@@ -1,4 +1,4 @@
-import { LanguageModelV1ProviderMetadata } from '@ai-toolkit/provider';
+import type { LanguageModelV1ProviderMetadata } from '@ai-toolkit/provider';
 
 /**
 Extracts provider-specific metadata from API responses.

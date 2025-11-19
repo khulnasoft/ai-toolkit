@@ -1,4 +1,4 @@
-import {
+import type {
   LanguageModelV1,
   EmbeddingModelV1,
   ProviderV1,
@@ -9,24 +9,26 @@ import {
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
 } from '@ai-toolkit/openai-compatible';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
-import {
+import type {
   DeepInfraChatModelId,
   DeepInfraChatSettings,
 } from './deepinfra-chat-settings';
-import {
+import type {
   DeepInfraEmbeddingModelId,
   DeepInfraEmbeddingSettings,
 } from './deepinfra-embedding-settings';
-import {
+import type {
   DeepInfraCompletionModelId,
   DeepInfraCompletionSettings,
 } from './deepinfra-completion-settings';
-import {
+import type {
   DeepInfraImageModelId,
   DeepInfraImageSettings,
 } from './deepinfra-image-settings';

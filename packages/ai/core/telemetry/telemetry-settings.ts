@@ -1,5 +1,5 @@
-import { AttributeValue, Tracer } from '@opentelemetry/api';
-import { PerformanceMonitoringConfig } from './performance-monitor';
+import type { AttributeValue, Tracer } from '@opentelemetry/api';
+import type { PerformanceMonitoringConfig } from './performance-monitor';
 
 /**
  * Telemetry configuration.

@@ -1,20 +1,22 @@
-import {
+import type {
   EmbeddingModelV1,
   ImageModelV1,
   LanguageModelV1,
   ProviderV1,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { OpenAICompatibleChatLanguageModel } from './openai-compatible-chat-language-model';
-import { OpenAICompatibleChatSettings } from './openai-compatible-chat-settings';
+import type { OpenAICompatibleChatSettings } from './openai-compatible-chat-settings';
 import { OpenAICompatibleCompletionLanguageModel } from './openai-compatible-completion-language-model';
-import { OpenAICompatibleCompletionSettings } from './openai-compatible-completion-settings';
+import type { OpenAICompatibleCompletionSettings } from './openai-compatible-completion-settings';
 import { OpenAICompatibleEmbeddingModel } from './openai-compatible-embedding-model';
-import { OpenAICompatibleEmbeddingSettings } from './openai-compatible-embedding-settings';
-import { OpenAICompatibleImageSettings } from './openai-compatible-image-settings';
+import type { OpenAICompatibleEmbeddingSettings } from './openai-compatible-embedding-settings';
+import type { OpenAICompatibleImageSettings } from './openai-compatible-image-settings';
 import { OpenAICompatibleImageModel } from './openai-compatible-image-model';
 
 export interface OpenAICompatibleProvider<

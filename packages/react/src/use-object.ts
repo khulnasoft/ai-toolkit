@@ -1,13 +1,15 @@
 import {
-  FetchFunction,
   isAbortError,
   safeValidateTypes,
 } from '@ai-toolkit/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
   asSchema,
-  DeepPartial,
   isDeepEqualData,
   parsePartialJson,
+} from '@ai-toolkit/ui-utils';
+import type {
+  DeepPartial,
   Schema,
 } from '@ai-toolkit/ui-utils';
 import { useCallback, useId, useRef, useState } from 'react';

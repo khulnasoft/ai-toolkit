@@ -1,0 +1,306 @@
+---
+name: 🎉 Show & Tell
+description: Share what you've built with AI Toolkit! Show off your projects, experiments, and creative solutions.
+title: "[Show & Tell] "
+labels: ["show-and-tell", "community"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎊 Welcome to Show & Tell!
+        
+        This is the place to share what you've created with the AI Toolkit! We love seeing what the community builds.
+        
+        **Perfect for sharing:**
+        - 🚀 Production applications
+        - 🧪 Experimental projects
+        - 🎨 Creative implementations
+        - 📚 Learning projects
+        - 💡 Innovative solutions
+        - 🔧 Custom integrations
+        - 🌍 Open source contributions
+        
+        **Before posting, please:**
+        - [ ] Check if your project is appropriate for this community
+        - [ ] Ensure any shared code is safe and doesn't contain sensitive information
+        - [ ] Consider if you need to blur/remove any personal or proprietary data
+
+  - type: textarea
+    id: project-title
+    attributes:
+      label: Project Name
+      description: Give your project a catchy, descriptive name
+      placeholder: "AI-Powered Recipe Generator"
+    validations:
+      required: true
+
+  - type: textarea
+    id: elevator-pitch
+    attributes:
+      label: Elevator Pitch
+      description: Describe your project in one or two sentences
+      placeholder: "A web app that generates personalized recipes based on ingredients you have at home, using AI to suggest creative cooking ideas."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Project Description
+      description: Tell us more about your project! What problem does it solve? Who is it for? What makes it special?
+      placeholder: |
+        ## What I Built
+        
+        I created a web application that...
+        
+        ## The Problem
+        
+        I wanted to solve...
+        
+        ## The Solution
+        
+        My approach was to...
+        
+        ## What Makes It Unique
+        
+        The special features include...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Project Type
+      description: What kind of project is this?
+      options:
+        - Web Application
+        - Mobile App
+        - Desktop Application
+        - API/Service
+        - Library/Package
+        - CLI Tool
+        - Browser Extension
+        - Game
+        - Educational Project
+        - Proof of Concept
+        - Open Source Project
+        - Commercial Product
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: experience-level
+    attributes:
+      label: Your Experience Level
+      description: This helps others understand the context
+      options:
+        - Beginner (just starting with AI Toolkit)
+        - Intermediate (comfortable with the basics)
+        - Advanced (deep knowledge of AI Toolkit)
+        - Expert (contributing to the ecosystem)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: providers-used
+    attributes:
+      label: AI Providers Used
+      description: Which AI providers did you integrate?
+      multiple: true
+      options:
+        - OpenAI
+        - Anthropic
+        - Google
+        - Azure OpenAI
+        - Groq
+        - Cohere
+        - Replicate
+        - Together AI
+        - ElevenLabs
+        - Perplexity
+        - FAL
+        - Fireworks
+        - Mistral
+        - Amazon Bedrock
+        - DeepInfra
+        - DeepSeek
+        - Luma
+        - xAI
+        - Cerebras
+        - OpenAI Compatible
+        - Custom Provider
+        - None (using AI Toolkit for other features)
+    validations:
+      required: true
+
+  - type: textarea
+    id: tech-stack
+    attributes:
+      label: Tech Stack
+      description: What technologies did you use? (beyond AI providers)
+      placeholder: |
+        - **Frontend**: React, TypeScript, Tailwind CSS
+        - **Backend**: Node.js, Express, PostgreSQL
+        - **Deployment**: Vercel, Railway
+        - **Other**: Next.js, Prisma, tRPC
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: How You Used AI Toolkit
+      description: Tell us about your AI Toolkit implementation
+      placeholder: |
+        ## AI Toolkit Features Used
+        
+        - Text generation with streaming responses
+        - Image generation with custom models
+        - Function calling for structured data
+        - Multi-provider fallback system
+        - Custom provider configuration
+        
+        ## Implementation Details
+        
+        I structured my AI integration by...
+        
+        ## Challenges & Solutions
+        
+        The main challenges were...
+        
+        ## Key Learnings
+        
+        I learned that...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-examples
+    attributes:
+      label: Code Examples
+      description: Share some code snippets! (Remove any sensitive information)
+      render: typescript
+      placeholder: |
+        ```typescript
+        import { openai } from '@ai-toolkit/openai';
+        import { generateText } from 'ai';
+        
+        export async function generateRecipe(ingredients: string[]) {
+          const { text } = await generateText({
+            model: openai('gpt-4-turbo'),
+            prompt: `Create a recipe using: ${ingredients.join(', ')}`,
+            temperature: 0.7,
+            maxTokens: 500,
+          });
+          
+          return text;
+        }
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots/Demo
+      description: Share screenshots, GIFs, or video links! (Use markdown to embed images)
+      placeholder: |
+        ![Screenshot of my app](https://example.com/screenshot.png)
+        
+        📹 Demo video: https://www.youtube.com/watch?v=your-video-id
+        
+        🌐 Live demo: https://your-project-url.com
+    validations:
+      required: false
+
+  - type: textarea
+    id: repository
+    attributes:
+      label: Repository Links
+      description: Share links to your code repositories
+      placeholder: |
+        - **Main Repository**: https://github.com/your-username/your-project
+        - **Demo Repository**: https://github.com/your-username/your-project-demo
+        - **Components**: https://github.com/your-username/reusable-components
+    validations:
+      required: false
+
+  - type: textarea
+    id: future-plans
+    attributes:
+      label: Future Plans
+      description: What's next for this project?
+      placeholder: |
+        ## Short Term
+        - Add user authentication
+        - Implement more AI providers
+        - Improve UI/UX
+        
+        ## Long Term
+        - Mobile app version
+        - API for third-party integrations
+        - Open source the core components
+    validations:
+      required: false
+
+  - type: textarea
+    id: advice
+    attributes:
+      label: Advice for Others
+      description: What tips would you give to others building similar projects?
+      placeholder: |
+        ## Tips & Tricks
+        - Start with a simple implementation and iterate
+        - Use streaming responses for better UX
+        - Implement proper error handling
+        - Consider rate limiting and costs
+        
+        ## Resources
+        - Check out the AI Toolkit documentation
+        - Join the Discord community
+        - Look at example projects
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      description: Please confirm the following
+      options:
+        - label: I have removed all sensitive information from my code and content
+          required: true
+        - label: I'm comfortable with others learning from and potentially building upon my work
+          required: true
+        - label: I understand this is a public discussion and my content will be visible to everyone
+          required: true
+        - label: I'm excited to share my work with the community!
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎊 Community Celebration!
+        
+        Thank you for sharing your work with the AI Toolkit community! Your projects inspire others and help showcase what's possible with AI integration.
+        
+        ### How the Community Can Help
+        - 💬 Leave encouraging comments and feedback
+        - 🤝 Offer collaboration opportunities
+        - 💡 Suggest improvements and ideas
+        - ⭐ Show appreciation for your hard work
+        - 📚 Learn from your implementation
+        
+        ### Keep the Conversation Going
+        - Respond to questions and comments
+        - Share updates as your project evolves
+        - Help others who want to build similar things
+        - Consider contributing back to the AI Toolkit ecosystem
+        
+        ---
+        
+        > 🌟 **Remember**: Every project, big or small, contributes to our collective learning and growth in the AI space!
+        
+        #HappyBuilding 🚀

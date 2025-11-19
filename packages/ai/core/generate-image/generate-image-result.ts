@@ -1,6 +1,6 @@
-import { GeneratedFile } from '../generate-text';
-import { ImageGenerationWarning } from '../types/image-model';
-import { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
+import type { GeneratedFile } from '../generate-text';
+import type { ImageGenerationWarning } from '../types/image-model';
+import type { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
 
 /**
 The result of a `generateImage` call.

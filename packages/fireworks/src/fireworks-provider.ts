@@ -2,34 +2,36 @@ import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
-  ProviderErrorStructure,
 } from '@ai-toolkit/openai-compatible';
-import {
+import type { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
+import type {
   EmbeddingModelV1,
   ImageModelV1,
   LanguageModelV1,
   ProviderV1,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import {
+import type {
   FireworksChatModelId,
   FireworksChatSettings,
 } from './fireworks-chat-settings';
-import {
+import type {
   FireworksCompletionModelId,
   FireworksCompletionSettings,
 } from './fireworks-completion-settings';
-import {
+import type {
   FireworksEmbeddingModelId,
   FireworksEmbeddingSettings,
 } from './fireworks-embedding-settings';
 import { FireworksImageModel } from './fireworks-image-model';
-import {
+import type {
   FireworksImageModelId,
   FireworksImageSettings,
 } from './fireworks-image-settings';

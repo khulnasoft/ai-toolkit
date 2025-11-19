@@ -1,4 +1,4 @@
-import { SpeechModelV1, SpeechModelV1CallWarning } from '@ai-toolkit/provider';
+import type { SpeechModelV1, SpeechModelV1CallWarning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createBinaryResponseHandler,
@@ -6,10 +6,10 @@ import {
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAIConfig } from './openai-config';
+import type { OpenAIConfig } from './openai-config';
 import { openaiFailedResponseHandler } from './openai-error';
-import { OpenAISpeechModelId } from './openai-speech-settings';
-import { OpenAISpeechAPITypes } from './openai-api-types';
+import type { OpenAISpeechModelId } from './openai-speech-settings';
+import type { OpenAISpeechAPITypes } from './openai-api-types';
 
 // https://platform.openai.com/docs/api-reference/audio/createSpeech
 const OpenAIProviderOptionsSchema = z.object({

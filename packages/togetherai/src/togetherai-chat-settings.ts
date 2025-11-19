@@ -1,4 +1,4 @@
-import { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
 
 // https://docs.together.ai/docs/serverless-models#chat-models
 export type TogetherAIChatModelId =

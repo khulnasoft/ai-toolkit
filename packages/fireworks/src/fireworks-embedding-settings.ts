@@ -1,4 +1,4 @@
-import { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
 
 // Below is just a subset of the available models.
 export type FireworksEmbeddingModelId =

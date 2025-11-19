@@ -1,5 +1,5 @@
-import { Attributes, Span, Tracer } from '@opentelemetry/api';
-import { TelemetrySettings } from './telemetry-settings';
+import type { Attributes, Span, Tracer } from '@opentelemetry/api';
+import type { TelemetrySettings } from './telemetry-settings';
 
 /**
  * Enhanced telemetry metrics for detailed usage analytics.

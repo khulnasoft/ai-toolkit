@@ -4,10 +4,10 @@ import { getBaseTelemetryAttributes } from '../telemetry/get-base-telemetry-attr
 import { getTracer } from '../telemetry/get-tracer';
 import { recordSpan } from '../telemetry/record-span';
 import { selectTelemetryAttributes } from '../telemetry/select-telemetry-attributes';
-import { TelemetrySettings } from '../telemetry/telemetry-settings';
-import { Embedding, EmbeddingModel } from '../types';
+import type { TelemetrySettings } from '../telemetry/telemetry-settings';
+import type { Embedding, EmbeddingModel } from '../types';
 import { splitArray } from '../util/split-array';
-import { EmbedManyResult } from './embed-many-result';
+import type { EmbedManyResult } from './embed-many-result';
 
 /**
 Embed several values using an embedding model. The type of the value is defined

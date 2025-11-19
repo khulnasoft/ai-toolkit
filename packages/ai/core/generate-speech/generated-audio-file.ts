@@ -1,5 +1,7 @@
-import {
+import type {
   GeneratedFile,
+} from '../generate-text/generated-file';
+import {
   DefaultGeneratedFile,
 } from '../generate-text/generated-file';
 

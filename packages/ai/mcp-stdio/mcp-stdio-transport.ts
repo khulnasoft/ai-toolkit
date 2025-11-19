@@ -1,10 +1,12 @@
 import type { ChildProcess, IOType } from 'node:child_process';
 import { Stream } from 'node:stream';
-import {
+import type {
   JSONRPCMessage,
+} from '../core/tool/mcp/json-rpc-message';
+import {
   JSONRPCMessageSchema,
 } from '../core/tool/mcp/json-rpc-message';
-import { MCPTransport } from '../core/tool/mcp/mcp-transport';
+import type { MCPTransport } from '../core/tool/mcp/mcp-transport';
 import { MCPClientError } from '../errors';
 import { createChildProcess } from './create-child-process';
 

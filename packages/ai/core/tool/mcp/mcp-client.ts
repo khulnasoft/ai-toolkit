@@ -1,9 +1,10 @@
-import { JSONSchema7 } from '@ai-toolkit/provider';
+import type { JSONSchema7 } from '@ai-toolkit/provider';
 import { jsonSchema } from '@ai-toolkit/ui-utils';
 import { z, ZodType } from 'zod';
 import { MCPClientError } from '../../../errors';
-import { inferParameters, tool, Tool, ToolExecutionOptions } from '../tool';
-import {
+import type { inferParameters, Tool, ToolExecutionOptions } from '../tool';
+import { tool } from '../tool';
+import type {
   JSONRPCError,
   JSONRPCNotification,
   JSONRPCRequest,
@@ -12,24 +13,28 @@ import {
 import {
   createMcpTransport,
   isCustomMcpTransport,
+} from './mcp-transport';
+import type {
   MCPTransport,
   MCPTransportConfig,
 } from './mcp-transport';
 import {
-  CallToolResult,
   CallToolResultSchema,
-  Configuration as ClientConfiguration,
   InitializeResultSchema,
   LATEST_PROTOCOL_VERSION,
-  ListToolsResult,
   ListToolsResultSchema,
+  SUPPORTED_PROTOCOL_VERSIONS,
+} from './types';
+import type {
+  CallToolResult,
+  Configuration as ClientConfiguration,
+  ListToolsResult,
   McpToolSet,
   Notification,
   PaginatedRequest,
   Request,
   RequestOptions,
   ServerCapabilities,
-  SUPPORTED_PROTOCOL_VERSIONS,
   ToolSchemas,
 } from './types';
 

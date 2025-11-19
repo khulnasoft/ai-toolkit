@@ -1,5 +1,5 @@
-import { CoreAssistantMessage, CoreToolMessage } from '../prompt/message';
-import {
+import type { CoreAssistantMessage, CoreToolMessage } from '../prompt/message';
+import type {
   CallWarning,
   FinishReason,
   LanguageModelRequestMetadata,
@@ -7,13 +7,13 @@ import {
   LogProbs,
   ProviderMetadata,
 } from '../types';
-import { Source } from '../types/language-model';
-import { LanguageModelUsage } from '../types/usage';
-import { GeneratedFile } from './generated-file';
-import { ReasoningDetail } from './reasoning-detail';
-import { ToolCallArray } from './tool-call';
-import { ToolResultArray } from './tool-result';
-import { ToolSet } from './tool-set';
+import type { Source } from '../types/language-model';
+import type { LanguageModelUsage } from '../types/usage';
+import type { GeneratedFile } from './generated-file';
+import type { ReasoningDetail } from './reasoning-detail';
+import type { ToolCallArray } from './tool-call';
+import type { ToolResultArray } from './tool-result';
+import type { ToolSet } from './tool-set';
 
 /**
 A message that was generated during the generation process.

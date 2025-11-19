@@ -1,22 +1,24 @@
 import {
   OpenAIChatLanguageModel,
-  OpenAIChatSettings,
   OpenAICompletionLanguageModel,
-  OpenAICompletionSettings,
   OpenAIEmbeddingModel,
-  OpenAIEmbeddingSettings,
   OpenAIImageModel,
-  OpenAIImageSettings,
   OpenAIResponsesLanguageModel,
 } from '@ai-toolkit/openai/internal';
-import {
+import type {
+  OpenAIChatSettings,
+  OpenAICompletionSettings,
+  OpenAIEmbeddingSettings,
+  OpenAIImageSettings,
+} from '@ai-toolkit/openai/internal';
+import type {
   EmbeddingModelV1,
   LanguageModelV1,
   ProviderV1,
   ImageModelV1,
 } from '@ai-toolkit/provider';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
-  FetchFunction,
   loadApiKey,
   loadSetting,
 } from '@ai-toolkit/provider-utils';

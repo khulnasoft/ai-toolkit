@@ -1,8 +1,5 @@
-import {
-  AssistantMessage,
-  DataMessage,
-  formatAssistantStreamPart,
-} from '@ai-toolkit/ui-utils';
+import { formatAssistantStreamPart } from '@ai-toolkit/ui-utils';
+import type { AssistantMessage, DataMessage } from '@ai-toolkit/ui-utils';
 
 /**
 You can pass the thread and the latest message into the `AssistantResponse`. This establishes the context for the response.

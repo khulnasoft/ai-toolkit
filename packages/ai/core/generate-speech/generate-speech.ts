@@ -1,18 +1,18 @@
-import { JSONValue, SpeechModelV1 } from '@ai-toolkit/provider';
+import type { JSONValue, SpeechModelV1 } from '@ai-toolkit/provider';
 import { NoSpeechGeneratedError } from '../../errors/no-speech-generated-error';
 import { prepareRetries } from '../prompt/prepare-retries';
-import { ProviderOptions } from '../types/provider-metadata';
-import { SpeechWarning } from '../types/speech-model';
-import { SpeechModelResponseMetadata } from '../types/speech-model-response-metadata';
-import { SpeechResult } from './generate-speech-result';
+import type { ProviderOptions } from '../types/provider-metadata';
+import type { SpeechWarning } from '../types/speech-model';
+import type { SpeechModelResponseMetadata } from '../types/speech-model-response-metadata';
+import type { SpeechResult } from './generate-speech-result';
 import {
   audioMimeTypeSignatures,
   detectMimeType,
 } from '../util/detect-mimetype';
 import {
   DefaultGeneratedAudioFile,
-  GeneratedAudioFile,
 } from './generated-audio-file';
+import type { GeneratedAudioFile } from './generated-audio-file';
 
 /**
 Generates speech audio using a speech model.

@@ -1,20 +1,24 @@
 import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
 import {
-  LanguageModelV1,
   NoSuchModelError,
+} from '@ai-toolkit/provider';
+import type {
+  LanguageModelV1,
   ProviderV1,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
-import {
+import type {
   CerebrasChatModelId,
   CerebrasChatSettings,
 } from './cerebras-chat-settings';
 import { z } from 'zod';
-import { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
+import type { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
 
 // Add error schema and structure
 const cerebrasErrorSchema = z.object({

@@ -1,6 +1,6 @@
 import { prepareResponseHeaders } from '../util/prepare-response-headers';
 import { createDataStream } from './create-data-stream';
-import { DataStreamWriter } from './data-stream-writer';
+import type { DataStreamWriter } from './data-stream-writer';
 
 export function createDataStreamResponse({
   status,

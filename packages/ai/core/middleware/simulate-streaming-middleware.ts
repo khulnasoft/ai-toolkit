@@ -12,7 +12,10 @@ export function simulateStreamingMiddleware(): LanguageModelV1Middleware {
 
       const simulatedStream = new ReadableStream<LanguageModelV1StreamPart>({
         start(controller) {
-          controller.enqueue({ type: 'response-metadata', ...result.response });
+          controller.enqueue({
+            type: 'response-metadata',
+            ...result.response,
+          });
 
           if (result.reasoning) {
             if (typeof result.reasoning === 'string') {
@@ -28,7 +31,8 @@ export function simulateStreamingMiddleware(): LanguageModelV1Middleware {
                       type: 'reasoning',
                       textDelta: reasoning.text,
                     });
-                    if (reasoning.signature != null) {
+
+                    if (reasoning.signature !== null) {
                       controller.enqueue({
                         type: 'reasoning-signature',
                         signature: reasoning.signature,

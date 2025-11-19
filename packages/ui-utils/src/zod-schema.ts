@@ -1,7 +1,8 @@
-import { JSONSchema7 } from 'json-schema';
+import type { JSONSchema7 } from 'json-schema';
 import { z } from 'zod';
 import zodToJsonSchema from 'zod-to-json-schema';
-import { jsonSchema, Schema } from './schema';
+import { jsonSchema } from './schema';
+import type { Schema } from './schema';
 
 export function zodSchema<OBJECT>(
   zodSchema: z.Schema<OBJECT, z.ZodTypeDef, any>,

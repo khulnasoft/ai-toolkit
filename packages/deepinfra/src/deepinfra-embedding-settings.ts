@@ -1,4 +1,4 @@
-import { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
 
 // https://deepinfra.com/models/embeddings
 export type DeepInfraEmbeddingModelId =

@@ -1,4 +1,4 @@
-import { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
 
 // https://api-docs.deepseek.com/quick_start/pricing
 export type DeepSeekChatModelId =

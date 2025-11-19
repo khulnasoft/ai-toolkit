@@ -1,4 +1,4 @@
-import { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleChatSettings } from '@ai-toolkit/openai-compatible';
 
 // https://inference-docs.cerebras.ai/introduction
 export type CerebrasChatModelId =

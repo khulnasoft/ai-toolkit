@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import {
+import type {
   inferParameters,
   Tool,
   ToolExecutionOptions,

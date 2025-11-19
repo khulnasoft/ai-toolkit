@@ -1,5 +1,5 @@
 import { AITOOLKITError } from '@ai-toolkit/provider';
-import { ImageModelResponseMetadata } from '../core/types/image-model-response-metadata';
+import type { ImageModelResponseMetadata } from '../core/types/image-model-response-metadata';
 
 const name = 'AI_NoImageGeneratedError';
 const marker = `khulnasoft.com.error.${name}`;

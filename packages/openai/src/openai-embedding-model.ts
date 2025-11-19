@@ -1,6 +1,8 @@
 import {
-  EmbeddingModelV1,
   TooManyEmbeddingValuesForCallError,
+} from '@ai-toolkit/provider';
+import type {
+  EmbeddingModelV1,
 } from '@ai-toolkit/provider';
 import {
   combineHeaders,
@@ -8,8 +10,8 @@ import {
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAIConfig } from './openai-config';
-import {
+import type { OpenAIConfig } from './openai-config';
+import type {
   OpenAIEmbeddingModelId,
   OpenAIEmbeddingSettings,
 } from './openai-embedding-settings';

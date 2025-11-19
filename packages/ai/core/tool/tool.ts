@@ -1,7 +1,7 @@
-import { Schema } from '@ai-toolkit/ui-utils';
+import type { Schema } from '@ai-toolkit/ui-utils';
 import { z } from 'zod';
-import { ToolResultContent } from '../prompt/tool-result-content';
-import { CoreMessage } from '../prompt/message';
+import type { ToolResultContent } from '../prompt/tool-result-content';
+import type { CoreMessage } from '../prompt/message';
 
 export type ToolParameters = z.ZodTypeAny | Schema<any>;
 

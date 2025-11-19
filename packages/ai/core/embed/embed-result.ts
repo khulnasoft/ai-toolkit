@@ -1,5 +1,5 @@
-import { Embedding } from '../types';
-import { EmbeddingModelUsage } from '../types/usage';
+import type { Embedding } from '../types';
+import type { EmbeddingModelUsage } from '../types/usage';
 
 /**
 The result of an `embed` call.

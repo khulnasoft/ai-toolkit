@@ -1,23 +1,25 @@
+import type { EmbeddingModelV1 } from '@ai-toolkit/provider';
 import {
-  EmbeddingModelV1,
   TooManyEmbeddingValuesForCallError,
 } from '@ai-toolkit/provider';
+import type {
+  FetchFunction,
+} from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
-  FetchFunction,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import {
+import type {
   OpenAICompatibleEmbeddingModelId,
   OpenAICompatibleEmbeddingSettings,
 } from './openai-compatible-embedding-settings';
 import {
   defaultOpenAICompatibleErrorStructure,
-  ProviderErrorStructure,
 } from './openai-compatible-error';
+import type { ProviderErrorStructure } from './openai-compatible-error';
 
 type OpenAICompatibleEmbeddingConfig = {
   /**

@@ -1,18 +1,20 @@
-import { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
+import type { ImageModelV1, ImageModelV1CallWarning } from '@ai-toolkit/provider';
+import type {
+  FetchFunction,
+} from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
-  FetchFunction,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAICompatibleImageModelId } from './openai-compatible-image-settings';
-import { OpenAICompatibleImageSettings } from './openai-compatible-image-settings';
+import type { OpenAICompatibleImageModelId } from './openai-compatible-image-settings';
+import type { OpenAICompatibleImageSettings } from './openai-compatible-image-settings';
 import {
   defaultOpenAICompatibleErrorStructure,
-  ProviderErrorStructure,
 } from './openai-compatible-error';
+import type { ProviderErrorStructure } from './openai-compatible-error';
 
 export type OpenAICompatibleImageModelConfig = {
   provider: string;

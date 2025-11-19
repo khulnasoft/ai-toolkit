@@ -1,4 +1,4 @@
-import { OpenAICompatibleCompletionSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleCompletionSettings } from '@ai-toolkit/openai-compatible';
 
 // https://docs.together.ai/docs/serverless-models#language-models
 export type TogetherAICompletionModelId =

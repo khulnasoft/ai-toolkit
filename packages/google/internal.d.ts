@@ -1,1 +1,1 @@
-export * from './dist/internal';
+export * from './internal/dist/index';

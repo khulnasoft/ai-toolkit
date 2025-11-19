@@ -1,4 +1,4 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import type { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
 
 export function mapOpenAICompatibleFinishReason(
   finishReason: string | null | undefined,

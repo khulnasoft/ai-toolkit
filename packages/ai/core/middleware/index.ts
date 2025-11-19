@@ -6,6 +6,6 @@ export type {
 } from './language-model-v1-middleware';
 export { simulateStreamingMiddleware } from './simulate-streaming-middleware';
 export {
-  experimental_wrapLanguageModel,
   wrapLanguageModel,
+  experimental_wrapLanguageModel,
 } from './wrap-language-model';

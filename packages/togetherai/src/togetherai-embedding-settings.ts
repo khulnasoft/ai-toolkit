@@ -1,4 +1,4 @@
-import { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
+import type { OpenAICompatibleEmbeddingSettings } from '@ai-toolkit/openai-compatible';
 
 // https://docs.together.ai/docs/serverless-models#embedding-models
 export type TogetherAIEmbeddingModelId =

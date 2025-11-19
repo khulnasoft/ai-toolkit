@@ -1,27 +1,32 @@
 import {
+  NoSuchModelError,
+} from '@ai-toolkit/provider';
+import type {
   ImageModelV1,
   LanguageModelV1,
-  NoSuchModelError,
   ProviderV1,
 } from '@ai-toolkit/provider';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleImageModel,
-  ProviderErrorStructure,
 } from '@ai-toolkit/openai-compatible';
-import {
+import type { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
-import {
+import type {
   XaiChatModelId,
   XaiChatSettings,
-  supportsStructuredOutputs,
 } from './xai-chat-settings';
-import { XaiImageSettings } from './xai-image-settings';
-import { XaiImageModelId } from './xai-image-settings';
-import { XaiErrorData, xaiErrorSchema } from './xai-error';
+import { supportsStructuredOutputs } from './xai-chat-settings';
+import type { XaiImageSettings } from './xai-image-settings';
+import type { XaiImageModelId } from './xai-image-settings';
+import type { XaiErrorData } from './xai-error';
+import { xaiErrorSchema } from './xai-error';
 
 const xaiErrorStructure: ProviderErrorStructure<XaiErrorData> = {
   errorSchema: xaiErrorSchema,

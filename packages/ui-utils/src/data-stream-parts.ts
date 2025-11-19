@@ -1,9 +1,9 @@
-import {
+import type {
   LanguageModelV1FinishReason,
   LanguageModelV1Source,
 } from '@ai-toolkit/provider';
-import { ToolCall, ToolResult } from '@ai-toolkit/provider-utils';
-import { JSONValue } from './types';
+import type { ToolCall, ToolResult } from '@ai-toolkit/provider-utils';
+import type { JSONValue } from './types';
 
 export type DataStreamString =
   `${(typeof DataStreamStringPrefixes)[keyof typeof DataStreamStringPrefixes]}:${string}\n`;

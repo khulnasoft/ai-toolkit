@@ -1,11 +1,11 @@
-import {
+import type {
   JSONSchema7,
   LanguageModelV1FunctionToolCall,
 } from '@ai-toolkit/provider';
 import { InvalidToolArgumentsError } from '../../errors/invalid-tool-arguments-error';
 import { NoSuchToolError } from '../../errors/no-such-tool-error';
-import { CoreMessage } from '../prompt';
-import { ToolSet } from './tool-set';
+import type { CoreMessage } from '../prompt';
+import type { ToolSet } from './tool-set';
 
 /**
  * A function that attempts to repair a tool call that failed to parse.

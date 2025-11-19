@@ -1,19 +1,19 @@
-import {
+import type {
   CallWarning,
   FinishReason,
   LogProbs,
   ProviderMetadata,
 } from '../types';
-import { Source } from '../types/language-model';
-import { LanguageModelRequestMetadata } from '../types/language-model-request-metadata';
-import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
-import { LanguageModelUsage } from '../types/usage';
-import { GeneratedFile } from './generated-file';
-import { ReasoningDetail } from './reasoning-detail';
-import { ResponseMessage, StepResult } from './step-result';
-import { ToolCallArray } from './tool-call';
-import { ToolResultArray } from './tool-result';
-import { ToolSet } from './tool-set';
+import type { Source } from '../types/language-model';
+import type { LanguageModelRequestMetadata } from '../types/language-model-request-metadata';
+import type { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
+import type { LanguageModelUsage } from '../types/usage';
+import type { GeneratedFile } from './generated-file';
+import type { ReasoningDetail } from './reasoning-detail';
+import type { ResponseMessage, StepResult } from './step-result';
+import type { ToolCallArray } from './tool-call';
+import type { ToolResultArray } from './tool-result';
+import type { ToolSet } from './tool-set';
 
 /**
 The result of a `generateText` call.

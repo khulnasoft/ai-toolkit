@@ -1,13 +1,15 @@
-import { AITOOLKITError, ImageModelV1, JSONValue } from '@ai-toolkit/provider';
+import type { AITOOLKITError, ImageModelV1, JSONValue } from '@ai-toolkit/provider';
 import { NoImageGeneratedError } from '../../errors/no-image-generated-error';
 import {
   DefaultGeneratedFile,
+} from '../generate-text/generated-file';
+import type {
   GeneratedFile,
 } from '../generate-text/generated-file';
 import { prepareRetries } from '../prompt/prepare-retries';
-import { ImageGenerationWarning } from '../types/image-model';
-import { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
-import { GenerateImageResult } from './generate-image-result';
+import type { ImageGenerationWarning } from '../types/image-model';
+import type { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
+import type { GenerateImageResult } from './generate-image-result';
 import {
   detectMimeType,
   imageMimeTypeSignatures,

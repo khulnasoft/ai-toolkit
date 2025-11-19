@@ -1,23 +1,22 @@
 import { ServerResponse } from 'node:http';
 import { StreamData } from '../../streams/stream-data';
-import { DataStreamWriter } from '../data-stream/data-stream-writer';
-import {
+import type { DataStreamWriter } from '../data-stream/data-stream-writer';
+import type {
   CallWarning,
   FinishReason,
-  LanguageModelRequestMetadata,
   LogProbs,
   ProviderMetadata,
 } from '../types';
-import { Source } from '../types/language-model';
-import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
-import { LanguageModelUsage } from '../types/usage';
-import { AsyncIterableStream } from '../util/async-iterable-stream';
-import { GeneratedFile } from './generated-file';
-import { ReasoningDetail } from './reasoning-detail';
-import { ResponseMessage, StepResult } from './step-result';
-import { ToolCallUnion } from './tool-call';
-import { ToolResultUnion } from './tool-result';
-import { ToolSet } from './tool-set';
+import type { Source } from '../types/language-model';
+import type { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
+import type { LanguageModelUsage } from '../types/usage';
+import type { AsyncIterableStream } from '../util/async-iterable-stream';
+import type { GeneratedFile } from './generated-file';
+import type { ReasoningDetail } from './reasoning-detail';
+import type { ResponseMessage, StepResult } from './step-result';
+import type { ToolCallUnion } from './tool-call';
+import type { ToolResultUnion } from './tool-result';
+import type { ToolSet } from './tool-set';
 
 export type DataStreamOptions = {
   /**

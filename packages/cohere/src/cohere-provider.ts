@@ -1,17 +1,19 @@
-import {
+import type {
   EmbeddingModelV1,
   LanguageModelV1,
   ProviderV1,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   loadApiKey,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
 import { CohereChatLanguageModel } from './cohere-chat-language-model';
-import { CohereChatModelId, CohereChatSettings } from './cohere-chat-settings';
+import type { CohereChatModelId, CohereChatSettings } from './cohere-chat-settings';
 import { CohereEmbeddingModel } from './cohere-embedding-model';
-import {
+import type {
   CohereEmbeddingModelId,
   CohereEmbeddingSettings,
 } from './cohere-embedding-settings';

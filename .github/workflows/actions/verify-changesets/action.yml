@@ -1,0 +1,53 @@
+name: 'Verify Changesets'
+description: 'Validate changesets in pull requests to ensure proper versioning and documentation'
+author: 'KhulnaSoft AI Toolkit'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+  
+  base-branch:
+    description: 'Base branch to compare against'
+    required: false
+    default: 'main'
+  
+  require-changeset:
+    description: 'Require at least one changeset when packages are changed'
+    required: false
+    default: 'true'
+  
+  allow-breaking-changes:
+    description: 'Allow major version bumps (breaking changes)'
+    required: false
+    default: 'false'
+  
+  max-changesets:
+    description: 'Maximum number of changesets allowed (0 = unlimited)'
+    required: false
+    default: '10'
+  
+  require-conventional-commits:
+    description: 'Require changeset descriptions to follow conventional commit format'
+    required: false
+    default: 'true'
+
+outputs:
+  changed-packages:
+    description: 'Comma-separated list of changed packages'
+  changeset-count:
+    description: 'Number of changeset files found'
+  validation-errors:
+    description: 'Total number of validation errors'
+  validation-warnings:
+    description: 'Total number of validation warnings'
+  packages-with-changesets:
+    description: 'Comma-separated list of packages that have changesets'
+
+runs:
+  using: 'node20'
+  main: 'index.js'

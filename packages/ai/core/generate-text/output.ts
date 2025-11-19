@@ -1,20 +1,22 @@
 import { safeParseJSON, safeValidateTypes } from '@ai-toolkit/provider-utils';
 import {
   asSchema,
-  DeepPartial,
   parsePartialJson,
+} from '@ai-toolkit/ui-utils';
+import type {
+  DeepPartial,
   Schema,
 } from '@ai-toolkit/ui-utils';
 import { z } from 'zod';
 import { NoObjectGeneratedError } from '../../errors';
 import { injectJsonInstruction } from '../generate-object/inject-json-instruction';
-import {
+import type {
   FinishReason,
   LanguageModel,
   LanguageModelV1CallOptions,
 } from '../types/language-model';
-import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
-import { LanguageModelUsage } from '../types/usage';
+import type { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
+import type { LanguageModelUsage } from '../types/usage';
 
 export interface Output<OUTPUT, PARTIAL> {
   readonly type: 'object' | 'text';

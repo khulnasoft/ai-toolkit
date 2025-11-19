@@ -1,14 +1,18 @@
 import {
+  UnsupportedFunctionalityError,
+} from '@ai-toolkit/provider';
+import type {
   LanguageModelV1,
   LanguageModelV1CallWarning,
   LanguageModelV1FinishReason,
   LanguageModelV1LogProbs,
   LanguageModelV1StreamPart,
-  UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
-import {
+import type {
   FetchFunction,
   ParseResult,
+} from '@ai-toolkit/provider-utils';
+import {
   combineHeaders,
   createEventSourceResponseHandler,
   createJsonResponseHandler,
@@ -18,7 +22,7 @@ import { z } from 'zod';
 import { convertToOpenAICompletionPrompt } from './convert-to-openai-completion-prompt';
 import { mapOpenAICompletionLogProbs } from './map-openai-completion-logprobs';
 import { mapOpenAIFinishReason } from './map-openai-finish-reason';
-import {
+import type {
   OpenAICompletionModelId,
   OpenAICompletionSettings,
 } from './openai-completion-settings';

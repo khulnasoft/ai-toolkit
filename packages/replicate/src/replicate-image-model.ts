@@ -3,8 +3,10 @@ import type {
   ImageModelV1CallWarning,
 } from '@ai-toolkit/provider';
 import type { Resolvable } from '@ai-toolkit/provider-utils';
-import {
+import type {
   FetchFunction,
+} from '@ai-toolkit/provider-utils';
+import {
   combineHeaders,
   createBinaryResponseHandler,
   createJsonResponseHandler,
@@ -14,7 +16,7 @@ import {
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
 import { replicateFailedResponseHandler } from './replicate-error';
-import {
+import type {
   ReplicateImageModelId,
   ReplicateImageSettings,
 } from './replicate-image-settings';

@@ -1,4 +1,5 @@
-import { JSONValue, formatDataStreamPart } from '@ai-toolkit/ui-utils';
+import { formatDataStreamPart } from '@ai-toolkit/ui-utils';
+import type { JSONValue } from '@ai-toolkit/ui-utils';
 import { HANGING_STREAM_WARNING_TIME_MS } from '../util/constants';
 
 /**

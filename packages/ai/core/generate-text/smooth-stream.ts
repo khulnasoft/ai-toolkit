@@ -1,6 +1,6 @@
 import { delay as originalDelay } from '@ai-toolkit/provider-utils';
-import { TextStreamPart } from './stream-text-result';
-import { ToolSet } from './tool-set';
+import type { TextStreamPart } from './stream-text-result';
+import type { ToolSet } from './tool-set';
 import { InvalidArgumentError } from '@ai-toolkit/provider';
 
 const CHUNKING_REGEXPS = {

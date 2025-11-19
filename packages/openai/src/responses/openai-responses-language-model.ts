@@ -1,4 +1,4 @@
-import {
+import type {
   LanguageModelV1,
   LanguageModelV1CallWarning,
   LanguageModelV1FinishReason,
@@ -10,16 +10,18 @@ import {
   createJsonResponseHandler,
   generateId,
   parseProviderOptions,
-  ParseResult,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
+import type {
+  ParseResult,
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAIConfig } from '../openai-config';
+import type { OpenAIConfig } from '../openai-config';
 import { openaiFailedResponseHandler } from '../openai-error';
 import { convertToOpenAIResponsesMessages } from './convert-to-openai-responses-messages';
 import { mapOpenAIResponseFinishReason } from './map-openai-responses-finish-reason';
 import { prepareResponsesTools } from './openai-responses-prepare-tools';
-import { OpenAIResponsesModelId } from './openai-responses-settings';
+import type { OpenAIResponsesModelId } from './openai-responses-settings';
 
 export class OpenAIResponsesLanguageModel implements LanguageModelV1 {
   readonly specificationVersion = 'v1';

@@ -1,4 +1,4 @@
-import { Message } from '@ai-toolkit/ui-utils';
+import type { Message } from '@ai-toolkit/ui-utils';
 
 /**
  * Appends a client message to the messages array.

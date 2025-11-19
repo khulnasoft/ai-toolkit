@@ -1,4 +1,5 @@
-import { DataStreamPartType, parseDataStreamPart } from './data-stream-parts';
+import type { DataStreamPartType } from './data-stream-parts';
+import { parseDataStreamPart } from './data-stream-parts';
 
 const NEWLINE = '\n'.charCodeAt(0);
 

@@ -1,4 +1,4 @@
-import {
+import type {
   TranscriptionModelV1,
   TranscriptionModelV1CallOptions,
   TranscriptionModelV1CallWarning,
@@ -11,9 +11,9 @@ import {
   postFormDataToApi,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod';
-import { OpenAIConfig } from './openai-config';
+import type { OpenAIConfig } from './openai-config';
 import { openaiFailedResponseHandler } from './openai-error';
-import {
+import type {
   OpenAITranscriptionModelId,
   OpenAITranscriptionModelOptions,
 } from './openai-transcription-settings';
