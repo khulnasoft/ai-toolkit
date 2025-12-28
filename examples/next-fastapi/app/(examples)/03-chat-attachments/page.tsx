@@ -5,6 +5,7 @@ import { Card } from '@/app/components';
 import { getTextFromDataUrl } from '@ai-toolkit/ui-utils';
 import { useChat } from '@ai-toolkit/react';
 import { useRef, useState } from 'react';
+import DOMPurify from 'dompurify';
 
 export default function Page() {
   const { messages, input, handleSubmit, handleInputChange, status } = useChat({
@@ -35,7 +36,7 @@ export default function Page() {
                     />
                   ) : attachment.contentType?.includes('text/') ? (
                     <div className="w-32 h-24 p-2 overflow-hidden text-xs border rounded-md ellipsis text-zinc-500">
-                      {getTextFromDataUrl(attachment.url)}
+                      {DOMPurify.sanitize(getTextFromDataUrl(attachment.url))}
                     </div>
                   ) : null,
                 )}
@@ -70,7 +71,7 @@ export default function Page() {
                     <div key={attachment.name}>
                       <img
                         className="w-24 rounded-md"
-                        src={URL.createObjectURL(attachment)}
+                        src={validateFileType(attachment) ? URL.createObjectURL(attachment) : ''}
                         alt={attachment.name}
                       />
                       <span className="text-sm text-zinc-500">
