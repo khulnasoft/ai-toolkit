@@ -1,152 +1,129 @@
 #!/usr/bin/env tsx
 
-import * as https from 'https';
-
-/**
- * Fetches the raw HTML text from the given URL using https.
- */
-function fetchPage(url: string, retries = 10, delay = 4000): Promise<string> {
-  return new Promise((resolve, reject) => {
-    https
-      .get(url, res => {
-        if (res.statusCode === 429 && retries > 0) {
-          // Handle rate limiting with exponential backoff
-          const retryDelay = delay * 2;
-          console.log(`Rate limited, retrying in ${delay}ms...`);
-          setTimeout(() => {
-            fetchPage(url, retries - 1, retryDelay)
-              .then(resolve)
-              .catch(reject);
-          }, delay);
-          return;
-        }
-
-        if (res.statusCode === 403 && retries > 0) {
-          // Handle forbidden errors (might be temporary blocks) with exponential backoff
-          const retryDelay = delay * 2;
-          console.log(`Request forbidden, retrying in ${delay}ms...`);
-          setTimeout(() => {
-            fetchPage(url, retries - 1, retryDelay)
-              .then(resolve)
-              .catch(reject);
-          }, delay);
-          return;
-        }
-
-        if (res.statusCode !== 200) {
-          reject(
-            new Error(`Failed to fetch ${url}. Status code: ${res.statusCode}`),
-          );
-          return;
-        }
-
-        let rawData = '';
-        res.on('data', chunk => (rawData += chunk));
-        res.on('end', () => resolve(rawData));
-      })
-      .on('error', err => reject(err));
-  });
-}
-
-/**
- * Fetches package download stats from the npm package page using web scraping
- */
-async function fetchPackageStats(
-  packageName: string,
-): Promise<{ weekly: number }> {
-  const url = `https://www.npmjs.com/package/${encodeURIComponent(packageName)}`;
-
-  try {
-    const html = await fetchPage(url);
-    const weeklyDownloads = parseWeeklyDownloads(html);
-    return { weekly: weeklyDownloads };
-  } catch (error) {
-    console.error(`Failed to fetch stats for ${packageName}:`, error);
-    return { weekly: 0 };
-  }
-}
-
-/**
- * Extracts weekly downloads from the npm package page
- * using a regex-based search on the HTML.
- */
-function parseWeeklyDownloads(html: string): number {
-  // Look for the weekly downloads number in the new HTML structure
-  const weeklyDownloadsRegex =
-    /Weekly Downloads<\/h3>.*?<p[^>]*>([0-9,]+)<\/p>/s;
-  const match = html.match(weeklyDownloadsRegex);
-
-  if (!match) {
-    return 0;
-  }
-
-  const downloadsStr = match[1].replace(/[^0-9]/g, ''); // remove commas
-  return parseInt(downloadsStr, 10) || 0;
-}
-
 /**
  * Main execution function.
  */
 async function main() {
   const packages = [
-    '@ai-toolkit/openai',
-    '@ai-toolkit/openai-compatible',
-    '@ai-toolkit/azure',
-    '@ai-toolkit/anthropic',
     '@ai-toolkit/amazon-bedrock',
-    '@ai-toolkit/google',
-    '@ai-toolkit/google-vertex',
-    '@ai-toolkit/mistral',
-    '@ai-toolkit/xai',
-    '@ai-toolkit/togetherai',
-    '@langdb/khulnasoft-provider',
+    '@ai-toolkit/anthropic',
+    '@ai-toolkit/assemblyai',
+    '@ai-toolkit/azure',
+    '@ai-toolkit/baseten',
+    '@ai-toolkit/cerebras',
     '@ai-toolkit/cohere',
-    '@ai-toolkit/fireworks',
+    '@ai-toolkit/deepgram',
     '@ai-toolkit/deepinfra',
     '@ai-toolkit/deepseek',
-    '@ai-toolkit/cerebras',
+    '@ai-toolkit/elevenlabs',
+    '@ai-toolkit/fal',
+    '@ai-toolkit/fireworks',
+    '@ai-toolkit/gladia',
+    '@ai-toolkit/google',
+    '@ai-toolkit/google-vertex',
     '@ai-toolkit/groq',
+    '@ai-toolkit/huggingface',
+    '@ai-toolkit/hume',
+    '@ai-toolkit/lmnt',
+    '@ai-toolkit/luma',
+    '@ai-toolkit/mistral',
+    '@ai-toolkit/openai',
+    '@ai-toolkit/openai-compatible',
+    '@ai-toolkit/perplexity',
     '@ai-toolkit/replicate',
+    '@ai-toolkit/revai',
+    '@ai-toolkit/togetherai',
+    '@ai-toolkit/khulnasoft',
+    '@ai-toolkit/xai',
 
     'ollama-ai-provider',
-    'chrome-ai',
-    '@portkey-ai/khulnasoft-provider',
+    '@portkey-ai/vercel-provider',
     'workers-ai-provider',
     '@openrouter/ai-toolkit-provider',
   ];
   const results: Array<{
     package: string;
-    'weekly downloads': number;
-    percentage: string;
+    'past week': number;
+    previous: number;
+    diff: number;
+    '%': string;
+    'previous %': string;
+    'diff %': string;
   }> = [];
+
+  // timestamps
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  const yesterdayTimestamp = d.toISOString().split('T')[0];
+  d.setDate(d.getDate() - 6);
+  const sevenDaysAgoTimestamp = d.toISOString().split('T')[0];
+  d.setDate(d.getDate() - 1);
+  const eightDaysAgoTimestamp = d.toISOString().split('T')[0];
+  d.setDate(d.getDate() - 6);
+  const fourteenDaysAgoTimestamp = d.toISOString().split('T')[0];
+
+  console.log(
+    `Fetching download stats from ${sevenDaysAgoTimestamp} to ${yesterdayTimestamp} and ${fourteenDaysAgoTimestamp} to ${eightDaysAgoTimestamp}...`,
+  );
 
   try {
     for (const pkg of packages) {
-      const stats = await fetchPackageStats(pkg);
+      console.log(
+        `Fetching stats from https://api.npmjs.org/downloads/point/${sevenDaysAgoTimestamp}:${yesterdayTimestamp}/${pkg} ...`,
+      );
+      const responseLastWeek = await fetchWithRetry(
+        `https://api.npmjs.org/downloads/point/${sevenDaysAgoTimestamp}:${yesterdayTimestamp}/${pkg}`,
+      );
+      const dataLastWeek = await responseLastWeek.json();
+
+      console.log(
+        `Fetching stats from https://api.npmjs.org/downloads/point/${fourteenDaysAgoTimestamp}:${eightDaysAgoTimestamp}/${pkg} ...`,
+      );
+      const responsePrevWeek = await fetchWithRetry(
+        `https://api.npmjs.org/downloads/point/${fourteenDaysAgoTimestamp}:${eightDaysAgoTimestamp}/${pkg}`,
+      );
+      const dataPrevWeek = await responsePrevWeek.json();
+
       results.push({
         package: pkg,
-        'weekly downloads': stats.weekly,
-        percentage: '0%', // Initial placeholder
+        'past week': dataLastWeek.downloads || 0,
+        '%': '0%', // Initial placeholder
+        previous: dataPrevWeek.downloads || 0,
+        'previous %': '0%', // Initial placeholder
+        diff: (dataLastWeek.downloads || 0) - (dataPrevWeek.downloads || 0),
+        'diff %': '0%', // Initial placeholder
       });
-
-      // Add a small delay between requests to be respectful to the server
-      await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
     // Calculate total downloads
-    const totalDownloads = results.reduce(
-      (sum, item) => sum + item['weekly downloads'],
+    const pastWeektotalDownloads = results.reduce(
+      (sum, item) => sum + item['past week'],
+      0,
+    );
+    const previousTotalDownloads = results.reduce(
+      (sum, item) => sum + item['previous'],
       0,
     );
 
     // Update percentages
     results.forEach(item => {
-      const percentage = (item['weekly downloads'] / totalDownloads) * 100;
-      item['percentage'] = `${percentage.toFixed(1)}%`;
+      const pastWeekPercentage =
+        pastWeektotalDownloads > 0
+          ? (item['past week'] / pastWeektotalDownloads) * 100
+          : 0;
+      item['%'] = `${pastWeekPercentage.toFixed(1)}%`;
+      const previousPercentage =
+        previousTotalDownloads > 0
+          ? (item['previous'] / previousTotalDownloads) * 100
+          : 0;
+      item['previous %'] = `${previousPercentage.toFixed(1)}%`;
+      const diffPercentage = pastWeekPercentage - previousPercentage;
+      item['diff %'] =
+        `${diffPercentage >= 0 ? '+' : ''}${diffPercentage.toFixed(1)}%`;
     });
 
-    // Sort results by weekly downloads in descending order
-    results.sort((a, b) => b['weekly downloads'] - a['weekly downloads']);
+    // Sort results by past week in descending order
+    results.sort((a, b) => b['past week'] - a['past week']);
 
     console.table(results);
   } catch (err) {
@@ -155,3 +132,45 @@ async function main() {
 }
 
 main();
+
+function fetchWithRetry(
+  url: string,
+  options: RequestInit = {},
+  retries = 3,
+  backoff = 3000,
+): Promise<Response> {
+  return new Promise((resolve, reject) => {
+    const attemptFetch = (n: number) => {
+      fetch(url, options)
+        .then(response => {
+          if (!response.ok) {
+            if (n > 0) {
+              console.warn(
+                `Fetch failed for ${url}. Retrying in ${backoff}ms... (${n} retries left)`,
+              );
+              setTimeout(() => attemptFetch(n - 1), backoff);
+            } else {
+              reject(
+                new Error(`Failed to fetch ${url} after multiple attempts.`),
+              );
+            }
+          } else {
+            setTimeout(() => resolve(response), 1000);
+          }
+        })
+        .catch(err => {
+          if (n > 0) {
+            console.warn(
+              `Fetch error for ${url}: ${err}. Retrying in ${backoff}ms... (${n} retries left)`,
+            );
+            setTimeout(() => attemptFetch(n - 1), backoff);
+          } else {
+            reject(
+              new Error(`Failed to fetch ${url} after multiple attempts.`),
+            );
+          }
+        });
+    };
+    attemptFetch(retries);
+  });
+}

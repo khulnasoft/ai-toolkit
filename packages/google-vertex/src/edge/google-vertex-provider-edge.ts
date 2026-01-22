@@ -1,15 +1,11 @@
-import { resolve } from '@ai-toolkit/provider-utils';
+import { loadOptionalSetting, resolve } from '@ai-toolkit/provider-utils';
 import {
   createVertex as createVertexOriginal,
-} from '../google-vertex-provider';
-import type {
   GoogleVertexProvider,
   GoogleVertexProviderSettings as GoogleVertexProviderSettingsOriginal,
 } from '../google-vertex-provider';
 import {
   generateAuthToken,
-} from './google-vertex-auth-edge';
-import type {
   GoogleCredentials,
 } from './google-vertex-auth-edge';
 
@@ -28,6 +24,15 @@ export interface GoogleVertexProviderSettings
 export function createVertex(
   options: GoogleVertexProviderSettings = {},
 ): GoogleVertexProvider {
+  const apiKey = loadOptionalSetting({
+    settingValue: options.apiKey,
+    environmentVariableName: 'GOOGLE_VERTEX_API_KEY',
+  });
+
+  if (apiKey) {
+    return createVertexOriginal(options);
+  }
+
   return createVertexOriginal({
     ...options,
     headers: async () => ({

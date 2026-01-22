@@ -1,68 +1,53 @@
-import type {
-  EmbeddingModelV1,
-  LanguageModelV1,
-  ProviderV1,
-} from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
-} from '@ai-toolkit/provider-utils';
 import {
+  EmbeddingModelV3,
+  LanguageModelV3,
+  NoSuchModelError,
+  ProviderV3,
+} from '@ai-toolkit/provider';
+import {
+  FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
 import { MistralChatLanguageModel } from './mistral-chat-language-model';
-import type {
-  MistralChatModelId,
-  MistralChatSettings,
-} from './mistral-chat-settings';
+import { MistralChatModelId } from './mistral-chat-options';
 import { MistralEmbeddingModel } from './mistral-embedding-model';
-import type {
-  MistralEmbeddingModelId,
-  MistralEmbeddingSettings,
-} from './mistral-embedding-settings';
+import { MistralEmbeddingModelId } from './mistral-embedding-options';
+import { VERSION } from './version';
 
-export interface MistralProvider extends ProviderV1 {
-  (
-    modelId: MistralChatModelId,
-    settings?: MistralChatSettings,
-  ): LanguageModelV1;
+export interface MistralProvider extends ProviderV3 {
+  (modelId: MistralChatModelId): LanguageModelV3;
 
   /**
 Creates a model for text generation.
 */
-  languageModel(
-    modelId: MistralChatModelId,
-    settings?: MistralChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: MistralChatModelId): LanguageModelV3;
 
   /**
 Creates a model for text generation.
 */
-  chat(
-    modelId: MistralChatModelId,
-    settings?: MistralChatSettings,
-  ): LanguageModelV1;
+  chat(modelId: MistralChatModelId): LanguageModelV3;
 
   /**
-@deprecated Use `textEmbeddingModel()` instead.
+   * Creates a model for text embeddings.
    */
-  embedding(
-    modelId: MistralEmbeddingModelId,
-    settings?: MistralEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  embedding(modelId: MistralEmbeddingModelId): EmbeddingModelV3;
 
   /**
-@deprecated Use `textEmbeddingModel()` instead.
+   * Creates a model for text embeddings.
    */
-  textEmbedding(
-    modelId: MistralEmbeddingModelId,
-    settings?: MistralEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  embeddingModel: (modelId: MistralEmbeddingModelId) => EmbeddingModelV3;
 
-  textEmbeddingModel: (
-    modelId: MistralEmbeddingModelId,
-    settings?: MistralEmbeddingSettings,
-  ) => EmbeddingModelV1<string>;
+  /**
+   * @deprecated Use `embedding` instead.
+   */
+  textEmbedding(modelId: MistralEmbeddingModelId): EmbeddingModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: MistralEmbeddingModelId): EmbeddingModelV3;
 }
 
 export interface MistralProviderSettings {
@@ -88,6 +73,8 @@ Custom fetch implementation. You can use it as a middleware to intercept request
 or to provide a custom fetch implementation for e.g. testing.
     */
   fetch?: FetchFunction;
+
+  generateId?: () => string;
 }
 
 /**
@@ -99,55 +86,57 @@ export function createMistral(
   const baseURL =
     withoutTrailingSlash(options.baseURL) ?? 'https://api.mistral.ai/v1';
 
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'MISTRAL_API_KEY',
-      description: 'Mistral',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'MISTRAL_API_KEY',
+          description: 'Mistral',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/mistral/${VERSION}`,
+    );
 
-  const createChatModel = (
-    modelId: MistralChatModelId,
-    settings: MistralChatSettings = {},
-  ) =>
-    new MistralChatLanguageModel(modelId, settings, {
+  const createChatModel = (modelId: MistralChatModelId) =>
+    new MistralChatLanguageModel(modelId, {
       provider: 'mistral.chat',
       baseURL,
       headers: getHeaders,
       fetch: options.fetch,
+      generateId: options.generateId,
     });
 
-  const createEmbeddingModel = (
-    modelId: MistralEmbeddingModelId,
-    settings: MistralEmbeddingSettings = {},
-  ) =>
-    new MistralEmbeddingModel(modelId, settings, {
+  const createEmbeddingModel = (modelId: MistralEmbeddingModelId) =>
+    new MistralEmbeddingModel(modelId, {
       provider: 'mistral.embedding',
       baseURL,
       headers: getHeaders,
       fetch: options.fetch,
     });
 
-  const provider = function (
-    modelId: MistralChatModelId,
-    settings?: MistralChatSettings,
-  ) {
+  const provider = function (modelId: MistralChatModelId) {
     if (new.target) {
       throw new Error(
         'The Mistral model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createChatModel;
   provider.chat = createChatModel;
   provider.embedding = createEmbeddingModel;
+  provider.embeddingModel = createEmbeddingModel;
   provider.textEmbedding = createEmbeddingModel;
   provider.textEmbeddingModel = createEmbeddingModel;
+
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
+  };
 
   return provider;
 }

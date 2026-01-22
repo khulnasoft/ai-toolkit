@@ -10,11 +10,11 @@ Streams text generations from a language model.
 You can use the streamText function for interactive use cases such as chat bots and other real-time applications. You can also generate UI components with tools.
 
 ```ts
-import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
+__PROVIDER_IMPORT__;
 
 const { textStream } = streamText({
-  model: openai('gpt-4o'),
+  model: __MODEL__,
   prompt: 'Invent a new holiday and describe its traditions.',
 });
 
@@ -38,27 +38,27 @@ To see `streamText` in action, check out [these examples](#examples).
     {
       name: 'model',
       type: 'LanguageModel',
-      description: "The language model to use. Example: openai('gpt-4-turbo')",
+      description: "The language model to use. Example: openai('gpt-4.1')",
     },
     {
       name: 'system',
-      type: 'string',
+      type: 'string | SystemModelMessage | SystemModelMessage[]',
       description:
         'The system prompt to use that specifies the behavior of the model.',
     },
     {
       name: 'prompt',
-      type: 'string',
+      type: 'string | Array<SystemModelMessage | UserModelMessage | AssistantModelMessage | ToolModelMessage>',
       description: 'The input prompt to generate the text from.',
     },
     {
       name: 'messages',
-      type: 'Array<CoreSystemMessage | CoreUserMessage | CoreAssistantMessage | CoreToolMessage> | Array<UIMessage>',
+      type: 'Array<SystemModelMessage | UserModelMessage | AssistantModelMessage | ToolModelMessage>',
       description:
         'A list of messages that represent a conversation. Automatically converts UI messages from the useChat hook.',
       properties: [
         {
-          type: 'CoreSystemMessage',
+          type: 'SystemModelMessage',
           parameters: [
             {
               name: 'role',
@@ -73,7 +73,7 @@ To see `streamText` in action, check out [these examples](#examples).
           ],
         },
         {
-          type: 'CoreUserMessage',
+          type: 'UserModelMessage',
           parameters: [
             {
               name: 'role',
@@ -115,10 +115,10 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The image content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
                       isOptional: true,
-                      description: 'The mime type of the image. Optional.',
+                      description: 'The IANA media type of the image.',
                     },
                   ],
                 },
@@ -137,9 +137,9 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The file content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'The mime type of the file.',
+                      description: 'The IANA media type of the file.',
                     },
                   ],
                 },
@@ -148,7 +148,7 @@ To see `streamText` in action, check out [these examples](#examples).
           ],
         },
         {
-          type: 'CoreAssistantMessage',
+          type: 'AssistantModelMessage',
           parameters: [
             {
               name: 'role',
@@ -157,7 +157,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'content',
-              type: 'string | Array<TextPart | ReasoningPart | RedactedReasoningPart | ToolCallPart>',
+              type: 'string | Array<TextPart | FilePart | ReasoningPart | ToolCallPart>',
               description: 'The content of the message.',
               properties: [
                 {
@@ -181,31 +181,39 @@ To see `streamText` in action, check out [these examples](#examples).
                     {
                       name: 'type',
                       type: "'reasoning'",
+                      description: 'The type of the reasoning part.',
                     },
                     {
                       name: 'text',
                       type: 'string',
                       description: 'The reasoning text.',
                     },
-                    {
-                      name: 'signature',
-                      type: 'string',
-                      isOptional: true,
-                      description: 'The signature for the reasoning.',
-                    },
                   ],
                 },
                 {
-                  type: 'RedactedReasoningPart',
+                  type: 'FilePart',
                   parameters: [
                     {
                       name: 'type',
-                      type: "'redacted-reasoning'",
+                      type: "'file'",
+                      description: 'The type of the message part.',
                     },
                     {
                       name: 'data',
+                      type: 'string | Uint8Array | Buffer | ArrayBuffer | URL',
+                      description:
+                        'The file content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
+                    },
+                    {
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'The redacted data.',
+                      description: 'The IANA media type of the file.',
+                    },
+                    {
+                      name: 'filename',
+                      type: 'string',
+                      description: 'The name of the file.',
+                      isOptional: true,
                     },
                   ],
                 },
@@ -229,7 +237,7 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The name of the tool, which typically would be the name of the function.',
                     },
                     {
-                      name: 'args',
+                      name: 'input',
                       type: 'object based on zod schema',
                       description:
                         'Parameters generated by the model to be used by the tool.',
@@ -241,7 +249,7 @@ To see `streamText` in action, check out [these examples](#examples).
           ],
         },
         {
-          type: 'CoreToolMessage',
+          type: 'ToolModelMessage',
           parameters: [
             {
               name: 'role',
@@ -311,7 +319,7 @@ To see `streamText` in action, check out [these examples](#examples).
                 'Information about the purpose of the tool including details on how and when it can be used by the model.',
             },
             {
-              name: 'parameters',
+              name: 'inputSchema',
               type: 'Zod Schema | JSON Schema',
               description:
                 'The schema of the input that the tool expects. The language model will use this to generate the input. It is also used to validate the output of the language model. Use descriptions to make the input understandable for the language model. You can either pass in a Zod schema or a JSON schema (using the `jsonSchema` function).',
@@ -334,7 +342,7 @@ To see `streamText` in action, check out [these examples](#examples).
                     },
                     {
                       name: 'messages',
-                      type: 'CoreMessage[]',
+                      type: 'ModelMessage[]',
                       description:
                         'Messages that were sent to the language model to initiate the response that contained the tool call. The messages do not include the system prompt nor the assistant response that contained the tool call.',
                     },
@@ -360,7 +368,7 @@ To see `streamText` in action, check out [these examples](#examples).
         'The tool choice setting. It specifies how tools are selected for execution. The default is "auto". "none" disables tool execution. "required" requires tools to be executed. { "type": "tool", "toolName": string } specifies a specific tool to execute.',
     },
     {
-      name: 'maxTokens',
+      name: 'maxOutputTokens',
       type: 'number',
       isOptional: true,
       description: 'Maximum number of tokens to generate.',
@@ -429,6 +437,13 @@ To see `streamText` in action, check out [these examples](#examples).
         'An optional abort signal that can be used to cancel the call.',
     },
     {
+      name: 'timeout',
+      type: 'number | { totalMs?: number; stepMs?: number; chunkMs?: number }',
+      isOptional: true,
+      description:
+        'Timeout in milliseconds. Can be specified as a number or as an object with totalMs, stepMs, and/or chunkMs properties. totalMs sets the total timeout for the entire call. stepMs sets the timeout for each individual step (LLM call), useful for multi-step generations. chunkMs sets the timeout between stream chunks - the call will abort if no new chunk is received within this duration, useful for detecting stalled streams. Can be used alongside abortSignal.',
+    },
+    {
       name: 'headers',
       type: 'Record<string, string>',
       isOptional: true,
@@ -436,24 +451,11 @@ To see `streamText` in action, check out [these examples](#examples).
         'Additional HTTP headers to be sent with the request. Only applicable for HTTP-based providers.',
     },
     {
-      name: 'maxSteps',
-      type: 'number',
-      isOptional: true,
-      description:
-        'Maximum number of sequential LLM calls (steps), e.g. when you use tool calls. A maximum number is required to prevent infinite loops in the case of misconfigured tools. By default, it is set to 1.',
-    },
-    {
       name: 'experimental_generateMessageId',
       type: '() => string',
       isOptional: true,
       description:
         'Function used to generate a unique ID for each message. This is an experimental feature.',
-    },
-    {
-      name: 'experimental_continueSteps',
-      type: 'boolean',
-      isOptional: true,
-      description: 'Enable or disable continue steps. Disabled by default.',
     },
     {
       name: 'experimental_telemetry',
@@ -504,13 +506,6 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
-      name: 'toolCallStreaming',
-      type: 'boolean',
-      isOptional: true,
-      description:
-        'Enable streaming of tool call deltas as they are generated. Disabled by default.',
-    },
-    {
       name: 'experimental_transform',
       type: 'StreamTextTransform | Array<StreamTextTransform>',
       isOptional: true,
@@ -547,22 +542,161 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
+      name: 'includeRawChunks',
+      type: 'boolean',
+      isOptional: true,
+      description:
+        'Whether to include raw chunks from the provider in the stream. When enabled, you will receive raw chunks with type "raw" that contain the unprocessed data from the provider. This allows access to cutting-edge provider features not yet wrapped by the AI TOOLKIT. Defaults to false.',
+    },
+    {
       name: 'providerOptions',
-      type: 'Record<string,Record<string,JSONValue>> | undefined',
+      type: 'Record<string,JSONObject> | undefined',
       isOptional: true,
       description:
         'Provider-specific options. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
     },
     {
-      name: 'experimental_activeTools',
+      name: 'activeTools',
       type: 'Array<TOOLNAME> | undefined',
       isOptional: true,
       description:
         'The tools that are currently active. All tools are active by default.',
     },
     {
+      name: 'stopWhen',
+      type: 'StopCondition<TOOLS> | Array<StopCondition<TOOLS>>',
+      isOptional: true,
+      description:
+        'Condition for stopping the generation when there are tool results in the last step. When the condition is an array, any of the conditions can be met to stop the generation. Default: stepCountIs(1).',
+    },
+    {
+      name: 'prepareStep',
+      type: '(options: PrepareStepOptions) => PrepareStepResult<TOOLS> | Promise<PrepareStepResult<TOOLS>>',
+      isOptional: true,
+      description:
+        'Optional function that you can use to provide different settings for a step. You can modify the model, tool choices, active tools, system prompt, and input messages for each step.',
+      properties: [
+        {
+          type: 'PrepareStepFunction<TOOLS>',
+          parameters: [
+            {
+              name: 'options',
+              type: 'object',
+              description: 'The options for the step.',
+              properties: [
+                {
+                  type: 'PrepareStepOptions',
+                  parameters: [
+                    {
+                      name: 'steps',
+                      type: 'Array<StepResult<TOOLS>>',
+                      description: 'The steps that have been executed so far.',
+                    },
+                    {
+                      name: 'stepNumber',
+                      type: 'number',
+                      description:
+                        'The number of the step that is being executed.',
+                    },
+                    {
+                      name: 'model',
+                      type: 'LanguageModel',
+                      description: 'The model that is being used.',
+                    },
+                    {
+                      name: 'messages',
+                      type: 'Array<ModelMessage>',
+                      description:
+                        'The messages that will be sent to the model for the current step.',
+                    },
+                    {
+                      name: 'experimental_context',
+                      type: 'unknown',
+                      isOptional: true,
+                      description:
+                        'The context passed via the experimental_context setting (experimental).',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'PrepareStepResult<TOOLS>',
+          description:
+            'Return value that can modify settings for the current step.',
+          parameters: [
+            {
+              name: 'model',
+              type: 'LanguageModel',
+              isOptional: true,
+              description:
+                'Optionally override which LanguageModel instance is used for this step.',
+            },
+            {
+              name: 'toolChoice',
+              type: 'ToolChoice<TOOLS>',
+              isOptional: true,
+              description:
+                'Optionally set which tool the model must call, or provide tool call configuration for this step.',
+            },
+            {
+              name: 'activeTools',
+              type: 'Array<keyof TOOLS>',
+              isOptional: true,
+              description:
+                'If provided, only these tools are enabled/available for this step.',
+            },
+            {
+              name: 'system',
+              type: 'string | SystemModelMessage | SystemModelMessage[]',
+              isOptional: true,
+              description:
+                'Optionally override the system message(s) sent to the model for this step.',
+            },
+            {
+              name: 'messages',
+              type: 'Array<ModelMessage>',
+              isOptional: true,
+              description:
+                'Optionally override the full set of messages sent to the model for this step.',
+            },
+            {
+              name: 'experimental_context',
+              type: 'unknown',
+              isOptional: true,
+              description:
+                'Context that is passed into tool execution. Experimental. Changing the context will affect the context in this step and all subsequent steps.',
+            },
+            {
+              name: 'providerOptions',
+              type: 'ProviderOptions',
+              isOptional: true,
+              description:
+                'Additional provider-specific options for this step. Can be used to pass provider-specific configuration such as container IDs for Anthropic code execution.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'experimental_context',
+      type: 'unknown',
+      isOptional: true,
+      description:
+        'Context that is passed into tool execution. Experimental (can break in patch releases).',
+    },
+    {
+      name: 'experimental_download',
+      type: '(requestedDownloads: Array<{ url: URL; isUrlSupportedByModel: boolean }>) => Promise<Array<null | { data: Uint8Array; mediaType?: string }>>',
+      isOptional: true,
+      description:
+        'Custom download function to control how URLs are fetched when they appear in prompts. By default, files are downloaded if the model does not support the URL for the given media type. Experimental feature. Return null to pass the URL directly to the model (when supported), or return downloaded content with data and media type.',
+    },
+    {
       name: 'experimental_repairToolCall',
-      type: '(options: ToolCallRepairOptions) => Promise<LanguageModelV1FunctionToolCall | null>',
+      type: '(options: ToolCallRepairOptions) => Promise<LanguageModelV3ToolCall | null>',
       isOptional: true,
       description:
         'A function that attempts to repair a tool call that failed to parse. Return either a repaired tool call or null if the tool call cannot be repaired.',
@@ -572,17 +706,17 @@ To see `streamText` in action, check out [these examples](#examples).
           parameters: [
             {
               name: 'system',
-              type: 'string | undefined',
+              type: 'string | SystemModelMessage | SystemModelMessage[] | undefined',
               description: 'The system prompt.',
             },
             {
               name: 'messages',
-              type: 'CoreMessage[]',
+              type: 'ModelMessage[]',
               description: 'The messages in the current generation step.',
             },
             {
               name: 'toolCall',
-              type: 'LanguageModelV1FunctionToolCall',
+              type: 'LanguageModelV3ToolCall',
               description: 'The tool call that failed to parse.',
             },
             {
@@ -598,7 +732,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'error',
-              type: 'NoSuchToolError | InvalidToolArgumentsError',
+              type: 'NoSuchToolError | InvalidToolInputError',
               description:
                 'The error that occurred while parsing the tool call.',
             },
@@ -626,12 +760,12 @@ To see `streamText` in action, check out [these examples](#examples).
                   parameters: [
                     {
                       name: 'type',
-                      type: "'text-delta'",
+                      type: "'text'",
                       description:
                         'The type to identify the object as text delta.',
                     },
                     {
-                      name: 'textDelta',
+                      name: 'text',
                       type: 'string',
                       description: 'The text delta.',
                     },
@@ -647,7 +781,7 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The type to identify the object as reasoning.',
                     },
                     {
-                      name: 'textDelta',
+                      name: 'text',
                       type: 'string',
                       description: 'The reasoning text delta.',
                     },
@@ -689,7 +823,7 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The name of the tool, which typically would be the name of the function.',
                     },
                     {
-                      name: 'args',
+                      name: 'input',
                       type: 'object based on zod schema',
                       description:
                         'Parameters generated by the model to be used by the tool.',
@@ -767,13 +901,13 @@ To see `streamText` in action, check out [these examples](#examples).
                         'The name of the tool, which typically would be the name of the function.',
                     },
                     {
-                      name: 'args',
+                      name: 'input',
                       type: 'object based on zod schema',
                       description:
                         'Parameters generated by the model to be used by the tool.',
                     },
                     {
-                      name: 'result',
+                      name: 'output',
                       type: 'any',
                       description:
                         'The result returned by the tool after execution has completed.',
@@ -806,10 +940,11 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
-      name: 'experimental_output',
+      name: 'output',
       type: 'Output',
       isOptional: true,
-      description: 'Experimental setting for generating structured outputs.',
+      description:
+        'Specification for parsing structured outputs from the LLM response.',
       properties: [
         {
           type: 'Output',
@@ -817,12 +952,14 @@ To see `streamText` in action, check out [these examples](#examples).
             {
               name: 'Output.text()',
               type: 'Output',
-              description: 'Forward text output.',
+              description:
+                'Output specification for text generation (default).',
             },
             {
               name: 'Output.object()',
               type: 'Output',
-              description: 'Generate a JSON object of type OBJECT.',
+              description:
+                'Output specification for typed object generation using schemas. When the model generates a text response, it will return an object that matches the schema.',
               properties: [
                 {
                   type: 'Options',
@@ -830,7 +967,113 @@ To see `streamText` in action, check out [these examples](#examples).
                     {
                       name: 'schema',
                       type: 'Schema<OBJECT>',
-                      description: 'The schema of the JSON object to generate.',
+                      description: 'The schema of the object to generate.',
+                    },
+                    {
+                      name: 'name',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional name of the output. Used by some providers for additional LLM guidance.',
+                    },
+                    {
+                      name: 'description',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional description of the output. Used by some providers for additional LLM guidance.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'Output.array()',
+              type: 'Output',
+              description:
+                'Output specification for array generation. When the model generates a text response, it will return an array of elements.',
+              properties: [
+                {
+                  type: 'Options',
+                  parameters: [
+                    {
+                      name: 'element',
+                      type: 'Schema<ELEMENT>',
+                      description:
+                        'The schema of the array elements to generate.',
+                    },
+                    {
+                      name: 'name',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional name of the output. Used by some providers for additional LLM guidance.',
+                    },
+                    {
+                      name: 'description',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional description of the output. Used by some providers for additional LLM guidance.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'Output.choice()',
+              type: 'Output',
+              description:
+                'Output specification for choice generation. When the model generates a text response, it will return a one of the choice options.',
+              properties: [
+                {
+                  type: 'Options',
+                  parameters: [
+                    {
+                      name: 'options',
+                      type: 'Array<string>',
+                      description: 'The available choices.',
+                    },
+                    {
+                      name: 'name',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional name of the output. Used by some providers for additional LLM guidance.',
+                    },
+                    {
+                      name: 'description',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional description of the output. Used by some providers for additional LLM guidance.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'Output.json()',
+              type: 'Output',
+              description:
+                'Output specification for unstructured JSON generation. When the model generates a text response, it will return a JSON object.',
+              properties: [
+                {
+                  type: 'Options',
+                  parameters: [
+                    {
+                      name: 'name',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional name of the output. Used by some providers for additional LLM guidance.',
+                    },
+                    {
+                      name: 'description',
+                      type: 'string',
+                      isOptional: true,
+                      description:
+                        'Optional description of the output. Used by some providers for additional LLM guidance.',
                     },
                   ],
                 },
@@ -857,33 +1100,102 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'finishReason',
-              type: '"stop" | "length" | "content-filter" | "tool-calls" | "error" | "other" | "unknown"',
+              type: '"stop" | "length" | "content-filter" | "tool-calls" | "error" | "other"',
               description:
-                'The reason the model finished generating the text for the step.',
+                'The unified finish reason why the generation finished.',
+            },
+            {
+              name: 'rawFinishReason',
+              type: 'string | undefined',
+              description:
+                'The raw reason why the generation finished (from the provider).',
             },
             {
               name: 'usage',
-              type: 'TokenUsage',
+              type: 'LanguageModelUsage',
               description: 'The token usage of the step.',
               properties: [
                 {
-                  type: 'TokenUsage',
+                  type: 'LanguageModelUsage',
                   parameters: [
                     {
-                      name: 'promptTokens',
-                      type: 'number',
-                      description: 'The total number of tokens in the prompt.',
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The total number of input (prompt) tokens used.',
                     },
                     {
-                      name: 'completionTokens',
-                      type: 'number',
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
                       description:
-                        'The total number of tokens in the completion.',
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
                       name: 'totalTokens',
-                      type: 'number',
-                      description: 'The total number of tokens generated.',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description:
+                        "Raw usage information from the provider. This is the provider's original usage information and may include additional fields.",
                     },
                   ],
                 },
@@ -895,7 +1207,7 @@ To see `streamText` in action, check out [these examples](#examples).
               description: 'The full text that has been generated.',
             },
             {
-              name: 'reasoning',
+              name: 'reasoningText',
               type: 'string | undefined',
               description:
                 'The reasoning text of the model (only available for some models).',
@@ -933,7 +1245,7 @@ To see `streamText` in action, check out [these examples](#examples).
                     },
                     {
                       name: 'providerMetadata',
-                      type: 'LanguageModelV1ProviderMetadata',
+                      type: 'SharedV2ProviderMetadata',
                       isOptional: true,
                       description:
                         'Additional provider metadata for the source.',
@@ -961,9 +1273,9 @@ To see `streamText` in action, check out [these examples](#examples).
                       description: 'File as a Uint8Array.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'MIME type of the file.',
+                      description: 'The IANA media type of the file.',
                     },
                   ],
                 },
@@ -1030,7 +1342,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'providerMetadata',
-              type: 'Record<string,Record<string,JSONValue>> | undefined',
+              type: 'Record<string,JSONObject> | undefined',
               isOptional: true,
               description:
                 'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
@@ -1051,32 +1363,143 @@ To see `streamText` in action, check out [these examples](#examples).
           parameters: [
             {
               name: 'finishReason',
-              type: '"stop" | "length" | "content-filter" | "tool-calls" | "error" | "other" | "unknown"',
-              description: 'The reason the model finished generating the text.',
+              type: '"stop" | "length" | "content-filter" | "tool-calls" | "error" | "other"',
+              description:
+                'The unified finish reason why the generation finished.',
+            },
+            {
+              name: 'rawFinishReason',
+              type: 'string | undefined',
+              description:
+                'The raw reason why the generation finished (from the provider).',
             },
             {
               name: 'usage',
-              type: 'TokenUsage',
-              description: 'The token usage of the generated text.',
+              type: 'LanguageModelUsage',
+              description: 'The token usage of last step.',
               properties: [
                 {
-                  type: 'TokenUsage',
+                  type: 'LanguageModelUsage',
                   parameters: [
                     {
-                      name: 'promptTokens',
-                      type: 'number',
-                      description: 'The total number of tokens in the prompt.',
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The total number of input (prompt) tokens used.',
                     },
                     {
-                      name: 'completionTokens',
-                      type: 'number',
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
                       description:
-                        'The total number of tokens in the completion.',
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
                       name: 'totalTokens',
-                      type: 'number',
-                      description: 'The total number of tokens generated.',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description:
+                        "Raw usage information from the provider. This is the provider's original usage information and may include additional fields.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'totalUsage',
+              type: 'LanguageModelUsage',
+              description: 'The total token usage from all steps.',
+              properties: [
+                {
+                  type: 'LanguageModelUsage',
+                  parameters: [
+                    {
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description: 'The number of input (prompt) tokens used.',
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of output (completion) tokens used.',
+                    },
+                    {
+                      name: 'totalTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The total number of tokens as reported by the provider. This number might be different from the sum of inputTokens and outputTokens and e.g. include reasoning tokens or other overhead.',
+                    },
+                    {
+                      name: 'reasoningTokens',
+                      type: 'number | undefined',
+                      isOptional: true,
+                      description: 'The number of reasoning tokens used.',
+                    },
+                    {
+                      name: 'cachedInputTokens',
+                      type: 'number | undefined',
+                      isOptional: true,
+                      description: 'The number of cached input tokens.',
                     },
                   ],
                 },
@@ -1084,7 +1507,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'providerMetadata',
-              type: 'Record<string,Record<string,JSONValue>> | undefined',
+              type: 'Record<string,JSONObject> | undefined',
               description:
                 'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
             },
@@ -1100,7 +1523,7 @@ To see `streamText` in action, check out [these examples](#examples).
                 'The reasoning text of the model (only available for some models).',
             },
             {
-              name: 'reasoningDetails',
+              name: 'reasoning',
               type: 'Array<ReasoningDetail>',
               description:
                 'The reasoning details of the model (only available for some models).',
@@ -1177,7 +1600,7 @@ To see `streamText` in action, check out [these examples](#examples).
                     },
                     {
                       name: 'providerMetadata',
-                      type: 'LanguageModelV1ProviderMetadata',
+                      type: 'SharedV2ProviderMetadata',
                       isOptional: true,
                       description:
                         'Additional provider metadata for the source.',
@@ -1205,9 +1628,9 @@ To see `streamText` in action, check out [these examples](#examples).
                       description: 'File as a Uint8Array.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'MIME type of the file.',
+                      description: 'The IANA media type of the file.',
                     },
                   ],
                 },
@@ -1278,6 +1701,30 @@ To see `streamText` in action, check out [these examples](#examples).
               description:
                 'Response information for every step. You can use this to get information about intermediate steps, such as the tool calls or the response headers.',
             },
+            {
+              name: 'experimental_context',
+              type: 'unknown',
+              description: 'The experimental context.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'onAbort',
+      type: '(event: OnAbortResult) => Promise<void> | void',
+      isOptional: true,
+      description:
+        'Callback that is called when a stream is aborted via AbortSignal. You can use it to perform cleanup operations.',
+      properties: [
+        {
+          type: 'OnAbortResult',
+          parameters: [
+            {
+              name: 'steps',
+              type: 'Array<StepResult>',
+              description: 'Details for all previously finished steps.',
+            },
           ],
         },
       ],
@@ -1290,107 +1737,202 @@ To see `streamText` in action, check out [these examples](#examples).
 <PropertiesTable
   content={[
     {
+      name: 'content',
+      type: 'Promise<Array<ContentPart<TOOLS>>>',
+      description: 'The content that was generated in the last step. Automatically consumes the stream.',
+    },
+    {
       name: 'finishReason',
-      type: "Promise<'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other' | 'unknown'>",
+      type: "PromiseLike<'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other'>",
       description:
-        'The reason why the generation finished. Resolved when the response is finished.',
+        'The reason why the generation finished. Automatically consumes the stream.',
+    },
+    {
+      name: 'rawFinishReason',
+      type: 'PromiseLike<string | undefined>',
+      description:
+        'The raw reason why the generation finished (from the provider).',
     },
     {
       name: 'usage',
-      type: 'Promise<CompletionTokenUsage>',
+      type: 'Promise<LanguageModelUsage>',
       description:
-        'The token usage of the generated text. Resolved when the response is finished.',
+        'The token usage of the last step. Automatically consumes the stream.',
       properties: [
         {
-          type: 'CompletionTokenUsage',
+          type: 'LanguageModelUsage',
           parameters: [
             {
-              name: 'promptTokens',
-              type: 'number',
-              description: 'The total number of tokens in the prompt.',
+              name: 'inputTokens',
+              type: 'number | undefined',
+              description: 'The number of input (prompt) tokens used.',
             },
             {
-              name: 'completionTokens',
-              type: 'number',
-              description: 'The total number of tokens in the completion.',
+              name: 'outputTokens',
+              type: 'number | undefined',
+              description: 'The number of output (completion) tokens used.',
             },
             {
               name: 'totalTokens',
-              type: 'number',
-              description: 'The total number of tokens generated.',
+              type: 'number | undefined',
+              description:
+                'The total number of tokens as reported by the provider. This number might be different from the sum of inputTokens and outputTokens and e.g. include reasoning tokens or other overhead.',
+            },
+            {
+              name: 'reasoningTokens',
+              type: 'number | undefined',
+              isOptional: true,
+              description: 'The number of reasoning tokens used.',
+            },
+            {
+              name: 'cachedInputTokens',
+              type: 'number | undefined',
+              isOptional: true,
+              description: 'The number of cached input tokens.',
             },
           ],
         },
       ],
     },
     {
+      name: 'totalUsage',
+      type: 'Promise<LanguageModelUsage>',
+      description: 'The total token usage of the generated response. When there are multiple steps, the usage is the sum of all step usages. Automatically consumes the stream.',
+      properties: [
+                  {
+                  type: 'LanguageModelUsage',
+                  parameters: [
+                    {
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description: 'The total number of input (prompt) tokens used.',
+                    },
+                    {
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
+                      description:
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description: 'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description: 'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'totalTokens',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description: 'Raw usage information from the provider. This is the provider\'s original usage information and may include additional fields.',
+                    },
+                  ],
+                },
+      ],
+    },
+    {
       name: 'providerMetadata',
-      type: 'Promise<Record<string,Record<string,JSONValue>> | undefined>',
+      type: 'Promise<ProviderMetadata | undefined>',
       description:
-        'Optional metadata from the provider. Resolved whe the response is finished. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
+        'Additional provider-specific metadata from the last step. Metadata is passed through from the provider to the AI TOOLKIT and enables provider-specific results that can be fully encapsulated in the provider.',
     },
     {
       name: 'text',
       type: 'Promise<string>',
       description:
-        'The full text that has been generated. Resolved when the response is finished.',
+        'The full text that has been generated. Automatically consumes the stream.',
     },
     {
       name: 'reasoning',
-      type: 'Promise<string | undefined>',
+      type: 'Promise<Array<ReasoningOutput>>',
       description:
-        'The reasoning text of the model (only available for some models). Resolved when the response is finished.',
-    },
-    {
-      name: 'reasoningDetails',
-      type: 'Promise<Array<ReasoningDetail>>',
-      description:
-        'The reasoning details of the model (only available for some models). Resolved when the response is finished.',
+        'The full reasoning that the model has generated in the last step. Automatically consumes the stream.',
       properties: [
         {
-          type: 'ReasoningDetail',
+          type: 'ReasoningOutput',
           parameters: [
             {
               name: 'type',
-              type: "'text'",
-              description: 'The type of the reasoning detail.',
+              type: "'reasoning'",
+              description: 'The type of the message part.',
             },
             {
               name: 'text',
               type: 'string',
-              description: 'The text content (only for type "text").',
+              description: 'The reasoning text.',
             },
             {
-              name: 'signature',
-              type: 'string',
+              name: 'providerMetadata',
+              type: 'SharedV2ProviderMetadata',
               isOptional: true,
-              description: 'Optional signature (only for type "text").',
-            },
-          ],
-        },
-        {
-          type: 'ReasoningDetail',
-          parameters: [
-            {
-              name: 'type',
-              type: "'redacted'",
-              description: 'The type of the reasoning detail.',
-            },
-            {
-              name: 'data',
-              type: 'string',
-              description:
-                'The redacted data content (only for type "redacted").',
+              description: 'Additional provider metadata for the source.',
             },
           ],
         },
       ],
     },
     {
+      name: 'reasoningText',
+      type: 'Promise<string | undefined>',
+      description:
+        'The reasoning text that the model has generated in the last step. Can be undefined if the model has only generated text. Automatically consumes the stream.',
+    },
+    {
       name: 'sources',
       type: 'Promise<Array<Source>>',
       description:
-        'Sources that have been used as input to generate the response. For multi-step generation, the sources are accumulated from all steps. Resolved when the response is finished.',
+        'Sources that have been used as input to generate the response. For multi-step generation, the sources are accumulated from all steps. Automatically consumes the stream.',
       properties: [
         {
           type: 'Source',
@@ -1419,7 +1961,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'providerMetadata',
-              type: 'LanguageModelV1ProviderMetadata',
+              type: 'SharedV2ProviderMetadata',
               isOptional: true,
               description: 'Additional provider metadata for the source.',
             },
@@ -1431,7 +1973,7 @@ To see `streamText` in action, check out [these examples](#examples).
       name: 'files',
       type: 'Promise<Array<GeneratedFile>>',
       description:
-        'Files that were generated in the final step. Resolved when the response is finished.',
+        'Files that were generated in the final step. Automatically consumes the stream.',
       properties: [
         {
           type: 'GeneratedFile',
@@ -1447,9 +1989,9 @@ To see `streamText` in action, check out [these examples](#examples).
               description: 'File as a Uint8Array.',
             },
             {
-              name: 'mimeType',
+              name: 'mediaType',
               type: 'string',
-              description: 'MIME type of the file.',
+              description: 'The IANA media type of the file.',
             },
           ],
         },
@@ -1457,24 +1999,23 @@ To see `streamText` in action, check out [these examples](#examples).
     },
     {
       name: 'toolCalls',
-      type: 'Promise<ToolCall[]>',
+      type: 'Promise<TypedToolCall<TOOLS>[]>',
       description:
-        'The tool calls that have been executed. Resolved when the response is finished.',
+        'The tool calls that have been executed. Automatically consumes the stream.',
     },
     {
       name: 'toolResults',
-      type: 'Promise<ToolResult[]>',
+      type: 'Promise<TypedToolResult<TOOLS>[]>',
       description:
         'The tool results that have been generated. Resolved when the all tool executions are finished.',
     },
     {
       name: 'request',
-      type: 'Promise<RequestMetadata>',
-      isOptional: true,
-      description: 'Request metadata.',
+      type: 'Promise<LanguageModelRequestMetadata>',
+      description: 'Additional request information from the last step.',
       properties: [
         {
-          type: 'RequestMetadata',
+          type: 'LanguageModelRequestMetadata',
           parameters: [
             {
               name: 'body',
@@ -1488,12 +2029,11 @@ To see `streamText` in action, check out [these examples](#examples).
     },
     {
       name: 'response',
-      type: 'Promise<ResponseMetadata>',
-      isOptional: true,
-      description: 'Response metadata. Resolved when the response is finished.',
+      type: 'Promise<LanguageModelResponseMetadata & { messages: Array<ResponseMessage>; }>',
+      description: 'Additional response information from the last step.',
       properties: [
         {
-          type: 'ResponseMetadata',
+          type: 'LanguageModelResponseMetadata',
           parameters: [
             {
               name: 'id',
@@ -1531,9 +2071,9 @@ To see `streamText` in action, check out [these examples](#examples).
     },
     {
       name: 'warnings',
-      type: 'Warning[] | undefined',
+      type: 'Promise<Warning[] | undefined>',
       description:
-        'Warnings from the model provider (e.g. unsupported settings).',
+        'Warnings from the model provider (e.g. unsupported settings) for the first step.',
     },
     {
       name: 'steps',
@@ -1593,7 +2133,7 @@ To see `streamText` in action, check out [these examples](#examples).
                     },
                     {
                       name: 'providerMetadata',
-                      type: 'LanguageModelV1ProviderMetadata',
+                      type: 'SharedV2ProviderMetadata',
                       isOptional: true,
                       description:
                         'Additional provider metadata for the source.',
@@ -1621,9 +2161,9 @@ To see `streamText` in action, check out [these examples](#examples).
                       description: 'File as a Uint8Array.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'MIME type of the file.',
+                      description: 'The IANA media type of the file.',
                     },
                   ],
                 },
@@ -1642,32 +2182,97 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'finishReason',
-              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other' | 'unknown'",
+              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other'",
               description: 'The reason the model finished generating the text.',
             },
             {
+              name: 'rawFinishReason',
+              type: 'string | undefined',
+              description:
+                'The raw reason why the generation finished (from the provider).',
+            },
+            {
               name: 'usage',
-              type: 'CompletionTokenUsage',
+              type: 'LanguageModelUsage',
               description: 'The token usage of the generated text.',
               properties: [
                 {
-                  type: 'CompletionTokenUsage',
+                  type: 'LanguageModelUsage',
                   parameters: [
                     {
-                      name: 'promptTokens',
-                      type: 'number',
-                      description: 'The total number of tokens in the prompt.',
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description: 'The total number of input (prompt) tokens used.',
                     },
                     {
-                      name: 'completionTokens',
-                      type: 'number',
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
                       description:
-                        'The total number of tokens in the completion.',
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description: 'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description: 'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
                       name: 'totalTokens',
-                      type: 'number',
-                      description: 'The total number of tokens generated.',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description: 'Raw usage information from the provider. This is the provider\'s original usage information and may include additional fields.',
                     },
                   ],
                 },
@@ -1749,7 +2354,7 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'providerMetadata',
-              type: 'Record<string,Record<string,JSONValue>> | undefined',
+              type: 'Record<string,JSONObject> | undefined',
               isOptional: true,
               description:
                 'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
@@ -1760,33 +2365,35 @@ To see `streamText` in action, check out [these examples](#examples).
     },
     {
       name: 'textStream',
-      type: 'AsyncIterable<string> & ReadableStream<string>',
+      type: 'AsyncIterableStream<string>',
       description:
-        'A text stream that returns only the generated text deltas. You can use it as either an AsyncIterable or a ReadableStream. Errors are suppressed to prevent server crashes. Use the onError callback to log errors.',
+        'A text stream that returns only the generated text deltas. You can use it as either an AsyncIterable or a ReadableStream. When an error occurs, the stream will throw the error.',
     },
     {
       name: 'fullStream',
-      type: 'AsyncIterable<TextStreamPart> & ReadableStream<TextStreamPart>',
+      type: 'AsyncIterable<TextStreamPart<TOOLS>> & ReadableStream<TextStreamPart<TOOLS>>',
       description:
         'A stream with all events, including text deltas, tool calls, tool results, and errors. You can use it as either an AsyncIterable or a ReadableStream. Only errors that stop the stream, such as network errors, are thrown.',
       properties: [
         {
           type: 'TextStreamPart',
+          description: 'Text content part from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
-              type: "'text-delta'",
-              description: 'The type to identify the object as text delta.',
+              type: "'text'",
+              description: 'The type to identify the object as text.',
             },
             {
-              name: 'textDelta',
+              name: 'text',
               type: 'string',
-              description: 'The text delta.',
+              description: 'The text content.',
             },
           ],
         },
         {
           type: 'TextStreamPart',
+          description: 'Reasoning content part from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
@@ -1794,46 +2401,22 @@ To see `streamText` in action, check out [these examples](#examples).
               description: 'The type to identify the object as reasoning.',
             },
             {
-              name: 'textDelta',
+              name: 'text',
               type: 'string',
-              description: 'The reasoning text delta.',
+              description: 'The reasoning text.',
+            },
+            {
+              name: 'providerMetadata',
+              type: 'ProviderMetadata',
+              isOptional: true,
+              description: 'Optional provider metadata for the reasoning.',
             },
           ],
         },
+
         {
           type: 'TextStreamPart',
-          parameters: [
-            {
-              name: 'type',
-              type: "'reasoning-signature'",
-              description:
-                'The signature for the previous reasoning chunks. Send by some providers.',
-            },
-            {
-              name: 'signature',
-              type: 'string',
-              description: 'The signature.',
-            },
-          ],
-        },
-        {
-          type: 'TextStreamPart',
-          parameters: [
-            {
-              name: 'type',
-              type: "'redacted-reasoning'",
-              description:
-                'The type to identify the object as redacted reasoning.',
-            },
-            {
-              name: 'data',
-              type: 'string',
-              description: 'The redacted data.',
-            },
-          ],
-        },
-        {
-          type: 'TextStreamPart',
+          description: 'Source content part from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
@@ -1841,14 +2424,37 @@ To see `streamText` in action, check out [these examples](#examples).
               description: 'The type to identify the object as source.',
             },
             {
-              name: 'source',
-              type: 'Source',
-              description: 'The source.',
+              name: 'sourceType',
+              type: "'url'",
+              description: 'A URL source. This is returned by web search RAG models.',
+            },
+            {
+              name: 'id',
+              type: 'string',
+              description: 'The ID of the source.',
+            },
+            {
+              name: 'url',
+              type: 'string',
+              description: 'The URL of the source.',
+            },
+            {
+              name: 'title',
+              type: 'string',
+              isOptional: true,
+              description: 'The title of the source.',
+            },
+            {
+              name: 'providerMetadata',
+              type: 'ProviderMetadata',
+              isOptional: true,
+              description: 'Additional provider metadata for the source.',
             },
           ],
         },
         {
           type: 'TextStreamPart',
+          description: 'File content part from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
@@ -1856,24 +2462,37 @@ To see `streamText` in action, check out [these examples](#examples).
               description: 'The type to identify the object as file.',
             },
             {
-              name: 'base64',
-              type: 'string',
-              description: 'File as a base64 encoded string.',
-            },
-            {
-              name: 'uint8Array',
-              type: 'Uint8Array',
-              description: 'File as a Uint8Array.',
-            },
-            {
-              name: 'mimeType',
-              type: 'string',
-              description: 'MIME type of the file.',
+              name: 'file',
+              type: 'GeneratedFile',
+              description: 'The file.',
+              properties: [
+                {
+                  type: 'GeneratedFile',
+                  parameters: [
+                    {
+                      name: 'base64',
+                      type: 'string',
+                      description: 'File as a base64 encoded string.',
+                    },
+                    {
+                      name: 'uint8Array',
+                      type: 'Uint8Array',
+                      description: 'File as a Uint8Array.',
+                    },
+                    {
+                      name: 'mediaType',
+                      type: 'string',
+                      description: 'The IANA media type of the file.',
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: 'TextStreamPart',
+          description: 'Tool call from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
@@ -1892,10 +2511,10 @@ To see `streamText` in action, check out [these examples](#examples).
                 'The name of the tool, which typically would be the name of the function.',
             },
             {
-              name: 'args',
-              type: 'object based on zod schema',
+              name: 'input',
+              type: 'object based on tool parameters',
               description:
-                'Parameters generated by the model to be used by the tool.',
+                'Parameters generated by the model to be used by the tool. The type is inferred from the tool definition.',
             },
           ],
         },
@@ -1950,7 +2569,7 @@ To see `streamText` in action, check out [these examples](#examples).
         },
         {
           type: 'TextStreamPart',
-          description: 'The result of a tool call execution.',
+          description: 'Tool result from ContentPart<TOOLS>',
           parameters: [
             {
               name: 'type',
@@ -1969,16 +2588,16 @@ To see `streamText` in action, check out [these examples](#examples).
                 'The name of the tool, which typically would be the name of the function.',
             },
             {
-              name: 'args',
-              type: 'object based on zod schema',
+              name: 'input',
+              type: 'object based on tool parameters',
               description:
-                'Parameters generated by the model to be used by the tool.',
+                'Parameters that were passed to the tool. The type is inferred from the tool definition.',
             },
             {
-              name: 'result',
-              type: 'any',
+              name: 'output',
+              type: 'tool execution return type',
               description:
-                'The result returned by the tool after execution has completed.',
+                'The result returned by the tool after execution has completed. The type is inferred from the tool execute function return type.',
             },
           ],
         },
@@ -1987,23 +2606,17 @@ To see `streamText` in action, check out [these examples](#examples).
           parameters: [
             {
               name: 'type',
-              type: "'step-start'",
+              type: "'start-step'",
               description: 'Indicates the start of a new step in the stream.',
             },
             {
-              name: 'messageId',
-              type: 'string',
-              description:
-                'The ID of the assistant message that started the step.',
-            },
-            {
               name: 'request',
-              type: 'RequestMetadata',
+              type: 'LanguageModelRequestMetadata',
               description:
                 'Information about the request that was sent to the language model provider.',
               properties: [
                 {
-                  type: 'RequestMetadata',
+                  type: 'LanguageModelRequestMetadata',
                   parameters: [
                     {
                       name: 'body',
@@ -2028,57 +2641,18 @@ To see `streamText` in action, check out [these examples](#examples).
           parameters: [
             {
               name: 'type',
-              type: "'step-finish'",
+              type: "'finish-step'",
               description:
                 'Indicates the end of the current step in the stream.',
             },
             {
-              name: 'messageId',
-              type: 'string',
-              description:
-                'The ID of the assistant message that ended the step.',
-            },
-            {
-              name: 'logprobs',
-              type: 'LogProbs',
-              isOptional: true,
-              description:
-                'Optional log probabilities for tokens returned by some providers.',
-            },
-            {
-              name: 'request',
-              type: 'RequestMetadata',
-              description:
-                'Information about the request that was sent to the language model provider.',
-              properties: [
-                {
-                  type: 'RequestMetadata',
-                  parameters: [
-                    {
-                      name: 'body',
-                      type: 'string',
-                      description:
-                        'Raw request HTTP body that was sent to the provider API as a string.',
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              name: 'warnings',
-              type: 'Warning[]',
-              isOptional: true,
-              description:
-                'Warnings from the model provider (e.g. unsupported settings).',
-            },
-            {
               name: 'response',
-              type: 'ResponseMetadata',
+              type: 'LanguageModelResponseMetadata',
               description:
                 'Response metadata from the language model provider.',
               properties: [
                 {
-                  type: 'ResponseMetadata',
+                  type: 'LanguageModelResponseMetadata',
                   parameters: [
                     {
                       name: 'id',
@@ -2109,27 +2683,86 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'usage',
-              type: 'TokenUsage',
+              type: 'LanguageModelUsage',
               description: 'The token usage of the generated text.',
               properties: [
-                {
-                  type: 'TokenUsage',
+                 {
+                  type: 'LanguageModelUsage',
                   parameters: [
                     {
-                      name: 'promptTokens',
-                      type: 'number',
-                      description: 'The total number of tokens in the prompt.',
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description: 'The total number of input (prompt) tokens used.',
                     },
                     {
-                      name: 'completionTokens',
-                      type: 'number',
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
                       description:
-                        'The total number of tokens in the completion.',
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description: 'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description: 'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
                       name: 'totalTokens',
-                      type: 'number',
-                      description: 'The total number of tokens generated.',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description: 'Raw usage information from the provider. This is the provider\'s original usage information and may include additional fields.',
                     },
                   ],
                 },
@@ -2137,21 +2770,31 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'finishReason',
-              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other' | 'unknown'",
+              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other'",
               description: 'The reason the model finished generating the text.',
             },
             {
+              name: 'rawFinishReason',
+              type: 'string | undefined',
+              description:
+                'The raw reason why the generation finished (from the provider).',
+            },
+            {
               name: 'providerMetadata',
-              type: 'Record<string,Record<string,JSONValue>> | undefined',
+              type: 'ProviderMetadata | undefined',
               isOptional: true,
               description:
                 'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
             },
+          ],
+        },
+        {
+          type: 'TextStreamPart',
+          parameters: [
             {
-              name: 'isContinued',
-              type: 'boolean',
-              description:
-                'True when there will be a continuation step with a continuation text.',
+              name: 'type',
+              type: "'start'",
+              description: 'Indicates the start of the stream.',
             },
           ],
         },
@@ -2165,86 +2808,111 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'finishReason',
-              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other' | 'unknown'",
+              type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other'",
               description: 'The reason the model finished generating the text.',
             },
             {
-              name: 'usage',
-              type: 'TokenUsage',
-              description: 'The token usage of the generated text.',
+              name: 'rawFinishReason',
+              type: 'string | undefined',
+              description:
+                'The raw reason why the generation finished (from the provider).',
+            },
+            {
+              name: 'totalUsage',
+              type: 'LanguageModelUsage',
+              description: 'The total token usage of the generated text.',
               properties: [
                 {
-                  type: 'TokenUsage',
+                  type: 'LanguageModelUsage',
                   parameters: [
                     {
-                      name: 'promptTokens',
-                      type: 'number',
-                      description: 'The total number of tokens in the prompt.',
+                      name: 'inputTokens',
+                      type: 'number | undefined',
+                      description: 'The total number of input (prompt) tokens used.',
                     },
                     {
-                      name: 'completionTokens',
-                      type: 'number',
+                      name: 'inputTokenDetails',
+                      type: 'LanguageModelInputTokenDetails',
                       description:
-                        'The total number of tokens in the completion.',
+                        'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelInputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'noCacheTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of non-cached input (prompt) tokens used.',
+                            },
+                            {
+                              name: 'cacheReadTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens read.',
+                            },
+                            {
+                              name: 'cacheWriteTokens',
+                              type: 'number | undefined',
+                              description:
+                                'The number of cached input (prompt) tokens written.',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      name: 'outputTokens',
+                      type: 'number | undefined',
+                      description: 'The number of total output (completion) tokens used.',
+                    },
+                    {
+                      name: 'outputTokenDetails',
+                      type: 'LanguageModelOutputTokenDetails',
+                      description:
+                        'Detailed information about the output (completion) tokens.',
+                      properties: [
+                        {
+                          type: 'LanguageModelOutputTokenDetails',
+                          parameters: [
+                            {
+                              name: 'textTokens',
+                              type: 'number | undefined',
+                              description: 'The number of text tokens used.',
+                            },
+                            {
+                              name: 'reasoningTokens',
+                              type: 'number | undefined',
+                              description: 'The number of reasoning tokens used.',
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
                       name: 'totalTokens',
-                      type: 'number',
-                      description: 'The total number of tokens generated.',
+                      type: 'number | undefined',
+                      description: 'The total number of tokens used.',
+                    },
+                    {
+                      name: 'raw',
+                      type: 'object | undefined',
+                      isOptional: true,
+                      description: 'Raw usage information from the provider. This is the provider\'s original usage information and may include additional fields.',
                     },
                   ],
                 },
               ],
             },
+          ],
+        },
+        {
+          type: 'TextStreamPart',
+          parameters: [
             {
-              name: 'providerMetadata',
-              type: 'Record<string,Record<string,JSONValue>> | undefined',
-              isOptional: true,
-              description:
-                'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
-            },
-            {
-              name: 'logprobs',
-              type: 'LogProbs',
-              isOptional: true,
-              description:
-                'Optional log probabilities for tokens returned by some providers.',
-            },
-            {
-              name: 'response',
-              type: 'ResponseMetadata',
-              description:
-                'Response metadata from the language model provider.',
-              properties: [
-                {
-                  type: 'ResponseMetadata',
-                  parameters: [
-                    {
-                      name: 'id',
-                      type: 'string',
-                      description:
-                        'The response identifier. The AI TOOLKIT uses the ID from the provider response when available, and generates an ID otherwise.',
-                    },
-                    {
-                      name: 'model',
-                      type: 'string',
-                      description:
-                        'The model that was used to generate the response. The AI TOOLKIT uses the response model from the provider response when available, and the model from the function call otherwise.',
-                    },
-                    {
-                      name: 'timestamp',
-                      type: 'Date',
-                      description:
-                        'The timestamp of the response. The AI TOOLKIT uses the response timestamp from the provider response when available, and creates a timestamp otherwise.',
-                    },
-                    {
-                      name: 'headers',
-                      type: 'Record<string, string>',
-                      description: 'The response headers.',
-                    },
-                  ],
-                },
-              ],
+              name: 'type',
+              type: "'reasoning-part-finish'",
+              description: 'Indicates the end of a reasoning part.',
             },
           ],
         },
@@ -2264,13 +2932,42 @@ To see `streamText` in action, check out [these examples](#examples).
             },
           ],
         },
+        {
+          type: 'TextStreamPart',
+          parameters: [
+            {
+              name: 'type',
+              type: "'abort'",
+              description: 'The type to identify the object as abort.',
+            },
+            {
+              name: 'reason',
+              type: 'unknown',
+              isOptional: true,
+              description:
+                'Optional abort reason (from AbortSignal.reason) when the stream is aborted.',
+            },
+          ],
+        },
       ],
     },
     {
-      name: 'experimental_partialOutputStream',
+      name: 'partialOutputStream',
       type: 'AsyncIterableStream<PARTIAL_OUTPUT>',
       description:
-        'A stream of partial outputs. It uses the `experimental_output` specification.',
+        'A stream of partial parsed outputs. It uses the `output` specification. AsyncIterableStream is defined as AsyncIterable<T> & ReadableStream<T>.',
+    },
+    {
+      name: 'elementStream',
+      type: 'AsyncIterableStream<ELEMENT_OUTPUT>',
+      description:
+        'A stream of individual array elements as they complete. Only available when using `output: Output.array()`. Each element is complete and validated against the element schema. AsyncIterableStream is defined as AsyncIterable<T> & ReadableStream<T>.',
+    },
+    {
+      name: 'output',
+      type: 'Promise<COMPLETE_OUTPUT>',
+      description:
+        'The complete parsed output. It uses the `output` specification.',
     },
     {
       name: 'consumeStream',
@@ -2292,13 +2989,86 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
-      name: 'pipeDataStreamToResponse',
-      type: '(response: ServerResponse, options: PipeDataStreamToResponseOptions) => void',
+      name: 'toUIMessageStream',
+      type: '(options?: UIMessageStreamOptions) => AsyncIterableStream<UIMessageChunk>',
       description:
-        'Writes stream data output to a Node.js response-like object. It sets a `Content-Type` header to `text/plain; charset=utf-8` and writes each stream data part as a separate chunk.',
+        'Converts the result to a UI message stream. Returns an AsyncIterableStream that can be used as both an AsyncIterable and a ReadableStream.',
       properties: [
         {
-          type: 'PipeDataStreamToResponseOptions',
+          type: 'UIMessageStreamOptions',
+          parameters: [
+            {
+              name: 'originalMessages',
+              type: 'UIMessage[]',
+              isOptional: true,
+              description: 'The original messages.',
+            },
+            {
+              name: 'onFinish',
+              type: '(options: { messages: UIMessage[]; isContinuation: boolean; responseMessage: UIMessage; isAborted: boolean; }) => void',
+              isOptional: true,
+              description: 'Callback function called when the stream finishes. Provides the updated list of UI messages, whether the response is a continuation, the response message, and whether the stream was aborted.',
+            },
+            {
+              name: 'messageMetadata',
+              type: '(options: { part: TextStreamPart<TOOLS> & { type: "start" | "finish" | "start-step" | "finish-step"; }; }) => unknown',
+              isOptional: true,
+              description: 'Extracts message metadata that will be sent to the client. Called on start and finish events.',
+            },
+            {
+              name: 'sendReasoning',
+              type: 'boolean',
+              isOptional: true,
+              description:
+                'Send reasoning parts to the client. Defaults to false.',
+            },
+            {
+              name: 'sendSources',
+              type: 'boolean',
+              isOptional: true,
+              description:
+                'Send source parts to the client. Defaults to false.',
+            },
+            {
+              name: 'sendFinish',
+              type: 'boolean',
+              isOptional: true,
+              description:
+                'Send the finish event to the client. Defaults to true.',
+            },
+            {
+              name: 'sendStart',
+              type: 'boolean',
+              isOptional: true,
+              description:
+                'Send the message start event to the client. Set to false if you are using additional streamText calls and the message start event has already been sent. Defaults to true.',
+            },
+            {
+              name: 'onError',
+              type: '(error: unknown) => string',
+              isOptional: true,
+              description:
+                'Process an error, e.g. to log it. Returns error message to include in the data stream. Defaults to () => "An error occurred."',
+            },
+            {
+              name: 'consumeSseStream',
+              type: '(stream: ReadableStream) => Promise<void>',
+              isOptional: true,
+              description:
+                'Function to consume the SSE stream. Required for proper abort handling in UI message streams. Use the `consumeStream` function from the AI TOOLKIT.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'pipeUIMessageStreamToResponse',
+      type: '(response: ServerResponse, options?: ResponseInit & UIMessageStreamOptions) => void',
+      description:
+        'Writes UI message stream output to a Node.js response-like object.',
+      properties: [
+        {
+          type: 'ResponseInit & UIMessageStreamOptions',
           parameters: [
             {
               name: 'status',
@@ -2318,61 +3088,13 @@ To see `streamText` in action, check out [these examples](#examples).
               isOptional: true,
               description: 'The response headers.',
             },
-            {
-              name: 'data',
-              type: 'StreamData',
-              isOptional: true,
-              description: 'The stream data object.',
-            },
-            {
-              name: 'getErrorMessage',
-              type: '(error: unknown) => string',
-              description:
-                'A function to get the error message from the error object. By default, all errors are masked as "" for safety reasons.',
-              isOptional: true,
-            },
-            {
-              name: 'sendUsage',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the usage information in the stream. Defaults to true.',
-            },
-            {
-              name: 'sendReasoning',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the reasoning information in the stream. Defaults to false.',
-            },
-            {
-              name: 'sendSources',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the sources information in the stream. Defaults to false.',
-            },
-            {
-              name: 'experimental_sendFinish',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the finish event to the client. Set to false if you are using additional streamText calls that send additional data. Default to true.',
-            },
-            {
-              name: 'experimental_sendStart',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the message start event to the client. Set to false if you are using additional streamText calls and the message start event has already been sent. Default to true.',
-            },
           ],
         },
       ],
     },
     {
       name: 'pipeTextStreamToResponse',
-      type: '(response: ServerResponse, init?: ResponseInit => void',
+      type: '(response: ServerResponse, init?: ResponseInit) => void',
       description:
         'Writes text delta output to a Node.js response-like object. It sets a `Content-Type` header to `text/plain; charset=utf-8` and writes each text delta as a separate chunk.',
       properties: [
@@ -2402,73 +3124,13 @@ To see `streamText` in action, check out [these examples](#examples).
       ],
     },
     {
-      name: 'toDataStream',
-      type: '(options?: ToDataStreamOptions) => Response',
-      description: 'Converts the result to a data stream.',
-      properties: [
-        {
-          type: 'ToDataStreamOptions',
-          parameters: [
-            {
-              name: 'data',
-              type: 'StreamData',
-              isOptional: true,
-              description: 'The stream data object.',
-            },
-            {
-              name: 'getErrorMessage',
-              type: '(error: unknown) => string',
-              description:
-                'A function to get the error message from the error object. By default, all errors are masked as "" for safety reasons.',
-              isOptional: true,
-            },
-            {
-              name: 'sendUsage',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the usage information in the stream. Defaults to true.',
-            },
-            {
-              name: 'sendReasoning',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the reasoning information in the stream. Defaults to false.',
-            },
-            {
-              name: 'sendSources',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the sources information in the stream. Defaults to false.',
-            },
-            {
-              name: 'experimental_sendFinish',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the finish event to the client. Set to false if you are using additional streamText calls that send additional data. Default to true.',
-            },
-            {
-              name: 'experimental_sendStart',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the message start event to the client. Set to false if you are using additional streamText calls and the message start event has already been sent. Default to true.',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'toDataStreamResponse',
-      type: '(options?: ToDataStreamResponseOptions) => Response',
+      name: 'toUIMessageStreamResponse',
+      type: '(options?: ResponseInit & UIMessageStreamOptions) => Response',
       description:
-        'Converts the result to a streamed response object with a stream data part stream. It can be used with the `useChat` and `useCompletion` hooks.',
+        'Converts the result to a streamed response object with a UI message stream.',
       properties: [
         {
-          type: 'ToDataStreamResponseOptions',
+          type: 'ResponseInit & UIMessageStreamOptions',
           parameters: [
             {
               name: 'status',
@@ -2484,57 +3146,9 @@ To see `streamText` in action, check out [these examples](#examples).
             },
             {
               name: 'headers',
-              type: 'Record<string, string>',
+              type: 'HeadersInit',
               isOptional: true,
               description: 'The response headers.',
-            },
-            {
-              name: 'data',
-              type: 'StreamData',
-              isOptional: true,
-              description: 'The stream data object.',
-            },
-            {
-              name: 'getErrorMessage',
-              type: '(error: unknown) => string',
-              description:
-                'A function to get the error message from the error object. By default, all errors are masked as "" for safety reasons.',
-              isOptional: true,
-            },
-            {
-              name: 'sendUsage',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the usage information in the stream. Defaults to true.',
-            },
-            {
-              name: 'sendReasoning',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the reasoning information in the stream. Defaults to false.',
-            },
-            {
-              name: 'sendSources',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the sources information in the stream. Defaults to false.',
-            },
-            {
-              name: 'experimental_sendFinish',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the finish event to the client. Set to false if you are using additional streamText calls that send additional data. Default to true.',
-            },
-            {
-              name: 'experimental_sendStart',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the message start event to the client. Set to false if you are using additional streamText calls and the message start event has already been sent. Default to true.',
             },
           ],
         },
@@ -2571,55 +3185,8 @@ To see `streamText` in action, check out [these examples](#examples).
         },
       ],
     },
-    {
-      name: 'mergeIntoDataStream',
-      type: '(dataStream: DataStreamWriter, options?: DataStreamOptions) => void',
-      description:
-        'Merges the result as a data stream into another data stream.',
-      properties: [
-        {
-          type: 'DataStreamOptions',
-          parameters: [
-            {
-              name: 'sendUsage',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the usage information to the client. Defaults to true.',
-            },
-            {
-              name: 'sendReasoning',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the reasoning information in the stream. Defaults to false.',
-            },
-            {
-              name: 'sendSources',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Whether to send the sources information in the stream. Defaults to false.',
-            },
-            {
-              name: 'experimental_sendFinish',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the finish event to the client. Set to false if you are using additional streamText calls that send additional data. Default to true.',
-            },
-            {
-              name: 'experimental_sendStart',
-              type: 'boolean',
-              isOptional: true,
-              description:
-                'Send the message start event to the client. Set to false if you are using additional streamText calls and the message start event has already been sent. Default to true.',
-            },
-          ],
-        },
-      ],
-    },
-  ]}
+
+]}
 />
 
 ## Examples

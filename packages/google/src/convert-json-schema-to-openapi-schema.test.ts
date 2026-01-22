@@ -1,5 +1,6 @@
 import { JSONSchema7 } from '@ai-toolkit/provider';
 import { convertJSONSchemaToOpenAPISchema } from './convert-json-schema-to-openapi-schema';
+import { it, expect } from 'vitest';
 
 it('should remove additionalProperties and $schema', () => {
   const input: JSONSchema7 = {
@@ -17,6 +18,33 @@ it('should remove additionalProperties and $schema', () => {
     properties: {
       name: { type: 'string' },
       age: { type: 'number' },
+    },
+  };
+
+  expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
+});
+
+it('should remove additionalProperties object from nested object schemas', function () {
+  const input: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      keys: {
+        type: 'object',
+        additionalProperties: { type: 'string' },
+        description: 'Description for the key',
+      },
+    },
+    additionalProperties: false,
+    $schema: 'http://json-schema.org/draft-07/schema#',
+  };
+
+  const expected = {
+    type: 'object',
+    properties: {
+      keys: {
+        type: 'object',
+        description: 'Description for the key',
+      },
     },
   };
 
@@ -409,7 +437,7 @@ it('should handle null type correctly', () => {
     type: 'object',
     properties: {
       nullableField: {
-        type: 'string',
+        anyOf: [{ type: 'string' }],
         nullable: true,
       },
       explicitNullField: {
@@ -467,7 +495,7 @@ it('should handle descriptions', () => {
   expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
 });
 
-it('should return undefined for empty object schemas', () => {
+it('should return undefined for empty object schemas at root level', () => {
   const emptyObjectSchemas = [
     { type: 'object' },
     { type: 'object', properties: {} },
@@ -476,6 +504,62 @@ it('should return undefined for empty object schemas', () => {
   emptyObjectSchemas.forEach(schema => {
     expect(convertJSONSchemaToOpenAPISchema(schema)).toBeUndefined();
   });
+});
+
+it('should preserve nested empty object schemas to avoid breaking required array validation', () => {
+  const input: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      url: { type: 'string', description: 'URL to navigate to' },
+      launchOptions: {
+        type: 'object',
+        description: 'PuppeteerJS LaunchOptions',
+      },
+      allowDangerous: {
+        type: 'boolean',
+        description: 'Allow dangerous options',
+      },
+    },
+    required: ['url', 'launchOptions'],
+  };
+
+  const expected = {
+    type: 'object',
+    properties: {
+      url: { type: 'string', description: 'URL to navigate to' },
+      launchOptions: {
+        type: 'object',
+        description: 'PuppeteerJS LaunchOptions',
+      },
+      allowDangerous: {
+        type: 'boolean',
+        description: 'Allow dangerous options',
+      },
+    },
+    required: ['url', 'launchOptions'],
+  };
+
+  expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
+});
+
+it('should preserve nested empty object schemas without descriptions', () => {
+  const input: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      options: { type: 'object' },
+    },
+    required: ['options'],
+  };
+
+  const expected = {
+    type: 'object',
+    properties: {
+      options: { type: 'object' },
+    },
+    required: ['options'],
+  };
+
+  expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
 });
 
 it('should handle non-empty object schemas', () => {
@@ -552,4 +636,49 @@ it('should convert nullable string enum', () => {
       },
     },
   });
+});
+
+it('should handle type arrays with multiple non-null types plus null', () => {
+  const input: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      multiTypeField: {
+        type: ['string', 'number', 'null'],
+      },
+    },
+  };
+
+  const expected = {
+    type: 'object',
+    properties: {
+      multiTypeField: {
+        anyOf: [{ type: 'string' }, { type: 'number' }],
+        nullable: true,
+      },
+    },
+  };
+
+  expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
+});
+
+it('should convert type arrays without null to anyOf', () => {
+  const input: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      multiTypeField: {
+        type: ['string', 'number'],
+      },
+    },
+  };
+
+  const expected = {
+    type: 'object',
+    properties: {
+      multiTypeField: {
+        anyOf: [{ type: 'string' }, { type: 'number' }],
+      },
+    },
+  };
+
+  expect(convertJSONSchemaToOpenAPISchema(input)).toEqual(expected);
 });

@@ -1,15 +1,11 @@
-import type {
-  LanguageModelV1,
-  ProviderV1,
+import {
+  LanguageModelV3,
+  NoSuchModelError,
+  ProviderV3,
 } from '@ai-toolkit/provider';
 import {
-  NoSuchModelError,
-} from '@ai-toolkit/provider';
-import type {
   FetchFunction,
   Resolvable,
-} from '@ai-toolkit/provider-utils';
-import {
   loadOptionalSetting,
   withoutTrailingSlash,
 } from '@ai-toolkit/provider-utils';
@@ -17,34 +13,96 @@ import {
   anthropicTools,
   AnthropicMessagesLanguageModel,
 } from '@ai-toolkit/anthropic/internal';
-import type {
-  AnthropicMessagesModelId,
-} from '@ai-toolkit/anthropic/internal';
-import type {
-  GoogleVertexAnthropicMessagesModelId,
-  GoogleVertexAnthropicMessagesSettings,
-} from './google-vertex-anthropic-messages-settings';
-export interface GoogleVertexAnthropicProvider extends ProviderV1 {
-  /**
-Creates a model for text generation.
-*/
-  (
-    modelId: GoogleVertexAnthropicMessagesModelId,
-    settings?: GoogleVertexAnthropicMessagesSettings,
-  ): LanguageModelV1;
+import { GoogleVertexAnthropicMessagesModelId } from './google-vertex-anthropic-messages-options';
 
+/**
+ * Tools supported by Google Vertex Anthropic.
+ * This is a subset of the full Anthropic tools - only these are recognized by the Vertex API.
+ */
+export const vertexAnthropicTools = {
   /**
-Creates a model for text generation.
-*/
-  languageModel(
-    modelId: GoogleVertexAnthropicMessagesModelId,
-    settings?: GoogleVertexAnthropicMessagesSettings,
-  ): LanguageModelV1;
-
-  /**
-Anthropic-specific computer use tool.
+   * The bash tool enables Claude to execute shell commands in a persistent bash session,
+   * allowing system operations, script execution, and command-line automation.
+   *
+   * Image results are supported.
    */
-  tools: typeof anthropicTools;
+  bash_20241022: anthropicTools.bash_20241022,
+
+  /**
+   * The bash tool enables Claude to execute shell commands in a persistent bash session,
+   * allowing system operations, script execution, and command-line automation.
+   *
+   * Image results are supported.
+   */
+  bash_20250124: anthropicTools.bash_20250124,
+
+  /**
+   * Claude can use an Anthropic-defined text editor tool to view and modify text files,
+   * helping you debug, fix, and improve your code or other text documents.
+   *
+   * Supported models: Claude Sonnet 3.5
+   */
+  textEditor_20241022: anthropicTools.textEditor_20241022,
+
+  /**
+   * Claude can use an Anthropic-defined text editor tool to view and modify text files,
+   * helping you debug, fix, and improve your code or other text documents.
+   *
+   * Supported models: Claude Sonnet 3.7
+   */
+  textEditor_20250124: anthropicTools.textEditor_20250124,
+
+  /**
+   * Claude can use an Anthropic-defined text editor tool to view and modify text files.
+   * Note: This version does not support the "undo_edit" command.
+   * @deprecated Use textEditor_20250728 instead
+   */
+  textEditor_20250429: anthropicTools.textEditor_20250429,
+
+  /**
+   * Claude can use an Anthropic-defined text editor tool to view and modify text files.
+   * Note: This version does not support the "undo_edit" command and adds optional max_characters parameter.
+   * Supported models: Claude Sonnet 4, Opus 4, and Opus 4.1
+   */
+  textEditor_20250728: anthropicTools.textEditor_20250728,
+
+  /**
+   * Claude can interact with computer environments through the computer use tool, which
+   * provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.
+   *
+   * Image results are supported.
+   */
+  computer_20241022: anthropicTools.computer_20241022,
+
+  /**
+   * Creates a web search tool that gives Claude direct access to real-time web content.
+   */
+  webSearch_20250305: anthropicTools.webSearch_20250305,
+};
+export interface GoogleVertexAnthropicProvider extends ProviderV3 {
+  /**
+Creates a model for text generation.
+*/
+  (modelId: GoogleVertexAnthropicMessagesModelId): LanguageModelV3;
+
+  /**
+Creates a model for text generation.
+*/
+  languageModel(modelId: GoogleVertexAnthropicMessagesModelId): LanguageModelV3;
+
+  /**
+   * Anthropic tools supported by Google Vertex.
+   * Note: Only a subset of Anthropic tools are available on Vertex.
+   * Supported tools: bash_20241022, bash_20250124, textEditor_20241022,
+   * textEditor_20250124, textEditor_20250429, textEditor_20250728,
+   * computer_20241022, webSearch_20250305
+   */
+  tools: typeof vertexAnthropicTools;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 export interface GoogleVertexAnthropicProviderSettings {
@@ -82,67 +140,71 @@ Create a Google Vertex Anthropic provider instance.
 export function createVertexAnthropic(
   options: GoogleVertexAnthropicProviderSettings = {},
 ): GoogleVertexAnthropicProvider {
-  const location = loadOptionalSetting({
-    settingValue: options.location,
-    environmentVariableName: 'GOOGLE_VERTEX_LOCATION',
-  });
-  const project = loadOptionalSetting({
-    settingValue: options.project,
-    environmentVariableName: 'GOOGLE_VERTEX_PROJECT',
-  });
-  const baseURL =
-    withoutTrailingSlash(options.baseURL) ??
-    `https://${location}-aiplatform.googleapis.com/v1/projects/${project}/locations/${location}/publishers/anthropic/models`;
+  const getBaseURL = () => {
+    const location = loadOptionalSetting({
+      settingValue: options.location,
+      environmentVariableName: 'GOOGLE_VERTEX_LOCATION',
+    });
+    const project = loadOptionalSetting({
+      settingValue: options.project,
+      environmentVariableName: 'GOOGLE_VERTEX_PROJECT',
+    });
 
-  const createChatModel = (
-    modelId: GoogleVertexAnthropicMessagesModelId,
-    settings: GoogleVertexAnthropicMessagesSettings = {},
-  ) =>
-    new AnthropicMessagesLanguageModel(
-      modelId as AnthropicMessagesModelId,
-      settings,
-      {
-        provider: 'vertex.anthropic.messages',
-        baseURL,
-        headers: options.headers ?? {},
-        fetch: options.fetch,
-        supportsImageUrls: false,
-        buildRequestUrl: (baseURL, isStreaming) =>
-          `${baseURL}/${modelId}:${
-            isStreaming ? 'streamRawPredict' : 'rawPredict'
-          }`,
-        transformRequestBody: args => {
-          // Remove model from args and add anthropic version
-          const { model, ...rest } = args;
-          return {
-            ...rest,
-            anthropic_version: 'vertex-2023-10-16',
-          };
-        },
-      },
+    return (
+      withoutTrailingSlash(options.baseURL) ??
+      `https://${location === 'global' ? '' : location + '-'}aiplatform.googleapis.com/v1/projects/${project}/locations/${location}/publishers/anthropic/models`
     );
+  };
 
-  const provider = function (
-    modelId: GoogleVertexAnthropicMessagesModelId,
-    settings?: GoogleVertexAnthropicMessagesSettings,
-  ) {
+  const createChatModel = (modelId: GoogleVertexAnthropicMessagesModelId) =>
+    new AnthropicMessagesLanguageModel(modelId, {
+      provider: 'vertex.anthropic.messages',
+      baseURL: getBaseURL(),
+      headers: options.headers ?? {},
+      fetch: options.fetch,
+
+      buildRequestUrl: (baseURL, isStreaming) =>
+        `${baseURL}/${modelId}:${
+          isStreaming ? 'streamRawPredict' : 'rawPredict'
+        }`,
+      transformRequestBody: args => {
+        // Remove model from args and add anthropic version
+        const { model, ...rest } = args;
+        return {
+          ...rest,
+          anthropic_version: 'vertex-2023-10-16',
+        };
+      },
+      // Google Vertex Anthropic doesn't support URL sources, force download and base64 conversion
+      supportedUrls: () => ({}),
+      // force the use of JSON tool fallback for structured outputs since beta header isn't supported
+      supportsNativeStructuredOutput: false,
+    });
+
+  const provider = function (modelId: GoogleVertexAnthropicMessagesModelId) {
     if (new.target) {
       throw new Error(
         'The Anthropic model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createChatModel;
   provider.chat = createChatModel;
   provider.messages = createChatModel;
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
+  };
+  provider.textEmbeddingModel = provider.embeddingModel;
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
   };
 
-  provider.tools = anthropicTools;
+  provider.tools = vertexAnthropicTools;
 
   return provider;
 }

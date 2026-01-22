@@ -1,25 +1,21 @@
-import type {
-  ImageModelV1,
-  ImageModelV1CallWarning,
-} from '@ai-toolkit/provider';
+import type { ImageModelV3, SharedV3Warning } from '@ai-toolkit/provider';
 import type { Resolvable } from '@ai-toolkit/provider-utils';
 import {
-  FetchFunction,
   combineHeaders,
+  convertImageModelFileToDataUri,
   createBinaryResponseHandler,
-  createJsonResponseHandler,
   createJsonErrorResponseHandler,
+  createJsonResponseHandler,
   createStatusCodeErrorResponseHandler,
+  FetchFunction,
   getFromApi,
+  parseProviderOptions,
   postJsonToApi,
   resolve,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
-import {
-  FalImageModelId,
-  FalImageSettings,
-  FalImageSize,
-} from './fal-image-settings';
+import { z } from 'zod/v4';
+import { FalImageModelId, FalImageSize } from './fal-image-settings';
+import { falImageProviderOptionsSchema } from './fal-image-options';
 
 interface FalImageModelConfig {
   provider: string;
@@ -31,36 +27,30 @@ interface FalImageModelConfig {
   };
 }
 
-export class FalImageModel implements ImageModelV1 {
-  readonly specificationVersion = 'v1';
+export class FalImageModel implements ImageModelV3 {
+  readonly specificationVersion = 'v3';
+  readonly maxImagesPerCall = 1;
 
   get provider(): string {
     return this.config.provider;
   }
 
-  get maxImagesPerCall(): number {
-    return this.settings.maxImagesPerCall ?? 1;
-  }
-
   constructor(
     readonly modelId: FalImageModelId,
-    private readonly settings: FalImageSettings,
     private readonly config: FalImageModelConfig,
   ) {}
 
-  async doGenerate({
+  private async getArgs({
     prompt,
     n,
     size,
     aspectRatio,
     seed,
     providerOptions,
-    headers,
-    abortSignal,
-  }: Parameters<ImageModelV1['doGenerate']>[0]): Promise<
-    Awaited<ReturnType<ImageModelV1['doGenerate']>>
-  > {
-    const warnings: Array<ImageModelV1CallWarning> = [];
+    files,
+    mask,
+  }: Parameters<ImageModelV3['doGenerate']>[0]) {
+    const warnings: Array<SharedV3Warning> = [];
 
     let imageSize: FalImageSize | undefined;
     if (size) {
@@ -70,29 +60,131 @@ export class FalImageModel implements ImageModelV1 {
       imageSize = convertAspectRatioToSize(aspectRatio);
     }
 
+    const falOptions = await parseProviderOptions({
+      provider: 'fal',
+      providerOptions,
+      schema: falImageProviderOptionsSchema,
+    });
+
+    const requestBody: Record<string, unknown> = {
+      prompt,
+      seed,
+      image_size: imageSize,
+      num_images: n,
+    };
+
+    // Handle image editing: convert files to image_url or image_urls
+    if (files != null && files.length > 0) {
+      const useMultipleImages = falOptions?.useMultipleImages === true;
+
+      if (useMultipleImages) {
+        // Use image_urls array for models that support multiple images (e.g., flux-2/edit)
+        requestBody.image_urls = files.map(file =>
+          convertImageModelFileToDataUri(file),
+        );
+      } else {
+        // Use single image_url for standard image editing models
+        requestBody.image_url = convertImageModelFileToDataUri(files[0]);
+
+        if (files.length > 1) {
+          warnings.push({
+            type: 'other',
+            message:
+              'Multiple input images provided but useMultipleImages is not enabled. ' +
+              'Only the first image will be used. Set providerOptions.fal.useMultipleImages ' +
+              'to true for models that support multiple images (e.g., fal-ai/flux-2/edit).',
+          });
+        }
+      }
+    }
+
+    // Handle mask for inpainting
+    if (mask != null) {
+      requestBody.mask_url = convertImageModelFileToDataUri(mask);
+    }
+
+    if (falOptions) {
+      const deprecatedKeys =
+        '__deprecatedKeys' in falOptions
+          ? (falOptions.__deprecatedKeys as string[])
+          : undefined;
+
+      if (deprecatedKeys && deprecatedKeys.length > 0) {
+        warnings.push({
+          type: 'other',
+          message: `The following provider options use deprecated snake_case and will be removed in @ai-toolkit/fal v2.0. Please use camelCase instead: ${deprecatedKeys
+            .map(key => {
+              const camelCase = key.replace(/_([a-z])/g, (_, letter) =>
+                letter.toUpperCase(),
+              );
+              return `'${key}' (use '${camelCase}')`;
+            })
+            .join(', ')}`,
+        });
+      }
+
+      const fieldMapping: Record<string, string> = {
+        imageUrl: 'image_url',
+        maskUrl: 'mask_url',
+        guidanceScale: 'guidance_scale',
+        numInferenceSteps: 'num_inference_steps',
+        enableSafetyChecker: 'enable_safety_checker',
+        outputFormat: 'output_format',
+        syncMode: 'sync_mode',
+        safetyTolerance: 'safety_tolerance',
+      };
+
+      for (const [key, value] of Object.entries(falOptions)) {
+        if (key === '__deprecatedKeys') continue;
+        if (key === 'useMultipleImages') continue; // Don't send to API
+        const apiKey = fieldMapping[key] ?? key;
+
+        if (value !== undefined) {
+          requestBody[apiKey] = value;
+        }
+      }
+    }
+
+    return { requestBody, warnings } as const;
+  }
+
+  async doGenerate(
+    options: Parameters<ImageModelV3['doGenerate']>[0],
+  ): Promise<Awaited<ReturnType<ImageModelV3['doGenerate']>>> {
+    const { requestBody, warnings } = await this.getArgs(options);
+
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
     const { value, responseHeaders } = await postJsonToApi({
       url: `${this.config.baseURL}/${this.modelId}`,
-      headers: combineHeaders(await resolve(this.config.headers), headers),
-      body: {
-        prompt,
-        seed,
-        image_size: imageSize,
-        num_images: n,
-        ...(providerOptions.fal ?? {}),
-      },
+      headers: combineHeaders(
+        await resolve(this.config.headers),
+        options.headers,
+      ),
+      body: requestBody,
       failedResponseHandler: falFailedResponseHandler,
       successfulResponseHandler: createJsonResponseHandler(
         falImageResponseSchema,
       ),
-      abortSignal,
+      abortSignal: options.abortSignal,
       fetch: this.config.fetch,
     });
 
+    const {
+      images: targetImages,
+      // prompt is just passed through and not a revised prompt per image
+      prompt: _prompt,
+      // NSFW information is normalized merged into `providerMetadata.fal.images`
+      has_nsfw_concepts,
+      nsfw_content_detected,
+      // pass through other properties to providerMetadata
+      ...responseMetaData
+    } = value;
+
     // download the images:
-    const targetImages = 'images' in value ? value.images : [value.image];
     const downloadedImages = await Promise.all(
-      targetImages.map(image => this.downloadImage(image.url, abortSignal)),
+      targetImages.map(image =>
+        this.downloadImage(image.url, options.abortSignal),
+      ),
     );
 
     return {
@@ -102,6 +194,35 @@ export class FalImageModel implements ImageModelV1 {
         modelId: this.modelId,
         timestamp: currentDate,
         headers: responseHeaders,
+      },
+      providerMetadata: {
+        fal: {
+          images: targetImages.map((image, index) => {
+            const {
+              url,
+              content_type: contentType,
+              file_name: fileName,
+              file_data: fileData,
+              file_size: fileSize,
+              ...imageMetaData
+            } = image;
+
+            const nsfw =
+              has_nsfw_concepts?.[index] ?? nsfw_content_detected?.[index];
+
+            return {
+              ...imageMetaData,
+              ...removeOnlyUndefined({
+                contentType,
+                fileName,
+                fileData,
+                fileSize,
+                nsfw,
+              }),
+            };
+          }),
+          ...responseMetaData,
+        },
       },
     };
   }
@@ -121,6 +242,12 @@ export class FalImageModel implements ImageModelV1 {
     });
     return response;
   }
+}
+
+function removeOnlyUndefined<T extends Record<string, unknown>>(obj: T) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== undefined),
+  ) as Partial<T>;
 }
 
 /**
@@ -176,19 +303,52 @@ const falErrorSchema = z.union([falValidationErrorSchema, falHttpErrorSchema]);
 
 const falImageSchema = z.object({
   url: z.string(),
-  width: z.number(),
-  height: z.number(),
-  content_type: z.string(),
+  width: z.number().nullish(),
+  height: z.number().nullish(),
+  // e.g. https://fal.ai/models/fal-ai/fashn/tryon/v1.6/api#schema-output
+  content_type: z.string().nullish(),
+  // e.g. https://fal.ai/models/fal-ai/flowedit/api#schema-output
+  file_name: z.string().nullish(),
+  file_data: z.string().optional(),
+  file_size: z.number().nullish(),
 });
 
-const falImageResponseSchema = z.union([
-  z.object({
-    images: z.array(falImageSchema),
-  }),
-  z.object({
-    image: falImageSchema,
-  }),
-]);
+// https://fal.ai/models/fal-ai/lora/api#type-File
+const loraFileSchema = z.object({
+  url: z.string(),
+  content_type: z.string().optional(),
+  file_name: z.string().nullable().optional(),
+  file_data: z.string().optional(),
+  file_size: z.number().nullable().optional(),
+});
+
+const commonResponseSchema = z.object({
+  timings: z
+    .object({
+      inference: z.number().optional(),
+    })
+    .optional(),
+  seed: z.number().optional(),
+  has_nsfw_concepts: z.array(z.boolean()).optional(),
+  prompt: z.string().optional(),
+  // https://fal.ai/models/fal-ai/lcm/api#schema-output
+  nsfw_content_detected: z.array(z.boolean()).optional(),
+  num_inference_steps: z.number().optional(),
+  // https://fal.ai/models/fal-ai/lora/api#schema-output
+  debug_latents: loraFileSchema.optional(),
+  debug_per_pass_latents: loraFileSchema.optional(),
+});
+
+// Most FAL image models respond with an array of images, but some have a response
+// with a single image, e.g. https://fal.ai/models/easel-ai/easel-avatar/api#schema-output
+const base = z.looseObject(commonResponseSchema.shape);
+const falImageResponseSchema = z
+  .union([
+    base.extend({ images: z.array(falImageSchema) }),
+    base.extend({ image: falImageSchema }),
+  ])
+  .transform(v => ('images' in v ? v : { ...v, images: [v.image] }))
+  .pipe(base.extend({ images: z.array(falImageSchema) }));
 
 function isValidationError(error: unknown): error is ValidationError {
   return falValidationErrorSchema.safeParse(error).success;

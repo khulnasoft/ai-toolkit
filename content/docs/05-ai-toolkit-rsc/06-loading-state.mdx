@@ -7,9 +7,8 @@ description: Overview of handling loading state with AI TOOLKIT RSC
 
 <Note type="warning">
   AI TOOLKIT RSC is currently experimental. We recommend using [AI TOOLKIT
-  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating
-  from RSC to UI, see our [migration
-  guide](/docs/ai-toolkit-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 Given that responses from language models can often take a while to complete, it's crucial to be able to show loading state to users. This provides visual feedback that the system is working on their request and helps maintain a positive user experience.
@@ -31,7 +30,7 @@ Let's create a simple Next.js page that will call the `generateResponse` functio
 
 import { useState } from 'react';
 import { generateResponse } from './actions';
-import { readStreamableValue } from 'ai/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -84,15 +83,15 @@ Now let's implement the `generateResponse` function. Use the `streamText` functi
 'use server';
 
 import { streamText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
-import { createStreamableValue } from 'ai/rsc';
+__PROVIDER_IMPORT__;
+import { createStreamableValue } from '@ai-toolkit/rsc';
 
 export async function generateResponse(prompt: string) {
   const stream = createStreamableValue();
 
   (async () => {
     const { textStream } = streamText({
-      model: openai('gpt-4o'),
+      model: __MODEL__,
       prompt,
     });
 
@@ -117,8 +116,8 @@ If you are looking to track loading state on a more granular level, you can crea
 'use server';
 
 import { streamText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
-import { createStreamableValue } from 'ai/rsc';
+__PROVIDER_IMPORT__;
+import { createStreamableValue } from '@ai-toolkit/rsc';
 
 export async function generateResponse(prompt: string) {
   const stream = createStreamableValue();
@@ -126,7 +125,7 @@ export async function generateResponse(prompt: string) {
 
   (async () => {
     const { textStream } = streamText({
-      model: openai('gpt-4o'),
+      model: __MODEL__,
       prompt,
     });
 
@@ -149,7 +148,7 @@ export async function generateResponse(prompt: string) {
 
 import { useState } from 'react';
 import { generateResponse } from './actions';
-import { readStreamableValue } from 'ai/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -211,7 +210,7 @@ If you are using the [ `streamUI` ](/docs/reference/ai-toolkit-rsc/stream-ui) fu
 'use server';
 
 import { openai } from '@ai-toolkit/openai';
-import { streamUI } from 'ai/rsc';
+import { streamUI } from '@ai-toolkit/rsc';
 
 export async function generateResponse(prompt: string) {
   const result = await streamUI({
@@ -239,7 +238,7 @@ export async function generateResponse(prompt: string) {
 
 import { useState } from 'react';
 import { generateResponse } from './actions';
-import { readStreamableValue } from 'ai/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const maxDuration = 30;

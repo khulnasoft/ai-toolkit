@@ -1,14 +1,17 @@
 import {
-  LanguageModelV1,
-  LanguageModelV1CallWarning,
+  LanguageModelV3CallOptions,
+  SharedV3Warning,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
+import { MistralToolChoice } from './mistral-chat-prompt';
 
-export function prepareTools(
-  mode: Parameters<LanguageModelV1['doGenerate']>[0]['mode'] & {
-    type: 'regular';
-  },
-): {
+export function prepareTools({
+  tools,
+  toolChoice,
+}: {
+  tools: LanguageModelV3CallOptions['tools'];
+  toolChoice?: LanguageModelV3CallOptions['toolChoice'];
+}): {
   tools:
     | Array<{
         type: 'function';
@@ -16,23 +19,20 @@ export function prepareTools(
           name: string;
           description: string | undefined;
           parameters: unknown;
+          strict?: boolean;
         };
       }>
     | undefined;
-  tool_choice:
-    | { type: 'function'; function: { name: string } }
-    | 'auto'
-    | 'none'
-    | 'any'
-    | undefined;
-  toolWarnings: LanguageModelV1CallWarning[];
+  toolChoice: MistralToolChoice | undefined;
+  toolWarnings: SharedV3Warning[];
 } {
   // when the tools array is empty, change it to undefined to prevent errors:
-  const tools = mode.tools?.length ? mode.tools : undefined;
-  const toolWarnings: LanguageModelV1CallWarning[] = [];
+  tools = tools?.length ? tools : undefined;
+
+  const toolWarnings: SharedV3Warning[] = [];
 
   if (tools == null) {
-    return { tools: undefined, tool_choice: undefined, toolWarnings };
+    return { tools: undefined, toolChoice: undefined, toolWarnings };
   }
 
   const mistralTools: Array<{
@@ -41,28 +41,31 @@ export function prepareTools(
       name: string;
       description: string | undefined;
       parameters: unknown;
+      strict?: boolean;
     };
   }> = [];
 
   for (const tool of tools) {
-    if (tool.type === 'provider-defined') {
-      toolWarnings.push({ type: 'unsupported-tool', tool });
+    if (tool.type === 'provider') {
+      toolWarnings.push({
+        type: 'unsupported',
+        feature: `provider-defined tool ${tool.id}`,
+      });
     } else {
       mistralTools.push({
         type: 'function',
         function: {
           name: tool.name,
           description: tool.description,
-          parameters: tool.parameters,
+          parameters: tool.inputSchema,
+          ...(tool.strict != null ? { strict: tool.strict } : {}),
         },
       });
     }
   }
 
-  const toolChoice = mode.toolChoice;
-
   if (toolChoice == null) {
-    return { tools: mistralTools, tool_choice: undefined, toolWarnings };
+    return { tools: mistralTools, toolChoice: undefined, toolWarnings };
   }
 
   const type = toolChoice.type;
@@ -70,9 +73,9 @@ export function prepareTools(
   switch (type) {
     case 'auto':
     case 'none':
-      return { tools: mistralTools, tool_choice: type, toolWarnings };
+      return { tools: mistralTools, toolChoice: type, toolWarnings };
     case 'required':
-      return { tools: mistralTools, tool_choice: 'any', toolWarnings };
+      return { tools: mistralTools, toolChoice: 'any', toolWarnings };
 
     // mistral does not support tool mode directly,
     // so we filter the tools and force the tool choice through 'any'
@@ -81,13 +84,13 @@ export function prepareTools(
         tools: mistralTools.filter(
           tool => tool.function.name === toolChoice.toolName,
         ),
-        tool_choice: 'any',
+        toolChoice: 'any',
         toolWarnings,
       };
     default: {
       const _exhaustiveCheck: never = type;
       throw new UnsupportedFunctionalityError({
-        functionality: `Unsupported tool choice type: ${_exhaustiveCheck}`,
+        functionality: `tool choice type: ${_exhaustiveCheck}`,
       });
     }
   }

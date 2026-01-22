@@ -18,30 +18,49 @@ pnpm install
 pnpm build
 ```
 
-## Stdio Transport
+## Running Examples
 
-Build
-
-```sh
-pnpm stdio:build
-```
-
-Run example:
+Start the server for a specific example
 
 ```sh
-pnpm stdio:client
+pnpm server:<folder-name>
 ```
 
-## SSE Transport
-
-Start server
+Run the client for a specific example
 
 ```sh
-pnpm sse:server
+pnpm client:<folder-name>
 ```
 
-Run example:
+Available examples/folders:
+
+- `sse` - SSE Transport (Legacy)
+- `http` - Streamable HTTP Transport (Stateful)
+- `mcp-with-auth` - MCP with authentication
+- `mcp-prompts` - MCP prompts example
+- `mcp-resources` - MCP resources example
+- `stdio` - Stdio Transport (requires `pnpm stdio:build` first)
+- `elicitation` - MCP elicitation example
+- `elicitation-multi-step` - MCP multi-step elicitation example
+- `elicitation-ui` - MCP elicitation with UI (server only)
+
+Example usage:
 
 ```sh
-pnpm sse:client
+# Start the HTTP server
+pnpm server:http
 ```
+
+In another terminal, run the HTTP client:
+
+```sh
+pnpm client:http
+```
+
+To test the example with the UI, you will first need to run the MCP server:
+
+```sh
+pnpm server:elicitation-ui
+```
+
+and then start the dev server in a new terminal in `examples/next-openai` and navigate to `localhost:3000/mcp-elicitation`

@@ -1,29 +1,29 @@
 ---
-title: Khulnasoft Deployment Guide
-description: Learn how to deploy an AI application to production on Khulnasoft
+title: Vercel Deployment Guide
+description: Learn how to deploy an AI application to production on Vercel
 ---
 
-# Khulnasoft Deployment Guide
+# Vercel Deployment Guide
 
-In this guide, you will deploy an AI application to [Khulnasoft](https://vercel.com) using [Next.js](https://nextjs.org) (App Router).
+In this guide, you will deploy an AI application to [Vercel](https://vercel.com) using [Next.js](https://nextjs.org) (App Router).
 
-Khulnasoft is a platform for developers that provides the tools, workflows, and infrastructure you need to build and deploy your web apps faster, without the need for additional configuration.
+Vercel is a platform for developers that provides the tools, workflows, and infrastructure you need to build and deploy your web apps faster, without the need for additional configuration.
 
-Khulnasoft allows for automatic deployments on every branch push and merges onto the production branch of your GitHub, GitLab, and Bitbucket projects. It is a great option for deploying your AI application.
+Vercel allows for automatic deployments on every branch push and merges onto the production branch of your GitHub, GitLab, and Bitbucket projects. It is a great option for deploying your AI application.
 
 ## Before You Begin
 
 To follow along with this guide, you will need:
 
-- a Khulnasoft account
+- a Vercel account
 - an account with a Git provider (this tutorial will use [Github](https://github.com))
 - an OpenAI API key
 
-This guide will teach you how to deploy the application you built in the Next.js (App Router) quickstart tutorial to Khulnasoft. If you haven’t completed the quickstart guide, you can start with [this repo](https://github.com/vercel-labs/ai-toolkit-deployment-guide).
+This guide will teach you how to deploy the application you built in the Next.js (App Router) quickstart tutorial to Vercel. If you haven’t completed the quickstart guide, you can start with [this repo](https://github.com/vercel-labs/ai-toolkit-deployment-guide).
 
 ## Commit Changes
 
-Khulnasoft offers a powerful git-centered workflow that automatically deploys your application to production every time you push to your repository’s main branch.
+Vercel offers a powerful git-centered workflow that automatically deploys your application to production every time you push to your repository’s main branch.
 
 Before committing your local changes, make sure that you have a `.gitignore`. Within your `.gitignore`, ensure that you are excluding your environment variables (`.env`) and your node modules (`node_modules`).
 
@@ -61,7 +61,7 @@ git commit -m "init"
 
 Rerun the code snippet from the previous step.
 
-## Import Project in Khulnasoft
+## Import Project in Vercel
 
 On the [New Project](https://vercel.com/new) page, under the **Import Git Repository** section, select the Git provider that you would like to import your project from. Follow the prompts to sign in to your GitHub account.
 
@@ -69,11 +69,11 @@ Once you have signed in, you should see your newly created repository from the p
 
 ### Add Environment Variables
 
-Your application stores uses environment secrets to store your OpenAI API key using a `.env.local` file locally in development. To add this API key to your production deployment, expand the "Environment Variables" section and paste in your `.env.local` file. Khulnasoft will automatically parse your variables and enter them in the appropriate `key:value` format.
+Your application stores uses environment secrets to store your OpenAI API key using a `.env.local` file locally in development. To add this API key to your production deployment, expand the "Environment Variables" section and paste in your `.env.local` file. Vercel will automatically parse your variables and enter them in the appropriate `key:value` format.
 
 ### Deploy
 
-Press the **Deploy** button. Khulnasoft will create the Project and deploy it based on the chosen configurations.
+Press the **Deploy** button. Vercel will create the Project and deploy it based on the chosen configurations.
 
 ### Enjoy the confetti!
 
@@ -85,9 +85,9 @@ When deploying an AI application, there are infrastructure-related consideration
 
 ### Function Duration
 
-In most cases, you will call the large language model (LLM) on the server. By default, Khulnasoft serverless functions have a maximum duration of 10 seconds on the Hobby Tier. Depending on your prompt, it can take an LLM more than this limit to complete a response. If the response is not resolved within this limit, the server will throw an error.
+In most cases, you will call the large language model (LLM) on the server. By default, Vercel serverless functions have a maximum duration of 10 seconds on the Hobby Tier. Depending on your prompt, it can take an LLM more than this limit to complete a response. If the response is not resolved within this limit, the server will throw an error.
 
-You can specify the maximum duration of your Khulnasoft function using [route segment config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config). To update your maximum duration, add the following route segment config to the top of your route handler or the page which is calling your server action.
+You can specify the maximum duration of your Vercel function using [route segment config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config). To update your maximum duration, add the following route segment config to the top of your route handler or the page which is calling your server action.
 
 ```ts
 export const maxDuration = 30;
@@ -109,7 +109,7 @@ Follow [this guide](https://vercel.com/guides/securing-ai-app-rate-limiting) to 
 
 A firewall helps protect your applications and websites from DDoS attacks and unauthorized access.
 
-[Khulnasoft Firewall](https://vercel.com/docs/security/vercel-firewall) is a set of tools and infrastructure, created specifically with security in mind. It automatically mitigates DDoS attacks and Enterprise teams can get further customization for their site, including dedicated support and custom rules for IP blocking.
+[Vercel Firewall](https://vercel.com/docs/security/vercel-firewall) is a set of tools and infrastructure, created specifically with security in mind. It automatically mitigates DDoS attacks and Enterprise teams can get further customization for their site, including dedicated support and custom rules for IP blocking.
 
 ## Troubleshooting
 

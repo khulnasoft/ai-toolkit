@@ -1,9 +1,12 @@
 import { APICallError } from '@ai-toolkit/provider';
 import { extractResponseHeaders } from './extract-response-headers';
-import type { FetchFunction } from './fetch-function';
+import { FetchFunction } from './fetch-function';
+import { handleFetchError } from './handle-fetch-error';
 import { isAbortError } from './is-abort-error';
-import { removeUndefinedEntries } from './remove-undefined-entries';
-import type { ResponseHandler } from './response-handler';
+import { ResponseHandler } from './response-handler';
+import { getRuntimeEnvironmentUserAgent } from './get-runtime-environment-user-agent';
+import { withUserAgentSuffix } from './with-user-agent-suffix';
+import { VERSION } from './version';
 
 // use function to allow for mocking in tests:
 const getOriginalFetch = () => globalThis.fetch;
@@ -94,7 +97,11 @@ export const postToApi = async <T>({
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: removeUndefinedEntries(headers),
+      headers: withUserAgentSuffix(
+        headers,
+        `ai-toolkit/provider-utils/${VERSION}`,
+        getRuntimeEnvironmentUserAgent(),
+      ),
       body: body.content,
       signal: abortSignal,
     });
@@ -154,26 +161,6 @@ export const postToApi = async <T>({
       });
     }
   } catch (error) {
-    if (isAbortError(error)) {
-      throw error;
-    }
-
-    // unwrap original error when fetch failed (for easier debugging):
-    if (error instanceof TypeError && error.message === 'fetch failed') {
-      const cause = (error as any).cause;
-
-      if (cause != null) {
-        // Failed to connect to server:
-        throw new APICallError({
-          message: `Cannot connect to API: ${cause.message}`,
-          cause,
-          url,
-          requestBodyValues: body.values,
-          isRetryable: true, // retry when network error
-        });
-      }
-    }
-
-    throw error;
+    throw handleFetchError({ error, url, requestBodyValues: body.values });
   }
 };

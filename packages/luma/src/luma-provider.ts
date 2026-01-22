@@ -1,18 +1,13 @@
+import { ImageModelV3, NoSuchModelError, ProviderV3 } from '@ai-toolkit/provider';
 import {
-  type ImageModelV1,
-  NoSuchModelError,
-  type ProviderV1,
-} from '@ai-toolkit/provider';
-import {
-  type FetchFunction,
+  FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
 import { LumaImageModel } from './luma-image-model';
-import type {
-  LumaImageModelId,
-  LumaImageSettings,
-} from './luma-image-settings';
+import { LumaImageModelId } from './luma-image-settings';
+import { VERSION } from './version';
 
 export interface LumaProviderSettings {
   /**
@@ -35,60 +30,67 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface LumaProvider extends ProviderV1 {
+export interface LumaProvider extends ProviderV3 {
   /**
 Creates a model for image generation.
   */
-  image(modelId: LumaImageModelId, settings?: LumaImageSettings): ImageModelV1;
+  image(modelId: LumaImageModelId): ImageModelV3;
 
   /**
 Creates a model for image generation.
    */
-  imageModel(
-    modelId: LumaImageModelId,
-    settings?: LumaImageSettings,
-  ): ImageModelV1;
+  imageModel(modelId: LumaImageModelId): ImageModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 const defaultBaseURL = 'https://api.lumalabs.ai';
 
 export function createLuma(options: LumaProviderSettings = {}): LumaProvider {
   const baseURL = withoutTrailingSlash(options.baseURL ?? defaultBaseURL);
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'LUMA_API_KEY',
-      description: 'Luma',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'LUMA_API_KEY',
+          description: 'Luma',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/luma/${VERSION}`,
+    );
 
-  const createImageModel = (
-    modelId: LumaImageModelId,
-    settings: LumaImageSettings = {},
-  ) =>
-    new LumaImageModel(modelId, settings, {
+  const createImageModel = (modelId: LumaImageModelId) =>
+    new LumaImageModel(modelId, {
       provider: 'luma.image',
       baseURL: baseURL ?? defaultBaseURL,
       headers: getHeaders,
       fetch: options.fetch,
     });
 
+  const embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({
+      modelId,
+      modelType: 'embeddingModel',
+    });
+  };
+
   return {
+    specificationVersion: 'v3' as const,
     image: createImageModel,
     imageModel: createImageModel,
-    languageModel: () => {
+    languageModel: (modelId: string) => {
       throw new NoSuchModelError({
-        modelId: 'languageModel',
+        modelId,
         modelType: 'languageModel',
       });
     },
-    textEmbeddingModel: () => {
-      throw new NoSuchModelError({
-        modelId: 'textEmbeddingModel',
-        modelType: 'textEmbeddingModel',
-      });
-    },
+    embeddingModel,
+    textEmbeddingModel: embeddingModel,
   };
 }
 

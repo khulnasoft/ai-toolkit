@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { Anthropic } from '@ai-toolkit/anthropic';
+import { createAnthropic } from '@ai-toolkit/anthropic';
 
-const anthropic = new Anthropic({
+const anthropic = createAnthropic({
   apiKey: 'key',
   baseURL: 'url',
   headers: { 'custom': 'header' }

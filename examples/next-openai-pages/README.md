@@ -1,27 +1,27 @@
 # AI TOOLKIT, Next.js (Pages router), and OpenAI Chat Example
 
-This example shows how to use the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) with [Next.js](https://nextjs.org/) (pages router) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot.
+This example shows how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/) (pages router) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot.
 
 ## Deploy your own
 
-Deploy the example using [Khulnasoft](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
 
-[![Deploy with Khulnasoft](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai-pages&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=khulnasoft-ai-chat-openai-pages&repository-name=khulnasoft-ai-chat-openai-pages)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai-pages&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=vercel-ai-chat-openai-pages&repository-name=vercel-ai-chat-openai-pages)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-pages next-openai-app
+npx create-next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-pages next-openai-app
 ```
 
 ```bash
-yarn create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-pages next-openai-app
+yarn create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-pages next-openai-app
 ```
 
 ```bash
-pnpm create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-pages next-openai-app
+pnpm create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-pages next-openai-app
 ```
 
 To run the example locally you need to:
@@ -36,7 +36,7 @@ To run the example locally you need to:
 
 To learn more about OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
 
-- [AI TOOLKIT docs](https://sdk.khulnasoft.com/docs)
-- [Khulnasoft AI Playground](https://play.khulnasoft.com)
+- [AI TOOLKIT docs](https://ai-toolkit.dev/docs)
+- [Vercel AI Playground](https://ai-toolkit.dev/playground)
 - [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

@@ -1,11 +1,9 @@
-import { NoSuchModelError, type ProviderV1 } from '@ai-toolkit/provider';
+import { NoSuchModelError, ProviderV3 } from '@ai-toolkit/provider';
 import type { FetchFunction } from '@ai-toolkit/provider-utils';
-import { loadApiKey } from '@ai-toolkit/provider-utils';
+import { loadApiKey, withUserAgentSuffix } from '@ai-toolkit/provider-utils';
 import { ReplicateImageModel } from './replicate-image-model';
-import type {
-  ReplicateImageModelId,
-  ReplicateImageSettings,
-} from './replicate-image-settings';
+import { ReplicateImageModelId } from './replicate-image-settings';
+import { VERSION } from './version';
 
 export interface ReplicateProviderSettings {
   /**
@@ -32,22 +30,21 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface ReplicateProvider extends ProviderV1 {
+export interface ReplicateProvider extends ProviderV3 {
   /**
    * Creates a Replicate image generation model.
    */
-  image(
-    modelId: ReplicateImageModelId,
-    settings?: ReplicateImageSettings,
-  ): ReplicateImageModel;
+  image(modelId: ReplicateImageModelId): ReplicateImageModel;
 
   /**
    * Creates a Replicate image generation model.
    */
-  imageModel(
-    modelId: ReplicateImageModelId,
-    settings?: ReplicateImageSettings,
-  ): ReplicateImageModel;
+  imageModel(modelId: ReplicateImageModelId): ReplicateImageModel;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 /**
@@ -56,39 +53,43 @@ export interface ReplicateProvider extends ProviderV1 {
 export function createReplicate(
   options: ReplicateProviderSettings = {},
 ): ReplicateProvider {
-  const createImageModel = (
-    modelId: ReplicateImageModelId,
-    settings?: ReplicateImageSettings,
-  ) =>
-    new ReplicateImageModel(modelId, settings ?? {}, {
+  const createImageModel = (modelId: ReplicateImageModelId) =>
+    new ReplicateImageModel(modelId, {
       provider: 'replicate',
       baseURL: options.baseURL ?? 'https://api.replicate.com/v1',
-      headers: {
-        Authorization: `Bearer ${loadApiKey({
-          apiKey: options.apiToken,
-          environmentVariableName: 'REPLICATE_API_TOKEN',
-          description: 'Replicate',
-        })}`,
-        ...options.headers,
-      },
+      headers: withUserAgentSuffix(
+        {
+          Authorization: `Bearer ${loadApiKey({
+            apiKey: options.apiToken,
+            environmentVariableName: 'REPLICATE_API_TOKEN',
+            description: 'Replicate',
+          })}`,
+          ...options.headers,
+        },
+        `ai-toolkit/replicate/${VERSION}`,
+      ),
       fetch: options.fetch,
     });
 
+  const embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({
+      modelId,
+      modelType: 'embeddingModel',
+    });
+  };
+
   return {
+    specificationVersion: 'v3' as const,
     image: createImageModel,
     imageModel: createImageModel,
-    languageModel: () => {
+    languageModel: (modelId: string) => {
       throw new NoSuchModelError({
-        modelId: 'languageModel',
+        modelId,
         modelType: 'languageModel',
       });
     },
-    textEmbeddingModel: () => {
-      throw new NoSuchModelError({
-        modelId: 'textEmbeddingModel',
-        modelType: 'textEmbeddingModel',
-      });
-    },
+    embeddingModel,
+    textEmbeddingModel: embeddingModel,
   };
 }
 

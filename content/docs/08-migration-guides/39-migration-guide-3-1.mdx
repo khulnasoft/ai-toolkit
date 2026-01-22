@@ -7,7 +7,7 @@ description: Learn how to upgrade AI TOOLKIT 3.0 to 3.1.
 
 <Note>
   Check out the [AI TOOLKIT 3.1 release blog
-  post](https://vercel.com/blog/khulnasoft-ai-toolkit-3-1-modelfusion-joins-the-team)
+  post](https://vercel.com/blog/vercel-ai-toolkit-3-1-modelfusion-joins-the-team)
   for more information about the release.
 </Note>
 
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-turbo',
+    model: 'gpt-4.1',
     stream: true,
     messages,
   });
@@ -63,23 +63,24 @@ export async function POST(req: Request) {
 }
 ```
 
-With AI TOOLKIT Core you have a unified API for any provider that implements the [AI TOOLKIT Language Model Specification](https://sdk.khulnasoft.com/providers/community-providers/custom-providers).
+With AI TOOLKIT Core you have a unified API for any provider that implements the [AI TOOLKIT Language Model Specification](/providers/community-providers/custom-providers).
 
 Let’s take a look at the example above, but refactored to utilize the AI TOOLKIT Core API alongside the AI TOOLKIT OpenAI provider. In this example, you import the LLM function you want to use from the `ai` package, import the OpenAI provider from `@ai-toolkit/openai`, and then you call the model and return the response using the `toDataStreamResponse()` helper function.
 
 ```tsx
 import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
+__PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = await streamText({
-    model: openai('gpt-4-turbo'),
+    model: __MODEL__,
     messages,
   });
 
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
 ```
 
@@ -90,7 +91,7 @@ The AI TOOLKIT RSC API was launched as part of version 3.0. This API introduced 
 The following example Server Action uses the `render` function using the model provider directly from OpenAI. You first create an OpenAI provider instance with the OpenAI TOOLKIT. Then, you pass it to the provider key of the render function alongside a tool that returns a React Server Component, defined in the `render` key of the tool.
 
 ```tsx
-import { render } from 'ai/rsc';
+import { render } from '@ai-toolkit/rsc';
 import OpenAI from 'openai';
 import { z } from 'zod';
 import { Spinner, Weather } from '@/components';
@@ -103,7 +104,7 @@ async function submitMessage(userInput = 'What is the weather in SF?') {
 
   return render({
     provider: openai,
-    model: 'gpt-4-turbo',
+    model: 'gpt-4.1',
     messages: [
       { role: 'system', content: 'You are a helpful assistant' },
       { role: 'user', content: userInput },
@@ -131,7 +132,7 @@ async function submitMessage(userInput = 'What is the weather in SF?') {
 With the new [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function, you can now use any compatible AI TOOLKIT provider. In this example, you import the AI TOOLKIT OpenAI provider. Then, you pass it to the [`model`](/docs/reference/ai-toolkit-rsc/stream-ui#model) key of the new [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function. Finally, you declare a tool and return a React Server Component, defined in the [`generate`](/docs/reference/ai-toolkit-rsc/stream-ui#tools-generate) key of the tool.
 
 ```tsx
-import { streamUI } from 'ai/rsc';
+import { streamUI } from '@ai-toolkit/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 import { Spinner, Weather } from '@/components';
@@ -141,7 +142,7 @@ async function submitMessage(userInput = 'What is the weather in SF?') {
   'use server';
 
   const result = await streamUI({
-    model: openai('gpt-4-turbo'),
+    model: __MODEL__,
     system: 'You are a helpful assistant',
     messages: [{ role: 'user', content: userInput }],
     text: ({ content }) => <p>{content}</p>,

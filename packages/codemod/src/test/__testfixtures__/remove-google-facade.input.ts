@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { Google } from '@ai-toolkit/google';
+import { createGoogleGenerativeAI } from '@ai-toolkit/google';
 
-const google = new Google({
+const google = createGoogleGenerativeAI({
   apiKey: 'key',
   baseURL: 'url',
   headers: { 'custom': 'header' }

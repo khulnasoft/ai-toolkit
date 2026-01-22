@@ -1,24 +1,28 @@
 {
   "name": "@ai-toolkit/codemod",
-  "version": "1.2.0",
+  "version": "3.0.1",
   "license": "Apache-2.0",
   "sideEffects": false,
   "files": [
     "dist/**/*",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsup",
-    "clean": "rm -rf dist",
+    "build": "pnpm generate-readme && prettier --write \"README.md\" && pnpm clean && tsup --tsconfig tsconfig.build.json",
+    "clean": "del-cli dist *.tsbuildinfo",
     "dev": "tsup --watch",
     "lint": "eslint \"./**/*.ts*\"",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --build",
     "prettier-check": "prettier --check \"./**/*.ts*\"",
     "test": "vitest --config vitest.config.ts --run",
     "test:watch": "vitest",
-    "scaffold": "tsx scripts/scaffold-codemod.ts"
+    "test:update": "UPDATE_SNAPSHOT=true vitest -u --run",
+    "scaffold": "tsx scripts/scaffold-codemod.ts",
+    "generate-readme": "tsx scripts/generate-readme.ts"
   },
   "devDependencies": {
+    "ai": "workspace:*",
     "@types/cli-progress": "^3.11.6",
     "@types/debug": "^4.1.12",
     "@types/jscodeshift": "^0.12.0",
@@ -28,7 +32,7 @@
     "msw": "2.6.4",
     "tsup": "^8",
     "tsx": "4.19.2",
-    "typescript": "5.6.3",
+    "typescript": "5.8.3",
     "vitest": "2.1.4"
   },
   "bin": {
@@ -40,13 +44,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://sdk.khulnasoft.com/docs",
+  "homepage": "https://ai-toolkit.dev/docs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khulnasoft/ai.git"
+    "url": "git+https://github.com/khulnasoft/ai-toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/khulnasoft/ai/issues"
+    "url": "https://github.com/khulnasoft/ai-toolkit/issues"
   },
   "keywords": [
     "ai"
@@ -54,7 +58,7 @@
   "dependencies": {
     "cli-progress": "^3.12.0",
     "commander": "^12.1.0",
-    "debug": "^4.3.7",
+    "debug": "^4.4.3",
     "jscodeshift": "^17.1.1"
   }
 }

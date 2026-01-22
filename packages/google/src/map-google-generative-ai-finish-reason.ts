@@ -1,4 +1,4 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import { LanguageModelV3FinishReason } from '@ai-toolkit/provider';
 
 export function mapGoogleGenerativeAIFinishReason({
   finishReason,
@@ -6,7 +6,7 @@ export function mapGoogleGenerativeAIFinishReason({
 }: {
   finishReason: string | null | undefined;
   hasToolCalls: boolean;
-}): LanguageModelV1FinishReason {
+}): LanguageModelV3FinishReason['unified'] {
   switch (finishReason) {
     case 'STOP':
       return hasToolCalls ? 'tool-calls' : 'stop';
@@ -19,12 +19,11 @@ export function mapGoogleGenerativeAIFinishReason({
     case 'PROHIBITED_CONTENT':
     case 'SPII':
       return 'content-filter';
-    case 'FINISH_REASON_UNSPECIFIED':
-    case 'OTHER':
-      return 'other';
     case 'MALFORMED_FUNCTION_CALL':
       return 'error';
+    case 'FINISH_REASON_UNSPECIFIED':
+    case 'OTHER':
     default:
-      return 'unknown';
+      return 'other';
   }
 }

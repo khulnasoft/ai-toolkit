@@ -1,34 +1,44 @@
-import type {
-  LanguageModelV1,
-  LanguageModelV1CallWarning,
-  LanguageModelV1FinishReason,
-  LanguageModelV1ProviderMetadata,
-  LanguageModelV1Source,
-  LanguageModelV1StreamPart,
+import {
+  LanguageModelV3,
+  LanguageModelV3CallOptions,
+  LanguageModelV3Content,
+  LanguageModelV3FinishReason,
+  LanguageModelV3GenerateResult,
+  LanguageModelV3Source,
+  LanguageModelV3StreamPart,
+  LanguageModelV3StreamResult,
+  SharedV3ProviderMetadata,
+  SharedV3Warning,
 } from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
-  ParseResult,
-  Resolvable,
-} from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
   createJsonResponseHandler,
+  FetchFunction,
+  generateId,
+  InferSchema,
+  lazySchema,
   parseProviderOptions,
+  ParseResult,
   postJsonToApi,
+  Resolvable,
   resolve,
+  zodSchema,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
+import { z } from 'zod/v4';
+import {
+  convertGoogleGenerativeAIUsage,
+  GoogleGenerativeAIUsageMetadata,
+} from './convert-google-generative-ai-usage';
 import { convertJSONSchemaToOpenAPISchema } from './convert-json-schema-to-openapi-schema';
 import { convertToGoogleGenerativeAIMessages } from './convert-to-google-generative-ai-messages';
 import { getModelPath } from './get-model-path';
 import { googleFailedResponseHandler } from './google-error';
-import type { GoogleGenerativeAIContentPart } from './google-generative-ai-prompt';
-import type {
+import {
   GoogleGenerativeAIModelId,
-  InternalGoogleGenerativeAISettings,
-} from './google-generative-ai-settings';
+  googleGenerativeAIProviderOptions,
+} from './google-generative-ai-options';
+import { GoogleGenerativeAIContentPart } from './google-generative-ai-prompt';
 import { prepareTools } from './google-prepare-tools';
 import { mapGoogleGenerativeAIFinishReason } from './map-google-generative-ai-finish-reason';
 
@@ -38,41 +48,41 @@ type GoogleGenerativeAIConfig = {
   headers: Resolvable<Record<string, string | undefined>>;
   fetch?: FetchFunction;
   generateId: () => string;
-  isSupportedUrl: (url: URL) => boolean;
+
+  /**
+   * The supported URLs for the model.
+   */
+  supportedUrls?: () => LanguageModelV3['supportedUrls'];
 };
 
-export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
-  readonly specificationVersion = 'v1';
-  readonly defaultObjectGenerationMode = 'json';
-  readonly supportsImageUrls = false;
-
-  get supportsStructuredOutputs() {
-    return this.settings.structuredOutputs ?? true;
-  }
+export class GoogleGenerativeAILanguageModel implements LanguageModelV3 {
+  readonly specificationVersion = 'v3';
 
   readonly modelId: GoogleGenerativeAIModelId;
-  readonly settings: InternalGoogleGenerativeAISettings;
 
   private readonly config: GoogleGenerativeAIConfig;
+  private readonly generateId: () => string;
 
   constructor(
     modelId: GoogleGenerativeAIModelId,
-    settings: InternalGoogleGenerativeAISettings,
     config: GoogleGenerativeAIConfig,
   ) {
     this.modelId = modelId;
-    this.settings = settings;
     this.config = config;
+    this.generateId = config.generateId ?? generateId;
   }
 
   get provider(): string {
     return this.config.provider;
   }
 
+  get supportedUrls() {
+    return this.config.supportedUrls?.() ?? {};
+  }
+
   private async getArgs({
-    mode,
     prompt,
-    maxTokens,
+    maxOutputTokens,
     temperature,
     topP,
     topK,
@@ -81,137 +91,124 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
     stopSequences,
     responseFormat,
     seed,
-    providerMetadata,
-  }: Parameters<LanguageModelV1['doGenerate']>[0]) {
-    const type = mode.type;
+    tools,
+    toolChoice,
+    providerOptions,
+  }: LanguageModelV3CallOptions) {
+    const warnings: SharedV3Warning[] = [];
 
-    const warnings: LanguageModelV1CallWarning[] = [];
-
-    const googleOptions = parseProviderOptions({
-      provider: 'google',
-      providerOptions: providerMetadata,
-      schema: googleGenerativeAIProviderOptionsSchema,
+    const providerOptionsName = this.config.provider.includes('vertex')
+      ? 'vertex'
+      : 'google';
+    let googleOptions = await parseProviderOptions({
+      provider: providerOptionsName,
+      providerOptions,
+      schema: googleGenerativeAIProviderOptions,
     });
 
-    const generationConfig = {
-      // standardized settings:
-      maxOutputTokens: maxTokens,
-      temperature,
-      topK,
-      topP,
-      frequencyPenalty,
-      presencePenalty,
-      stopSequences,
-      seed,
-
-      // response format:
-      responseMimeType:
-        responseFormat?.type === 'json' ? 'application/json' : undefined,
-      responseSchema:
-        responseFormat?.type === 'json' &&
-        responseFormat.schema != null &&
-        // Google GenAI does not support all OpenAPI Schema features,
-        // so this is needed as an escape hatch:
-        this.supportsStructuredOutputs
-          ? convertJSONSchemaToOpenAPISchema(responseFormat.schema)
-          : undefined,
-      ...(this.settings.audioTimestamp && {
-        audioTimestamp: this.settings.audioTimestamp,
-      }),
-
-      // provider options:
-      responseModalities: googleOptions?.responseModalities,
-    };
-
-    const { contents, systemInstruction } =
-      convertToGoogleGenerativeAIMessages(prompt);
-
-    switch (type) {
-      case 'regular': {
-        const { tools, toolConfig, toolWarnings } = prepareTools(
-          mode,
-          this.settings.useSearchGrounding ?? false,
-          this.settings.dynamicRetrievalConfig,
-          this.modelId,
-        );
-
-        return {
-          args: {
-            generationConfig,
-            contents,
-            systemInstruction,
-            safetySettings: this.settings.safetySettings,
-            tools,
-            toolConfig,
-            cachedContent: this.settings.cachedContent,
-          },
-          warnings: [...warnings, ...toolWarnings],
-        };
-      }
-
-      case 'object-json': {
-        return {
-          args: {
-            generationConfig: {
-              ...generationConfig,
-              responseMimeType: 'application/json',
-              responseSchema:
-                mode.schema != null &&
-                // Google GenAI does not support all OpenAPI Schema features,
-                // so this is needed as an escape hatch:
-                this.supportsStructuredOutputs
-                  ? convertJSONSchemaToOpenAPISchema(mode.schema)
-                  : undefined,
-            },
-            contents,
-            systemInstruction,
-            safetySettings: this.settings.safetySettings,
-            cachedContent: this.settings.cachedContent,
-          },
-          warnings,
-        };
-      }
-
-      case 'object-tool': {
-        return {
-          args: {
-            generationConfig,
-            contents,
-            tools: {
-              functionDeclarations: [
-                {
-                  name: mode.tool.name,
-                  description: mode.tool.description ?? '',
-                  parameters: convertJSONSchemaToOpenAPISchema(
-                    mode.tool.parameters,
-                  ),
-                },
-              ],
-            },
-            toolConfig: { functionCallingConfig: { mode: 'ANY' } },
-            safetySettings: this.settings.safetySettings,
-            cachedContent: this.settings.cachedContent,
-          },
-          warnings,
-        };
-      }
-
-      default: {
-        const _exhaustiveCheck: never = type;
-        throw new Error(`Unsupported type: ${_exhaustiveCheck}`);
-      }
+    if (googleOptions == null && providerOptionsName !== 'google') {
+      googleOptions = await parseProviderOptions({
+        provider: 'google',
+        providerOptions,
+        schema: googleGenerativeAIProviderOptions,
+      });
     }
-  }
 
-  supportsUrl(url: URL): boolean {
-    return this.config.isSupportedUrl(url);
+    // Add warning if Vertex rag tools are used with a non-Vertex Google provider
+    if (
+      tools?.some(
+        tool =>
+          tool.type === 'provider' && tool.id === 'google.vertex_rag_store',
+      ) &&
+      !this.config.provider.startsWith('google.vertex.')
+    ) {
+      warnings.push({
+        type: 'other',
+        message:
+          "The 'vertex_rag_store' tool is only supported with the Google Vertex provider " +
+          'and might not be supported or could behave unexpectedly with the current Google provider ' +
+          `(${this.config.provider}).`,
+      });
+    }
+
+    const isGemmaModel = this.modelId.toLowerCase().startsWith('gemma-');
+
+    const { contents, systemInstruction } = convertToGoogleGenerativeAIMessages(
+      prompt,
+      { isGemmaModel, providerOptionsName },
+    );
+
+    const {
+      tools: googleTools,
+      toolConfig: googleToolConfig,
+      toolWarnings,
+    } = prepareTools({
+      tools,
+      toolChoice,
+      modelId: this.modelId,
+    });
+
+    return {
+      args: {
+        generationConfig: {
+          // standardized settings:
+          maxOutputTokens,
+          temperature,
+          topK,
+          topP,
+          frequencyPenalty,
+          presencePenalty,
+          stopSequences,
+          seed,
+
+          // response format:
+          responseMimeType:
+            responseFormat?.type === 'json' ? 'application/json' : undefined,
+          responseSchema:
+            responseFormat?.type === 'json' &&
+            responseFormat.schema != null &&
+            // Google GenAI does not support all OpenAPI Schema features,
+            // so this is needed as an escape hatch:
+            // TODO convert into provider option
+            (googleOptions?.structuredOutputs ?? true)
+              ? convertJSONSchemaToOpenAPISchema(responseFormat.schema)
+              : undefined,
+          ...(googleOptions?.audioTimestamp && {
+            audioTimestamp: googleOptions.audioTimestamp,
+          }),
+
+          // provider options:
+          responseModalities: googleOptions?.responseModalities,
+          thinkingConfig: googleOptions?.thinkingConfig,
+          ...(googleOptions?.mediaResolution && {
+            mediaResolution: googleOptions.mediaResolution,
+          }),
+          ...(googleOptions?.imageConfig && {
+            imageConfig: googleOptions.imageConfig,
+          }),
+        },
+        contents,
+        systemInstruction: isGemmaModel ? undefined : systemInstruction,
+        safetySettings: googleOptions?.safetySettings,
+        tools: googleTools,
+        toolConfig: googleOptions?.retrievalConfig
+          ? {
+              ...googleToolConfig,
+              retrievalConfig: googleOptions.retrievalConfig,
+            }
+          : googleToolConfig,
+        cachedContent: googleOptions?.cachedContent,
+        labels: googleOptions?.labels,
+      },
+      warnings: [...warnings, ...toolWarnings],
+      providerOptionsName,
+    };
   }
 
   async doGenerate(
-    options: Parameters<LanguageModelV1['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doGenerate']>>> {
-    const { args, warnings } = await this.getArgs(options);
-    const body = JSON.stringify(args);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3GenerateResult> {
+    const { args, warnings, providerOptionsName } = await this.getArgs(options);
 
     const mergedHeaders = combineHeaders(
       await resolve(this.config.headers),
@@ -234,61 +231,131 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { contents: rawPrompt, ...rawSettings } = args;
     const candidate = response.candidates[0];
+    const content: Array<LanguageModelV3Content> = [];
 
-    const parts =
-      candidate.content == null ||
-      typeof candidate.content !== 'object' ||
-      !('parts' in candidate.content)
-        ? []
-        : candidate.content.parts;
-
-    const toolCalls = getToolCallsFromParts({
-      parts,
-      generateId: this.config.generateId,
-    });
+    // map ordered parts to content:
+    const parts = candidate.content?.parts ?? [];
 
     const usageMetadata = response.usageMetadata;
 
-    return {
-      text: getTextFromParts(parts),
-      files: getInlineDataParts(parts)?.map(part => ({
-        data: part.inlineData.data,
-        mimeType: part.inlineData.mimeType,
-      })),
-      toolCalls,
-      finishReason: mapGoogleGenerativeAIFinishReason({
-        finishReason: candidate.finishReason,
-        hasToolCalls: toolCalls != null && toolCalls.length > 0,
-      }),
-      usage: {
-        promptTokens: usageMetadata?.promptTokenCount ?? NaN,
-        completionTokens: usageMetadata?.candidatesTokenCount ?? NaN,
-      },
-      rawCall: { rawPrompt, rawSettings },
-      rawResponse: { headers: responseHeaders, body: rawResponse },
-      warnings,
-      providerMetadata: {
-        google: {
-          groundingMetadata: candidate.groundingMetadata ?? null,
-          safetyRatings: candidate.safetyRatings ?? null,
-        },
-      },
-      sources: extractSources({
+    // Associates a code execution result with its preceding call.
+    let lastCodeExecutionToolCallId: string | undefined;
+
+    // Build content array from all parts
+    for (const part of parts) {
+      if ('executableCode' in part && part.executableCode?.code) {
+        const toolCallId = this.config.generateId();
+        lastCodeExecutionToolCallId = toolCallId;
+
+        content.push({
+          type: 'tool-call',
+          toolCallId,
+          toolName: 'code_execution',
+          input: JSON.stringify(part.executableCode),
+          providerExecuted: true,
+        });
+      } else if ('codeExecutionResult' in part && part.codeExecutionResult) {
+        content.push({
+          type: 'tool-result',
+          // Assumes a result directly follows its corresponding call part.
+          toolCallId: lastCodeExecutionToolCallId!,
+          toolName: 'code_execution',
+          result: {
+            outcome: part.codeExecutionResult.outcome,
+            output: part.codeExecutionResult.output,
+          },
+        });
+        // Clear the ID after use to avoid accidental reuse.
+        lastCodeExecutionToolCallId = undefined;
+      } else if ('text' in part && part.text != null && part.text.length > 0) {
+        content.push({
+          type: part.thought === true ? 'reasoning' : 'text',
+          text: part.text,
+          providerMetadata: part.thoughtSignature
+            ? {
+                [providerOptionsName]: {
+                  thoughtSignature: part.thoughtSignature,
+                },
+              }
+            : undefined,
+        });
+      } else if ('functionCall' in part) {
+        content.push({
+          type: 'tool-call' as const,
+          toolCallId: this.config.generateId(),
+          toolName: part.functionCall.name,
+          input: JSON.stringify(part.functionCall.args),
+          providerMetadata: part.thoughtSignature
+            ? {
+                [providerOptionsName]: {
+                  thoughtSignature: part.thoughtSignature,
+                },
+              }
+            : undefined,
+        });
+      } else if ('inlineData' in part) {
+        content.push({
+          type: 'file' as const,
+          data: part.inlineData.data,
+          mediaType: part.inlineData.mimeType,
+          providerMetadata: part.thoughtSignature
+            ? {
+                [providerOptionsName]: {
+                  thoughtSignature: part.thoughtSignature,
+                },
+              }
+            : undefined,
+        });
+      }
+    }
+
+    const sources =
+      extractSources({
         groundingMetadata: candidate.groundingMetadata,
         generateId: this.config.generateId,
-      }),
-      request: { body },
+      }) ?? [];
+    for (const source of sources) {
+      content.push(source);
+    }
+
+    return {
+      content,
+      finishReason: {
+        unified: mapGoogleGenerativeAIFinishReason({
+          finishReason: candidate.finishReason,
+          // Only count client-executed tool calls for finish reason determination.
+          hasToolCalls: content.some(
+            part => part.type === 'tool-call' && !part.providerExecuted,
+          ),
+        }),
+        raw: candidate.finishReason ?? undefined,
+      },
+      usage: convertGoogleGenerativeAIUsage(usageMetadata),
+      warnings,
+      providerMetadata: {
+        [providerOptionsName]: {
+          promptFeedback: response.promptFeedback ?? null,
+          groundingMetadata: candidate.groundingMetadata ?? null,
+          urlContextMetadata: candidate.urlContextMetadata ?? null,
+          safetyRatings: candidate.safetyRatings ?? null,
+          usageMetadata: usageMetadata ?? null,
+        },
+      },
+      request: { body: args },
+      response: {
+        // TODO timestamp, model id, id
+        headers: responseHeaders,
+        body: rawResponse,
+      },
     };
   }
 
   async doStream(
-    options: Parameters<LanguageModelV1['doStream']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doStream']>>> {
-    const { args, warnings } = await this.getArgs(options);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3StreamResult> {
+    const { args, warnings, providerOptionsName } = await this.getArgs(options);
 
-    const body = JSON.stringify(args);
     const headers = combineHeaders(
       await resolve(this.config.headers),
       options.headers,
@@ -306,26 +373,41 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { contents: rawPrompt, ...rawSettings } = args;
-
-    let finishReason: LanguageModelV1FinishReason = 'unknown';
-    let usage: { promptTokens: number; completionTokens: number } = {
-      promptTokens: Number.NaN,
-      completionTokens: Number.NaN,
+    let finishReason: LanguageModelV3FinishReason = {
+      unified: 'other',
+      raw: undefined,
     };
-    let providerMetadata: LanguageModelV1ProviderMetadata | undefined =
-      undefined;
+    let usage: GoogleGenerativeAIUsageMetadata | undefined = undefined;
+    let providerMetadata: SharedV3ProviderMetadata | undefined = undefined;
 
     const generateId = this.config.generateId;
     let hasToolCalls = false;
 
+    // Track active blocks to group consecutive parts of same type
+    let currentTextBlockId: string | null = null;
+    let currentReasoningBlockId: string | null = null;
+    let blockCounter = 0;
+
+    // Track emitted sources to prevent duplicates
+    const emittedSourceUrls = new Set<string>();
+    // Associates a code execution result with its preceding call.
+    let lastCodeExecutionToolCallId: string | undefined;
+
     return {
       stream: response.pipeThrough(
         new TransformStream<
-          ParseResult<z.infer<typeof chunkSchema>>,
-          LanguageModelV1StreamPart
+          ParseResult<ChunkSchema>,
+          LanguageModelV3StreamPart
         >({
+          start(controller) {
+            controller.enqueue({ type: 'stream-start', warnings });
+          },
+
           transform(chunk, controller) {
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: 'raw', rawValue: chunk.rawValue });
+            }
+
             if (!chunk.success) {
               controller.enqueue({ type: 'error', error: chunk.error });
               return;
@@ -336,10 +418,7 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
             const usageMetadata = value.usageMetadata;
 
             if (usageMetadata != null) {
-              usage = {
-                promptTokens: usageMetadata.promptTokenCount ?? NaN,
-                completionTokens: usageMetadata.candidatesTokenCount ?? NaN,
-              };
+              usage = usageMetadata;
             }
 
             const candidate = value.candidates?.[0];
@@ -351,22 +430,145 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
 
             const content = candidate.content;
 
+            const sources = extractSources({
+              groundingMetadata: candidate.groundingMetadata,
+              generateId,
+            });
+            if (sources != null) {
+              for (const source of sources) {
+                if (
+                  source.sourceType === 'url' &&
+                  !emittedSourceUrls.has(source.url)
+                ) {
+                  emittedSourceUrls.add(source.url);
+                  controller.enqueue(source);
+                }
+              }
+            }
+
             // Process tool call's parts before determining finishReason to ensure hasToolCalls is properly set
             if (content != null) {
-              const deltaText = getTextFromParts(content.parts);
-              if (deltaText != null) {
-                controller.enqueue({
-                  type: 'text-delta',
-                  textDelta: deltaText,
-                });
-              }
+              // Process all parts in a single loop to preserve original order
+              const parts = content.parts ?? [];
+              for (const part of parts) {
+                if ('executableCode' in part && part.executableCode?.code) {
+                  const toolCallId = generateId();
+                  lastCodeExecutionToolCallId = toolCallId;
 
-              const inlineDataParts = getInlineDataParts(content.parts);
-              if (inlineDataParts != null) {
-                for (const part of inlineDataParts) {
+                  controller.enqueue({
+                    type: 'tool-call',
+                    toolCallId,
+                    toolName: 'code_execution',
+                    input: JSON.stringify(part.executableCode),
+                    providerExecuted: true,
+                  });
+                } else if (
+                  'codeExecutionResult' in part &&
+                  part.codeExecutionResult
+                ) {
+                  // Assumes a result directly follows its corresponding call part.
+                  const toolCallId = lastCodeExecutionToolCallId;
+
+                  if (toolCallId) {
+                    controller.enqueue({
+                      type: 'tool-result',
+                      toolCallId,
+                      toolName: 'code_execution',
+                      result: {
+                        outcome: part.codeExecutionResult.outcome,
+                        output: part.codeExecutionResult.output,
+                      },
+                    });
+                    // Clear the ID after use.
+                    lastCodeExecutionToolCallId = undefined;
+                  }
+                } else if (
+                  'text' in part &&
+                  part.text != null &&
+                  part.text.length > 0
+                ) {
+                  if (part.thought === true) {
+                    // End any active text block before starting reasoning
+                    if (currentTextBlockId !== null) {
+                      controller.enqueue({
+                        type: 'text-end',
+                        id: currentTextBlockId,
+                      });
+                      currentTextBlockId = null;
+                    }
+
+                    // Start new reasoning block if not already active
+                    if (currentReasoningBlockId === null) {
+                      currentReasoningBlockId = String(blockCounter++);
+                      controller.enqueue({
+                        type: 'reasoning-start',
+                        id: currentReasoningBlockId,
+                        providerMetadata: part.thoughtSignature
+                          ? {
+                              [providerOptionsName]: {
+                                thoughtSignature: part.thoughtSignature,
+                              },
+                            }
+                          : undefined,
+                      });
+                    }
+
+                    controller.enqueue({
+                      type: 'reasoning-delta',
+                      id: currentReasoningBlockId,
+                      delta: part.text,
+                      providerMetadata: part.thoughtSignature
+                        ? {
+                            [providerOptionsName]: {
+                              thoughtSignature: part.thoughtSignature,
+                            },
+                          }
+                        : undefined,
+                    });
+                  } else {
+                    // End any active reasoning block before starting text
+                    if (currentReasoningBlockId !== null) {
+                      controller.enqueue({
+                        type: 'reasoning-end',
+                        id: currentReasoningBlockId,
+                      });
+                      currentReasoningBlockId = null;
+                    }
+
+                    // Start new text block if not already active
+                    if (currentTextBlockId === null) {
+                      currentTextBlockId = String(blockCounter++);
+                      controller.enqueue({
+                        type: 'text-start',
+                        id: currentTextBlockId,
+                        providerMetadata: part.thoughtSignature
+                          ? {
+                              [providerOptionsName]: {
+                                thoughtSignature: part.thoughtSignature,
+                              },
+                            }
+                          : undefined,
+                      });
+                    }
+
+                    controller.enqueue({
+                      type: 'text-delta',
+                      id: currentTextBlockId,
+                      delta: part.text,
+                      providerMetadata: part.thoughtSignature
+                        ? {
+                            [providerOptionsName]: {
+                              thoughtSignature: part.thoughtSignature,
+                            },
+                          }
+                        : undefined,
+                    });
+                  }
+                } else if ('inlineData' in part) {
+                  // Process file parts inline to preserve order with text
                   controller.enqueue({
                     type: 'file',
-                    mimeType: part.inlineData.mimeType,
+                    mediaType: part.inlineData.mimeType,
                     data: part.inlineData.data,
                   });
                 }
@@ -375,24 +577,37 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
               const toolCallDeltas = getToolCallsFromParts({
                 parts: content.parts,
                 generateId,
+                providerOptionsName,
               });
 
               if (toolCallDeltas != null) {
                 for (const toolCall of toolCallDeltas) {
                   controller.enqueue({
-                    type: 'tool-call-delta',
-                    toolCallType: 'function',
-                    toolCallId: toolCall.toolCallId,
+                    type: 'tool-input-start',
+                    id: toolCall.toolCallId,
                     toolName: toolCall.toolName,
-                    argsTextDelta: toolCall.args,
+                    providerMetadata: toolCall.providerMetadata,
+                  });
+
+                  controller.enqueue({
+                    type: 'tool-input-delta',
+                    id: toolCall.toolCallId,
+                    delta: toolCall.args,
+                    providerMetadata: toolCall.providerMetadata,
+                  });
+
+                  controller.enqueue({
+                    type: 'tool-input-end',
+                    id: toolCall.toolCallId,
+                    providerMetadata: toolCall.providerMetadata,
                   });
 
                   controller.enqueue({
                     type: 'tool-call',
-                    toolCallType: 'function',
                     toolCallId: toolCall.toolCallId,
                     toolName: toolCall.toolName,
-                    args: toolCall.args,
+                    input: toolCall.args,
+                    providerMetadata: toolCall.providerMetadata,
                   });
 
                   hasToolCalls = true;
@@ -401,44 +616,59 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
             }
 
             if (candidate.finishReason != null) {
-              finishReason = mapGoogleGenerativeAIFinishReason({
-                finishReason: candidate.finishReason,
-                hasToolCalls,
-              });
-
-              const sources =
-                extractSources({
-                  groundingMetadata: candidate.groundingMetadata,
-                  generateId,
-                }) ?? [];
-
-              for (const source of sources) {
-                controller.enqueue({ type: 'source', source });
-              }
+              finishReason = {
+                unified: mapGoogleGenerativeAIFinishReason({
+                  finishReason: candidate.finishReason,
+                  hasToolCalls,
+                }),
+                raw: candidate.finishReason,
+              };
 
               providerMetadata = {
-                google: {
+                [providerOptionsName]: {
+                  promptFeedback: value.promptFeedback ?? null,
                   groundingMetadata: candidate.groundingMetadata ?? null,
+                  urlContextMetadata: candidate.urlContextMetadata ?? null,
                   safetyRatings: candidate.safetyRatings ?? null,
                 },
               };
+              if (usageMetadata != null) {
+                (
+                  providerMetadata[providerOptionsName] as Record<
+                    string,
+                    unknown
+                  >
+                ).usageMetadata = usageMetadata;
+              }
             }
           },
 
           flush(controller) {
+            // Close any open blocks before finishing
+            if (currentTextBlockId !== null) {
+              controller.enqueue({
+                type: 'text-end',
+                id: currentTextBlockId,
+              });
+            }
+            if (currentReasoningBlockId !== null) {
+              controller.enqueue({
+                type: 'reasoning-end',
+                id: currentReasoningBlockId,
+              });
+            }
+
             controller.enqueue({
               type: 'finish',
               finishReason,
-              usage,
+              usage: convertGoogleGenerativeAIUsage(usage),
               providerMetadata,
             });
           },
         }),
       ),
-      rawCall: { rawPrompt, rawSettings },
-      rawResponse: { headers: responseHeaders },
-      warnings,
-      request: { body },
+      response: { headers: responseHeaders },
+      request: { body: args },
     };
   }
 }
@@ -446,187 +676,334 @@ export class GoogleGenerativeAILanguageModel implements LanguageModelV1 {
 function getToolCallsFromParts({
   parts,
   generateId,
+  providerOptionsName,
 }: {
-  parts: z.infer<typeof contentSchema>['parts'];
+  parts: ContentSchema['parts'];
   generateId: () => string;
+  providerOptionsName: string;
 }) {
   const functionCallParts = parts?.filter(
     part => 'functionCall' in part,
   ) as Array<
     GoogleGenerativeAIContentPart & {
       functionCall: { name: string; args: unknown };
+      thoughtSignature?: string | null;
     }
   >;
 
   return functionCallParts == null || functionCallParts.length === 0
     ? undefined
     : functionCallParts.map(part => ({
-        toolCallType: 'function' as const,
+        type: 'tool-call' as const,
         toolCallId: generateId(),
         toolName: part.functionCall.name,
         args: JSON.stringify(part.functionCall.args),
+        providerMetadata: part.thoughtSignature
+          ? {
+              [providerOptionsName]: {
+                thoughtSignature: part.thoughtSignature,
+              },
+            }
+          : undefined,
       }));
-}
-
-function getTextFromParts(parts: z.infer<typeof contentSchema>['parts']) {
-  const textParts = parts?.filter(part => 'text' in part) as Array<
-    GoogleGenerativeAIContentPart & { text: string }
-  >;
-
-  return textParts == null || textParts.length === 0
-    ? undefined
-    : textParts.map(part => part.text).join('');
-}
-
-function getInlineDataParts(parts: z.infer<typeof contentSchema>['parts']) {
-  return parts?.filter(
-    (
-      part,
-    ): part is {
-      inlineData: { mimeType: string; data: string };
-    } => 'inlineData' in part,
-  );
 }
 
 function extractSources({
   groundingMetadata,
   generateId,
 }: {
-  groundingMetadata: z.infer<typeof groundingMetadataSchema> | undefined | null;
+  groundingMetadata: GroundingMetadataSchema | undefined | null;
   generateId: () => string;
-}): undefined | LanguageModelV1Source[] {
-  return groundingMetadata?.groundingChunks
-    ?.filter(
-      (
-        chunk,
-      ): chunk is z.infer<typeof groundingChunkSchema> & {
-        web: { uri: string; title?: string };
-      } => chunk.web != null,
-    )
-    .map(chunk => ({
-      sourceType: 'url',
-      id: generateId(),
-      url: chunk.web.uri,
-      title: chunk.web.title,
-    }));
+}): undefined | LanguageModelV3Source[] {
+  if (!groundingMetadata?.groundingChunks) {
+    return undefined;
+  }
+
+  const sources: LanguageModelV3Source[] = [];
+
+  for (const chunk of groundingMetadata.groundingChunks) {
+    if (chunk.web != null) {
+      // Handle web chunks as URL sources
+      sources.push({
+        type: 'source',
+        sourceType: 'url',
+        id: generateId(),
+        url: chunk.web.uri,
+        title: chunk.web.title ?? undefined,
+      });
+    } else if (chunk.retrievedContext != null) {
+      // Handle retrievedContext chunks from RAG operations
+      const uri = chunk.retrievedContext.uri;
+      const fileSearchStore = chunk.retrievedContext.fileSearchStore;
+
+      if (uri && (uri.startsWith('http://') || uri.startsWith('https://'))) {
+        // Old format: Google Search with HTTP/HTTPS URL
+        sources.push({
+          type: 'source',
+          sourceType: 'url',
+          id: generateId(),
+          url: uri,
+          title: chunk.retrievedContext.title ?? undefined,
+        });
+      } else if (uri) {
+        // Old format: Document with file path (gs://, etc.)
+        const title = chunk.retrievedContext.title ?? 'Unknown Document';
+        let mediaType = 'application/octet-stream';
+        let filename: string | undefined = undefined;
+
+        if (uri.endsWith('.pdf')) {
+          mediaType = 'application/pdf';
+          filename = uri.split('/').pop();
+        } else if (uri.endsWith('.txt')) {
+          mediaType = 'text/plain';
+          filename = uri.split('/').pop();
+        } else if (uri.endsWith('.docx')) {
+          mediaType =
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+          filename = uri.split('/').pop();
+        } else if (uri.endsWith('.doc')) {
+          mediaType = 'application/msword';
+          filename = uri.split('/').pop();
+        } else if (uri.match(/\.(md|markdown)$/)) {
+          mediaType = 'text/markdown';
+          filename = uri.split('/').pop();
+        } else {
+          filename = uri.split('/').pop();
+        }
+
+        sources.push({
+          type: 'source',
+          sourceType: 'document',
+          id: generateId(),
+          mediaType,
+          title,
+          filename,
+        });
+      } else if (fileSearchStore) {
+        // New format: File Search with fileSearchStore (no uri)
+        const title = chunk.retrievedContext.title ?? 'Unknown Document';
+        sources.push({
+          type: 'source',
+          sourceType: 'document',
+          id: generateId(),
+          mediaType: 'application/octet-stream',
+          title,
+          filename: fileSearchStore.split('/').pop(),
+        });
+      }
+    } else if (chunk.maps != null) {
+      if (chunk.maps.uri) {
+        sources.push({
+          type: 'source',
+          sourceType: 'url',
+          id: generateId(),
+          url: chunk.maps.uri,
+          title: chunk.maps.title ?? undefined,
+        });
+      }
+    }
+  }
+
+  return sources.length > 0 ? sources : undefined;
 }
 
-const contentSchema = z.object({
-  role: z.string(),
-  parts: z
-    .array(
-      z.union([
+export const getGroundingMetadataSchema = () =>
+  z.object({
+    webSearchQueries: z.array(z.string()).nullish(),
+    retrievalQueries: z.array(z.string()).nullish(),
+    searchEntryPoint: z.object({ renderedContent: z.string() }).nullish(),
+    groundingChunks: z
+      .array(
         z.object({
-          text: z.string(),
+          web: z
+            .object({ uri: z.string(), title: z.string().nullish() })
+            .nullish(),
+          retrievedContext: z
+            .object({
+              uri: z.string().nullish(),
+              title: z.string().nullish(),
+              text: z.string().nullish(),
+              fileSearchStore: z.string().nullish(),
+            })
+            .nullish(),
+          maps: z
+            .object({
+              uri: z.string().nullish(),
+              title: z.string().nullish(),
+              text: z.string().nullish(),
+              placeId: z.string().nullish(),
+            })
+            .nullish(),
         }),
+      )
+      .nullish(),
+    groundingSupports: z
+      .array(
         z.object({
-          functionCall: z.object({
-            name: z.string(),
-            args: z.unknown(),
+          segment: z.object({
+            startIndex: z.number().nullish(),
+            endIndex: z.number().nullish(),
+            text: z.string().nullish(),
           }),
+          segment_text: z.string().nullish(),
+          groundingChunkIndices: z.array(z.number()).nullish(),
+          supportChunkIndices: z.array(z.number()).nullish(),
+          confidenceScores: z.array(z.number()).nullish(),
+          confidenceScore: z.array(z.number()).nullish(),
         }),
+      )
+      .nullish(),
+    retrievalMetadata: z
+      .union([
         z.object({
-          inlineData: z.object({
-            mimeType: z.string(),
-            data: z.string(),
+          webDynamicRetrievalScore: z.number(),
+        }),
+        z.object({}),
+      ])
+      .nullish(),
+  });
+
+const getContentSchema = () =>
+  z.object({
+    parts: z
+      .array(
+        z.union([
+          // note: order matters since text can be fully empty
+          z.object({
+            functionCall: z.object({
+              name: z.string(),
+              args: z.unknown(),
+            }),
+            thoughtSignature: z.string().nullish(),
           }),
-        }),
-      ]),
-    )
-    .nullish(),
-});
-
-// https://ai.google.dev/gemini-api/docs/grounding
-// https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/ground-gemini#ground-to-search
-const groundingChunkSchema = z.object({
-  web: z.object({ uri: z.string(), title: z.string() }).nullish(),
-  retrievedContext: z.object({ uri: z.string(), title: z.string() }).nullish(),
-});
-
-export const groundingMetadataSchema = z.object({
-  webSearchQueries: z.array(z.string()).nullish(),
-  retrievalQueries: z.array(z.string()).nullish(),
-  searchEntryPoint: z.object({ renderedContent: z.string() }).nullish(),
-  groundingChunks: z.array(groundingChunkSchema).nullish(),
-  groundingSupports: z
-    .array(
-      z.object({
-        segment: z.object({
-          startIndex: z.number().nullish(),
-          endIndex: z.number().nullish(),
-          text: z.string().nullish(),
-        }),
-        segment_text: z.string().nullish(),
-        groundingChunkIndices: z.array(z.number()).nullish(),
-        supportChunkIndices: z.array(z.number()).nullish(),
-        confidenceScores: z.array(z.number()).nullish(),
-        confidenceScore: z.array(z.number()).nullish(),
-      }),
-    )
-    .nullish(),
-  retrievalMetadata: z
-    .union([
-      z.object({
-        webDynamicRetrievalScore: z.number(),
-      }),
-      z.object({}),
-    ])
-    .nullish(),
-});
+          z.object({
+            inlineData: z.object({
+              mimeType: z.string(),
+              data: z.string(),
+            }),
+            thoughtSignature: z.string().nullish(),
+          }),
+          z.object({
+            executableCode: z
+              .object({
+                language: z.string(),
+                code: z.string(),
+              })
+              .nullish(),
+            codeExecutionResult: z
+              .object({
+                outcome: z.string(),
+                output: z.string(),
+              })
+              .nullish(),
+            text: z.string().nullish(),
+            thought: z.boolean().nullish(),
+            thoughtSignature: z.string().nullish(),
+          }),
+        ]),
+      )
+      .nullish(),
+  });
 
 // https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/configure-safety-filters
-export const safetyRatingSchema = z.object({
-  category: z.string(),
-  probability: z.string(),
-  probabilityScore: z.number().nullish(),
-  severity: z.string().nullish(),
-  severityScore: z.number().nullish(),
-  blocked: z.boolean().nullish(),
+const getSafetyRatingSchema = () =>
+  z.object({
+    category: z.string().nullish(),
+    probability: z.string().nullish(),
+    probabilityScore: z.number().nullish(),
+    severity: z.string().nullish(),
+    severityScore: z.number().nullish(),
+    blocked: z.boolean().nullish(),
+  });
+
+const usageSchema = z.object({
+  cachedContentTokenCount: z.number().nullish(),
+  thoughtsTokenCount: z.number().nullish(),
+  promptTokenCount: z.number().nullish(),
+  candidatesTokenCount: z.number().nullish(),
+  totalTokenCount: z.number().nullish(),
+  // https://cloud.google.com/vertex-ai/generative-ai/docs/reference/rest/v1/GenerateContentResponse#TrafficType
+  trafficType: z.string().nullish(),
 });
 
-const responseSchema = z.object({
-  candidates: z.array(
+// https://ai.google.dev/api/generate-content#UrlRetrievalMetadata
+export const getUrlContextMetadataSchema = () =>
+  z.object({
+    urlMetadata: z.array(
+      z.object({
+        retrievedUrl: z.string(),
+        urlRetrievalStatus: z.string(),
+      }),
+    ),
+  });
+
+const responseSchema = lazySchema(() =>
+  zodSchema(
     z.object({
-      content: contentSchema.nullish().or(z.object({}).strict()),
-      finishReason: z.string().nullish(),
-      safetyRatings: z.array(safetyRatingSchema).nullish(),
-      groundingMetadata: groundingMetadataSchema.nullish(),
+      candidates: z.array(
+        z.object({
+          content: getContentSchema().nullish().or(z.object({}).strict()),
+          finishReason: z.string().nullish(),
+          safetyRatings: z.array(getSafetyRatingSchema()).nullish(),
+          groundingMetadata: getGroundingMetadataSchema().nullish(),
+          urlContextMetadata: getUrlContextMetadataSchema().nullish(),
+        }),
+      ),
+      usageMetadata: usageSchema.nullish(),
+      promptFeedback: z
+        .object({
+          blockReason: z.string().nullish(),
+          safetyRatings: z.array(getSafetyRatingSchema()).nullish(),
+        })
+        .nullish(),
     }),
   ),
-  usageMetadata: z
-    .object({
-      promptTokenCount: z.number().nullish(),
-      candidatesTokenCount: z.number().nullish(),
-      totalTokenCount: z.number().nullish(),
-    })
-    .nullish(),
-});
+);
+
+type ContentSchema = NonNullable<
+  InferSchema<typeof responseSchema>['candidates'][number]['content']
+>;
+export type GroundingMetadataSchema = NonNullable<
+  InferSchema<typeof responseSchema>['candidates'][number]['groundingMetadata']
+>;
+
+type GroundingChunkSchema = NonNullable<
+  GroundingMetadataSchema['groundingChunks']
+>[number];
+
+export type UrlContextMetadataSchema = NonNullable<
+  InferSchema<typeof responseSchema>['candidates'][number]['urlContextMetadata']
+>;
+
+export type SafetyRatingSchema = NonNullable<
+  InferSchema<typeof responseSchema>['candidates'][number]['safetyRatings']
+>[number];
 
 // limited version of the schema, focussed on what is needed for the implementation
 // this approach limits breakages when the API changes and increases efficiency
-const chunkSchema = z.object({
-  candidates: z
-    .array(
-      z.object({
-        content: contentSchema.nullish(),
-        finishReason: z.string().nullish(),
-        safetyRatings: z.array(safetyRatingSchema).nullish(),
-        groundingMetadata: groundingMetadataSchema.nullish(),
-      }),
-    )
-    .nullish(),
-  usageMetadata: z
-    .object({
-      promptTokenCount: z.number().nullish(),
-      candidatesTokenCount: z.number().nullish(),
-      totalTokenCount: z.number().nullish(),
-    })
-    .nullish(),
-});
+const chunkSchema = lazySchema(() =>
+  zodSchema(
+    z.object({
+      candidates: z
+        .array(
+          z.object({
+            content: getContentSchema().nullish(),
+            finishReason: z.string().nullish(),
+            safetyRatings: z.array(getSafetyRatingSchema()).nullish(),
+            groundingMetadata: getGroundingMetadataSchema().nullish(),
+            urlContextMetadata: getUrlContextMetadataSchema().nullish(),
+          }),
+        )
+        .nullish(),
+      usageMetadata: usageSchema.nullish(),
+      promptFeedback: z
+        .object({
+          blockReason: z.string().nullish(),
+          safetyRatings: z.array(getSafetyRatingSchema()).nullish(),
+        })
+        .nullish(),
+    }),
+  ),
+);
 
-const googleGenerativeAIProviderOptionsSchema = z.object({
-  responseModalities: z.array(z.enum(['TEXT', 'IMAGE'])).nullish(),
-});
-export type GoogleGenerativeAIProviderOptions = z.infer<
-  typeof googleGenerativeAIProviderOptionsSchema
->;
+type ChunkSchema = InferSchema<typeof chunkSchema>;

@@ -1,37 +1,68 @@
 import { openai } from '@ai-toolkit/openai';
-import { pipeDataStreamToResponse, streamText } from 'ai-toolkit';
+import {
+  createUIMessageStream,
+  pipeAgentUIStreamToResponse,
+  pipeUIMessageStreamToResponse,
+  streamText,
+} from 'ai';
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
+import { openaiWebSearchAgent } from './openai-web-search-agent.js';
 
 const app = express();
+app.use(express.json());
+
+const prompt = 'Invent a new holiday and describe its traditions.';
+
+app.get('/', (_req: Request, res: Response) => {
+  res.send(
+    `<html><body>
+      <form method="POST">
+        <button type="submit">${prompt}</button>
+      </form>
+    </body></html>`,
+  );
+});
 
 app.post('/', async (req: Request, res: Response) => {
   const result = streamText({
     model: openai('gpt-4o'),
-    prompt: 'Invent a new holiday and describe its traditions.',
+    prompt,
   });
 
-  result.pipeDataStreamToResponse(res);
+  result.pipeUIMessageStreamToResponse(res);
 });
 
-app.post('/stream-data', async (req: Request, res: Response) => {
-  // immediately start streaming the response
-  pipeDataStreamToResponse(res, {
-    execute: async dataStreamWriter => {
-      dataStreamWriter.writeData('initialized call');
+app.post('/chat', async (request: Request, response: Response) => {
+  pipeAgentUIStreamToResponse({
+    agent: openaiWebSearchAgent,
+    uiMessages: request.body.messages,
+    response,
+  });
+});
 
-      const result = streamText({
-        model: openai('gpt-4o'),
-        prompt: 'Invent a new holiday and describe its traditions.',
-      });
+app.post('/custom-data-parts', async (req: Request, res: Response) => {
+  pipeUIMessageStreamToResponse({
+    response: res,
+    stream: createUIMessageStream({
+      execute: async ({ writer }) => {
+        writer.write({ type: 'start' });
 
-      result.mergeIntoDataStream(dataStreamWriter);
-    },
-    onError: error => {
-      // Error messages are masked by default for security reasons.
-      // If you want to expose the error message to the client, you can do so here:
-      return error instanceof Error ? error.message : String(error);
-    },
+        writer.write({
+          type: 'data-custom',
+          data: {
+            custom: 'Hello, world!',
+          },
+        });
+
+        const result = streamText({
+          model: openai('gpt-4o'),
+          prompt: 'Invent a new holiday and describe its traditions.',
+        });
+
+        writer.merge(result.toUIMessageStream({ sendStart: false }));
+      },
+    }),
   });
 });
 

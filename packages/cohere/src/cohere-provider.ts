@@ -1,43 +1,63 @@
-import type {
-  EmbeddingModelV1,
-  LanguageModelV1,
-  ProviderV1,
-} from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
-} from '@ai-toolkit/provider-utils';
 import {
+  EmbeddingModelV3,
+  LanguageModelV3,
+  NoSuchModelError,
+  RerankingModelV3,
+  ProviderV3,
+} from '@ai-toolkit/provider';
+
+import {
+  FetchFunction,
+  generateId,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
 import { CohereChatLanguageModel } from './cohere-chat-language-model';
-import type { CohereChatModelId, CohereChatSettings } from './cohere-chat-settings';
+import { CohereChatModelId } from './cohere-chat-options';
 import { CohereEmbeddingModel } from './cohere-embedding-model';
-import type {
-  CohereEmbeddingModelId,
-  CohereEmbeddingSettings,
-} from './cohere-embedding-settings';
+import { CohereRerankingModelId } from './reranking/cohere-reranking-options';
+import { CohereRerankingModel } from './reranking/cohere-reranking-model';
+import { CohereEmbeddingModelId } from './cohere-embedding-options';
+import { VERSION } from './version';
 
-export interface CohereProvider extends ProviderV1 {
-  (modelId: CohereChatModelId, settings?: CohereChatSettings): LanguageModelV1;
+export interface CohereProvider extends ProviderV3 {
+  (modelId: CohereChatModelId): LanguageModelV3;
 
   /**
 Creates a model for text generation.
 */
-  languageModel(
-    modelId: CohereChatModelId,
-    settings?: CohereChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: CohereChatModelId): LanguageModelV3;
 
-  embedding(
-    modelId: CohereEmbeddingModelId,
-    settings?: CohereEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  /**
+   * Creates a model for text embeddings.
+   */
+  embedding(modelId: CohereEmbeddingModelId): EmbeddingModelV3;
 
-  textEmbeddingModel(
-    modelId: CohereEmbeddingModelId,
-    settings?: CohereEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  /**
+   * Creates a model for text embeddings.
+   */
+  embeddingModel(modelId: CohereEmbeddingModelId): EmbeddingModelV3;
+
+  /**
+   * @deprecated Use `embedding` instead.
+   */
+  textEmbedding(modelId: CohereEmbeddingModelId): EmbeddingModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: CohereEmbeddingModelId): EmbeddingModelV3;
+
+  /**
+   * Creates a model for reranking.
+   */
+  reranking(modelId: CohereRerankingModelId): RerankingModelV3;
+
+  /**
+   * Creates a model for reranking.
+   */
+  rerankingModel(modelId: CohereRerankingModelId): RerankingModelV3;
 }
 
 export interface CohereProviderSettings {
@@ -63,6 +83,11 @@ Custom fetch implementation. You can use it as a middleware to intercept request
 or to provide a custom fetch implementation for e.g. testing.
     */
   fetch?: FetchFunction;
+
+  /**
+Optional function to generate a unique ID for each request.
+     */
+  generateId?: () => string;
 }
 
 /**
@@ -74,53 +99,66 @@ export function createCohere(
   const baseURL =
     withoutTrailingSlash(options.baseURL) ?? 'https://api.cohere.com/v2';
 
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'COHERE_API_KEY',
-      description: 'Cohere',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'COHERE_API_KEY',
+          description: 'Cohere',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/cohere/${VERSION}`,
+    );
 
-  const createChatModel = (
-    modelId: CohereChatModelId,
-    settings: CohereChatSettings = {},
-  ) =>
-    new CohereChatLanguageModel(modelId, settings, {
+  const createChatModel = (modelId: CohereChatModelId) =>
+    new CohereChatLanguageModel(modelId, {
       provider: 'cohere.chat',
       baseURL,
       headers: getHeaders,
       fetch: options.fetch,
+      generateId: options.generateId ?? generateId,
     });
 
-  const createTextEmbeddingModel = (
-    modelId: CohereEmbeddingModelId,
-    settings: CohereEmbeddingSettings = {},
-  ) =>
-    new CohereEmbeddingModel(modelId, settings, {
+  const createEmbeddingModel = (modelId: CohereEmbeddingModelId) =>
+    new CohereEmbeddingModel(modelId, {
       provider: 'cohere.textEmbedding',
       baseURL,
       headers: getHeaders,
       fetch: options.fetch,
     });
 
-  const provider = function (
-    modelId: CohereChatModelId,
-    settings?: CohereChatSettings,
-  ) {
+  const createRerankingModel = (modelId: CohereRerankingModelId) =>
+    new CohereRerankingModel(modelId, {
+      provider: 'cohere.reranking',
+      baseURL,
+      headers: getHeaders,
+      fetch: options.fetch,
+    });
+
+  const provider = function (modelId: CohereChatModelId) {
     if (new.target) {
       throw new Error(
         'The Cohere model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createChatModel;
-  provider.embedding = createTextEmbeddingModel;
-  provider.textEmbeddingModel = createTextEmbeddingModel;
+  provider.embedding = createEmbeddingModel;
+  provider.embeddingModel = createEmbeddingModel;
+  provider.textEmbedding = createEmbeddingModel;
+  provider.textEmbeddingModel = createEmbeddingModel;
+  provider.reranking = createRerankingModel;
+  provider.rerankingModel = createRerankingModel;
+
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
+  };
 
   return provider;
 }

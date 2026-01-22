@@ -1,114 +1,119 @@
-#!/usr/bin/env node
+import { build } from 'esbuild';
+import { writeFileSync, statSync } from 'fs';
+import { join } from 'path';
 
-import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { gzipSizeSync } from 'gzip-size';
-import { glob } from 'glob';
+// Bundle size limits in bytes
+const LIMIT = 550 * 1024;
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const ROOT_DIR = join(__dirname, '..');
-const DIST_DIR = join(ROOT_DIR, 'dist');
-
-interface BundleSizeResult {
-  file: string;
+interface BundleResult {
   size: number;
-  gzip: number;
-  formattedSize: string;
-  formattedGzip: string;
+  path: string;
+  condition: string;
 }
 
-function formatBytes(bytes: number, decimals = 2): string {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
+async function bundleForNode(): Promise<BundleResult> {
+  const outfile = join(process.cwd(), 'dist-bundle-check', 'node.js');
+  const metafile = join(process.cwd(), 'dist-bundle-check', 'node-meta.json');
 
-async function getPackageName(): Promise<string> {
-  const pkg = JSON.parse(readFileSync(join(ROOT_DIR, 'package.json'), 'utf-8'));
-  return pkg.name;
-}
-
-async function getBundleFiles(): Promise<string[]> {
-  const files = await glob(join(DIST_DIR, '**/*.{js,mjs,cjs}'));
-  return files.filter(
-    file => !file.endsWith('.d.ts') && !file.includes('.d.ts.'),
-  );
-}
-
-function getFileSize(file: string): number {
-  const stats = require('node:fs').statSync(file);
-  return stats.size;
-}
-
-function analyzeBundleSizes(files: string[]): BundleSizeResult[] {
-  return files.map(file => {
-    const size = getFileSize(file);
-    const gzip = gzipSizeSync(readFileSync(file));
-    return {
-      file: file.replace(ROOT_DIR, ''),
-      size,
-      gzip,
-      formattedSize: formatBytes(size),
-      formattedGzip: formatBytes(gzip),
-    };
+  const result = await build({
+    entryPoints: [join(process.cwd(), 'src', 'index.ts')],
+    bundle: true,
+    platform: 'node',
+    target: 'es2020',
+    format: 'esm',
+    outfile,
+    metafile: true,
+    minify: true,
+    treeShaking: true,
+    external: ['arktype', 'effect', '@valibot/to-json-schema'],
   });
+  writeFileSync(metafile, JSON.stringify(result.metafile, null, 2));
+
+  const size = statSync(outfile).size;
+  return { size, path: outfile, condition: 'node' };
 }
 
-function printResults(results: BundleSizeResult[]): void {
-  console.log('\n📦 Bundle Size Analysis\n');
-  console.log('File'.padEnd(40), 'Size'.padEnd(15), 'Gzipped'.padEnd(15));
-  console.log('-'.repeat(70));
+async function bundleForBrowser(): Promise<BundleResult> {
+  const outfile = join(process.cwd(), 'dist-bundle-check', 'browser.js');
+  const metafile = join(
+    process.cwd(),
+    'dist-bundle-check',
+    'browser-meta.json',
+  );
 
-  for (const result of results) {
-    console.log(
-      result.file.padEnd(40),
-      result.formattedSize.padEnd(15),
-      result.formattedGzip.padEnd(15),
-    );
-  }
-  console.log('\n');
+  const result = await build({
+    entryPoints: [join(process.cwd(), 'src', 'index.ts')],
+    bundle: true,
+    platform: 'browser',
+    target: 'es2020',
+    format: 'esm',
+    outfile,
+    metafile: true,
+    minify: true,
+    treeShaking: true,
+    conditions: ['browser'],
+    external: ['arktype', 'effect', '@valibot/to-json-schema'],
+  });
+  writeFileSync(metafile, JSON.stringify(result.metafile, null, 2));
+
+  const size = statSync(outfile).size;
+  return { size, path: outfile, condition: 'browser' };
 }
 
-async function checkBundleSizes() {
+function formatSize(bytes: number): string {
+  return `${(bytes / 1024).toFixed(2)} KB`;
+}
+
+function checkSize(result: BundleResult, limit: number): boolean {
+  const passed = result.size <= limit;
+  const status = passed ? '✅' : '❌';
+  const percentage = ((result.size / limit) * 100).toFixed(1);
+
+  console.log(
+    `${status} ${result.condition.padEnd(10)} ${formatSize(result.size).padEnd(12)} (${percentage}% of ${formatSize(limit)} limit)`,
+  );
+
+  return passed;
+}
+
+async function main() {
+  console.log('📦 Checking bundle sizes...\n');
+
   try {
-    const packageName = await getPackageName();
-    console.log(`📦 Checking bundle sizes for ${packageName}...\n`);
+    const [nodeResult, browserResult] = await Promise.all([
+      bundleForNode(),
+      bundleForBrowser(),
+    ]);
 
-    const files = await getBundleFiles();
+    console.log('Bundle sizes:');
+    const nodePass = checkSize(nodeResult, LIMIT);
+    const browserPass = checkSize(browserResult, LIMIT);
 
-    if (files.length === 0) {
-      console.error(
-        '❌ No bundle files found. Please build the package first.',
+    console.log('\n---');
+
+    console.log('📦 Bundle size check complete.');
+    console.log(
+      'Upload dist-bundle-check/*.json files to https://esbuild.github.io/analyze/ for detailed analysis.',
+    );
+
+    console.log('\n---');
+
+    if (nodePass && browserPass) {
+      console.log('✅ All bundle size checks passed!');
+      process.exit(0);
+    } else {
+      console.log('❌ Bundle size check failed!');
+      console.log('\nTo fix this, either:');
+      console.log('1. Reduce the bundle size by optimizing code');
+      console.log(
+        '2. Update the limit at https://github.com/khulnasoft/ai-toolkit/settings/variables/actions/BUNDLE_SIZE_LIMIT_KB',
       );
       process.exit(1);
     }
-
-    const results = analyzeBundleSizes(files);
-    printResults(results);
-
-    // Check against thresholds (example: warn if any file > 100KB gzipped)
-    const threshold = 100 * 1024; // 100KB in bytes
-    const oversized = results.filter(r => r.gzip > threshold);
-
-    if (oversized.length > 0) {
-      console.warn(
-        '⚠️  Warning: The following files exceed the size threshold (100KB gzipped):',
-      );
-      oversized.forEach(r => {
-        console.warn(`  - ${r.file}: ${r.formattedGzip} (gzipped)`);
-      });
-      process.exitCode = 1;
-    }
   } catch (error) {
-    console.error('❌ Error analyzing bundle sizes:', error);
+    console.error('Error during bundle size check:', error);
     process.exit(1);
   }
 }
 
-// Run the script
-checkBundleSizes();
+main();

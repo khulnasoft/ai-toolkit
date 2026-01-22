@@ -1,29 +1,34 @@
-import type {
-  LanguageModelV1,
-  ProviderV1,
-} from '@ai-toolkit/provider';
-import { NoSuchModelError } from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
-} from '@ai-toolkit/provider-utils';
 import {
+  LanguageModelV3,
+  NoSuchModelError,
+  ProviderV3,
+} from '@ai-toolkit/provider';
+import {
+  FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
 import { PerplexityLanguageModel } from './perplexity-language-model';
-import type { PerplexityLanguageModelId } from './perplexity-language-model-settings';
+import { PerplexityLanguageModelId } from './perplexity-language-model-options';
+import { VERSION } from './version';
 
-export interface PerplexityProvider extends ProviderV1 {
+export interface PerplexityProvider extends ProviderV3 {
   /**
 Creates an Perplexity chat model for text generation.
    */
-  (modelId: PerplexityLanguageModelId): LanguageModelV1;
+  (modelId: PerplexityLanguageModelId): LanguageModelV3;
 
   /**
 Creates an Perplexity language model for text generation.
    */
-  languageModel(modelId: PerplexityLanguageModelId): LanguageModelV1;
+  languageModel(modelId: PerplexityLanguageModelId): LanguageModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 export interface PerplexityProviderSettings {
@@ -52,14 +57,18 @@ or to provide a custom fetch implementation for e.g. testing.
 export function createPerplexity(
   options: PerplexityProviderSettings = {},
 ): PerplexityProvider {
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'PERPLEXITY_API_KEY',
-      description: 'Perplexity',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'PERPLEXITY_API_KEY',
+          description: 'Perplexity',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/perplexity/${VERSION}`,
+    );
 
   const createLanguageModel = (modelId: PerplexityLanguageModelId) => {
     return new PerplexityLanguageModel(modelId, {
@@ -75,10 +84,15 @@ export function createPerplexity(
   const provider = (modelId: PerplexityLanguageModelId) =>
     createLanguageModel(modelId);
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createLanguageModel;
 
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
+  };
+  provider.textEmbeddingModel = provider.embeddingModel;
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
   };
 
   return provider;

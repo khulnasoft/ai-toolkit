@@ -1,145 +1,109 @@
 import type {
-  EmbeddingModelV1,
-  EmbeddingModelV1CallOptions,
-  EmbeddingModelV1CallWarning,
-  EmbeddingModelV1ProviderMetadata,
+  EmbeddingModelV3,
+  SharedV3ProviderMetadata,
 } from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
+import {
+  combineHeaders,
+  createJsonErrorResponseHandler,
+  createJsonResponseHandler,
+  lazySchema,
+  postJsonToApi,
+  resolve,
+  zodSchema,
+  type Resolvable,
 } from '@ai-toolkit/provider-utils';
-import { asGatewayError } from './errors/as-gateway-error';
-import type { GatewayEmbeddingModelId, GatewayEmbeddingSettings } from './gateway-embedding-settings';
+import { z } from 'zod/v4';
+import { asGatewayError } from './errors';
+import { parseAuthMethod } from './errors/parse-auth-method';
+import type { GatewayConfig } from './gateway-config';
 
-export interface GatewayEmbeddingModelOptions extends GatewayEmbeddingSettings {
-  modelId: GatewayEmbeddingModelId;
-  baseURL?: string;
-}
+export class GatewayEmbeddingModel implements EmbeddingModelV3 {
+  readonly specificationVersion = 'v3';
+  readonly maxEmbeddingsPerCall = 2048;
+  readonly supportsParallelCalls = true;
 
-export class GatewayEmbeddingModel implements EmbeddingModelV1<string> {
-  readonly modelId: GatewayEmbeddingModelId;
-  readonly provider = 'gateway';
-  readonly baseURL: string;
-  readonly apiKey?: string;
-  readonly headers?: Record<string, string>;
-  readonly fetch?: FetchFunction;
+  constructor(
+    readonly modelId: string,
+    private readonly config: GatewayConfig & {
+      provider: string;
+      o11yHeaders: Resolvable<Record<string, string>>;
+    },
+  ) {}
 
-  private readonly settings: Omit<GatewayEmbeddingSettings, 'baseURL' | 'apiKey' | 'headers' | 'fetch'>;
-
-  constructor(options: GatewayEmbeddingModelOptions) {
-    this.modelId = options.modelId;
-    this.baseURL = options.baseURL ?? 'https://gateway.ai';
-    this.apiKey = options.apiKey;
-    this.headers = options.headers;
-    this.fetch = options.fetch;
-
-    this.settings = {
-      provider: options.provider,
-      dimensions: options.dimensions,
-      providerSettings: options.providerSettings,
-    };
+  get provider(): string {
+    return this.config.provider;
   }
 
-  async doEmbed(
-    options: EmbeddingModelV1CallOptions<string>,
-  ): Promise<{
-    embeddings: Array<readonly number[]>;
-    usage?: {
-      promptTokens: number;
-    };
-    warnings?: EmbeddingModelV1CallWarning[];
-    rawCall?: {
-      rawPrompt: unknown;
-      rawSettings: Record<string, unknown>;
-    };
-    rawResponse?: Record<string, unknown>;
-    metadata?: EmbeddingModelV1ProviderMetadata;
-  }> {
-    const requestBody = this.buildRequestBody(options);
-
+  async doEmbed({
+    values,
+    headers,
+    abortSignal,
+    providerOptions,
+  }: Parameters<EmbeddingModelV3['doEmbed']>[0]): Promise<
+    Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>
+  > {
+    const resolvedHeaders = await resolve(this.config.headers());
     try {
-      const response = await this.fetch?.(this.baseURL + '/v1/embeddings', {
-        method: 'POST',
-        headers: this.buildHeaders(),
-        body: JSON.stringify(requestBody),
+      const {
+        responseHeaders,
+        value: responseBody,
+        rawValue,
+      } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          headers ?? {},
+          this.getModelConfigHeaders(),
+          await resolve(this.config.o11yHeaders),
+        ),
+        body: {
+          values,
+          ...(providerOptions ? { providerOptions } : {}),
+        },
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayEmbeddingResponseSchema,
+        ),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: z.any(),
+          errorToMessage: data => data,
+        }),
+        ...(abortSignal && { abortSignal }),
+        fetch: this.config.fetch,
       });
 
-      if (!response) {
-        throw new asGatewayError('No response received from gateway');
-      }
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new asGatewayError(`Gateway API error: ${response.status} ${errorText}`);
-      }
-
-      const data = await response.json();
-
-      return this.parseResponse(data, options);
+      return {
+        embeddings: responseBody.embeddings,
+        usage: responseBody.usage ?? undefined,
+        providerMetadata:
+          responseBody.providerMetadata as unknown as SharedV3ProviderMetadata,
+        response: { headers: responseHeaders, body: rawValue },
+        warnings: [],
+      };
     } catch (error) {
-      throw asGatewayError(error);
+      throw await asGatewayError(error, await parseAuthMethod(resolvedHeaders));
     }
   }
 
-  private buildHeaders(): Record<string, string> {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      ...this.headers,
-    };
-
-    if (this.apiKey) {
-      headers['Authorization'] = `Bearer ${this.apiKey}`;
-    }
-
-    return headers;
+  private getUrl() {
+    return `${this.config.baseURL}/embedding-model`;
   }
 
-  private buildRequestBody(options: EmbeddingModelV1CallOptions<string>): Record<string, unknown> {
+  private getModelConfigHeaders() {
     return {
-      model: this.modelId,
-      input: options.values,
-      provider: this.settings.provider,
-      dimensions: this.settings.dimensions,
-      provider_settings: this.settings.providerSettings,
-    };
-  }
-
-  private parseResponse(
-    data: any,
-    options: EmbeddingModelV1CallOptions<string>,
-  ): {
-    embeddings: Array<readonly number[]>;
-    usage?: {
-      promptTokens: number;
-    };
-    warnings?: EmbeddingModelV1CallWarning[];
-    rawCall?: {
-      rawPrompt: unknown;
-      rawSettings: Record<string, unknown>;
-    };
-    rawResponse?: Record<string, unknown>;
-    metadata?: EmbeddingModelV1ProviderMetadata;
-  } {
-    if (!data.data || !Array.isArray(data.data)) {
-      throw new asGatewayError('Invalid embedding response format');
-    }
-
-    const embeddings = data.data.map((item: any) => {
-      if (!item.embedding || !Array.isArray(item.embedding)) {
-        throw new asGatewayError('Invalid embedding format in response');
-      }
-      return item.embedding as readonly number[];
-    });
-
-    return {
-      embeddings,
-      usage: data.usage ? {
-        promptTokens: data.usage.prompt_tokens,
-      } : undefined,
-      rawCall: {
-        rawPrompt: options.values,
-        rawSettings: this.settings,
-      },
-      rawResponse: data,
+      'ai-embedding-model-specification-version': '3',
+      'ai-model-id': this.modelId,
     };
   }
 }
+
+const gatewayEmbeddingResponseSchema = lazySchema(() =>
+  zodSchema(
+    z.object({
+      embeddings: z.array(z.array(z.number())),
+      usage: z.object({ tokens: z.number() }).nullish(),
+      providerMetadata: z
+        .record(z.string(), z.record(z.string(), z.unknown()))
+        .optional(),
+    }),
+  ),
+);

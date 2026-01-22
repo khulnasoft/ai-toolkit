@@ -14,3 +14,22 @@ body:
         Reproduction steps, code examples, background, etc...
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: AI TOOLKIT Version
+      description: Which version of the AI TOOLKIT are you using?
+      placeholder: |
+        Examples:
+        - ai: 4.1.2
+        - @ai-toolkit/react: 2.1.0
+        - @ai-toolkit/openai: 0.5.2
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://community.vercel.com/guidelines)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

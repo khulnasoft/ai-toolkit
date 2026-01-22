@@ -1,25 +1,16 @@
 {
-  "extends": "@khulnasoft/ai-tsconfig/ts-library.json",
+  "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
   "compilerOptions": {
-    "composite": false,
+    "composite": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
+    "outDir": "dist"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
   "exclude": [
     "dist",
     "build",
     "node_modules",
-    "coverage",
     "tsup.config.ts",
-    "internal.d.ts",
-    "**/*.test.ts",
-    "**/*.spec.ts"
+    "internal.d.ts"
   ],
   "references": [
     {
@@ -27,9 +18,6 @@
     },
     {
       "path": "../provider-utils"
-    },
-    {
-      "path": "../gateway"
     }
   ]
 }

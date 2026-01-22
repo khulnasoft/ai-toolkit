@@ -1,8 +1,10 @@
-import { extractHeaders } from './headers-utils';
 import {
-  FetchFunction,
-  removeUndefinedEntries,
+  type FetchFunction,
+  getRuntimeEnvironmentUserAgent,
+  normalizeHeaders,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
+import { VERSION } from './version';
 
 /**
  * Test helper to inject custom headers into a fetch request.
@@ -12,12 +14,19 @@ import {
 export function injectFetchHeaders(
   customHeaders: Record<string, string>,
 ): FetchFunction {
-  return async (input, init = {}) =>
-    await globalThis.fetch(input, {
-      ...init,
-      headers: removeUndefinedEntries({
-        ...extractHeaders(init.headers),
+  return async (input, init = {}) => {
+    const headers = withUserAgentSuffix(
+      {
+        ...normalizeHeaders(init.headers),
         ...customHeaders,
-      }),
+      },
+      `ai-toolkit/amazon-bedrock/${VERSION}`,
+      getRuntimeEnvironmentUserAgent(),
+    );
+
+    return await globalThis.fetch(input, {
+      ...init,
+      headers,
     });
+  };
 }

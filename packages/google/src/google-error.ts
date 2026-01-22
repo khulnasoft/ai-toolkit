@@ -1,15 +1,24 @@
-import { createJsonErrorResponseHandler } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
+import {
+  createJsonErrorResponseHandler,
+  type InferSchema,
+  lazySchema,
+  zodSchema,
+} from '@ai-toolkit/provider-utils';
+import { z } from 'zod/v4';
 
-const googleErrorDataSchema = z.object({
-  error: z.object({
-    code: z.number().nullable(),
-    message: z.string(),
-    status: z.string(),
-  }),
-});
+const googleErrorDataSchema = lazySchema(() =>
+  zodSchema(
+    z.object({
+      error: z.object({
+        code: z.number().nullable(),
+        message: z.string(),
+        status: z.string(),
+      }),
+    }),
+  ),
+);
 
-export type GoogleErrorData = z.infer<typeof googleErrorDataSchema>;
+export type GoogleErrorData = InferSchema<typeof googleErrorDataSchema>;
 
 export const googleFailedResponseHandler = createJsonErrorResponseHandler({
   errorSchema: googleErrorDataSchema,

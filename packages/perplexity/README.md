@@ -1,6 +1,6 @@
 # AI TOOLKIT - Perplexity Provider
 
-The **[Perplexity provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs)
+The **[Perplexity provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/perplexity)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for Perplexity's Sonar API - a powerful answer engine with real-time web search capabilities.
 
 ## Features
@@ -44,4 +44,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Perplexity provider documentation](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for more information.
+Please check out the **[Perplexity provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/perplexity)** for more information.

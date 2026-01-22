@@ -1,12 +1,12 @@
 import {
-  LanguageModelV1Prompt,
+  LanguageModelV3Prompt,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
-import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
 import { GroqChatPrompt } from './groq-api-types';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 
 export function convertToGroqChatMessages(
-  prompt: LanguageModelV1Prompt,
+  prompt: LanguageModelV3Prompt,
 ): GroqChatPrompt {
   const messages: GroqChatPrompt = [];
 
@@ -30,23 +30,25 @@ export function convertToGroqChatMessages(
               case 'text': {
                 return { type: 'text', text: part.text };
               }
-              case 'image': {
+              case 'file': {
+                if (!part.mediaType.startsWith('image/')) {
+                  throw new UnsupportedFunctionalityError({
+                    functionality: 'Non-image file content parts',
+                  });
+                }
+
+                const mediaType =
+                  part.mediaType === 'image/*' ? 'image/jpeg' : part.mediaType;
+
                 return {
                   type: 'image_url',
                   image_url: {
                     url:
-                      part.image instanceof URL
-                        ? part.image.toString()
-                        : `data:${
-                            part.mimeType ?? 'image/jpeg'
-                          };base64,${convertUint8ArrayToBase64(part.image)}`,
+                      part.data instanceof URL
+                        ? part.data.toString()
+                        : `data:${mediaType};base64,${convertToBase64(part.data)}`,
                   },
                 };
-              }
-              case 'file': {
-                throw new UnsupportedFunctionalityError({
-                  functionality: 'File content parts in user messages',
-                });
               }
             }
           }),
@@ -57,6 +59,7 @@ export function convertToGroqChatMessages(
 
       case 'assistant': {
         let text = '';
+        let reasoning = '';
         const toolCalls: Array<{
           id: string;
           type: 'function';
@@ -65,17 +68,25 @@ export function convertToGroqChatMessages(
 
         for (const part of content) {
           switch (part.type) {
+            // groq supports reasoning for tool-calls in multi-turn conversations
+            // https://github.com/khulnasoft/ai-toolkit/issues/7860
+            case 'reasoning': {
+              reasoning += part.text;
+              break;
+            }
+
             case 'text': {
               text += part.text;
               break;
             }
+
             case 'tool-call': {
               toolCalls.push({
                 id: part.toolCallId,
                 type: 'function',
                 function: {
                   name: part.toolName,
-                  arguments: JSON.stringify(part.args),
+                  arguments: JSON.stringify(part.input),
                 },
               });
               break;
@@ -86,7 +97,8 @@ export function convertToGroqChatMessages(
         messages.push({
           role: 'assistant',
           content: text,
-          tool_calls: toolCalls.length > 0 ? toolCalls : undefined,
+          ...(reasoning.length > 0 ? { reasoning } : null),
+          ...(toolCalls.length > 0 ? { tool_calls: toolCalls } : null),
         });
 
         break;
@@ -94,10 +106,31 @@ export function convertToGroqChatMessages(
 
       case 'tool': {
         for (const toolResponse of content) {
+          if (toolResponse.type === 'tool-approval-response') {
+            continue;
+          }
+          const output = toolResponse.output;
+
+          let contentValue: string;
+          switch (output.type) {
+            case 'text':
+            case 'error-text':
+              contentValue = output.value;
+              break;
+            case 'execution-denied':
+              contentValue = output.reason ?? 'Tool execution denied.';
+              break;
+            case 'content':
+            case 'json':
+            case 'error-json':
+              contentValue = JSON.stringify(output.value);
+              break;
+          }
+
           messages.push({
             role: 'tool',
             tool_call_id: toolResponse.toolCallId,
-            content: JSON.stringify(toolResponse.result),
+            content: contentValue,
           });
         }
         break;

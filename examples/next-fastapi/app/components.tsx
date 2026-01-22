@@ -62,11 +62,11 @@ export const Card = ({ type }: { type: string }) => {
             <Link
               target="_blank"
               className="text-blue-500 hover:underline"
-              href="https://sdk.khulnasoft.com/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol"
+              href="https://ai-toolkit.dev/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol"
             >
               data stream protocol
             </Link>{' '}
-            and that the response has <Code>x-khulnasoft-ai-data-stream</Code>{' '}
+            and that the response has <Code>x-vercel-ai-data-stream</Code>{' '}
             header set to <Code>v1</Code>.
           </p>
         </div>

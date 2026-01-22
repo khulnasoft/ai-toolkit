@@ -1,54 +1,1907 @@
 # @ai-toolkit/azure
 
-## 1.3.12
+## 3.0.14
 
 ### Patch Changes
 
-- Updated dependencies [a611690]
-  - @ai-toolkit/provider@1.1.3
-  - @ai-toolkit/openai@1.3.11
-  - @ai-toolkit/provider-utils@2.2.7
+- Updated dependencies [d21d016]
+  - @ai-toolkit/openai@3.0.14
 
-## 1.3.11
+## 3.0.13
 
 ### Patch Changes
 
-- Updated dependencies [dbe53e7]
-- Updated dependencies [84ffaba]
-  - @ai-toolkit/openai@1.3.10
+- Updated dependencies [000fa96]
+  - @ai-toolkit/openai@3.0.13
 
-## 1.3.10
-
-### Patch Changes
-
-- Updated dependencies [013faa8]
-- Updated dependencies [013faa8]
-  - @ai-toolkit/provider@1.1.2
-  - @ai-toolkit/openai@1.3.9
-  - @ai-toolkit/provider-utils@2.2.6
-
-## 1.3.9
+## 3.0.12
 
 ### Patch Changes
 
-- Updated dependencies [c21fa6d]
-  - @ai-toolkit/provider-utils@2.2.5
-  - @ai-toolkit/provider@1.1.1
-  - @ai-toolkit/openai@1.3.8
+- Updated dependencies [5c090e7]
+  - @ai-toolkit/provider@3.0.4
+  - @ai-toolkit/openai@3.0.12
+  - @ai-toolkit/provider-utils@4.0.8
 
-## 1.3.8
-
-### Patch Changes
-
-- e82024e: feat (provider/azure): add OpenAI responses API support
-
-## 1.3.7
+## 3.0.11
 
 ### Patch Changes
 
-- Updated dependencies [2c19b9a]
-  - @ai-toolkit/provider-utils@2.2.4
-  - @ai-toolkit/openai@1.3.7
+- Updated dependencies [46f46e4]
+  - @ai-toolkit/provider-utils@4.0.7
+  - @ai-toolkit/openai@3.0.11
+
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [1b11dcb]
+  - @ai-toolkit/provider-utils@4.0.6
+  - @ai-toolkit/provider@3.0.3
+  - @ai-toolkit/openai@3.0.10
+
+## 3.0.9
+
+### Patch Changes
+
+- Updated dependencies [34d1c8a]
+  - @ai-toolkit/provider-utils@4.0.5
+  - @ai-toolkit/openai@3.0.9
+
+## 3.0.8
+
+### Patch Changes
+
+- 330bd92: Fix Responses `code_interpreter` annotations and add typed providerMetadata
+
+  - Align Responses API `code_interpreter` annotation types with the official spec.
+  - Add tests to ensure the overlapping parts of the Zod schemas used by `doGenerate` and `doStream` stay in sync.
+  - Export the following types for use in client code:
+    - `OpenaiResponsesTextProviderMetadata`
+    - `OpenaiResponsesSourceDocumentProviderMetadata`
+    - `AzureResponsesTextProviderMetadata`
+    - `AzureResponsesSourceDocumentProviderMetadata`
+
+- Updated dependencies [330bd92]
+  - @ai-toolkit/openai@3.0.8
+
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies [89202fb]
+  - @ai-toolkit/openai@3.0.7
+
+## 3.0.6
+
+### Patch Changes
+
+- Updated dependencies [dc87517]
+  - @ai-toolkit/openai@3.0.6
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [d937c8f]
+  - @ai-toolkit/provider@3.0.2
+  - @ai-toolkit/openai@3.0.5
+  - @ai-toolkit/provider-utils@4.0.4
+
+## 3.0.4
+
+### Patch Changes
+
+- Updated dependencies [0b429d4]
+  - @ai-toolkit/provider-utils@4.0.3
+  - @ai-toolkit/openai@3.0.4
+
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [55cd1a4]
+  - @ai-toolkit/openai@3.0.3
+
+## 3.0.2
+
+### Patch Changes
+
+- 863d34f: fix: trigger release to update `@latest`
+- Updated dependencies [863d34f]
+  - @ai-toolkit/openai@3.0.2
+  - @ai-toolkit/provider@3.0.1
+  - @ai-toolkit/provider-utils@4.0.2
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [29264a3]
+  - @ai-toolkit/provider-utils@4.0.1
+  - @ai-toolkit/openai@3.0.1
+
+## 3.0.0
+
+### Major Changes
+
+- dee8b05: ai SDK 6 beta
+
+### Minor Changes
+
+- 78928cb: release: start 5.1 beta
+
+### Patch Changes
+
+- 0c3b58b: fix(provider): add specificationVersion to ProviderV3
+- 68cedbf: Update default Azure Provider to use Responses API
+- 046aa3b: feat(provider): speech model v3 spec
+- 8d9e8ad: chore(provider): remove generics from EmbeddingModelV3
+
+  Before
+
+  ```ts
+  model.textEmbeddingModel('my-model-id');
+  ```
+
+  After
+
+  ```ts
+  model.embeddingModel('my-model-id');
+  ```
+
+- d64ece9: enables image_generation capabilities in the Azure provider through the Responses API.
+- 544d4e8: chore(specification): rename v3 provider defined tool to provider tool
+- 77f2b20: enables code_interpreter and file_search capabilities in the Azure provider through the Responses API
+- 0c4822d: feat: `EmbeddingModelV3`
+- e8109d3: feat: tool execution approval
+- ed329cb: feat: `Provider-V3`
+- 3bd2689: feat: extended token usage
+- 1cad0ab: feat: add provider version to user-agent header
+- 423ba08: Set the annotations from the Responses API to doStream
+- 8dac895: feat: `LanguageModelV3`
+- f1eed1c: Support idempotent doGenerate/doStream with pre-supplied result chunks in Responses API tests.
+- 9061dc0: feat: image editing
+- 3771a27: The default api-version for Microsoft Azure OpenAI has been changed from preview to v1
+- 366f50b: chore(provider): add deprecated textEmbeddingModel and textEmbedding aliases
+- 4616b86: chore: update zod peer depenedency version
+- 64aa48f: Azure OpenAI enabled web-search-preview
+- 21e20c0: feat(provider): transcription model v3 spec
+- 522f6b8: feat: `ImageModelV3`
+- cbf52cd: feat: expose raw finish reason
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
+- d86b52f: distinguish between OpenAI and Azure in Responses API providerMetadata
+- Updated dependencies
+  - @ai-toolkit/provider@3.0.0
+  - @ai-toolkit/openai@3.0.0
+  - @ai-toolkit/provider-utils@4.0.0
+
+## 3.0.0-beta.114
+
+### Patch Changes
+
+- Updated dependencies [475189e]
+  - @ai-toolkit/provider@3.0.0-beta.32
+  - @ai-toolkit/openai@3.0.0-beta.112
+  - @ai-toolkit/provider-utils@4.0.0-beta.59
+
+## 3.0.0-beta.113
+
+### Patch Changes
+
+- Updated dependencies [304222e]
+  - @ai-toolkit/openai@3.0.0-beta.111
+
+## 3.0.0-beta.112
+
+### Patch Changes
+
+- Updated dependencies [2625a04]
+  - @ai-toolkit/provider@3.0.0-beta.31
+  - @ai-toolkit/openai@3.0.0-beta.110
+  - @ai-toolkit/provider-utils@4.0.0-beta.58
+
+## 3.0.0-beta.111
+
+### Patch Changes
+
+- cbf52cd: feat: expose raw finish reason
+- Updated dependencies [cbf52cd]
+  - @ai-toolkit/provider@3.0.0-beta.30
+  - @ai-toolkit/openai@3.0.0-beta.109
+  - @ai-toolkit/provider-utils@4.0.0-beta.57
+
+## 3.0.0-beta.110
+
+### Patch Changes
+
+- Updated dependencies [9549c9e]
+  - @ai-toolkit/provider@3.0.0-beta.29
+  - @ai-toolkit/openai@3.0.0-beta.108
+  - @ai-toolkit/provider-utils@4.0.0-beta.56
+
+## 3.0.0-beta.109
+
+### Patch Changes
+
+- Updated dependencies [50b70d6]
+  - @ai-toolkit/provider-utils@4.0.0-beta.55
+  - @ai-toolkit/openai@3.0.0-beta.107
+
+## 3.0.0-beta.108
+
+### Patch Changes
+
+- 9061dc0: feat: image editing
+- Updated dependencies [9061dc0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.54
+  - @ai-toolkit/provider@3.0.0-beta.28
+  - @ai-toolkit/openai@3.0.0-beta.106
+
+## 3.0.0-beta.107
+
+### Patch Changes
+
+- Updated dependencies [88574c1]
+  - @ai-toolkit/openai@3.0.0-beta.105
+
+## 3.0.0-beta.106
+
+### Patch Changes
+
+- Updated dependencies [61c52dc]
+  - @ai-toolkit/openai@3.0.0-beta.104
+
+## 3.0.0-beta.105
+
+### Patch Changes
+
+- 366f50b: chore(provider): add deprecated textEmbeddingModel and textEmbedding aliases
+- Updated dependencies [366f50b]
+  - @ai-toolkit/provider@3.0.0-beta.27
+  - @ai-toolkit/openai@3.0.0-beta.103
+  - @ai-toolkit/provider-utils@4.0.0-beta.53
+
+## 3.0.0-beta.104
+
+### Patch Changes
+
+- Updated dependencies [763d04a]
+  - @ai-toolkit/provider-utils@4.0.0-beta.52
+  - @ai-toolkit/openai@3.0.0-beta.102
+
+## 3.0.0-beta.103
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@3.0.0-beta.101
+
+## 3.0.0-beta.102
+
+### Patch Changes
+
+- Updated dependencies [c1efac4]
+  - @ai-toolkit/provider-utils@4.0.0-beta.51
+  - @ai-toolkit/openai@3.0.0-beta.100
+
+## 3.0.0-beta.101
+
+### Patch Changes
+
+- Updated dependencies [32223c8]
+  - @ai-toolkit/provider-utils@4.0.0-beta.50
+  - @ai-toolkit/openai@3.0.0-beta.99
+
+## 3.0.0-beta.100
+
+### Patch Changes
+
+- Updated dependencies [83e5744]
+  - @ai-toolkit/provider-utils@4.0.0-beta.49
+  - @ai-toolkit/openai@3.0.0-beta.98
+
+## 3.0.0-beta.99
+
+### Patch Changes
+
+- Updated dependencies [960ec8f]
+  - @ai-toolkit/provider-utils@4.0.0-beta.48
+  - @ai-toolkit/openai@3.0.0-beta.97
+
+## 3.0.0-beta.98
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@3.0.0-beta.96
+
+## 3.0.0-beta.97
+
+### Patch Changes
+
+- Updated dependencies [40dc7fa]
+  - @ai-toolkit/openai@3.0.0-beta.95
+
+## 3.0.0-beta.96
+
+### Patch Changes
+
+- Updated dependencies [f18ef7f]
+  - @ai-toolkit/openai@3.0.0-beta.94
+
+## 3.0.0-beta.95
+
+### Patch Changes
+
+- Updated dependencies [d2039d7]
+  - @ai-toolkit/openai@3.0.0-beta.93
+
+## 3.0.0-beta.94
+
+### Patch Changes
+
+- Updated dependencies [5bf101a]
+  - @ai-toolkit/openai@3.0.0-beta.92
+
+## 3.0.0-beta.93
+
+### Patch Changes
+
+- Updated dependencies [e9e157f]
+  - @ai-toolkit/provider-utils@4.0.0-beta.47
+  - @ai-toolkit/openai@3.0.0-beta.91
+
+## 3.0.0-beta.92
+
+### Patch Changes
+
+- Updated dependencies [81e29ab]
+  - @ai-toolkit/provider-utils@4.0.0-beta.46
+  - @ai-toolkit/openai@3.0.0-beta.90
+
+## 3.0.0-beta.91
+
+### Patch Changes
+
+- 3bd2689: feat: extended token usage
+- Updated dependencies [3bd2689]
+  - @ai-toolkit/provider@3.0.0-beta.26
+  - @ai-toolkit/openai@3.0.0-beta.89
+  - @ai-toolkit/provider-utils@4.0.0-beta.45
+
+## 3.0.0-beta.90
+
+### Patch Changes
+
+- Updated dependencies [92c6241]
+  - @ai-toolkit/openai@3.0.0-beta.88
+
+## 3.0.0-beta.89
+
+### Patch Changes
+
+- Updated dependencies [53f3368]
+  - @ai-toolkit/provider@3.0.0-beta.25
+  - @ai-toolkit/openai@3.0.0-beta.87
+  - @ai-toolkit/provider-utils@4.0.0-beta.44
+
+## 3.0.0-beta.88
+
+### Patch Changes
+
+- Updated dependencies [0153bfa]
+  - @ai-toolkit/openai@3.0.0-beta.86
+
+## 3.0.0-beta.87
+
+### Patch Changes
+
+- Updated dependencies [78f813e]
+  - @ai-toolkit/openai@3.0.0-beta.85
+
+## 3.0.0-beta.86
+
+### Patch Changes
+
+- Updated dependencies [dce03c4]
+  - @ai-toolkit/provider-utils@4.0.0-beta.43
+  - @ai-toolkit/provider@3.0.0-beta.24
+  - @ai-toolkit/openai@3.0.0-beta.84
+
+## 3.0.0-beta.85
+
+### Patch Changes
+
+- Updated dependencies [ef739fa]
+  - @ai-toolkit/openai@3.0.0-beta.83
+
+## 3.0.0-beta.84
+
+### Patch Changes
+
+- Updated dependencies [3ed5519]
+  - @ai-toolkit/provider-utils@4.0.0-beta.42
+  - @ai-toolkit/openai@3.0.0-beta.82
+
+## 3.0.0-beta.83
+
+### Patch Changes
+
+- Updated dependencies [cad6445]
+  - @ai-toolkit/openai@3.0.0-beta.81
+
+## 3.0.0-beta.82
+
+### Patch Changes
+
+- Updated dependencies [b60d2e2]
+  - @ai-toolkit/openai@3.0.0-beta.80
+
+## 3.0.0-beta.81
+
+### Patch Changes
+
+- Updated dependencies [1bd7d32]
+  - @ai-toolkit/provider-utils@4.0.0-beta.41
+  - @ai-toolkit/provider@3.0.0-beta.23
+  - @ai-toolkit/openai@3.0.0-beta.79
+
+## 3.0.0-beta.80
+
+### Patch Changes
+
+- Updated dependencies [2c0a758]
+  - @ai-toolkit/openai@3.0.0-beta.78
+
+## 3.0.0-beta.79
+
+### Patch Changes
+
+- Updated dependencies [d270a5d]
+  - @ai-toolkit/openai@3.0.0-beta.77
+
+## 3.0.0-beta.78
+
+### Patch Changes
+
+- Updated dependencies [88edc28]
+  - @ai-toolkit/openai@3.0.0-beta.76
+
+## 3.0.0-beta.77
+
+### Patch Changes
+
+- Updated dependencies [73d9883]
+  - @ai-toolkit/openai@3.0.0-beta.75
+
+## 3.0.0-beta.76
+
+### Patch Changes
+
+- Updated dependencies [88fc415]
+  - @ai-toolkit/openai@3.0.0-beta.74
+
+## 3.0.0-beta.75
+
+### Patch Changes
+
+- 544d4e8: chore(specification): rename v3 provider defined tool to provider tool
+- Updated dependencies [544d4e8]
+  - @ai-toolkit/provider-utils@4.0.0-beta.40
+  - @ai-toolkit/provider@3.0.0-beta.22
+  - @ai-toolkit/openai@3.0.0-beta.73
+
+## 3.0.0-beta.74
+
+### Patch Changes
+
+- Updated dependencies [954c356]
+  - @ai-toolkit/provider-utils@4.0.0-beta.39
+  - @ai-toolkit/provider@3.0.0-beta.21
+  - @ai-toolkit/openai@3.0.0-beta.72
+
+## 3.0.0-beta.73
+
+### Patch Changes
+
+- Updated dependencies [03849b0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.38
+  - @ai-toolkit/openai@3.0.0-beta.71
+
+## 3.0.0-beta.72
+
+### Patch Changes
+
+- Updated dependencies [457318b]
+  - @ai-toolkit/provider@3.0.0-beta.20
+  - @ai-toolkit/openai@3.0.0-beta.70
+  - @ai-toolkit/provider-utils@4.0.0-beta.37
+
+## 3.0.0-beta.71
+
+### Patch Changes
+
+- Updated dependencies [1d0de66]
+  - @ai-toolkit/openai@3.0.0-beta.69
+
+## 3.0.0-beta.70
+
+### Patch Changes
+
+- 8d9e8ad: chore(provider): remove generics from EmbeddingModelV3
+
+  Before
+
+  ```ts
+  model.textEmbeddingModel('my-model-id');
+  ```
+
+  After
+
+  ```ts
+  model.embeddingModel('my-model-id');
+  ```
+
+- Updated dependencies [8d9e8ad]
+  - @ai-toolkit/provider@3.0.0-beta.19
+  - @ai-toolkit/openai@3.0.0-beta.68
+  - @ai-toolkit/provider-utils@4.0.0-beta.36
+
+## 3.0.0-beta.69
+
+### Patch Changes
+
+- Updated dependencies [10d819b]
+  - @ai-toolkit/provider@3.0.0-beta.18
+  - @ai-toolkit/openai@3.0.0-beta.67
+  - @ai-toolkit/provider-utils@4.0.0-beta.35
+
+## 3.0.0-beta.68
+
+### Patch Changes
+
+- d86b52f: distinguish between OpenAI and Azure in Responses API providerMetadata
+- Updated dependencies [d86b52f]
+  - @ai-toolkit/openai@3.0.0-beta.66
+
+## 3.0.0-beta.67
+
+### Patch Changes
+
+- Updated dependencies [38a4035]
+  - @ai-toolkit/openai@3.0.0-beta.65
+
+## 3.0.0-beta.66
+
+### Patch Changes
+
+- Updated dependencies [db913bd]
+  - @ai-toolkit/provider@3.0.0-beta.17
+  - @ai-toolkit/openai@3.0.0-beta.64
+  - @ai-toolkit/provider-utils@4.0.0-beta.34
+
+## 3.0.0-beta.65
+
+### Patch Changes
+
+- 423ba08: Set the annotations from the Responses API to doStream
+- Updated dependencies [423ba08]
+  - @ai-toolkit/openai@3.0.0-beta.63
+
+## 3.0.0-beta.64
+
+### Patch Changes
+
+- 64aa48f: Azure OpenAI enabled web-search-preview
+- Updated dependencies [64aa48f]
+  - @ai-toolkit/openai@3.0.0-beta.62
+
+## 3.0.0-beta.63
+
+### Patch Changes
+
+- Updated dependencies [23f132b]
+  - @ai-toolkit/openai@3.0.0-beta.61
+
+## 3.0.0-beta.62
+
+### Patch Changes
+
+- Updated dependencies [0877683]
+  - @ai-toolkit/openai@3.0.0-beta.60
+
+## 3.0.0-beta.61
+
+### Patch Changes
+
+- Updated dependencies [d0f1baf]
+  - @ai-toolkit/openai@3.0.0-beta.59
+
+## 3.0.0-beta.60
+
+### Patch Changes
+
+- Updated dependencies [79b4e46]
+  - @ai-toolkit/openai@3.0.0-beta.58
+
+## 3.0.0-beta.59
+
+### Patch Changes
+
+- Updated dependencies [b681d7d]
+  - @ai-toolkit/provider@3.0.0-beta.16
+  - @ai-toolkit/openai@3.0.0-beta.57
+  - @ai-toolkit/provider-utils@4.0.0-beta.33
+
+## 3.0.0-beta.58
+
+### Patch Changes
+
+- Updated dependencies [32d8dbb]
+  - @ai-toolkit/provider-utils@4.0.0-beta.32
+  - @ai-toolkit/openai@3.0.0-beta.56
+
+## 3.0.0-beta.57
+
+### Patch Changes
+
+- 68cedbf: Update default Azure Provider to use Responses API
+
+## 3.0.0-beta.56
+
+### Patch Changes
+
+- Updated dependencies [831b6cc]
+  - @ai-toolkit/openai@3.0.0-beta.55
+
+## 3.0.0-beta.55
+
+### Patch Changes
+
+- Updated dependencies [40d5419]
+  - @ai-toolkit/openai@3.0.0-beta.54
+
+## 3.0.0-beta.54
+
+### Patch Changes
+
+- Updated dependencies [dae2185]
+  - @ai-toolkit/openai@3.0.0-beta.53
+
+## 3.0.0-beta.53
+
+### Patch Changes
+
+- Updated dependencies [348fd10]
+  - @ai-toolkit/openai@3.0.0-beta.52
+
+## 3.0.0-beta.52
+
+### Patch Changes
+
+- Updated dependencies [b82987c]
+  - @ai-toolkit/openai@3.0.0-beta.51
+
+## 3.0.0-beta.51
+
+### Patch Changes
+
+- Updated dependencies [bb36798]
+  - @ai-toolkit/provider@3.0.0-beta.15
+  - @ai-toolkit/openai@3.0.0-beta.50
+  - @ai-toolkit/provider-utils@4.0.0-beta.31
+
+## 3.0.0-beta.50
+
+### Patch Changes
+
+- Updated dependencies [0273b74]
+  - @ai-toolkit/openai@3.0.0-beta.49
+
+## 3.0.0-beta.49
+
+### Patch Changes
+
+- Updated dependencies [60f4775]
+  - @ai-toolkit/openai@3.0.0-beta.48
+
+## 3.0.0-beta.48
+
+### Patch Changes
+
+- Updated dependencies [4f16c37]
+  - @ai-toolkit/provider-utils@4.0.0-beta.30
+  - @ai-toolkit/openai@3.0.0-beta.47
+
+## 3.0.0-beta.47
+
+### Patch Changes
+
+- Updated dependencies [af3780b]
+  - @ai-toolkit/provider@3.0.0-beta.14
+  - @ai-toolkit/openai@3.0.0-beta.46
+  - @ai-toolkit/provider-utils@4.0.0-beta.29
+
+## 3.0.0-beta.46
+
+### Patch Changes
+
+- f1eed1c: Support idempotent doGenerate/doStream with pre-supplied result chunks in Responses API tests.
+
+## 3.0.0-beta.45
+
+### Patch Changes
+
+- Updated dependencies [fd47df5]
+  - @ai-toolkit/openai@3.0.0-beta.45
+
+## 3.0.0-beta.44
+
+### Patch Changes
+
+- Updated dependencies [016b111]
+  - @ai-toolkit/provider-utils@4.0.0-beta.28
+  - @ai-toolkit/openai@3.0.0-beta.44
+
+## 3.0.0-beta.43
+
+### Patch Changes
+
+- Updated dependencies [37c58a0]
+  - @ai-toolkit/provider@3.0.0-beta.13
+  - @ai-toolkit/openai@3.0.0-beta.43
+  - @ai-toolkit/provider-utils@4.0.0-beta.27
+
+## 3.0.0-beta.42
+
+### Patch Changes
+
+- Updated dependencies [d1bdadb]
+  - @ai-toolkit/provider@3.0.0-beta.12
+  - @ai-toolkit/openai@3.0.0-beta.42
+  - @ai-toolkit/provider-utils@4.0.0-beta.26
+
+## 3.0.0-beta.41
+
+### Patch Changes
+
+- Updated dependencies [4c44a5b]
+  - @ai-toolkit/provider@3.0.0-beta.11
+  - @ai-toolkit/openai@3.0.0-beta.41
+  - @ai-toolkit/provider-utils@4.0.0-beta.25
+
+## 3.0.0-beta.40
+
+### Patch Changes
+
+- Updated dependencies [1b982e6]
+  - @ai-toolkit/openai@3.0.0-beta.40
+
+## 3.0.0-beta.39
+
+### Patch Changes
+
+- 0c3b58b: fix(provider): add specificationVersion to ProviderV3
+- Updated dependencies [0c3b58b]
+  - @ai-toolkit/provider@3.0.0-beta.10
+  - @ai-toolkit/openai@3.0.0-beta.39
+  - @ai-toolkit/provider-utils@4.0.0-beta.24
+
+## 3.0.0-beta.38
+
+### Patch Changes
+
+- Updated dependencies [a755db5]
+  - @ai-toolkit/provider@3.0.0-beta.9
+  - @ai-toolkit/openai@3.0.0-beta.38
+  - @ai-toolkit/provider-utils@4.0.0-beta.23
+
+## 3.0.0-beta.37
+
+### Patch Changes
+
+- Updated dependencies [e85fa2f]
+  - @ai-toolkit/openai@3.0.0-beta.37
+
+## 3.0.0-beta.36
+
+### Patch Changes
+
+- Updated dependencies [58920e0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.22
+  - @ai-toolkit/openai@3.0.0-beta.36
+
+## 3.0.0-beta.35
+
+### Patch Changes
+
+- Updated dependencies [293a6b7]
+  - @ai-toolkit/provider-utils@4.0.0-beta.21
+  - @ai-toolkit/openai@3.0.0-beta.35
+
+## 3.0.0-beta.34
+
+### Patch Changes
+
+- Updated dependencies [fca786b]
+  - @ai-toolkit/provider-utils@4.0.0-beta.20
+  - @ai-toolkit/openai@3.0.0-beta.34
+
+## 3.0.0-beta.33
+
+### Patch Changes
+
+- Updated dependencies [7756857]
+  - @ai-toolkit/openai@3.0.0-beta.33
+
+## 3.0.0-beta.32
+
+### Patch Changes
+
+- Updated dependencies [3794514]
+  - @ai-toolkit/provider-utils@4.0.0-beta.19
+  - @ai-toolkit/provider@3.0.0-beta.8
+  - @ai-toolkit/openai@3.0.0-beta.32
+
+## 3.0.0-beta.31
+
+### Patch Changes
+
+- Updated dependencies [81d4308]
+  - @ai-toolkit/provider@3.0.0-beta.7
+  - @ai-toolkit/openai@3.0.0-beta.31
+  - @ai-toolkit/provider-utils@4.0.0-beta.18
+
+## 3.0.0-beta.30
+
+### Patch Changes
+
+- Updated dependencies [703459a]
+  - @ai-toolkit/provider-utils@4.0.0-beta.17
+  - @ai-toolkit/openai@3.0.0-beta.30
+
+## 3.0.0-beta.29
+
+### Patch Changes
+
+- Updated dependencies [0b9fdd5]
+  - @ai-toolkit/openai@3.0.0-beta.29
+
+## 3.0.0-beta.28
+
+### Patch Changes
+
+- Updated dependencies [401f561]
+  - @ai-toolkit/openai@3.0.0-beta.28
+
+## 3.0.0-beta.27
+
+### Patch Changes
+
+- Updated dependencies [f1277fe]
+  - @ai-toolkit/openai@3.0.0-beta.27
+
+## 3.0.0-beta.26
+
+### Patch Changes
+
+- Updated dependencies [edc5548]
+  - @ai-toolkit/openai@3.0.0-beta.26
+
+## 3.0.0-beta.25
+
+### Patch Changes
+
+- Updated dependencies [6306603]
+  - @ai-toolkit/provider-utils@4.0.0-beta.16
+  - @ai-toolkit/openai@3.0.0-beta.25
+
+## 3.0.0-beta.24
+
+### Patch Changes
+
+- Updated dependencies [f0b2157]
+  - @ai-toolkit/provider-utils@4.0.0-beta.15
+  - @ai-toolkit/openai@3.0.0-beta.24
+
+## 3.0.0-beta.23
+
+### Patch Changes
+
+- Updated dependencies [3b1d015]
+  - @ai-toolkit/provider-utils@4.0.0-beta.14
+  - @ai-toolkit/openai@3.0.0-beta.23
+
+## 3.0.0-beta.22
+
+### Patch Changes
+
+- Updated dependencies [d116b4b]
+  - @ai-toolkit/provider-utils@4.0.0-beta.13
+  - @ai-toolkit/openai@3.0.0-beta.22
+
+## 3.0.0-beta.21
+
+### Patch Changes
+
+- Updated dependencies [7e32fea]
+  - @ai-toolkit/provider-utils@4.0.0-beta.12
+  - @ai-toolkit/openai@3.0.0-beta.21
+
+## 3.0.0-beta.20
+
+### Patch Changes
+
+- Updated dependencies [68c6187]
+  - @ai-toolkit/openai@3.0.0-beta.20
+
+## 3.0.0-beta.19
+
+### Patch Changes
+
+- Updated dependencies [484aa93]
+  - @ai-toolkit/openai@3.0.0-beta.19
+
+## 3.0.0-beta.18
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@4.0.0-beta.11
+  - @ai-toolkit/openai@3.0.0-beta.18
+
+## 3.0.0-beta.17
+
+### Major Changes
+
+- dee8b05: ai SDK 6 beta
+
+### Patch Changes
+
+- Updated dependencies [dee8b05]
+  - @ai-toolkit/openai@3.0.0-beta.17
+  - @ai-toolkit/provider@3.0.0-beta.6
+  - @ai-toolkit/provider-utils@4.0.0-beta.10
+
+## 2.1.0-beta.16
+
+### Patch Changes
+
+- Updated dependencies [521c537]
+  - @ai-toolkit/provider-utils@3.1.0-beta.9
+  - @ai-toolkit/openai@2.1.0-beta.16
+
+## 2.1.0-beta.15
+
+### Patch Changes
+
+- Updated dependencies [e06565c]
+  - @ai-toolkit/provider-utils@3.1.0-beta.8
+  - @ai-toolkit/openai@2.1.0-beta.15
+
+## 2.1.0-beta.14
+
+### Patch Changes
+
+- Updated dependencies [000e87b]
+  - @ai-toolkit/openai@2.1.0-beta.14
+
+## 2.1.0-beta.13
+
+### Patch Changes
+
+- 3771a27: The default api-version for Microsoft Azure OpenAI has been changed from preview to v1
+- Updated dependencies [357cfd7]
+  - @ai-toolkit/openai@2.1.0-beta.13
+
+## 2.1.0-beta.12
+
+### Patch Changes
+
+- 046aa3b: feat(provider): speech model v3 spec
+- e8109d3: feat: tool execution approval
+- 21e20c0: feat(provider): transcription model v3 spec
+- Updated dependencies
+  - @ai-toolkit/provider@2.1.0-beta.5
+  - @ai-toolkit/openai@2.1.0-beta.12
+  - @ai-toolkit/provider-utils@3.1.0-beta.7
+
+## 2.1.0-beta.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.1.0-beta.6
+  - @ai-toolkit/provider@2.1.0-beta.4
+  - @ai-toolkit/openai@2.1.0-beta.11
+
+## 2.1.0-beta.10
+
+### Patch Changes
+
+- d64ece9: enables image_generation capabilities in the Azure provider through the Responses API.
+- Updated dependencies [d64ece9]
+  - @ai-toolkit/openai@2.1.0-beta.10
+
+## 2.1.0-beta.9
+
+### Patch Changes
+
+- Updated dependencies [9a51b92]
+  - @ai-toolkit/openai@2.1.0-beta.9
+
+## 2.1.0-beta.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.1.0-beta.8
+
+## 2.1.0-beta.7
+
+### Patch Changes
+
+- 77f2b20: enables code_interpreter and file_search capabilities in the Azure provider through the Responses API
+- 8dac895: feat: `LanguageModelV3`
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
+- Updated dependencies
+  - @ai-toolkit/openai@2.1.0-beta.7
+  - @ai-toolkit/provider-utils@3.1.0-beta.5
+  - @ai-toolkit/provider@2.1.0-beta.3
+
+## 2.1.0-beta.6
+
+### Patch Changes
+
+- Updated dependencies [fe49278]
+  - @ai-toolkit/openai@2.1.0-beta.6
+
+## 2.1.0-beta.5
+
+### Patch Changes
+
+- 4616b86: chore: update zod peer depenedency version
+- Updated dependencies [4616b86]
+  - @ai-toolkit/provider-utils@3.1.0-beta.4
+  - @ai-toolkit/openai@2.1.0-beta.5
+
+## 2.1.0-beta.4
+
+### Patch Changes
+
+- ed329cb: feat: `Provider-V3`
+- 522f6b8: feat: `ImageModelV3`
+- Updated dependencies
+  - @ai-toolkit/provider@2.1.0-beta.2
+  - @ai-toolkit/openai@2.1.0-beta.4
+  - @ai-toolkit/provider-utils@3.1.0-beta.3
+
+## 2.1.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [2e86082]
+  - @ai-toolkit/openai@2.1.0-beta.3
+
+## 2.1.0-beta.2
+
+### Patch Changes
+
+- 0c4822d: feat: `EmbeddingModelV3`
+- 1cad0ab: feat: add provider version to user-agent header
+- Updated dependencies
+  - @ai-toolkit/openai@2.1.0-beta.2
+  - @ai-toolkit/provider@2.1.0-beta.1
+  - @ai-toolkit/provider-utils@3.1.0-beta.2
+
+## 2.1.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/test-server@1.0.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.1
+  - @ai-toolkit/openai@2.1.0-beta.1
+
+## 2.1.0-beta.0
+
+### Minor Changes
+
+- 78928cb: release: start 5.1 beta
+
+### Patch Changes
+
+- Updated dependencies [78928cb]
+  - @ai-toolkit/openai@2.1.0-beta.0
+  - @ai-toolkit/provider@2.1.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.0
+
+## 2.0.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.32
+
+## 2.0.31
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.31
+
+## 2.0.30
+
+### Patch Changes
+
+- Updated dependencies [0294b58]
+  - @ai-toolkit/provider-utils@3.0.9
+  - @ai-toolkit/openai@2.0.30
+
+## 2.0.29
+
+### Patch Changes
+
+- Updated dependencies [4235eb3]
+  - @ai-toolkit/openai@2.0.29
+
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.28
+
+## 2.0.27
+
+### Patch Changes
+
+- Updated dependencies [2338c79]
+  - @ai-toolkit/openai@2.0.27
+
+## 2.0.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.26
+
+## 2.0.25
+
+### Patch Changes
+
+- Updated dependencies [fb45ade]
+  - @ai-toolkit/openai@2.0.25
+
+## 2.0.24
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.8
+  - @ai-toolkit/openai@2.0.24
+
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies [a9a61b7]
+  - @ai-toolkit/openai@2.0.23
+
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.7
+  - @ai-toolkit/openai@2.0.22
+
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.6
+  - @ai-toolkit/openai@2.0.21
+
+## 2.0.20
+
+### Patch Changes
+
+- Updated dependencies [974de40]
+  - @ai-toolkit/openai@2.0.20
+
+## 2.0.19
+
+### Patch Changes
+
+- Updated dependencies [0857788]
+  - @ai-toolkit/provider-utils@3.0.5
+  - @ai-toolkit/openai@2.0.19
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [5e47d00]
+  - @ai-toolkit/openai@2.0.18
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies [70bb696]
+  - @ai-toolkit/openai@2.0.17
+
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies [68751f9]
+  - @ai-toolkit/provider-utils@3.0.4
+  - @ai-toolkit/openai@2.0.16
+
+## 2.0.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.15
+
+## 2.0.14
+
+### Patch Changes
+
+- Updated dependencies [7f47105]
+  - @ai-toolkit/openai@2.0.14
+
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies [ddc9d99]
+  - @ai-toolkit/openai@2.0.13
+
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.3
+  - @ai-toolkit/openai@2.0.12
+
+## 2.0.11
+
+### Patch Changes
+
+- 097b452: feat(openai, azure): add configurable file ID prefixes for Responses API
+
+  - Added `fileIdPrefixes` option to OpenAI Responses API configuration
+  - Azure OpenAI now supports `assistant-` prefixed file IDs (replacing previous `file-` prefix support)
+  - OpenAI maintains backward compatibility with default `file-` prefix
+  - File ID detection is disabled when `fileIdPrefixes` is undefined, gracefully falling back to base64 processing
+
+- 0853d6b: fix(provider/azure): add deployment-based URL support for transcription compatibility
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.11
+  - @ai-toolkit/provider-utils@3.0.2
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.10
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies [8f8a521]
+  - @ai-toolkit/openai@2.0.9
+
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.8
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.7
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.6
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.5
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [c9e0f52]
+  - @ai-toolkit/openai@2.0.4
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [90d212f]
+  - @ai-toolkit/provider-utils@3.0.1
+  - @ai-toolkit/openai@2.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [63e2016]
+  - @ai-toolkit/openai@2.0.2
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [bc45e29]
+  - @ai-toolkit/openai@2.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- d5f588f: AI TOOLKIT 5
+- 516be5b: ### Move Image Model Settings into generate options
+
+  Image Models no longer have settings. Instead, `maxImagesPerCall` can be passed directly to `generateImage()`. All other image settings can be passed to `providerOptions[provider]`.
+
+  Before
+
+  ```js
+  await generateImage({
+    model: luma.image('photon-flash-1', {
+      maxImagesPerCall: 5,
+      pollIntervalMillis: 500,
+    }),
+    prompt,
+    n: 10,
+  });
+  ```
+
+  After
+
+  ```js
+  await generateImage({
+    model: luma.image('photon-flash-1'),
+    prompt,
+    n: 10,
+    maxImagesPerCall: 5,
+    providerOptions: {
+      luma: { pollIntervalMillis: 5 },
+    },
+  });
+  ```
+
+  Pull Request: https://github.com/khulnasoft/ai-toolkit/pull/6180
+
+### Patch Changes
+
+- c467b38: feat (provider/azure): add OpenAI responses API support
+- 004fb17: feat(azure): add speech model support and fix transcription
+- 3b13ccf: feat(providers/azure): add transcribe
+- e2aceaf: feat: add raw chunk support
+- eb173f1: chore (providers): remove model shorthand deprecation warnings
+- db72adc: chore(providers/openai): update completion model to use providerOptions
+- 9bf7291: chore(providers/openai): enable structuredOutputs by default & switch to provider option
+- 9301f86: refactor (image-model): rename `ImageModelV1` to `ImageModelV2`
+- 3db5258: update: Azure OpenAI provider to v1 API format
+- 4617fab: chore(embedding-models): remove remaining settings
+- 52ce942: chore(providers/openai): remove & enable strict compatibility by default
+- 205077b: fix: improve Zod compatibility
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0
+  - @ai-toolkit/provider@2.0.0
+  - @ai-toolkit/openai@2.0.0
+
+## 2.0.0-beta.16
+
+### Patch Changes
+
+- Updated dependencies [88a8ee5]
+  - @ai-toolkit/provider-utils@3.0.0-beta.10
+  - @ai-toolkit/openai@2.0.0-beta.16
+
+## 2.0.0-beta.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.15
+  - @ai-toolkit/provider@2.0.0-beta.2
+  - @ai-toolkit/provider-utils@3.0.0-beta.9
+
+## 2.0.0-beta.14
+
+### Patch Changes
+
+- 004fb17: feat(azure): add speech model support and fix transcription
+- eb173f1: chore (providers): remove model shorthand deprecation warnings
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.14
+  - @ai-toolkit/provider-utils@3.0.0-beta.8
+
+## 2.0.0-beta.13
+
+### Patch Changes
+
+- Updated dependencies [e7fcc86]
+  - @ai-toolkit/provider-utils@3.0.0-beta.7
+  - @ai-toolkit/openai@2.0.0-beta.13
+
+## 2.0.0-beta.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.12
+  - @ai-toolkit/provider-utils@3.0.0-beta.6
+
+## 2.0.0-beta.11
+
+### Patch Changes
+
+- 3db5258: update: Azure OpenAI provider to v1 API format
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.5
+  - @ai-toolkit/openai@2.0.0-beta.11
+
+## 2.0.0-beta.10
+
+### Patch Changes
+
+- 205077b: fix: improve Zod compatibility
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.10
+  - @ai-toolkit/provider-utils@3.0.0-beta.4
+
+## 2.0.0-beta.9
+
+### Patch Changes
+
+- Updated dependencies [faea29f]
+  - @ai-toolkit/openai@2.0.0-beta.9
+
+## 2.0.0-beta.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.3
+  - @ai-toolkit/openai@2.0.0-beta.8
+
+## 2.0.0-beta.7
+
+### Patch Changes
+
+- Updated dependencies [209256d]
+  - @ai-toolkit/openai@2.0.0-beta.7
+
+## 2.0.0-beta.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.6
+
+## 2.0.0-beta.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.5
+
+## 2.0.0-beta.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-beta.4
+
+## 2.0.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [efc3a62]
+  - @ai-toolkit/openai@2.0.0-beta.3
+
+## 2.0.0-beta.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.2
+  - @ai-toolkit/openai@2.0.0-beta.2
+
+## 2.0.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-beta.1
+  - @ai-toolkit/provider-utils@3.0.0-beta.1
+  - @ai-toolkit/openai@2.0.0-beta.1
+
+## 2.0.0-alpha.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-alpha.15
+  - @ai-toolkit/provider-utils@3.0.0-alpha.15
+  - @ai-toolkit/openai@2.0.0-alpha.15
+
+## 2.0.0-alpha.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-alpha.14
+  - @ai-toolkit/openai@2.0.0-alpha.14
+  - @ai-toolkit/provider-utils@3.0.0-alpha.14
+
+## 2.0.0-alpha.13
+
+### Patch Changes
+
+- Updated dependencies [68ecf2f]
+  - @ai-toolkit/provider@2.0.0-alpha.13
+  - @ai-toolkit/openai@2.0.0-alpha.13
+  - @ai-toolkit/provider-utils@3.0.0-alpha.13
+
+## 2.0.0-alpha.12
+
+### Patch Changes
+
+- e2aceaf: feat: add raw chunk support
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-alpha.12
+  - @ai-toolkit/provider@2.0.0-alpha.12
+  - @ai-toolkit/provider-utils@3.0.0-alpha.12
+
+## 2.0.0-alpha.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-alpha.11
+  - @ai-toolkit/provider@2.0.0-alpha.11
+  - @ai-toolkit/provider-utils@3.0.0-alpha.11
+
+## 2.0.0-alpha.10
+
+### Patch Changes
+
+- Updated dependencies [c4df419]
+  - @ai-toolkit/provider@2.0.0-alpha.10
+  - @ai-toolkit/openai@2.0.0-alpha.10
+  - @ai-toolkit/provider-utils@3.0.0-alpha.10
+
+## 2.0.0-alpha.9
+
+### Patch Changes
+
+- Updated dependencies [811dff3]
+  - @ai-toolkit/provider@2.0.0-alpha.9
+  - @ai-toolkit/openai@2.0.0-alpha.9
+  - @ai-toolkit/provider-utils@3.0.0-alpha.9
+
+## 2.0.0-alpha.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-alpha.8
+  - @ai-toolkit/provider@2.0.0-alpha.8
+  - @ai-toolkit/openai@2.0.0-alpha.8
+
+## 2.0.0-alpha.7
+
+### Patch Changes
+
+- Updated dependencies [5c56081]
+  - @ai-toolkit/provider@2.0.0-alpha.7
+  - @ai-toolkit/openai@2.0.0-alpha.7
+  - @ai-toolkit/provider-utils@3.0.0-alpha.7
+
+## 2.0.0-alpha.6
+
+### Patch Changes
+
+- Updated dependencies [0d2c085]
+  - @ai-toolkit/provider@2.0.0-alpha.6
+  - @ai-toolkit/openai@2.0.0-alpha.6
+  - @ai-toolkit/provider-utils@3.0.0-alpha.6
+
+## 2.0.0-alpha.4
+
+### Patch Changes
+
+- Updated dependencies [dc714f3]
+  - @ai-toolkit/provider@2.0.0-alpha.4
+  - @ai-toolkit/openai@2.0.0-alpha.4
+  - @ai-toolkit/provider-utils@3.0.0-alpha.4
+
+## 2.0.0-alpha.3
+
+### Patch Changes
+
+- Updated dependencies [6b98118]
+  - @ai-toolkit/provider@2.0.0-alpha.3
+  - @ai-toolkit/openai@2.0.0-alpha.3
+  - @ai-toolkit/provider-utils@3.0.0-alpha.3
+
+## 2.0.0-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [26535e0]
+  - @ai-toolkit/provider@2.0.0-alpha.2
+  - @ai-toolkit/openai@2.0.0-alpha.2
+  - @ai-toolkit/provider-utils@3.0.0-alpha.2
+
+## 2.0.0-alpha.1
+
+### Patch Changes
+
+- Updated dependencies [3f2f00c]
+  - @ai-toolkit/provider@2.0.0-alpha.1
+  - @ai-toolkit/openai@2.0.0-alpha.1
+  - @ai-toolkit/provider-utils@3.0.0-alpha.1
+
+## 2.0.0-canary.21
+
+### Patch Changes
+
+- Updated dependencies [faf8446]
+  - @ai-toolkit/provider-utils@3.0.0-canary.19
+  - @ai-toolkit/openai@2.0.0-canary.20
+
+## 2.0.0-canary.20
+
+### Patch Changes
+
+- Updated dependencies [40acf9b]
+  - @ai-toolkit/provider-utils@3.0.0-canary.18
+  - @ai-toolkit/openai@2.0.0-canary.19
+
+## 2.0.0-canary.19
+
+### Major Changes
+
+- 516be5b: ### Move Image Model Settings into generate options
+
+  Image Models no longer have settings. Instead, `maxImagesPerCall` can be passed directly to `generateImage()`. All other image settings can be passed to `providerOptions[provider]`.
+
+  Before
+
+  ```js
+  await generateImage({
+    model: luma.image('photon-flash-1', {
+      maxImagesPerCall: 5,
+      pollIntervalMillis: 500,
+    }),
+    prompt,
+    n: 10,
+  });
+  ```
+
+  After
+
+  ```js
+  await generateImage({
+    model: luma.image('photon-flash-1'),
+    prompt,
+    n: 10,
+    maxImagesPerCall: 5,
+    providerOptions: {
+      luma: { pollIntervalMillis: 5 },
+    },
+  });
+  ```
+
+  Pull Request: https://github.com/khulnasoft/ai-toolkit/pull/6180
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.18
+  - @ai-toolkit/provider-utils@3.0.0-canary.17
+
+## 2.0.0-canary.18
+
+### Patch Changes
+
+- 52ce942: chore(providers/openai): remove & enable strict compatibility by default
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.17
+  - @ai-toolkit/provider-utils@3.0.0-canary.16
+
+## 2.0.0-canary.17
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.15
+  - @ai-toolkit/provider@2.0.0-canary.14
+  - @ai-toolkit/openai@2.0.0-canary.16
+
+## 2.0.0-canary.16
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.14
+  - @ai-toolkit/openai@2.0.0-canary.15
+  - @ai-toolkit/provider@2.0.0-canary.13
+
+## 2.0.0-canary.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-canary.12
+  - @ai-toolkit/provider-utils@3.0.0-canary.13
+  - @ai-toolkit/openai@2.0.0-canary.14
+
+## 2.0.0-canary.14
+
+### Patch Changes
+
+- 9bf7291: chore(providers/openai): enable structuredOutputs by default & switch to provider option
+- 4617fab: chore(embedding-models): remove remaining settings
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.13
+  - @ai-toolkit/provider@2.0.0-canary.11
+  - @ai-toolkit/provider-utils@3.0.0-canary.12
+
+## 2.0.0-canary.13
+
+### Patch Changes
+
+- db72adc: chore(providers/openai): update completion model to use providerOptions
+- 9301f86: refactor (image-model): rename `ImageModelV1` to `ImageModelV2`
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.12
+  - @ai-toolkit/provider-utils@3.0.0-canary.11
+  - @ai-toolkit/provider@2.0.0-canary.10
+
+## 2.0.0-canary.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-canary.9
+  - @ai-toolkit/openai@2.0.0-canary.11
+  - @ai-toolkit/provider-utils@3.0.0-canary.10
+
+## 2.0.0-canary.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-canary.8
+  - @ai-toolkit/openai@2.0.0-canary.10
+  - @ai-toolkit/provider-utils@3.0.0-canary.9
+
+## 2.0.0-canary.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.9
+
+## 2.0.0-canary.9
+
+### Patch Changes
+
+- 3b13ccf: feat(providers/azure): add transcribe
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.8
+  - @ai-toolkit/provider@2.0.0-canary.7
+  - @ai-toolkit/openai@2.0.0-canary.8
+
+## 2.0.0-canary.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-canary.6
+  - @ai-toolkit/openai@2.0.0-canary.7
+  - @ai-toolkit/provider-utils@3.0.0-canary.7
+
+## 2.0.0-canary.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/openai@2.0.0-canary.6
+  - @ai-toolkit/provider@2.0.0-canary.5
+  - @ai-toolkit/provider-utils@3.0.0-canary.6
+
+## 2.0.0-canary.6
+
+### Patch Changes
+
+- Updated dependencies [6f6bb89]
+  - @ai-toolkit/provider@2.0.0-canary.4
+  - @ai-toolkit/openai@2.0.0-canary.5
+  - @ai-toolkit/provider-utils@3.0.0-canary.5
+
+## 2.0.0-canary.5
+
+### Patch Changes
+
+- Updated dependencies [d1a1aa1]
+  - @ai-toolkit/provider@2.0.0-canary.3
+  - @ai-toolkit/openai@2.0.0-canary.4
+  - @ai-toolkit/provider-utils@3.0.0-canary.4
+
+## 2.0.0-canary.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.3
+  - @ai-toolkit/provider@2.0.0-canary.2
+  - @ai-toolkit/openai@2.0.0-canary.3
+
+## 2.0.0-canary.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider@2.0.0-canary.1
+  - @ai-toolkit/openai@2.0.0-canary.2
+  - @ai-toolkit/provider-utils@3.0.0-canary.2
+
+## 2.0.0-canary.2
+
+### Patch Changes
+
+- c467b38: feat (provider/azure): add OpenAI responses API support
+
+## 2.0.0-canary.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.1
+  - @ai-toolkit/openai@2.0.0-canary.1
+
+## 2.0.0-canary.0
+
+### Major Changes
+
+- d5f588f: AI TOOLKIT 5
+
+### Patch Changes
+
+- Updated dependencies [d5f588f]
+  - @ai-toolkit/provider-utils@3.0.0-canary.0
+  - @ai-toolkit/openai@2.0.0-canary.0
+  - @ai-toolkit/provider@2.0.0-canary.0
 
 ## 1.3.6
 
@@ -62,8 +1915,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [52ed95f]
-- Updated dependencies [b01120e]
+- Updated dependencies
   - @ai-toolkit/openai@1.3.5
   - @ai-toolkit/provider-utils@2.2.2
 
@@ -290,8 +2142,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [ed012d2]
-- Updated dependencies [3a58a2e]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.1.2
   - @ai-toolkit/openai@1.1.2
   - @ai-toolkit/provider@1.0.6
@@ -300,8 +2151,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [e7a9ec9]
-- Updated dependencies [0a699f1]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.1.1
   - @ai-toolkit/openai@1.1.1
   - @ai-toolkit/provider@1.0.5
@@ -344,17 +2194,14 @@
 
 ### Patch Changes
 
-- Updated dependencies [ba62cf2]
-- Updated dependencies [3c3fae8]
+- Updated dependencies
   - @ai-toolkit/openai@1.0.17
 
 ## 1.0.18
 
 ### Patch Changes
 
-- Updated dependencies [90fb95a]
-- Updated dependencies [e6dfef4]
-- Updated dependencies [6636db6]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.0.7
   - @ai-toolkit/openai@1.0.16
 
@@ -362,19 +2209,14 @@
 
 ### Patch Changes
 
-- Updated dependencies [f8c6acb]
-- Updated dependencies [d0041f7]
-- Updated dependencies [4d2f97b]
+- Updated dependencies
   - @ai-toolkit/openai@1.0.15
 
 ## 1.0.16
 
 ### Patch Changes
 
-- Updated dependencies [19a2ce7]
-- Updated dependencies [19a2ce7]
-- Updated dependencies [19a2ce7]
-- Updated dependencies [6337688]
+- Updated dependencies
   - @ai-toolkit/openai@1.0.14
   - @ai-toolkit/provider@1.0.4
   - @ai-toolkit/provider-utils@2.0.6
@@ -414,9 +2256,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [3fab0fb]
-- Updated dependencies [e956eed]
-- Updated dependencies [6faab13]
+- Updated dependencies
   - @ai-toolkit/openai@1.0.9
 
 ## 1.0.10
@@ -501,16 +2341,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [b469a7e]
-- Updated dependencies [66060f7]
-- Updated dependencies [dce4158]
-- Updated dependencies [79644e9]
-- Updated dependencies [0d3d3f5]
-- Updated dependencies [c0ddc24]
-- Updated dependencies [b1da952]
-- Updated dependencies [dce4158]
-- Updated dependencies [8426f55]
-- Updated dependencies [db46ce5]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.0.0
   - @ai-toolkit/provider@1.0.0
   - @ai-toolkit/openai@1.0.0
@@ -527,8 +2358,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [dce4158]
-- Updated dependencies [dce4158]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.0.0-canary.2
   - @ai-toolkit/openai@1.0.0-canary.2
 
@@ -536,9 +2366,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [79644e9]
-- Updated dependencies [0d3d3f5]
-- Updated dependencies [b1da952]
+- Updated dependencies
   - @ai-toolkit/openai@1.0.0-canary.1
   - @ai-toolkit/provider-utils@2.0.0-canary.1
 
@@ -550,10 +2378,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [b469a7e]
-- Updated dependencies [66060f7]
-- Updated dependencies [c0ddc24]
-- Updated dependencies [db46ce5]
+- Updated dependencies
   - @ai-toolkit/provider-utils@2.0.0-canary.0
   - @ai-toolkit/provider@1.0.0-canary.0
   - @ai-toolkit/openai@1.0.0-canary.0
@@ -576,11 +2401,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [aa98cdb]
-- Updated dependencies [1486128]
-- Updated dependencies [7b937c5]
-- Updated dependencies [3b1b69a]
-- Updated dependencies [811a317]
+- Updated dependencies
   - @ai-toolkit/provider-utils@1.0.22
   - @ai-toolkit/provider@0.0.26
   - @ai-toolkit/openai@0.0.70
@@ -697,8 +2518,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [03313cd]
-- Updated dependencies [3be7c1c]
+- Updated dependencies
   - @ai-toolkit/provider-utils@1.0.18
   - @ai-toolkit/provider@0.0.23
   - @ai-toolkit/openai@0.0.56
@@ -773,8 +2593,7 @@
 ### Patch Changes
 
 - dd712ac: fix: use FetchFunction type to prevent self-reference
-- Updated dependencies [4ffbaee]
-- Updated dependencies [dd712ac]
+- Updated dependencies
   - @ai-toolkit/openai@0.0.47
   - @ai-toolkit/provider-utils@1.0.12
 
@@ -782,8 +2601,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [89b18ca]
-- Updated dependencies [dd4a0f5]
+- Updated dependencies
   - @ai-toolkit/openai@0.0.46
   - @ai-toolkit/provider@0.0.19
   - @ai-toolkit/provider-utils@1.0.11
@@ -792,8 +2610,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [4bd27a9]
-- Updated dependencies [845754b]
+- Updated dependencies
   - @ai-toolkit/provider-utils@1.0.10
   - @ai-toolkit/provider@0.0.18
   - @ai-toolkit/openai@0.0.45
@@ -811,8 +2628,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [d58517b]
-- Updated dependencies [c0a73ee]
+- Updated dependencies
   - @ai-toolkit/provider@0.0.16
   - @ai-toolkit/openai@0.0.43
   - @ai-toolkit/provider-utils@1.0.8
@@ -830,9 +2646,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [9614584]
-- Updated dependencies [0762a22]
-- Updated dependencies [7a2eb27]
+- Updated dependencies
   - @ai-toolkit/provider-utils@1.0.6
   - @ai-toolkit/openai@0.0.41
 
@@ -863,11 +2677,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [2b9da0f0]
-- Updated dependencies [909b9d27]
-- Updated dependencies [a5b58845]
-- Updated dependencies [4aa8deb3]
-- Updated dependencies [13b27ec6]
+- Updated dependencies
   - @ai-toolkit/provider@0.0.13
   - @ai-toolkit/openai@0.0.38
   - @ai-toolkit/provider-utils@1.0.3
@@ -907,10 +2717,7 @@
 ### Patch Changes
 
 - 5edc6110: feat (ai/core): add custom request header support
-- Updated dependencies [5edc6110]
-- Updated dependencies [5edc6110]
-- Updated dependencies [5edc6110]
-- Updated dependencies [5edc6110]
+- Updated dependencies
   - @ai-toolkit/provider@0.0.11
   - @ai-toolkit/openai@0.0.34
   - @ai-toolkit/provider-utils@1.0.0
@@ -936,16 +2743,14 @@
 
 - eba071dd: feat (@ai-toolkit/azure): add azure openai completion support
 - 1ea890fe: feat (@ai-toolkit/azure): add azure openai completion support
-- Updated dependencies [eba071dd]
-- Updated dependencies [1ea890fe]
+- Updated dependencies
   - @ai-toolkit/openai@0.0.31
 
 ## 0.0.6
 
 ### Patch Changes
 
-- Updated dependencies [85712895]
-- Updated dependencies [85712895]
+- Updated dependencies
   - @ai-toolkit/provider-utils@0.0.15
   - @ai-toolkit/openai@0.0.30
 
@@ -955,8 +2760,7 @@
 
 - 4728c37f: feat (core): add text embedding model support to provider registry
 - 7910ae84: feat (providers): support custom fetch implementations
-- Updated dependencies [4728c37f]
-- Updated dependencies [7910ae84]
+- Updated dependencies
   - @ai-toolkit/openai@0.0.29
   - @ai-toolkit/provider-utils@0.0.14
 

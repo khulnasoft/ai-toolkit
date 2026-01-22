@@ -1,111 +1,143 @@
-import { NoSuchModelError } from '@ai-toolkit/provider';
-import type { LanguageModelV1, ProviderV1 } from '@ai-toolkit/provider';
-import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
+  LanguageModelV3,
+  NoSuchModelError,
+  ProviderV3,
+  TranscriptionModelV3,
+} from '@ai-toolkit/provider';
+import {
+  FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
 import { GroqChatLanguageModel } from './groq-chat-language-model';
-import type { GroqChatModelId, GroqChatSettings } from './groq-chat-settings';
+import { GroqChatModelId } from './groq-chat-options';
+import { GroqTranscriptionModelId } from './groq-transcription-options';
+import { GroqTranscriptionModel } from './groq-transcription-model';
 
-export interface GroqProvider extends ProviderV1 {
+import { groqTools } from './groq-tools';
+import { VERSION } from './version';
+export interface GroqProvider extends ProviderV3 {
   /**
-   * Creates a model for text generation.
-   */
-  (modelId: GroqChatModelId, settings?: GroqChatSettings): LanguageModelV1;
+Creates a model for text generation.
+*/
+  (modelId: GroqChatModelId): LanguageModelV3;
 
   /**
-   * Creates an Groq chat model for text generation.
+Creates an Groq chat model for text generation.
    */
-  languageModel(
-    modelId: GroqChatModelId,
-    settings?: GroqChatSettings
-  ): LanguageModelV1;
+  languageModel(modelId: GroqChatModelId): LanguageModelV3;
+
+  /**
+Creates a model for transcription.
+   */
+  transcription(modelId: GroqTranscriptionModelId): TranscriptionModelV3;
+
+  /**
+   * Tools provided by Groq.
+   */
+  tools: typeof groqTools;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 export interface GroqProviderSettings {
   /**
-   * Base URL for the Groq API calls.
-   */
+Base URL for the Groq API calls.
+     */
   baseURL?: string;
 
   /**
-   * API key for authenticating requests.
-   */
+API key for authenticating requests.
+     */
   apiKey?: string;
 
   /**
-   * Custom headers to include in the requests.
-   */
+Custom headers to include in the requests.
+     */
   headers?: Record<string, string>;
 
   /**
-   * Custom fetch implementation. You can use it as a middleware to intercept requests,
-   * or to provide a custom fetch implementation for e.g. testing.
-   */
+Custom fetch implementation. You can use it as a middleware to intercept requests,
+or to provide a custom fetch implementation for e.g. testing.
+    */
   fetch?: FetchFunction;
 }
 
 /**
- * Create an Groq provider instance.
+Create an Groq provider instance.
  */
 export function createGroq(options: GroqProviderSettings = {}): GroqProvider {
   const baseURL =
     withoutTrailingSlash(options.baseURL) ?? 'https://api.groq.com/openai/v1';
 
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'GROQ_API_KEY',
-      description: 'Groq',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'GROQ_API_KEY',
+          description: 'Groq',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/groq/${VERSION}`,
+    );
 
-  const createChatModel = (
-    modelId: GroqChatModelId,
-    settings: GroqChatSettings = {},
-  ) =>
-    new GroqChatLanguageModel(modelId, settings, {
+  const createChatModel = (modelId: GroqChatModelId) =>
+    new GroqChatLanguageModel(modelId, {
       provider: 'groq.chat',
       url: ({ path }) => `${baseURL}${path}`,
       headers: getHeaders,
       fetch: options.fetch,
     });
 
-  const createLanguageModel = (
-    modelId: GroqChatModelId,
-    settings?: GroqChatSettings,
-  ) => {
+  const createLanguageModel = (modelId: GroqChatModelId) => {
     if (new.target) {
       throw new Error(
         'The Groq model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
-  const provider = function (
-    modelId: GroqChatModelId,
-    settings?: GroqChatSettings,
-  ) {
-    return createLanguageModel(modelId, settings);
-  };
-
-  provider.languageModel = createLanguageModel;
-  provider.chat = createChatModel;
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({
-      modelId,
-      modelType: 'textEmbeddingModel',
+  const createTranscriptionModel = (modelId: GroqTranscriptionModelId) => {
+    return new GroqTranscriptionModel(modelId, {
+      provider: 'groq.transcription',
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch,
     });
   };
+
+  const provider = function (modelId: GroqChatModelId) {
+    return createLanguageModel(modelId);
+  };
+
+  provider.specificationVersion = 'v3' as const;
+  provider.languageModel = createLanguageModel;
+  provider.chat = createChatModel;
+
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
+  };
+  provider.textEmbeddingModel = provider.embeddingModel;
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
+  };
+  provider.transcription = createTranscriptionModel;
+  provider.transcriptionModel = createTranscriptionModel;
+
+  provider.tools = groqTools;
 
   return provider;
 }
 
 /**
- * Default Groq provider instance.
+Default Groq provider instance.
  */
 export const groq = createGroq();

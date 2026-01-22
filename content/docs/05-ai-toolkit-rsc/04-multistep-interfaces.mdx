@@ -7,9 +7,8 @@ description: Overview of Building Multistep Interfaces with AI TOOLKIT RSC
 
 <Note type="warning">
   AI TOOLKIT RSC is currently experimental. We recommend using [AI TOOLKIT
-  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating
-  from RSC to UI, see our [migration
-  guide](/docs/ai-toolkit-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 Multistep interfaces refer to user interfaces that require multiple independent steps to be executed in order to complete a specific task.
@@ -28,7 +27,7 @@ To build this kind of application you will leverage two concepts, **tool composi
 
 ## Overview
 
-In order to build a multistep interface with `ai/rsc`, you will need a few things:
+In order to build a multistep interface with `@ai-toolkit/rsc`, you will need a few things:
 
 - A Server Action that calls and returns the result from the `streamUI` function
 - Tool(s) (sub-tasks necessary to complete your overall task)
@@ -50,7 +49,7 @@ The turn-by-turn implementation is the simplest form of multistep interfaces. In
 In the following example, you specify two tools (`searchFlights` and `lookupFlight`) that the model can use to search for flights and lookup details for a specific flight.
 
 ```tsx filename="app/actions.tsx"
-import { streamUI } from 'ai/rsc';
+import { streamUI } from '@ai-toolkit/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -90,7 +89,7 @@ export async function submitUserMessage(input: string) {
     tools: {
       searchFlights: {
         description: 'search for flights',
-        parameters: z.object({
+        inputSchema: z.object({
           source: z.string().describe('The origin of the flight'),
           destination: z.string().describe('The destination of the flight'),
           date: z.string().describe('The date of the flight'),
@@ -138,7 +137,7 @@ export async function submitUserMessage(input: string) {
 Next, create an AI context that will hold the UI State and AI State.
 
 ```ts filename='app/ai.ts'
-import { createAI } from 'ai/rsc';
+import { createAI } from '@ai-toolkit/rsc';
 import { submitUserMessage } from './actions';
 
 export const AI = createAI<any[], React.ReactNode[]>({
@@ -176,7 +175,7 @@ To call your Server Action, update your root page with the following:
 
 import { useState } from 'react';
 import { AI } from './ai';
-import { useActions, useUIState } from 'ai/rsc';
+import { useActions, useUIState } from '@ai-toolkit/rsc';
 
 export default function Page() {
   const [input, setInput] = useState<string>('');
@@ -225,7 +224,7 @@ To add user interaction, you will have to convert the component into a client co
 ```tsx filename="components/flights.tsx"
 'use client';
 
-import { useActions, useUIState } from 'ai/rsc';
+import { useActions, useUIState } from '@ai-toolkit/rsc';
 import { ReactNode } from 'react';
 
 interface FlightsProps {

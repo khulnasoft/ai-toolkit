@@ -1,374 +1,212 @@
 import type {
-  LanguageModelV1,
-  LanguageModelV1CallOptions,
-  LanguageModelV1CallWarning,
-  LanguageModelV1FinishReason,
-  LanguageModelV1FunctionToolCall,
-  LanguageModelV1LogProbs,
-  LanguageModelV1Prompt,
-  LanguageModelV1ProviderMetadata,
-  LanguageModelV1StreamPart,
-  LanguageModelV1ToolCall,
-  LanguageModelV1ToolChoice,
+  LanguageModelV3,
+  LanguageModelV3CallOptions,
+  SharedV3Warning,
+  LanguageModelV3FilePart,
+  LanguageModelV3StreamPart,
+  LanguageModelV3GenerateResult,
+  LanguageModelV3StreamResult,
 } from '@ai-toolkit/provider';
-import type {
-  FetchFunction,
+import {
+  combineHeaders,
+  createEventSourceResponseHandler,
+  createJsonErrorResponseHandler,
+  createJsonResponseHandler,
+  postJsonToApi,
+  resolve,
+  type ParseResult,
+  type Resolvable,
 } from '@ai-toolkit/provider-utils';
-import { asGatewayError } from './errors/as-gateway-error';
-import type { GatewayModelId, GatewaySettings } from './gateway-settings';
+import { z } from 'zod/v4';
+import type { GatewayConfig } from './gateway-config';
+import type { GatewayModelId } from './gateway-language-model-settings';
+import { asGatewayError } from './errors';
+import { parseAuthMethod } from './errors/parse-auth-method';
 
-export interface GatewayLanguageModelOptions extends GatewaySettings {
-  modelId: GatewayModelId;
-  baseURL?: string;
-}
+type GatewayChatConfig = GatewayConfig & {
+  provider: string;
+  o11yHeaders: Resolvable<Record<string, string>>;
+};
 
-export class GatewayLanguageModel implements LanguageModelV1 {
-  readonly modelId: GatewayModelId;
-  readonly provider = 'gateway';
-  readonly baseURL: string;
-  readonly apiKey?: string;
-  readonly headers?: Record<string, string>;
-  readonly fetch?: FetchFunction;
+export class GatewayLanguageModel implements LanguageModelV3 {
+  readonly specificationVersion = 'v3';
+  readonly supportedUrls = { '*/*': [/.*/] };
 
-  private readonly settings: Omit<GatewaySettings, 'baseURL' | 'apiKey' | 'headers' | 'fetch'>;
+  constructor(
+    readonly modelId: GatewayModelId,
+    private readonly config: GatewayChatConfig,
+  ) {}
 
-  constructor(options: GatewayLanguageModelOptions) {
-    this.modelId = options.modelId;
-    this.baseURL = options.baseURL ?? 'https://gateway.ai';
-    this.apiKey = options.apiKey;
-    this.headers = options.headers;
-    this.fetch = options.fetch;
+  get provider(): string {
+    return this.config.provider;
+  }
 
-    this.settings = {
-      provider: options.provider,
-      temperature: options.temperature,
-      topP: options.topP,
-      topK: options.topK,
-      maxTokens: options.maxTokens,
-      presencePenalty: options.presencePenalty,
-      frequencyPenalty: options.frequencyPenalty,
-      stopSequences: options.stopSequences,
-      stream: options.stream,
-      providerSettings: options.providerSettings,
+  private async getArgs(options: LanguageModelV3CallOptions) {
+    const { abortSignal: _abortSignal, ...optionsWithoutSignal } = options;
+
+    return {
+      args: this.maybeEncodeFileParts(optionsWithoutSignal),
+      warnings: [],
     };
   }
 
   async doGenerate(
-    options: LanguageModelV1CallOptions,
-  ): Promise<{
-    text?: string;
-    toolCalls?: LanguageModelV1ToolCall[];
-    finishReason: LanguageModelV1FinishReason;
-    usage?: {
-      promptTokens: number;
-      completionTokens: number;
-    };
-    warnings?: LanguageModelV1CallWarning[];
-    rawCall?: {
-      rawPrompt: unknown;
-      rawSettings: Record<string, unknown>;
-    };
-    rawResponse?: Record<string, unknown>;
-    metadata?: LanguageModelV1ProviderMetadata;
-    logProbs?: LanguageModelV1LogProbs;
-  }> {
-    const requestBody = this.buildRequestBody(options);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3GenerateResult> {
+    const { args, warnings } = await this.getArgs(options);
+    const { abortSignal } = options;
+
+    const resolvedHeaders = await resolve(this.config.headers());
 
     try {
-      const response = await this.fetch?.(this.baseURL + '/v1/chat/completions', {
-        method: 'POST',
-        headers: this.buildHeaders(),
-        body: JSON.stringify(requestBody),
+      const {
+        responseHeaders,
+        value: responseBody,
+        rawValue: rawResponse,
+      } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          options.headers,
+          this.getModelConfigHeaders(this.modelId, false),
+          await resolve(this.config.o11yHeaders),
+        ),
+        body: args,
+        successfulResponseHandler: createJsonResponseHandler(z.any()),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: z.any(),
+          errorToMessage: data => data,
+        }),
+        ...(abortSignal && { abortSignal }),
+        fetch: this.config.fetch,
       });
 
-      if (!response) {
-        throw new asGatewayError('No response received from gateway');
-      }
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new asGatewayError(`Gateway API error: ${response.status} ${errorText}`);
-      }
-
-      const data = await response.json();
-
-      return this.parseResponse(data);
+      return {
+        ...responseBody,
+        request: { body: args },
+        response: { headers: responseHeaders, body: rawResponse },
+        warnings,
+      };
     } catch (error) {
-      throw asGatewayError(error);
+      throw await asGatewayError(error, await parseAuthMethod(resolvedHeaders));
     }
   }
 
   async doStream(
-    options: LanguageModelV1CallOptions,
-  ): Promise<{
-    stream: AsyncIterable<LanguageModelV1StreamPart>;
-    rawCall?: {
-      rawPrompt: unknown;
-      rawSettings: Record<string, unknown>;
-    };
-    rawResponse?: Record<string, unknown>;
-    warnings?: LanguageModelV1CallWarning[];
-    metadata?: LanguageModelV1ProviderMetadata;
-  }> {
-    const requestBody = {
-      ...this.buildRequestBody(options),
-      stream: true,
-    };
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3StreamResult> {
+    const { args, warnings } = await this.getArgs(options);
+    const { abortSignal } = options;
+
+    const resolvedHeaders = await resolve(this.config.headers());
 
     try {
-      const response = await this.fetch?.(this.baseURL + '/v1/chat/completions', {
-        method: 'POST',
-        headers: this.buildHeaders(),
-        body: JSON.stringify(requestBody),
+      const { value: response, responseHeaders } = await postJsonToApi({
+        url: this.getUrl(),
+        headers: combineHeaders(
+          resolvedHeaders,
+          options.headers,
+          this.getModelConfigHeaders(this.modelId, true),
+          await resolve(this.config.o11yHeaders),
+        ),
+        body: args,
+        successfulResponseHandler: createEventSourceResponseHandler(z.any()),
+        failedResponseHandler: createJsonErrorResponseHandler({
+          errorSchema: z.any(),
+          errorToMessage: data => data,
+        }),
+        ...(abortSignal && { abortSignal }),
+        fetch: this.config.fetch,
       });
 
-      if (!response) {
-        throw new asGatewayError('No response received from gateway');
-      }
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new asGatewayError(`Gateway API error: ${response.status} ${errorText}`);
-      }
-
       return {
-        stream: this.parseStreamResponse(response),
-        rawCall: {
-          rawPrompt: options.prompt,
-          rawSettings: this.settings,
-        },
+        stream: response.pipeThrough(
+          new TransformStream<
+            ParseResult<LanguageModelV3StreamPart>,
+            LanguageModelV3StreamPart
+          >({
+            start(controller) {
+              if (warnings.length > 0) {
+                controller.enqueue({ type: 'stream-start', warnings });
+              }
+            },
+            transform(chunk, controller) {
+              if (chunk.success) {
+                const streamPart = chunk.value;
+
+                // Handle raw chunks: if this is a raw chunk from the gateway API,
+                // only emit it if includeRawChunks is true
+                if (streamPart.type === 'raw' && !options.includeRawChunks) {
+                  return; // Skip raw chunks if not requested
+                }
+
+                if (
+                  streamPart.type === 'response-metadata' &&
+                  streamPart.timestamp &&
+                  typeof streamPart.timestamp === 'string'
+                ) {
+                  streamPart.timestamp = new Date(streamPart.timestamp);
+                }
+
+                controller.enqueue(streamPart);
+              } else {
+                controller.error(
+                  (chunk as { success: false; error: unknown }).error,
+                );
+              }
+            },
+          }),
+        ),
+        request: { body: args },
+        response: { headers: responseHeaders },
       };
     } catch (error) {
-      throw asGatewayError(error);
+      throw await asGatewayError(error, await parseAuthMethod(resolvedHeaders));
     }
   }
 
-  private buildHeaders(): Record<string, string> {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      ...this.headers,
-    };
-
-    if (this.apiKey) {
-      headers['Authorization'] = `Bearer ${this.apiKey}`;
-    }
-
-    return headers;
+  private isFilePart(part: unknown) {
+    return (
+      part && typeof part === 'object' && 'type' in part && part.type === 'file'
+    );
   }
 
-  private buildRequestBody(options: LanguageModelV1CallOptions): Record<string, unknown> {
-    const messages = this.convertMessages(options.prompt);
-
-    return {
-      model: this.modelId,
-      messages,
-      temperature: this.settings.temperature,
-      top_p: this.settings.topP,
-      top_k: this.settings.topK,
-      max_tokens: this.settings.maxTokens,
-      presence_penalty: this.settings.presencePenalty,
-      frequency_penalty: this.settings.frequencyPenalty,
-      stop: this.settings.stopSequences,
-      provider: this.settings.provider,
-      provider_settings: this.settings.providerSettings,
-      ...(options.tools && { tools: this.convertTools(options.tools) }),
-      ...(options.toolChoice && { tool_choice: this.convertToolChoice(options.toolChoice) }),
-      ...(options.maxTokens && { max_tokens: options.maxTokens }),
-      ...(options.temperature && { temperature: options.temperature }),
-    };
-  }
-
-  private convertMessages(prompt: LanguageModelV1Prompt): Array<Record<string, unknown>> {
-    return prompt.map((message) => {
-      if (message.role === 'system') {
-        return { role: 'system', content: message.content };
-      }
-      if (message.role === 'user') {
-        return { role: 'user', content: message.content };
-      }
-      if (message.role === 'assistant') {
-        const assistantMessage: Record<string, unknown> = {
-          role: 'assistant',
-          content: message.content,
-        };
-        if (message.toolCalls) {
-          assistantMessage.tool_calls = message.toolCalls.map((toolCall) => ({
-            id: toolCall.toolCallId,
-            type: 'function',
-            function: {
-              name: toolCall.toolName,
-              arguments: toolCall.args,
-            },
-          }));
-        }
-        return assistantMessage;
-      }
-      if (message.role === 'tool') {
-        return {
-          role: 'tool',
-          tool_call_id: message.toolCallId,
-          content: message.content,
-        };
-      }
-      throw new asGatewayError(`Unsupported message role: ${(message as any).role}`);
-    });
-  }
-
-  private convertTools(tools: LanguageModelV1CallOptions['tools']): Array<Record<string, unknown>> {
-    return tools.map((tool) => ({
-      type: 'function',
-      function: {
-        name: tool.name,
-        description: tool.description,
-        parameters: tool.parameters,
-      },
-    }));
-  }
-
-  private convertToolChoice(toolChoice: LanguageModelV1ToolChoice): Record<string, unknown> {
-    if (toolChoice.type === 'auto') {
-      return { type: 'auto' };
-    }
-    if (toolChoice.type === 'required') {
-      return { type: 'required' };
-    }
-    if (toolChoice.type === 'none') {
-      return { type: 'none' };
-    }
-    if (toolChoice.type === 'specific') {
-      return {
-        type: 'function',
-        function: {
-          name: toolChoice.toolName,
-        },
-      };
-    }
-    throw new asGatewayError(`Unsupported tool choice type: ${(toolChoice as any).type}`);
-  }
-
-  private parseResponse(data: any): {
-    text?: string;
-    toolCalls?: LanguageModelV1ToolCall[];
-    finishReason: LanguageModelV1FinishReason;
-    usage?: {
-      promptTokens: number;
-      completionTokens: number;
-    };
-    warnings?: LanguageModelV1CallWarning[];
-    rawCall?: {
-      rawPrompt: unknown;
-      rawSettings: Record<string, unknown>;
-    };
-    rawResponse?: Record<string, unknown>;
-    metadata?: LanguageModelV1ProviderMetadata;
-  } {
-    const choice = data.choices?.[0];
-    if (!choice) {
-      throw new asGatewayError('No choice returned from gateway');
-    }
-
-    const finishReason = this.mapFinishReason(choice.finish_reason);
-    const text = choice.message?.content;
-    const toolCalls = choice.message?.tool_calls?.map((toolCall: any) => ({
-      toolCallId: toolCall.id,
-      toolName: toolCall.function.name,
-      args: JSON.parse(toolCall.function.arguments),
-    }));
-
-    return {
-      text,
-      toolCalls,
-      finishReason,
-      usage: data.usage ? {
-        promptTokens: data.usage.prompt_tokens,
-        completionTokens: data.usage.completion_tokens,
-      } : undefined,
-      rawResponse: data,
-    };
-  }
-
-  private async *parseStreamResponse(response: Response): AsyncIterable<LanguageModelV1StreamPart> {
-    const reader = response.body?.getReader();
-    if (!reader) {
-      throw new asGatewayError('No response body reader available');
-    }
-
-    const decoder = new TextDecoder();
-    let buffer = '';
-
-    try {
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop() || '';
-
-        for (const line of lines) {
-          if (line.trim() === '') continue;
-          if (line.startsWith('data: ')) {
-            const data = line.slice(6);
-            if (data === '[DONE]') return;
-
-            try {
-              const parsed = JSON.parse(data);
-              const delta = parsed.choices?.[0]?.delta;
-
-              if (delta?.content) {
-                yield {
-                  type: 'text-delta',
-                  textDelta: delta.content,
-                };
-              }
-
-              if (delta?.tool_calls) {
-                for (const toolCall of delta.tool_calls) {
-                  if (toolCall.function?.name) {
-                    yield {
-                      type: 'tool-call-delta',
-                      toolCallType: 'function',
-                      toolCallId: toolCall.id,
-                      toolName: toolCall.function.name,
-                      argsTextDelta: toolCall.function.arguments || '',
-                    };
-                  }
-                }
-              }
-
-              if (parsed.choices?.[0]?.finish_reason) {
-                yield {
-                  type: 'finish',
-                  finishReason: this.mapFinishReason(parsed.choices[0].finish_reason),
-                  usage: parsed.usage ? {
-                    promptTokens: parsed.usage.prompt_tokens,
-                    completionTokens: parsed.usage.completion_tokens,
-                  } : undefined,
-                };
-              }
-            } catch (error) {
-              // Ignore parsing errors for malformed SSE lines
-            }
+  /**
+   * Encodes file parts in the prompt to base64. Mutates the passed options
+   * instance directly to avoid copying the file data.
+   * @param options - The options to encode.
+   * @returns The options with the file parts encoded.
+   */
+  private maybeEncodeFileParts(options: LanguageModelV3CallOptions) {
+    for (const message of options.prompt) {
+      for (const part of message.content) {
+        if (this.isFilePart(part)) {
+          const filePart = part as LanguageModelV3FilePart;
+          // If the file part is a URL it will get cleanly converted to a string.
+          // If it's a binary file attachment we convert it to a data url.
+          // In either case, server-side we should only ever see URLs as strings.
+          if (filePart.data instanceof Uint8Array) {
+            const buffer = Uint8Array.from(filePart.data);
+            const base64Data = Buffer.from(buffer).toString('base64');
+            filePart.data = new URL(
+              `data:${filePart.mediaType || 'application/octet-stream'};base64,${base64Data}`,
+            );
           }
         }
       }
-    } finally {
-      reader.releaseLock();
     }
+    return options;
   }
 
-  private mapFinishReason(reason: string): LanguageModelV1FinishReason {
-    switch (reason) {
-      case 'stop':
-        return 'stop';
-      case 'length':
-        return 'length';
-      case 'tool_calls':
-        return 'tool-calls';
-      case 'content_filter':
-        return 'content-filter';
-      default:
-        return 'other';
-    }
+  private getUrl() {
+    return `${this.config.baseURL}/language-model`;
+  }
+
+  private getModelConfigHeaders(modelId: string, streaming: boolean) {
+    return {
+      'ai-language-model-specification-version': '3',
+      'ai-language-model-id': modelId,
+      'ai-language-model-streaming': String(streaming),
+    };
   }
 }

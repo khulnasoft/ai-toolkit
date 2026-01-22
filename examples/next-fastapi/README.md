@@ -1,21 +1,21 @@
 # AI TOOLKIT, Next.js, and FastAPI Examples
 
-These examples show you how to use the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) with [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com).
+These examples show you how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com).
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-fastapi next-fastapi-app
+npx create-next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-fastapi next-fastapi-app
 ```
 
 ```bash
-yarn create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-fastapi next-fastapi-app
+yarn create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-fastapi next-fastapi-app
 ```
 
 ```bash
-pnpm create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-fastapi next-fastapi-app
+pnpm create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-fastapi next-fastapi-app
 ```
 
 You will also need [Python 3.6+](https://www.python.org/downloads) and [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html) installed to run the FastAPI server.
@@ -35,7 +35,7 @@ To run the example locally you need to:
 
 To learn more about the AI TOOLKIT, Next.js, and FastAPI take a look at the following resources:
 
-- [AI TOOLKIT Docs](https://sdk.khulnasoft.com/docs) - view documentation and reference for the AI TOOLKIT.
-- [Khulnasoft AI Playground](https://play.khulnasoft.com) - try different models and choose the best one for your use case.
+- [AI TOOLKIT Docs](https://ai-toolkit.dev/docs) - view documentation and reference for the AI TOOLKIT.
+- [Vercel AI Playground](https://ai-toolkit.dev/playground) - try different models and choose the best one for your use case.
 - [Next.js Docs](https://nextjs.org/docs) - learn about Next.js features and API.
 - [FastAPI Docs](https://fastapi.tiangolo.com) - learn about FastAPI features and API.

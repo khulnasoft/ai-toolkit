@@ -56,7 +56,7 @@ def stream_text(messages: List[ClientMessage], protocol: str = 'data'):
     )
 
     # When protocol is set to "text", you will send a stream of plain text chunks
-    # https://sdk.khulnasoft.com/docs/ai-toolkit-ui/stream-protocol#text-stream-protocol
+    # https://ai-toolkit.dev/docs/ai-toolkit-ui/stream-protocol#text-stream-protocol
 
     if (protocol == 'text'):
         for chunk in stream:
@@ -67,7 +67,7 @@ def stream_text(messages: List[ClientMessage], protocol: str = 'data'):
                     yield "{text}".format(text=choice.delta.content)
 
     # When protocol is set to "data", you will send a stream data part chunks
-    # https://sdk.khulnasoft.com/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol
+    # https://ai-toolkit.dev/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol
 
     elif (protocol == 'data'):
         draft_tool_calls = []
@@ -131,5 +131,5 @@ async def handle_chat_data(request: Request, protocol: str = Query('data')):
     openai_messages = convert_to_openai_messages(messages)
 
     response = StreamingResponse(stream_text(openai_messages, protocol))
-    response.headers['x-khulnasoft-ai-data-stream'] = 'v1'
+    response.headers['x-vercel-ai-data-stream'] = 'v1'
     return response

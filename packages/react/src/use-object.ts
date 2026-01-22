@@ -1,34 +1,33 @@
 import {
+  FetchFunction,
+  FlexibleSchema,
+  InferSchema,
   isAbortError,
+  Resolvable,
+  resolve,
+  normalizeHeaders,
   safeValidateTypes,
 } from '@ai-toolkit/provider-utils';
-import type { FetchFunction } from '@ai-toolkit/provider-utils';
-import {
-  asSchema,
-  isDeepEqualData,
-  parsePartialJson,
-} from '@ai-toolkit/ui-utils';
-import type {
-  DeepPartial,
-  Schema,
-} from '@ai-toolkit/ui-utils';
+import { asSchema, DeepPartial, isDeepEqualData, parsePartialJson } from 'ai';
 import { useCallback, useId, useRef, useState } from 'react';
 import useSWR from 'swr';
-import z from 'zod';
 
 // use function to allow for mocking in tests:
 const getOriginalFetch = () => fetch;
 
-export type Experimental_UseObjectOptions<RESULT> = {
+export type Experimental_UseObjectOptions<
+  SCHEMA extends FlexibleSchema,
+  RESULT,
+> = {
   /**
    * The API endpoint. It should stream JSON that matches the schema as chunked text.
    */
   api: string;
 
   /**
-   * A Zod schema that defines the shape of the complete object.
+   * A schema that defines the shape of the complete object.
    */
-  schema: z.Schema<RESULT, z.ZodTypeDef, any> | Schema<RESULT>;
+  schema: SCHEMA;
 
   /**
    * An unique identifier. If not provided, a random one will be
@@ -71,8 +70,10 @@ Optional error object. This is e.g. a TypeValidationError when the final object 
 
   /**
    * Additional HTTP headers to be included in the request.
+   * Can be a static object, a function that returns headers, or an async function
+   * for dynamic auth tokens.
    */
-  headers?: Record<string, string> | Headers;
+  headers?: Resolvable<Record<string, string> | Headers>;
 
   /**
    * The credentials mode to be used for the fetch request.
@@ -107,9 +108,18 @@ export type Experimental_UseObjectHelpers<RESULT, INPUT> = {
    * Abort the current request immediately, keep the current partial object if any.
    */
   stop: () => void;
+
+  /**
+   * Clear the object state.
+   */
+  clear: () => void;
 };
 
-function useObject<RESULT, INPUT = any>({
+function useObject<
+  SCHEMA extends FlexibleSchema,
+  RESULT = InferSchema<SCHEMA>,
+  INPUT = any,
+>({
   api,
   id,
   schema, // required, in the future we will use it for validation
@@ -119,10 +129,10 @@ function useObject<RESULT, INPUT = any>({
   onFinish,
   headers,
   credentials,
-}: Experimental_UseObjectOptions<RESULT>): Experimental_UseObjectHelpers<
-  RESULT,
-  INPUT
-> {
+}: Experimental_UseObjectOptions<
+  SCHEMA,
+  RESULT
+>): Experimental_UseObjectHelpers<RESULT, INPUT> {
   // Generate an unique id if not provided.
   const hookId = useId();
   const completionId = id ?? hookId;
@@ -152,19 +162,22 @@ function useObject<RESULT, INPUT = any>({
 
   const submit = async (input: INPUT) => {
     try {
-      mutate(undefined); // reset the data
+      clearObject();
+
       setIsLoading(true);
-      setError(undefined);
 
       const abortController = new AbortController();
       abortControllerRef.current = abortController;
+
+      // Resolve headers at request time (supports async functions for dynamic auth tokens)
+      const resolvedHeaders = await resolve(headers);
 
       const actualFetch = fetch ?? getOriginalFetch();
       const response = await actualFetch(api, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...headers,
+          ...normalizeHeaders(resolvedHeaders),
         },
         credentials,
         signal: abortController.signal,
@@ -186,10 +199,10 @@ function useObject<RESULT, INPUT = any>({
 
       await response.body.pipeThrough(new TextDecoderStream()).pipeTo(
         new WritableStream<string>({
-          write(chunk) {
+          async write(chunk) {
             accumulatedText += chunk;
 
-            const { value } = parsePartialJson(accumulatedText);
+            const { value } = await parsePartialJson(accumulatedText);
             const currentObject = value as DeepPartial<RESULT>;
 
             if (!isDeepEqualData(latestObject, currentObject)) {
@@ -199,12 +212,12 @@ function useObject<RESULT, INPUT = any>({
             }
           },
 
-          close() {
+          async close() {
             setIsLoading(false);
             abortControllerRef.current = null;
 
             if (onFinish != null) {
-              const validationResult = safeValidateTypes({
+              const validationResult = await safeValidateTypes({
                 value: latestObject,
                 schema: asSchema(schema),
               });
@@ -232,12 +245,24 @@ function useObject<RESULT, INPUT = any>({
     }
   };
 
+  const clear = () => {
+    stop();
+    clearObject();
+  };
+
+  const clearObject = () => {
+    setError(undefined);
+    setIsLoading(false);
+    mutate(undefined);
+  };
+
   return {
     submit,
     object: data,
     error,
     isLoading,
     stop,
+    clear,
   };
 }
 

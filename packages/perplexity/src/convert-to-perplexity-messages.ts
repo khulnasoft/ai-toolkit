@@ -1,11 +1,15 @@
 import {
-  LanguageModelV1Prompt,
+  LanguageModelV3Prompt,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
-import { PerplexityPrompt } from './perplexity-language-model-prompt';
+import {
+  PerplexityMessageContent,
+  PerplexityPrompt,
+} from './perplexity-language-model-prompt';
+import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
 
 export function convertToPerplexityMessages(
-  prompt: LanguageModelV1Prompt,
+  prompt: LanguageModelV3Prompt,
 ): PerplexityPrompt {
   const messages: PerplexityPrompt = [];
 
@@ -18,40 +22,72 @@ export function convertToPerplexityMessages(
 
       case 'user':
       case 'assistant': {
-        messages.push({
-          role,
-          content: content
-            .filter(
-              part =>
-                part.type !== 'reasoning' && part.type !== 'redacted-reasoning',
-            )
-            .map(part => {
-              switch (part.type) {
-                case 'text': {
-                  return part.text;
-                }
-                case 'image': {
-                  throw new UnsupportedFunctionalityError({
-                    functionality: 'Image content parts in user messages',
-                  });
-                }
-                case 'file': {
-                  throw new UnsupportedFunctionalityError({
-                    functionality: 'File content parts in user messages',
-                  });
-                }
-                case 'tool-call': {
-                  throw new UnsupportedFunctionalityError({
-                    functionality: 'Tool calls in assistant messages',
-                  });
-                }
-                default: {
-                  const _exhaustiveCheck: never = part;
-                  throw new Error(`Unsupported part: ${_exhaustiveCheck}`);
+        const hasMultipartContent = content.some(
+          part =>
+            (part.type === 'file' && part.mediaType.startsWith('image/')) ||
+            (part.type === 'file' && part.mediaType === 'application/pdf'),
+        );
+
+        const messageContent = content
+          .map((part, index) => {
+            switch (part.type) {
+              case 'text': {
+                return {
+                  type: 'text',
+                  text: part.text,
+                };
+              }
+              case 'file': {
+                if (part.mediaType === 'application/pdf') {
+                  return part.data instanceof URL
+                    ? {
+                        type: 'file_url',
+                        file_url: {
+                          url: part.data.toString(),
+                        },
+                        file_name: part.filename,
+                      }
+                    : {
+                        type: 'file_url',
+                        file_url: {
+                          url:
+                            typeof part.data === 'string'
+                              ? part.data
+                              : convertUint8ArrayToBase64(part.data),
+                        },
+                        file_name: part.filename || `document-${index}.pdf`,
+                      };
+                } else if (part.mediaType.startsWith('image/')) {
+                  return part.data instanceof URL
+                    ? {
+                        type: 'image_url',
+                        image_url: {
+                          url: part.data.toString(),
+                        },
+                      }
+                    : {
+                        type: 'image_url',
+                        image_url: {
+                          url: `data:${part.mediaType ?? 'image/jpeg'};base64,${
+                            typeof part.data === 'string'
+                              ? part.data
+                              : convertUint8ArrayToBase64(part.data)
+                          }`,
+                        },
+                      };
                 }
               }
-            })
-            .join(''),
+            }
+          })
+          .filter(Boolean) as PerplexityMessageContent[];
+        messages.push({
+          role,
+          content: hasMultipartContent
+            ? messageContent
+            : messageContent
+                .filter(part => part.type === 'text')
+                .map(part => part.text)
+                .join(''),
         });
         break;
       }

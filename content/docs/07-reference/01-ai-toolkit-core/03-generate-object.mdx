@@ -5,6 +5,14 @@ description: API Reference for generateObject.
 
 # `generateObject()`
 
+<Note type="warning">
+  `generateObject` is deprecated. Use
+  [`generateText`](/docs/reference/ai-toolkit-core/generate-text) with the
+  [`output`](/docs/reference/ai-toolkit-core/output) property instead. See
+  [Generating Structured Data](/docs/ai-toolkit-core/generating-structured-data) for
+  more information.
+</Note>
+
 Generates a typed, structured object for a given prompt and schema using a language model.
 
 It can be used to force the language model to return structured data, e.g. for information extraction, synthetic data generation, or classification tasks.
@@ -12,12 +20,12 @@ It can be used to force the language model to return structured data, e.g. for i
 #### Example: generate an object using a schema
 
 ```ts
-import { openai } from '@ai-toolkit/openai';
 import { generateObject } from 'ai';
+__PROVIDER_IMPORT__;
 import { z } from 'zod';
 
 const { object } = await generateObject({
-  model: openai('gpt-4-turbo'),
+  model: __MODEL__,
   schema: z.object({
     recipe: z.object({
       name: z.string(),
@@ -36,12 +44,12 @@ console.log(JSON.stringify(object, null, 2));
 For arrays, you specify the schema of the array items.
 
 ```ts highlight="7"
-import { openai } from '@ai-toolkit/openai';
 import { generateObject } from 'ai';
+__PROVIDER_IMPORT__;
 import { z } from 'zod';
 
 const { object } = await generateObject({
-  model: openai('gpt-4-turbo'),
+  model: __MODEL__,
   output: 'array',
   schema: z.object({
     name: z.string(),
@@ -63,7 +71,7 @@ and provide the list of possible values in the `enum` parameter.
 import { generateObject } from 'ai';
 
 const { object } = await generateObject({
-  model: yourModel,
+  model: __MODEL__,
   output: 'enum',
   enum: ['action', 'comedy', 'drama', 'horror', 'sci-fi'],
   prompt:
@@ -76,11 +84,10 @@ const { object } = await generateObject({
 #### Example: generate JSON without a schema
 
 ```ts highlight="6"
-import { openai } from '@ai-toolkit/openai';
 import { generateObject } from 'ai';
 
 const { object } = await generateObject({
-  model: openai('gpt-4-turbo'),
+  model: __MODEL__,
   output: 'no-schema',
   prompt: 'Generate a lasagna recipe.',
 });
@@ -101,20 +108,12 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     {
       name: 'model',
       type: 'LanguageModel',
-      description: "The language model to use. Example: openai('gpt-4-turbo')",
+      description: "The language model to use. Example: openai('gpt-4.1')",
     },
     {
       name: 'output',
       type: "'object' | 'array' | 'enum' | 'no-schema' | undefined",
       description: "The type of output to generate. Defaults to 'object'.",
-    },
-    {
-      name: 'mode',
-      type: "'auto' | 'json' | 'tool'",
-      description:
-        "The mode to use for object generation. Not every model supports all modes. \
-        Defaults to 'auto' for 'object' output and to 'json' for 'no-schema' output. \
-        Must be 'json' for 'no-schema' output.",
     },
     {
       name: 'schema',
@@ -151,23 +150,23 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'system',
-      type: 'string',
+      type: 'string | SystemModelMessage | SystemModelMessage[]',
       description:
         'The system prompt to use that specifies the behavior of the model.',
     },
     {
       name: 'prompt',
-      type: 'string',
+      type: 'string | Array<SystemModelMessage | UserModelMessage | AssistantModelMessage | ToolModelMessage>',
       description: 'The input prompt to generate the text from.',
     },
     {
       name: 'messages',
-      type: 'Array<CoreSystemMessage | CoreUserMessage | CoreAssistantMessage | CoreToolMessage> | Array<UIMessage>',
+      type: 'Array<SystemModelMessage | UserModelMessage | AssistantModelMessage | ToolModelMessage>',
       description:
         'A list of messages that represent a conversation. Automatically converts UI messages from the useChat hook.',
       properties: [
         {
-          type: 'CoreSystemMessage',
+          type: 'SystemModelMessage',
           parameters: [
             {
               name: 'role',
@@ -182,7 +181,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
           ],
         },
         {
-          type: 'CoreUserMessage',
+          type: 'UserModelMessage',
           parameters: [
             {
               name: 'role',
@@ -224,10 +223,11 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
                         'The image content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
+                      description:
+                        'The IANA media type of the image. Optional.',
                       isOptional: true,
-                      description: 'The mime type of the image. Optional.',
                     },
                   ],
                 },
@@ -246,9 +246,9 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
                         'The file content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
                     },
                     {
-                      name: 'mimeType',
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'The mime type of the file.',
+                      description: 'The IANA media type of the file.',
                     },
                   ],
                 },
@@ -257,7 +257,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
           ],
         },
         {
-          type: 'CoreAssistantMessage',
+          type: 'AssistantModelMessage',
           parameters: [
             {
               name: 'role',
@@ -266,7 +266,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
             },
             {
               name: 'content',
-              type: 'string | Array<TextPart | ReasoningPart | RedactedReasoningPart | ToolCallPart>',
+              type: 'string | Array<TextPart | FilePart | ReasoningPart | ToolCallPart>',
               description: 'The content of the message.',
               properties: [
                 {
@@ -290,31 +290,39 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
                     {
                       name: 'type',
                       type: "'reasoning'",
+                      description: 'The type of the message part.',
                     },
                     {
                       name: 'text',
                       type: 'string',
                       description: 'The reasoning text.',
                     },
-                    {
-                      name: 'signature',
-                      type: 'string',
-                      isOptional: true,
-                      description: 'The signature for the reasoning.',
-                    },
                   ],
                 },
                 {
-                  type: 'RedactedReasoningPart',
+                  type: 'FilePart',
                   parameters: [
                     {
                       name: 'type',
-                      type: "'redacted-reasoning'",
+                      type: "'file'",
+                      description: 'The type of the message part.',
                     },
                     {
                       name: 'data',
+                      type: 'string | Uint8Array | Buffer | ArrayBuffer | URL',
+                      description:
+                        'The file content of the message part. String are either base64 encoded content, base64 data URLs, or http(s) URLs.',
+                    },
+                    {
+                      name: 'mediaType',
                       type: 'string',
-                      description: 'The redacted data.',
+                      description: 'The IANA media type of the file.',
+                    },
+                    {
+                      name: 'filename',
+                      type: 'string',
+                      description: 'The name of the file.',
+                      isOptional: true,
                     },
                   ],
                 },
@@ -339,7 +347,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
                     },
                     {
                       name: 'args',
-                      type: 'object based on schema',
+                      type: 'object based on zod schema',
                       description:
                         'Parameters generated by the model to be used by the tool.',
                     },
@@ -350,7 +358,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
           ],
         },
         {
-          type: 'CoreToolMessage',
+          type: 'ToolModelMessage',
           parameters: [
             {
               name: 'role',
@@ -404,7 +412,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
       ],
     },
     {
-      name: 'maxTokens',
+      name: 'maxOutputTokens',
       type: 'number',
       isOptional: true,
       description: 'Maximum number of tokens to generate.',
@@ -497,6 +505,13 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
       ],
     },
     {
+      name: 'experimental_download',
+      type: '(requestedDownloads: Array<{ url: URL; isUrlSupportedByModel: boolean }>) => Promise<Array<null | { data: Uint8Array; mediaType?: string }>>',
+      isOptional: true,
+      description:
+        'Custom download function to control how URLs are fetched when they appear in prompts. By default, files are downloaded if the model does not support the URL for the given media type. Experimental feature. Return null to pass the URL directly to the model (when supported), or return downloaded content with data and media type.',
+    },
+    {
       name: 'experimental_telemetry',
       type: 'TelemetrySettings',
       isOptional: true,
@@ -546,7 +561,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'providerOptions',
-      type: 'Record<string,Record<string,JSONValue>> | undefined',
+      type: 'Record<string,JSONObject> | undefined',
       isOptional: true,
       description:
         'Provider-specific options. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
@@ -566,31 +581,93 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'finishReason',
-      type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other' | 'unknown'",
+      type: "'stop' | 'length' | 'content-filter' | 'tool-calls' | 'error' | 'other'",
       description: 'The reason the model finished generating the text.',
     },
     {
       name: 'usage',
-      type: 'CompletionTokenUsage',
+      type: 'LanguageModelUsage',
       description: 'The token usage of the generated text.',
       properties: [
         {
-          type: 'CompletionTokenUsage',
+          type: 'LanguageModelUsage',
           parameters: [
             {
-              name: 'promptTokens',
-              type: 'number',
-              description: 'The total number of tokens in the prompt.',
+              name: 'inputTokens',
+              type: 'number | undefined',
+              description: 'The total number of input (prompt) tokens used.',
             },
             {
-              name: 'completionTokens',
-              type: 'number',
-              description: 'The total number of tokens in the completion.',
+              name: 'inputTokenDetails',
+              type: 'LanguageModelInputTokenDetails',
+              description:
+                'Detailed information about the input (prompt) tokens. See also: cached tokens and non-cached tokens.',
+              properties: [
+                {
+                  type: 'LanguageModelInputTokenDetails',
+                  parameters: [
+                    {
+                      name: 'noCacheTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of non-cached input (prompt) tokens used.',
+                    },
+                    {
+                      name: 'cacheReadTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of cached input (prompt) tokens read.',
+                    },
+                    {
+                      name: 'cacheWriteTokens',
+                      type: 'number | undefined',
+                      description:
+                        'The number of cached input (prompt) tokens written.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'outputTokens',
+              type: 'number | undefined',
+              description:
+                'The number of total output (completion) tokens used.',
+            },
+            {
+              name: 'outputTokenDetails',
+              type: 'LanguageModelOutputTokenDetails',
+              description:
+                'Detailed information about the output (completion) tokens.',
+              properties: [
+                {
+                  type: 'LanguageModelOutputTokenDetails',
+                  parameters: [
+                    {
+                      name: 'textTokens',
+                      type: 'number | undefined',
+                      description: 'The number of text tokens used.',
+                    },
+                    {
+                      name: 'reasoningTokens',
+                      type: 'number | undefined',
+                      description: 'The number of reasoning tokens used.',
+                    },
+                  ],
+                },
+              ],
             },
             {
               name: 'totalTokens',
-              type: 'number',
-              description: 'The total number of tokens generated.',
+              type: 'number | undefined',
+              description: 'The total number of tokens used.',
+            },
+            {
+              name: 'raw',
+              type: 'object | undefined',
+              isOptional: true,
+              description:
+                "Raw usage information from the provider. This is the provider's original usage information and may include additional fields.",
             },
           ],
         },
@@ -598,12 +675,12 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'request',
-      type: 'RequestMetadata',
+      type: 'LanguageModelRequestMetadata',
       isOptional: true,
       description: 'Request metadata.',
       properties: [
         {
-          type: 'RequestMetadata',
+          type: 'LanguageModelRequestMetadata',
           parameters: [
             {
               name: 'body',
@@ -617,12 +694,12 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'response',
-      type: 'ResponseMetadata',
+      type: 'LanguageModelResponseMetadata',
       isOptional: true,
       description: 'Response metadata.',
       properties: [
         {
-          type: 'ResponseMetadata',
+          type: 'LanguageModelResponseMetadata',
           parameters: [
             {
               name: 'id',
@@ -659,6 +736,12 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
       ],
     },
     {
+      name: 'reasoning',
+      type: 'string | undefined',
+      description:
+        'The reasoning that was used to generate the object. Concatenated from all reasoning parts.',
+    },
+    {
       name: 'warnings',
       type: 'Warning[] | undefined',
       description:
@@ -666,7 +749,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
     },
     {
       name: 'providerMetadata',
-      type: 'Record<string,Record<string,JSONValue>> | undefined',
+      type: 'ProviderMetadata | undefined',
       description:
         'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
     },

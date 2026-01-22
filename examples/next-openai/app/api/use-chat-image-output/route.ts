@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages } from 'ai';
 
 export const maxDuration = 30;
 
@@ -8,11 +8,8 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: google('gemini-2.0-flash-exp'),
-    providerOptions: {
-      google: { responseModalities: ['TEXT', 'IMAGE'] },
-    },
-    messages,
+    messages: await convertToModelMessages(messages),
   });
 
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }

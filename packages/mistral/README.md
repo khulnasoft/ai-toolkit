@@ -1,6 +1,6 @@
 # AI TOOLKIT - Mistral Provider
 
-The **[Mistral provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/mistral)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains language model support for the Mistral chat API.
+The **[Mistral provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/mistral)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the Mistral chat API.
 
 ## Setup
 
@@ -32,4 +32,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Mistral provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/mistral)** for more information.
+Please check out the **[Mistral provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/mistral)** for more information.

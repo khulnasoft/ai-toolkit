@@ -1,14 +1,20 @@
 import { AITOOLKITError } from './ai-toolkit-error';
 
 const name = 'AI_NoSuchModelError';
-const marker = `khulnasoft.com.error.${name}`;
+const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
 export class NoSuchModelError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly modelId: string;
-  readonly modelType: 'languageModel' | 'textEmbeddingModel' | 'imageModel';
+  readonly modelType:
+    | 'languageModel'
+    | 'embeddingModel'
+    | 'imageModel'
+    | 'transcriptionModel'
+    | 'speechModel'
+    | 'rerankingModel';
 
   constructor({
     errorName = name,
@@ -18,7 +24,13 @@ export class NoSuchModelError extends AITOOLKITError {
   }: {
     errorName?: string;
     modelId: string;
-    modelType: 'languageModel' | 'textEmbeddingModel' | 'imageModel';
+    modelType:
+      | 'languageModel'
+      | 'embeddingModel'
+      | 'imageModel'
+      | 'transcriptionModel'
+      | 'speechModel'
+      | 'rerankingModel';
     message?: string;
   }) {
     super({ name: errorName, message });

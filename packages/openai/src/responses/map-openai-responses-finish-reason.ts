@@ -1,21 +1,22 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import { LanguageModelV3FinishReason } from '@ai-toolkit/provider';
 
 export function mapOpenAIResponseFinishReason({
   finishReason,
-  hasToolCalls,
+  hasFunctionCall,
 }: {
   finishReason: string | null | undefined;
-  hasToolCalls: boolean;
-}): LanguageModelV1FinishReason {
+  // flag that checks if there have been client-side tool calls (not executed by openai)
+  hasFunctionCall: boolean;
+}): LanguageModelV3FinishReason['unified'] {
   switch (finishReason) {
     case undefined:
     case null:
-      return hasToolCalls ? 'tool-calls' : 'stop';
+      return hasFunctionCall ? 'tool-calls' : 'stop';
     case 'max_output_tokens':
       return 'length';
     case 'content_filter':
       return 'content-filter';
     default:
-      return hasToolCalls ? 'tool-calls' : 'unknown';
+      return hasFunctionCall ? 'tool-calls' : 'other';
   }
 }

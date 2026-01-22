@@ -1,38 +1,26 @@
-import type {
-  LanguageModelV1,
-  EmbeddingModelV1,
-  ProviderV1,
-  ImageModelV1,
+import {
+  LanguageModelV3,
+  EmbeddingModelV3,
+  ProviderV3,
+  ImageModelV3,
 } from '@ai-toolkit/provider';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
 } from '@ai-toolkit/openai-compatible';
-import type {
-  FetchFunction,
-} from '@ai-toolkit/provider-utils';
 import {
+  FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
-import type {
-  DeepInfraChatModelId,
-  DeepInfraChatSettings,
-} from './deepinfra-chat-settings';
-import type {
-  DeepInfraEmbeddingModelId,
-  DeepInfraEmbeddingSettings,
-} from './deepinfra-embedding-settings';
-import type {
-  DeepInfraCompletionModelId,
-  DeepInfraCompletionSettings,
-} from './deepinfra-completion-settings';
-import type {
-  DeepInfraImageModelId,
-  DeepInfraImageSettings,
-} from './deepinfra-image-settings';
+import { DeepInfraChatModelId } from './deepinfra-chat-options';
+import { DeepInfraEmbeddingModelId } from './deepinfra-embedding-options';
+import { DeepInfraCompletionModelId } from './deepinfra-completion-options';
+import { DeepInfraImageModelId } from './deepinfra-image-settings';
 import { DeepInfraImageModel } from './deepinfra-image-model';
+import { VERSION } from './version';
 
 export interface DeepInfraProviderSettings {
   /**
@@ -54,62 +42,46 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface DeepInfraProvider extends ProviderV1 {
+export interface DeepInfraProvider extends ProviderV3 {
   /**
 Creates a model for text generation.
 */
-  (
-    modelId: DeepInfraChatModelId,
-    settings?: DeepInfraChatSettings,
-  ): LanguageModelV1;
+  (modelId: DeepInfraChatModelId): LanguageModelV3;
 
   /**
 Creates a chat model for text generation.
 */
-  chatModel(
-    modelId: DeepInfraChatModelId,
-    settings?: DeepInfraChatSettings,
-  ): LanguageModelV1;
+  chatModel(modelId: DeepInfraChatModelId): LanguageModelV3;
 
   /**
 Creates a model for image generation.
   */
-  image(
-    modelId: DeepInfraImageModelId,
-    settings?: DeepInfraImageSettings,
-  ): ImageModelV1;
+  image(modelId: DeepInfraImageModelId): ImageModelV3;
 
   /**
 Creates a model for image generation.
   */
-  imageModel(
-    modelId: DeepInfraImageModelId,
-    settings?: DeepInfraImageSettings,
-  ): ImageModelV1;
+  imageModel(modelId: DeepInfraImageModelId): ImageModelV3;
 
   /**
 Creates a chat model for text generation.
 */
-  languageModel(
-    modelId: DeepInfraChatModelId,
-    settings?: DeepInfraChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: DeepInfraChatModelId): LanguageModelV3;
 
   /**
 Creates a completion model for text generation.
 */
-  completionModel(
-    modelId: DeepInfraCompletionModelId,
-    settings?: DeepInfraCompletionSettings,
-  ): LanguageModelV1;
+  completionModel(modelId: DeepInfraCompletionModelId): LanguageModelV3;
 
   /**
-Creates a text embedding model for text generation.
+Creates a embedding model for text generation.
 */
-  textEmbeddingModel(
-    modelId: DeepInfraEmbeddingModelId,
-    settings?: DeepInfraEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  embeddingModel(modelId: DeepInfraEmbeddingModelId): EmbeddingModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: DeepInfraEmbeddingModelId): EmbeddingModelV3;
 }
 
 export function createDeepInfra(
@@ -118,14 +90,18 @@ export function createDeepInfra(
   const baseURL = withoutTrailingSlash(
     options.baseURL ?? 'https://api.deepinfra.com/v1',
   );
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'DEEPINFRA_API_KEY',
-      description: "DeepInfra's API key",
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'DEEPINFRA_API_KEY',
+          description: "DeepInfra's API key",
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/deepinfra/${VERSION}`,
+    );
 
   interface CommonModelConfig {
     provider: string;
@@ -141,58 +117,43 @@ export function createDeepInfra(
     fetch: options.fetch,
   });
 
-  const createChatModel = (
-    modelId: DeepInfraChatModelId,
-    settings: DeepInfraChatSettings = {},
-  ) => {
-    return new OpenAICompatibleChatLanguageModel(modelId, settings, {
-      ...getCommonModelConfig('chat'),
-      defaultObjectGenerationMode: 'json',
-    });
+  const createChatModel = (modelId: DeepInfraChatModelId) => {
+    return new OpenAICompatibleChatLanguageModel(
+      modelId,
+      getCommonModelConfig('chat'),
+    );
   };
 
-  const createCompletionModel = (
-    modelId: DeepInfraCompletionModelId,
-    settings: DeepInfraCompletionSettings = {},
-  ) =>
+  const createCompletionModel = (modelId: DeepInfraCompletionModelId) =>
     new OpenAICompatibleCompletionLanguageModel(
       modelId,
-      settings,
       getCommonModelConfig('completion'),
     );
 
-  const createTextEmbeddingModel = (
-    modelId: DeepInfraEmbeddingModelId,
-    settings: DeepInfraEmbeddingSettings = {},
-  ) =>
+  const createEmbeddingModel = (modelId: DeepInfraEmbeddingModelId) =>
     new OpenAICompatibleEmbeddingModel(
       modelId,
-      settings,
       getCommonModelConfig('embedding'),
     );
 
-  const createImageModel = (
-    modelId: DeepInfraImageModelId,
-    settings: DeepInfraImageSettings = {},
-  ) =>
-    new DeepInfraImageModel(modelId, settings, {
+  const createImageModel = (modelId: DeepInfraImageModelId) =>
+    new DeepInfraImageModel(modelId, {
       ...getCommonModelConfig('image'),
       baseURL: baseURL
         ? `${baseURL}/inference`
         : 'https://api.deepinfra.com/v1/inference',
     });
 
-  const provider = (
-    modelId: DeepInfraChatModelId,
-    settings?: DeepInfraChatSettings,
-  ) => createChatModel(modelId, settings);
+  const provider = (modelId: DeepInfraChatModelId) => createChatModel(modelId);
 
+  provider.specificationVersion = 'v3' as const;
   provider.completionModel = createCompletionModel;
   provider.chatModel = createChatModel;
   provider.image = createImageModel;
   provider.imageModel = createImageModel;
   provider.languageModel = createChatModel;
-  provider.textEmbeddingModel = createTextEmbeddingModel;
+  provider.embeddingModel = createEmbeddingModel;
+  provider.textEmbeddingModel = createEmbeddingModel;
 
   return provider;
 }

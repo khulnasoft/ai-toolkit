@@ -1,27 +1,27 @@
 # AI TOOLKIT, Next.js, and OpenAI Chat Example with Telemetry
 
-This example shows how to use the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://sdk.khulnasoft.com/docs/ai-toolkit-core/telemetry).
+This example shows how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry).
 
 ## Deploy your own
 
-Deploy the example using [Khulnasoft](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
 
-[![Deploy with Khulnasoft](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai-telemetry&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=khulnasoft-ai-chat-openai-telemetry&repository-name=khulnasoft-ai-chat-openai-telemetry)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai-telemetry&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=vercel-ai-chat-openai-telemetry&repository-name=vercel-ai-chat-openai-telemetry)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
+npx create-next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
 ```
 
 ```bash
-yarn create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
+yarn create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
 ```
 
 ```bash
-pnpm create next-app --example https://github.com/khulnasoft/ai/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
+pnpm create next-app --example https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai-telemetry next-openai-telemetry-app
 ```
 
 To run the example locally you need to:
@@ -36,8 +36,8 @@ To run the example locally you need to:
 
 To learn more about OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
 
-- [AI TOOLKIT docs](https://sdk.khulnasoft.com/docs)
-- [AI TOOLKIT telemetry support](https://sdk.khulnasoft.com/docs/ai-toolkit-core/telemetry)
-- [Khulnasoft AI Playground](https://play.khulnasoft.com)
+- [AI TOOLKIT docs](https://ai-toolkit.dev/docs)
+- [AI TOOLKIT telemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry)
+- [Vercel AI Playground](https://ai-toolkit.dev/playground)
 - [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

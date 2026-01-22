@@ -1,10 +1,10 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { createVertexAnthropic } from './google-vertex-anthropic-provider';
-import { NoSuchModelError } from '@ai-toolkit/provider';
 import {
-  AnthropicMessagesLanguageModel,
-  anthropicTools,
-} from '@ai-toolkit/anthropic/internal';
+  createVertexAnthropic,
+  vertexAnthropicTools,
+} from './google-vertex-anthropic-provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
+import { AnthropicMessagesLanguageModel } from '@ai-toolkit/anthropic/internal';
+import { vi, describe, beforeEach, it, expect } from 'vitest';
 
 // Mock the imported modules
 vi.mock('@ai-toolkit/provider-utils', () => ({
@@ -13,12 +13,14 @@ vi.mock('@ai-toolkit/provider-utils', () => ({
     .mockImplementation(({ settingValue }) => settingValue),
   withoutTrailingSlash: vi.fn().mockImplementation(url => url),
   createJsonErrorResponseHandler: vi.fn(),
+  createProviderToolFactory: vi.fn(),
+  createProviderToolFactoryWithOutputSchema: vi.fn(),
+  lazySchema: vi.fn(),
+  zodSchema: vi.fn(),
 }));
 
 vi.mock('@ai-toolkit/anthropic/internal', async () => {
-  const originalModule = await vi.importActual(
-    '@ai-toolkit/anthropic/internal',
-  );
+  const originalModule = await vi.importActual('@ai-toolkit/anthropic/internal');
   return {
     ...originalModule,
     AnthropicMessagesLanguageModel: vi.fn(),
@@ -40,7 +42,6 @@ describe('google-vertex-anthropic-provider', () => {
     // Assert that the model constructor was called with the correct arguments
     expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
       'test-model-id',
-      {},
       expect.objectContaining({
         baseURL: expect.stringContaining(
           '/projects/test-project/locations/test-location/publishers/anthropic/models',
@@ -72,7 +73,6 @@ describe('google-vertex-anthropic-provider', () => {
     // Assert that the constructor was called with the correct baseURL
     expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
       expect.anything(), // modelId
-      expect.anything(), // settings
       expect.objectContaining({
         baseURL: customBaseURL,
       }),
@@ -82,15 +82,24 @@ describe('google-vertex-anthropic-provider', () => {
   it('should throw NoSuchModelError for textEmbeddingModel', () => {
     const provider = createVertexAnthropic({ project: 'test-project' });
 
-    expect(() => provider.textEmbeddingModel('invalid-model-id')).toThrow(
+    expect(() => provider.embeddingModel('invalid-model-id')).toThrow(
       NoSuchModelError,
     );
   });
 
-  it('should include anthropicTools', () => {
+  it('should include vertexAnthropicTools (subset of anthropicTools)', () => {
     const provider = createVertexAnthropic({ project: 'test-project' });
 
-    expect(provider.tools).toBe(anthropicTools);
+    expect(provider.tools).toBe(vertexAnthropicTools);
+    expect(provider.tools).toHaveProperty('bash_20241022');
+    expect(provider.tools).toHaveProperty('bash_20250124');
+    expect(provider.tools).toHaveProperty('textEditor_20241022');
+    expect(provider.tools).toHaveProperty('textEditor_20250124');
+    expect(provider.tools).toHaveProperty('textEditor_20250429');
+    expect(provider.tools).toHaveProperty('textEditor_20250728');
+    expect(provider.tools).toHaveProperty('computer_20241022');
+    expect(provider.tools).toHaveProperty('webSearch_20250305');
+    expect(provider.tools).not.toHaveProperty('codeExecution_20250825');
   });
 
   it('should pass custom headers to the model constructor', () => {
@@ -104,9 +113,95 @@ describe('google-vertex-anthropic-provider', () => {
     // Assert that the model constructor was called with the correct headers
     expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
       expect.anything(), // modelId
-      expect.anything(), // settings
       expect.objectContaining({
         headers: customHeaders,
+      }),
+    );
+  });
+
+  it('should create a Google Vertex Anthropic provider instance with custom settings', () => {
+    const customProvider = createVertexAnthropic({
+      project: 'custom-project',
+      location: 'custom-location',
+      baseURL: 'https://custom.base.url',
+      headers: { 'Custom-Header': 'value' },
+    });
+
+    expect(customProvider).toBeDefined();
+    expect(typeof customProvider).toBe('function');
+    expect(customProvider.languageModel).toBeDefined();
+  });
+
+  it('should not support URL sources to force base64 conversion', () => {
+    const provider = createVertexAnthropic();
+    provider('test-model-id');
+
+    // Assert that the model constructor was called with supportedUrls function
+    expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
+      'test-model-id',
+      expect.objectContaining({
+        supportedUrls: expect.any(Function),
+      }),
+    );
+
+    // Get the actual config passed to the constructor
+    const constructorCall = vi.mocked(AnthropicMessagesLanguageModel).mock
+      .calls[vi.mocked(AnthropicMessagesLanguageModel).mock.calls.length - 1];
+    const config = constructorCall[1];
+
+    // Verify that supportedUrls returns empty object to force base64 conversion
+    expect(config.supportedUrls?.()).toEqual({});
+  });
+
+  it('should use correct URL for global location', () => {
+    const provider = createVertexAnthropic({
+      project: 'test-project',
+      location: 'global',
+    });
+    provider('test-model-id');
+
+    expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
+      'test-model-id',
+      expect.objectContaining({
+        baseURL:
+          'https://aiplatform.googleapis.com/v1/projects/test-project/locations/global/publishers/anthropic/models',
+        provider: 'vertex.anthropic.messages',
+      }),
+    );
+  });
+
+  it('should use region-prefixed URL for non-global locations', () => {
+    const provider = createVertexAnthropic({
+      project: 'test-project',
+      location: 'us-east5',
+    });
+    provider('test-model-id');
+
+    expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
+      'test-model-id',
+      expect.objectContaining({
+        baseURL:
+          'https://us-east5-aiplatform.googleapis.com/v1/projects/test-project/locations/us-east5/publishers/anthropic/models',
+        provider: 'vertex.anthropic.messages',
+      }),
+    );
+  });
+
+  it('should support combining tools with structured outputs (inherited from Anthropic)', () => {
+    const provider = createVertexAnthropic({
+      project: 'test-project',
+      location: 'us-east5',
+    });
+
+    // Create a model instance
+    const model = provider('claude-3-5-sonnet-v2@20241022');
+
+    // Verify the model was created using AnthropicMessagesLanguageModel
+    // which already supports combining tools with structured outputs
+    expect(AnthropicMessagesLanguageModel).toHaveBeenCalledWith(
+      'claude-3-5-sonnet-v2@20241022',
+      expect.objectContaining({
+        provider: 'vertex.anthropic.messages',
       }),
     );
   });

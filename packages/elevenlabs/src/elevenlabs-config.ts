@@ -1,4 +1,4 @@
-import type { FetchFunction } from '@ai-toolkit/provider-utils';
+import { FetchFunction } from '@ai-toolkit/provider-utils';
 
 export type ElevenLabsConfig = {
   provider: string;

@@ -1,8 +1,8 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import { LanguageModelV3FinishReason } from '@ai-toolkit/provider';
 
 export function mapGroqFinishReason(
   finishReason: string | null | undefined,
-): LanguageModelV1FinishReason {
+): LanguageModelV3FinishReason['unified'] {
   switch (finishReason) {
     case 'stop':
       return 'stop';
@@ -14,6 +14,6 @@ export function mapGroqFinishReason(
     case 'tool_calls':
       return 'tool-calls';
     default:
-      return 'unknown';
+      return 'other';
   }
 }

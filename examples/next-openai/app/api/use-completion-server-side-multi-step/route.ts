@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { streamText, tool } from 'ai';
+import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';
 
 // Allow streaming responses up to 60 seconds
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     tools: {
       weather: tool({
         description: 'Get the weather in a location',
-        parameters: z.object({
+        inputSchema: z.object({
           location: z.string().describe('The location to get the weather for'),
         }),
         execute: async ({ location }) => ({
@@ -23,10 +23,10 @@ export async function POST(req: Request) {
         }),
       }),
     },
-    maxSteps: 4,
+    stopWhen: stepCountIs(4),
     prompt,
   });
 
   // Respond with the stream
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }

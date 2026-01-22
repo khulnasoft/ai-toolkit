@@ -1,13 +1,10 @@
 {
   "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
   "compilerOptions": {
-    "composite": false,
+    "composite": true,
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
     "dist",
     "build",
@@ -21,9 +18,6 @@
     },
     {
       "path": "../provider-utils"
-    },
-    {
-      "path": "../gateway"
     }
   ]
 }

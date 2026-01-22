@@ -1,8 +1,11 @@
 import {
-  LanguageModelV1,
-  LanguageModelV1FinishReason,
-  LanguageModelV1StreamPart,
-  UnsupportedFunctionalityError,
+  LanguageModelV3,
+  LanguageModelV3CallOptions,
+  LanguageModelV3Content,
+  LanguageModelV3FinishReason,
+  LanguageModelV3GenerateResult,
+  LanguageModelV3StreamPart,
+  LanguageModelV3StreamResult,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
@@ -10,41 +13,41 @@ import {
   combineHeaders,
   createEventSourceResponseHandler,
   createJsonResponseHandler,
+  parseProviderOptions,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 import {
   CohereChatModelId,
-  CohereChatSettings,
-} from '../src/cohere-chat-settings';
-import { cohereFailedResponseHandler } from '../src/cohere-error';
-import { convertToCohereChatPrompt } from '../src/convert-to-cohere-chat-prompt';
-import { mapCohereFinishReason } from '../src/map-cohere-finish-reason';
+  cohereChatModelOptions,
+} from './cohere-chat-options';
+import { cohereFailedResponseHandler } from './cohere-error';
 import { prepareTools } from './cohere-prepare-tools';
+import { CohereUsageTokens, convertCohereUsage } from './convert-cohere-usage';
+import { convertToCohereChatPrompt } from './convert-to-cohere-chat-prompt';
+import { mapCohereFinishReason } from './map-cohere-finish-reason';
 
 type CohereChatConfig = {
   provider: string;
   baseURL: string;
   headers: () => Record<string, string | undefined>;
   fetch?: FetchFunction;
+  generateId: () => string;
 };
 
-export class CohereChatLanguageModel implements LanguageModelV1 {
-  readonly specificationVersion = 'v1';
-  readonly defaultObjectGenerationMode = 'json';
+export class CohereChatLanguageModel implements LanguageModelV3 {
+  readonly specificationVersion = 'v3';
 
   readonly modelId: CohereChatModelId;
-  readonly settings: CohereChatSettings;
+
+  readonly supportedUrls = {
+    // No URLs are supported.
+  };
 
   private readonly config: CohereChatConfig;
 
-  constructor(
-    modelId: CohereChatModelId,
-    settings: CohereChatSettings,
-    config: CohereChatConfig,
-  ) {
+  constructor(modelId: CohereChatModelId, config: CohereChatConfig) {
     this.modelId = modelId;
-    this.settings = settings;
     this.config = config;
   }
 
@@ -52,10 +55,9 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
     return this.config.provider;
   }
 
-  private getArgs({
-    mode,
+  private async getArgs({
     prompt,
-    maxTokens,
+    maxOutputTokens,
     temperature,
     topP,
     topK,
@@ -64,95 +66,77 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
     stopSequences,
     responseFormat,
     seed,
-  }: Parameters<LanguageModelV1['doGenerate']>[0]) {
-    const type = mode.type;
+    tools,
+    toolChoice,
+    providerOptions,
+  }: LanguageModelV3CallOptions) {
+    // Parse provider options
+    const cohereOptions =
+      (await parseProviderOptions({
+        provider: 'cohere',
+        providerOptions,
+        schema: cohereChatModelOptions,
+      })) ?? {};
 
-    const chatPrompt = convertToCohereChatPrompt(prompt);
-
-    const baseArgs = {
-      // model id:
-      model: this.modelId,
-
-      // standardized settings:
-      frequency_penalty: frequencyPenalty,
-      presence_penalty: presencePenalty,
-      max_tokens: maxTokens,
-      temperature,
-      p: topP,
-      k: topK,
-      seed,
-      stop_sequences: stopSequences,
-
-      // response format:
-      response_format:
-        responseFormat?.type === 'json'
-          ? { type: 'json_object', json_schema: responseFormat.schema }
-          : undefined,
-
-      // messages:
+    const {
       messages: chatPrompt,
+      documents: cohereDocuments,
+      warnings: promptWarnings,
+    } = convertToCohereChatPrompt(prompt);
+
+    const {
+      tools: cohereTools,
+      toolChoice: cohereToolChoice,
+      toolWarnings,
+    } = prepareTools({ tools, toolChoice });
+
+    return {
+      args: {
+        // model id:
+        model: this.modelId,
+
+        // standardized settings:
+        frequency_penalty: frequencyPenalty,
+        presence_penalty: presencePenalty,
+        max_tokens: maxOutputTokens,
+        temperature,
+        p: topP,
+        k: topK,
+        seed,
+        stop_sequences: stopSequences,
+
+        // response format:
+        response_format:
+          responseFormat?.type === 'json'
+            ? { type: 'json_object', json_schema: responseFormat.schema }
+            : undefined,
+
+        // messages:
+        messages: chatPrompt,
+
+        // tools:
+        tools: cohereTools,
+        tool_choice: cohereToolChoice,
+
+        // documents for RAG:
+        ...(cohereDocuments.length > 0 && { documents: cohereDocuments }),
+
+        // reasoning
+        ...(cohereOptions.thinking && {
+          thinking: {
+            type: cohereOptions.thinking.type ?? 'enabled',
+            token_budget: cohereOptions.thinking.tokenBudget,
+          },
+        }),
+      },
+      warnings: [...toolWarnings, ...promptWarnings],
     };
-
-    switch (type) {
-      case 'regular': {
-        const { tools, toolChoice, toolWarnings } = prepareTools(mode);
-
-        return {
-          args: {
-            ...baseArgs,
-            tools,
-            tool_choice: toolChoice,
-          },
-          warnings: toolWarnings,
-        };
-      }
-
-      case 'object-json': {
-        return {
-          args: {
-            ...baseArgs,
-            response_format:
-              mode.schema == null
-                ? { type: 'json_object' }
-                : { type: 'json_object', json_schema: mode.schema },
-          },
-          warnings: [],
-        };
-      }
-
-      case 'object-tool': {
-        return {
-          args: {
-            ...baseArgs,
-            tools: [
-              {
-                type: 'function',
-                function: {
-                  name: mode.tool.name,
-                  description: mode.tool.description ?? '',
-                  parameters: mode.tool.parameters,
-                },
-              },
-            ],
-            tool_choice: 'REQUIRED',
-          },
-          warnings: [],
-        };
-      }
-
-      default: {
-        const _exhaustiveCheck: never = type;
-        throw new UnsupportedFunctionalityError({
-          functionality: `Unsupported mode: ${_exhaustiveCheck}`,
-        });
-      }
-    }
   }
 
   async doGenerate(
-    options: Parameters<LanguageModelV1['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doGenerate']>>> {
-    const { args, warnings } = this.getArgs(options);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3GenerateResult> {
+    const { args, warnings } = await this.getArgs(options);
 
     const {
       responseHeaders,
@@ -170,49 +154,74 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { messages, ...rawSettings } = args;
+    const content: Array<LanguageModelV3Content> = [];
 
-    const text = response.message.content?.[0]?.text ?? '';
+    for (const item of response.message.content ?? []) {
+      if (item.type === 'text' && item.text.length > 0) {
+        content.push({ type: 'text', text: item.text });
+        continue;
+      }
+
+      if (item.type === 'thinking' && item.thinking.length > 0) {
+        content.push({ type: 'reasoning', text: item.thinking });
+        continue;
+      }
+    }
+
+    // citations:
+    for (const citation of response.message.citations ?? []) {
+      content.push({
+        type: 'source',
+        sourceType: 'document',
+        id: this.config.generateId(),
+        mediaType: 'text/plain',
+        title: citation.sources[0]?.document?.title || 'Document',
+        providerMetadata: {
+          cohere: {
+            start: citation.start,
+            end: citation.end,
+            text: citation.text,
+            sources: citation.sources,
+            ...(citation.type && { citationType: citation.type }),
+          },
+        },
+      });
+    }
+
+    // tool calls:
+    for (const toolCall of response.message.tool_calls ?? []) {
+      content.push({
+        type: 'tool-call' as const,
+        toolCallId: toolCall.id,
+        toolName: toolCall.function.name,
+        // Cohere sometimes returns `null` for tool call arguments for tools
+        // defined as having no arguments.
+        input: toolCall.function.arguments.replace(/^null$/, '{}'),
+      });
+    }
 
     return {
-      text,
-      toolCalls: response.message.tool_calls
-        ? response.message.tool_calls.map(toolCall => ({
-            toolCallId: toolCall.id,
-            toolName: toolCall.function.name,
-            // Cohere sometimes returns `null` for tool call arguments for tools
-            // defined as having no arguments.
-            args: toolCall.function.arguments.replace(/^null$/, '{}'),
-            toolCallType: 'function',
-          }))
-        : [],
-      finishReason: mapCohereFinishReason(response.finish_reason),
-      usage: {
-        promptTokens: response.usage.tokens.input_tokens,
-        completionTokens: response.usage.tokens.output_tokens,
+      content,
+      finishReason: {
+        unified: mapCohereFinishReason(response.finish_reason),
+        raw: response.finish_reason ?? undefined,
       },
-      rawCall: {
-        rawPrompt: {
-          messages,
-        },
-        rawSettings,
-      },
+      usage: convertCohereUsage(response.usage.tokens),
+      request: { body: args },
       response: {
+        // TODO timestamp, model id
         id: response.generation_id ?? undefined,
-      },
-      rawResponse: {
         headers: responseHeaders,
         body: rawResponse,
       },
       warnings,
-      request: { body: JSON.stringify(args) },
     };
   }
 
   async doStream(
-    options: Parameters<LanguageModelV1['doStream']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doStream']>>> {
-    const { args, warnings } = this.getArgs(options);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3StreamResult> {
+    const { args, warnings } = await this.getArgs(options);
 
     const { responseHeaders, value: response } = await postJsonToApi({
       url: `${this.config.baseURL}/chat`,
@@ -226,34 +235,39 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { messages, ...rawSettings } = args;
-
-    let finishReason: LanguageModelV1FinishReason = 'unknown';
-    let usage: { promptTokens: number; completionTokens: number } = {
-      promptTokens: Number.NaN,
-      completionTokens: Number.NaN,
+    let finishReason: LanguageModelV3FinishReason = {
+      unified: 'other',
+      raw: undefined,
     };
+    let usage: CohereUsageTokens | undefined = undefined;
 
-    let pendingToolCallDelta: {
-      toolCallId: string;
-      toolName: string;
-      argsTextDelta: string;
-    } = {
-      toolCallId: '',
-      toolName: '',
-      argsTextDelta: '',
-    };
+    let pendingToolCall: {
+      id: string;
+      name: string;
+      arguments: string;
+      hasFinished: boolean;
+    } | null = null;
+
+    let isActiveReasoning = false;
 
     return {
       stream: response.pipeThrough(
         new TransformStream<
           ParseResult<z.infer<typeof cohereChatChunkSchema>>,
-          LanguageModelV1StreamPart
+          LanguageModelV3StreamPart
         >({
+          start(controller) {
+            controller.enqueue({ type: 'stream-start', warnings });
+          },
+
           transform(chunk, controller) {
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: 'raw', rawValue: chunk.rawValue });
+            }
+
             // handle failed chunk parsing / validation:
             if (!chunk.success) {
-              finishReason = 'error';
+              finishReason = { unified: 'error', raw: undefined };
               controller.enqueue({ type: 'error', error: chunk.error });
               return;
             }
@@ -262,76 +276,122 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
             const type = value.type;
 
             switch (type) {
+              case 'content-start': {
+                if (value.delta.message.content.type === 'thinking') {
+                  controller.enqueue({
+                    type: 'reasoning-start',
+                    id: String(value.index),
+                  });
+                  isActiveReasoning = true;
+                  return;
+                }
+
+                controller.enqueue({
+                  type: 'text-start',
+                  id: String(value.index),
+                });
+                return;
+              }
+
               case 'content-delta': {
+                if ('thinking' in value.delta.message.content) {
+                  controller.enqueue({
+                    type: 'reasoning-delta',
+                    id: String(value.index),
+                    delta: value.delta.message.content.thinking,
+                  });
+                  return;
+                }
+
                 controller.enqueue({
                   type: 'text-delta',
-                  textDelta: value.delta.message.content.text,
+                  id: String(value.index),
+                  delta: value.delta.message.content.text,
                 });
+                return;
+              }
+
+              case 'content-end': {
+                if (isActiveReasoning) {
+                  controller.enqueue({
+                    type: 'reasoning-end',
+                    id: String(value.index),
+                  });
+                  isActiveReasoning = false;
+                  return;
+                }
+
+                controller.enqueue({
+                  type: 'text-end',
+                  id: String(value.index),
+                });
+
                 return;
               }
 
               case 'tool-call-start': {
-                // The start message is the only one that specifies the tool id and name.
-                pendingToolCallDelta = {
-                  toolCallId: value.delta.message.tool_calls.id,
-                  toolName: value.delta.message.tool_calls.function.name,
-                  argsTextDelta:
-                    value.delta.message.tool_calls.function.arguments,
+                const toolId = value.delta.message.tool_calls.id;
+                const toolName = value.delta.message.tool_calls.function.name;
+                const initialArgs =
+                  value.delta.message.tool_calls.function.arguments;
+
+                pendingToolCall = {
+                  id: toolId,
+                  name: toolName,
+                  arguments: initialArgs,
+                  hasFinished: false,
                 };
 
-                // Provide visibility into the beginning of the tool call even
-                // though we likely don't have full arguments yet.
                 controller.enqueue({
-                  type: 'tool-call-delta',
-                  toolCallId: pendingToolCallDelta.toolCallId,
-                  toolName: pendingToolCallDelta.toolName,
-                  toolCallType: 'function',
-                  argsTextDelta: pendingToolCallDelta.argsTextDelta,
+                  type: 'tool-input-start',
+                  id: toolId,
+                  toolName,
                 });
+
+                if (initialArgs.length > 0) {
+                  controller.enqueue({
+                    type: 'tool-input-delta',
+                    id: toolId,
+                    delta: initialArgs,
+                  });
+                }
                 return;
               }
 
               case 'tool-call-delta': {
-                // Accumulate the arguments for the tool call.
-                pendingToolCallDelta.argsTextDelta +=
-                  value.delta.message.tool_calls.function.arguments;
+                if (pendingToolCall && !pendingToolCall.hasFinished) {
+                  const argsDelta =
+                    value.delta.message.tool_calls.function.arguments;
+                  pendingToolCall.arguments += argsDelta;
 
-                // Provide visibility into the updated arguments for the tool call, even though we
-                // may have more arguments still coming.
-                controller.enqueue({
-                  type: 'tool-call-delta',
-                  toolCallId: pendingToolCallDelta.toolCallId,
-                  toolName: pendingToolCallDelta.toolName,
-                  toolCallType: 'function',
-                  argsTextDelta:
-                    value.delta.message.tool_calls.function.arguments,
-                });
+                  controller.enqueue({
+                    type: 'tool-input-delta',
+                    id: pendingToolCall.id,
+                    delta: argsDelta,
+                  });
+                }
                 return;
               }
 
               case 'tool-call-end': {
-                // Post the full tool call now that we have all of the arguments.
-                controller.enqueue({
-                  type: 'tool-call',
-                  toolCallId: pendingToolCallDelta.toolCallId,
-                  toolName: pendingToolCallDelta.toolName,
-                  toolCallType: 'function',
-                  args: JSON.stringify(
-                    JSON.parse(
-                      pendingToolCallDelta.argsTextDelta?.trim() || '{}',
-                    ),
-                  ),
-                });
+                if (pendingToolCall && !pendingToolCall.hasFinished) {
+                  controller.enqueue({
+                    type: 'tool-input-end',
+                    id: pendingToolCall.id,
+                  });
 
-                // Clear the pending tool call. We rely on the API always
-                // following a start with an end. We do not defensively clear a
-                // previous accumulation of a pending tool call in
-                // non-tool-related events.
-                pendingToolCallDelta = {
-                  toolCallId: '',
-                  toolName: '',
-                  argsTextDelta: '',
-                };
+                  controller.enqueue({
+                    type: 'tool-call',
+                    toolCallId: pendingToolCall.id,
+                    toolName: pendingToolCall.name,
+                    input: JSON.stringify(
+                      JSON.parse(pendingToolCall.arguments?.trim() || '{}'),
+                    ),
+                  });
+
+                  pendingToolCall.hasFinished = true;
+                  pendingToolCall = null;
+                }
                 return;
               }
 
@@ -340,18 +400,16 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
                   type: 'response-metadata',
                   id: value.id ?? undefined,
                 });
-
                 return;
               }
 
               case 'message-end': {
-                finishReason = mapCohereFinishReason(value.delta.finish_reason);
-                const tokens = value.delta.usage.tokens;
-
-                usage = {
-                  promptTokens: tokens.input_tokens,
-                  completionTokens: tokens.output_tokens,
+                finishReason = {
+                  unified: mapCohereFinishReason(value.delta.finish_reason),
+                  raw: value.delta.finish_reason,
                 };
+                usage = value.delta.usage.tokens;
+                return;
               }
 
               default: {
@@ -364,36 +422,33 @@ export class CohereChatLanguageModel implements LanguageModelV1 {
             controller.enqueue({
               type: 'finish',
               finishReason,
-              usage,
+              usage: convertCohereUsage(usage),
             });
           },
         }),
       ),
-      rawCall: {
-        rawPrompt: {
-          messages,
-        },
-        rawSettings,
-      },
-      rawResponse: { headers: responseHeaders },
-      warnings,
-      request: { body: JSON.stringify({ ...args, stream: true }) },
+      request: { body: { ...args, stream: true } },
+      response: { headers: responseHeaders },
     };
   }
 }
 
-// limited version of the schema, focussed on what is needed for the implementation
-// this approach limits breakages when the API changes and increases efficiency
 const cohereChatResponseSchema = z.object({
   generation_id: z.string().nullish(),
   message: z.object({
     role: z.string(),
     content: z
       .array(
-        z.object({
-          type: z.string(),
-          text: z.string(),
-        }),
+        z.union([
+          z.object({
+            type: z.literal('text'),
+            text: z.string(),
+          }),
+          z.object({
+            type: z.literal('thinking'),
+            thinking: z.string(),
+          }),
+        ]),
       )
       .nullish(),
     tool_plan: z.string().nullish(),
@@ -406,6 +461,27 @@ const cohereChatResponseSchema = z.object({
             name: z.string(),
             arguments: z.string(),
           }),
+        }),
+      )
+      .nullish(),
+    citations: z
+      .array(
+        z.object({
+          start: z.number(),
+          end: z.number(),
+          text: z.string(),
+          sources: z.array(
+            z.object({
+              type: z.string().optional(),
+              id: z.string().optional(),
+              document: z.object({
+                id: z.string().optional(),
+                text: z.string(),
+                title: z.string(),
+              }),
+            }),
+          ),
+          type: z.string().optional(),
         }),
       )
       .nullish(),
@@ -423,7 +499,7 @@ const cohereChatResponseSchema = z.object({
   }),
 });
 
-// limited version of the schema, focused on what is needed for the implementation
+// limited version of the schema, focussed on what is needed for the implementation
 // this approach limits breakages when the API changes and increases efficiency
 const cohereChatChunkSchema = z.discriminatedUnion('type', [
   z.object({
@@ -434,19 +510,41 @@ const cohereChatChunkSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     type: z.literal('content-start'),
+    index: z.number(),
+    delta: z.object({
+      message: z.object({
+        content: z.union([
+          z.object({
+            type: z.literal('text'),
+            text: z.string(),
+          }),
+          z.object({
+            type: z.literal('thinking'),
+            thinking: z.string(),
+          }),
+        ]),
+      }),
+    }),
   }),
   z.object({
     type: z.literal('content-delta'),
+    index: z.number(),
     delta: z.object({
       message: z.object({
-        content: z.object({
-          text: z.string(),
-        }),
+        content: z.union([
+          z.object({
+            text: z.string(),
+          }),
+          z.object({
+            thinking: z.string(),
+          }),
+        ]),
       }),
     }),
   }),
   z.object({
     type: z.literal('content-end'),
+    index: z.number(),
   }),
   z.object({
     type: z.literal('message-start'),

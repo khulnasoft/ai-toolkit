@@ -1,70 +1,103 @@
 import {
-  LanguageModelV1,
-  LanguageModelV1CallWarning,
+  LanguageModelV3CallOptions,
+  SharedV3Warning,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
+import {
+  getSupportedModelsString,
+  isBrowserSearchSupportedModel,
+} from './groq-browser-search-models';
+import { GroqChatModelId } from './groq-chat-options';
 
 export function prepareTools({
-  mode,
+  tools,
+  toolChoice,
+  modelId,
 }: {
-  mode: Parameters<LanguageModelV1['doGenerate']>[0]['mode'] & {
-    type: 'regular';
-  };
+  tools: LanguageModelV3CallOptions['tools'];
+  toolChoice?: LanguageModelV3CallOptions['toolChoice'];
+  modelId: GroqChatModelId;
 }): {
   tools:
     | undefined
-    | Array<{
+    | Array<
+        | {
+            type: 'function';
+            function: {
+              name: string;
+              description: string | undefined;
+              parameters: unknown;
+            };
+          }
+        | {
+            type: 'browser_search';
+          }
+      >;
+  toolChoice:
+    | { type: 'function'; function: { name: string } }
+    | 'auto'
+    | 'none'
+    | 'required'
+    | undefined;
+  toolWarnings: SharedV3Warning[];
+} {
+  // when the tools array is empty, change it to undefined to prevent errors:
+  tools = tools?.length ? tools : undefined;
+
+  const toolWarnings: SharedV3Warning[] = [];
+
+  if (tools == null) {
+    return { tools: undefined, toolChoice: undefined, toolWarnings };
+  }
+
+  const groqTools: Array<
+    | {
         type: 'function';
         function: {
           name: string;
           description: string | undefined;
           parameters: unknown;
         };
-      }>;
-  tool_choice:
-    | { type: 'function'; function: { name: string } }
-    | 'auto'
-    | 'none'
-    | 'required'
-    | undefined;
-  toolWarnings: LanguageModelV1CallWarning[];
-} {
-  // when the tools array is empty, change it to undefined to prevent errors:
-  const tools = mode.tools?.length ? mode.tools : undefined;
-  const toolWarnings: LanguageModelV1CallWarning[] = [];
-
-  if (tools == null) {
-    return { tools: undefined, tool_choice: undefined, toolWarnings };
-  }
-
-  const toolChoice = mode.toolChoice;
-
-  const groqTools: Array<{
-    type: 'function';
-    function: {
-      name: string;
-      description: string | undefined;
-      parameters: unknown;
-    };
-  }> = [];
+      }
+    | {
+        type: 'browser_search';
+      }
+  > = [];
 
   for (const tool of tools) {
-    if (tool.type === 'provider-defined') {
-      toolWarnings.push({ type: 'unsupported-tool', tool });
+    if (tool.type === 'provider') {
+      if (tool.id === 'groq.browser_search') {
+        if (!isBrowserSearchSupportedModel(modelId)) {
+          toolWarnings.push({
+            type: 'unsupported',
+            feature: `provider-defined tool ${tool.id}`,
+            details: `Browser search is only supported on the following models: ${getSupportedModelsString()}. Current model: ${modelId}`,
+          });
+        } else {
+          groqTools.push({
+            type: 'browser_search',
+          });
+        }
+      } else {
+        toolWarnings.push({
+          type: 'unsupported',
+          feature: `provider-defined tool ${tool.id}`,
+        });
+      }
     } else {
       groqTools.push({
         type: 'function',
         function: {
           name: tool.name,
           description: tool.description,
-          parameters: tool.parameters,
+          parameters: tool.inputSchema,
         },
       });
     }
   }
 
   if (toolChoice == null) {
-    return { tools: groqTools, tool_choice: undefined, toolWarnings };
+    return { tools: groqTools, toolChoice: undefined, toolWarnings };
   }
 
   const type = toolChoice.type;
@@ -73,11 +106,11 @@ export function prepareTools({
     case 'auto':
     case 'none':
     case 'required':
-      return { tools: groqTools, tool_choice: type, toolWarnings };
+      return { tools: groqTools, toolChoice: type, toolWarnings };
     case 'tool':
       return {
         tools: groqTools,
-        tool_choice: {
+        toolChoice: {
           type: 'function',
           function: {
             name: toolChoice.toolName,
@@ -88,7 +121,7 @@ export function prepareTools({
     default: {
       const _exhaustiveCheck: never = type;
       throw new UnsupportedFunctionalityError({
-        functionality: `Unsupported tool choice type: ${_exhaustiveCheck}`,
+        functionality: `tool choice type: ${_exhaustiveCheck}`,
       });
     }
   }

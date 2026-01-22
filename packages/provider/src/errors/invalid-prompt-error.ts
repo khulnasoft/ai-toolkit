@@ -1,7 +1,7 @@
 import { AITOOLKITError } from './ai-toolkit-error';
 
 const name = 'AI_InvalidPromptError';
-const marker = `khulnasoft.com.error.${name}`;
+const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
 /**

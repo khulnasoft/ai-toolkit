@@ -12,14 +12,42 @@ Generates speech audio from text.
 ```ts
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { readFile } from 'fs/promises';
 
 const { audio } = await generateSpeech({
   model: openai.speech('tts-1'),
   text: 'Hello from the AI TOOLKIT!',
+  voice: 'alloy',
 });
 
 console.log(audio);
+```
+
+## Examples
+
+### OpenAI
+
+```ts
+import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { openai } from '@ai-toolkit/openai';
+
+const { audio } = await generateSpeech({
+  model: openai.speech('tts-1'),
+  text: 'Hello from the AI TOOLKIT!',
+  voice: 'alloy',
+});
+```
+
+### ElevenLabs
+
+```ts
+import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
+
+const { audio } = await generateSpeech({
+  model: elevenlabs.speech('eleven_multilingual_v2'),
+  text: 'Hello from the AI TOOLKIT!',
+  voice: 'your-voice-id', // Required: get this from your ElevenLabs account
+});
 ```
 
 ## Import
@@ -37,7 +65,7 @@ console.log(audio);
   content={[
     {
       name: 'model',
-      type: 'SpeechModelV1',
+      type: 'SpeechModelV3',
       description: 'The speech model to use.',
     },
     {
@@ -71,8 +99,15 @@ console.log(audio);
       description: 'The speed of the speech generation.',
     },
     {
+      name: 'language',
+      type: 'string',
+      isOptional: true,
+      description:
+        'The language for speech generation. This should be an ISO 639-1 language code (e.g. "en", "es", "fr") or "auto" for automatic language detection. Provider support varies.',
+    },
+    {
       name: 'providerOptions',
-      type: 'Record<string, Record<string, JSONValue>>',
+      type: 'Record<string, JSONObject>',
       isOptional: true,
       description: 'Additional provider-specific options.',
     },
@@ -135,7 +170,7 @@ console.log(audio);
     },
     {
       name: 'warnings',
-      type: 'SpeechWarning[]',
+      type: 'Warning[]',
       description:
         'Warnings from the model provider (e.g. unsupported settings).',
     },
@@ -158,6 +193,12 @@ console.log(audio);
               type: 'string',
               description:
                 'The ID of the response model that was used to generate the response.',
+            },
+            {
+              name: 'body',
+              isOptional: true,
+              type: 'unknown',
+              description: 'Optional response body.',
             },
             {
               name: 'headers',

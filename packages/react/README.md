@@ -1,7 +1,7 @@
 # AI TOOLKIT: React provider
 
-[React](https://react.dev/) UI components for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs):
+[React](https://react.dev/) UI components for the [AI TOOLKIT](https://ai-toolkit.dev/docs):
 
-- [`useChat`](https://sdk.khulnasoft.com/docs/reference/ai-toolkit-ui/use-chat) hook
-- [`useCompletion`](https://sdk.khulnasoft.com/docs/reference/ai-toolkit-ui/use-completion) hook
-- [`useAssistant`](https://sdk.khulnasoft.com/docs/reference/ai-toolkit-ui/use-assistant) hook
+- [`useChat`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-chat) hook
+- [`useCompletion`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-completion) hook
+- [`useObject`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-object) hook

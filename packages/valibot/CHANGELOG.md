@@ -1,61 +1,870 @@
 # @ai-toolkit/valibot
 
-## 0.1.18
+## 2.0.8
 
 ### Patch Changes
 
-- Updated dependencies [a611690]
-  - ai@2.0.0
+- @ai-toolkit/provider-utils@4.0.8
 
-## 0.1.17
-
-### Patch Changes
-
-- Updated dependencies [452bf12]
-  - ai@4.3.5
-
-## 0.1.16
+## 2.0.7
 
 ### Patch Changes
 
-- Updated dependencies [013faa8]
-  - ai@4.3.4
+- Updated dependencies [46f46e4]
+  - @ai-toolkit/provider-utils@4.0.7
 
-## 0.1.15
-
-### Patch Changes
-
-- Updated dependencies [3e88f4d]
-- Updated dependencies [c21fa6d]
-  - ai@4.3.3
-
-## 0.1.14
+## 2.0.6
 
 ### Patch Changes
 
-- Updated dependencies [665a567]
-  - ai@4.3.2
+- Updated dependencies [1b11dcb]
+  - @ai-toolkit/provider-utils@4.0.6
 
-## 0.1.13
-
-### Patch Changes
-
-- Updated dependencies [3d1bd38]
-  - ai@4.3.1
-
-## 0.1.12
+## 2.0.5
 
 ### Patch Changes
 
-- Updated dependencies [772a2d7]
-  - ai@4.3.0
+- Updated dependencies [34d1c8a]
+  - @ai-toolkit/provider-utils@4.0.5
 
-## 0.1.11
+## 2.0.4
 
 ### Patch Changes
 
-- Updated dependencies [c45d100]
-  - ai@4.2.11
+- @ai-toolkit/provider-utils@4.0.4
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [0b429d4]
+  - @ai-toolkit/provider-utils@4.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- 863d34f: fix: trigger release to update `@latest`
+- Updated dependencies [863d34f]
+  - @ai-toolkit/provider-utils@4.0.2
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [29264a3]
+  - @ai-toolkit/provider-utils@4.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- dee8b05: ai SDK 6 beta
+
+### Minor Changes
+
+- 78928cb: release: start 5.1 beta
+
+### Patch Changes
+
+- 763d04a: feat: Standard JSON Schema support
+- Updated dependencies
+  - @ai-toolkit/provider-utils@4.0.0
+
+## 2.0.0-beta.59
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.59
+
+## 2.0.0-beta.58
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.58
+
+## 2.0.0-beta.57
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.57
+
+## 2.0.0-beta.56
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.56
+
+## 2.0.0-beta.55
+
+### Patch Changes
+
+- Updated dependencies [50b70d6]
+  - @ai-toolkit/provider-utils@4.0.0-beta.55
+
+## 2.0.0-beta.54
+
+### Patch Changes
+
+- Updated dependencies [9061dc0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.54
+
+## 2.0.0-beta.53
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.53
+
+## 2.0.0-beta.52
+
+### Patch Changes
+
+- 763d04a: feat: Standard JSON Schema support
+- Updated dependencies [763d04a]
+  - @ai-toolkit/provider-utils@4.0.0-beta.52
+
+## 2.0.0-beta.51
+
+### Patch Changes
+
+- Updated dependencies [c1efac4]
+  - @ai-toolkit/provider-utils@4.0.0-beta.51
+
+## 2.0.0-beta.50
+
+### Patch Changes
+
+- Updated dependencies [32223c8]
+  - @ai-toolkit/provider-utils@4.0.0-beta.50
+
+## 2.0.0-beta.49
+
+### Patch Changes
+
+- Updated dependencies [83e5744]
+  - @ai-toolkit/provider-utils@4.0.0-beta.49
+
+## 2.0.0-beta.48
+
+### Patch Changes
+
+- Updated dependencies [960ec8f]
+  - @ai-toolkit/provider-utils@4.0.0-beta.48
+
+## 2.0.0-beta.47
+
+### Patch Changes
+
+- Updated dependencies [e9e157f]
+  - @ai-toolkit/provider-utils@4.0.0-beta.47
+
+## 2.0.0-beta.46
+
+### Patch Changes
+
+- Updated dependencies [81e29ab]
+  - @ai-toolkit/provider-utils@4.0.0-beta.46
+
+## 2.0.0-beta.45
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.45
+
+## 2.0.0-beta.44
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.44
+
+## 2.0.0-beta.43
+
+### Patch Changes
+
+- Updated dependencies [dce03c4]
+  - @ai-toolkit/provider-utils@4.0.0-beta.43
+
+## 2.0.0-beta.42
+
+### Patch Changes
+
+- Updated dependencies [3ed5519]
+  - @ai-toolkit/provider-utils@4.0.0-beta.42
+
+## 2.0.0-beta.41
+
+### Patch Changes
+
+- Updated dependencies [1bd7d32]
+  - @ai-toolkit/provider-utils@4.0.0-beta.41
+
+## 2.0.0-beta.40
+
+### Patch Changes
+
+- Updated dependencies [544d4e8]
+  - @ai-toolkit/provider-utils@4.0.0-beta.40
+
+## 2.0.0-beta.39
+
+### Patch Changes
+
+- Updated dependencies [954c356]
+  - @ai-toolkit/provider-utils@4.0.0-beta.39
+
+## 2.0.0-beta.38
+
+### Patch Changes
+
+- Updated dependencies [03849b0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.38
+
+## 2.0.0-beta.37
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.37
+
+## 2.0.0-beta.36
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.36
+
+## 2.0.0-beta.35
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.35
+
+## 2.0.0-beta.34
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.34
+
+## 2.0.0-beta.33
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.33
+
+## 2.0.0-beta.32
+
+### Patch Changes
+
+- Updated dependencies [32d8dbb]
+  - @ai-toolkit/provider-utils@4.0.0-beta.32
+
+## 2.0.0-beta.31
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.31
+
+## 2.0.0-beta.30
+
+### Patch Changes
+
+- Updated dependencies [4f16c37]
+  - @ai-toolkit/provider-utils@4.0.0-beta.30
+
+## 2.0.0-beta.29
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.29
+
+## 2.0.0-beta.28
+
+### Patch Changes
+
+- Updated dependencies [016b111]
+  - @ai-toolkit/provider-utils@4.0.0-beta.28
+
+## 2.0.0-beta.27
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.27
+
+## 2.0.0-beta.26
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.26
+
+## 2.0.0-beta.25
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.25
+
+## 2.0.0-beta.24
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.24
+
+## 2.0.0-beta.23
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.23
+
+## 2.0.0-beta.22
+
+### Patch Changes
+
+- Updated dependencies [58920e0]
+  - @ai-toolkit/provider-utils@4.0.0-beta.22
+
+## 2.0.0-beta.21
+
+### Patch Changes
+
+- Updated dependencies [293a6b7]
+  - @ai-toolkit/provider-utils@4.0.0-beta.21
+
+## 2.0.0-beta.20
+
+### Patch Changes
+
+- Updated dependencies [fca786b]
+  - @ai-toolkit/provider-utils@4.0.0-beta.20
+
+## 2.0.0-beta.19
+
+### Patch Changes
+
+- Updated dependencies [3794514]
+  - @ai-toolkit/provider-utils@4.0.0-beta.19
+
+## 2.0.0-beta.18
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@4.0.0-beta.18
+
+## 2.0.0-beta.17
+
+### Patch Changes
+
+- Updated dependencies [703459a]
+  - @ai-toolkit/provider-utils@4.0.0-beta.17
+
+## 2.0.0-beta.16
+
+### Patch Changes
+
+- Updated dependencies [6306603]
+  - @ai-toolkit/provider-utils@4.0.0-beta.16
+
+## 2.0.0-beta.15
+
+### Patch Changes
+
+- Updated dependencies [f0b2157]
+  - @ai-toolkit/provider-utils@4.0.0-beta.15
+
+## 2.0.0-beta.14
+
+### Patch Changes
+
+- Updated dependencies [3b1d015]
+  - @ai-toolkit/provider-utils@4.0.0-beta.14
+
+## 2.0.0-beta.13
+
+### Patch Changes
+
+- Updated dependencies [d116b4b]
+  - @ai-toolkit/provider-utils@4.0.0-beta.13
+
+## 2.0.0-beta.12
+
+### Patch Changes
+
+- Updated dependencies [7e32fea]
+  - @ai-toolkit/provider-utils@4.0.0-beta.12
+
+## 2.0.0-beta.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@4.0.0-beta.11
+
+## 2.0.0-beta.10
+
+### Major Changes
+
+- dee8b05: ai SDK 6 beta
+
+### Patch Changes
+
+- Updated dependencies [dee8b05]
+  - @ai-toolkit/provider-utils@4.0.0-beta.10
+
+## 1.1.0-beta.9
+
+### Patch Changes
+
+- Updated dependencies [521c537]
+  - @ai-toolkit/provider-utils@3.1.0-beta.9
+
+## 1.1.0-beta.8
+
+### Patch Changes
+
+- Updated dependencies [e06565c]
+  - @ai-toolkit/provider-utils@3.1.0-beta.8
+
+## 1.1.0-beta.7
+
+### Patch Changes
+
+- Updated dependencies [e8109d3]
+  - @ai-toolkit/provider-utils@3.1.0-beta.7
+
+## 1.1.0-beta.6
+
+### Patch Changes
+
+- Updated dependencies [0adc679]
+  - @ai-toolkit/provider-utils@3.1.0-beta.6
+
+## 1.1.0-beta.5
+
+### Patch Changes
+
+- Updated dependencies [8dac895]
+  - @ai-toolkit/provider-utils@3.1.0-beta.5
+
+## 1.1.0-beta.4
+
+### Patch Changes
+
+- Updated dependencies [4616b86]
+  - @ai-toolkit/provider-utils@3.1.0-beta.4
+
+## 1.1.0-beta.3
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.1.0-beta.3
+
+## 1.1.0-beta.2
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.1.0-beta.2
+
+## 1.1.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies [cbb1d35]
+  - @ai-toolkit/provider-utils@3.1.0-beta.1
+
+## 1.1.0-beta.0
+
+### Minor Changes
+
+- 78928cb: release: start 5.1 beta
+
+### Patch Changes
+
+- Updated dependencies [78928cb]
+  - @ai-toolkit/provider-utils@3.1.0-beta.0
+
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [0294b58]
+  - @ai-toolkit/provider-utils@3.0.9
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [99964ed]
+  - @ai-toolkit/provider-utils@3.0.8
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [886e7cd]
+  - @ai-toolkit/provider-utils@3.0.7
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [1b5a3d3]
+  - @ai-toolkit/provider-utils@3.0.6
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [0857788]
+  - @ai-toolkit/provider-utils@3.0.5
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [68751f9]
+  - @ai-toolkit/provider-utils@3.0.4
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.3
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [38ac190]
+  - @ai-toolkit/provider-utils@3.0.2
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [90d212f]
+  - @ai-toolkit/provider-utils@3.0.1
+
+## 1.0.0
+
+### Major Changes
+
+- d5f588f: AI TOOLKIT 5
+
+### Patch Changes
+
+- d7cb6b4: chore (valibot): update to valibot 1.1
+- 0ff02bb: chore(provider-utils): move over jsonSchema
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0
+
+## 1.0.0-beta.10
+
+### Patch Changes
+
+- Updated dependencies [88a8ee5]
+  - @ai-toolkit/provider-utils@3.0.0-beta.10
+
+## 1.0.0-beta.9
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-beta.9
+
+## 1.0.0-beta.8
+
+### Patch Changes
+
+- Updated dependencies [dd5fd43]
+  - @ai-toolkit/provider-utils@3.0.0-beta.8
+
+## 1.0.0-beta.7
+
+### Patch Changes
+
+- Updated dependencies [e7fcc86]
+  - @ai-toolkit/provider-utils@3.0.0-beta.7
+
+## 1.0.0-beta.6
+
+### Patch Changes
+
+- Updated dependencies [ac34802]
+  - @ai-toolkit/provider-utils@3.0.0-beta.6
+
+## 1.0.0-beta.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.5
+
+## 1.0.0-beta.4
+
+### Patch Changes
+
+- Updated dependencies [205077b]
+  - @ai-toolkit/provider-utils@3.0.0-beta.4
+
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [05d2819]
+  - @ai-toolkit/provider-utils@3.0.0-beta.3
+
+## 1.0.0-beta.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.2
+
+## 1.0.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-beta.1
+
+## 1.0.0-alpha.15
+
+### Patch Changes
+
+- Updated dependencies [8ba77a7]
+  - @ai-toolkit/provider-utils@3.0.0-alpha.15
+
+## 1.0.0-alpha.14
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.14
+
+## 1.0.0-alpha.13
+
+### Patch Changes
+
+- d7cb6b4: chore (valibot): update to valibot 1.1
+  - @ai-toolkit/provider-utils@3.0.0-alpha.13
+
+## 1.0.0-alpha.12
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.12
+
+## 1.0.0-alpha.11
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.11
+
+## 1.0.0-alpha.10
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.10
+
+## 1.0.0-alpha.9
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.9
+
+## 1.0.0-alpha.8
+
+### Patch Changes
+
+- Updated dependencies [4fef487]
+  - @ai-toolkit/provider-utils@3.0.0-alpha.8
+
+## 1.0.0-alpha.7
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.7
+
+## 1.0.0-alpha.6
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.6
+
+## 1.0.0-alpha.4
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.4
+
+## 1.0.0-alpha.3
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.3
+
+## 1.0.0-alpha.2
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.2
+
+## 1.0.0-alpha.1
+
+### Patch Changes
+
+- @ai-toolkit/provider-utils@3.0.0-alpha.1
+
+## 1.0.0-canary.21
+
+### Patch Changes
+
+- Updated dependencies [faf8446]
+  - @ai-toolkit/provider-utils@3.0.0-canary.19
+
+## 1.0.0-canary.20
+
+### Patch Changes
+
+- Updated dependencies [40acf9b]
+  - @ai-toolkit/provider-utils@3.0.0-canary.18
+
+## 1.0.0-canary.19
+
+### Patch Changes
+
+- Updated dependencies [ea7a7c9]
+  - @ai-toolkit/provider-utils@3.0.0-canary.17
+
+## 1.0.0-canary.18
+
+### Patch Changes
+
+- Updated dependencies [87b828f]
+  - @ai-toolkit/provider-utils@3.0.0-canary.16
+
+## 1.0.0-canary.17
+
+### Patch Changes
+
+- Updated dependencies
+  - @ai-toolkit/provider-utils@3.0.0-canary.15
+
+## 1.0.0-canary.16
+
+### Patch Changes
+
+- Updated dependencies [957b739]
+  - @ai-toolkit/provider-utils@3.0.0-canary.14
+
+## 1.0.0-canary.15
+
+### Patch Changes
+
+- 0ff02bb: chore(provider-utils): move over jsonSchema
+- Updated dependencies [0ff02bb]
+  - @ai-toolkit/provider-utils@3.0.0-canary.13
+
+## 1.0.0-canary.14
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.14
+
+## 1.0.0-canary.13
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.13
+
+## 1.0.0-canary.12
+
+### Patch Changes
+
+- ai@5.0.0-canary.12
+
+## 1.0.0-canary.11
+
+### Patch Changes
+
+- Updated dependencies [8e64e9c]
+  - ai@5.0.0-canary.11
+
+## 1.0.0-canary.10
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.10
+
+## 1.0.0-canary.9
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.9
+
+## 1.0.0-canary.8
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.8
+
+## 1.0.0-canary.7
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.7
+
+## 1.0.0-canary.6
+
+### Patch Changes
+
+- ai@5.0.0-canary.6
+
+## 1.0.0-canary.5
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.5
+
+## 1.0.0-canary.4
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.4
+
+## 1.0.0-canary.3
+
+### Patch Changes
+
+- ai@5.0.0-canary.3
+
+## 1.0.0-canary.2
+
+### Patch Changes
+
+- Updated dependencies [bd398e4]
+  - ai@5.0.0-canary.2
+
+## 1.0.0-canary.1
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.1
+
+## 1.0.0-canary.0
+
+### Major Changes
+
+- d5f588f: AI TOOLKIT 5
+
+### Patch Changes
+
+- Updated dependencies
+  - ai@5.0.0-canary.0
 
 ## 0.1.10
 
@@ -87,9 +896,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [625591b]
-- Updated dependencies [6a1506f]
-- Updated dependencies [ea3d998]
+- Updated dependencies
   - ai@4.2.6
 
 ## 0.1.5
@@ -123,8 +930,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [b796152]
-- Updated dependencies [06361d6]
+- Updated dependencies
   - ai@4.2.1
 
 ## 0.1.0
@@ -211,8 +1017,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [80be82b]
-- Updated dependencies [8109a24]
+- Updated dependencies
   - ai@4.1.56
 
 ## 0.0.22
@@ -333,8 +1138,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [4c9c194]
-- Updated dependencies [2e898b4]
+- Updated dependencies
   - ai@4.1.38
 
 ## 0.0.4

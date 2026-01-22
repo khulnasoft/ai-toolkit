@@ -31,9 +31,17 @@ Let's create a React component that imports the `useChat` hook from the `@ai-too
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
+import { DefaultChatTransport } from 'ai';
+import { useState } from 'react';
 
 export default function Page() {
-  const { messages, input, setInput, append } = useChat();
+  const [input, setInput] = useState('');
+
+  const { messages, sendMessage } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
+  });
 
   return (
     <div>
@@ -44,13 +52,21 @@ export default function Page() {
         }}
         onKeyDown={async event => {
           if (event.key === 'Enter') {
-            append({ content: input, role: 'user' });
+            sendMessage({
+              parts: [{ type: 'text', text: input }],
+            });
           }
         }}
       />
 
       {messages.map((message, index) => (
-        <div key={index}>{message.content}</div>
+        <div key={index}>
+          {message.parts.map(part => {
+            if (part.type === 'text') {
+              return <div key={`${message.id}-text`}>{part.text}</div>;
+            }
+          })}
+        </div>
       ))}
     </div>
   );
@@ -62,22 +78,21 @@ export default function Page() {
 Next, let's create the `/api/chat` endpoint that generates the assistant's response based on the conversation history.
 
 ```typescript filename='app/api/chat/route.ts'
-import { streamText, UIMessage } from 'ai';
-import { openai } from '@ai-toolkit/openai';
+import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: openai('gpt-4o'),
+    model: 'openai/gpt-4o',
     system: 'You are a helpful assistant.',
-    messages,
+    messages: await convertToModelMessages(messages),
   });
 
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
 ```
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/chat/stream-chat/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/chat/stream-chat/index.tsx" />

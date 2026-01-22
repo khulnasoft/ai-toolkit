@@ -59,13 +59,12 @@ Let's create a route handler for `/api/completion` that will generate text based
 
 ```typescript filename='app/api/completion/route.ts'
 import { generateText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {
   const { prompt }: { prompt: string } = await req.json();
 
   const { text } = await generateText({
-    model: openai('gpt-4'),
+    model: 'openai/gpt-4o',
     system: 'You are a helpful assistant.',
     prompt,
   });
@@ -76,4 +75,4 @@ export async function POST(req: Request) {
 
 ---
 
-<GithubLink link="https://github.com/khulnasoft/ai/blob/main/examples/next-openai-pages/pages/basics/generate-text/index.tsx" />
+<GithubLink link="https://github.com/khulnasoft/ai-toolkit/blob/main/examples/next-openai-pages/pages/basics/generate-text/index.tsx" />

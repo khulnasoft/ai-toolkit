@@ -1,9 +1,27 @@
-export { createGateway } from './gateway-provider';
-export type { GatewayProvider } from './gateway-provider';
-export { GatewayLanguageModel } from './gateway-language-model';
-export type { GatewayLanguageModelOptions } from './gateway-language-model';
-export { GatewayEmbeddingModel } from './gateway-embedding-model';
-export type { GatewayEmbeddingModelOptions } from './gateway-embedding-model';
-export type { GatewayModelId, GatewaySettings } from './gateway-settings';
-export type { GatewayEmbeddingModelId, GatewayEmbeddingSettings } from './gateway-embedding-settings';
-export { GatewayError, asGatewayError } from './errors/as-gateway-error';
+export type { GatewayModelId } from './gateway-language-model-settings';
+export type {
+  GatewayLanguageModelEntry,
+  GatewayLanguageModelSpecification,
+} from './gateway-model-entry';
+export type { GatewayCreditsResponse } from './gateway-fetch-metadata';
+export type { GatewayLanguageModelEntry as GatewayModelEntry } from './gateway-model-entry';
+export {
+  createGatewayProvider,
+  createGatewayProvider as createGateway,
+  gateway,
+} from './gateway-provider';
+export type {
+  GatewayProvider,
+  GatewayProviderSettings,
+} from './gateway-provider';
+export type { GatewayProviderOptions } from './gateway-provider-options';
+export {
+  GatewayError,
+  GatewayAuthenticationError,
+  GatewayInvalidRequestError,
+  GatewayRateLimitError,
+  GatewayModelNotFoundError,
+  GatewayInternalServerError,
+  GatewayResponseError,
+} from './errors';
+export type { GatewayErrorResponse } from './errors';

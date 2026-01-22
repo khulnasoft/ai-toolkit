@@ -1,6 +1,6 @@
 # Next.js x AI TOOLKIT x Kasada
 
-Integration of an AI chat app based on Khulnasoft's AI TOOLKIT and [Kasada](https://www.kasada.io/)'s advanced bot protection solution.
+Integration of an AI chat app based on Vercel's AI TOOLKIT and [Kasada](https://www.kasada.io/)'s advanced bot protection solution.
 
 This implementation hooks into the API calls to the LLM and prevents abusive usage before it occurs.
 

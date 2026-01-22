@@ -1,5 +1,5 @@
 import { FetchFunction } from '@ai-toolkit/provider-utils';
-import { createTestServer } from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, expect, it } from 'vitest';
 import { LumaImageModel } from './luma-image-model';
 import { InvalidResponseDataError } from '@ai-toolkit/provider';
@@ -10,14 +10,12 @@ function createBasicModel({
   headers,
   fetch,
   currentDate,
-  settings,
 }: {
   headers?: () => Record<string, string>;
   fetch?: FetchFunction;
   currentDate?: () => Date;
-  settings?: any;
 } = {}) {
-  return new LumaImageModel('test-model', settings ?? {}, {
+  return new LumaImageModel('test-model', {
     provider: 'luma',
     baseURL: 'https://api.example.com',
     headers: headers ?? (() => ({ 'api-key': 'test-key' })),
@@ -81,6 +79,8 @@ describe('LumaImageModel', () => {
 
       await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         size: undefined,
         aspectRatio: '16:9',
@@ -88,7 +88,7 @@ describe('LumaImageModel', () => {
         providerOptions: { luma: { additional_param: 'value' } },
       });
 
-      expect(await server.calls[0].requestBody).toStrictEqual({
+      expect(await server.calls[0].requestBodyJson).toStrictEqual({
         prompt,
         aspect_ratio: '16:9',
         model: 'test-model',
@@ -101,6 +101,8 @@ describe('LumaImageModel', () => {
 
       await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         aspectRatio: '16:9',
         providerOptions: {},
@@ -131,6 +133,8 @@ describe('LumaImageModel', () => {
 
       await modelWithHeaders.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         headers: {
@@ -148,6 +152,34 @@ describe('LumaImageModel', () => {
       });
     });
 
+    it('should not pass providerOptions.{pollIntervalMillis,maxPollAttempts}', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt,
+        files: undefined,
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: '16:9',
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            pollIntervalMillis: 1000,
+            maxPollAttempts: 5,
+            additional_param: 'value',
+          },
+        },
+      });
+
+      expect(await server.calls[0].requestBodyJson).toStrictEqual({
+        prompt,
+        aspect_ratio: '16:9',
+        model: 'test-model',
+        additional_param: 'value',
+      });
+    });
+
     it('should handle API errors', async () => {
       server.urls[
         'https://api.example.com/dream-machine/v1/generations/image'
@@ -161,6 +193,8 @@ describe('LumaImageModel', () => {
       await expect(
         model.doGenerate({
           prompt,
+          files: undefined,
+          mask: undefined,
           n: 1,
           providerOptions: {},
           size: undefined,
@@ -202,6 +236,8 @@ describe('LumaImageModel', () => {
       await expect(
         model.doGenerate({
           prompt,
+          files: undefined,
+          mask: undefined,
           n: 1,
           providerOptions: {},
           size: undefined,
@@ -217,6 +253,8 @@ describe('LumaImageModel', () => {
 
         const result = await model.doGenerate({
           prompt,
+          files: undefined,
+          mask: undefined,
           n: 1,
           size: '1024x1024',
           seed: 123,
@@ -224,18 +262,20 @@ describe('LumaImageModel', () => {
           aspectRatio: undefined,
         });
 
-        expect(result.warnings).toContainEqual({
-          type: 'unsupported-setting',
-          setting: 'seed',
-          details: 'This model does not support the `seed` option.',
-        });
-
-        expect(result.warnings).toContainEqual({
-          type: 'unsupported-setting',
-          setting: 'size',
-          details:
-            'This model does not support the `size` option. Use `aspectRatio` instead.',
-        });
+        expect(result.warnings).toMatchInlineSnapshot(`
+          [
+            {
+              "details": "This model does not support the \`seed\` option.",
+              "feature": "seed",
+              "type": "unsupported",
+            },
+            {
+              "details": "This model does not support the \`size\` option. Use \`aspectRatio\` instead.",
+              "feature": "size",
+              "type": "unsupported",
+            },
+          ]
+        `);
       });
     });
 
@@ -248,6 +288,8 @@ describe('LumaImageModel', () => {
 
         const result = await model.doGenerate({
           prompt,
+          files: undefined,
+          mask: undefined,
           n: 1,
           providerOptions: {},
           size: undefined,
@@ -270,24 +312,460 @@ describe('LumaImageModel', () => {
 
       expect(model.provider).toBe('luma');
       expect(model.modelId).toBe('test-model');
-      expect(model.specificationVersion).toBe('v1');
+      expect(model.specificationVersion).toBe('v3');
       expect(model.maxImagesPerCall).toBe(1);
     });
+  });
 
-    it('should use maxImagesPerCall from settings', () => {
-      const model = createBasicModel({
-        settings: {
-          maxImagesPerCall: 4,
+  describe('Image Editing', () => {
+    it('should send image by default when URL file is provided', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'A warrior with sunglasses',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/input.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {},
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "image": [
+            {
+              "url": "https://example.com/input.jpg",
+              "weight": 0.85,
+            },
+          ],
+          "model": "test-model",
+          "prompt": "A warrior with sunglasses",
+        }
+      `);
+    });
+
+    it('should send modify_image when referenceType is set', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'Transform flowers to sunflowers',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/input.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            referenceType: 'modify_image',
+          },
         },
       });
 
-      expect(model.maxImagesPerCall).toBe(4);
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "model": "test-model",
+          "modify_image": {
+            "url": "https://example.com/input.jpg",
+            "weight": 1,
+          },
+          "prompt": "Transform flowers to sunflowers",
+        }
+      `);
     });
 
-    it('should default maxImagesPerCall to 1 when not specified', () => {
+    it('should send style when referenceType is style', async () => {
       const model = createBasicModel();
 
-      expect(model.maxImagesPerCall).toBe(1);
+      await model.doGenerate({
+        prompt: 'A dog in this style',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/style.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            referenceType: 'style',
+          },
+        },
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "model": "test-model",
+          "prompt": "A dog in this style",
+          "style": [
+            {
+              "url": "https://example.com/style.jpg",
+              "weight": 0.8,
+            },
+          ],
+        }
+      `);
+    });
+
+    it('should send character when referenceType is character', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'A warrior',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/person1.jpg',
+          },
+          {
+            type: 'url',
+            url: 'https://example.com/person2.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            referenceType: 'character',
+          },
+        },
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "character": {
+            "identity0": {
+              "images": [
+                "https://example.com/person1.jpg",
+                "https://example.com/person2.jpg",
+              ],
+            },
+          },
+          "model": "test-model",
+          "prompt": "A warrior",
+        }
+      `);
+    });
+
+    it('should send character with custom identity id from images config', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'A woman with a cat',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/person.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            referenceType: 'character',
+            images: [{ id: 'identity0' }],
+          },
+        },
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "character": {
+            "identity0": {
+              "images": [
+                "https://example.com/person.jpg",
+              ],
+            },
+          },
+          "model": "test-model",
+          "prompt": "A woman with a cat",
+        }
+      `);
+    });
+
+    it('should send character with multiple identities from images config', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'Two people talking',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/person1.jpg',
+          },
+          {
+            type: 'url',
+            url: 'https://example.com/person2.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            referenceType: 'character',
+            images: [{ id: 'identity0' }, { id: 'identity1' }],
+          },
+        },
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "character": {
+            "identity0": {
+              "images": [
+                "https://example.com/person1.jpg",
+              ],
+            },
+            "identity1": {
+              "images": [
+                "https://example.com/person2.jpg",
+              ],
+            },
+          },
+          "model": "test-model",
+          "prompt": "Two people talking",
+        }
+      `);
+    });
+
+    it('should support multiple images for image', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'Combine these concepts',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/input1.jpg',
+          },
+          {
+            type: 'url',
+            url: 'https://example.com/input2.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {},
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "image": [
+            {
+              "url": "https://example.com/input1.jpg",
+              "weight": 0.85,
+            },
+            {
+              "url": "https://example.com/input2.jpg",
+              "weight": 0.85,
+            },
+          ],
+          "model": "test-model",
+          "prompt": "Combine these concepts",
+        }
+      `);
+    });
+
+    it('should use custom weights from images config', async () => {
+      const model = createBasicModel();
+
+      await model.doGenerate({
+        prompt: 'Styled image',
+        files: [
+          {
+            type: 'url',
+            url: 'https://example.com/input.jpg',
+          },
+        ],
+        mask: undefined,
+        n: 1,
+        size: undefined,
+        aspectRatio: undefined,
+        seed: undefined,
+        providerOptions: {
+          luma: {
+            images: [{ weight: 0.5 }],
+          },
+        },
+      });
+
+      const requestBody = await server.calls[0].requestBodyJson;
+      expect(requestBody).toMatchInlineSnapshot(`
+        {
+          "image": [
+            {
+              "url": "https://example.com/input.jpg",
+              "weight": 0.5,
+            },
+          ],
+          "model": "test-model",
+          "prompt": "Styled image",
+        }
+      `);
+    });
+
+    it('should throw error when mask is provided', async () => {
+      const model = createBasicModel();
+
+      await expect(
+        model.doGenerate({
+          prompt: 'Replace sky with sunset',
+          files: [
+            {
+              type: 'url',
+              url: 'https://example.com/input.jpg',
+            },
+          ],
+          mask: {
+            type: 'url',
+            url: 'https://example.com/mask.png',
+          },
+          n: 1,
+          size: undefined,
+          aspectRatio: undefined,
+          seed: undefined,
+          providerOptions: {},
+        }),
+      ).rejects.toThrow('Luma AI does not support mask-based image editing');
+    });
+
+    it('should throw error when base64 file data is provided', async () => {
+      const model = createBasicModel();
+
+      await expect(
+        model.doGenerate({
+          prompt: 'Edit this image',
+          files: [
+            {
+              type: 'file',
+              data: new Uint8Array([137, 80, 78, 71]),
+              mediaType: 'image/png',
+            },
+          ],
+          mask: undefined,
+          n: 1,
+          size: undefined,
+          aspectRatio: undefined,
+          seed: undefined,
+          providerOptions: {},
+        }),
+      ).rejects.toThrow('Luma AI only supports URL-based images');
+    });
+
+    it('should throw error when base64 mask data is provided', async () => {
+      const model = createBasicModel();
+
+      await expect(
+        model.doGenerate({
+          prompt: 'Edit with mask',
+          files: [
+            {
+              type: 'url',
+              url: 'https://example.com/input.jpg',
+            },
+          ],
+          mask: {
+            type: 'file',
+            data: new Uint8Array([255, 255, 255, 0]),
+            mediaType: 'image/png',
+          },
+          n: 1,
+          size: undefined,
+          aspectRatio: undefined,
+          seed: undefined,
+          providerOptions: {},
+        }),
+      ).rejects.toThrow('Luma AI does not support mask-based image editing');
+    });
+
+    it('should throw error when more than 4 images for image', async () => {
+      const model = createBasicModel();
+
+      await expect(
+        model.doGenerate({
+          prompt: 'Too many images',
+          files: [
+            { type: 'url', url: 'https://example.com/1.jpg' },
+            { type: 'url', url: 'https://example.com/2.jpg' },
+            { type: 'url', url: 'https://example.com/3.jpg' },
+            { type: 'url', url: 'https://example.com/4.jpg' },
+            { type: 'url', url: 'https://example.com/5.jpg' },
+          ],
+          mask: undefined,
+          n: 1,
+          size: undefined,
+          aspectRatio: undefined,
+          seed: undefined,
+          providerOptions: {},
+        }),
+      ).rejects.toThrow('Luma AI image supports up to 4 reference images');
+    });
+
+    it('should throw error when multiple files for modify_image', async () => {
+      const model = createBasicModel();
+
+      await expect(
+        model.doGenerate({
+          prompt: 'Edit multiple images',
+          files: [
+            {
+              type: 'url',
+              url: 'https://example.com/input1.jpg',
+            },
+            {
+              type: 'url',
+              url: 'https://example.com/input2.jpg',
+            },
+          ],
+          mask: undefined,
+          n: 1,
+          size: undefined,
+          aspectRatio: undefined,
+          seed: undefined,
+          providerOptions: {
+            luma: {
+              referenceType: 'modify_image',
+            },
+          },
+        }),
+      ).rejects.toThrow(
+        'Luma AI modify_image only supports a single input image',
+      );
     });
   });
 
@@ -323,6 +801,8 @@ describe('LumaImageModel', () => {
       const model = createBasicModel();
       const result = await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         size: undefined,
@@ -365,6 +845,8 @@ describe('LumaImageModel', () => {
       const model = createBasicModel();
       const result = await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         size: undefined,
@@ -405,6 +887,8 @@ describe('LumaImageModel', () => {
       const model = createBasicModel();
       const result = await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         size: undefined,
@@ -444,6 +928,8 @@ describe('LumaImageModel', () => {
       const model = createBasicModel();
       const result = await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         size: undefined,
@@ -500,6 +986,8 @@ describe('LumaImageModel', () => {
       const model = createBasicModel();
       const result = await model.doGenerate({
         prompt,
+        files: undefined,
+        mask: undefined,
         n: 1,
         providerOptions: {},
         size: undefined,

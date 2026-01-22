@@ -5,13 +5,8 @@ export type DeepInfraImageModelId =
   | 'black-forest-labs/FLUX-1-schnell'
   | 'black-forest-labs/FLUX-1-dev'
   | 'black-forest-labs/FLUX-pro'
+  | 'black-forest-labs/FLUX.1-Kontext-dev'
+  | 'black-forest-labs/FLUX.1-Kontext-pro'
   | 'stabilityai/sd3.5-medium'
   | 'stabilityai/sdxl-turbo'
   | (string & {});
-
-export interface DeepInfraImageSettings {
-  /**
-   * Override the maximum number of images per call (default 1)
-   */
-  maxImagesPerCall?: number;
-}

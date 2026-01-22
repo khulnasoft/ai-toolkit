@@ -1,6 +1,29 @@
-import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { streamText, tool } from 'ai';
-import { z } from 'zod';
+import { openai, OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
+import {
+  convertToModelMessages,
+  InferUITools,
+  streamText,
+  UIDataTypes,
+  UIMessage,
+} from 'ai';
+
+const tools = {
+  web_search: openai.tools.webSearch({
+    searchContextSize: 'high',
+    userLocation: {
+      type: 'approximate',
+      city: 'San Francisco',
+      region: 'California',
+      country: 'US',
+    },
+  }),
+} as const;
+
+export type ReasoningToolsMessage = UIMessage<
+  never, // could define metadata here
+  UIDataTypes, // could define data parts here
+  InferUITools<typeof tools>
+>;
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -11,47 +34,15 @@ export async function POST(req: Request) {
   console.log(JSON.stringify(messages, null, 2));
 
   const result = streamText({
-    model: anthropic('claude-3-7-sonnet-20250219'),
-    messages,
-    toolCallStreaming: true,
-    maxSteps: 5, // multi-steps for server-side tools
-    tools: {
-      // server-side tool with execute function:
-      getWeatherInformation: tool({
-        description: 'show the weather in a given city to the user',
-        parameters: z.object({ city: z.string() }),
-        execute: async ({}: { city: string }) => {
-          // Add artificial delay of 2 seconds
-          await new Promise(resolve => setTimeout(resolve, 2000));
-
-          const weatherOptions = ['sunny', 'cloudy', 'rainy', 'snowy', 'windy'];
-          return weatherOptions[
-            Math.floor(Math.random() * weatherOptions.length)
-          ];
-        },
-      }),
-      // client-side tool that starts user interaction:
-      askForConfirmation: tool({
-        description: 'Ask the user for confirmation.',
-        parameters: z.object({
-          message: z.string().describe('The message to ask for confirmation.'),
-        }),
-      }),
-      // client-side tool that is automatically executed on the client:
-      getLocation: tool({
-        description:
-          'Get the user location. Always ask for confirmation before using this tool.',
-        parameters: z.object({}),
-      }),
-    },
+    model: openai('gpt-5'),
+    messages: await convertToModelMessages(messages),
+    tools,
     providerOptions: {
-      anthropic: {
-        thinking: { type: 'enabled', budgetTokens: 12000 },
-      } satisfies AnthropicProviderOptions,
+      openai: {
+        reasoningSummary: 'detailed', // 'auto' for condensed or 'detailed' for comprehensive
+      } satisfies OpenAIResponsesProviderOptions,
     },
   });
 
-  return result.toDataStreamResponse({
-    sendReasoning: true,
-  });
+  return result.toUIMessageStreamResponse();
 }

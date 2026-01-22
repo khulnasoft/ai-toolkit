@@ -1,3 +1,3 @@
-export * from './use-chat';
 export * from './use-completion';
-export * from './use-assistant';
+export { Chat } from './chat.vue';
+export * from './use-object';
