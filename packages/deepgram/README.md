@@ -1,6 +1,6 @@
 # AI TOOLKIT - Deepgram Provider
 
-The **[Deepgram provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Deepgram provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepgram)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains transcription model support for the Deepgram transcription API and speech model support for the Deepgram text-to-speech API.
 
 ## Setup
@@ -68,4 +68,4 @@ const { audio } = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Deepgram provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for more information.
+Please check out the **[Deepgram provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepgram)** for more information.

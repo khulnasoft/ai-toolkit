@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/react",
-  "version": "3.0.47",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -63,7 +63,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://ai-toolkit.dev/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

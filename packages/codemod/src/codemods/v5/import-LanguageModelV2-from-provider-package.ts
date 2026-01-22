@@ -9,7 +9,7 @@ const ImportMappings: Record<string, string> = {
 
 /**
  * Codemod to update imports of LanguageModelV2 and related types from 'ai' to '@ai-toolkit/provider'.
- * @see https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#language-model-v2-import
+ * @see https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#language-model-v2-import
  */
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;

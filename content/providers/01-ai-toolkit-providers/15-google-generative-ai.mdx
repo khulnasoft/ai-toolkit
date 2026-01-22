@@ -594,7 +594,7 @@ Example response:
 {
   "urlMetadata": [
     {
-      "retrievedUrl": "https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai",
+      "retrievedUrl": "https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai",
       "urlRetrievalStatus": "URL_RETRIEVAL_STATUS_SUCCESS"
     }
   ]
@@ -608,7 +608,7 @@ With the URL context tool, you will also get the `groundingMetadata`.
     "groundingChunks": [
         {
             "web": {
-                "uri": "https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai",
+                "uri": "https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai",
                 "title": "Google Generative AI - AI TOOLKIT Providers"
             }
         }
@@ -646,7 +646,7 @@ import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
-  prompt: `Based on this context: https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai, tell me how to use Gemini with AI TOOLKIT.
+  prompt: `Based on this context: https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai, tell me how to use Gemini with AI TOOLKIT.
     Also, provide the latest news about AI TOOLKIT V5.`,
   tools: {
     google_search: google.tools.googleSearch({}),

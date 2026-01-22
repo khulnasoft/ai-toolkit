@@ -61,7 +61,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The part.toolInvocation.toolName property has been removed. Tool parts now use typed naming: part.type === 'tool-\${toolName}'. See migration guide: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The part.toolInvocation.toolName property has been removed. Tool parts now use typed naming: part.type === 'tool-\${toolName}'. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -82,7 +82,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The part.toolInvocation.state property has been removed. Tool parts now have specific states: 'input-available', 'calling', 'output-available'. See migration guide: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The part.toolInvocation.state property has been removed. Tool parts now have specific states: 'input-available', 'calling', 'output-available'. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -102,7 +102,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -122,7 +122,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });

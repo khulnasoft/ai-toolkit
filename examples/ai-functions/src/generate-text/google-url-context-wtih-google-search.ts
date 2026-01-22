@@ -11,7 +11,7 @@ run(async () => {
         content: [
           {
             type: 'text',
-            text: `Based on this context: https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai, tell me how to use Gemini with AI TOOLKIT.
+            text: `Based on this context: https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-generative-ai, tell me how to use Gemini with AI TOOLKIT.
             Also, provide the latest news about AI TOOLKIT V5.`,
           },
         ],

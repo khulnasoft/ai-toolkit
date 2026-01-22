@@ -1,6 +1,6 @@
 # AI TOOLKIT, Next.js, and OpenAI Chat Example with Sentry
 
-This example shows how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/), [OpenAI](https://openai.com) and [Sentry](https://sentry.io) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry).
+This example shows how to use the [AI TOOLKIT](https://studio.khulnasoft.com/docs) with [Next.js](https://nextjs.org/), [OpenAI](https://openai.com) and [Sentry](https://sentry.io) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://studio.khulnasoft.com/docs/ai-toolkit-core/telemetry).
 
 ## Deploy your own
 
@@ -41,9 +41,9 @@ To run the example locally you need to:
 
 To learn more about OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
 
-- [AI TOOLKIT docs](https://ai-toolkit.dev/docs)
-- [AI TOOLKIT telemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry)
-- [Vercel AI Playground](https://ai-toolkit.dev/playground)
+- [AI TOOLKIT docs](https://studio.khulnasoft.com/docs)
+- [AI TOOLKIT telemetry support](https://studio.khulnasoft.com/docs/ai-toolkit-core/telemetry)
+- [Vercel AI Playground](https://studio.khulnasoft.com/playground)
 - [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Sentry Documentation](https://docs.sentry.io) - learn about Sentry features and API.

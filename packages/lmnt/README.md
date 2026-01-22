@@ -1,6 +1,6 @@
 # AI TOOLKIT - LMNT Provider
 
-The **[LMNT provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/lmnt)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[LMNT provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/lmnt)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the LMNT API.
 
 ## Setup
@@ -33,4 +33,4 @@ const result = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[LMNT provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/lmnt)** for more information.
+Please check out the **[LMNT provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/lmnt)** for more information.

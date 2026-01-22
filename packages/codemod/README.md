@@ -250,7 +250,7 @@ pnpm test:watch
 
 ## Support
 
-- **Documentation**: [AI TOOLKIT Migration Guides](https://ai-toolkit.dev/docs/migration-guides)
+- **Documentation**: [AI TOOLKIT Migration Guides](https://studio.khulnasoft.com/docs/migration-guides)
 - **Issues**: [GitHub Issues](https://github.com/khulnasoft/ai-toolkit/issues)
 - **Community**: [Discord](https://discord.gg/vercel)
 
@@ -265,4 +265,4 @@ pnpm test:watch
 
 For more detailed migration information, see:
 
-- [AI TOOLKIT 6.0 Migration Guide](https://ai-toolkit.dev/docs/migration-guides/migration-guide-6-0)
+- [AI TOOLKIT 6.0 Migration Guide](https://studio.khulnasoft.com/docs/migration-guides/migration-guide-6-0)

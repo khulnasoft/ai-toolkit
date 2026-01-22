@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/svelte",
-  "version": "4.0.45",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "scripts": {
     "build": "pnpm prepack",
@@ -73,7 +73,7 @@
     "vitest": "^3.0.0",
     "zod": "3.25.76"
   },
-  "homepage": "https://ai-toolkit.dev/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git",

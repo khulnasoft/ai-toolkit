@@ -68,7 +68,7 @@ export function Sidebar() {
       {/* Footer */}
       <div className="p-4 border-t border-[var(--border)]">
         <a
-          href="https://ai-toolkit.dev/providers/adapters/langchain#langchain"
+          href="https://studio.khulnasoft.com/providers/adapters/langchain#langchain"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-2 text-sm text-[var(--foreground-secondary)] hover:text-[var(--foreground)] hover:bg-[var(--background-tertiary)] rounded-lg transition-colors"

@@ -1,6 +1,6 @@
 # AI TOOLKIT Angular
 
-Angular UI components for the [AI TOOLKIT v5](https://ai-toolkit.dev/docs).
+Angular UI components for the [AI TOOLKIT v5](https://studio.khulnasoft.com/docs).
 
 ## Overview
 

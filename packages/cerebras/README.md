@@ -1,6 +1,6 @@
 # AI TOOLKIT - Cerebras Provider
 
-The **Cerebras provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.
+The **Cerebras provider** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.
 
 ## Setup
 

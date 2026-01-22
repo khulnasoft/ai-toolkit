@@ -1,6 +1,6 @@
 {
   "name": "ai",
-  "version": "6.0.45",
+  "version": "2.0.0",
   "description": "AI TOOLKIT by Vercel - The AI Toolkit for TypeScript and JavaScript",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -85,7 +85,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://ai-toolkit.dev/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

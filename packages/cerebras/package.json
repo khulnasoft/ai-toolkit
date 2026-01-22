@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/cerebras",
-  "version": "2.0.17",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -53,7 +53,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://ai-toolkit.dev/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"
@@ -64,7 +64,7 @@
   "keywords": [
     "ai"
   ],
-  "description": "The **Cerebras provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.",
+  "description": "The **Cerebras provider** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.",
   "author": "",
   "type": "commonjs"
 }

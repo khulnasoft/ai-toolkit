@@ -50,7 +50,7 @@
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
   },
-  "homepage": "https://ai-toolkit.dev/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

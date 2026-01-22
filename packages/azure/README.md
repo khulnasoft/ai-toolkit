@@ -1,6 +1,6 @@
 # AI TOOLKIT - Azure OpenAI Provider
 
-The **[Azure provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/azure)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the Azure OpenAI API.
+The **[Azure provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/azure)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the Azure OpenAI API.
 
 ## Setup
 
@@ -32,4 +32,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Azure provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/azure)** for more information.
+Please check out the **[Azure provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/azure)** for more information.

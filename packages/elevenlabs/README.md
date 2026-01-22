@@ -1,6 +1,6 @@
 # AI TOOLKIT - ElevenLabs Provider
 
-The **[ElevenLabs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/elevenlabs)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[ElevenLabs provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the ElevenLabs chat and completion APIs and embedding model support for the ElevenLabs embeddings API.
 
 ## Setup
@@ -35,4 +35,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[ElevenLabs provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/elevenlabs)** for more information.
+Please check out the **[ElevenLabs provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for more information.

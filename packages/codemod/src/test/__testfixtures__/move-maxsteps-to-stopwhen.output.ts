@@ -49,7 +49,7 @@ async function foo() {
 export function ChatComponent() {
   useChat({
     model: 'gpt-4',
-    /* FIXME(@ai-toolkit-upgrade-v5): The maxSteps parameter has been removed from useChat. You should now use server-side `stopWhen` conditions for multi-step tool execution control. https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#maxsteps-removal */
+    /* FIXME(@ai-toolkit-upgrade-v5): The maxSteps parameter has been removed from useChat. You should now use server-side `stopWhen` conditions for multi-step tool execution control. https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#maxsteps-removal */
     maxSteps: 7,
   });
 }

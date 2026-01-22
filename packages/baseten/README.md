@@ -1,6 +1,6 @@
 # AI TOOLKIT - Baseten Provider
 
-The **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
+The **[Baseten provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/baseten)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
 
 ## Setup
 
@@ -32,4 +32,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for more information.
+Please check out the **[Baseten provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/baseten)** for more information.

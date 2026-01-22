@@ -1,6 +1,6 @@
 # AI TOOLKIT - Black Forest Labs Provider
 
-The **[Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
+The **[Black Forest Labs provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/black-forest-labs)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
 
 ## Setup
 
@@ -106,4 +106,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-See the [Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs) for more information.
+See the [Black Forest Labs provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/black-forest-labs) for more information.

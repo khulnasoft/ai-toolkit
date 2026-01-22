@@ -97,4 +97,4 @@ const { text } = await generateText({
 });
 ```
 
-For more examples, see the [OpenAI Compatible Providers](https://ai-toolkit.dev/providers/openai-compatible-providers) documentation.
+For more examples, see the [OpenAI Compatible Providers](https://studio.khulnasoft.com/providers/openai-compatible-providers) documentation.

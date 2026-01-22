@@ -2,7 +2,7 @@
 
 ## Making Changes
 
-To make changes to the documentation website (https://ai-toolkit.dev), modify files in the `/content` directory. Please follow conventions of similar files.
+To make changes to the documentation website (https://studio.khulnasoft.com), modify files in the `/content` directory. Please follow conventions of similar files.
 
 Note: There is currently no way to preview documentation changes locally before submitting.
 

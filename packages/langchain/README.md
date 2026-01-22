@@ -1,6 +1,6 @@
 # AI TOOLKIT - LangChain Adapter
 
-The **[AI TOOLKIT](https://ai-toolkit.dev)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI TOOLKIT, enabling you to use LangChain agents and graphs with AI TOOLKIT UI components.
+The **[AI TOOLKIT](https://studio.khulnasoft.com)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI TOOLKIT, enabling you to use LangChain agents and graphs with AI TOOLKIT UI components.
 
 ## Installation
 
@@ -238,4 +238,4 @@ A `ChatTransport` implementation for LangSmith/LangGraph deployments.
 
 ## Documentation
 
-Please check out the [AI TOOLKIT documentation](https://ai-toolkit.dev) for more information.
+Please check out the [AI TOOLKIT documentation](https://studio.khulnasoft.com) for more information.

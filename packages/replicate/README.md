@@ -1,6 +1,6 @@
 # AI TOOLKIT - Replicate Provider
 
-The **[Replicate provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/replicate)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains image model support for the Replicate API.
+The **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains image model support for the Replicate API.
 
 ## Setup
 
@@ -43,4 +43,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[Replicate provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/replicate)** for more information.
+Please check out the **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for more information.

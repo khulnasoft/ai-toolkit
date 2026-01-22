@@ -1,6 +1,6 @@
 # AI TOOLKIT - AssemblyAI Provider
 
-The **[AssemblyAI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[AssemblyAI provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains transcription model support for the AssemblyAI transcription API.
 
 ## Setup
@@ -35,4 +35,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[AssemblyAI provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/assemblyai)** for more information.
+Please check out the **[AssemblyAI provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for more information.

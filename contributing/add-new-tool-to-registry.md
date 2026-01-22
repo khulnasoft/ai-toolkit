@@ -1,6 +1,6 @@
 # AI TOOLKIT Tools Registry - Contributing a Tool
 
-You can add your tool to the [registry](https://ai-toolkit.dev/tools-registry) by submitting a pull request that updates the `content/tools-registry/registry.ts` file.
+You can add your tool to the [registry](https://studio.khulnasoft.com/tools-registry) by submitting a pull request that updates the `content/tools-registry/registry.ts` file.
 
 ### Prerequisites
 

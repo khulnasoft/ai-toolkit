@@ -1,6 +1,6 @@
 # AI TOOLKIT - Vercel Provider
 
-The **[Vercel provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/vercel)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Vercel provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/vercel)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 gives you access to the v0 API, designed for building modern web applications. The `v0-1.0-md` model supports text and image inputs, provides fast streaming responses, and is compatible with the OpenAI Chat Completions API format.
 
 Key features include:
@@ -40,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Vercel provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/vercel)** for more information.
+Please check out the **[Vercel provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/vercel)** for more information.

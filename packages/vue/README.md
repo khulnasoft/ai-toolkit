@@ -1,7 +1,7 @@
 # AI TOOLKIT: Vue.js provider
 
-[Vue.js](https://vuejs.org/) UI components for the [AI TOOLKIT](https://ai-toolkit.dev/docs):
+[Vue.js](https://vuejs.org/) UI components for the [AI TOOLKIT](https://studio.khulnasoft.com/docs):
 
-- [`useChat`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-chat) composable
-- [`useCompletion`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-completion) composable
-- [`useObject`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-object) composable
+- [`useChat`](https://studio.khulnasoft.com/docs/reference/ai-toolkit-ui/use-chat) composable
+- [`useCompletion`](https://studio.khulnasoft.com/docs/reference/ai-toolkit-ui/use-completion) composable
+- [`useObject`](https://studio.khulnasoft.com/docs/reference/ai-toolkit-ui/use-object) composable

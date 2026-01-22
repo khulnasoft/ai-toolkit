@@ -1,6 +1,6 @@
 # AI TOOLKIT - Gladia Provider
 
-The **[Gladia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Gladia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains transcription model support for the Gladia transcription API.
 
 ## Setup
@@ -35,4 +35,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Gladia provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/gladia)** for more information.
+Please check out the **[Gladia provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/gladia)** for more information.

@@ -1,6 +1,6 @@
 # AI TOOLKIT - Groq Provider
 
-The **[Groq provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/groq)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Groq provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the Groq chat and completion APIs, transcription support, and browser search tool.
 
 ## Setup
@@ -121,6 +121,6 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Groq provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/groq)** for more information.
+Please check out the **[Groq provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for more information.
 
 For browser search details, see the **[Groq Browser Search Documentation](https://console.groq.com/docs/browser-search)**.

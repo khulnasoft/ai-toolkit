@@ -8,7 +8,7 @@ import {
 } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
-/* FIXME(@ai-toolkit-upgrade-v5): The `appendClientMessage` option has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes */
+/* FIXME(@ai-toolkit-upgrade-v5): The `appendClientMessage` option has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#message-persistence-changes */
 const updatedMessages = appendClientMessage({
   messages,
   message: lastUserMessage,
@@ -20,7 +20,7 @@ const result = streamText({
   experimental_generateMessageId: () => generateId(), // ID generation on streamText
   onFinish: async ({ responseMessages, usage }) => {
     // Use helper functions to format messages
-    /* FIXME(@ai-toolkit-upgrade-v5): The `appendResponseMessages` option has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes */
+    /* FIXME(@ai-toolkit-upgrade-v5): The `appendResponseMessages` option has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#message-persistence-changes */
     const finalMessages = appendResponseMessages({
       messages: updatedMessages,
       responseMessages,
@@ -33,14 +33,14 @@ const result = streamText({
 
 message.parts.map(part => {
   if (part.type === 'tool-invocation') {
-    /* FIXME(@ai-toolkit-upgrade-v5): The `part.toolInvocation.toolName` property has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
+    /* FIXME(@ai-toolkit-upgrade-v5): The `part.toolInvocation.toolName` property has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
     return part.toolInvocation.toolName;
   }
 });
 
 message.parts.map(part => {
   if (part.type === 'tool-invocation') {
-    /* FIXME(@ai-toolkit-upgrade-v5): The `part.toolInvocation.state` property has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
+    /* FIXME(@ai-toolkit-upgrade-v5): The `part.toolInvocation.state` property has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
     switch (part.toolInvocation.state) {
     case 'partial-call':
       return 'Loading...';
@@ -52,12 +52,12 @@ message.parts.map(part => {
   }
 });
 
-/* FIXME(@ai-toolkit-upgrade-v5): The `StreamData` type has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#stream-data-removal */
+/* FIXME(@ai-toolkit-upgrade-v5): The `StreamData` type has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#stream-data-removal */
 const streamData = new StreamData();
 streamData.append('custom-data');
 streamData.close();
 
-/* FIXME(@ai-toolkit-upgrade-v5): The `experimental_attachments` property has been replaced with the parts array. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#attachments--file-parts */
+/* FIXME(@ai-toolkit-upgrade-v5): The `experimental_attachments` property has been replaced with the parts array. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#attachments--file-parts */
 messages.map(message =>
   message.experimental_attachments?.map((attachment, index) =>
     attachment.contentType?.includes('image/')

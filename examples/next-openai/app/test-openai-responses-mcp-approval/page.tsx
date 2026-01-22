@@ -58,7 +58,7 @@ export default function TestOpenAIResponsesMCPApproval() {
         OpenAI Responses MCP Tool Approval Test
       </h1>
       <p className="mb-4 text-sm text-gray-600">
-        Try asking: &quot;Shorten the link https://ai-toolkit.dev/&quot;
+        Try asking: &quot;Shorten the link https://studio.khulnasoft.com/&quot;
       </p>
 
       {messages.map(message => (

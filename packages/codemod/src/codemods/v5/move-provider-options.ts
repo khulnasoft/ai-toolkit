@@ -121,6 +121,6 @@ export default createTransformer((fileInfo, api, options, context) => {
     );
     context.messages.push('');
     // TODO: add link to migration guide
-    // context.messages.push('See migration guide: https://ai-toolkit.dev/docs/migration/switch-to-provider-options');
+    // context.messages.push('See migration guide: https://studio.khulnasoft.com/docs/migration/switch-to-provider-options');
   }
 });

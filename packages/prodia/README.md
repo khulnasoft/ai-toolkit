@@ -1,6 +1,6 @@
 # AI TOOLKIT - Prodia Provider
 
-The **[Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
+The **[Prodia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/prodia)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
 
 ## Setup
 
@@ -71,4 +71,4 @@ const prodia = createProdia({
 
 ## Documentation
 
-See the [Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia) for more information.
+See the [Prodia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/prodia) for more information.

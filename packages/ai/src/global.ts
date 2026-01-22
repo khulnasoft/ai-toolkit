@@ -9,7 +9,7 @@ declare global {
    *
    * If not set, the default provider is the Vercel AI gateway provider.
    *
-   * @see https://ai-toolkit.dev/docs/ai-toolkit-core/provider-management#global-provider-configuration
+   * @see https://studio.khulnasoft.com/docs/ai-toolkit-core/provider-management#global-provider-configuration
    */
   var AI_TOOLKIT_DEFAULT_PROVIDER: ProviderV3 | undefined;
 

@@ -1,6 +1,6 @@
 # AI TOOLKIT - Rev.ai Provider
 
-The **[Rev.ai provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/revai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Rev.ai provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the Rev.ai transcription API.
 
 ## Setup
@@ -35,4 +35,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Rev.ai provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/revai)** for more information.
+Please check out the **[Rev.ai provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for more information.

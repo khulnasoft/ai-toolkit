@@ -1,6 +1,6 @@
 # AI TOOLKIT - Hume Provider
 
-The **[Hume provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/hume)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
+The **[Hume provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/hume)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains support for the Hume API.
 
 ## Setup
@@ -33,4 +33,4 @@ const result = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Hume provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/hume)** for more information.
+Please check out the **[Hume provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/hume)** for more information.

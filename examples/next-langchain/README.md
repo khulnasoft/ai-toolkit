@@ -1,6 +1,6 @@
 # AI TOOLKIT, Next.js, LangChain, OpenAI Examples
 
-This example demonstrates how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
+This example demonstrates how to use the [AI TOOLKIT](https://studio.khulnasoft.com/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
 
 ## Examples Included
 
@@ -347,8 +347,8 @@ For most LangGraph applications, `graph.stream()` with appropriate `streamMode` 
 
 To learn more about LangChain, LangGraph, OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
 
-- [AI TOOLKIT docs](https://ai-toolkit.dev/docs) - learn more about the AI TOOLKIT
-- [Vercel AI Playground](https://ai-toolkit.dev/playground) - compare and tune 20+ AI models side-by-side
+- [AI TOOLKIT docs](https://studio.khulnasoft.com/docs) - learn more about the AI TOOLKIT
+- [Vercel AI Playground](https://studio.khulnasoft.com/playground) - compare and tune 20+ AI models side-by-side
 - [LangChain Documentation](https://js.langchain.com/docs) - learn about LangChain
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) - learn about LangGraph
 - [LangSmith Documentation](https://docs.smith.langchain.com/) - learn about LangSmith deployments

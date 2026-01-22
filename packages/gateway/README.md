@@ -1,6 +1,6 @@
 # AI TOOLKIT - Gateway Provider
 
-The Gateway provider for the [AI TOOLKIT](https://ai-toolkit.dev/docs) allows the use of a wide variety of AI models and providers.
+The Gateway provider for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) allows the use of a wide variety of AI models and providers.
 
 ## Setup
 
@@ -33,4 +33,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the [AI TOOLKIT documentation](https://ai-toolkit.dev/docs) for more information.
+Please check out the [AI TOOLKIT documentation](https://studio.khulnasoft.com/docs) for more information.

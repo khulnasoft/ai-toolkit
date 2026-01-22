@@ -62,7 +62,7 @@ export const Card = ({ type }: { type: string }) => {
             <Link
               target="_blank"
               className="text-blue-500 hover:underline"
-              href="https://ai-toolkit.dev/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol"
+              href="https://studio.khulnasoft.com/docs/ai-toolkit-ui/stream-protocol#data-stream-protocol"
             >
               data stream protocol
             </Link>{' '}

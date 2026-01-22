@@ -1,6 +1,6 @@
 # AI TOOLKIT - Fireworks Provider
 
-The **[Fireworks provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fireworks)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
+The **[Fireworks provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
 
 ## Setup
 
@@ -48,4 +48,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Fireworks provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fireworks)** for more information.
+Please check out the **[Fireworks provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for more information.

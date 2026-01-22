@@ -7,7 +7,7 @@ This file provides context for AI coding assistants (Cursor, GitHub Copilot, Cla
 The **AI TOOLKIT** by Vercel is a TypeScript/JavaScript SDK for building AI-powered applications with Large Language Models (LLMs). It provides a unified interface for multiple AI providers and framework integrations.
 
 - **Repository**: https://github.com/vercel/ai
-- **Documentation**: https://ai-toolkit.dev/docs
+- **Documentation**: https://studio.khulnasoft.com/docs
 - **License**: Apache-2.0
 
 ## Repository Structure
