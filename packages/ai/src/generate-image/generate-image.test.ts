@@ -1,4 +1,7 @@
-import { ImageModelV3, ImageModelV3ProviderMetadata } from '@ai-toolkit/provider';
+import {
+  ImageModelV3,
+  ImageModelV3ProviderMetadata,
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,

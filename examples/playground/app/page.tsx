@@ -95,9 +95,9 @@ export default function HomePage() {
             {activeTab === 'chat' && (
               <div>
                 <h2 className="text-lg font-semibold mb-4">Chat Interface</h2>
-                <ChatInterface 
-                  providerId={selectedProvider} 
-                  modelId={selectedModel} 
+                <ChatInterface
+                  providerId={selectedProvider}
+                  modelId={selectedModel}
                 />
               </div>
             )}
@@ -115,7 +115,9 @@ export default function HomePage() {
 
             {activeTab === 'examples' && (
               <div>
-                <h2 className="text-lg font-semibold mb-4">Example Templates</h2>
+                <h2 className="text-lg font-semibold mb-4">
+                  Example Templates
+                </h2>
                 <ExampleTemplates onSelectExample={handleSelectExample} />
               </div>
             )}

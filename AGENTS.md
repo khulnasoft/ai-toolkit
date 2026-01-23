@@ -19,8 +19,8 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 | Directory                 | Description                                                                          |
 | ------------------------- | ------------------------------------------------------------------------------------ |
 | `packages/ai`             | Main SDK package (`ai` on npm)                                                       |
-| `packages/provider`       | Provider interface specifications (`@ai-toolkit/provider`)                               |
-| `packages/provider-utils` | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)                   |
+| `packages/provider`       | Provider interface specifications (`@ai-toolkit/provider`)                           |
+| `packages/provider-utils` | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)               |
 | `packages/<provider>`     | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.) |
 | `packages/<framework>`    | UI framework integrations (react, vue, svelte, angular, rsc)                         |
 | `packages/codemod`        | Automated migrations for major releases                                              |
@@ -102,14 +102,14 @@ pnpm tsx src/stream-text/openai.ts    # Run a specific example
 
 ## Import Patterns
 
-| What                                          | Import From                                   |
-| --------------------------------------------- | --------------------------------------------- |
-| Core functions (`generateText`, `streamText`) | `ai`                                          |
-| Tool/schema utilities (`tool`, `jsonSchema`)  | `ai`                                          |
+| What                                          | Import From                                           |
+| --------------------------------------------- | ----------------------------------------------------- |
+| Core functions (`generateText`, `streamText`) | `ai`                                                  |
+| Tool/schema utilities (`tool`, `jsonSchema`)  | `ai`                                                  |
 | Provider implementations                      | `@ai-toolkit/<provider>` (e.g., `@ai-toolkit/openai`) |
-| Error classes                                 | `ai` (re-exports from `@ai-toolkit/provider`)     |
-| Provider type interfaces (`LanguageModelV3`)  | `@ai-toolkit/provider`                            |
-| Provider implementation utilities             | `@ai-toolkit/provider-utils`                      |
+| Error classes                                 | `ai` (re-exports from `@ai-toolkit/provider`)         |
+| Provider type interfaces (`LanguageModelV3`)  | `@ai-toolkit/provider`                                |
+| Provider implementation utilities             | `@ai-toolkit/provider-utils`                          |
 
 ## Coding Standards
 

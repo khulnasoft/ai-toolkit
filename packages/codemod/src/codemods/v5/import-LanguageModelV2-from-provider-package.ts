@@ -52,7 +52,9 @@ export default createTransformer((fileInfo, api, options, context) => {
     if (remainingSpecifiers.length === 0) {
       // All specifiers should be moved, just change the source
       node.source.value = '@ai-toolkit/provider';
-      context.messages.push(`Updated import from 'ai' to '@ai-toolkit/provider'`);
+      context.messages.push(
+        `Updated import from 'ai' to '@ai-toolkit/provider'`,
+      );
     } else {
       // Mixed imports: need to split them
       // The current import (with comments) should become the moved import

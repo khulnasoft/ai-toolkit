@@ -20,7 +20,9 @@ vi.mock('@ai-toolkit/provider-utils', () => ({
 }));
 
 vi.mock('@ai-toolkit/anthropic/internal', async () => {
-  const originalModule = await vi.importActual('@ai-toolkit/anthropic/internal');
+  const originalModule = await vi.importActual(
+    '@ai-toolkit/anthropic/internal',
+  );
   return {
     ...originalModule,
     AnthropicMessagesLanguageModel: vi.fn(),

@@ -36,6 +36,7 @@
 <td width="50%">
 
 **🔗 Seamless AI Integration**
+
 - 🤖 **20+ AI Providers**: OpenAI, Anthropic, Google, Azure, Groq, Cohere, and more
 - 🔄 **Unified API**: Single interface for all providers
 - ⚡ **Streaming Support**: Real-time AI responses
@@ -45,6 +46,7 @@
 <td width="50%">
 
 **🎯 Framework Agnostic**
+
 - ⚛️ **React & Next.js**: Hooks and components
 - 🎨 **Svelte & Vue**: Reactive UI integrations
 - 🟢 **Node.js**: Server-side AI processing
@@ -56,6 +58,7 @@
 <td width="50%">
 
 **👨‍� Developer Experience**
+
 - 📝 **100% TypeScript**: Full type safety
 - 🚀 **Zero Config**: Get started in minutes
 - 📚 **Comprehensive Docs**: Detailed guides & examples
@@ -65,6 +68,7 @@
 <td width="50%">
 
 **🏗️ Production Ready**
+
 - ⚡ **High Performance**: Optimized for production
 - 🛡️ **Secure**: Best practices built-in
 - 📊 **Monitoring**: Built-in logging and metrics
@@ -78,12 +82,12 @@
 
 ## 📚 **Documentation & Resources**
 
-| Resource | Description | Link |
-|----------|-------------|------|
-| **📖 Full Documentation** | Complete API reference and guides | [docs.khulnasoft.com](https://sdk.khulnasoft.com/docs) |
-| **🔧 API Reference** | Detailed API documentation | [API Reference](https://sdk.khulnasoft.com/docs/reference) |
-| **🎨 Examples & Templates** | Ready-to-use project templates | [Templates](https://khulnasoft.com/templates?type=ai) |
-| **💬 Community** | Get help and share ideas | [Discussions](https://github.com/khulnasoft/ai-toolkit/discussions) |
+| Resource                    | Description                       | Link                                                                |
+| --------------------------- | --------------------------------- | ------------------------------------------------------------------- |
+| **📖 Full Documentation**   | Complete API reference and guides | [docs.khulnasoft.com](https://sdk.khulnasoft.com/docs)              |
+| **🔧 API Reference**        | Detailed API documentation        | [API Reference](https://sdk.khulnasoft.com/docs/reference)          |
+| **🎨 Examples & Templates** | Ready-to-use project templates    | [Templates](https://khulnasoft.com/templates?type=ai)               |
+| **💬 Community**            | Get help and share ideas          | [Discussions](https://github.com/khulnasoft/ai-toolkit/discussions) |
 
 ---
 
@@ -98,12 +102,12 @@
 
 <div align="center">
 
-| Package Manager | Command |
-|----------------|---------|
-| **npm** | `npm install ai-toolkit` |
-| **yarn** | `yarn add ai-toolkit` |
-| **pnpm** | `pnpm add ai-toolkit` |
-| **bun** | `bun add ai-toolkit` |
+| Package Manager | Command                  |
+| --------------- | ------------------------ |
+| **npm**         | `npm install ai-toolkit` |
+| **yarn**        | `yarn add ai-toolkit`    |
+| **pnpm**        | `pnpm add ai-toolkit`    |
+| **bun**         | `bun add ai-toolkit`     |
 
 </div>
 
@@ -185,12 +189,12 @@ The [AI TOOLKIT UI](https://sdk.khulnasoft.com/docs/ai-toolkit-ui/overview) prov
 
 <div align="center">
 
-| Framework | Hook | Status |
-|-----------|------|--------|
-| **React/Next.js** | `useChat`, `useCompletion` | ✅ Production Ready |
-| **Svelte** | `createChat`, `createCompletion` | ✅ Production Ready |
-| **Vue** | `useChat`, `useCompletion` | ✅ Production Ready |
-| **Solid.js** | `createChat`, `createCompletion` | ✅ Production Ready |
+| Framework         | Hook                             | Status              |
+| ----------------- | -------------------------------- | ------------------- |
+| **React/Next.js** | `useChat`, `useCompletion`       | ✅ Production Ready |
+| **Svelte**        | `createChat`, `createCompletion` | ✅ Production Ready |
+| **Vue**           | `useChat`, `useCompletion`       | ✅ Production Ready |
+| **Solid.js**      | `createChat`, `createCompletion` | ✅ Production Ready |
 
 </div>
 
@@ -203,7 +207,8 @@ import { useChat } from 'ai-toolkit/react';
 import { useState } from 'react';
 
 export default function ChatInterface() {
-  const { messages, input, handleSubmit, handleInputChange, status, error } = useChat();
+  const { messages, input, handleSubmit, handleInputChange, status, error } =
+    useChat();
   const [isTyping, setIsTyping] = useState(false);
 
   return (
@@ -214,7 +219,7 @@ export default function ChatInterface() {
             Start a conversation with AI 🤖
           </div>
         ) : (
-          messages.map((message) => (
+          messages.map(message => (
             <div
               key={message.id}
               className={`mb-4 p-3 rounded-lg ${
@@ -230,11 +235,11 @@ export default function ChatInterface() {
             </div>
           ))
         )}
-        
+
         {status === 'loading' && (
           <div className="text-gray-500 italic">AI is thinking...</div>
         )}
-        
+
         {error && (
           <div className="text-red-500 bg-red-50 p-3 rounded-lg">
             Error: {error.message}
@@ -308,8 +313,9 @@ export async function POST(req: NextRequest) {
 <!-- +page.svelte -->
 <script lang="ts">
   import { createChat } from 'ai-toolkit/svelte';
-  
-  const { messages, input, handleSubmit, handleInputChange, status, error } = createChat();
+
+  const { messages, input, handleSubmit, handleInputChange, status, error } =
+    createChat();
 </script>
 
 <div class="chat-container">
@@ -320,16 +326,16 @@ export async function POST(req: NextRequest) {
         <p>{message.content}</p>
       </div>
     {/each}
-    
+
     {#if $status === 'loading'}
       <div class="typing-indicator">AI is typing...</div>
     {/if}
-    
+
     {#if $error}
       <div class="error">Error: {$error.message}</div>
     {/if}
   </div>
-  
+
   <form on:submit|preventDefault={handleSubmit}>
     <input
       bind:value={$input}
@@ -349,25 +355,25 @@ export async function POST(req: NextRequest) {
     margin: 0 auto;
     padding: 20px;
   }
-  
+
   .message {
     padding: 10px;
     margin: 10px 0;
     border-radius: 8px;
     background: #f5f5f5;
   }
-  
+
   .message.user {
     background: #e3f2fd;
     margin-left: auto;
     max-width: 80%;
   }
-  
+
   .typing-indicator {
     color: #666;
     font-style: italic;
   }
-  
+
   .error {
     color: #d32f2f;
     background: #ffebee;
@@ -420,13 +426,13 @@ This project is licensed under the **MIT License**. See the full [LICENSE](https
 
 ### 🚀 **Ready-to-Use Templates**
 
-| Template | Framework | Provider | Use Case | Quick Start |
-|----------|-----------|----------|----------|-------------|
-| **AI Chatbot** | Next.js | OpenAI | Chat Interface | [→](https://khulnasoft.com/templates/chat-nextjs) |
-| **AI Assistant** | React | Anthropic | Virtual Assistant | [→](https://khulnasoft.com/templates/assistant-react) |
-| **AI Writer** | Svelte | Google | Content Generation | [→](https://khulnasoft.com/templates/writer-svelte) |
-| **AI Dashboard** | Vue | Multiple | Analytics & Insights | [→](https://khulnasoft.com/templates/dashboard-vue) |
-| **AI API** | Node.js | OpenAI | Backend Service | [→](https://khulnasoft.com/templates/api-node) |
+| Template         | Framework | Provider  | Use Case             | Quick Start                                           |
+| ---------------- | --------- | --------- | -------------------- | ----------------------------------------------------- |
+| **AI Chatbot**   | Next.js   | OpenAI    | Chat Interface       | [→](https://khulnasoft.com/templates/chat-nextjs)     |
+| **AI Assistant** | React     | Anthropic | Virtual Assistant    | [→](https://khulnasoft.com/templates/assistant-react) |
+| **AI Writer**    | Svelte    | Google    | Content Generation   | [→](https://khulnasoft.com/templates/writer-svelte)   |
+| **AI Dashboard** | Vue       | Multiple  | Analytics & Insights | [→](https://khulnasoft.com/templates/dashboard-vue)   |
+| **AI API**       | Node.js   | OpenAI    | Backend Service      | [→](https://khulnasoft.com/templates/api-node)        |
 
 </div>
 
@@ -444,12 +450,12 @@ This project is licensed under the **MIT License**. See the full [LICENSE](https
 
 ### 💬 **Get Help & Connect**
 
-| Platform | Purpose | Link |
-|----------|---------|------|
-| **GitHub Discussions** | Questions, ideas, help | [Join →](https://github.com/khulnasoft/ai-toolkit/discussions) |
-| **Discord Server** | Real-time chat & support | [Join →](https://discord.gg/khulnasoft) |
-| **Twitter/X** | Updates & announcements | [Follow →](https://twitter.com/khulnasoft) |
-| **GitHub Issues** | Bug reports & features | [Report →](https://github.com/khulnasoft/ai-toolkit/issues) |
+| Platform               | Purpose                  | Link                                                           |
+| ---------------------- | ------------------------ | -------------------------------------------------------------- |
+| **GitHub Discussions** | Questions, ideas, help   | [Join →](https://github.com/khulnasoft/ai-toolkit/discussions) |
+| **Discord Server**     | Real-time chat & support | [Join →](https://discord.gg/khulnasoft)                        |
+| **Twitter/X**          | Updates & announcements  | [Follow →](https://twitter.com/khulnasoft)                     |
+| **GitHub Issues**      | Bug reports & features   | [Report →](https://github.com/khulnasoft/ai-toolkit/issues)    |
 
 </div>
 

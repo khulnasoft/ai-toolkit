@@ -15,7 +15,9 @@ describe('withUserAgentSuffix', () => {
       'provider/test-openai',
     );
 
-    expect(result['user-agent']).toBe('ai-toolkit/0.0.0-test provider/test-openai');
+    expect(result['user-agent']).toBe(
+      'ai-toolkit/0.0.0-test provider/test-openai',
+    );
     expect(result['content-type']).toBe('application/json');
     expect(result['authorization']).toBe('Bearer token123');
   });
@@ -49,7 +51,9 @@ describe('withUserAgentSuffix', () => {
 
     const result = withUserAgentSuffix(headers as any, 'ai-toolkit/0.0.0-test');
 
-    expect(result['user-agent']).toBe('TestApp/0.0.0-test ai-toolkit/0.0.0-test');
+    expect(result['user-agent']).toBe(
+      'TestApp/0.0.0-test ai-toolkit/0.0.0-test',
+    );
     expect(result['content-type']).toBe('application/json');
     expect(result['accept']).toBe('application/json');
     expect(result['authorization']).toBeUndefined();

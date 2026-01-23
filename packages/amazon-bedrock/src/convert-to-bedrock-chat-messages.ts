@@ -5,7 +5,10 @@ import {
   SharedV3ProviderMetadata,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
-import { convertToBase64, parseProviderOptions } from '@ai-toolkit/provider-utils';
+import {
+  convertToBase64,
+  parseProviderOptions,
+} from '@ai-toolkit/provider-utils';
 import {
   BEDROCK_CACHE_POINT,
   BEDROCK_DOCUMENT_MIME_TYPES,

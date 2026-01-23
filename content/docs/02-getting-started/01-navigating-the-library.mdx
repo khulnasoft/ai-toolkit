@@ -17,10 +17,10 @@ Let’s start with a quick overview of the AI TOOLKIT, which is comprised of thr
 
 When deciding which part of the AI TOOLKIT to use, your first consideration should be the environment and existing stack you are working with. Different components of the SDK are tailored to specific frameworks and environments.
 
-| Library                                   | Purpose                                                                                                                                                                                                  | Environment Compatibility                                          |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [AI TOOLKIT Core](/docs/ai-toolkit-core/overview) | Call any LLM with unified API (e.g. [generateText](/docs/reference/ai-toolkit-core/generate-text) and [generateObject](/docs/reference/ai-toolkit-core/generate-object))                                         | Any JS environment (e.g. Node.js, Deno, Browser)                   |
-| [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview)     | Build streaming chat and generative UIs (e.g. [useChat](/docs/reference/ai-toolkit-ui/use-chat))                                                                                                             | React & Next.js, Vue & Nuxt, Svelte & SvelteKit                    |
+| Library                                           | Purpose                                                                                                                                                                                                              | Environment Compatibility                                          |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [AI TOOLKIT Core](/docs/ai-toolkit-core/overview) | Call any LLM with unified API (e.g. [generateText](/docs/reference/ai-toolkit-core/generate-text) and [generateObject](/docs/reference/ai-toolkit-core/generate-object))                                             | Any JS environment (e.g. Node.js, Deno, Browser)                   |
+| [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview)     | Build streaming chat and generative UIs (e.g. [useChat](/docs/reference/ai-toolkit-ui/use-chat))                                                                                                                     | React & Next.js, Vue & Nuxt, Svelte & SvelteKit                    |
 | [AI TOOLKIT RSC](/docs/ai-toolkit-rsc/overview)   | Stream generative UIs from Server to Client (e.g. [streamUI](/docs/reference/ai-toolkit-rsc/stream-ui)). Development is currently experimental and we recommend using [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview). | Any framework that supports React Server Components (e.g. Next.js) |
 
 ## Environment Compatibility
@@ -30,12 +30,12 @@ These tools have been designed to work seamlessly with each other and it's likel
 The following table outlines AI TOOLKIT compatibility based on environment:
 
 | Environment           | [AI TOOLKIT Core](/docs/ai-toolkit-core/overview) | [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview) | [AI TOOLKIT RSC](/docs/ai-toolkit-rsc/overview) |
-| --------------------- | ----------------------------------------- | ------------------------------------- | --------------------------------------- |
-| None / Node.js / Deno | <Check size={18} />                       | <Cross size={18} />                   | <Cross size={18} />                     |
-| Vue / Nuxt            | <Check size={18} />                       | <Check size={18} />                   | <Cross size={18} />                     |
-| Svelte / SvelteKit    | <Check size={18} />                       | <Check size={18} />                   | <Cross size={18} />                     |
-| Next.js Pages Router  | <Check size={18} />                       | <Check size={18} />                   | <Cross size={18} />                     |
-| Next.js App Router    | <Check size={18} />                       | <Check size={18} />                   | <Check size={18} />                     |
+| --------------------- | ------------------------------------------------- | --------------------------------------------- | ----------------------------------------------- |
+| None / Node.js / Deno | <Check size={18} />                               | <Cross size={18} />                           | <Cross size={18} />                             |
+| Vue / Nuxt            | <Check size={18} />                               | <Check size={18} />                           | <Cross size={18} />                             |
+| Svelte / SvelteKit    | <Check size={18} />                               | <Check size={18} />                           | <Cross size={18} />                             |
+| Next.js Pages Router  | <Check size={18} />                               | <Check size={18} />                           | <Cross size={18} />                             |
+| Next.js App Router    | <Check size={18} />                               | <Check size={18} />                           | <Check size={18} />                             |
 
 ## When to use AI TOOLKIT UI
 
@@ -50,24 +50,25 @@ AI TOOLKIT UI provides a set of framework-agnostic hooks for quickly building **
 
 AI TOOLKIT UI supports the following frameworks: [React](https://react.dev/), [Svelte](https://svelte.dev/), and [Vue.js](https://vuejs.org/). Here is a comparison of the supported functions across these frameworks:
 
-| Function                                                   | React               | Svelte              | Vue.js              |
-| ---------------------------------------------------------- | ------------------- | ------------------- | ------------------- |
+| Function                                                       | React               | Svelte              | Vue.js              |
+| -------------------------------------------------------------- | ------------------- | ------------------- | ------------------- |
 | [useChat](/docs/reference/ai-toolkit-ui/use-chat)              | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | [useChat](/docs/reference/ai-toolkit-ui/use-chat) tool calling | <Check size={18} /> | <Check size={18} /> | <Cross size={18} /> |
 | [useCompletion](/docs/reference/ai-toolkit-ui/use-completion)  | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | [useObject](/docs/reference/ai-toolkit-ui/use-object)          | <Check size={18} /> | <Cross size={18} /> | <Cross size={18} /> |
 
 <Note>
-  [Contributions](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md) are
-  welcome to implement missing features for non-React frameworks.
+  [Contributions](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md)
+  are welcome to implement missing features for non-React frameworks.
 </Note>
 
 ## When to use AI TOOLKIT RSC
 
 <Note type="warning">
   AI TOOLKIT RSC is currently experimental. We recommend using [AI TOOLKIT
-  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
-  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating
+  from RSC to UI, see our [migration
+  guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)

@@ -1,5 +1,9 @@
 // re-exports:
-export { createGateway, gateway, type GatewayModelId } from '@ai-toolkit/gateway';
+export {
+  createGateway,
+  gateway,
+  type GatewayModelId,
+} from '@ai-toolkit/gateway';
 export {
   asSchema,
   createIdGenerator,

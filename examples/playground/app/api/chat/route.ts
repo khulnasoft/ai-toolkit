@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
   try {
     const model = getProviderModel(providerId, modelId);
-    
+
     const result = await streamText({
       model,
       messages,
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     console.error('Chat API error:', error);
     return new Response(
       JSON.stringify({ error: 'Failed to process chat request' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { status: 500, headers: { 'Content-Type': 'application/json' } },
     );
   }
 }

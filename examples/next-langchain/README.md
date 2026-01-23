@@ -305,7 +305,7 @@ The `@ai-toolkit/langchain` adapter supports both `graph.stream()` and `streamEv
 | **Tool execution tracking** | Clean tool call lifecycle with `messages` mode                              |
 | **Custom data streaming**   | Use `custom` mode with `config.writer()` for typed events                   |
 | **State snapshots**         | Get full state after each step with `values` mode                           |
-| **Production apps**         | Simpler integration with AI TOOLKIT's `toUIMessageStream`                       |
+| **Production apps**         | Simpler integration with AI TOOLKIT's `toUIMessageStream`                   |
 
 ```typescript
 const stream = await graph.stream(

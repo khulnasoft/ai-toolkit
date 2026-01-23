@@ -2765,7 +2765,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',
@@ -2812,7 +2814,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',
@@ -2864,7 +2868,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',
@@ -4884,7 +4890,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',
@@ -4924,7 +4932,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',
@@ -4969,7 +4979,9 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten studio.khulnasoft.com' }],
+              content: [
+                { type: 'text', text: 'shorten studio.khulnasoft.com' },
+              ],
             },
             {
               role: 'assistant',

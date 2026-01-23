@@ -260,7 +260,10 @@ export function createAmazonBedrock(
 
   const getHeaders = () => {
     const baseHeaders = options.headers ?? {};
-    return withUserAgentSuffix(baseHeaders, `ai-toolkit/amazon-bedrock/${VERSION}`);
+    return withUserAgentSuffix(
+      baseHeaders,
+      `ai-toolkit/amazon-bedrock/${VERSION}`,
+    );
   };
 
   const getBedrockRuntimeBaseUrl = (): string =>

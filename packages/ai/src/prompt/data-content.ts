@@ -1,4 +1,7 @@
-import { AITOOLKITError, LanguageModelV3DataContent } from '@ai-toolkit/provider';
+import {
+  AITOOLKITError,
+  LanguageModelV3DataContent,
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,

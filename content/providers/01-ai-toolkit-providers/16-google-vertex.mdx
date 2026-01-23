@@ -162,9 +162,10 @@ import { vertex } from '@ai-toolkit/google-vertex/edge';
 ```
 
 <Note>
-  The `/edge` sub-module is included in the `@ai-toolkit/google-vertex` package, so
-  you don't need to install it separately. You must import from
-  `@ai-toolkit/google-vertex/edge` to differentiate it from the Node.js provider.
+  The `/edge` sub-module is included in the `@ai-toolkit/google-vertex` package,
+  so you don't need to install it separately. You must import from
+  `@ai-toolkit/google-vertex/edge` to differentiate it from the Node.js
+  provider.
 </Note>
 
 If you need a customized setup, you can import `createVertex` from `@ai-toolkit/google-vertex/edge` and create a provider instance with your settings:
@@ -539,9 +540,9 @@ const { text } = await generateText({
 ```
 
 <Note>
-  The AI TOOLKIT will automatically download URLs if you pass them as data, except
-  for `gs://` URLs. You can use the Google Cloud Storage API to upload larger
-  files to that location.
+  The AI TOOLKIT will automatically download URLs if you pass them as data,
+  except for `gs://` URLs. You can use the Google Cloud Storage API to upload
+  larger files to that location.
 </Note>
 
 See [File Parts](/docs/foundations/prompts#file-parts) for details on how to use files in prompts.

@@ -1240,7 +1240,9 @@ import { createStreamableValue } from 'ai/rsc';
 import { createStreamableValue } from '@ai-toolkit/rsc';
 ```
 
-<Note>Don't forget to install the new package: `npm install @ai-toolkit/rsc`</Note>
+<Note>
+  Don't forget to install the new package: `npm install @ai-toolkit/rsc`
+</Note>
 
 ### React UI Hooks Moved to `@ai-toolkit/react`
 
@@ -3095,7 +3097,10 @@ In AI TOOLKIT 4.0, you could set the `strictSchemas` option on Responses models 
 ```tsx filename="AI TOOLKIT 4.0"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
+import {
+  openai,
+  type OpenAIResponsesProviderOptions,
+} from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai.responses('gpt-4.1'),
@@ -3113,7 +3118,10 @@ const result = await generateObject({
 ```tsx filename="AI TOOLKIT 5.0"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
+import {
+  openai,
+  type OpenAIResponsesProviderOptions,
+} from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai('gpt-4.1-2024'), // uses Responses API
@@ -3148,7 +3156,10 @@ const result = await generateObject({
 ```tsx filename="AI TOOLKIT 5.0 (Chat Completions API)"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIChatLanguageModelOptions } from '@ai-toolkit/openai';
+import {
+  openai,
+  type OpenAIChatLanguageModelOptions,
+} from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai.chat('gpt-4.1'), // use Chat Completions API
@@ -3332,7 +3343,7 @@ For more information, see the [Codemods](#codemods) section.
 
 | Change                                           | Codemod                                               |
 | ------------------------------------------------ | ----------------------------------------------------- |
-| **AI TOOLKIT Core Changes**                          |                                                       |
+| **AI TOOLKIT Core Changes**                      |                                                       |
 | Flatten streamText file properties               | `v5/flatten-streamtext-file-properties`               |
 | ID Generation Changes                            | `v5/require-createIdGenerator-size-argument`          |
 | IDGenerator → IdGenerator                        | `v5/rename-IDGenerator-to-IdGenerator`                |
@@ -3342,7 +3353,7 @@ For more information, see the [Codemods](#codemods) section.
 | Move LangChain adapter                           | `v5/move-langchain-adapter`                           |
 | Move maxSteps to stopWhen                        | `v5/move-maxsteps-to-stopwhen`                        |
 | Move provider options                            | `v5/move-provider-options`                            |
-| Move React to AI TOOLKIT                             | `v5/move-react-to-ai-toolkit`                             |
+| Move React to AI TOOLKIT                         | `v5/move-react-to-ai-toolkit`                         |
 | Move UI utils to AI                              | `v5/move-ui-utils-to-ai`                              |
 | Remove experimental wrap language model          | `v5/remove-experimental-wrap-language-model`          |
 | Remove experimental activeTools                  | `v5/remove-experimental-activetools`                  |

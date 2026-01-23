@@ -317,11 +317,11 @@ const result = await generateText({
 ```
 
 <Note>
-  The AI TOOLKIT will automatically download URLs if you pass them as data, except
-  for `https://generativelanguage.googleapis.com/v1beta/files/` and YouTube
-  URLs. You can use the Google Generative AI Files API to upload larger files to
-  that location. YouTube URLs (public or unlisted videos) are supported directly
-  - you can specify one YouTube video URL per request.
+  The AI TOOLKIT will automatically download URLs if you pass them as data,
+  except for `https://generativelanguage.googleapis.com/v1beta/files/` and
+  YouTube URLs. You can use the Google Generative AI Files API to upload larger
+  files to that location. YouTube URLs (public or unlisted videos) are supported
+  directly - you can specify one YouTube video URL per request.
 </Note>
 
 See [File Parts](/docs/foundations/prompts#file-parts) for details on how to use files in prompts.
@@ -378,8 +378,8 @@ console.log('Cached tokens:', providerMetadata.google?.usageMetadata);
 ```
 
 <Note>
-  Usage metadata was added to `providerMetadata` in `@ai-toolkit/google@1.2.23`. If
-  you are using an older version, usage metadata is available in the raw HTTP
+  Usage metadata was added to `providerMetadata` in `@ai-toolkit/google@1.2.23`.
+  If you are using an older version, usage metadata is available in the raw HTTP
   `response` body returned as part of the return value from `generateText`.
 </Note>
 
@@ -723,8 +723,8 @@ This enables the model to provide answers based on your specific data sources an
 
 <Note>
   RAG Engine Grounding is only supported with Vertex Gemini models. You must use
-  the Google Vertex provider (`@ai-toolkit/google-vertex`) instead of the standard
-  Google provider (`@ai-toolkit/google`) to use this feature.
+  the Google Vertex provider (`@ai-toolkit/google-vertex`) instead of the
+  standard Google provider (`@ai-toolkit/google`) to use this feature.
 </Note>
 
 ```ts highlight="8,17-20"

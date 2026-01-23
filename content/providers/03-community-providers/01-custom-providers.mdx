@@ -425,8 +425,8 @@ Implementing a custom language model provider involves several steps:
 
 <Note>
   The best way to get started is to use the [Mistral
-  provider](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/mistral) as a
-  reference implementation.
+  provider](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/mistral)
+  as a reference implementation.
 </Note>
 
 ### Step 1: Create the Provider Entry Point
@@ -516,7 +516,10 @@ const custom = createCustom();
 Create a `custom-chat-language-model.ts` file that implements `LanguageModelV3`:
 
 ```ts filename="custom-chat-language-model.ts"
-import { LanguageModelV3, LanguageModelV3CallOptions } from '@ai-toolkit/provider';
+import {
+  LanguageModelV3,
+  LanguageModelV3CallOptions,
+} from '@ai-toolkit/provider';
 import { postJsonToApi } from '@ai-toolkit/provider-utils';
 
 class CustomChatLanguageModel implements LanguageModelV3 {

@@ -183,9 +183,9 @@ export default function MultimodalPage() {
         </h1>
         <div className="text-sm text-[var(--foreground-secondary)] leading-relaxed">
           Send images to <strong>GPT-4o</strong> for analysis. This example
-          demonstrates multimodal input using the <code>@ai-toolkit/langchain</code>{' '}
-          adapter, which properly converts images and files to LangChain&apos;s
-          multimodal content format.
+          demonstrates multimodal input using the{' '}
+          <code>@ai-toolkit/langchain</code> adapter, which properly converts
+          images and files to LangChain&apos;s multimodal content format.
         </div>
       </div>
 

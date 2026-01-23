@@ -14,7 +14,13 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const { messages, input: currentInput, handleInputChange, handleSubmit, isLoading } = useChat({
+  const {
+    messages,
+    input: currentInput,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+  } = useChat({
     api: '/api/chat',
     body: {
       providerId,
@@ -48,7 +54,7 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
             </div>
           </div>
         ) : (
-          messages.map((message) => (
+          messages.map(message => (
             <div
               key={message.id}
               className={`flex items-start space-x-3 ${
@@ -62,7 +68,7 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
                   </div>
                 </div>
               )}
-              
+
               <div
                 className={`max-w-[80%] rounded-lg p-3 ${
                   message.role === 'user'
@@ -83,7 +89,7 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
             </div>
           ))
         )}
-        
+
         {isLoading && (
           <div className="flex items-start space-x-3">
             <div className="flex-shrink-0">
@@ -96,7 +102,7 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
             </div>
           </div>
         )}
-        
+
         <div ref={messagesEndRef} />
       </div>
 

@@ -29,7 +29,8 @@ vi.mock('./bedrock-sigv4-fetch', () => ({
 }));
 
 vi.mock('@ai-toolkit/anthropic', async importOriginal => {
-  const original = await importOriginal<typeof import('@ai-toolkit/anthropic')>();
+  const original =
+    await importOriginal<typeof import('@ai-toolkit/anthropic')>();
   return {
     ...original,
     anthropicTools: { mock: 'tools' },

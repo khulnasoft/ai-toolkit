@@ -36,10 +36,10 @@ export function ProviderSelector({
           {currentProvider?.name || 'Select Provider'}
           <ChevronDown className="h-4 w-4" />
         </Button>
-        
+
         {isProviderOpen && (
           <div className="absolute top-full left-0 right-0 mt-1 bg-background border rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-            {aiProviders.map((provider) => (
+            {aiProviders.map(provider => (
               <button
                 key={provider.id}
                 onClick={() => {
@@ -69,10 +69,10 @@ export function ProviderSelector({
           {selectedModel || 'Select Model'}
           <ChevronDown className="h-4 w-4" />
         </Button>
-        
+
         {isModelOpen && (
           <div className="absolute top-full left-0 right-0 mt-1 bg-background border rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-            {currentModels.map((model) => (
+            {currentModels.map(model => (
               <button
                 key={model}
                 onClick={() => {

@@ -14,8 +14,8 @@ AI TOOLKIT Core tools contain several core elements:
 - **`strict`**: _(optional, boolean)_ Enables strict tool calling when supported by the provider
 
 <Note className="mb-2">
-  You can use the [`tool`](/docs/reference/ai-toolkit-core/tool) helper function to
-  infer the types of the `execute` parameters.
+  You can use the [`tool`](/docs/reference/ai-toolkit-core/tool) helper function
+  to infer the types of the `execute` parameters.
 </Note>
 
 The `tools` parameter of `generateText` and `streamText` is an object that has the tool names as keys and the tools as values:
@@ -1070,7 +1070,7 @@ For detailed information about MCP tools, including initialization, transport op
 
 In most cases, you should define your own AI TOOLKIT tools for production applications. They provide full control, type safety, and optimal performance. MCP tools are best suited for rapid development iteration and scenarios where users bring their own tools.
 
-| Aspect                 | AI TOOLKIT Tools                                              | MCP Tools                                             |
+| Aspect                 | AI TOOLKIT Tools                                          | MCP Tools                                             |
 | ---------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
 | **Type Safety**        | Full static typing end-to-end                             | Dynamic discovery at runtime                          |
 | **Execution**          | Same process as your request (low latency)                | Separate server (network overhead)                    |

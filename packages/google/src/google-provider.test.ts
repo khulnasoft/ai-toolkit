@@ -6,7 +6,8 @@ import { GoogleGenerativeAIImageModel } from './google-generative-ai-image-model
 
 // Mock the imported modules using a partial mock to preserve original exports
 vi.mock('@ai-toolkit/provider-utils', async importOriginal => {
-  const mod = await importOriginal<typeof import('@ai-toolkit/provider-utils')>();
+  const mod =
+    await importOriginal<typeof import('@ai-toolkit/provider-utils')>();
   return {
     ...mod,
     loadApiKey: vi.fn().mockImplementation(({ apiKey }) => apiKey),

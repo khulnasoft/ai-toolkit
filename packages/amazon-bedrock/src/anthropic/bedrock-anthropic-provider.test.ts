@@ -37,7 +37,9 @@ vi.mock('@ai-toolkit/provider-utils', () => ({
 }));
 
 vi.mock('@ai-toolkit/anthropic/internal', async () => {
-  const originalModule = await vi.importActual('@ai-toolkit/anthropic/internal');
+  const originalModule = await vi.importActual(
+    '@ai-toolkit/anthropic/internal',
+  );
   return {
     ...originalModule,
     AnthropicMessagesLanguageModel: vi.fn(),
@@ -164,7 +166,9 @@ describe('bedrock-anthropic-provider', () => {
     expect(config.headers).toEqual(expect.any(Function));
     const resolvedHeaders = await (config.headers as Function)();
     expect(resolvedHeaders).toMatchObject(customHeaders);
-    expect(resolvedHeaders['user-agent']).toContain('ai-toolkit/amazon-bedrock/');
+    expect(resolvedHeaders['user-agent']).toContain(
+      'ai-toolkit/amazon-bedrock/',
+    );
   });
 
   it('should build correct URL for non-streaming requests', () => {

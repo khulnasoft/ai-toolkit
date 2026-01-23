@@ -165,9 +165,9 @@ const messages: ModelMessage[] = [
 ```
 
 <Note type="warning">
-  AI TOOLKIT UI hooks like [`useChat`](/docs/reference/ai-toolkit-ui/use-chat) return
-  arrays of `UIMessage` objects, which do not support provider options. We
-  recommend using the
+  AI TOOLKIT UI hooks like [`useChat`](/docs/reference/ai-toolkit-ui/use-chat)
+  return arrays of `UIMessage` objects, which do not support provider options.
+  We recommend using the
   [`convertToModelMessages`](/docs/reference/ai-toolkit-ui/convert-to-core-messages)
   function to convert `UIMessage` objects to
   [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) objects before
@@ -282,8 +282,9 @@ const result = await generateText({
   Only a few providers and models currently support file parts: [Google
   Generative AI](/providers/ai-toolkit-providers/google-generative-ai), [Google
   Vertex AI](/providers/ai-toolkit-providers/google-vertex),
-  [OpenAI](/providers/ai-toolkit-providers/openai) (for `wav` and `mp3` audio with
-  `gpt-4o-audio-preview`), [Anthropic](/providers/ai-toolkit-providers/anthropic),
+  [OpenAI](/providers/ai-toolkit-providers/openai) (for `wav` and `mp3` audio
+  with `gpt-4o-audio-preview`),
+  [Anthropic](/providers/ai-toolkit-providers/anthropic),
   [OpenAI](/providers/ai-toolkit-providers/openai) (for `pdf`).
 </Note>
 

@@ -1,4 +1,8 @@
-import { FlexibleSchema, lazySchema, zodSchema } from '@ai-toolkit/provider-utils';
+import {
+  FlexibleSchema,
+  lazySchema,
+  zodSchema,
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 
 // https://docs.cohere.com/docs/rerank

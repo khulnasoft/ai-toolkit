@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'AI Toolkit Playground',
-  description: 'Interactive playground for experimenting with AI models and providers',
+  description:
+    'Interactive playground for experimenting with AI models and providers',
 };
 
 export default function RootLayout({

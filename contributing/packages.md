@@ -4,17 +4,17 @@ When adding new packages under `packages`, please ensure they are added to `/tsc
 
 ## Core Packages
 
-| Package          | NPM Name                 | Description                             |
-| ---------------- | ------------------------ | --------------------------------------- |
-| `ai`             | `ai`                     | Main package                            |
+| Package          | NPM Name                     | Description                             |
+| ---------------- | ---------------------------- | --------------------------------------- |
+| `ai`             | `ai`                         | Main package                            |
 | `provider`       | `@ai-toolkit/provider`       | Provider specifications                 |
 | `provider-utils` | `@ai-toolkit/provider-utils` | Shared provider and ai code             |
 | `codemod`        | `@ai-toolkit/codemod`        | Automated migrations for major releases |
 
 ## AI/LLM Providers
 
-| Package             | NPM Name                    | Provider                    |
-| ------------------- | --------------------------- | --------------------------- |
+| Package             | NPM Name                        | Provider                    |
+| ------------------- | ------------------------------- | --------------------------- |
 | `openai`            | `@ai-toolkit/openai`            | OpenAI                      |
 | `anthropic`         | `@ai-toolkit/anthropic`         | Anthropic (Claude)          |
 | `google`            | `@ai-toolkit/google`            | Google AI (Gemini)          |
@@ -32,7 +32,7 @@ When adding new packages under `packages`, please ensure they are added to `/tsc
 | `replicate`         | `@ai-toolkit/replicate`         | Replicate                   |
 | `togetherai`        | `@ai-toolkit/togetherai`        | Together AI                 |
 | `xai`               | `@ai-toolkit/xai`               | xAI (Grok)                  |
-| `vercel`            | `@ai-toolkit/khulnasoft`            | Vercel AI                   |
+| `vercel`            | `@ai-toolkit/khulnasoft`        | Vercel AI                   |
 | `gateway`           | `@ai-toolkit/gateway`           | AI Gateway                  |
 | `openai-compatible` | `@ai-toolkit/openai-compatible` | OpenAI-compatible providers |
 | `elevenlabs`        | `@ai-toolkit/elevenlabs`        | ElevenLabs (Audio)          |
@@ -50,8 +50,8 @@ When adding new packages under `packages`, please ensure they are added to `/tsc
 
 ## UI Framework Integrations
 
-| Package   | NPM Name          | Framework                   |
-| --------- | ----------------- | --------------------------- |
+| Package   | NPM Name              | Framework                   |
+| --------- | --------------------- | --------------------------- |
 | `react`   | `@ai-toolkit/react`   | React hooks and utilities   |
 | `vue`     | `@ai-toolkit/vue`     | Vue composables             |
 | `svelte`  | `@ai-toolkit/svelte`  | Svelte stores and utilities |

@@ -1,4 +1,7 @@
-import { LanguageModelV3StreamPart, SharedV3Warning } from '@ai-toolkit/provider';
+import {
+  LanguageModelV3StreamPart,
+  SharedV3Warning,
+} from '@ai-toolkit/provider';
 import {
   getErrorMessage,
   IdGenerator,

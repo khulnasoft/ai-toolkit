@@ -241,7 +241,10 @@ export function createBedrockAnthropic(
 
   const getHeaders = async () => {
     const baseHeaders = (await resolve(options.headers)) ?? {};
-    return withUserAgentSuffix(baseHeaders, `ai-toolkit/amazon-bedrock/${VERSION}`);
+    return withUserAgentSuffix(
+      baseHeaders,
+      `ai-toolkit/amazon-bedrock/${VERSION}`,
+    );
   };
 
   const createChatModel = (modelId: BedrockAnthropicModelId) =>

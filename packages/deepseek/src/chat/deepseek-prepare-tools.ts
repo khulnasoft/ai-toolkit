@@ -1,4 +1,7 @@
-import { LanguageModelV3CallOptions, SharedV3Warning } from '@ai-toolkit/provider';
+import {
+  LanguageModelV3CallOptions,
+  SharedV3Warning,
+} from '@ai-toolkit/provider';
 import {
   DeepSeekFunctionTool,
   DeepSeekToolChoice,

@@ -591,7 +591,10 @@ This metadata includes the following fields:
   [Responses API – output text annotations](https://platform.openai.com/docs/api-reference/responses/object?lang=javascript#responses-object-output-output_message-content-output_text-annotations).
 
 ```ts
-import { azure, type AzureResponsesTextProviderMetadata } from '@ai-toolkit/azure';
+import {
+  azure,
+  type AzureResponsesTextProviderMetadata,
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({

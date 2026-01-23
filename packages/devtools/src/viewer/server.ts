@@ -251,7 +251,9 @@ export const startViewer = (port = 4983) => {
         console.log(`🔍 AI TOOLKIT DevTools API running on port ${port}`);
         console.log(`   Open http://localhost:5173 for the dev UI`);
       } else {
-        console.log(`🔍 AI TOOLKIT DevTools running at http://localhost:${port}`);
+        console.log(
+          `🔍 AI TOOLKIT DevTools running at http://localhost:${port}`,
+        );
       }
     },
   );
@@ -263,8 +265,12 @@ export const startViewer = (port = 4983) => {
         `\n   This likely means AI TOOLKIT DevTools is already running.`,
       );
       console.error(`   Open http://localhost:${port} in your browser.\n`);
-      console.error(`   To use a different port, set AI_TOOLKIT_DEVTOOLS_PORT:\n`);
-      console.error(`   AI_TOOLKIT_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`);
+      console.error(
+        `   To use a different port, set AI_TOOLKIT_DEVTOOLS_PORT:\n`,
+      );
+      console.error(
+        `   AI_TOOLKIT_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`,
+      );
       process.exit(1);
     }
     throw err;

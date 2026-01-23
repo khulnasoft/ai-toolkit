@@ -600,10 +600,10 @@ The MCP tool can be configured with:
 
 <Note>
   The OpenAI MCP tool is different from the general MCP client approach
-  documented in [MCP Tools](/docs/ai-toolkit-core/mcp-tools). The OpenAI MCP tool is
-  a built-in provider-defined tool that allows OpenAI models to directly connect
-  to MCP servers, while the general MCP client requires you to convert MCP tools
-  to AI TOOLKIT tools first.
+  documented in [MCP Tools](/docs/ai-toolkit-core/mcp-tools). The OpenAI MCP
+  tool is a built-in provider-defined tool that allows OpenAI models to directly
+  connect to MCP servers, while the general MCP client requires you to convert
+  MCP tools to AI TOOLKIT tools first.
 </Note>
 
 #### Local Shell Tool
@@ -1017,7 +1017,10 @@ OpenAI chat models support also some model specific provider options that are no
 You can pass them in the `providerOptions` argument:
 
 ```ts
-import { openai, type OpenAIChatLanguageModelOptions } from '@ai-toolkit/openai';
+import {
+  openai,
+  type OpenAIChatLanguageModelOptions,
+} from '@ai-toolkit/openai';
 
 const model = openai.chat('gpt-5');
 
@@ -1439,11 +1442,11 @@ const result = await generateText({
 ```
 
 <Note type="warning">
-  Because the `UIMessage` type (used by AI TOOLKIT UI hooks like `useChat`) does not
-  support the `providerOptions` property, you can use `convertToModelMessages`
-  first before passing the messages to functions like `generateText` or
-  `streamText`. For more details on `providerOptions` usage, see
-  [here](/docs/foundations/prompts#provider-options).
+  Because the `UIMessage` type (used by AI TOOLKIT UI hooks like `useChat`) does
+  not support the `providerOptions` property, you can use
+  `convertToModelMessages` first before passing the messages to functions like
+  `generateText` or `streamText`. For more details on `providerOptions` usage,
+  see [here](/docs/foundations/prompts#provider-options).
 </Note>
 
 #### Distillation

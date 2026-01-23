@@ -1,5 +1,8 @@
 import { JSONObject } from '@ai-toolkit/provider';
-import { ProviderOptions, withUserAgentSuffix } from '@ai-toolkit/provider-utils';
+import {
+  ProviderOptions,
+  withUserAgentSuffix,
+} from '@ai-toolkit/provider-utils';
 import { NoSpeechGeneratedError } from '../error/no-speech-generated-error';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveSpeechModel } from '../model/resolve-model';

@@ -15,16 +15,19 @@ An interactive web-based playground for experimenting with AI models and provide
 ## Getting Started
 
 1. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 2. **Set up environment variables**:
+
    ```bash
    cp .env.example .env.local
    ```
-   
+
    Add your API keys to `.env.local`:
+
    ```env
    OPENAI_API_KEY=your_openai_api_key_here
    ANTHROPIC_API_KEY=your_anthropic_api_key_here
@@ -33,6 +36,7 @@ An interactive web-based playground for experimenting with AI models and provide
    ```
 
 3. **Run the development server**:
+
    ```bash
    pnpm dev
    ```
@@ -57,19 +61,23 @@ The playground supports the following AI providers:
 ## Usage
 
 ### Chat Interface
+
 1. Select your preferred AI provider and model from the sidebar
 2. Type your message in the chat interface
 3. Receive streaming responses in real-time
 4. Compare responses across different models
 
 ### Code Generation
+
 1. Choose a code generation template or write a custom prompt
 2. Select the appropriate model for code generation
 3. Generate and edit code with AI assistance
 4. Export generated code to your project
 
 ### Examples
+
 Browse through pre-built examples including:
+
 - Text generation and completion
 - Code generation and explanation
 - Data analysis and visualization
@@ -79,6 +87,7 @@ Browse through pre-built examples including:
 ## Development
 
 ### Project Structure
+
 ```
 playground/
 ├── app/                    # Next.js app router
@@ -93,7 +102,9 @@ playground/
 ```
 
 ### Adding New Providers
+
 1. Install the provider package:
+
    ```bash
    pnpm add @ai-toolkit/new-provider
    ```
@@ -103,11 +114,13 @@ playground/
 3. Add the provider to the UI in `components/provider-selector.tsx`
 
 ### Building
+
 ```bash
 pnpm build
 ```
 
 ### Linting
+
 ```bash
 pnpm lint
 ```
