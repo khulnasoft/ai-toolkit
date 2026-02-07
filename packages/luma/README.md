@@ -1,6 +1,6 @@
 # AI TOOLKIT - Luma Provider
 
-The **Luma provider** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
+The **Luma provider** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
 
 ## About Luma Photon Models
 
@@ -34,7 +34,7 @@ import { luma } from '@ai-toolkit/luma';
 
 ```ts
 import { luma } from '@ai-toolkit/luma';
-import { experimental_generateImage as generateImage } from 'ai';
+import { generateImage } from 'ai';
 import fs from 'fs';
 
 const { image } = await generateImage({
@@ -49,4 +49,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Luma provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/luma)** for more information.
+Please check out the **[Luma provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/luma)** for more information.

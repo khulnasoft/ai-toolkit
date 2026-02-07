@@ -1,67 +1,74 @@
 import {
-  ImageModelV1,
-  LanguageModelV1,
-  NoSuchModelError,
-  ProviderV1,
-} from '@ai-toolkit/provider';
-import {
-  OpenAICompatibleChatLanguageModel,
   OpenAICompatibleImageModel,
   ProviderErrorStructure,
 } from '@ai-toolkit/openai-compatible';
 import {
+  ImageModelV3,
+  LanguageModelV3,
+  NoSuchModelError,
+  ProviderV3,
+} from '@ai-toolkit/provider';
+import {
   FetchFunction,
+  generateId,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
-import {
-  XaiChatModelId,
-  XaiChatSettings,
-  supportsStructuredOutputs,
-} from './xai-chat-settings';
-import { XaiImageSettings } from './xai-image-settings';
+import { XaiChatLanguageModel } from './xai-chat-language-model';
+import { XaiChatModelId } from './xai-chat-options';
+import { XaiErrorData, xaiErrorDataSchema } from './xai-error';
 import { XaiImageModelId } from './xai-image-settings';
-import { XaiErrorData, xaiErrorSchema } from './xai-error';
+import { XaiResponsesLanguageModel } from './responses/xai-responses-language-model';
+import { XaiResponsesModelId } from './responses/xai-responses-options';
+import { xaiTools } from './tool';
+import { VERSION } from './version';
 
 const xaiErrorStructure: ProviderErrorStructure<XaiErrorData> = {
-  errorSchema: xaiErrorSchema,
-  errorToMessage: data => data.error,
+  errorSchema: xaiErrorDataSchema,
+  errorToMessage: data => data.error.message,
 };
 
-export interface XaiProvider extends ProviderV1 {
+export interface XaiProvider extends ProviderV3 {
   /**
 Creates an Xai chat model for text generation.
    */
-  (modelId: XaiChatModelId, settings?: XaiChatSettings): LanguageModelV1;
+  (modelId: XaiChatModelId): LanguageModelV3;
 
   /**
 Creates an Xai language model for text generation.
    */
-  languageModel(
-    modelId: XaiChatModelId,
-    settings?: XaiChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: XaiChatModelId): LanguageModelV3;
 
   /**
 Creates an Xai chat model for text generation.
    */
-  chat: (
-    modelId: XaiChatModelId,
-    settings?: XaiChatSettings,
-  ) => LanguageModelV1;
+  chat: (modelId: XaiChatModelId) => LanguageModelV3;
+
+  /**
+Creates an Xai responses model for agentic tool calling.
+   */
+  responses: (modelId: XaiResponsesModelId) => LanguageModelV3;
 
   /**
 Creates an Xai image model for image generation.
    */
-  image(modelId: XaiImageModelId, settings?: XaiImageSettings): ImageModelV1;
+  image(modelId: XaiImageModelId): ImageModelV3;
 
   /**
 Creates an Xai image model for image generation.
    */
-  imageModel(
-    modelId: XaiImageModelId,
-    settings?: XaiImageSettings,
-  ): ImageModelV1;
+  imageModel(modelId: XaiImageModelId): ImageModelV3;
+
+  /**
+Server-side agentic tools for use with the responses API.
+   */
+  tools: typeof xaiTools;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 export interface XaiProviderSettings {
@@ -91,36 +98,41 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
   const baseURL = withoutTrailingSlash(
     options.baseURL ?? 'https://api.x.ai/v1',
   );
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'XAI_API_KEY',
-      description: 'xAI API key',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'XAI_API_KEY',
+          description: 'xAI API key',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/xai/${VERSION}`,
+    );
 
-  const createLanguageModel = (
-    modelId: XaiChatModelId,
-    settings: XaiChatSettings = {},
-  ) => {
-    const structuredOutputs = supportsStructuredOutputs(modelId);
-    return new OpenAICompatibleChatLanguageModel(modelId, settings, {
+  const createChatLanguageModel = (modelId: XaiChatModelId) => {
+    return new XaiChatLanguageModel(modelId, {
       provider: 'xai.chat',
-      url: ({ path }) => `${baseURL}${path}`,
+      baseURL,
       headers: getHeaders,
+      generateId,
       fetch: options.fetch,
-      defaultObjectGenerationMode: structuredOutputs ? 'json' : 'tool',
-      errorStructure: xaiErrorStructure,
-      supportsStructuredOutputs: structuredOutputs,
     });
   };
 
-  const createImageModel = (
-    modelId: XaiImageModelId,
-    settings: XaiImageSettings = {},
-  ) => {
-    return new OpenAICompatibleImageModel(modelId, settings, {
+  const createResponsesLanguageModel = (modelId: XaiResponsesModelId) => {
+    return new XaiResponsesLanguageModel(modelId, {
+      provider: 'xai.responses',
+      baseURL,
+      headers: getHeaders,
+      generateId,
+      fetch: options.fetch,
+    });
+  };
+
+  const createImageModel = (modelId: XaiImageModelId) => {
+    return new OpenAICompatibleImageModel(modelId, {
       provider: 'xai.image',
       url: ({ path }) => `${baseURL}${path}`,
       headers: getHeaders,
@@ -129,16 +141,20 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
     });
   };
 
-  const provider = (modelId: XaiChatModelId, settings?: XaiChatSettings) =>
-    createLanguageModel(modelId, settings);
+  const provider = (modelId: XaiChatModelId) =>
+    createChatLanguageModel(modelId);
 
-  provider.languageModel = createLanguageModel;
-  provider.chat = createLanguageModel;
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+  provider.specificationVersion = 'v3' as const;
+  provider.languageModel = createChatLanguageModel;
+  provider.chat = createChatLanguageModel;
+  provider.responses = createResponsesLanguageModel;
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
   };
+  provider.textEmbeddingModel = provider.embeddingModel;
   provider.imageModel = createImageModel;
   provider.image = createImageModel;
+  provider.tools = xaiTools;
 
   return provider;
 }

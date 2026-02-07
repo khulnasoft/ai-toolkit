@@ -1,6 +1,6 @@
 # AI TOOLKIT - fal Provider
 
-The **[fal provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/fal)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains image model support for the [fal.ai API](https://fal.ai/).
+The **[fal provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fal)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains image model support for the [fal.ai API](https://fal.ai/).
 
 ## Setup
 
@@ -22,7 +22,7 @@ import { fal } from '@ai-toolkit/fal';
 
 ```ts
 import { fal } from '@ai-toolkit/fal';
-import { experimental_generateImage as generateImage } from 'ai';
+import { generateImage } from 'ai';
 import fs from 'fs';
 const { image } = await generateImage({
   model: fal.image('fal-ai/flux/schnell'),
@@ -53,4 +53,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[fal provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/fal)** for more information.
+Please check out the **[fal provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fal)** for more information.

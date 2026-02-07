@@ -1,6 +1,6 @@
 # AI TOOLKIT - Replicate Provider
 
-The **[Replicate provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains image model support for the Replicate API.
+The **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains image model support for the Replicate API.
 
 ## Setup
 
@@ -14,7 +14,7 @@ npm i @ai-toolkit/replicate
 
 ```ts
 import { replicate } from '@ai-toolkit/replicate';
-import { experimental_generateImage as generateImage } from 'ai';
+import { generateImage } from 'ai';
 
 const { image } = await generateImage({
   model: replicate.image('black-forest-labs/flux-schnell'),
@@ -43,4 +43,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[Replicate provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for more information.
+Please check out the **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for more information.

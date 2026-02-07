@@ -1,19 +1,16 @@
-import {
-  TranscriptionModelV1,
-  TranscriptionModelV1CallOptions,
-  TranscriptionModelV1CallWarning,
-} from '@ai-toolkit/provider';
+import { TranscriptionModelV3, SharedV3Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
   createJsonResponseHandler,
+  mediaTypeToExtension,
   parseProviderOptions,
   postFormDataToApi,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 import { ElevenLabsConfig } from './elevenlabs-config';
 import { elevenlabsFailedResponseHandler } from './elevenlabs-error';
-import { ElevenLabsTranscriptionModelId } from './elevenlabs-transcription-settings';
+import { ElevenLabsTranscriptionModelId } from './elevenlabs-transcription-options';
 import { ElevenLabsTranscriptionAPITypes } from './elevenlabs-api-types';
 
 // https://elevenlabs.io/docs/api-reference/speech-to-text/convert
@@ -26,7 +23,7 @@ const elevenLabsProviderOptionsSchema = z.object({
     .nullish()
     .default('word'),
   diarize: z.boolean().nullish().default(false),
-  file_format: z.enum(['pcm_s16le_16', 'other']).nullish().default('other'),
+  fileFormat: z.enum(['pcm_s16le_16', 'other']).nullish().default('other'),
 });
 
 export type ElevenLabsTranscriptionCallOptions = z.infer<
@@ -39,8 +36,8 @@ interface ElevenLabsTranscriptionModelConfig extends ElevenLabsConfig {
   };
 }
 
-export class ElevenLabsTranscriptionModel implements TranscriptionModelV1 {
-  readonly specificationVersion = 'v1';
+export class ElevenLabsTranscriptionModel implements TranscriptionModelV3 {
+  readonly specificationVersion = 'v3';
 
   get provider(): string {
     return this.config.provider;
@@ -51,15 +48,15 @@ export class ElevenLabsTranscriptionModel implements TranscriptionModelV1 {
     private readonly config: ElevenLabsTranscriptionModelConfig,
   ) {}
 
-  private getArgs({
+  private async getArgs({
     audio,
     mediaType,
     providerOptions,
-  }: Parameters<TranscriptionModelV1['doGenerate']>[0]) {
-    const warnings: TranscriptionModelV1CallWarning[] = [];
+  }: Parameters<TranscriptionModelV3['doGenerate']>[0]) {
+    const warnings: SharedV3Warning[] = [];
 
     // Parse provider options
-    const elevenlabsOptions = parseProviderOptions({
+    const elevenlabsOptions = await parseProviderOptions({
       provider: 'elevenlabs',
       providerOptions,
       schema: elevenLabsProviderOptionsSchema,
@@ -73,7 +70,12 @@ export class ElevenLabsTranscriptionModel implements TranscriptionModelV1 {
         : new Blob([convertBase64ToUint8Array(audio)]);
 
     formData.append('model_id', this.modelId);
-    formData.append('file', new File([blob], 'audio', { type: mediaType }));
+    const fileExtension = mediaTypeToExtension(mediaType);
+    formData.append(
+      'file',
+      new File([blob], 'audio', { type: mediaType }),
+      `audio.${fileExtension}`,
+    );
     formData.append('diarize', 'true');
 
     // Add provider-specific options
@@ -84,7 +86,7 @@ export class ElevenLabsTranscriptionModel implements TranscriptionModelV1 {
         num_speakers: elevenlabsOptions.numSpeakers ?? undefined,
         timestamps_granularity:
           elevenlabsOptions.timestampsGranularity ?? undefined,
-        file_format: elevenlabsOptions.file_format ?? undefined,
+        file_format: elevenlabsOptions.fileFormat ?? undefined,
       };
 
       if (typeof elevenlabsOptions.diarize === 'boolean') {
@@ -109,10 +111,10 @@ export class ElevenLabsTranscriptionModel implements TranscriptionModelV1 {
   }
 
   async doGenerate(
-    options: Parameters<TranscriptionModelV1['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<TranscriptionModelV1['doGenerate']>>> {
+    options: Parameters<TranscriptionModelV3['doGenerate']>[0],
+  ): Promise<Awaited<ReturnType<TranscriptionModelV3['doGenerate']>>> {
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
-    const { formData, warnings } = this.getArgs(options);
+    const { formData, warnings } = await this.getArgs(options);
 
     const {
       value: response,

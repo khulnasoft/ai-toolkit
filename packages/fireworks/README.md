@@ -1,6 +1,6 @@
 # AI TOOLKIT - Fireworks Provider
 
-The **[Fireworks provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
+The **[Fireworks provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
 
 ## Setup
 
@@ -34,7 +34,7 @@ const { text } = await generateText({
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { experimental_generateImage as generateImage } from 'ai';
+import { generateImage } from 'ai';
 import fs from 'fs';
 
 const { image } = await generateImage({
@@ -48,4 +48,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Fireworks provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for more information.
+Please check out the **[Fireworks provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fireworks)** for more information.

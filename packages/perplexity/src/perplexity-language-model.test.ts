@@ -1,19 +1,19 @@
-import {
-  LanguageModelV1Prompt,
-  UnsupportedFunctionalityError,
-} from '@ai-toolkit/provider';
+// TEST FILE DOES NOT USE THE PROVIDER `createPerplexity`
+
+import { describe, it, expect } from 'vitest';
+import { LanguageModelV3Prompt } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import {
   convertReadableStreamToArray,
-  createTestServer,
   mockId,
 } from '@ai-toolkit/provider-utils/test';
+import { z } from 'zod/v4';
 import {
   perplexityImageSchema,
   PerplexityLanguageModel,
 } from './perplexity-language-model';
-import { z } from 'zod';
 
-const TEST_PROMPT: LanguageModelV1Prompt = [
+const TEST_PROMPT: LanguageModelV3Prompt = [
   { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
 ];
 
@@ -21,7 +21,7 @@ describe('PerplexityLanguageModel', () => {
   describe('doGenerate', () => {
     const modelId = 'perplexity-001';
 
-    const perplexityLM = new PerplexityLanguageModel(modelId, {
+    const perplexityModel = new PerplexityLanguageModel(modelId, {
       baseURL: 'https://api.perplexity.ai',
       headers: () => ({
         authorization: 'Bearer test-token',
@@ -58,6 +58,7 @@ describe('PerplexityLanguageModel', () => {
         completion_tokens: number;
         citation_tokens?: number;
         num_search_queries?: number;
+        reasoning_tokens?: number;
       };
       id?: string;
       created?: number;
@@ -89,36 +90,59 @@ describe('PerplexityLanguageModel', () => {
       };
     }
 
-    it('should extract text response correctly', async () => {
+    it('should extract content correctly', async () => {
       prepareJsonResponse({ content: 'Hello, World!' });
 
-      const result = await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      const result = await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
       });
 
-      expect(result.text).toBe('Hello, World!');
-      expect(result.usage).toEqual({
-        promptTokens: 10,
-        completionTokens: 20,
-      });
-      expect(result.response).toEqual({
+      expect(result.content).toMatchInlineSnapshot(`
+        [
+          {
+            "text": "Hello, World!",
+            "type": "text",
+          },
+        ]
+      `);
+
+      expect(result.usage).toMatchInlineSnapshot(`
+        {
+          "inputTokens": {
+            "cacheRead": undefined,
+            "cacheWrite": undefined,
+            "noCache": 10,
+            "total": 10,
+          },
+          "outputTokens": {
+            "reasoning": 0,
+            "text": 20,
+            "total": 20,
+          },
+          "raw": {
+            "completion_tokens": 20,
+            "prompt_tokens": 10,
+          },
+        }
+      `);
+
+      expect({
+        id: result.response?.id,
+        timestamp: result.response?.timestamp,
+        modelId: result.response?.modelId,
+      }).toStrictEqual({
         id: 'test-id',
-        modelId,
         timestamp: new Date(1680000000 * 1000),
+        modelId,
       });
     });
 
     it('should send the correct request body', async () => {
       prepareJsonResponse({ content: '' });
-      await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
       });
-      const requestBody = await jsonServer.calls[0].requestBody;
-      expect(requestBody).toEqual({
+      expect(await jsonServer.calls[0].requestBodyJson).toEqual({
         model: modelId,
         messages: [{ role: 'user', content: 'Hello' }],
       });
@@ -126,11 +150,9 @@ describe('PerplexityLanguageModel', () => {
 
     it('should pass through perplexity provider options', async () => {
       prepareJsonResponse({ content: '' });
-      await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
-        providerMetadata: {
+        providerOptions: {
           perplexity: {
             search_recency_filter: 'month',
             return_images: true,
@@ -138,8 +160,7 @@ describe('PerplexityLanguageModel', () => {
         },
       });
 
-      const requestBody = await jsonServer.calls[0].requestBody;
-      expect(requestBody).toEqual({
+      expect(await jsonServer.calls[0].requestBodyJson).toEqual({
         model: modelId,
         messages: [{ role: 'user', content: 'Hello' }],
         search_recency_filter: 'month',
@@ -147,29 +168,129 @@ describe('PerplexityLanguageModel', () => {
       });
     });
 
+    it('should handle PDF files with base64 encoding', async () => {
+      const mockPdfData = 'mock-pdf-data';
+      const prompt: LanguageModelV3Prompt = [
+        {
+          role: 'user',
+          content: [
+            { type: 'text', text: 'Analyze this PDF' },
+            {
+              type: 'file',
+              mediaType: 'application/pdf',
+              data: mockPdfData,
+              filename: 'test.pdf',
+            },
+          ],
+        },
+      ];
+
+      prepareJsonResponse({
+        content: 'This is an analysis of the PDF',
+      });
+
+      const result = await perplexityModel.doGenerate({ prompt });
+
+      // Verify the request contains the correct PDF format
+      const requestBody =
+        await jsonServer.calls[jsonServer.calls.length - 1].requestBodyJson;
+      expect(requestBody.messages[0].content).toEqual([
+        {
+          type: 'text',
+          text: 'Analyze this PDF',
+        },
+        {
+          type: 'file_url',
+          file_url: {
+            url: expect.stringContaining(mockPdfData),
+          },
+          file_name: 'test.pdf',
+        },
+      ]);
+
+      // Verify the response is processed correctly
+      expect(result.content).toEqual([
+        {
+          type: 'text',
+          text: 'This is an analysis of the PDF',
+        },
+      ]);
+    });
+
+    it('should handle PDF files with URLs', async () => {
+      const pdfUrl = 'https://example.com/test.pdf';
+      const prompt: LanguageModelV3Prompt = [
+        {
+          role: 'user',
+          content: [
+            { type: 'text', text: 'Analyze this PDF' },
+            {
+              type: 'file',
+              mediaType: 'application/pdf',
+              data: new URL(pdfUrl),
+              filename: 'test.pdf',
+            },
+          ],
+        },
+      ];
+
+      prepareJsonResponse({
+        content: 'This is an analysis of the PDF from URL',
+      });
+
+      const result = await perplexityModel.doGenerate({ prompt });
+
+      // Verify the request contains the correct PDF URL format
+      const requestBody =
+        await jsonServer.calls[jsonServer.calls.length - 1].requestBodyJson;
+      expect(requestBody.messages[0].content).toEqual([
+        {
+          type: 'text',
+          text: 'Analyze this PDF',
+        },
+        {
+          type: 'file_url',
+          file_url: {
+            url: pdfUrl,
+          },
+          file_name: 'test.pdf',
+        },
+      ]);
+
+      // Verify the response is processed correctly
+      expect(result.content).toEqual([
+        {
+          type: 'text',
+          text: 'This is an analysis of the PDF from URL',
+        },
+      ]);
+    });
+
     it('should extract citations as sources', async () => {
       prepareJsonResponse({
         citations: ['http://example.com/123', 'https://example.com/456'],
       });
 
-      const result = await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      const result = await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
       });
 
-      expect(result.sources).toEqual([
-        {
-          sourceType: 'url',
-          id: 'id-0',
-          url: 'http://example.com/123',
-        },
-        {
-          sourceType: 'url',
-          id: 'id-1',
-          url: 'https://example.com/456',
-        },
-      ]);
+      expect(result.content).toMatchInlineSnapshot(`
+        [
+          {
+            "id": "id-0",
+            "sourceType": "url",
+            "type": "source",
+            "url": "http://example.com/123",
+          },
+          {
+            "id": "id-1",
+            "sourceType": "url",
+            "type": "source",
+            "url": "https://example.com/456",
+          },
+        ]
+      `);
     });
 
     it('should extract images', async () => {
@@ -184,9 +305,7 @@ describe('PerplexityLanguageModel', () => {
         ],
       });
 
-      const result = await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      const result = await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
       });
 
@@ -215,29 +334,49 @@ describe('PerplexityLanguageModel', () => {
           completion_tokens: 20,
           citation_tokens: 30,
           num_search_queries: 40,
+          reasoning_tokens: 50,
         },
       });
 
-      const result = await perplexityLM.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
+      const result = await perplexityModel.doGenerate({
         prompt: TEST_PROMPT,
       });
 
-      expect(result.usage).toEqual({
-        promptTokens: 10,
-        completionTokens: 20,
-      });
-
-      expect(result.providerMetadata).toEqual({
-        perplexity: {
-          images: null,
-          usage: {
-            citationTokens: 30,
-            numSearchQueries: 40,
+      expect(result.usage).toMatchInlineSnapshot(`
+        {
+          "inputTokens": {
+            "cacheRead": undefined,
+            "cacheWrite": undefined,
+            "noCache": 10,
+            "total": 10,
           },
-        },
-      });
+          "outputTokens": {
+            "reasoning": 50,
+            "text": -30,
+            "total": 20,
+          },
+          "raw": {
+            "citation_tokens": 30,
+            "completion_tokens": 20,
+            "num_search_queries": 40,
+            "prompt_tokens": 10,
+            "reasoning_tokens": 50,
+          },
+        }
+      `);
+      expect(result.providerMetadata).toMatchInlineSnapshot(
+        `
+          {
+            "perplexity": {
+              "images": null,
+              "usage": {
+                "citationTokens": 30,
+                "numSearchQueries": 40,
+              },
+            },
+          }
+        `,
+      );
     });
 
     it('should pass headers from provider and request', async () => {
@@ -252,8 +391,6 @@ describe('PerplexityLanguageModel', () => {
       });
 
       await lmWithCustomHeaders.doGenerate({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
         headers: { 'Custom-Request-Header': 'request-header-value' },
       });
@@ -264,19 +401,6 @@ describe('PerplexityLanguageModel', () => {
         'custom-provider-header': 'provider-header-value',
         'custom-request-header': 'request-header-value',
       });
-    });
-
-    it('should throw error for unsupported mode: object-tool', async () => {
-      await expect(
-        perplexityLM.doGenerate({
-          inputFormat: 'prompt',
-          mode: {
-            type: 'object-tool',
-            tool: { type: 'function', name: 'test', parameters: {} },
-          },
-          prompt: TEST_PROMPT,
-        }),
-      ).rejects.toThrowError(UnsupportedFunctionalityError);
     });
   });
 
@@ -316,6 +440,7 @@ describe('PerplexityLanguageModel', () => {
         completion_tokens: number;
         citation_tokens?: number;
         num_search_queries?: number;
+        reasoning_tokens?: number;
       };
       citations?: string[];
       images?: z.infer<typeof perplexityImageSchema>[];
@@ -365,47 +490,82 @@ describe('PerplexityLanguageModel', () => {
       prepareStreamResponse({ contents: ['Hello', ', ', 'World!'] });
 
       const { stream } = await perplexityLM.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
       });
 
       const result = await convertReadableStreamToArray(stream);
 
-      expect(result).toEqual([
-        {
-          type: 'response-metadata',
-          id: 'stream-id',
-          timestamp: new Date(1680003600 * 1000),
-          modelId,
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'Hello',
-        },
-        {
-          type: 'text-delta',
-          textDelta: ', ',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'World!',
-        },
-        {
-          type: 'finish',
-          finishReason: 'stop',
-          usage: { promptTokens: 10, completionTokens: 20 },
-          providerMetadata: {
-            perplexity: {
-              images: null,
-              usage: {
-                citationTokens: null,
-                numSearchQueries: null,
+      expect(result).toMatchInlineSnapshot(`
+        [
+          {
+            "type": "stream-start",
+            "warnings": [],
+          },
+          {
+            "id": "stream-id",
+            "modelId": "perplexity-001",
+            "timestamp": 2023-03-28T11:40:00.000Z,
+            "type": "response-metadata",
+          },
+          {
+            "id": "0",
+            "type": "text-start",
+          },
+          {
+            "delta": "Hello",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": ", ",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": "World!",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "id": "0",
+            "type": "text-end",
+          },
+          {
+            "finishReason": {
+              "raw": "stop",
+              "unified": "stop",
+            },
+            "providerMetadata": {
+              "perplexity": {
+                "images": null,
+                "usage": {
+                  "citationTokens": null,
+                  "numSearchQueries": null,
+                },
+              },
+            },
+            "type": "finish",
+            "usage": {
+              "inputTokens": {
+                "cacheRead": undefined,
+                "cacheWrite": undefined,
+                "noCache": 10,
+                "total": 10,
+              },
+              "outputTokens": {
+                "reasoning": 0,
+                "text": 20,
+                "total": 20,
+              },
+              "raw": {
+                "completion_tokens": 20,
+                "prompt_tokens": 10,
               },
             },
           },
-        },
-      ]);
+        ]
+      `);
     });
 
     it('should stream sources', async () => {
@@ -415,76 +575,105 @@ describe('PerplexityLanguageModel', () => {
       });
 
       const { stream } = await perplexityLM.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
       });
 
       const result = await convertReadableStreamToArray(stream);
 
-      expect(result).toEqual([
-        {
-          type: 'response-metadata',
-          id: 'stream-id',
-          timestamp: new Date(1680003600 * 1000),
-          modelId,
-        },
-        {
-          type: 'source',
-          source: {
-            sourceType: 'url',
-            id: 'id-0',
-            url: 'http://example.com/123',
+      expect(result).toMatchInlineSnapshot(`
+        [
+          {
+            "type": "stream-start",
+            "warnings": [],
           },
-        },
-        {
-          type: 'source',
-          source: {
-            sourceType: 'url',
-            id: 'id-1',
-            url: 'https://example.com/456',
+          {
+            "id": "stream-id",
+            "modelId": "perplexity-001",
+            "timestamp": 2023-03-28T11:40:00.000Z,
+            "type": "response-metadata",
           },
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'Hello',
-        },
-        {
-          type: 'text-delta',
-          textDelta: ', ',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'World!',
-        },
-        {
-          type: 'finish',
-          finishReason: 'stop',
-          usage: { promptTokens: 10, completionTokens: 20 },
-          providerMetadata: {
-            perplexity: {
-              images: null,
-              usage: {
-                citationTokens: null,
-                numSearchQueries: null,
+          {
+            "id": "id-0",
+            "sourceType": "url",
+            "type": "source",
+            "url": "http://example.com/123",
+          },
+          {
+            "id": "id-1",
+            "sourceType": "url",
+            "type": "source",
+            "url": "https://example.com/456",
+          },
+          {
+            "id": "0",
+            "type": "text-start",
+          },
+          {
+            "delta": "Hello",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": ", ",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": "World!",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "id": "0",
+            "type": "text-end",
+          },
+          {
+            "finishReason": {
+              "raw": "stop",
+              "unified": "stop",
+            },
+            "providerMetadata": {
+              "perplexity": {
+                "images": null,
+                "usage": {
+                  "citationTokens": null,
+                  "numSearchQueries": null,
+                },
+              },
+            },
+            "type": "finish",
+            "usage": {
+              "inputTokens": {
+                "cacheRead": undefined,
+                "cacheWrite": undefined,
+                "noCache": 10,
+                "total": 10,
+              },
+              "outputTokens": {
+                "reasoning": 0,
+                "text": 20,
+                "total": 20,
+              },
+              "raw": {
+                "completion_tokens": 20,
+                "prompt_tokens": 10,
               },
             },
           },
-        },
-      ]);
+        ]
+      `);
     });
 
     it('should send the correct streaming request body', async () => {
       prepareStreamResponse({ contents: [] });
 
       await perplexityLM.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
       });
 
-      const requestBody = await streamServer.calls[0].requestBody;
-      expect(requestBody).toEqual({
+      expect(await streamServer.calls[0].requestBodyJson).toEqual({
         model: modelId,
         messages: [{ role: 'user', content: 'Hello' }],
         stream: true,
@@ -504,54 +693,89 @@ describe('PerplexityLanguageModel', () => {
         ],
       });
       const { stream } = await perplexityLM.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
       });
 
       const result = await convertReadableStreamToArray(stream);
 
-      expect(result).toEqual([
-        {
-          id: 'stream-id',
-          modelId: 'perplexity-001',
-          timestamp: new Date('2023-03-28T11:40:00.000Z'),
-          type: 'response-metadata',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'Hello',
-        },
-        {
-          type: 'text-delta',
-          textDelta: ', ',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'World!',
-        },
-        {
-          type: 'finish',
-          finishReason: 'stop',
-          usage: { promptTokens: 10, completionTokens: 20 },
-          providerMetadata: {
-            perplexity: {
-              images: [
-                {
-                  imageUrl: 'https://example.com/image.jpg',
-                  originUrl: 'https://example.com/image.jpg',
-                  height: 100,
-                  width: 100,
+      expect(result).toMatchInlineSnapshot(`
+        [
+          {
+            "type": "stream-start",
+            "warnings": [],
+          },
+          {
+            "id": "stream-id",
+            "modelId": "perplexity-001",
+            "timestamp": 2023-03-28T11:40:00.000Z,
+            "type": "response-metadata",
+          },
+          {
+            "id": "0",
+            "type": "text-start",
+          },
+          {
+            "delta": "Hello",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": ", ",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": "World!",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "id": "0",
+            "type": "text-end",
+          },
+          {
+            "finishReason": {
+              "raw": "stop",
+              "unified": "stop",
+            },
+            "providerMetadata": {
+              "perplexity": {
+                "images": [
+                  {
+                    "height": 100,
+                    "imageUrl": "https://example.com/image.jpg",
+                    "originUrl": "https://example.com/image.jpg",
+                    "width": 100,
+                  },
+                ],
+                "usage": {
+                  "citationTokens": null,
+                  "numSearchQueries": null,
                 },
-              ],
-              usage: {
-                citationTokens: null,
-                numSearchQueries: null,
+              },
+            },
+            "type": "finish",
+            "usage": {
+              "inputTokens": {
+                "cacheRead": undefined,
+                "cacheWrite": undefined,
+                "noCache": 10,
+                "total": 10,
+              },
+              "outputTokens": {
+                "reasoning": 0,
+                "text": 20,
+                "total": 20,
+              },
+              "raw": {
+                "completion_tokens": 20,
+                "prompt_tokens": 10,
               },
             },
           },
-        },
-      ]);
+        ]
+      `);
     });
 
     it('should send images', async () => {
@@ -562,51 +786,90 @@ describe('PerplexityLanguageModel', () => {
           completion_tokens: 21,
           citation_tokens: 30,
           num_search_queries: 40,
+          reasoning_tokens: 50,
         },
       });
 
       const { stream } = await perplexityLM.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
       });
 
       const result = await convertReadableStreamToArray(stream);
 
-      expect(result).toStrictEqual([
-        {
-          id: 'stream-id',
-          modelId: 'perplexity-001',
-          timestamp: new Date('2023-03-28T11:40:00.000Z'),
-          type: 'response-metadata',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'Hello',
-        },
-        {
-          type: 'text-delta',
-          textDelta: ', ',
-        },
-        {
-          type: 'text-delta',
-          textDelta: 'World!',
-        },
-        {
-          type: 'finish',
-          finishReason: 'stop',
-          usage: { promptTokens: 11, completionTokens: 21 },
-          providerMetadata: {
-            perplexity: {
-              images: null,
-              usage: {
-                citationTokens: 30,
-                numSearchQueries: 40,
+      expect(result).toMatchInlineSnapshot(`
+        [
+          {
+            "type": "stream-start",
+            "warnings": [],
+          },
+          {
+            "id": "stream-id",
+            "modelId": "perplexity-001",
+            "timestamp": 2023-03-28T11:40:00.000Z,
+            "type": "response-metadata",
+          },
+          {
+            "id": "0",
+            "type": "text-start",
+          },
+          {
+            "delta": "Hello",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": ", ",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "delta": "World!",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "id": "0",
+            "type": "text-end",
+          },
+          {
+            "finishReason": {
+              "raw": "stop",
+              "unified": "stop",
+            },
+            "providerMetadata": {
+              "perplexity": {
+                "images": null,
+                "usage": {
+                  "citationTokens": 30,
+                  "numSearchQueries": 40,
+                },
+              },
+            },
+            "type": "finish",
+            "usage": {
+              "inputTokens": {
+                "cacheRead": undefined,
+                "cacheWrite": undefined,
+                "noCache": 11,
+                "total": 11,
+              },
+              "outputTokens": {
+                "reasoning": 50,
+                "text": -29,
+                "total": 21,
+              },
+              "raw": {
+                "citation_tokens": 30,
+                "completion_tokens": 21,
+                "num_search_queries": 40,
+                "prompt_tokens": 11,
+                "reasoning_tokens": 50,
               },
             },
           },
-        },
-      ]);
+        ]
+      `);
     });
 
     it('should pass headers', async () => {
@@ -621,9 +884,8 @@ describe('PerplexityLanguageModel', () => {
       });
 
       await lmWithCustomHeaders.doStream({
-        inputFormat: 'prompt',
-        mode: { type: 'regular' },
         prompt: TEST_PROMPT,
+        includeRawChunks: false,
         headers: { 'Custom-Request-Header': 'request-header-value' },
       });
 
@@ -633,6 +895,207 @@ describe('PerplexityLanguageModel', () => {
         'custom-provider-header': 'provider-header-value',
         'custom-request-header': 'request-header-value',
       });
+    });
+
+    it('should stream raw chunks when includeRawChunks is true', async () => {
+      streamServer.urls['https://api.perplexity.ai/chat/completions'].response =
+        {
+          type: 'stream-chunks',
+          headers: {
+            'content-type': 'text/event-stream',
+            'cache-control': 'no-cache',
+            connection: 'keep-alive',
+          },
+          chunks: [
+            `data: {"id":"ppl-123","object":"chat.completion.chunk","created":1234567890,"model":"perplexity-001","choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"},"finish_reason":null}],"citations":["https://example.com"]}\n\n`,
+            `data: {"id":"ppl-456","object":"chat.completion.chunk","created":1234567890,"model":"perplexity-001","choices":[{"index":0,"delta":{"content":" world"},"finish_reason":null}]}\n\n`,
+            `data: {"id":"ppl-789","object":"chat.completion.chunk","created":1234567890,"model":"perplexity-001","choices":[{"index":0,"delta":{},"finish_reason":"stop"}],"usage":{"prompt_tokens":10,"completion_tokens":5,"total_tokens":15,"citation_tokens":2,"num_search_queries":1}}\n\n`,
+            'data: [DONE]\n\n',
+          ],
+        };
+
+      const { stream } = await perplexityLM.doStream({
+        prompt: TEST_PROMPT,
+        includeRawChunks: true,
+      });
+
+      const chunks = await convertReadableStreamToArray(stream);
+
+      expect(chunks).toMatchInlineSnapshot(`
+        [
+          {
+            "type": "stream-start",
+            "warnings": [],
+          },
+          {
+            "rawValue": {
+              "choices": [
+                {
+                  "delta": {
+                    "content": "Hello",
+                    "role": "assistant",
+                  },
+                  "finish_reason": null,
+                  "index": 0,
+                },
+              ],
+              "citations": [
+                "https://example.com",
+              ],
+              "created": 1234567890,
+              "id": "ppl-123",
+              "model": "perplexity-001",
+              "object": "chat.completion.chunk",
+            },
+            "type": "raw",
+          },
+          {
+            "id": "ppl-123",
+            "modelId": "perplexity-001",
+            "timestamp": 2009-02-13T23:31:30.000Z,
+            "type": "response-metadata",
+          },
+          {
+            "id": "id-2",
+            "sourceType": "url",
+            "type": "source",
+            "url": "https://example.com",
+          },
+          {
+            "id": "0",
+            "type": "text-start",
+          },
+          {
+            "delta": "Hello",
+            "id": "0",
+            "type": "text-delta",
+          },
+          {
+            "rawValue": {
+              "choices": [
+                {
+                  "delta": {
+                    "content": " world",
+                  },
+                  "finish_reason": null,
+                  "index": 0,
+                },
+              ],
+              "created": 1234567890,
+              "id": "ppl-456",
+              "model": "perplexity-001",
+              "object": "chat.completion.chunk",
+            },
+            "type": "raw",
+          },
+          {
+            "error": [AI_TypeValidationError: Type validation failed: Value: {"id":"ppl-456","object":"chat.completion.chunk","created":1234567890,"model":"perplexity-001","choices":[{"index":0,"delta":{"content":" world"},"finish_reason":null}]}.
+        Error message: [
+          {
+            "code": "invalid_value",
+            "values": [
+              "assistant"
+            ],
+            "path": [
+              "choices",
+              0,
+              "delta",
+              "role"
+            ],
+            "message": "Invalid input: expected \\"assistant\\""
+          }
+        ]],
+            "type": "error",
+          },
+          {
+            "rawValue": {
+              "choices": [
+                {
+                  "delta": {},
+                  "finish_reason": "stop",
+                  "index": 0,
+                },
+              ],
+              "created": 1234567890,
+              "id": "ppl-789",
+              "model": "perplexity-001",
+              "object": "chat.completion.chunk",
+              "usage": {
+                "citation_tokens": 2,
+                "completion_tokens": 5,
+                "num_search_queries": 1,
+                "prompt_tokens": 10,
+                "total_tokens": 15,
+              },
+            },
+            "type": "raw",
+          },
+          {
+            "error": [AI_TypeValidationError: Type validation failed: Value: {"id":"ppl-789","object":"chat.completion.chunk","created":1234567890,"model":"perplexity-001","choices":[{"index":0,"delta":{},"finish_reason":"stop"}],"usage":{"prompt_tokens":10,"completion_tokens":5,"total_tokens":15,"citation_tokens":2,"num_search_queries":1}}.
+        Error message: [
+          {
+            "code": "invalid_value",
+            "values": [
+              "assistant"
+            ],
+            "path": [
+              "choices",
+              0,
+              "delta",
+              "role"
+            ],
+            "message": "Invalid input: expected \\"assistant\\""
+          },
+          {
+            "expected": "string",
+            "code": "invalid_type",
+            "path": [
+              "choices",
+              0,
+              "delta",
+              "content"
+            ],
+            "message": "Invalid input: expected string, received undefined"
+          }
+        ]],
+            "type": "error",
+          },
+          {
+            "id": "0",
+            "type": "text-end",
+          },
+          {
+            "finishReason": {
+              "raw": undefined,
+              "unified": "other",
+            },
+            "providerMetadata": {
+              "perplexity": {
+                "images": null,
+                "usage": {
+                  "citationTokens": null,
+                  "numSearchQueries": null,
+                },
+              },
+            },
+            "type": "finish",
+            "usage": {
+              "inputTokens": {
+                "cacheRead": undefined,
+                "cacheWrite": undefined,
+                "noCache": undefined,
+                "total": undefined,
+              },
+              "outputTokens": {
+                "reasoning": undefined,
+                "text": undefined,
+                "total": undefined,
+              },
+              "raw": undefined,
+            },
+          },
+        ]
+      `);
     });
   });
 });

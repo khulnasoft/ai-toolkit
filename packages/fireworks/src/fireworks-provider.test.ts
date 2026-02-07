@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createFireworks } from './fireworks-provider';
-import { LanguageModelV1, EmbeddingModelV1 } from '@ai-toolkit/provider';
+import { LanguageModelV3, EmbeddingModelV3 } from '@ai-toolkit/provider';
 import { loadApiKey } from '@ai-toolkit/provider-utils';
 import {
   OpenAICompatibleChatLanguageModel,
@@ -13,33 +13,57 @@ import { FireworksImageModel } from './fireworks-image-model';
 const OpenAICompatibleChatLanguageModelMock =
   OpenAICompatibleChatLanguageModel as unknown as Mock;
 
-vi.mock('@ai-toolkit/openai-compatible', () => ({
-  OpenAICompatibleChatLanguageModel: vi.fn(),
-  OpenAICompatibleCompletionLanguageModel: vi.fn(),
-  OpenAICompatibleEmbeddingModel: vi.fn(),
-}));
+vi.mock('@ai-toolkit/openai-compatible', () => {
+  // Create mock constructor functions that behave like classes
+  const createMockConstructor = (providerName: string) => {
+    const mockConstructor = vi.fn().mockImplementation(function (
+      this: any,
+      modelId: string,
+      settings: any,
+    ) {
+      this.provider = providerName;
+      this.modelId = modelId;
+      this.settings = settings;
+    });
+    return mockConstructor;
+  };
 
-vi.mock('@ai-toolkit/provider-utils', () => ({
-  loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
-  withoutTrailingSlash: vi.fn(url => url),
-}));
+  return {
+    OpenAICompatibleChatLanguageModel: createMockConstructor('fireworks.chat'),
+    OpenAICompatibleCompletionLanguageModel: createMockConstructor(
+      'fireworks.completion',
+    ),
+    OpenAICompatibleEmbeddingModel: createMockConstructor(
+      'fireworks.embedding',
+    ),
+  };
+});
+
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+  return {
+    ...actual,
+    loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
+    withoutTrailingSlash: vi.fn(url => url),
+  };
+});
 
 vi.mock('./fireworks-image-model', () => ({
   FireworksImageModel: vi.fn(),
 }));
 
 describe('FireworksProvider', () => {
-  let mockLanguageModel: LanguageModelV1;
-  let mockEmbeddingModel: EmbeddingModelV1<string>;
+  let mockLanguageModel: LanguageModelV3;
+  let mockEmbeddingModel: EmbeddingModelV3;
 
   beforeEach(() => {
     // Mock implementations of models
     mockLanguageModel = {
-      // Add any required methods for LanguageModelV1
-    } as LanguageModelV1;
+      // Add any required methods for LanguageModelV3
+    } as LanguageModelV3;
     mockEmbeddingModel = {
-      // Add any required methods for EmbeddingModelV1
-    } as EmbeddingModelV1<string>;
+      // Add any required methods for EmbeddingModelV3
+    } as EmbeddingModelV3;
 
     // Reset mocks
     vi.clearAllMocks();
@@ -53,7 +77,7 @@ describe('FireworksProvider', () => {
       // Use the mocked version
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -74,7 +98,7 @@ describe('FireworksProvider', () => {
 
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -87,9 +111,8 @@ describe('FireworksProvider', () => {
     it('should return a chat model when called as a function', () => {
       const provider = createFireworks();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider(modelId, settings);
+      const model = provider(modelId);
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
   });
@@ -98,9 +121,8 @@ describe('FireworksProvider', () => {
     it('should construct a chat model with correct configuration', () => {
       const provider = createFireworks();
       const modelId = 'fireworks-chat-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.chatModel(modelId, settings);
+      const model = provider.chatModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
@@ -110,21 +132,19 @@ describe('FireworksProvider', () => {
     it('should construct a completion model with correct configuration', () => {
       const provider = createFireworks();
       const modelId = 'fireworks-completion-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.completionModel(modelId, settings);
+      const model = provider.completionModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleCompletionLanguageModel);
     });
   });
 
-  describe('textEmbeddingModel', () => {
+  describe('embeddingModel', () => {
     it('should construct a text embedding model with correct configuration', () => {
       const provider = createFireworks();
       const modelId = 'fireworks-embedding-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.textEmbeddingModel(modelId, settings);
+      const model = provider.embeddingModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleEmbeddingModel);
     });
@@ -134,14 +154,12 @@ describe('FireworksProvider', () => {
     it('should construct an image model with correct configuration', () => {
       const provider = createFireworks();
       const modelId = 'accounts/fireworks/models/flux-1-dev-fp8';
-      const settings = { maxImagesPerCall: 2 };
 
-      const model = provider.image(modelId, settings);
+      const model = provider.image(modelId);
 
       expect(model).toBeInstanceOf(FireworksImageModel);
       expect(FireworksImageModel).toHaveBeenCalledWith(
         modelId,
-        settings,
         expect.objectContaining({
           provider: 'fireworks.image',
           baseURL: 'https://api.fireworks.ai/inference/v1',
@@ -158,7 +176,6 @@ describe('FireworksProvider', () => {
       expect(model).toBeInstanceOf(FireworksImageModel);
       expect(FireworksImageModel).toHaveBeenCalledWith(
         modelId,
-        {},
         expect.any(Object),
       );
     });
@@ -168,11 +185,10 @@ describe('FireworksProvider', () => {
       const provider = createFireworks({ baseURL: customBaseURL });
       const modelId = 'accounts/fireworks/models/flux-1-dev-fp8';
 
-      const model = provider.image(modelId);
+      provider.image(modelId);
 
       expect(FireworksImageModel).toHaveBeenCalledWith(
         modelId,
-        expect.any(Object),
         expect.objectContaining({
           baseURL: customBaseURL,
         }),

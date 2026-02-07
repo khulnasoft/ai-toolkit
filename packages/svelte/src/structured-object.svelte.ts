@@ -9,9 +9,9 @@ import {
   isDeepEqualData,
   parsePartialJson,
   type DeepPartial,
-  type Schema,
-} from '@ai-toolkit/ui-utils';
-import { type z } from 'zod';
+  type FlexibleSchema,
+  type InferSchema,
+} from 'ai';
 import {
   getStructuredObjectContext,
   hasStructuredObjectContext,
@@ -19,16 +19,19 @@ import {
   type StructuredObjectStore,
 } from './structured-object-context.svelte.js';
 
-export type Experimental_StructuredObjectOptions<RESULT> = {
+export type Experimental_StructuredObjectOptions<
+  SCHEMA extends FlexibleSchema,
+  RESULT = InferSchema<SCHEMA>,
+> = {
   /**
    * The API endpoint. It should stream JSON that matches the schema as chunked text.
    */
   api: string;
 
   /**
-   * A Zod schema that defines the shape of the complete object.
+   * A schema that defines the shape of the complete object.
    */
-  schema: z.Schema<RESULT, z.ZodTypeDef, unknown> | Schema<RESULT>;
+  schema: SCHEMA;
 
   /**
    * An unique identifier. If not provided, a random one will be
@@ -82,9 +85,13 @@ export type Experimental_StructuredObjectOptions<RESULT> = {
   credentials?: RequestCredentials;
 };
 
-export class StructuredObject<RESULT, INPUT = unknown> {
-  #options: Experimental_StructuredObjectOptions<RESULT> =
-    {} as Experimental_StructuredObjectOptions<RESULT>;
+export class StructuredObject<
+  SCHEMA extends FlexibleSchema,
+  RESULT = InferSchema<SCHEMA>,
+  INPUT = unknown,
+> {
+  #options: Experimental_StructuredObjectOptions<SCHEMA, RESULT> =
+    {} as Experimental_StructuredObjectOptions<SCHEMA, RESULT>;
   readonly #id = $derived(this.#options.id ?? generateId());
   readonly #keyedStore = $state<KeyedStructuredObjectStore>()!;
   readonly #store = $derived(
@@ -114,7 +121,7 @@ export class StructuredObject<RESULT, INPUT = unknown> {
     return this.#store.loading;
   }
 
-  constructor(options: Experimental_StructuredObjectOptions<RESULT>) {
+  constructor(options: Experimental_StructuredObjectOptions<SCHEMA, RESULT>) {
     if (hasStructuredObjectContext()) {
       this.#keyedStore = getStructuredObjectContext();
     } else {
@@ -143,9 +150,9 @@ export class StructuredObject<RESULT, INPUT = unknown> {
    */
   submit = async (input: INPUT) => {
     try {
-      this.#store.object = undefined; // reset the data
+      this.#clearObject();
+
       this.#store.loading = true;
-      this.#store.error = undefined;
 
       const abortController = new AbortController();
       this.#abortController = abortController;
@@ -177,13 +184,13 @@ export class StructuredObject<RESULT, INPUT = unknown> {
 
       await response.body.pipeThrough(new TextDecoderStream()).pipeTo(
         new WritableStream<string>({
-          write: chunk => {
+          write: async chunk => {
             if (abortController?.signal.aborted) {
               throw new DOMException('Stream aborted', 'AbortError');
             }
             accumulatedText += chunk;
 
-            const { value } = parsePartialJson(accumulatedText);
+            const { value } = await parsePartialJson(accumulatedText);
             const currentObject = value as DeepPartial<RESULT>;
 
             if (!isDeepEqualData(latestObject, currentObject)) {
@@ -193,12 +200,12 @@ export class StructuredObject<RESULT, INPUT = unknown> {
             }
           },
 
-          close: () => {
+          close: async () => {
             this.#store.loading = false;
             this.#abortController = undefined;
 
             if (this.#options.onFinish != null) {
-              const validationResult = safeValidateTypes({
+              const validationResult = await safeValidateTypes({
                 value: latestObject,
                 schema: asSchema(this.#options.schema),
               });
@@ -226,5 +233,19 @@ export class StructuredObject<RESULT, INPUT = unknown> {
       this.#store.loading = false;
       this.#store.error = coalescedError;
     }
+  };
+
+  /**
+   * Clears the object state.
+   */
+  clear = () => {
+    this.stop();
+    this.#clearObject();
+  };
+
+  #clearObject = () => {
+    this.#store.object = undefined;
+    this.#store.error = undefined;
+    this.#store.loading = false;
   };
 }

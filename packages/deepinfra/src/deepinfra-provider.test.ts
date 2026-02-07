@@ -5,7 +5,7 @@ import {
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
 } from '@ai-toolkit/openai-compatible';
-import { LanguageModelV1, EmbeddingModelV1 } from '@ai-toolkit/provider';
+import { LanguageModelV3, EmbeddingModelV3 } from '@ai-toolkit/provider';
 import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 
@@ -19,27 +19,31 @@ vi.mock('@ai-toolkit/openai-compatible', () => ({
   OpenAICompatibleEmbeddingModel: vi.fn(),
 }));
 
-vi.mock('@ai-toolkit/provider-utils', () => ({
-  loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
-  withoutTrailingSlash: vi.fn(url => url),
-}));
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+  return {
+    ...actual,
+    loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
+    withoutTrailingSlash: vi.fn(url => url),
+  };
+});
 
 vi.mock('./deepinfra-image-model', () => ({
   DeepInfraImageModel: vi.fn(),
 }));
 
 describe('DeepInfraProvider', () => {
-  let mockLanguageModel: LanguageModelV1;
-  let mockEmbeddingModel: EmbeddingModelV1<string>;
+  let mockLanguageModel: LanguageModelV3;
+  let mockEmbeddingModel: EmbeddingModelV3;
 
   beforeEach(() => {
     // Mock implementations of models
     mockLanguageModel = {
-      // Add any required methods for LanguageModelV1
-    } as LanguageModelV1;
+      // Add any required methods for LanguageModelV3
+    } as LanguageModelV3;
     mockEmbeddingModel = {
-      // Add any required methods for EmbeddingModelV1
-    } as EmbeddingModelV1<string>;
+      // Add any required methods for EmbeddingModelV3
+    } as EmbeddingModelV3;
 
     // Reset mocks
     vi.clearAllMocks();
@@ -53,7 +57,7 @@ describe('DeepInfraProvider', () => {
       // Use the mocked version
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -74,7 +78,7 @@ describe('DeepInfraProvider', () => {
 
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -87,9 +91,8 @@ describe('DeepInfraProvider', () => {
     it('should return a chat model when called as a function', () => {
       const provider = createDeepInfra();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider(modelId, settings);
+      const model = provider(modelId);
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
   });
@@ -98,17 +101,14 @@ describe('DeepInfraProvider', () => {
     it('should construct a chat model with correct configuration', () => {
       const provider = createDeepInfra();
       const modelId = 'deepinfra-chat-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.chatModel(modelId, settings);
+      const model = provider.chatModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
       expect(OpenAICompatibleChatLanguageModelMock).toHaveBeenCalledWith(
         modelId,
-        settings,
         expect.objectContaining({
           provider: 'deepinfra.chat',
-          defaultObjectGenerationMode: 'json',
         }),
       );
     });
@@ -118,21 +118,19 @@ describe('DeepInfraProvider', () => {
     it('should construct a completion model with correct configuration', () => {
       const provider = createDeepInfra();
       const modelId = 'deepinfra-completion-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.completionModel(modelId, settings);
+      const model = provider.completionModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleCompletionLanguageModel);
     });
   });
 
-  describe('textEmbeddingModel', () => {
+  describe('embeddingModel', () => {
     it('should construct a text embedding model with correct configuration', () => {
       const provider = createDeepInfra();
       const modelId = 'deepinfra-embedding-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.textEmbeddingModel(modelId, settings);
+      const model = provider.embeddingModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleEmbeddingModel);
     });
@@ -142,14 +140,12 @@ describe('DeepInfraProvider', () => {
     it('should construct an image model with correct configuration', () => {
       const provider = createDeepInfra();
       const modelId = 'deepinfra-image-model';
-      const settings = { maxImagesPerCall: 2 };
 
-      const model = provider.image(modelId, settings);
+      const model = provider.image(modelId);
 
       expect(model).toBeInstanceOf(DeepInfraImageModel);
       expect(DeepInfraImageModel).toHaveBeenCalledWith(
         modelId,
-        settings,
         expect.objectContaining({
           provider: 'deepinfra.image',
           baseURL: 'https://api.deepinfra.com/v1/inference',
@@ -166,7 +162,6 @@ describe('DeepInfraProvider', () => {
       expect(model).toBeInstanceOf(DeepInfraImageModel);
       expect(DeepInfraImageModel).toHaveBeenCalledWith(
         modelId,
-        {},
         expect.any(Object),
       );
     });
@@ -180,7 +175,6 @@ describe('DeepInfraProvider', () => {
 
       expect(DeepInfraImageModel).toHaveBeenCalledWith(
         modelId,
-        expect.any(Object),
         expect.objectContaining({
           baseURL: `${customBaseURL}/inference`,
         }),

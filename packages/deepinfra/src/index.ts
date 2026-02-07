@@ -4,3 +4,4 @@ export type {
   DeepInfraProviderSettings,
 } from './deepinfra-provider';
 export type { OpenAICompatibleErrorData as DeepInfraErrorData } from '@ai-toolkit/openai-compatible';
+export { VERSION } from './version';

@@ -23,7 +23,7 @@
 # Make sure you have a branch pushed to GitHub, and make sure that branch has
 # a changeset committed. You can generate a changeset with "pnpm changeset".
 #
-# Then open github.com/khulnasoft/ai and click on Actions > Release Snapshot
+# Then open github.com/vercel/ai and click on Actions > Release Snapshot
 # Then click "Run workflow" on the right and select the branch you want to
 # create a snapshot release for and click the "Run workflow" button.
 
@@ -38,17 +38,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9.12.3
+          version: 10.11.0
 
       - name: Setup Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
 

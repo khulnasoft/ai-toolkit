@@ -1,8 +1,8 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import { LanguageModelV3FinishReason } from '@ai-toolkit/provider';
 
 export function mapCohereFinishReason(
   finishReason: string | null | undefined,
-): LanguageModelV1FinishReason {
+): LanguageModelV3FinishReason['unified'] {
   switch (finishReason) {
     case 'COMPLETE':
     case 'STOP_SEQUENCE':
@@ -18,6 +18,6 @@ export function mapCohereFinishReason(
       return 'tool-calls';
 
     default:
-      return 'unknown';
+      return 'other';
   }
 }

@@ -1,36 +1,29 @@
 import {
-  LanguageModelV1,
-  EmbeddingModelV1,
-  ProviderV1,
-  ImageModelV1,
-} from '@ai-toolkit/provider';
-import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
 } from '@ai-toolkit/openai-compatible';
 import {
+  EmbeddingModelV3,
+  ImageModelV3,
+  LanguageModelV3,
+  ProviderV3,
+  RerankingModelV3,
+} from '@ai-toolkit/provider';
+import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
-import {
-  TogetherAIChatModelId,
-  TogetherAIChatSettings,
-} from './togetherai-chat-settings';
-import {
-  TogetherAIEmbeddingModelId,
-  TogetherAIEmbeddingSettings,
-} from './togetherai-embedding-settings';
-import {
-  TogetherAICompletionModelId,
-  TogetherAICompletionSettings,
-} from './togetherai-completion-settings';
+import { TogetherAIRerankingModel } from './reranking/togetherai-reranking-model';
+import { TogetherAIRerankingModelId } from './reranking/togetherai-reranking-options';
+import { TogetherAIChatModelId } from './togetherai-chat-options';
+import { TogetherAICompletionModelId } from './togetherai-completion-options';
+import { TogetherAIEmbeddingModelId } from './togetherai-embedding-options';
 import { TogetherAIImageModel } from './togetherai-image-model';
-import {
-  TogetherAIImageModelId,
-  TogetherAIImageSettings,
-} from './togetherai-image-settings';
+import { TogetherAIImageModelId } from './togetherai-image-settings';
+import { VERSION } from './version';
 
 export interface TogetherAIProviderSettings {
   /**
@@ -52,62 +45,56 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface TogetherAIProvider extends ProviderV1 {
+export interface TogetherAIProvider extends ProviderV3 {
   /**
 Creates a model for text generation.
 */
-  (
-    modelId: TogetherAIChatModelId,
-    settings?: TogetherAIChatSettings,
-  ): LanguageModelV1;
+  (modelId: TogetherAIChatModelId): LanguageModelV3;
 
   /**
 Creates a chat model for text generation.
 */
-  chatModel(
-    modelId: TogetherAIChatModelId,
-    settings?: TogetherAIChatSettings,
-  ): LanguageModelV1;
+  chatModel(modelId: TogetherAIChatModelId): LanguageModelV3;
 
   /**
 Creates a chat model for text generation.
 */
-  languageModel(
-    modelId: TogetherAIChatModelId,
-    settings?: TogetherAIChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: TogetherAIChatModelId): LanguageModelV3;
 
   /**
 Creates a completion model for text generation.
 */
-  completionModel(
-    modelId: TogetherAICompletionModelId,
-    settings?: TogetherAICompletionSettings,
-  ): LanguageModelV1;
+  completionModel(modelId: TogetherAICompletionModelId): LanguageModelV3;
 
   /**
 Creates a text embedding model for text generation.
 */
-  textEmbeddingModel(
-    modelId: TogetherAIEmbeddingModelId,
-    settings?: TogetherAIEmbeddingSettings,
-  ): EmbeddingModelV1<string>;
+  embeddingModel(modelId: TogetherAIEmbeddingModelId): EmbeddingModelV3;
 
   /**
-  Creates a model for image generation.
+   * @deprecated Use `embeddingModel` instead.
    */
-  image(
-    modelId: TogetherAIImageModelId,
-    settings?: TogetherAIImageSettings,
-  ): ImageModelV1;
+  textEmbeddingModel(modelId: TogetherAIEmbeddingModelId): EmbeddingModelV3;
 
   /**
-  Creates a model for image generation.
+Creates a model for image generation.
+*/
+  image(modelId: TogetherAIImageModelId): ImageModelV3;
+
+  /**
+Creates a model for image generation.
+*/
+  imageModel(modelId: TogetherAIImageModelId): ImageModelV3;
+
+  /**
+   * Creates a model for reranking.
    */
-  imageModel(
-    modelId: TogetherAIImageModelId,
-    settings?: TogetherAIImageSettings,
-  ): ImageModelV1;
+  reranking(modelId: TogetherAIRerankingModelId): RerankingModelV3;
+
+  /**
+   * Creates a model for reranking.
+   */
+  rerankingModel(modelId: TogetherAIRerankingModelId): RerankingModelV3;
 }
 
 export function createTogetherAI(
@@ -116,14 +103,18 @@ export function createTogetherAI(
   const baseURL = withoutTrailingSlash(
     options.baseURL ?? 'https://api.together.xyz/v1/',
   );
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'TOGETHER_AI_API_KEY',
-      description: 'TogetherAI',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'TOGETHER_AI_API_KEY',
+          description: 'TogetherAI',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/togetherai/${VERSION}`,
+    );
 
   interface CommonModelConfig {
     provider: string;
@@ -139,56 +130,49 @@ export function createTogetherAI(
     fetch: options.fetch,
   });
 
-  const createChatModel = (
-    modelId: TogetherAIChatModelId,
-    settings: TogetherAIChatSettings = {},
-  ) => {
-    return new OpenAICompatibleChatLanguageModel(modelId, settings, {
-      ...getCommonModelConfig('chat'),
-      defaultObjectGenerationMode: 'tool',
-    });
+  const createChatModel = (modelId: TogetherAIChatModelId) => {
+    return new OpenAICompatibleChatLanguageModel(
+      modelId,
+      getCommonModelConfig('chat'),
+    );
   };
 
-  const createCompletionModel = (
-    modelId: TogetherAICompletionModelId,
-    settings: TogetherAICompletionSettings = {},
-  ) =>
+  const createCompletionModel = (modelId: TogetherAICompletionModelId) =>
     new OpenAICompatibleCompletionLanguageModel(
       modelId,
-      settings,
       getCommonModelConfig('completion'),
     );
 
-  const createTextEmbeddingModel = (
-    modelId: TogetherAIEmbeddingModelId,
-    settings: TogetherAIEmbeddingSettings = {},
-  ) =>
+  const createEmbeddingModel = (modelId: TogetherAIEmbeddingModelId) =>
     new OpenAICompatibleEmbeddingModel(
       modelId,
-      settings,
       getCommonModelConfig('embedding'),
     );
 
-  const createImageModel = (
-    modelId: TogetherAIImageModelId,
-    settings: TogetherAIImageSettings = {},
-  ) =>
-    new TogetherAIImageModel(modelId, settings, {
+  const createImageModel = (modelId: TogetherAIImageModelId) =>
+    new TogetherAIImageModel(modelId, {
       ...getCommonModelConfig('image'),
       baseURL: baseURL ?? 'https://api.together.xyz/v1/',
     });
 
-  const provider = (
-    modelId: TogetherAIChatModelId,
-    settings?: TogetherAIChatSettings,
-  ) => createChatModel(modelId, settings);
+  const createRerankingModel = (modelId: TogetherAIRerankingModelId) =>
+    new TogetherAIRerankingModel(modelId, {
+      ...getCommonModelConfig('reranking'),
+      baseURL: baseURL ?? 'https://api.together.xyz/v1/',
+    });
 
+  const provider = (modelId: TogetherAIChatModelId) => createChatModel(modelId);
+
+  provider.specificationVersion = 'v3' as const;
   provider.completionModel = createCompletionModel;
   provider.languageModel = createChatModel;
   provider.chatModel = createChatModel;
-  provider.textEmbeddingModel = createTextEmbeddingModel;
+  provider.embeddingModel = createEmbeddingModel;
+  provider.textEmbeddingModel = createEmbeddingModel;
   provider.image = createImageModel;
   provider.imageModel = createImageModel;
+  provider.reranking = createRerankingModel;
+  provider.rerankingModel = createRerankingModel;
 
   return provider;
 }

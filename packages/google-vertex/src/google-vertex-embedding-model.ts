@@ -1,5 +1,5 @@
 import {
-  EmbeddingModelV1,
+  EmbeddingModelV3,
   TooManyEmbeddingValuesForCallError,
 } from '@ai-toolkit/provider';
 import {
@@ -7,42 +7,33 @@ import {
   createJsonResponseHandler,
   postJsonToApi,
   resolve,
-  Resolvable,
+  parseProviderOptions,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
 import {
   GoogleVertexEmbeddingModelId,
-  GoogleVertexEmbeddingSettings,
-} from './google-vertex-embedding-settings';
+  googleVertexEmbeddingProviderOptions,
+} from './google-vertex-embedding-options';
 import { GoogleVertexConfig } from './google-vertex-config';
 
-export class GoogleVertexEmbeddingModel implements EmbeddingModelV1<string> {
-  readonly specificationVersion = 'v1';
+export class GoogleVertexEmbeddingModel implements EmbeddingModelV3 {
+  readonly specificationVersion = 'v3';
   readonly modelId: GoogleVertexEmbeddingModelId;
+  readonly maxEmbeddingsPerCall = 2048;
+  readonly supportsParallelCalls = true;
 
   private readonly config: GoogleVertexConfig;
-  private readonly settings: GoogleVertexEmbeddingSettings;
 
   get provider(): string {
     return this.config.provider;
   }
 
-  get maxEmbeddingsPerCall(): number {
-    return 2048;
-  }
-
-  get supportsParallelCalls(): boolean {
-    return true;
-  }
-
   constructor(
     modelId: GoogleVertexEmbeddingModelId,
-    settings: GoogleVertexEmbeddingSettings,
     config: GoogleVertexConfig,
   ) {
     this.modelId = modelId;
-    this.settings = settings;
     this.config = config;
   }
 
@@ -50,9 +41,26 @@ export class GoogleVertexEmbeddingModel implements EmbeddingModelV1<string> {
     values,
     headers,
     abortSignal,
-  }: Parameters<EmbeddingModelV1<string>['doEmbed']>[0]): Promise<
-    Awaited<ReturnType<EmbeddingModelV1<string>['doEmbed']>>
+    providerOptions,
+  }: Parameters<EmbeddingModelV3['doEmbed']>[0]): Promise<
+    Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>
   > {
+    let googleOptions = await parseProviderOptions({
+      provider: 'vertex',
+      providerOptions,
+      schema: googleVertexEmbeddingProviderOptions,
+    });
+
+    if (googleOptions == null) {
+      googleOptions = await parseProviderOptions({
+        provider: 'google',
+        providerOptions,
+        schema: googleVertexEmbeddingProviderOptions,
+      });
+    }
+
+    googleOptions = googleOptions ?? {};
+
     if (values.length > this.maxEmbeddingsPerCall) {
       throw new TooManyEmbeddingValuesForCallError({
         provider: this.provider,
@@ -68,13 +76,22 @@ export class GoogleVertexEmbeddingModel implements EmbeddingModelV1<string> {
     );
 
     const url = `${this.config.baseURL}/models/${this.modelId}:predict`;
-    const { responseHeaders, value: response } = await postJsonToApi({
+    const {
+      responseHeaders,
+      value: response,
+      rawValue,
+    } = await postJsonToApi({
       url,
       headers: mergedHeaders,
       body: {
-        instances: values.map(value => ({ content: value })),
+        instances: values.map(value => ({
+          content: value,
+          task_type: googleOptions.taskType,
+          title: googleOptions.title,
+        })),
         parameters: {
-          outputDimensionality: this.settings.outputDimensionality,
+          outputDimensionality: googleOptions.outputDimensionality,
+          autoTruncate: googleOptions.autoTruncate,
         },
       },
       failedResponseHandler: googleVertexFailedResponseHandler,
@@ -86,6 +103,7 @@ export class GoogleVertexEmbeddingModel implements EmbeddingModelV1<string> {
     });
 
     return {
+      warnings: [],
       embeddings: response.predictions.map(
         prediction => prediction.embeddings.values,
       ),
@@ -96,7 +114,7 @@ export class GoogleVertexEmbeddingModel implements EmbeddingModelV1<string> {
           0,
         ),
       },
-      rawResponse: { headers: responseHeaders },
+      response: { headers: responseHeaders, body: rawValue },
     };
   }
 }

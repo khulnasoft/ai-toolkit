@@ -1,9 +1,11 @@
 import { openai } from '@ai-toolkit/openai';
-import { experimental_createMCPClient, generateText } from 'ai';
+import { generateText, stepCountIs } from 'ai';
+import { createMCPClient } from '@ai-toolkit/mcp';
+
 import 'dotenv/config';
 
 async function main() {
-  const mcpClient = await experimental_createMCPClient({
+  const mcpClient = await createMCPClient({
     transport: {
       type: 'sse',
       url: 'http://localhost:8080/sse',
@@ -16,9 +18,9 @@ async function main() {
   const tools = await mcpClient.tools();
 
   const { text: answer } = await generateText({
-    model: openai('gpt-4o-mini', { structuredOutputs: true }),
+    model: openai('gpt-4o-mini'),
     tools,
-    maxSteps: 10,
+    stopWhen: stepCountIs(10),
     onStepFinish: async ({ toolResults }) => {
       console.log(`STEP RESULTS: ${JSON.stringify(toolResults, null, 2)}`);
     },

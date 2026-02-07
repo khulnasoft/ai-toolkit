@@ -15,7 +15,7 @@ You can start the local server under the [Local Server tab](https://lmstudio.ai/
 The LM Studio provider is available via the `@ai-toolkit/openai-compatible` module as it is compatible with the OpenAI API.
 You can install it with
 
-<Tabs items={['pnpm', 'npm', 'yarn']}>
+<Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
     <Snippet text="pnpm add @ai-toolkit/openai-compatible" dark />
   </Tab>
@@ -24,6 +24,10 @@ You can install it with
   </Tab>
   <Tab>
     <Snippet text="yarn add @ai-toolkit/openai-compatible" dark />
+  </Tab>
+
+  <Tab>
+    <Snippet text="bun add @ai-toolkit/openai-compatible" dark />
   </Tab>
 </Tabs>
 
@@ -81,10 +85,10 @@ LM Studio language models can also be used with `streamText`.
 ## Embedding Models
 
 You can create models that call the [LM Studio embeddings API](https://lmstudio.ai/docs/basics/server#endpoints-overview)
-using the `.embedding()` factory method.
+using the `.embeddingModel()` factory method.
 
 ```ts
-const model = lmstudio.embedding('text-embedding-nomic-embed-text-v1.5');
+const model = lmstudio.embeddingModel('text-embedding-nomic-embed-text-v1.5');
 ```
 
 ### Example - Embedding a Single Value
@@ -100,7 +104,7 @@ const lmstudio = createOpenAICompatible({
 
 // 'embedding' is a single embedding object (number[])
 const { embedding } = await embed({
-  model: lmstudio.textEmbeddingModel('text-embedding-nomic-embed-text-v1.5'),
+  model: lmstudio.embeddingModel('text-embedding-nomic-embed-text-v1.5'),
   value: 'sunny day at the beach',
 });
 ```
@@ -112,10 +116,10 @@ it is often useful to embed many values at once (batch embedding).
 
 The AI TOOLKIT provides the [`embedMany`](/docs/reference/ai-toolkit-core/embed-many) function for this purpose.
 Similar to `embed`, you can use it with embeddings models,
-e.g. `lmstudio.textEmbeddingModel('text-embedding-nomic-embed-text-v1.5')` or `lmstudio.textEmbeddingModel('text-embedding-bge-small-en-v1.5')`.
+e.g. `lmstudio.embeddingModel('text-embedding-nomic-embed-text-v1.5')` or `lmstudio.embeddingModel('text-embedding-bge-small-en-v1.5')`.
 
 ```tsx
-import { createOpenAICompatible } from '@ai-toolkit/openai';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { embedMany } from 'ai';
 
 const lmstudio = createOpenAICompatible({
@@ -126,7 +130,7 @@ const lmstudio = createOpenAICompatible({
 // 'embeddings' is an array of embedding objects (number[][]).
 // It is sorted in the same order as the input values.
 const { embeddings } = await embedMany({
-  model: lmstudio.textEmbeddingModel('text-embedding-nomic-embed-text-v1.5'),
+  model: lmstudio.embeddingModel('text-embedding-nomic-embed-text-v1.5'),
   values: [
     'sunny day at the beach',
     'rainy afternoon in the city',

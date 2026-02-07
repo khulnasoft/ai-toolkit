@@ -1,11 +1,11 @@
 ---
-title: LangChainAdapter
-description: API Reference for LangChainAdapter.
+title: '@ai-toolkit/langchain Adapter'
+description: API Reference for the LangChain Adapter.
 ---
 
-# `LangChainAdapter`
+# `@ai-toolkit/langchain`
 
-The `LangChainAdapter` module provides helper functions to transform LangChain output streams into data streams and data stream responses.
+The `@ai-toolkit/langchain` module provides helper functions to transform LangChain output streams into data streams and data stream responses.
 See the [LangChain Adapter documentation](/providers/adapters/langchain) for more information.
 
 It supports:
@@ -16,7 +16,10 @@ It supports:
 
 ## Import
 
-<Snippet text={`import { LangChainAdapter } from "ai"`} prompt={false} />
+<Snippet
+  text={`import { toDataStreamResponse } from "@ai-toolkit/langchain"`}
+  prompt={false}
+/>
 
 ## API Signature
 
@@ -47,9 +50,10 @@ It supports:
 
 ### Convert LangChain Expression Language Stream
 
-```tsx filename="app/api/completion/route.ts" highlight={"14"}
+```tsx filename="app/api/completion/route.ts" highlight={"13"}
+import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { LangChainAdapter } from 'ai';
+import { createUIMessageStreamResponse } from 'ai';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
@@ -61,16 +65,19 @@ export async function POST(req: Request) {
 
   const stream = await model.stream(prompt);
 
-  return LangChainAdapter.toDataStreamResponse(stream);
+  return createUIMessageStreamResponse({
+    stream: toUIMessageStream(stream),
+  });
 }
 ```
 
 ### Convert StringOutputParser Stream
 
 ```tsx filename="app/api/completion/route.ts" highlight={"16"}
-import { ChatOpenAI } from '@langchain/openai';
-import { LangChainAdapter } from 'ai';
+import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { StringOutputParser } from '@langchain/core/output_parsers';
+import { ChatOpenAI } from '@langchain/openai';
+import { createUIMessageStreamResponse } from 'ai';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
@@ -81,8 +88,11 @@ export async function POST(req: Request) {
   });
 
   const parser = new StringOutputParser();
+
   const stream = await model.pipe(parser).stream(prompt);
 
-  return LangChainAdapter.toDataStreamResponse(stream);
+  return createUIMessageStreamResponse({
+    stream: toUIMessageStream(stream),
+  });
 }
 ```

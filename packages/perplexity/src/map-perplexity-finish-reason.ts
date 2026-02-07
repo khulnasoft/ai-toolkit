@@ -1,13 +1,13 @@
-import { LanguageModelV1FinishReason } from '@ai-toolkit/provider';
+import { LanguageModelV3FinishReason } from '@ai-toolkit/provider';
 
 export function mapPerplexityFinishReason(
   finishReason: string | null | undefined,
-): LanguageModelV1FinishReason {
+): LanguageModelV3FinishReason['unified'] {
   switch (finishReason) {
     case 'stop':
     case 'length':
       return finishReason;
     default:
-      return 'unknown';
+      return 'other';
   }
 }

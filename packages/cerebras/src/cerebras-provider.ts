@@ -1,20 +1,19 @@
 import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
 import {
-  LanguageModelV1,
+  LanguageModelV3,
   NoSuchModelError,
-  ProviderV1,
+  ProviderV3,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
-import {
-  CerebrasChatModelId,
-  CerebrasChatSettings,
-} from './cerebras-chat-settings';
-import { z } from 'zod';
+import { CerebrasChatModelId } from './cerebras-chat-options';
+import { z } from 'zod/v4';
 import { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
+import { VERSION } from './version';
 
 // Add error schema and structure
 const cerebrasErrorSchema = z.object({
@@ -51,30 +50,26 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface CerebrasProvider extends ProviderV1 {
+export interface CerebrasProvider extends ProviderV3 {
   /**
 Creates a Cerebras model for text generation.
 */
-  (
-    modelId: CerebrasChatModelId,
-    settings?: CerebrasChatSettings,
-  ): LanguageModelV1;
+  (modelId: CerebrasChatModelId): LanguageModelV3;
 
   /**
 Creates a Cerebras model for text generation.
 */
-  languageModel(
-    modelId: CerebrasChatModelId,
-    settings?: CerebrasChatSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: CerebrasChatModelId): LanguageModelV3;
 
   /**
 Creates a Cerebras chat model for text generation.
 */
-  chat(
-    modelId: CerebrasChatModelId,
-    settings?: CerebrasChatSettings,
-  ): LanguageModelV1;
+  chat(modelId: CerebrasChatModelId): LanguageModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 export function createCerebras(
@@ -83,38 +78,43 @@ export function createCerebras(
   const baseURL = withoutTrailingSlash(
     options.baseURL ?? 'https://api.cerebras.ai/v1',
   );
-  const getHeaders = () => ({
-    Authorization: `Bearer ${loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'CEREBRAS_API_KEY',
-      description: 'Cerebras API key',
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Bearer ${loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'CEREBRAS_API_KEY',
+          description: 'Cerebras API key',
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/cerebras/${VERSION}`,
+    );
 
-  const createLanguageModel = (
-    modelId: CerebrasChatModelId,
-    settings: CerebrasChatSettings = {},
-  ) => {
-    return new OpenAICompatibleChatLanguageModel(modelId, settings, {
+  const createLanguageModel = (modelId: CerebrasChatModelId) => {
+    return new OpenAICompatibleChatLanguageModel(modelId, {
       provider: `cerebras.chat`,
       url: ({ path }) => `${baseURL}${path}`,
       headers: getHeaders,
       fetch: options.fetch,
-      defaultObjectGenerationMode: 'tool',
       errorStructure: cerebrasErrorStructure,
+      supportsStructuredOutputs: true,
     });
   };
 
-  const provider = (
-    modelId: CerebrasChatModelId,
-    settings?: CerebrasChatSettings,
-  ) => createLanguageModel(modelId, settings);
+  const provider = (modelId: CerebrasChatModelId) =>
+    createLanguageModel(modelId);
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createLanguageModel;
   provider.chat = createLanguageModel;
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
+  };
+  provider.textEmbeddingModel = provider.embeddingModel;
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
   };
 
   return provider;

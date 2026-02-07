@@ -5,17 +5,17 @@ description: Helper function for creating Valibot schemas
 
 # `valibotSchema()`
 
-<Note type="warning">`valibotSchema` is currently experimental.</Note>
-
-`valibotSchema` is a helper function that converts a Valibot schema into a JSON schema object that is compatible with the AI TOOLKIT.
+`valibotSchema` is a helper function that converts a Valibot schema into a JSON schema object
+that is compatible with the AI TOOLKIT.
 It takes a Valibot schema as input, and returns a typed schema.
 
-You can use it to [generate structured data](/docs/ai-toolkit-core/generating-structured-data) and in [tools](/docs/ai-toolkit-core/tools-and-tool-calling).
+You can use it to [generate structured data](/docs/ai-toolkit-core/generating-structured-data) and
+in [tools](/docs/ai-toolkit-core/tools-and-tool-calling).
 
 ## Example
 
 ```ts
-import { valibotSchema } from 'ai';
+import { valibotSchema } from '@ai-toolkit/valibot';
 import { object, string, array } from 'valibot';
 
 const recipeSchema = valibotSchema(

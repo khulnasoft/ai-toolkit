@@ -1,6 +1,6 @@
 import {
-  EmbeddingModelV1,
-  EmbeddingModelV1Embedding,
+  EmbeddingModelV3,
+  TooManyEmbeddingValuesForCallError,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
@@ -8,15 +8,16 @@ import {
   combineHeaders,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
+  parseProviderOptions,
   postJsonToApi,
   resolve,
 } from '@ai-toolkit/provider-utils';
 import {
   BedrockEmbeddingModelId,
-  BedrockEmbeddingSettings,
-} from './bedrock-embedding-settings';
+  bedrockEmbeddingProviderOptions,
+} from './bedrock-embedding-options';
 import { BedrockErrorSchema } from './bedrock-error';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 
 type BedrockEmbeddingConfig = {
   baseUrl: () => string;
@@ -24,17 +25,16 @@ type BedrockEmbeddingConfig = {
   fetch?: FetchFunction;
 };
 
-type DoEmbedResponse = Awaited<ReturnType<EmbeddingModelV1<string>['doEmbed']>>;
+type DoEmbedResponse = Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>;
 
-export class BedrockEmbeddingModel implements EmbeddingModelV1<string> {
-  readonly specificationVersion = 'v1';
+export class BedrockEmbeddingModel implements EmbeddingModelV3 {
+  readonly specificationVersion = 'v3';
   readonly provider = 'amazon-bedrock';
-  readonly maxEmbeddingsPerCall = undefined;
+  readonly maxEmbeddingsPerCall = 1;
   readonly supportsParallelCalls = true;
 
   constructor(
     readonly modelId: BedrockEmbeddingModelId,
-    private readonly settings: BedrockEmbeddingSettings,
     private readonly config: BedrockEmbeddingConfig,
   ) {}
 
@@ -47,52 +47,54 @@ export class BedrockEmbeddingModel implements EmbeddingModelV1<string> {
     values,
     headers,
     abortSignal,
-  }: Parameters<
-    EmbeddingModelV1<string>['doEmbed']
-  >[0]): Promise<DoEmbedResponse> {
-    const embedSingleText = async (inputText: string) => {
-      // https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html
-      const args = {
-        inputText,
-        dimensions: this.settings.dimensions,
-        normalize: this.settings.normalize,
-      };
-      const url = this.getUrl(this.modelId);
-      const { value: response } = await postJsonToApi({
-        url,
-        headers: await resolve(
-          combineHeaders(await resolve(this.config.headers), headers),
-        ),
-        body: args,
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: BedrockErrorSchema,
-          errorToMessage: error => `${error.type}: ${error.message}`,
-        }),
-        successfulResponseHandler: createJsonResponseHandler(
-          BedrockEmbeddingResponseSchema,
-        ),
-        fetch: this.config.fetch,
-        abortSignal,
+    providerOptions,
+  }: Parameters<EmbeddingModelV3['doEmbed']>[0]): Promise<DoEmbedResponse> {
+    if (values.length > this.maxEmbeddingsPerCall) {
+      throw new TooManyEmbeddingValuesForCallError({
+        provider: this.provider,
+        modelId: this.modelId,
+        maxEmbeddingsPerCall: this.maxEmbeddingsPerCall,
+        values,
       });
+    }
 
-      return {
-        embedding: response.embedding,
-        inputTextTokenCount: response.inputTextTokenCount,
-      };
+    // Parse provider options
+    const bedrockOptions =
+      (await parseProviderOptions({
+        provider: 'bedrock',
+        providerOptions,
+        schema: bedrockEmbeddingProviderOptions,
+      })) ?? {};
+
+    // https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html
+    const args = {
+      inputText: values[0],
+      dimensions: bedrockOptions.dimensions,
+      normalize: bedrockOptions.normalize,
     };
+    const url = this.getUrl(this.modelId);
+    const { value: response } = await postJsonToApi({
+      url,
+      headers: await resolve(
+        combineHeaders(await resolve(this.config.headers), headers),
+      ),
+      body: args,
+      failedResponseHandler: createJsonErrorResponseHandler({
+        errorSchema: BedrockErrorSchema,
+        errorToMessage: error => `${error.type}: ${error.message}`,
+      }),
+      successfulResponseHandler: createJsonResponseHandler(
+        BedrockEmbeddingResponseSchema,
+      ),
+      fetch: this.config.fetch,
+      abortSignal,
+    });
 
-    const responses = await Promise.all(values.map(embedSingleText));
-    return responses.reduce<{
-      embeddings: EmbeddingModelV1Embedding[];
-      usage: { tokens: number };
-    }>(
-      (accumulated, response) => {
-        accumulated.embeddings.push(response.embedding);
-        accumulated.usage.tokens += response.inputTextTokenCount;
-        return accumulated;
-      },
-      { embeddings: [], usage: { tokens: 0 } },
-    );
+    return {
+      warnings: [],
+      embeddings: [response.embedding],
+      usage: { tokens: response.inputTextTokenCount },
+    };
   }
 }
 

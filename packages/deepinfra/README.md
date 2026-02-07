@@ -1,6 +1,6 @@
 # AI TOOLKIT - DeepInfra Provider
 
-The **[DeepInfra provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/deepinfra)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs)
+The **[DeepInfra provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepinfra)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the DeepInfra API, giving you access to models like Llama 3, Mixtral, and other state-of-the-art LLMs.
 
 ## Setup
@@ -33,4 +33,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[DeepInfra provider documentation](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/deepinfra)** for more information.
+Please check out the **[DeepInfra provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepinfra)** for more information.

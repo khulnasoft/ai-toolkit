@@ -9,7 +9,7 @@ Allows you to create text completion based capabilities for your application. It
 
 ## Import
 
-<Tabs items={['React', 'Svelte', 'Vue', 'Solid']}>
+<Tabs items={['React', 'Svelte', 'Vue']}>
   <Tab>
     <Snippet
       text="import { useCompletion } from '@ai-toolkit/react'"
@@ -19,7 +19,7 @@ Allows you to create text completion based capabilities for your application. It
   </Tab>
   <Tab>
     <Snippet
-      text="import { useCompletion } from '@ai-toolkit/svelte'"
+      text="import { Completion } from '@ai-toolkit/svelte'"
       dark
       prompt={false}
     />
@@ -31,13 +31,7 @@ Allows you to create text completion based capabilities for your application. It
       prompt={false}
     />
   </Tab>
-  <Tab>
-    <Snippet
-      text="import { useCompletion } from '@ai-toolkit/solid'"
-      dark
-      prompt={false}
-    />
-  </Tab>
+
 </Tabs>
 
 ## API Signature
@@ -56,7 +50,7 @@ Allows you to create text completion based capabilities for your application. It
       name: 'id',
       type: 'string',
       description:
-        'An unique identifier for the completion. If not provided, a random one will be generated. When provided, the `useCompletion` hook with the same `id` will have shared states across components. This is useful when you have multiple components showing the same chat stream',
+        'A unique identifier for the completion. If not provided, a random one will be generated. When provided, the `useCompletion` hook with the same `id` will have shared states across components. This is useful when you have multiple components showing the same chat stream',
     },
     {
       name: 'initialInput',
@@ -67,12 +61,6 @@ Allows you to create text completion based capabilities for your application. It
       name: 'initialCompletion',
       type: 'string',
       description: 'An optional string for the initial completion result.',
-    },
-    {
-      name: 'onResponse',
-      type: '(response: Response) => void',
-      description:
-        'An optional callback function that is called with the response from the API endpoint. Useful for throwing customized errors or logging.',
     },
     {
       name: 'onFinish',
@@ -105,12 +93,6 @@ Allows you to create text completion based capabilities for your application. It
         'An optional literal that sets the mode of credentials to be used on the request. Defaults to same-origin.',
     },
     {
-      name: 'sendExtraMessageFields',
-      type: 'boolean',
-      description:
-        "An optional boolean that determines whether to send extra fields you've added to `messages`. Defaults to `false` and only the `content` and `role` fields will be sent to the API endpoint.",
-    },
-    {
       name: 'streamProtocol',
       type: "'text' | 'data'",
       isOptional: true,
@@ -131,7 +113,8 @@ Allows you to create text completion based capabilities for your application. It
       description:
         'React only. Custom throttle wait time in milliseconds for the completion and data updates. When specified, throttles how often the UI updates during streaming. Default is undefined, which disables throttling.',
     },
-  ]}
+
+]}
 />
 
 ### Returns

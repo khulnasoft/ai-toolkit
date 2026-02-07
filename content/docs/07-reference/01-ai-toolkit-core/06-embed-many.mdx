@@ -12,11 +12,10 @@ by the embedding model.
 has a limit on how many embeddings can be generated in a single call.
 
 ```ts
-import { openai } from '@ai-toolkit/openai';
 import { embedMany } from 'ai';
 
 const { embeddings } = await embedMany({
-  model: openai.embedding('text-embedding-3-small'),
+  model: 'openai/text-embedding-3-small',
   values: [
     'sunny day at the beach',
     'rainy afternoon in the city',
@@ -39,7 +38,7 @@ const { embeddings } = await embedMany({
       name: 'model',
       type: 'EmbeddingModel',
       description:
-        "The embedding model to use. Example: openai.embedding('text-embedding-3-small')",
+        "The embedding model to use. Example: openai.embeddingModel('text-embedding-3-small')",
     },
     {
       name: 'values',
@@ -111,6 +110,12 @@ const { embeddings } = await embedMany({
               description:
                 'Additional information to include in the telemetry data.',
             },
+            {
+              name: 'tracer',
+              type: 'Tracer',
+              isOptional: true,
+              description: 'A custom tracer to use for the telemetry data.',
+            },
           ],
         },
       ],
@@ -134,11 +139,11 @@ const { embeddings } = await embedMany({
     },
     {
       name: 'usage',
-      type: 'EmbeddingTokenUsage',
+      type: 'EmbeddingModelUsage',
       description: 'The token usage for generating the embeddings.',
       properties: [
         {
-          type: 'EmbeddingTokenUsage',
+          type: 'EmbeddingModelUsage',
           parameters: [
             {
               name: 'tokens',
@@ -148,6 +153,19 @@ const { embeddings } = await embedMany({
           ],
         },
       ],
+    },
+    {
+      name: 'warnings',
+      type: 'Warning[]',
+      description:
+        'Warnings from the model provider (e.g. unsupported settings).',
+    },
+    {
+      name: 'providerMetadata',
+      type: 'ProviderMetadata | undefined',
+      isOptional: true,
+      description:
+        'Optional metadata from the provider. The outer key is the provider name. The inner values are the metadata. Details depend on the provider.',
     },
   ]}
 />

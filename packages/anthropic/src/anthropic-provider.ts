@@ -1,52 +1,40 @@
 import {
-  LanguageModelV1,
+  LanguageModelV3,
   NoSuchModelError,
-  ProviderV1,
+  ProviderV3,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
+  generateId,
   loadApiKey,
+  loadOptionalSetting,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
+import { VERSION } from './version';
 import { AnthropicMessagesLanguageModel } from './anthropic-messages-language-model';
-import {
-  AnthropicMessagesModelId,
-  AnthropicMessagesSettings,
-} from './anthropic-messages-settings';
+import { AnthropicMessagesModelId } from './anthropic-messages-options';
 import { anthropicTools } from './anthropic-tools';
 
-export interface AnthropicProvider extends ProviderV1 {
+export interface AnthropicProvider extends ProviderV3 {
   /**
 Creates a model for text generation.
 */
-  (
-    modelId: AnthropicMessagesModelId,
-    settings?: AnthropicMessagesSettings,
-  ): LanguageModelV1;
+  (modelId: AnthropicMessagesModelId): LanguageModelV3;
 
   /**
 Creates a model for text generation.
 */
-  languageModel(
-    modelId: AnthropicMessagesModelId,
-    settings?: AnthropicMessagesSettings,
-  ): LanguageModelV1;
+  languageModel(modelId: AnthropicMessagesModelId): LanguageModelV3;
+
+  chat(modelId: AnthropicMessagesModelId): LanguageModelV3;
+
+  messages(modelId: AnthropicMessagesModelId): LanguageModelV3;
 
   /**
-@deprecated Use `.languageModel()` instead.
-*/
-  chat(
-    modelId: AnthropicMessagesModelId,
-    settings?: AnthropicMessagesSettings,
-  ): LanguageModelV1;
-
-  /**
-@deprecated Use `.languageModel()` instead.
+   * @deprecated Use `embeddingModel` instead.
    */
-  messages(
-    modelId: AnthropicMessagesModelId,
-    settings?: AnthropicMessagesSettings,
-  ): LanguageModelV1;
+  textEmbeddingModel(modelId: string): never;
 
   /**
 Anthropic-specific computer use tool.
@@ -79,6 +67,12 @@ or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 
   generateId?: () => string;
+
+  /**
+   * Custom provider name
+   * Defaults to 'anthropic.messages'.
+   */
+  name?: string;
 }
 
 /**
@@ -88,48 +82,63 @@ export function createAnthropic(
   options: AnthropicProviderSettings = {},
 ): AnthropicProvider {
   const baseURL =
-    withoutTrailingSlash(options.baseURL) ?? 'https://api.anthropic.com/v1';
+    withoutTrailingSlash(
+      loadOptionalSetting({
+        settingValue: options.baseURL,
+        environmentVariableName: 'ANTHROPIC_BASE_URL',
+      }),
+    ) ?? 'https://api.anthropic.com/v1';
 
-  const getHeaders = () => ({
-    'anthropic-version': '2023-06-01',
-    'x-api-key': loadApiKey({
-      apiKey: options.apiKey,
-      environmentVariableName: 'ANTHROPIC_API_KEY',
-      description: 'Anthropic',
-    }),
-    ...options.headers,
-  });
+  const providerName = options.name ?? 'anthropic.messages';
 
-  const createChatModel = (
-    modelId: AnthropicMessagesModelId,
-    settings: AnthropicMessagesSettings = {},
-  ) =>
-    new AnthropicMessagesLanguageModel(modelId, settings, {
-      provider: 'anthropic.messages',
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        'anthropic-version': '2023-06-01',
+        'x-api-key': loadApiKey({
+          apiKey: options.apiKey,
+          environmentVariableName: 'ANTHROPIC_API_KEY',
+          description: 'Anthropic',
+        }),
+        ...options.headers,
+      },
+      `ai-toolkit/anthropic/${VERSION}`,
+    );
+
+  const createChatModel = (modelId: AnthropicMessagesModelId) =>
+    new AnthropicMessagesLanguageModel(modelId, {
+      provider: providerName,
       baseURL,
       headers: getHeaders,
       fetch: options.fetch,
-      supportsImageUrls: true,
+      generateId: options.generateId ?? generateId,
+      supportedUrls: () => ({
+        'image/*': [/^https?:\/\/.*$/],
+        'application/pdf': [/^https?:\/\/.*$/],
+      }),
     });
 
-  const provider = function (
-    modelId: AnthropicMessagesModelId,
-    settings?: AnthropicMessagesSettings,
-  ) {
+  const provider = function (modelId: AnthropicMessagesModelId) {
     if (new.target) {
       throw new Error(
         'The Anthropic model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createChatModel;
   provider.chat = createChatModel;
   provider.messages = createChatModel;
-  provider.textEmbeddingModel = (modelId: string) => {
-    throw new NoSuchModelError({ modelId, modelType: 'textEmbeddingModel' });
+
+  provider.embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'embeddingModel' });
+  };
+  provider.textEmbeddingModel = provider.embeddingModel;
+  provider.imageModel = (modelId: string) => {
+    throw new NoSuchModelError({ modelId, modelType: 'imageModel' });
   };
 
   provider.tools = anthropicTools;

@@ -1,4 +1,5 @@
 import { convertToGoogleGenerativeAIMessages } from './convert-to-google-generative-ai-messages';
+import { describe, it, expect } from 'vitest';
 
 describe('system messages', () => {
   it('should store system message in system instruction', async () => {
@@ -24,16 +25,189 @@ describe('system messages', () => {
   });
 });
 
+describe('thought signatures', () => {
+  it('should preserve thought signatures in assistant messages', async () => {
+    const result = convertToGoogleGenerativeAIMessages([
+      {
+        role: 'assistant',
+        content: [
+          {
+            type: 'text',
+            text: 'Regular text',
+            providerOptions: { google: { thoughtSignature: 'sig1' } },
+          },
+          {
+            type: 'reasoning',
+            text: 'Reasoning text',
+            providerOptions: { google: { thoughtSignature: 'sig2' } },
+          },
+          {
+            type: 'tool-call',
+            toolCallId: 'call1',
+            toolName: 'test',
+            input: { value: 'test' },
+            providerOptions: { google: { thoughtSignature: 'sig3' } },
+          },
+        ],
+      },
+    ]);
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "Regular text",
+                "thoughtSignature": "sig1",
+              },
+              {
+                "text": "Reasoning text",
+                "thought": true,
+                "thoughtSignature": "sig2",
+              },
+              {
+                "functionCall": {
+                  "args": {
+                    "value": "test",
+                  },
+                  "name": "test",
+                },
+                "thoughtSignature": "sig3",
+              },
+            ],
+            "role": "model",
+          },
+        ],
+        "systemInstruction": undefined,
+      }
+    `);
+  });
+});
+
+describe('Gemma model system instructions', () => {
+  it('should prepend system instruction to first user message for Gemma models', async () => {
+    const result = convertToGoogleGenerativeAIMessages(
+      [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
+      ],
+      { isGemmaModel: true },
+    );
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You are a helpful assistant.
+
+      ",
+              },
+              {
+                "text": "Hello",
+              },
+            ],
+            "role": "user",
+          },
+        ],
+        "systemInstruction": undefined,
+      }
+    `);
+  });
+
+  it('should handle multiple system messages for Gemma models', async () => {
+    const result = convertToGoogleGenerativeAIMessages(
+      [
+        { role: 'system', content: 'You are helpful.' },
+        { role: 'system', content: 'Be concise.' },
+        { role: 'user', content: [{ type: 'text', text: 'Hi' }] },
+      ],
+      { isGemmaModel: true },
+    );
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You are helpful.
+
+      Be concise.
+
+      ",
+              },
+              {
+                "text": "Hi",
+              },
+            ],
+            "role": "user",
+          },
+        ],
+        "systemInstruction": undefined,
+      }
+    `);
+  });
+
+  it('should not affect non-Gemma models', async () => {
+    const result = convertToGoogleGenerativeAIMessages(
+      [
+        { role: 'system', content: 'You are helpful.' },
+        { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
+      ],
+      { isGemmaModel: false },
+    );
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "Hello",
+              },
+            ],
+            "role": "user",
+          },
+        ],
+        "systemInstruction": {
+          "parts": [
+            {
+              "text": "You are helpful.",
+            },
+          ],
+        },
+      }
+    `);
+  });
+
+  it('should handle Gemma model with system instruction but no user messages', async () => {
+    const result = convertToGoogleGenerativeAIMessages(
+      [{ role: 'system', content: 'You are helpful.' }],
+      { isGemmaModel: true },
+    );
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "contents": [],
+        "systemInstruction": undefined,
+      }
+    `);
+  });
+});
+
 describe('user messages', () => {
-  it('should add image parts for UInt8Array images', async () => {
+  it('should add image parts', async () => {
     const result = convertToGoogleGenerativeAIMessages([
       {
         role: 'user',
         content: [
           {
-            type: 'image',
-            image: new Uint8Array([0, 1, 2, 3]),
-            mimeType: 'image/png',
+            type: 'file',
+            data: 'AAECAw==',
+            mediaType: 'image/png',
           },
         ],
       },
@@ -61,7 +235,7 @@ describe('user messages', () => {
     const result = convertToGoogleGenerativeAIMessages([
       {
         role: 'user',
-        content: [{ type: 'file', data: 'AAECAw==', mimeType: 'image/png' }],
+        content: [{ type: 'file', data: 'AAECAw==', mediaType: 'image/png' }],
       },
     ]);
 
@@ -94,7 +268,7 @@ describe('tool messages', () => {
             type: 'tool-result',
             toolName: 'testFunction',
             toolCallId: 'testCallId',
-            result: { someData: 'test result' },
+            output: { type: 'json', value: { someData: 'test result' } },
           },
         ],
       },
@@ -127,7 +301,7 @@ describe('assistant messages', () => {
     const result = convertToGoogleGenerativeAIMessages([
       {
         role: 'assistant',
-        content: [{ type: 'file', data: 'AAECAw==', mimeType: 'image/png' }],
+        content: [{ type: 'file', data: 'AAECAw==', mediaType: 'image/png' }],
       },
     ]);
 
@@ -149,17 +323,6 @@ describe('assistant messages', () => {
     });
   });
 
-  it('should throw error for non-PNG images in assistant messages', async () => {
-    expect(() =>
-      convertToGoogleGenerativeAIMessages([
-        {
-          role: 'assistant',
-          content: [{ type: 'file', data: 'AAECAw==', mimeType: 'image/jpeg' }],
-        },
-      ]),
-    ).toThrow('Only PNG images are supported in assistant messages');
-  });
-
   it('should throw error for URL file data in assistant messages', async () => {
     expect(() =>
       convertToGoogleGenerativeAIMessages([
@@ -169,11 +332,164 @@ describe('assistant messages', () => {
             {
               type: 'file',
               data: new URL('https://example.com/image.png'),
-              mimeType: 'image/png',
+              mediaType: 'image/png',
             },
           ],
         },
       ]),
     ).toThrow('File data URLs in assistant messages are not supported');
+  });
+
+  it('should convert tool result messages with content type (multipart with images)', async () => {
+    const result = convertToGoogleGenerativeAIMessages([
+      {
+        role: 'tool',
+        content: [
+          {
+            type: 'tool-result',
+            toolName: 'imageGenerator',
+            toolCallId: 'testCallId',
+            output: {
+              type: 'content',
+              value: [
+                {
+                  type: 'text',
+                  text: 'Here is the generated image:',
+                },
+                {
+                  type: 'image-data',
+                  data: 'base64encodedimagedata',
+                  mediaType: 'image/jpeg',
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ]);
+
+    expect(result).toEqual({
+      systemInstruction: undefined,
+      contents: [
+        {
+          role: 'user',
+          parts: [
+            {
+              functionResponse: {
+                name: 'imageGenerator',
+                response: {
+                  name: 'imageGenerator',
+                  content: 'Here is the generated image:',
+                },
+              },
+            },
+            {
+              inlineData: {
+                mimeType: 'image/jpeg',
+                data: 'base64encodedimagedata',
+              },
+            },
+            {
+              text: 'Tool executed successfully and returned this image as a response',
+            },
+          ],
+        },
+      ],
+    });
+  });
+});
+
+describe('parallel tool calls', () => {
+  it('should include thought signature on functionCall when provided', async () => {
+    const result = convertToGoogleGenerativeAIMessages([
+      {
+        role: 'assistant',
+        content: [
+          {
+            type: 'tool-call',
+            toolCallId: 'call1',
+            toolName: 'checkweather',
+            input: { city: 'paris' },
+            providerOptions: { google: { thoughtSignature: 'sig_parallel' } },
+          },
+          {
+            type: 'tool-call',
+            toolCallId: 'call2',
+            toolName: 'checkweather',
+            input: { city: 'london' },
+          },
+        ],
+      },
+    ]);
+
+    expect(result.contents[0].parts[0]).toEqual({
+      functionCall: {
+        args: { city: 'paris' },
+        name: 'checkweather',
+      },
+      thoughtSignature: 'sig_parallel',
+    });
+
+    expect(result.contents[0].parts[1]).toEqual({
+      functionCall: {
+        args: { city: 'london' },
+        name: 'checkweather',
+      },
+      thoughtSignature: undefined,
+    });
+  });
+});
+
+describe('tool results with thought signatures', () => {
+  it('should include thought signature on functionCall but not on functionResponse', async () => {
+    const result = convertToGoogleGenerativeAIMessages([
+      {
+        role: 'assistant',
+        content: [
+          {
+            type: 'tool-call',
+            toolCallId: 'call1',
+            toolName: 'readdata',
+            input: { userId: '123' },
+            providerOptions: { google: { thoughtSignature: 'sig_original' } },
+          },
+        ],
+      },
+      {
+        role: 'tool',
+        content: [
+          {
+            type: 'tool-result',
+            toolCallId: 'call1',
+            toolName: 'readdata',
+            output: {
+              type: 'error-text',
+              value: 'file not found',
+            },
+            providerOptions: { google: { thoughtSignature: 'sig_original' } },
+          },
+        ],
+      },
+    ]);
+
+    expect(result.contents[0].parts[0]).toEqual({
+      functionCall: {
+        args: { userId: '123' },
+        name: 'readdata',
+      },
+      thoughtSignature: 'sig_original',
+    });
+
+    expect(result.contents[1].parts[0]).toEqual({
+      functionResponse: {
+        name: 'readdata',
+        response: {
+          content: 'file not found',
+          name: 'readdata',
+        },
+      },
+    });
+
+    expect(result.contents[1].parts[0]).not.toHaveProperty('thoughtSignature');
   });
 });

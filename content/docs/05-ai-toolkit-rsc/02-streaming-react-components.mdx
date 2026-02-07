@@ -54,7 +54,7 @@ Using tools with `streamUI` is similar to how you use tools with `generateText` 
 A tool is an object that has:
 
 - `description`: a string telling the model what the tool does and when to use it
-- `parameters`: a Zod schema describing what the tool needs in order to run
+- `inputSchema`: a Zod schema describing what the tool needs in order to run
 - `generate`: an asynchronous function that will be run if the model calls the tool. This must return a React component
 
 Let's expand the previous example to add a tool.
@@ -67,7 +67,7 @@ const result = await streamUI({
   tools: {
     getWeather: {
       description: 'Get the weather for a location',
-      parameters: z.object({ location: z.string() }),
+      inputSchema: z.object({ location: z.string() }),
       generate: async function* ({ location }) {
         yield <LoadingComponent />;
         const weather = await getWeather(location);
@@ -113,7 +113,7 @@ Create a Server Action at `app/actions.tsx` and add the following code:
 ```tsx filename="app/actions.tsx"
 'use server';
 
-import { streamUI } from 'ai/rsc';
+import { streamUI } from '@ai-toolkit/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -145,7 +145,7 @@ export async function streamComponent() {
     tools: {
       getWeather: {
         description: 'Get the weather for a location',
-        parameters: z.object({
+        inputSchema: z.object({
           location: z.string(),
         }),
         generate: async function* ({ location }) {
@@ -207,4 +207,4 @@ This page is first marked as a client component with the `"use client";` directi
 
 You can now allow the model to respond to your prompt with a React component. However, this example is limited to a static prompt that is set within your Server Action. You could make this example interactive by turning it into a chatbot.
 
-Learn how to stream React components with the Next.js App Router using `streamUI` with this [example](https://sdk.khulnasoft.com/examples/next-app/interface/route-components).
+Learn how to stream React components with the Next.js App Router using `streamUI` with this [example](/examples/next-app/interface/route-components).

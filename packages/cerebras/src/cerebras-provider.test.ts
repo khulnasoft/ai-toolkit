@@ -11,10 +11,18 @@ vi.mock('@ai-toolkit/openai-compatible', () => ({
   OpenAICompatibleChatLanguageModel: vi.fn(),
 }));
 
-vi.mock('@ai-toolkit/provider-utils', () => ({
-  loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
-  withoutTrailingSlash: vi.fn(url => url),
+vi.mock('./version', () => ({
+  VERSION: '0.0.0-test',
 }));
+
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+  return {
+    ...actual,
+    loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
+    withoutTrailingSlash: vi.fn(url => url),
+  };
+});
 
 describe('CerebrasProvider', () => {
   beforeEach(() => {
@@ -28,7 +36,7 @@ describe('CerebrasProvider', () => {
 
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -49,7 +57,7 @@ describe('CerebrasProvider', () => {
 
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -59,12 +67,34 @@ describe('CerebrasProvider', () => {
       });
     });
 
+    it('should pass header', async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue(new Response('{}', { status: 200 }));
+
+      const provider = createCerebras({ fetch: fetchMock });
+      provider('model-id');
+
+      const constructorCall = vi.mocked(OpenAICompatibleChatLanguageModel).mock
+        .calls[0];
+      const config = constructorCall[1];
+      const headers = config.headers();
+
+      await fetchMock('https://api.cerebras.ai/v1/test', {
+        method: 'POST',
+        headers,
+      });
+
+      expect(fetchMock.mock.calls[0][1].headers['user-agent']).toContain(
+        'ai-toolkit/cerebras/0.0.0-test',
+      );
+    });
+
     it('should return a chat model when called as a function', () => {
       const provider = createCerebras();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider(modelId, settings);
+      const model = provider(modelId);
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
   });
@@ -73,20 +103,19 @@ describe('CerebrasProvider', () => {
     it('should construct a language model with correct configuration', () => {
       const provider = createCerebras();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.languageModel(modelId, settings);
+      const model = provider.languageModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
   });
 
-  describe('textEmbeddingModel', () => {
+  describe('embeddingModel', () => {
     it('should throw NoSuchModelError when attempting to create embedding model', () => {
       const provider = createCerebras();
 
-      expect(() => provider.textEmbeddingModel('any-model')).toThrow(
-        'No such textEmbeddingModel: any-model',
+      expect(() => provider.embeddingModel('any-model')).toThrow(
+        'No such embeddingModel: any-model',
       );
     });
   });
@@ -95,9 +124,8 @@ describe('CerebrasProvider', () => {
     it('should construct a chat model with correct configuration', () => {
       const provider = createCerebras();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.chat(modelId, settings);
+      const model = provider.chat(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });

@@ -2,10 +2,9 @@ import { AITOOLKITError } from './ai-toolkit-error';
 import { getErrorMessage } from './get-error-message';
 
 const name = 'AI_JSONParseError';
-const marker = `khulnasoft.com.error.${name}`;
+const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-// TODO v5: rename to ParseError
 export class JSONParseError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 

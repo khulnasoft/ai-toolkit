@@ -2,6 +2,7 @@ import { resolve } from '@ai-toolkit/provider-utils';
 import { createVertex as createVertexOriginal } from './google-vertex-provider';
 import { createVertex as createVertexNode } from './google-vertex-provider-node';
 import { generateAuthToken } from './google-vertex-auth-google-auth-library';
+import { describe, beforeEach, afterEach, expect, it, vi } from 'vitest';
 
 // Mock the imported modules
 vi.mock('./google-vertex-auth-google-auth-library', () => ({
@@ -17,6 +18,11 @@ vi.mock('./google-vertex-provider', () => ({
 describe('google-vertex-provider-node', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    delete process.env.GOOGLE_VERTEX_API_KEY;
+  });
+
+  afterEach(() => {
+    delete process.env.GOOGLE_VERTEX_API_KEY;
   });
 
   it('default headers function should return auth token', async () => {
@@ -65,5 +71,18 @@ describe('google-vertex-provider-node', () => {
       scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       keyFile: 'path/to/key.json',
     });
+  });
+
+  it('should pass options through to base provider when apiKey is provided', async () => {
+    createVertexNode({
+      apiKey: 'test-api-key',
+    });
+
+    expect(createVertexOriginal).toHaveBeenCalledTimes(1);
+    const passedOptions = vi.mocked(createVertexOriginal).mock.calls[0][0];
+
+    expect(passedOptions?.apiKey).toBe('test-api-key');
+    expect(passedOptions?.headers).toBeUndefined();
+    expect(generateAuthToken).not.toHaveBeenCalled();
   });
 });

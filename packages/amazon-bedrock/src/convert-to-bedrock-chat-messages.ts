@@ -1,41 +1,64 @@
 import {
+  JSONObject,
+  LanguageModelV3Message,
+  LanguageModelV3Prompt,
+  SharedV3ProviderMetadata,
+  UnsupportedFunctionalityError,
+} from '@ai-toolkit/provider';
+import {
+  convertToBase64,
+  parseProviderOptions,
+} from '@ai-toolkit/provider-utils';
+import {
   BEDROCK_CACHE_POINT,
+  BEDROCK_DOCUMENT_MIME_TYPES,
+  BEDROCK_IMAGE_MIME_TYPES,
   BedrockAssistantMessage,
   BedrockCachePoint,
   BedrockDocumentFormat,
+  BedrockDocumentMimeType,
   BedrockImageFormat,
+  BedrockImageMimeType,
   BedrockMessages,
   BedrockSystemMessages,
   BedrockUserMessage,
 } from './bedrock-api-types';
-import {
-  JSONObject,
-  LanguageModelV1Message,
-  LanguageModelV1Prompt,
-  LanguageModelV1ProviderMetadata,
-  UnsupportedFunctionalityError,
-} from '@ai-toolkit/provider';
-import {
-  convertUint8ArrayToBase64,
-  createIdGenerator,
-} from '@ai-toolkit/provider-utils';
-
-const generateFileId = createIdGenerator({ prefix: 'file', size: 16 });
+import { bedrockReasoningMetadataSchema } from './bedrock-chat-language-model';
+import { bedrockFilePartProviderOptions } from './bedrock-chat-options';
+import { normalizeToolCallId } from './normalize-tool-call-id';
 
 function getCachePoint(
-  providerMetadata: LanguageModelV1ProviderMetadata | undefined,
+  providerMetadata: SharedV3ProviderMetadata | undefined,
 ): BedrockCachePoint | undefined {
   return providerMetadata?.bedrock?.cachePoint as BedrockCachePoint | undefined;
 }
 
-export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
+async function shouldEnableCitations(
+  providerMetadata: SharedV3ProviderMetadata | undefined,
+): Promise<boolean> {
+  const bedrockOptions = await parseProviderOptions({
+    provider: 'bedrock',
+    providerOptions: providerMetadata,
+    schema: bedrockFilePartProviderOptions,
+  });
+
+  return bedrockOptions?.citations?.enabled ?? false;
+}
+
+export async function convertToBedrockChatMessages(
+  prompt: LanguageModelV3Prompt,
+  isMistral: boolean = false,
+): Promise<{
   system: BedrockSystemMessages;
   messages: BedrockMessages;
-} {
+}> {
   const blocks = groupIntoBlocks(prompt);
 
   let system: BedrockSystemMessages = [];
   const messages: BedrockMessages = [];
+
+  let documentCounter = 0;
+  const generateDocumentName = () => `document-${++documentCounter}`;
 
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i];
@@ -53,7 +76,7 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
 
         for (const message of block.messages) {
           system.push({ text: message.content });
-          if (getCachePoint(message.providerMetadata)) {
+          if (getCachePoint(message.providerOptions)) {
             system.push(BEDROCK_CACHE_POINT);
           }
         }
@@ -65,7 +88,7 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
         const bedrockContent: BedrockUserMessage['content'] = [];
 
         for (const message of block.messages) {
-          const { role, content, providerMetadata } = message;
+          const { role, content, providerOptions } = message;
           switch (role) {
             case 'user': {
               for (let j = 0; j < content.length; j++) {
@@ -78,48 +101,46 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
                     });
                     break;
                   }
-                  case 'image': {
-                    if (part.image instanceof URL) {
-                      // The AI TOOLKIT automatically downloads images for user image parts with URLs
-                      throw new UnsupportedFunctionalityError({
-                        functionality: 'Image URLs in user messages',
-                      });
-                    }
 
-                    bedrockContent.push({
-                      image: {
-                        format: part.mimeType?.split(
-                          '/',
-                        )?.[1] as BedrockImageFormat,
-                        source: {
-                          bytes: convertUint8ArrayToBase64(
-                            part.image ?? (part.image as Uint8Array),
-                          ),
-                        },
-                      },
-                    });
-
-                    break;
-                  }
                   case 'file': {
                     if (part.data instanceof URL) {
                       // The AI TOOLKIT automatically downloads files for user file parts with URLs
                       throw new UnsupportedFunctionalityError({
-                        functionality: 'File URLs in user messages',
+                        functionality: 'File URL data',
                       });
                     }
 
-                    bedrockContent.push({
-                      document: {
-                        format: part.mimeType?.split(
-                          '/',
-                        )?.[1] as BedrockDocumentFormat,
-                        name: generateFileId(),
-                        source: {
-                          bytes: part.data,
+                    if (part.mediaType.startsWith('image/')) {
+                      bedrockContent.push({
+                        image: {
+                          format: getBedrockImageFormat(part.mediaType),
+                          source: { bytes: convertToBase64(part.data) },
                         },
-                      },
-                    });
+                      });
+                    } else {
+                      if (!part.mediaType) {
+                        throw new UnsupportedFunctionalityError({
+                          functionality: 'file without mime type',
+                          message:
+                            'File mime type is required in user message part content',
+                        });
+                      }
+
+                      const enableCitations = await shouldEnableCitations(
+                        part.providerOptions,
+                      );
+
+                      bedrockContent.push({
+                        document: {
+                          format: getBedrockDocumentFormat(part.mediaType),
+                          name: part.filename ?? generateDocumentName(),
+                          source: { bytes: convertToBase64(part.data) },
+                          ...(enableCitations && {
+                            citations: { enabled: true },
+                          }),
+                        },
+                      });
+                    }
 
                     break;
                   }
@@ -129,43 +150,66 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
               break;
             }
             case 'tool': {
-              for (let i = 0; i < content.length; i++) {
-                const part = content[i];
-                const toolResultContent =
-                  part.content != undefined
-                    ? part.content.map(part => {
-                        switch (part.type) {
-                          case 'text':
-                            return {
-                              text: part.text,
-                            };
-                          case 'image':
-                            if (!part.mimeType) {
-                              throw new Error(
-                                'Image mime type is required in tool result part content',
-                              );
-                            }
-                            const format = part.mimeType.split('/')[1];
-                            if (!isBedrockImageFormat(format)) {
-                              throw new Error(
-                                `Unsupported image format: ${format}`,
-                              );
-                            }
-                            return {
-                              image: {
-                                format,
-                                source: {
-                                  bytes: part.data,
-                                },
-                              },
-                            };
+              for (const part of content) {
+                if (part.type === 'tool-approval-response') {
+                  continue;
+                }
+                let toolResultContent;
+
+                const output = part.output;
+                switch (output.type) {
+                  case 'content': {
+                    toolResultContent = output.value.map(contentPart => {
+                      switch (contentPart.type) {
+                        case 'text':
+                          return { text: contentPart.text };
+                        case 'image-data':
+                          if (!contentPart.mediaType.startsWith('image/')) {
+                            throw new UnsupportedFunctionalityError({
+                              functionality: `media type: ${contentPart.mediaType}`,
+                            });
+                          }
+
+                          const format = getBedrockImageFormat(
+                            contentPart.mediaType,
+                          );
+
+                          return {
+                            image: {
+                              format,
+                              source: { bytes: contentPart.data },
+                            },
+                          };
+                        default: {
+                          throw new UnsupportedFunctionalityError({
+                            functionality: `unsupported tool content part type: ${contentPart.type}`,
+                          });
                         }
-                      })
-                    : [{ text: JSON.stringify(part.result) }];
+                      }
+                    });
+                    break;
+                  }
+                  case 'text':
+                  case 'error-text':
+                    toolResultContent = [{ text: output.value }];
+                    break;
+                  case 'execution-denied':
+                    toolResultContent = [
+                      { text: output.reason ?? 'Tool execution denied.' },
+                    ];
+                    break;
+                  case 'json':
+                  case 'error-json':
+                  default:
+                    toolResultContent = [
+                      { text: JSON.stringify(output.value) },
+                    ];
+                    break;
+                }
 
                 bedrockContent.push({
                   toolResult: {
-                    toolUseId: part.toolCallId,
+                    toolUseId: normalizeToolCallId(part.toolCallId, isMistral),
                     content: toolResultContent,
                   },
                 });
@@ -179,7 +223,7 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
             }
           }
 
-          if (getCachePoint(providerMetadata)) {
+          if (getCachePoint(providerOptions)) {
             bedrockContent.push(BEDROCK_CACHE_POINT);
           }
         }
@@ -204,6 +248,11 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
 
             switch (part.type) {
               case 'text': {
+                // Skip empty text blocks
+                if (!part.text.trim()) {
+                  break;
+                }
+
                 bedrockContent.push({
                   text:
                     // trim the last text part if it's the last message in the block
@@ -220,49 +269,57 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
               }
 
               case 'reasoning': {
-                bedrockContent.push({
-                  reasoningContent: {
-                    reasoningText: {
-                      // trim the last text part if it's the last message in the block
-                      // because Bedrock does not allow trailing whitespace
-                      // in pre-filled assistant responses
-                      text: trimIfLast(
-                        isLastBlock,
-                        isLastMessage,
-                        isLastContentPart,
-                        part.text,
-                      ),
-                      signature: part.signature,
-                    },
-                  },
+                const reasoningMetadata = await parseProviderOptions({
+                  provider: 'bedrock',
+                  providerOptions: part.providerOptions,
+                  schema: bedrockReasoningMetadataSchema,
                 });
-                break;
-              }
 
-              case 'redacted-reasoning': {
-                bedrockContent.push({
-                  reasoningContent: {
-                    redactedReasoning: {
-                      data: part.data,
-                    },
-                  },
-                });
+                if (reasoningMetadata != null) {
+                  if (reasoningMetadata.signature != null) {
+                    bedrockContent.push({
+                      reasoningContent: {
+                        reasoningText: {
+                          // trim the last text part if it's the last message in the block
+                          // because Bedrock does not allow trailing whitespace
+                          // in pre-filled assistant responses
+                          text: trimIfLast(
+                            isLastBlock,
+                            isLastMessage,
+                            isLastContentPart,
+                            part.text,
+                          ),
+                          signature: reasoningMetadata.signature,
+                        },
+                      },
+                    });
+                  } else if (reasoningMetadata.redactedData != null) {
+                    bedrockContent.push({
+                      reasoningContent: {
+                        redactedReasoning: {
+                          data: reasoningMetadata.redactedData,
+                        },
+                      },
+                    });
+                  }
+                }
+
                 break;
               }
 
               case 'tool-call': {
                 bedrockContent.push({
                   toolUse: {
-                    toolUseId: part.toolCallId,
+                    toolUseId: normalizeToolCallId(part.toolCallId, isMistral),
                     name: part.toolName,
-                    input: part.args as JSONObject,
+                    input: part.input as JSONObject,
                   },
                 });
                 break;
               }
             }
           }
-          if (getCachePoint(message.providerMetadata)) {
+          if (getCachePoint(message.providerOptions)) {
             bedrockContent.push(BEDROCK_CACHE_POINT);
           }
         }
@@ -283,7 +340,40 @@ export function convertToBedrockChatMessages(prompt: LanguageModelV1Prompt): {
 }
 
 function isBedrockImageFormat(format: string): format is BedrockImageFormat {
-  return ['jpeg', 'png', 'gif'].includes(format);
+  return Object.values(BEDROCK_IMAGE_MIME_TYPES).includes(
+    format as BedrockImageFormat,
+  );
+}
+
+function getBedrockImageFormat(mimeType?: string): BedrockImageFormat {
+  if (!mimeType) {
+    throw new UnsupportedFunctionalityError({
+      functionality: 'image without mime type',
+      message: 'Image mime type is required in user message part content',
+    });
+  }
+
+  const format = BEDROCK_IMAGE_MIME_TYPES[mimeType as BedrockImageMimeType];
+  if (!format) {
+    throw new UnsupportedFunctionalityError({
+      functionality: `image mime type: ${mimeType}`,
+      message: `Unsupported image mime type: ${mimeType}, expected one of: ${Object.keys(BEDROCK_IMAGE_MIME_TYPES).join(', ')}`,
+    });
+  }
+
+  return format;
+}
+
+function getBedrockDocumentFormat(mimeType: string): BedrockDocumentFormat {
+  const format =
+    BEDROCK_DOCUMENT_MIME_TYPES[mimeType as BedrockDocumentMimeType];
+  if (!format) {
+    throw new UnsupportedFunctionalityError({
+      functionality: `file mime type: ${mimeType}`,
+      message: `Unsupported file mime type: ${mimeType}, expected one of: ${Object.keys(BEDROCK_DOCUMENT_MIME_TYPES).join(', ')}`,
+    });
+  }
+  return format;
 }
 
 function trimIfLast(
@@ -297,19 +387,19 @@ function trimIfLast(
 
 type SystemBlock = {
   type: 'system';
-  messages: Array<LanguageModelV1Message & { role: 'system' }>;
+  messages: Array<LanguageModelV3Message & { role: 'system' }>;
 };
 type AssistantBlock = {
   type: 'assistant';
-  messages: Array<LanguageModelV1Message & { role: 'assistant' }>;
+  messages: Array<LanguageModelV3Message & { role: 'assistant' }>;
 };
 type UserBlock = {
   type: 'user';
-  messages: Array<LanguageModelV1Message & { role: 'user' | 'tool' }>;
+  messages: Array<LanguageModelV3Message & { role: 'user' | 'tool' }>;
 };
 
 function groupIntoBlocks(
-  prompt: LanguageModelV1Prompt,
+  prompt: LanguageModelV3Prompt,
 ): Array<SystemBlock | AssistantBlock | UserBlock> {
   const blocks: Array<SystemBlock | AssistantBlock | UserBlock> = [];
   let currentBlock: SystemBlock | AssistantBlock | UserBlock | undefined =

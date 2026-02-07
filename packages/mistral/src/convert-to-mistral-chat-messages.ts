@@ -1,12 +1,25 @@
 import {
-  LanguageModelV1Prompt,
+  LanguageModelV3DataContent,
+  LanguageModelV3Prompt,
   UnsupportedFunctionalityError,
 } from '@ai-toolkit/provider';
-import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
 import { MistralPrompt } from './mistral-chat-prompt';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
+
+function formatFileUrl({
+  data,
+  mediaType,
+}: {
+  data: LanguageModelV3DataContent;
+  mediaType: string;
+}): string {
+  return data instanceof URL
+    ? data.toString()
+    : `data:${mediaType};base64,${convertToBase64(data as Uint8Array)}`;
+}
 
 export function convertToMistralChatMessages(
-  prompt: LanguageModelV1Prompt,
+  prompt: LanguageModelV3Prompt,
 ): MistralPrompt {
   const messages: MistralPrompt = [];
 
@@ -28,37 +41,31 @@ export function convertToMistralChatMessages(
               case 'text': {
                 return { type: 'text', text: part.text };
               }
-              case 'image': {
-                return {
-                  type: 'image_url',
-                  image_url:
-                    part.image instanceof URL
-                      ? part.image.toString()
-                      : `data:${
-                          part.mimeType ?? 'image/jpeg'
-                        };base64,${convertUint8ArrayToBase64(part.image)}`,
-                };
-              }
-              case 'file': {
-                if (!(part.data instanceof URL)) {
-                  throw new UnsupportedFunctionalityError({
-                    functionality: 'File content parts in user messages',
-                  });
-                }
 
-                switch (part.mimeType) {
-                  case 'application/pdf': {
-                    return {
-                      type: 'document_url',
-                      document_url: part.data.toString(),
-                    };
-                  }
-                  default: {
-                    throw new UnsupportedFunctionalityError({
-                      functionality:
-                        'Only PDF files are supported in user messages',
-                    });
-                  }
+              case 'file': {
+                if (part.mediaType.startsWith('image/')) {
+                  const mediaType =
+                    part.mediaType === 'image/*'
+                      ? 'image/jpeg'
+                      : part.mediaType;
+
+                  return {
+                    type: 'image_url',
+                    image_url: formatFileUrl({ data: part.data, mediaType }),
+                  };
+                } else if (part.mediaType === 'application/pdf') {
+                  return {
+                    type: 'document_url',
+                    document_url: formatFileUrl({
+                      data: part.data,
+                      mediaType: 'application/pdf',
+                    }),
+                  };
+                } else {
+                  throw new UnsupportedFunctionalityError({
+                    functionality:
+                      'Only images and PDF file parts are supported',
+                  });
                 }
               }
             }
@@ -87,10 +94,19 @@ export function convertToMistralChatMessages(
                 type: 'function',
                 function: {
                   name: part.toolName,
-                  arguments: JSON.stringify(part.args),
+                  arguments: JSON.stringify(part.input),
                 },
               });
               break;
+            }
+            case 'reasoning': {
+              text += part.text;
+              break;
+            }
+            default: {
+              throw new Error(
+                `Unsupported content type in assistant message: ${part.type}`,
+              );
             }
           }
         }
@@ -106,11 +122,32 @@ export function convertToMistralChatMessages(
       }
       case 'tool': {
         for (const toolResponse of content) {
+          if (toolResponse.type === 'tool-approval-response') {
+            continue;
+          }
+          const output = toolResponse.output;
+
+          let contentValue: string;
+          switch (output.type) {
+            case 'text':
+            case 'error-text':
+              contentValue = output.value;
+              break;
+            case 'execution-denied':
+              contentValue = output.reason ?? 'Tool execution denied.';
+              break;
+            case 'content':
+            case 'json':
+            case 'error-json':
+              contentValue = JSON.stringify(output.value);
+              break;
+          }
+
           messages.push({
             role: 'tool',
             name: toolResponse.toolName,
-            content: JSON.stringify(toolResponse.result),
             tool_call_id: toolResponse.toolCallId,
+            content: contentValue,
           });
         }
         break;

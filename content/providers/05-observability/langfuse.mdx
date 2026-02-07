@@ -81,7 +81,7 @@ import { LangfuseExporter } from 'langfuse-vercel';
 
 export function register() {
   registerOTel({
-    serviceName: 'langfuse-khulnasoft-ai-nextjs-example',
+    serviceName: 'langfuse-vercel-ai-nextjs-example',
     traceExporter: new LangfuseExporter(),
   });
 }
@@ -107,7 +107,7 @@ sdk.start();
 async function main() {
   const result = await generateText({
     model: openai('gpt-4o'),
-    maxTokens: 50,
+    maxOutputTokens: 50,
     prompt: 'Invent a new holiday and describe its traditions.',
     experimental_telemetry: {
       isEnabled: true,
@@ -134,8 +134,8 @@ Done! All traces that contain AI TOOLKIT spans are automatically captured in Lan
 
 ## Example Application
 
-Check out the sample repository ([langfuse/langfuse-khulnasoft-ai-nextjs-example](https://github.com/langfuse/langfuse-khulnasoft-ai-nextjs-example)) based
-on the [next-openai](https://github.com/khulnasoft/ai/tree/main/examples/next-openai) template to showcase the integration of Langfuse with Next.js and AI TOOLKIT.
+Check out the sample repository ([langfuse/langfuse-vercel-ai-nextjs-example](https://github.com/langfuse/langfuse-vercel-ai-nextjs-example)) based
+on the [next-openai](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai) template to showcase the integration of Langfuse with Next.js and AI TOOLKIT.
 
 ## Configuration
 
@@ -158,7 +158,7 @@ langfuse.trace({
 for (let i = 0; i < 3; i++) {
   const result = await generateText({
     model: openai('gpt-3.5-turbo'),
-    maxTokens: 50,
+    maxOutputTokens: 50,
     prompt: 'Invent a new holiday and describe its traditions.',
     experimental_telemetry: {
       isEnabled: true,
@@ -179,7 +179,7 @@ await sdk.shutdown();
 
 The resulting trace hierarchy will be:
 
-![Khulnasoft nested trace in Langfuse UI](https://langfuse.com/images/docs/vercel-nested-trace.png)
+![Vercel nested trace in Langfuse UI](https://langfuse.com/images/docs/vercel-nested-trace.png)
 
 ### Disable Tracking of Input/Output
 
@@ -243,9 +243,9 @@ new LangfuseExporter({ debug: true });
 
 ## Troubleshooting
 
-- If you deploy on Khulnasoft, Khulnasoft's OpenTelemetry Collector is only available on Pro and Enterprise Plans ([docs](https://vercel.com/docs/observability/otel-overview)).
+- If you deploy on Vercel, Vercel's OpenTelemetry Collector is only available on Pro and Enterprise Plans ([docs](https://vercel.com/docs/observability/otel-overview)).
 - You need to be on `"ai": "^3.3.0"` to use the telemetry feature. In case of any issues, please update to the latest version.
-- On NextJS, make sure that you only have a single instrumentation file.
+- On Next.js, make sure that you only have a single instrumentation file.
 - If you use Sentry, make sure to either:
   - set `skipOpenTelemetrySetup: true` in Sentry.init
   - follow Sentry's docs on how to manually set up Sentry with OTEL

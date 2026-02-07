@@ -1,9 +1,12 @@
 import {
-  LanguageModelV1,
-  LanguageModelV1CallWarning,
-  LanguageModelV1FinishReason,
-  LanguageModelV1StreamPart,
-  UnsupportedFunctionalityError,
+  LanguageModelV3,
+  LanguageModelV3CallOptions,
+  LanguageModelV3Content,
+  LanguageModelV3FinishReason,
+  LanguageModelV3GenerateResult,
+  LanguageModelV3StreamPart,
+  LanguageModelV3StreamResult,
+  SharedV3Warning,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
@@ -14,10 +17,11 @@ import {
   createJsonResponseHandler,
   postJsonToApi,
 } from '@ai-toolkit/provider-utils';
-import { z } from 'zod';
-import { PerplexityLanguageModelId } from './perplexity-language-model-settings';
+import { z } from 'zod/v4';
+import { convertPerplexityUsage } from './convert-perplexity-usage';
 import { convertToPerplexityMessages } from './convert-to-perplexity-messages';
 import { mapPerplexityFinishReason } from './map-perplexity-finish-reason';
+import { PerplexityLanguageModelId } from './perplexity-language-model-options';
 
 type PerplexityChatConfig = {
   baseURL: string;
@@ -26,11 +30,8 @@ type PerplexityChatConfig = {
   fetch?: FetchFunction;
 };
 
-export class PerplexityLanguageModel implements LanguageModelV1 {
-  readonly specificationVersion = 'v1';
-  readonly defaultObjectGenerationMode = 'json';
-  readonly supportsStructuredOutputs = true;
-  readonly supportsImageUrls = false;
+export class PerplexityLanguageModel implements LanguageModelV3 {
+  readonly specificationVersion = 'v3';
   readonly provider = 'perplexity';
 
   readonly modelId: PerplexityLanguageModelId;
@@ -45,10 +46,13 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
     this.config = config;
   }
 
+  readonly supportedUrls: Record<string, RegExp[]> = {
+    // No URLs are supported.
+  };
+
   private getArgs({
-    mode,
     prompt,
-    maxTokens,
+    maxOutputTokens,
     temperature,
     topP,
     topK,
@@ -57,96 +61,58 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
     stopSequences,
     responseFormat,
     seed,
-    providerMetadata,
-  }: Parameters<LanguageModelV1['doGenerate']>[0]) {
-    const type = mode.type;
-
-    const warnings: LanguageModelV1CallWarning[] = [];
+    providerOptions,
+  }: LanguageModelV3CallOptions) {
+    const warnings: SharedV3Warning[] = [];
 
     if (topK != null) {
-      warnings.push({
-        type: 'unsupported-setting',
-        setting: 'topK',
-      });
+      warnings.push({ type: 'unsupported', feature: 'topK' });
     }
 
     if (stopSequences != null) {
-      warnings.push({
-        type: 'unsupported-setting',
-        setting: 'stopSequences',
-      });
+      warnings.push({ type: 'unsupported', feature: 'stopSequences' });
     }
 
     if (seed != null) {
-      warnings.push({
-        type: 'unsupported-setting',
-        setting: 'seed',
-      });
+      warnings.push({ type: 'unsupported', feature: 'seed' });
     }
 
-    const baseArgs = {
-      // model id:
-      model: this.modelId,
+    return {
+      args: {
+        // model id:
+        model: this.modelId,
 
-      // standardized settings:
-      frequency_penalty: frequencyPenalty,
-      max_tokens: maxTokens,
-      presence_penalty: presencePenalty,
-      temperature,
-      top_k: topK,
-      top_p: topP,
+        // standardized settings:
+        frequency_penalty: frequencyPenalty,
+        max_tokens: maxOutputTokens,
+        presence_penalty: presencePenalty,
+        temperature,
+        top_k: topK,
+        top_p: topP,
 
-      // response format:
-      response_format:
-        responseFormat?.type === 'json'
-          ? {
-              type: 'json_schema',
-              json_schema: { schema: responseFormat.schema },
-            }
-          : undefined,
+        // response format:
+        response_format:
+          responseFormat?.type === 'json'
+            ? {
+                type: 'json_schema',
+                json_schema: { schema: responseFormat.schema },
+              }
+            : undefined,
 
-      // provider extensions
-      ...(providerMetadata?.perplexity ?? {}),
+        // provider extensions
+        ...(providerOptions?.perplexity ?? {}),
 
-      // messages:
-      messages: convertToPerplexityMessages(prompt),
+        // messages:
+        messages: convertToPerplexityMessages(prompt),
+      },
+      warnings,
     };
-
-    switch (type) {
-      case 'regular': {
-        return { args: baseArgs, warnings };
-      }
-
-      case 'object-json': {
-        return {
-          args: {
-            ...baseArgs,
-            response_format: {
-              type: 'json_schema',
-              json_schema: { schema: mode.schema },
-            },
-          },
-          warnings,
-        };
-      }
-
-      case 'object-tool': {
-        throw new UnsupportedFunctionalityError({
-          functionality: 'tool-mode object generation',
-        });
-      }
-
-      default: {
-        const _exhaustiveCheck: never = type;
-        throw new Error(`Unsupported type: ${_exhaustiveCheck}`);
-      }
-    }
   }
 
   async doGenerate(
-    options: Parameters<LanguageModelV1['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doGenerate']>>> {
-    const { args, warnings } = this.getArgs(options);
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3GenerateResult> {
+    const { args: body, warnings } = this.getArgs(options);
 
     const {
       responseHeaders,
@@ -155,7 +121,7 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
     } = await postJsonToApi({
       url: `${this.config.baseURL}/chat/completions`,
       headers: combineHeaders(this.config.headers(), options.headers),
-      body: args,
+      body,
       failedResponseHandler: createJsonErrorResponseHandler({
         errorSchema: perplexityErrorSchema,
         errorToMessage,
@@ -167,28 +133,41 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { messages: rawPrompt, ...rawSettings } = args;
     const choice = response.choices[0];
+    const content: Array<LanguageModelV3Content> = [];
+
+    // text content:
     const text = choice.message.content;
+    if (text.length > 0) {
+      content.push({ type: 'text', text });
+    }
+
+    // sources:
+    if (response.citations != null) {
+      for (const url of response.citations) {
+        content.push({
+          type: 'source',
+          sourceType: 'url',
+          id: this.config.generateId(),
+          url,
+        });
+      }
+    }
 
     return {
-      text,
-      toolCalls: [],
-      finishReason: mapPerplexityFinishReason(choice.finish_reason),
-      usage: {
-        promptTokens: response.usage?.prompt_tokens ?? Number.NaN,
-        completionTokens: response.usage?.completion_tokens ?? Number.NaN,
+      content,
+      finishReason: {
+        unified: mapPerplexityFinishReason(choice.finish_reason),
+        raw: choice.finish_reason ?? undefined,
       },
-      rawCall: { rawPrompt, rawSettings },
-      rawResponse: { headers: responseHeaders, body: rawResponse },
-      request: { body: JSON.stringify(args) },
-      response: getResponseMetadata(response),
+      usage: convertPerplexityUsage(response.usage),
+      request: { body },
+      response: {
+        ...getResponseMetadata(response),
+        headers: responseHeaders,
+        body: rawResponse,
+      },
       warnings,
-      sources: response.citations?.map(url => ({
-        sourceType: 'url',
-        id: this.config.generateId(),
-        url,
-      })),
       providerMetadata: {
         perplexity: {
           images:
@@ -208,8 +187,8 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
   }
 
   async doStream(
-    options: Parameters<LanguageModelV1['doStream']>[0],
-  ): Promise<Awaited<ReturnType<LanguageModelV1['doStream']>>> {
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3StreamResult> {
     const { args, warnings } = this.getArgs(options);
 
     const body = { ...args, stream: true };
@@ -229,13 +208,18 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
       fetch: this.config.fetch,
     });
 
-    const { messages: rawPrompt, ...rawSettings } = args;
-
-    let finishReason: LanguageModelV1FinishReason = 'unknown';
-    let usage: { promptTokens: number; completionTokens: number } = {
-      promptTokens: Number.NaN,
-      completionTokens: Number.NaN,
+    let finishReason: LanguageModelV3FinishReason = {
+      unified: 'other',
+      raw: undefined,
     };
+    let usage:
+      | {
+          prompt_tokens: number | undefined;
+          completion_tokens: number | undefined;
+          reasoning_tokens?: number | null | undefined;
+        }
+      | undefined = undefined;
+
     const providerMetadata: {
       perplexity: {
         usage: {
@@ -259,6 +243,7 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
       },
     };
     let isFirstChunk = true;
+    let isActive = false;
 
     const self = this;
 
@@ -266,9 +251,18 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
       stream: response.pipeThrough(
         new TransformStream<
           ParseResult<z.infer<typeof perplexityChunkSchema>>,
-          LanguageModelV1StreamPart
+          LanguageModelV3StreamPart
         >({
+          start(controller) {
+            controller.enqueue({ type: 'stream-start', warnings });
+          },
+
           transform(chunk, controller) {
+            // Emit raw chunk if requested (before anything else)
+            if (options.includeRawChunks) {
+              controller.enqueue({ type: 'raw', rawValue: chunk.rawValue });
+            }
+
             if (!chunk.success) {
               controller.enqueue({ type: 'error', error: chunk.error });
               return;
@@ -285,11 +279,9 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
               value.citations?.forEach(url => {
                 controller.enqueue({
                   type: 'source',
-                  source: {
-                    sourceType: 'url',
-                    id: self.config.generateId(),
-                    url,
-                  },
+                  sourceType: 'url',
+                  id: self.config.generateId(),
+                  url,
                 });
               });
 
@@ -297,10 +289,7 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
             }
 
             if (value.usage != null) {
-              usage = {
-                promptTokens: value.usage.prompt_tokens,
-                completionTokens: value.usage.completion_tokens,
-              };
+              usage = value.usage;
 
               providerMetadata.perplexity.usage = {
                 citationTokens: value.usage.citation_tokens ?? null,
@@ -319,7 +308,10 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
 
             const choice = value.choices[0];
             if (choice?.finish_reason != null) {
-              finishReason = mapPerplexityFinishReason(choice.finish_reason);
+              finishReason = {
+                unified: mapPerplexityFinishReason(choice.finish_reason),
+                raw: choice.finish_reason,
+              };
             }
 
             if (choice?.delta == null) {
@@ -330,27 +322,35 @@ export class PerplexityLanguageModel implements LanguageModelV1 {
             const textContent = delta.content;
 
             if (textContent != null) {
+              if (!isActive) {
+                controller.enqueue({ type: 'text-start', id: '0' });
+                isActive = true;
+              }
+
               controller.enqueue({
                 type: 'text-delta',
-                textDelta: textContent,
+                id: '0',
+                delta: textContent,
               });
             }
           },
 
           flush(controller) {
+            if (isActive) {
+              controller.enqueue({ type: 'text-end', id: '0' });
+            }
+
             controller.enqueue({
               type: 'finish',
               finishReason,
-              usage,
+              usage: convertPerplexityUsage(usage),
               providerMetadata,
             });
           },
         }),
       ),
-      rawCall: { rawPrompt, rawSettings },
-      rawResponse: { headers: responseHeaders },
-      request: { body: JSON.stringify(body) },
-      warnings,
+      request: { body },
+      response: { headers: responseHeaders },
     };
   }
 }
@@ -374,8 +374,10 @@ function getResponseMetadata({
 const perplexityUsageSchema = z.object({
   prompt_tokens: z.number(),
   completion_tokens: z.number(),
+  total_tokens: z.number().nullish(),
   citation_tokens: z.number().nullish(),
   num_search_queries: z.number().nullish(),
+  reasoning_tokens: z.number().nullish(),
 });
 
 export const perplexityImageSchema = z.object({

@@ -1,12 +1,18 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-toolkit/provider-utils/test';
+} from '@ai-toolkit/test-server/with-vitest';
 import '@testing-library/jest-dom/vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { UIMessageChunk } from 'ai';
 import { setupTestComponent } from './setup-test-component';
 import { useCompletion } from './use-completion';
+import { describe, it, expect, beforeEach } from 'vitest';
+
+function formatChunk(part: UIMessageChunk) {
+  return `data: ${JSON.stringify(part)}\n\n`;
+}
 
 const server = createTestServer({
   '/api/completion': {},
@@ -54,7 +60,12 @@ describe('stream data stream', () => {
     beforeEach(async () => {
       server.urls['/api/completion'].response = {
         type: 'stream-chunks',
-        chunks: ['0:"Hello"\n', '0:","\n', '0:" world"\n', '0:"."\n'],
+        chunks: [
+          formatChunk({ type: 'text-delta', id: '0', delta: 'Hello' }),
+          formatChunk({ type: 'text-delta', id: '0', delta: ',' }),
+          formatChunk({ type: 'text-delta', id: '0', delta: ' world' }),
+          formatChunk({ type: 'text-delta', id: '0', delta: '.' }),
+        ],
       };
       await userEvent.type(screen.getByTestId('input'), 'hi{enter}');
     });
@@ -88,7 +99,9 @@ describe('stream data stream', () => {
 
       await userEvent.type(screen.getByTestId('input'), 'hi{enter}');
 
-      controller.write('0:"Hello"\n');
+      controller.write(
+        formatChunk({ type: 'text-delta', id: '0', delta: 'Hello' }),
+      );
 
       await waitFor(() => {
         expect(screen.getByTestId('loading')).toHaveTextContent('true');

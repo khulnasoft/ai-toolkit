@@ -1,6 +1,6 @@
 # AI TOOLKIT - ElevenLabs Provider
 
-The **[ElevenLabs provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs)
+The **[ElevenLabs provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
 contains language model support for the ElevenLabs chat and completion APIs and embedding model support for the ElevenLabs embeddings API.
 
 ## Setup
@@ -28,11 +28,11 @@ import { experimental_transcribe as transcribe } from 'ai';
 const { text } = await transcribe({
   model: elevenlabs.transcription('scribe_v1'),
   audio: new URL(
-    'https://github.com/khulnasoft/ai/raw/refs/heads/main/examples/ai-core/data/galileo.mp3',
+    'https://github.com/khulnasoft/ai-toolkit/raw/refs/heads/main/examples/ai-functions/data/galileo.mp3',
   ),
 });
 ```
 
 ## Documentation
 
-Please check out the **[ElevenLabs provider documentation](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for more information.
+Please check out the **[ElevenLabs provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for more information.

@@ -35,8 +35,8 @@ jobs:
         uses: actions/create-github-app-token@v2
         id: app-token
         with:
-          app-id: ${{ vars.KHULNASOFT_AI_TOOLKIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.KHULNASOFT_AI_TOOLKIT_GITHUB_APP_PRIVATE_KEY_PKCS8 }}
+          app-id: ${{ vars.VERCEL_AI_TOOLKIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.VERCEL_AI_TOOLKIT_GITHUB_APP_PRIVATE_KEY_PKCS8 }}
 
       - name: Get GitHub App User ID
         id: app-user-id

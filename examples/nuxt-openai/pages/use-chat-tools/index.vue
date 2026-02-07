@@ -1,24 +1,42 @@
 <script setup lang="ts">
-import { useChat } from '@ai-toolkit/vue';
+import { Chat } from '@ai-toolkit/vue';
+import { DefaultChatTransport } from 'ai';
+import { computed, ref } from 'vue';
 
-const { input, handleSubmit, messages, addToolResult } = useChat({
-  api: '/api/use-chat-tools',
-  maxSteps: 5,
-
+const chat = new Chat({
   // run client-side tools that are automatically executed:
   async onToolCall({ toolCall }) {
+    // artificial 2 second delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     if (toolCall.toolName === 'getLocation') {
       const cities = ['New York', 'Los Angeles', 'Chicago', 'San Francisco'];
-      return cities[Math.floor(Math.random() * cities.length)];
+      const location = cities[Math.floor(Math.random() * cities.length)];
+
+      await chat.addToolOutput({
+        toolCallId: toolCall.toolCallId,
+        tool: 'getLocation',
+        output: location,
+      });
     }
   },
+  transport: new DefaultChatTransport({
+    api: '/api/use-chat-tools',
+  }),
 });
 
-const messageList = computed(() => messages.value); // computer property for type inference
+const messageList = computed(() => chat.messages); // computer property for type inference
+const input = ref('');
+
+const handleSubmit = (e: Event) => {
+  e.preventDefault();
+  chat.sendMessage({ text: input.value });
+  input.value = '';
+};
 </script>
 
 <template>
-  <div class="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+  <div class="flex flex-col py-24 mx-auto w-full max-w-md stretch">
     <div
       v-for="message in messageList"
       :key="message.id"
@@ -29,97 +47,73 @@ const messageList = computed(() => messages.value); // computer property for typ
         <template v-if="part.type === 'text'">
           {{ part.text }}
         </template>
-        <template v-else-if="part.type === 'tool-invocation'">
-          <template
-            v-if="part.toolInvocation.toolName === 'askForConfirmation'"
-          >
-            <template v-if="part.toolInvocation.state === 'call'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                {{ part.toolInvocation.args.message }}
-                <div className="flex gap-2">
-                  <button
-                    class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-                    @click="
-                      addToolResult({
-                        toolCallId: part.toolInvocation.toolCallId,
-                        result: 'Yes, confirmed.',
-                      })
-                    "
-                  >
-                    Yes
-                  </button>
-                  <button
-                    class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                    @click="
-                      addToolResult({
-                        toolCallId: part.toolInvocation.toolCallId,
-                        result: 'No, denied',
-                      })
-                    "
-                  >
-                    No
-                  </button>
-                </div>
+        <template v-else-if="part.type === 'tool-askForConfirmation'">
+          <template v-if="part.state === 'input-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              {{ (part.input as { message: string }).message }}
+              <div className="flex gap-2">
+                <button
+                  class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                  @click="
+                    chat.addToolOutput({
+                      toolCallId: part.toolCallId,
+                      tool: 'askForConfirmation',
+                      output: 'Yes, confirmed.',
+                    })
+                  "
+                >
+                  Yes
+                </button>
+                <button
+                  class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                  @click="
+                    chat.addToolOutput({
+                      toolCallId: part.toolCallId,
+                      tool: 'askForConfirmation',
+                      output: 'No, denied',
+                    })
+                  "
+                >
+                  No
+                </button>
               </div>
-            </template>
-            <template v-if="part.toolInvocation.state === 'result'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                Location access allowed: {{ part.toolInvocation.result }}
-              </div>
-            </template>
+            </div>
           </template>
-
-          <template v-if="part.toolInvocation.toolName === 'getLocation'">
-            <template v-if="part.toolInvocation.state === 'call'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                Getting location...
-              </div>
-            </template>
-            <template v-if="part.toolInvocation.state === 'result'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                Location: {{ part.toolInvocation.result }}
-              </div>
-            </template>
+          <template v-if="part.state === 'output-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              Location access allowed: {{ part.output }}
+            </div>
           </template>
-
-          <template
-            v-if="part.toolInvocation.toolName === 'getWeatherInformation'"
-          >
-            <template v-if="part.toolInvocation.state === 'partial-call'">
-              <pre :key="part.toolInvocation.toolCallId">
-                {{ JSON.stringify(part.toolInvocation, null, 2) }}
-              </pre>
-            </template>
-            <template v-if="part.toolInvocation.state === 'call'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                Getting weather information for
-                {{ part.toolInvocation.args.city }}...
-              </div>
-            </template>
-            <template v-if="part.toolInvocation.state === 'result'">
-              <div
-                :key="part.toolInvocation.toolCallId"
-                className="text-gray-500"
-              >
-                Weather in {{ part.toolInvocation.args.city }}:
-                {{ part.toolInvocation.result }}
-              </div>
-            </template>
+        </template>
+        <template v-else-if="part.type === 'tool-getLocation'">
+          <template v-if="part.state === 'input-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              Getting location...
+            </div>
+          </template>
+          <template v-if="part.state === 'output-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              Location: {{ part.output }}
+            </div>
+          </template>
+        </template>
+        <template v-else-if="part.type === 'tool-getWeatherInformation'">
+          <template v-if="part.state === 'input-streaming'">
+            <pre :key="part.toolCallId">
+              {{ JSON.stringify(part, null, 2) }}
+            </pre>
+          </template>
+          <template v-if="part.state === 'input-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              Getting weather information for
+              {{ (part.input as { city: string }).city }}...
+            </div>
+          </template>
+          <template v-if="part.state === 'output-available'">
+            <div :key="part.toolCallId" className="text-gray-500">
+              Weather in {{ (part.input as { city: string }).city }}:
+              {{ part.output }}
+            </div>
           </template>
         </template>
         <br />
@@ -128,7 +122,7 @@ const messageList = computed(() => messages.value); // computer property for typ
 
     <form @submit="handleSubmit">
       <input
-        class="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
+        class="fixed bottom-0 p-2 mb-8 w-full max-w-md rounded border border-gray-300 shadow-xl"
         v-model="input"
         placeholder="Say something..."
       />

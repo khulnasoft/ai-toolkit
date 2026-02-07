@@ -3,11 +3,16 @@ import {
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
 } from '@ai-toolkit/openai-compatible';
-import { LanguageModelV1, EmbeddingModelV1 } from '@ai-toolkit/provider';
+import {
+  EmbeddingModelV3,
+  LanguageModelV3,
+  RerankingModelV3,
+} from '@ai-toolkit/provider';
 import { loadApiKey } from '@ai-toolkit/provider-utils';
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { TogetherAIRerankingModel } from './reranking/togetherai-reranking-model';
 import { TogetherAIImageModel } from './togetherai-image-model';
 import { createTogetherAI } from './togetherai-provider';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 
 // Add type assertion for the mocked class
 const OpenAICompatibleChatLanguageModelMock =
@@ -19,28 +24,39 @@ vi.mock('@ai-toolkit/openai-compatible', () => ({
   OpenAICompatibleEmbeddingModel: vi.fn(),
 }));
 
-vi.mock('@ai-toolkit/provider-utils', () => ({
-  loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
-  withoutTrailingSlash: vi.fn(url => url),
-}));
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+  return {
+    ...actual,
+    loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
+    withoutTrailingSlash: vi.fn(url => url),
+  };
+});
 
 vi.mock('./togetherai-image-model', () => ({
   TogetherAIImageModel: vi.fn(),
 }));
 
+vi.mock('./reranking/togetherai-reranking-model', () => ({
+  TogetherAIRerankingModel: vi.fn(),
+}));
+
 describe('TogetherAIProvider', () => {
-  let mockLanguageModel: LanguageModelV1;
-  let mockEmbeddingModel: EmbeddingModelV1<string>;
-  let createOpenAICompatibleMock: Mock;
+  let mockLanguageModel: LanguageModelV3;
+  let mockEmbeddingModel: EmbeddingModelV3;
+  let mockRerankingModel: RerankingModelV3;
 
   beforeEach(() => {
     // Mock implementations of models
     mockLanguageModel = {
-      // Add any required methods for LanguageModelV1
-    } as LanguageModelV1;
+      // Add any required methods for LanguageModelV3
+    } as LanguageModelV3;
     mockEmbeddingModel = {
-      // Add any required methods for EmbeddingModelV1
-    } as EmbeddingModelV1<string>;
+      // Add any required methods for EmbeddingModelV3
+    } as EmbeddingModelV3;
+    mockRerankingModel = {
+      // Add any required methods for RerankingModelV3
+    } as RerankingModelV3;
 
     // Reset mocks
     vi.clearAllMocks();
@@ -54,7 +70,7 @@ describe('TogetherAIProvider', () => {
       // Use the mocked version
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -75,7 +91,7 @@ describe('TogetherAIProvider', () => {
 
       const constructorCall =
         OpenAICompatibleChatLanguageModelMock.mock.calls[0];
-      const config = constructorCall[2];
+      const config = constructorCall[1];
       config.headers();
 
       expect(loadApiKey).toHaveBeenCalledWith({
@@ -88,9 +104,8 @@ describe('TogetherAIProvider', () => {
     it('should return a chat model when called as a function', () => {
       const provider = createTogetherAI();
       const modelId = 'foo-model-id';
-      const settings = { user: 'foo-user' };
 
-      const model = provider(modelId, settings);
+      const model = provider(modelId);
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
   });
@@ -99,9 +114,8 @@ describe('TogetherAIProvider', () => {
     it('should construct a chat model with correct configuration', () => {
       const provider = createTogetherAI();
       const modelId = 'together-chat-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.chatModel(modelId, settings);
+      const model = provider.chatModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
     });
@@ -111,21 +125,19 @@ describe('TogetherAIProvider', () => {
     it('should construct a completion model with correct configuration', () => {
       const provider = createTogetherAI();
       const modelId = 'together-completion-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.completionModel(modelId, settings);
+      const model = provider.completionModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleCompletionLanguageModel);
     });
   });
 
-  describe('textEmbeddingModel', () => {
+  describe('embeddingModel', () => {
     it('should construct a text embedding model with correct configuration', () => {
       const provider = createTogetherAI();
       const modelId = 'together-embedding-model';
-      const settings = { user: 'foo-user' };
 
-      const model = provider.textEmbeddingModel(modelId, settings);
+      const model = provider.embeddingModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleEmbeddingModel);
     });
@@ -135,13 +147,11 @@ describe('TogetherAIProvider', () => {
     it('should construct an image model with correct configuration', () => {
       const provider = createTogetherAI();
       const modelId = 'stabilityai/stable-diffusion-xl';
-      const settings = { maxImagesPerCall: 4 };
 
-      const model = provider.image(modelId, settings);
+      const model = provider.image(modelId);
 
       expect(TogetherAIImageModel).toHaveBeenCalledWith(
         modelId,
-        settings,
         expect.objectContaining({
           provider: 'togetherai.image',
           baseURL: 'https://api.together.xyz/v1/',
@@ -160,11 +170,27 @@ describe('TogetherAIProvider', () => {
 
       expect(TogetherAIImageModel).toHaveBeenCalledWith(
         modelId,
-        expect.any(Object),
         expect.objectContaining({
           baseURL: 'https://custom.url/',
         }),
       );
+    });
+  });
+
+  describe('rerankingModel', () => {
+    it('should construct a reranking model with correct configuration', () => {
+      const provider = createTogetherAI();
+      const modelId = 'Salesforce/Llama-Rank-v1';
+      0;
+      const model = provider.rerankingModel(modelId);
+
+      expect(TogetherAIRerankingModel).toHaveBeenCalledWith(
+        modelId,
+        expect.objectContaining({
+          baseURL: 'https://api.together.xyz/v1/',
+        }),
+      );
+      expect(model).toBeInstanceOf(TogetherAIRerankingModel);
     });
   });
 });

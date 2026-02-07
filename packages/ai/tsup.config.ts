@@ -3,71 +3,63 @@ import { defineConfig } from 'tsup';
 export default defineConfig([
   // Universal APIs
   {
-    entry: ['streams/index.ts'],
+    entry: ['src/index.ts'],
     format: ['cjs', 'esm'],
-    external: ['react', 'svelte', 'vue'],
+    external: ['react', 'svelte', 'vue', 'chai', 'chai/*'],
     dts: true,
     sourcemap: true,
+    target: 'es2018',
+    platform: 'node',
+    define: {
+      __PACKAGE_VERSION__: JSON.stringify(
+        (await import('./package.json', { with: { type: 'json' } })).default
+          .version,
+      ),
+    },
+  },
+  // Internal APIs
+  {
+    entry: ['internal/index.ts'],
+    outDir: 'dist/internal',
+    format: ['cjs', 'esm'],
+    external: ['chai', 'chai/*'],
+    dts: true,
+    sourcemap: true,
+    target: 'es2018',
+    platform: 'node',
+    define: {
+      __PACKAGE_VERSION__: JSON.stringify(
+        (await import('./package.json', { with: { type: 'json' } })).default
+          .version,
+      ),
+    },
   },
   // Test utilities
   {
     entry: ['test/index.ts'],
-    outDir: 'test/dist',
+    outDir: 'dist/test',
     format: ['cjs', 'esm'],
+    external: [
+      'chai',
+      'chai/*',
+      'vitest',
+      'vitest/*',
+      '@vitest/*',
+      'vitest/dist/*',
+      'vitest/dist/chunks/*',
+      'vitest/dist/node/*',
+      'vitest/dist/node/chunks/*',
+    ],
     dts: true,
     sourcemap: true,
-  },
-  // React APIs
-  {
-    entry: ['react/index.ts'],
-    outDir: 'react/dist',
-    banner: {
-      js: "'use client'",
+    // Allow BigInt in tests
+    target: 'es2020',
+    platform: 'node',
+    define: {
+      __PACKAGE_VERSION__: JSON.stringify(
+        (await import('./package.json', { with: { type: 'json' } })).default
+          .version,
+      ),
     },
-    format: ['cjs', 'esm'],
-    external: ['react'],
-    dts: true,
-    sourcemap: true,
-  },
-  // RSC APIs - shared client
-  {
-    // Entry is `.mts` as the entrypoints that import it will be ESM so it needs exact imports that includes the `.mjs` extension.
-    entry: ['rsc/rsc-shared.mts'],
-    outDir: 'rsc/dist',
-    format: ['esm'],
-    external: ['react', 'zod'],
-    dts: true,
-    sourcemap: true,
-  },
-  // RSC APIs - server, client
-  {
-    entry: ['rsc/rsc-server.ts', 'rsc/rsc-client.ts'],
-    outDir: 'rsc/dist',
-    format: ['esm'],
-    external: ['react', 'zod', /\/rsc-shared/],
-    dts: true,
-    sourcemap: true,
-  },
-  // RSC APIs - types
-  {
-    entry: ['rsc/index.ts'],
-    outDir: 'rsc/dist',
-    dts: true,
-    outExtension() {
-      return {
-        // It must be `.d.ts` instead of `.d.mts` to support node resolution.
-        // See https://github.com/khulnasoft/ai/issues/1028.
-        dts: '.d.ts',
-        js: '.mjs',
-      };
-    },
-  },
-  // MCP stdio
-  {
-    entry: ['mcp-stdio/index.ts'],
-    outDir: 'mcp-stdio/dist',
-    format: ['cjs', 'esm'],
-    dts: true,
-    sourcemap: true,
   },
 ]);

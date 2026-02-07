@@ -34,7 +34,7 @@ There are two functions provided by the RSC API that allow you to create streama
 
 ## `createStreamableValue`
 
-The RSC API allows you to stream serializable Javascript values from the server to the client using [`createStreamableValue`](/docs/reference/ai-toolkit-rsc/create-streamable-value), such as strings, numbers, objects, and arrays.
+The RSC API allows you to stream serializable JavaScript values from the server to the client using [`createStreamableValue`](/docs/reference/ai-toolkit-rsc/create-streamable-value), such as strings, numbers, objects, and arrays.
 
 This is useful when you want to stream:
 
@@ -44,12 +44,12 @@ This is useful when you want to stream:
 
 ## Creating a Streamable Value
 
-You can import `createStreamableValue` from `ai/rsc` and use it to create a streamable value.
+You can import `createStreamableValue` from `@ai-toolkit/rsc` and use it to create a streamable value.
 
 ```tsx file='app/actions.ts'
 'use server';
 
-import { createStreamableValue } from 'ai/rsc';
+import { createStreamableValue } from '@ai-toolkit/rsc';
 
 export const runThread = async () => {
   const streamableStatus = createStreamableValue('thread.init');
@@ -72,7 +72,7 @@ export const runThread = async () => {
 You can read streamable values on the client using `readStreamableValue`. It returns an async iterator that yields the value of the streamable as it is updated:
 
 ```tsx file='app/page.tsx'
-import { readStreamableValue } from 'ai/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 import { runThread } from '@/actions';
 
 export default function Page() {
@@ -105,7 +105,7 @@ Let's look at how you can use the `createStreamableUI` function with a Server Ac
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { createStreamableUI } from 'ai/rsc';
+import { createStreamableUI } from '@ai-toolkit/rsc';
 
 export async function getWeather() {
   const weatherUI = createStreamableUI();
@@ -130,7 +130,7 @@ On the client side, you can call the `getWeather` Server Action and render the r
 'use client';
 
 import { useState } from 'react';
-import { readStreamableValue } from 'ai/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 import { getWeather } from '@/actions';
 
 export default function Page() {

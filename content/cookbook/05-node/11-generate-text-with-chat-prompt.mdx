@@ -12,24 +12,23 @@ A chat completion allows you to generate text based on a series of messages. Thi
 
 ```ts file='index.ts'
 import { generateText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
 
 const result = await generateText({
-  model: openai('gpt-3.5-turbo'),
-  maxTokens: 1024,
+  model: 'openai/gpt-4o',
+  maxOutputTokens: 1024,
   system: 'You are a helpful chatbot.',
   messages: [
     {
       role: 'user',
-      content: 'Hello!',
+      content: [{ type: 'text', text: 'Hello!' }],
     },
     {
       role: 'assistant',
-      content: 'Hello! How can I help you today?',
+      content: [{ type: 'text', text: 'Hello! How can I help you today?' }],
     },
     {
       role: 'user',
-      content: 'I need help with my computer.',
+      content: [{ type: 'text', text: 'I need help with my computer.' }],
     },
   ],
 });

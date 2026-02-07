@@ -1,6 +1,6 @@
 # AI TOOLKIT - DeepSeek Provider
 
-The **[DeepSeek provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains language model support for the [DeepSeek](https://www.deepseek.com) platform.
+The **[DeepSeek provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the [DeepSeek](https://www.deepseek.com) platform.
 
 ## Setup
 
@@ -32,4 +32,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[DeepSeek provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for more information.
+Please check out the **[DeepSeek provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for more information.

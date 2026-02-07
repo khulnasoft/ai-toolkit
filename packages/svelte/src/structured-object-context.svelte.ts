@@ -1,4 +1,4 @@
-import type { DeepPartial } from '@ai-toolkit/ui-utils';
+import type { DeepPartial } from 'ai';
 import { createContext, KeyedStore } from './utils.svelte.js';
 
 export class StructuredObjectStore<RESULT> {

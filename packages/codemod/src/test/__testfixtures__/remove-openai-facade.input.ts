@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { OpenAI } from '@ai-toolkit/openai';
+import { createOpenAI } from '@ai-toolkit/openai';
 
-const openai = new OpenAI({
+const openai = createOpenAI({
   apiKey: 'key',
   baseURL: 'url',
   headers: { 'custom': 'header' }

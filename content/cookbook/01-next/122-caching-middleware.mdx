@@ -6,6 +6,8 @@ tags: ['next', 'streaming', 'caching', 'middleware']
 
 # Caching Middleware
 
+<Note type="warning">This example is not yet updated to v5.</Note>
+
 Let's create a simple chat interface that uses [`LanguageModelMiddleware`](/docs/ai-toolkit-core/middleware) to cache the assistant's responses in fast KV storage.
 
 ## Client
@@ -66,7 +68,7 @@ You can control the initial delay and delay between chunks by adjusting the `ini
 import { Redis } from '@upstash/redis';
 import {
   type LanguageModelV1,
-  type LanguageModelV1Middleware,
+  type LanguageModelV3Middleware,
   type LanguageModelV1StreamPart,
   simulateReadableStream,
 } from 'ai';
@@ -76,7 +78,7 @@ const redis = new Redis({
   token: process.env.KV_TOKEN,
 });
 
-export const cacheMiddleware: LanguageModelV1Middleware = {
+export const cacheMiddleware: LanguageModelV3Middleware = {
   wrapGenerate: async ({ doGenerate, params }) => {
     const cacheKey = JSON.stringify(params);
 
@@ -122,7 +124,6 @@ export const cacheMiddleware: LanguageModelV1Middleware = {
           chunkDelayInMs: 10,
           chunks: formattedChunks,
         }),
-        rawCall: { rawPrompt: null, rawSettings: {} },
       };
     }
 
@@ -164,12 +165,11 @@ Finally, you will create an API route for `api/chat` to handle the assistant's m
 
 ```tsx filename='app/api/chat/route.ts'
 import { cacheMiddleware } from '@/ai/middleware';
-import { openai } from '@ai-toolkit/openai';
 import { wrapLanguageModel, streamText, tool } from 'ai';
 import { z } from 'zod';
 
 const wrappedModel = wrapLanguageModel({
-  model: openai('gpt-4o-mini'),
+  model: 'openai/gpt-4o-mini',
   middleware: cacheMiddleware,
 });
 
@@ -182,7 +182,7 @@ export async function POST(req: Request) {
     tools: {
       weather: tool({
         description: 'Get the weather in a location',
-        parameters: z.object({
+        inputSchema: z.object({
           location: z.string().describe('The location to get the weather for'),
         }),
         execute: async ({ location }) => ({
@@ -192,6 +192,6 @@ export async function POST(req: Request) {
       }),
     },
   });
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
 ```

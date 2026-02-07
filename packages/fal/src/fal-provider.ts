@@ -1,12 +1,22 @@
 import {
-  ImageModelV1,
+  ImageModelV3,
   NoSuchModelError,
-  ProviderV1,
+  ProviderV3,
+  SpeechModelV3,
+  TranscriptionModelV3,
 } from '@ai-toolkit/provider';
 import type { FetchFunction } from '@ai-toolkit/provider-utils';
-import { withoutTrailingSlash } from '@ai-toolkit/provider-utils';
+import {
+  withoutTrailingSlash,
+  withUserAgentSuffix,
+} from '@ai-toolkit/provider-utils';
 import { FalImageModel } from './fal-image-model';
-import { FalImageModelId, FalImageSettings } from './fal-image-settings';
+import { FalImageModelId } from './fal-image-settings';
+import { FalTranscriptionModelId } from './fal-transcription-options';
+import { FalTranscriptionModel } from './fal-transcription-model';
+import { FalSpeechModelId } from './fal-speech-settings';
+import { FalSpeechModel } from './fal-speech-model';
+import { VERSION } from './version';
 
 export interface FalProviderSettings {
   /**
@@ -33,19 +43,31 @@ requests, or to provide a custom fetch implementation for e.g. testing.
   fetch?: FetchFunction;
 }
 
-export interface FalProvider extends ProviderV1 {
+export interface FalProvider extends ProviderV3 {
   /**
 Creates a model for image generation.
    */
-  image(modelId: FalImageModelId, settings?: FalImageSettings): ImageModelV1;
+  image(modelId: FalImageModelId): ImageModelV3;
 
   /**
 Creates a model for image generation.
    */
-  imageModel(
-    modelId: FalImageModelId,
-    settings?: FalImageSettings,
-  ): ImageModelV1;
+  imageModel(modelId: FalImageModelId): ImageModelV3;
+
+  /**
+Creates a model for transcription.
+   */
+  transcription(modelId: FalTranscriptionModelId): TranscriptionModelV3;
+
+  /**
+Creates a model for speech generation.
+   */
+  speech(modelId: FalSpeechModelId): SpeechModelV3;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(modelId: string): never;
 }
 
 const defaultBaseURL = 'https://fal.run';
@@ -96,39 +118,62 @@ Create a fal.ai provider instance.
  */
 export function createFal(options: FalProviderSettings = {}): FalProvider {
   const baseURL = withoutTrailingSlash(options.baseURL ?? defaultBaseURL);
-  const getHeaders = () => ({
-    Authorization: `Key ${loadFalApiKey({
-      apiKey: options.apiKey,
-    })}`,
-    ...options.headers,
-  });
+  const getHeaders = () =>
+    withUserAgentSuffix(
+      {
+        Authorization: `Key ${loadFalApiKey({
+          apiKey: options.apiKey,
+        })}`,
+        ...options.headers,
+      },
+      `ai-toolkit/fal/${VERSION}`,
+    );
 
-  const createImageModel = (
-    modelId: FalImageModelId,
-    settings: FalImageSettings = {},
-  ) =>
-    new FalImageModel(modelId, settings, {
+  const createImageModel = (modelId: FalImageModelId) =>
+    new FalImageModel(modelId, {
       provider: 'fal.image',
       baseURL: baseURL ?? defaultBaseURL,
       headers: getHeaders,
       fetch: options.fetch,
     });
 
+  const createSpeechModel = (modelId: FalSpeechModelId) =>
+    new FalSpeechModel(modelId, {
+      provider: `fal.speech`,
+      url: ({ path }) => path,
+      headers: getHeaders,
+      fetch: options.fetch,
+    });
+
+  const createTranscriptionModel = (modelId: FalTranscriptionModelId) =>
+    new FalTranscriptionModel(modelId, {
+      provider: `fal.transcription`,
+      url: ({ path }) => path,
+      headers: getHeaders,
+      fetch: options.fetch,
+    });
+
+  const embeddingModel = (modelId: string) => {
+    throw new NoSuchModelError({
+      modelId,
+      modelType: 'embeddingModel',
+    });
+  };
+
   return {
-    image: createImageModel,
+    specificationVersion: 'v3' as const,
     imageModel: createImageModel,
-    languageModel: () => {
+    image: createImageModel,
+    languageModel: (modelId: string) => {
       throw new NoSuchModelError({
-        modelId: 'languageModel',
+        modelId,
         modelType: 'languageModel',
       });
     },
-    textEmbeddingModel: () => {
-      throw new NoSuchModelError({
-        modelId: 'textEmbeddingModel',
-        modelType: 'textEmbeddingModel',
-      });
-    },
+    speech: createSpeechModel,
+    embeddingModel,
+    textEmbeddingModel: embeddingModel,
+    transcription: createTranscriptionModel,
   };
 }
 

@@ -2,13 +2,13 @@
 
 import { Card } from '@/app/components';
 import { useChat } from '@ai-toolkit/react';
+import { getStaticToolName, isStaticToolUIPart } from 'ai';
 import { GeistMono } from 'geist/font/mono';
+import { useState } from 'react';
 
 export default function Page() {
-  const { messages, input, handleSubmit, handleInputChange, status } = useChat({
-    streamProtocol: 'data',
-    maxSteps: 3,
-  });
+  const [input, setInput] = useState('');
+  const { messages, sendMessage, status } = useChat();
 
   return (
     <div className="flex flex-col gap-2">
@@ -18,22 +18,24 @@ export default function Page() {
             <div className="flex-shrink-0 w-24 text-zinc-500">{`${message.role}: `}</div>
 
             <div className="flex flex-col gap-2">
-              {message.content && <div>{message.content}</div>}
-
-              <div className="flex flex-row gap-2">
-                {message.toolInvocations?.map(toolInvocation => (
-                  <pre
-                    key={toolInvocation.toolCallId}
-                    className={`${GeistMono.className} text-sm text-zinc-500 bg-zinc-100 p-3 rounded-lg`}
-                  >
-                    {`${toolInvocation.toolName}(${JSON.stringify(
-                      toolInvocation.args,
-                      null,
-                      2,
-                    )})`}
-                  </pre>
-                ))}
-              </div>
+              {message.parts.map((part, index) => {
+                if (part.type === 'text') {
+                  return <div key={index}>{part.text}</div>;
+                } else if (isStaticToolUIPart(part)) {
+                  return (
+                    <div
+                      key={index}
+                      className={`${GeistMono.className} text-sm text-zinc-500 bg-zinc-100 p-3 rounded-lg`}
+                    >
+                      {`${getStaticToolName(part)}(${JSON.stringify(
+                        part.input,
+                        null,
+                        2,
+                      )})`}
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         ))}
@@ -42,14 +44,18 @@ export default function Page() {
       {messages.length === 0 && <Card type="chat-data" />}
 
       <form
-        onSubmit={handleSubmit}
-        className="fixed bottom-0 flex flex-col w-full border-t"
+        onSubmit={e => {
+          e.preventDefault();
+          sendMessage({ text: input });
+          setInput('');
+        }}
+        className="flex fixed bottom-0 flex-col w-full border-t"
       >
         <input
           value={input}
           placeholder="What's the weather in San Francisco?"
-          onChange={handleInputChange}
-          className="w-full p-4 bg-transparent outline-none"
+          onChange={e => setInput(e.target.value)}
+          className="p-4 w-full bg-transparent outline-none"
           disabled={status !== 'ready'}
         />
       </form>

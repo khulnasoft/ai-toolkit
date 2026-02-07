@@ -1,12 +1,13 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-toolkit/provider-utils/test';
+} from '@ai-toolkit/test-server/with-vitest';
 import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 import { experimental_useObject } from './use-object';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 const server = createTestServer({
   '/api/use-object': {},
@@ -26,18 +27,19 @@ describe('text stream', () => {
     headers?: Record<string, string> | Headers;
     credentials?: RequestCredentials;
   }) => {
-    const { object, error, submit, isLoading, stop } = experimental_useObject({
-      api: '/api/use-object',
-      schema: z.object({ content: z.string() }),
-      onError(error) {
-        onErrorResult = error;
-      },
-      onFinish(event) {
-        onFinishCalls.push(event);
-      },
-      headers,
-      credentials,
-    });
+    const { object, error, submit, isLoading, stop, clear } =
+      experimental_useObject({
+        api: '/api/use-object',
+        schema: z.object({ content: z.string() }),
+        onError(error) {
+          onErrorResult = error;
+        },
+        onFinish(event) {
+          onFinishCalls.push(event);
+        },
+        headers,
+        credentials,
+      });
 
     return (
       <div>
@@ -52,6 +54,9 @@ describe('text stream', () => {
         </button>
         <button data-testid="stop-button" onClick={stop}>
           Stop
+        </button>
+        <button data-testid="clear-button" onClick={clear}>
+          Clear
         </button>
       </div>
     );
@@ -91,7 +96,7 @@ describe('text stream', () => {
       });
 
       it("should send 'test' to the API", async () => {
-        expect(await server.calls[0].requestBody).toBe('test-input');
+        expect(await server.calls[0].requestBodyJson).toBe('test-input');
       });
 
       it('should not have an error', async () => {
@@ -156,14 +161,45 @@ describe('text stream', () => {
       });
 
       // this should not be consumed any more:
-      controller.write('ello, world!"}');
-      controller.close();
+      await expect(controller.write('ello, world!"}')).rejects.toThrow();
+      await expect(controller.close()).rejects.toThrow();
 
       // should only show start of object:
       await waitFor(() => {
         expect(screen.getByTestId('object')).toHaveTextContent(
           '{"content":"h"}',
         );
+      });
+    });
+
+    it('should stop and clear the object state after a call to submit then clear', async () => {
+      const controller = new TestResponseController();
+      server.urls['/api/use-object'].response = {
+        type: 'controlled-stream',
+        controller,
+      };
+
+      controller.write('{"content": "h');
+      await userEvent.click(screen.getByTestId('submit-button'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loading')).toHaveTextContent('true');
+      });
+      await waitFor(() => {
+        expect(screen.getByTestId('object')).toHaveTextContent(
+          '{"content":"h"}',
+        );
+      });
+
+      await userEvent.click(screen.getByTestId('clear-button'));
+
+      await expect(controller.write('ello, world!"}')).rejects.toThrow();
+      await expect(controller.close()).rejects.toThrow();
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loading')).toHaveTextContent('false');
+        expect(screen.getByTestId('error')).toBeEmptyDOMElement();
+        expect(screen.getByTestId('object')).toBeEmptyDOMElement();
       });
     });
 
@@ -237,6 +273,86 @@ describe('text stream', () => {
     });
   });
 
+  it('should send headers from async function', async () => {
+    server.urls['/api/use-object'].response = {
+      type: 'stream-chunks',
+      chunks: ['{ ', '"content": "Hello, ', 'world', '!"', '}'],
+    };
+
+    const TestComponentWithAsyncHeaders = () => {
+      const { submit } = experimental_useObject({
+        api: '/api/use-object',
+        schema: z.object({ content: z.string() }),
+        headers: async () => {
+          // Simulate async token fetch
+          await new Promise(resolve => setTimeout(resolve, 10));
+          return {
+            Authorization: 'Bearer ASYNC_TOKEN',
+            'X-Request-ID': 'async-123',
+          };
+        },
+      });
+
+      return (
+        <button
+          data-testid="submit-async-headers"
+          onClick={() => submit('test-input')}
+        >
+          Submit
+        </button>
+      );
+    };
+
+    render(<TestComponentWithAsyncHeaders />);
+    await userEvent.click(screen.getByTestId('submit-async-headers'));
+
+    await waitFor(() => {
+      expect(server.calls[0].requestHeaders).toStrictEqual({
+        'content-type': 'application/json',
+        authorization: 'Bearer ASYNC_TOKEN',
+        'x-request-id': 'async-123',
+      });
+    });
+  });
+
+  it('should send headers from sync function', async () => {
+    server.urls['/api/use-object'].response = {
+      type: 'stream-chunks',
+      chunks: ['{ ', '"content": "Hello, ', 'world', '!"', '}'],
+    };
+
+    const TestComponentWithSyncFunctionHeaders = () => {
+      const { submit } = experimental_useObject({
+        api: '/api/use-object',
+        schema: z.object({ content: z.string() }),
+        headers: () => ({
+          Authorization: 'Bearer SYNC_TOKEN',
+          'X-Request-ID': 'sync-456',
+        }),
+      });
+
+      return (
+        <button
+          data-testid="submit-sync-headers"
+          onClick={() => submit('test-input')}
+        >
+          Submit
+        </button>
+      );
+    };
+
+    render(<TestComponentWithSyncFunctionHeaders />);
+    await userEvent.click(screen.getByTestId('submit-sync-headers'));
+
+    await waitFor(() => {
+      expect(server.calls[0].requestHeaders).toStrictEqual({
+        'content-type': 'application/json',
+        authorization: 'Bearer SYNC_TOKEN',
+        'x-request-id': 'sync-456',
+      });
+    });
+  });
+
   it('should send custom credentials', async () => {
     server.urls['/api/use-object'].response = {
       type: 'stream-chunks',
@@ -246,5 +362,28 @@ describe('text stream', () => {
     render(<TestComponent credentials="include" />);
     await userEvent.click(screen.getByTestId('submit-button'));
     expect(server.calls[0].requestCredentials).toBe('include');
+  });
+
+  it('should clear the object state after a call to clear', async () => {
+    server.urls['/api/use-object'].response = {
+      type: 'stream-chunks',
+      chunks: ['{ ', '"content": "Hello, ', 'world', '!"', '}'],
+    };
+
+    render(<TestComponent />);
+    await userEvent.click(screen.getByTestId('submit-button'));
+
+    await screen.findByTestId('object');
+    expect(screen.getByTestId('object')).toHaveTextContent(
+      JSON.stringify({ content: 'Hello, world!' }),
+    );
+
+    await userEvent.click(screen.getByTestId('clear-button'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('object')).toBeEmptyDOMElement();
+      expect(screen.getByTestId('error')).toBeEmptyDOMElement();
+      expect(screen.getByTestId('loading')).toHaveTextContent('false');
+    });
   });
 });

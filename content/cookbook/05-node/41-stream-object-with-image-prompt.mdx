@@ -12,7 +12,6 @@ Some language models that support vision capabilities accept images as part of t
 
 ```ts file='index.ts'
 import { streamObject } from 'ai';
-import { openai } from '@ai-toolkit/openai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
@@ -20,8 +19,8 @@ dotenv.config();
 
 async function main() {
   const { partialObjectStream } = streamObject({
-    model: openai('gpt-4-turbo'),
-    maxTokens: 512,
+    model: 'openai/gpt-4.1',
+    maxOutputTokens: 512,
     schema: z.object({
       stamps: z.array(
         z.object({
@@ -62,16 +61,16 @@ main();
 
 ```ts file='index.ts'
 import { streamObject } from 'ai';
-import { openai } from '@ai-toolkit/openai';
 import dotenv from 'dotenv';
 import { z } from 'zod';
+import fs from 'fs';
 
 dotenv.config();
 
 async function main() {
   const { partialObjectStream } = streamObject({
-    model: openai('gpt-4-turbo'),
-    maxTokens: 512,
+    model: 'openai/gpt-4.1',
+    maxOutputTokens: 512,
     schema: z.object({
       stamps: z.array(
         z.object({
@@ -90,7 +89,9 @@ async function main() {
           },
           {
             type: 'image',
-            image: fs.readFileSync('./node/attachments/eclipse.jpg'),
+            image: fs.readFileSync('./data/passport.png', {
+              encoding: 'base64',
+            }),
           },
         ],
       },

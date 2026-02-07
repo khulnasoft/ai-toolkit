@@ -6,12 +6,12 @@ description: API reference for the useObject hook.
 # `experimental_useObject()`
 
 <Note>
-  `useObject` is an experimental feature and only available in React and
-  SolidJS.
+  `useObject` is an experimental feature and only available in React, Svelte,
+  and Vue.
 </Note>
 
 Allows you to consume text streams that represent a JSON object and parse them into a complete object based on a schema.
-You can use it together with [`streamObject`](/docs/reference/ai-toolkit-core/stream-object) in the backend.
+You can use it together with [`streamText`](/docs/reference/ai-toolkit-core/stream-text) and [`Output.object()`](/docs/reference/ai-toolkit-core/output#output-object) in the backend.
 
 ```tsx
 'use client';
@@ -157,6 +157,11 @@ export default function Page() {
       name: 'stop',
       type: '() => void',
       description: 'Function to abort the current API request.',
+    },
+    {
+      name: 'clear',
+      type: '() => void',
+      description: 'Function to clear the object state.',
     },
   ]}
 />

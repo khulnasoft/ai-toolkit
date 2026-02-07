@@ -1,6 +1,6 @@
 # AI TOOLKIT - Google Vertex AI Provider
 
-The **[Google Vertex provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for the [AI TOOLKIT](https://sdk.khulnasoft.com/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
+The **[Google Vertex provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
 
 This library includes a Google Vertex Anthropic provider. This provider closely follows the core Google Vertex library's usage patterns. See more in the [Google Vertex Anthropic Provider](#google-vertex-anthropic-provider) section below.
 
@@ -125,7 +125,7 @@ async function main() {
   });
 
   console.log(result.text);
-  console.log(result.experimental_providerMetadata?.anthropic);
+  console.log(result.providerMetadata?.anthropic);
   // e.g. { cacheCreationInputTokens: 2118, cacheReadInputTokens: 0 }
 }
 
@@ -218,4 +218,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Google Vertex provider](https://sdk.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for more information.
+Please check out the **[Google Vertex provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for more information.

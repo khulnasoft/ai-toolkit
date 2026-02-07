@@ -1,6 +1,11 @@
-import { EmbeddingModelV1Embedding } from '@ai-toolkit/provider';
-import { createTestServer } from '@ai-toolkit/provider-utils/test';
+import { EmbeddingModelV3Embedding } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { createMistral } from './mistral-provider';
+import { describe, it, expect, vi } from 'vitest';
+
+vi.mock('./version', () => ({
+  VERSION: '0.0.0-test',
+}));
 
 const dummyEmbeddings = [
   [0.1, 0.2, 0.3, 0.4, 0.5],
@@ -9,7 +14,7 @@ const dummyEmbeddings = [
 const testValues = ['sunny day at the beach', 'rainy day in the city'];
 
 const provider = createMistral({ apiKey: 'test-api-key' });
-const model = provider.textEmbeddingModel('mistral-embed');
+const model = provider.embeddingModel('mistral-embed');
 
 const server = createTestServer({
   'https://api.mistral.ai/v1/embeddings': {},
@@ -21,7 +26,7 @@ describe('doEmbed', () => {
     usage = { prompt_tokens: 8, total_tokens: 8 },
     headers,
   }: {
-    embeddings?: EmbeddingModelV1Embedding[];
+    embeddings?: EmbeddingModelV3Embedding[];
     usage?: { prompt_tokens: number; total_tokens: number };
     headers?: Record<string, string>;
   } = {}) {
@@ -60,14 +65,14 @@ describe('doEmbed', () => {
     expect(usage).toStrictEqual({ tokens: 20 });
   });
 
-  it('should expose the raw response headers', async () => {
+  it('should expose the raw response', async () => {
     prepareJsonResponse({
       headers: { 'test-header': 'test-value' },
     });
 
-    const { rawResponse } = await model.doEmbed({ values: testValues });
+    const { response } = await model.doEmbed({ values: testValues });
 
-    expect(rawResponse?.headers).toStrictEqual({
+    expect(response?.headers).toStrictEqual({
       // default headers:
       'content-length': '267',
       'content-type': 'application/json',
@@ -75,6 +80,7 @@ describe('doEmbed', () => {
       // custom header
       'test-header': 'test-value',
     });
+    expect(response).toMatchSnapshot();
   });
 
   it('should pass the model and the values', async () => {
@@ -82,7 +88,7 @@ describe('doEmbed', () => {
 
     await model.doEmbed({ values: testValues });
 
-    expect(await server.calls[0].requestBody).toStrictEqual({
+    expect(await server.calls[0].requestBodyJson).toStrictEqual({
       model: 'mistral-embed',
       input: testValues,
       encoding_format: 'float',
@@ -114,5 +120,8 @@ describe('doEmbed', () => {
       'custom-provider-header': 'provider-header-value',
       'custom-request-header': 'request-header-value',
     });
+    expect(server.calls[0].requestUserAgent).toContain(
+      `ai-toolkit/mistral/0.0.0-test`,
+    );
   });
 });

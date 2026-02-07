@@ -1,65 +1,85 @@
+import { GoogleGenerativeAILanguageModel } from '@ai-toolkit/google/internal';
 import {
-  LanguageModelV1,
-  ProviderV1,
-  ImageModelV1,
+  ImageModelV3,
+  LanguageModelV3,
+  ProviderV3,
 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
+  loadOptionalSetting,
   loadSetting,
+  normalizeHeaders,
+  resolve,
   Resolvable,
   withoutTrailingSlash,
+  withUserAgentSuffix,
 } from '@ai-toolkit/provider-utils';
-import {
-  GoogleVertexModelId,
-  GoogleVertexSettings,
-} from './google-vertex-settings';
-import {
-  GoogleVertexEmbeddingModelId,
-  GoogleVertexEmbeddingSettings,
-} from './google-vertex-embedding-settings';
-import { GoogleVertexEmbeddingModel } from './google-vertex-embedding-model';
-import { GoogleGenerativeAILanguageModel } from '@ai-toolkit/google/internal';
-import { GoogleVertexImageModel } from './google-vertex-image-model';
-import {
-  GoogleVertexImageModelId,
-  GoogleVertexImageSettings,
-} from './google-vertex-image-settings';
+import { VERSION } from './version';
 import { GoogleVertexConfig } from './google-vertex-config';
-import { isSupportedFileUrl } from './google-vertex-supported-file-url';
+import { GoogleVertexEmbeddingModel } from './google-vertex-embedding-model';
+import { GoogleVertexEmbeddingModelId } from './google-vertex-embedding-options';
+import { GoogleVertexImageModel } from './google-vertex-image-model';
+import { GoogleVertexImageModelId } from './google-vertex-image-settings';
+import { GoogleVertexModelId } from './google-vertex-options';
+import { googleVertexTools } from './google-vertex-tools';
 
-export interface GoogleVertexProvider extends ProviderV1 {
+const EXPRESS_MODE_BASE_URL =
+  'https://aiplatform.googleapis.com/v1/publishers/google';
+
+// set `x-goog-api-key` header to API key for express mode
+function createExpressModeFetch(
+  apiKey: string,
+  customFetch?: FetchFunction,
+): FetchFunction {
+  return async (url, init) => {
+    const modifiedInit: RequestInit = {
+      ...init,
+      headers: {
+        ...(init?.headers ? normalizeHeaders(init.headers) : {}),
+        'x-goog-api-key': apiKey,
+      },
+    };
+    return (customFetch ?? fetch)(url.toString(), modifiedInit);
+  };
+}
+
+export interface GoogleVertexProvider extends ProviderV3 {
   /**
 Creates a model for text generation.
    */
-  (
-    modelId: GoogleVertexModelId,
-    settings?: GoogleVertexSettings,
-  ): LanguageModelV1;
+  (modelId: GoogleVertexModelId): LanguageModelV3;
 
-  languageModel: (
-    modelId: GoogleVertexModelId,
-    settings?: GoogleVertexSettings,
-  ) => LanguageModelV1;
+  languageModel: (modelId: GoogleVertexModelId) => LanguageModelV3;
 
   /**
    * Creates a model for image generation.
    */
-  image(
-    modelId: GoogleVertexImageModelId,
-    settings?: GoogleVertexImageSettings,
-  ): ImageModelV1;
+  image(modelId: GoogleVertexImageModelId): ImageModelV3;
 
   /**
 Creates a model for image generation.
    */
-  imageModel(
-    modelId: GoogleVertexImageModelId,
-    settings?: GoogleVertexImageSettings,
-  ): ImageModelV1;
+  imageModel(modelId: GoogleVertexImageModelId): ImageModelV3;
+
+  tools: typeof googleVertexTools;
+
+  /**
+   * @deprecated Use `embeddingModel` instead.
+   */
+  textEmbeddingModel(
+    modelId: GoogleVertexEmbeddingModelId,
+  ): GoogleVertexEmbeddingModel;
 }
 
 export interface GoogleVertexProviderSettings {
+  /**
+   * Optional. The API key for the Google Cloud project. If provided, the
+   * provider will use express mode with API key authentication. Defaults to
+   * the value of the `GOOGLE_VERTEX_API_KEY` environment variable.
+   */
+  apiKey?: string;
+
   /**
 Your Google Vertex location. Defaults to the environment variable `GOOGLE_VERTEX_LOCATION`.
    */
@@ -100,6 +120,11 @@ Create a Google Vertex AI provider instance.
 export function createVertex(
   options: GoogleVertexProviderSettings = {},
 ): GoogleVertexProvider {
+  const apiKey = loadOptionalSetting({
+    settingValue: options.apiKey,
+    environmentVariableName: 'GOOGLE_VERTEX_API_KEY',
+  });
+
   const loadVertexProject = () =>
     loadSetting({
       settingValue: options.project,
@@ -117,66 +142,80 @@ export function createVertex(
     });
 
   const loadBaseURL = () => {
+    if (apiKey) {
+      return withoutTrailingSlash(options.baseURL) ?? EXPRESS_MODE_BASE_URL;
+    }
+
     const region = loadVertexLocation();
     const project = loadVertexProject();
+
+    // For global region, use aiplatform.googleapis.com directly
+    // For other regions, use region-aiplatform.googleapis.com
+    const baseHost = `${region === 'global' ? '' : region + '-'}aiplatform.googleapis.com`;
+
     return (
       withoutTrailingSlash(options.baseURL) ??
-      `https://${region}-aiplatform.googleapis.com/v1/projects/${project}/locations/${region}/publishers/google`
+      `https://${baseHost}/v1beta1/projects/${project}/locations/${region}/publishers/google`
     );
   };
 
   const createConfig = (name: string): GoogleVertexConfig => {
+    const getHeaders = async () => {
+      const originalHeaders = await resolve(options.headers ?? {});
+      return withUserAgentSuffix(
+        originalHeaders,
+        `ai-toolkit/google-vertex/${VERSION}`,
+      );
+    };
+
     return {
       provider: `google.vertex.${name}`,
-      headers: options.headers ?? {},
-      fetch: options.fetch,
+      headers: getHeaders,
+      fetch: apiKey
+        ? createExpressModeFetch(apiKey, options.fetch)
+        : options.fetch,
       baseURL: loadBaseURL(),
     };
   };
 
-  const createChatModel = (
-    modelId: GoogleVertexModelId,
-    settings: GoogleVertexSettings = {},
-  ) => {
-    return new GoogleGenerativeAILanguageModel(modelId, settings, {
+  const createChatModel = (modelId: GoogleVertexModelId) => {
+    return new GoogleGenerativeAILanguageModel(modelId, {
       ...createConfig('chat'),
       generateId: options.generateId ?? generateId,
-      isSupportedUrl: isSupportedFileUrl,
+      supportedUrls: () => ({
+        '*': [
+          // HTTP URLs:
+          /^https?:\/\/.*$/,
+          // Google Cloud Storage URLs:
+          /^gs:\/\/.*$/,
+        ],
+      }),
     });
   };
 
-  const createEmbeddingModel = (
-    modelId: GoogleVertexEmbeddingModelId,
-    settings: GoogleVertexEmbeddingSettings = {},
-  ) =>
-    new GoogleVertexEmbeddingModel(
-      modelId,
-      settings,
-      createConfig('embedding'),
-    );
+  const createEmbeddingModel = (modelId: GoogleVertexEmbeddingModelId) =>
+    new GoogleVertexEmbeddingModel(modelId, createConfig('embedding'));
 
-  const createImageModel = (
-    modelId: GoogleVertexImageModelId,
-    settings: GoogleVertexImageSettings = {},
-  ) => new GoogleVertexImageModel(modelId, settings, createConfig('image'));
+  const createImageModel = (modelId: GoogleVertexImageModelId) =>
+    new GoogleVertexImageModel(modelId, createConfig('image'));
 
-  const provider = function (
-    modelId: GoogleVertexModelId,
-    settings?: GoogleVertexSettings,
-  ) {
+  const provider = function (modelId: GoogleVertexModelId) {
     if (new.target) {
       throw new Error(
         'The Google Vertex AI model function cannot be called with the new keyword.',
       );
     }
 
-    return createChatModel(modelId, settings);
+    return createChatModel(modelId);
   };
 
+  provider.specificationVersion = 'v3' as const;
   provider.languageModel = createChatModel;
+  provider.embeddingModel = createEmbeddingModel;
   provider.textEmbeddingModel = createEmbeddingModel;
   provider.image = createImageModel;
   provider.imageModel = createImageModel;
+  provider.tools = googleVertexTools;
 
   return provider;
 }
