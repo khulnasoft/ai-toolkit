@@ -48,7 +48,7 @@
     "ai": "workspace:*",
     "arktype": "2.1.28",
     "dotenv": "16.4.5",
-    "effect": "3.18.4",
+    "effect": "3.20.0",
     "image-type": "^5.2.0",
     "mathjs": "14.0.0",
     "sharp": "^0.33.5",
