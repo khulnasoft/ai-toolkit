@@ -2,4 +2,5 @@ packages:
   - 'packages/*'
   - 'tools/*'
   - 'examples/*'
+  - 'apps/*'
   - 'packages/rsc/tests/e2e/next-server'
