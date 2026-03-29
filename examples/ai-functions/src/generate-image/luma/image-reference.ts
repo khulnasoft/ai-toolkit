@@ -9,7 +9,7 @@ run(async () => {
     prompt: {
       text: 'A salamander at dusk in a forest pond, in the style of ukiyo-e',
       images: [
-        'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/future-me-8hcBWcZOkbE53q3gshhEm16S87qDpF.jpeg',
+        'https://hebbkx1anhila5yf.public.blob.ai-storage.com/future-me-8hcBWcZOkbE53q3gshhEm16S87qDpF.jpeg',
       ],
     },
     aspectRatio: '1:1',
