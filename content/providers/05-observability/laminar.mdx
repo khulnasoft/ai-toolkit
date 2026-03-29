@@ -1,6 +1,6 @@
 ---
 title: Laminar
-description: Monitor your AI TOOLKIT applications with Laminar
+description: Monitor your AI SDK applications with Laminar
 ---
 
 # Laminar observability
@@ -9,18 +9,18 @@ description: Monitor your AI TOOLKIT applications with Laminar
 
 Laminar features:
 
-- [Tracing compatible with AI TOOLKIT and more](https://docs.lmnr.ai/tracing/introduction),
+- [Tracing compatible with AI SDK and more](https://docs.lmnr.ai/tracing/introduction),
 - [Evaluations](https://docs.lmnr.ai/evaluations/introduction),
 - [Browser agent observability](https://docs.lmnr.ai/tracing/browser-agent-observability)
 
 <Note>
   A version of this guide is available in [Laminar's
-  docs](https://docs.lmnr.ai/tracing/integrations/vercel-ai-toolkit).
+  docs](https://docs.lmnr.ai/tracing/integrations/vercel-ai-sdk).
 </Note>
 
 ## Setup
 
-Laminar's tracing is based on OpenTelemetry. It supports AI TOOLKIT [telemetry](/docs/ai-toolkit-core/telemetry).
+Laminar's tracing is based on OpenTelemetry. It supports AI SDK [telemetry](/docs/ai-sdk-core/telemetry).
 
 ### Installation
 
@@ -86,9 +86,9 @@ export default nextConfig;
 
 This is because Laminar depends on OpenTelemetry, which uses some Node.js-specific functionality, and we need to inform Next.js about it. Learn more in the [Next.js docs](https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages).
 
-### Tracing AI TOOLKIT calls
+### Tracing AI SDK calls
 
-Then, when you call AI TOOLKIT functions in any of your API routes, add the Laminar tracer to the `experimental_telemetry` option.
+Then, when you call AI SDK functions in any of your API routes, add the Laminar tracer to the `experimental_telemetry` option.
 
 ```javascript highlight="3,8-11"
 import { openai } from '@ai-toolkit/openai';
@@ -131,10 +131,10 @@ For more information, see Laminar's [Next.js guide](https://docs.lmnr.ai/tracing
 
 ### Usage with `@vercel/otel`
 
-Laminar can live alongside `@vercel/otel` and trace AI TOOLKIT calls. The default Laminar setup will ensure that
+Laminar can live alongside `@vercel/otel` and trace AI SDK calls. The default Laminar setup will ensure that
 
 - regular Next.js traces are sent via `@vercel/otel` to your Telemetry backend configured with Vercel,
-- AI TOOLKIT and other LLM or browser agent traces are sent via Laminar.
+- AI SDK and other LLM or browser agent traces are sent via Laminar.
 
 ```javascript
 import { registerOTel } from '@vercel/otel';
@@ -155,12 +155,12 @@ For an advanced configuration that allows you to trace all Next.js traces via La
 
 ### Usage with `@sentry/node`
 
-Laminar can live alongside `@sentry/node` and trace AI TOOLKIT calls. Make sure to initialize Laminar **after** `Sentry.init`.
+Laminar can live alongside `@sentry/node` and trace AI SDK calls. Make sure to initialize Laminar **after** `Sentry.init`.
 
 This will ensure that
 
 - Whatever is instrumented by Sentry is sent to your Sentry backend,
-- AI TOOLKIT and other LLM or browser agent traces are sent via Laminar.
+- AI SDK and other LLM or browser agent traces are sent via Laminar.
 
 ```javascript
 export async function register() {
@@ -196,9 +196,9 @@ This must be done once in your application, as early as possible, but _after_ ot
 
 Read more in Laminar [docs](https://docs.lmnr.ai/tracing/introduction).
 
-### Tracing AI TOOLKIT calls
+### Tracing AI SDK calls
 
-Then, when you call AI TOOLKIT functions in any of your API routes, add the Laminar tracer to the `experimental_telemetry` option.
+Then, when you call AI SDK functions in any of your API routes, add the Laminar tracer to the `experimental_telemetry` option.
 
 ```javascript highlight="3,8-11"
 import { openai } from '@ai-toolkit/openai';
@@ -227,7 +227,7 @@ This will create spans for `ai.generateText`. Laminar collects and displays the 
 
 ### Usage with `@sentry/node`
 
-Laminar can work with `@sentry/node` to trace AI TOOLKIT calls. Make sure to initialize Laminar **after** `Sentry.init`:
+Laminar can work with `@sentry/node` to trace AI SDK calls. Make sure to initialize Laminar **after** `Sentry.init`:
 
 ```javascript
 const Sentry = await import('@sentry/node');
@@ -245,7 +245,7 @@ Laminar.initialize({
 This will ensure that
 
 - Whatever is instrumented by Sentry is sent to your Sentry backend,
-- AI TOOLKIT and other LLM or browser agent traces are sent via Laminar.
+- AI SDK and other LLM or browser agent traces are sent via Laminar.
 
 The two libraries allow for additional advanced configuration, but the default setup above is recommended.
 
@@ -271,7 +271,7 @@ const { text } = await generateText({
 
 ### Nested spans
 
-If you want to trace not just the AI TOOLKIT calls, but also other functions in your application, you can use Laminar's `observe` wrapper.
+If you want to trace not just the AI SDK calls, but also other functions in your application, you can use Laminar's `observe` wrapper.
 
 ```javascript highlight="3"
 import { getTracer, observe } from '@lmnr-ai/lmnr';

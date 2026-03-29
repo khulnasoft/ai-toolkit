@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+OLD='ai-toolkit/'
+NEW='ai-toolkit/'
+
+# detect sed flavor
+if sed --version >/dev/null 2>&1; then
+  SED_INPLACE=(-i)
+else
+  SED_INPLACE=(-i '')
+fi
+
+# null-delimited pipeline (safe for spaces/newlines)
+rg -l -0 --fixed-strings "$OLD" \
+| xargs -0 sed "${SED_INPLACE[@]}" "s|$OLD|$NEW|g"

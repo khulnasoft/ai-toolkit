@@ -1,6 +1,6 @@
-# AI TOOLKIT - Google Vertex AI Provider
+# AI SDK - Google Vertex AI Provider
 
-The **[Google Vertex provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
+The **[Google Vertex provider](https://ai-sdk.dev/providers/ai-sdk-providers/google-vertex)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
 
 This library includes a Google Vertex Anthropic provider. This provider closely follows the core Google Vertex library's usage patterns. See more in the [Google Vertex Anthropic Provider](#google-vertex-anthropic-provider) section below.
 
@@ -12,20 +12,28 @@ The Google Vertex provider is available in the `@ai-toolkit/google-vertex` modul
 npm i @ai-toolkit/google-vertex
 ```
 
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
+```
+
 ## Google Vertex Provider
 
 The Google Vertex provider has two different authentication implementations depending on your runtime environment:
 
 ### Node.js Runtime
 
-The Node.js runtime is the default runtime supported by the AI TOOLKIT. You can use the default provider instance to generate text with the `gemini-1.5-flash` model like this:
+The Node.js runtime is the default runtime supported by the AI SDK. You can use the default provider instance to generate text with the `gemini-2.5-flash` model like this:
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
-  model: vertex('gemini-1.5-flash'),
+  model: vertex('gemini-2.5-flash'),
   prompt: 'Write a vegetarian lasagna recipe.',
 });
 ```
@@ -36,14 +44,14 @@ This provider supports all standard Google Cloud authentication options through 
 
 The Edge runtime is supported through the `@ai-toolkit/google-vertex/edge` module. Note the additional sub-module path `/edge` required to differentiate the Edge provider from the Node.js provider.
 
-You can use the default provider instance to generate text with the `gemini-1.5-flash` model like this:
+You can use the default provider instance to generate text with the `gemini-2.5-flash` model like this:
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex/edge';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
-  model: vertex('gemini-1.5-flash'),
+  model: vertex('gemini-2.5-flash'),
   prompt: 'Write a vegetarian lasagna recipe.',
 });
 ```
@@ -152,7 +160,7 @@ const customProvider = createVertex({
 });
 
 const { text } = await generateText({
-  model: customProvider('gemini-1.5-flash'),
+  model: customProvider('gemini-2.5-flash'),
   prompt: 'Write a vegetarian lasagna recipe.',
 });
 ```
@@ -175,7 +183,7 @@ const customProvider = createVertex({
 });
 
 const { text } = await generateText({
-  model: customProvider('gemini-1.5-flash'),
+  model: customProvider('gemini-2.5-flash'),
   prompt: 'Write a vegetarian lasagna recipe.',
 });
 ```
@@ -218,4 +226,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Google Vertex provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/google-vertex)** for more information.
+Please check out the **[Google Vertex provider](https://ai-sdk.dev/providers/ai-sdk-providers/google-vertex)** for more information.

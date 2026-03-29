@@ -1,6 +1,6 @@
-# AI TOOLKIT - Azure OpenAI Provider
+# AI SDK - Azure OpenAI Provider
 
-The **[Azure provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/azure)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the Azure OpenAI API.
+The **[Azure provider](https://ai-sdk.dev/providers/ai-sdk-providers/azure)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the Azure OpenAI API.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The Azure provider is available in the `@ai-toolkit/azure` module. You can insta
 
 ```bash
 npm i @ai-toolkit/azure
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Azure provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/azure)** for more information.
+Please check out the **[Azure provider](https://ai-sdk.dev/providers/ai-sdk-providers/azure)** for more information.

@@ -1,6 +1,6 @@
-# AI TOOLKIT - xAI Grok Provider
+# AI SDK - xAI Grok Provider
 
-The **[xAI Grok provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/xai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[xAI Grok provider](https://ai-sdk.dev/providers/ai-sdk-providers/xai)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the xAI chat and completion APIs.
 
 ## Setup
@@ -9,6 +9,14 @@ The xAI Grok provider is available in the `@ai-toolkit/xai` module. You can inst
 
 ```bash
 npm i @ai-toolkit/xai
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -26,11 +34,11 @@ import { xai } from '@ai-toolkit/xai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
-  model: xai('grok-3-beta'),
+  model: xai('grok-3'),
   prompt: 'Write a vegetarian lasagna recipe for 4 people.',
 });
 ```
 
 ## Documentation
 
-Please check out the **[xAI Grok provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/xai)** for more information.
+Please check out the **[xAI Grok provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/xai)** for more information.

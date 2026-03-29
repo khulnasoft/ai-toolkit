@@ -1,12 +1,12 @@
 ---
 title: Heroku
-description: Use a Heroku OpenAI compatible API with the AI TOOLKIT.
+description: Use a Heroku OpenAI compatible API with the AI SDK.
 ---
 
 # Heroku Provider
 
 [Heroku](https://heroku.com/) is a cloud platform that allows you to deploy and run applications, including AI models with OpenAI API compatibility.
-You can deploy models that are OpenAI API compatible and use them with the AI TOOLKIT.
+You can deploy models that are OpenAI API compatible and use them with the AI SDK.
 
 ## Setup
 
@@ -116,4 +116,4 @@ for await (const message of result.textStream) {
 }
 ```
 
-Heroku language models can also be used in the `generateObject`, and `streamObject` functions.
+Heroku language models also support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output).

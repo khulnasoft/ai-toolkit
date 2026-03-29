@@ -1,6 +1,6 @@
-# AI TOOLKIT - Cohere Provider
+# AI SDK - Cohere Provider
 
-The **[Cohere provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/cohere)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the Cohere API.
+The **[Cohere provider](https://ai-sdk.dev/providers/ai-sdk-providers/cohere)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the Cohere API.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The Cohere provider is available in the `@ai-toolkit/cohere` module. You can ins
 
 ```bash
 npm i @ai-toolkit/cohere
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Cohere provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/cohere)** for more information.
+Please check out the **[Cohere provider](https://ai-sdk.dev/providers/ai-sdk-providers/cohere)** for more information.

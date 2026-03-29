@@ -29,7 +29,7 @@ export type LangSmithDeploymentTransportOptions = Omit<
 /**
  * A ChatTransport implementation for LangSmith/LangGraph deployments.
  *
- * This transport enables seamless integration between the AI TOOLKIT's useChat hook
+ * This transport enables seamless integration between the AI SDK's useChat hook
  * and LangSmith deployed LangGraph agents.
  *
  * @example
@@ -45,9 +45,9 @@ export type LangSmithDeploymentTransportOptions = Omit<
  * });
  * ```
  */
-export class LangSmithDeploymentTransport<UI_MESSAGE extends UIMessage>
-  implements ChatTransport<UI_MESSAGE>
-{
+export class LangSmithDeploymentTransport<
+  UI_MESSAGE extends UIMessage,
+> implements ChatTransport<UI_MESSAGE> {
   protected graph: RemoteGraph;
 
   constructor(options: LangSmithDeploymentTransportOptions) {

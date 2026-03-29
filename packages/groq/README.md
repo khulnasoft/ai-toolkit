@@ -1,6 +1,6 @@
-# AI TOOLKIT - Groq Provider
+# AI SDK - Groq Provider
 
-The **[Groq provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Groq provider](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the Groq chat and completion APIs, transcription support, and browser search tool.
 
 ## Setup
@@ -9,6 +9,14 @@ The Groq provider is available in the `@ai-toolkit/groq` module. You can install
 
 ```bash
 npm i @ai-toolkit/groq
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -121,6 +129,6 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Groq provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for more information.
+Please check out the **[Groq provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for more information.
 
 For browser search details, see the **[Groq Browser Search Documentation](https://console.groq.com/docs/browser-search)**.

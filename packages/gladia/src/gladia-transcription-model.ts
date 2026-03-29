@@ -1,7 +1,7 @@
 import {
-  AITOOLKITError,
-  TranscriptionModelV3,
-  SharedV3Warning,
+  AISDKError,
+  TranscriptionModelV4,
+  SharedV4Warning,
 } from '@ai-toolkit/provider';
 import {
   combineHeaders,
@@ -20,7 +20,7 @@ import { gladiaFailedResponseHandler } from './gladia-error';
 import { GladiaTranscriptionInitiateAPITypes } from './gladia-api-types';
 
 // https://docs.gladia.io/api-reference/v2/pre-recorded/init
-const gladiaProviderOptionsSchema = z.object({
+const gladiaTranscriptionModelOptionsSchema = z.object({
   /**
    * Optional context prompt to guide the transcription.
    */
@@ -323,8 +323,8 @@ const gladiaProviderOptionsSchema = z.object({
   punctuationEnhanced: z.boolean().nullish(),
 });
 
-export type GladiaTranscriptionCallOptions = z.infer<
-  typeof gladiaProviderOptionsSchema
+export type GladiaTranscriptionModelOptions = z.infer<
+  typeof gladiaTranscriptionModelOptionsSchema
 >;
 
 interface GladiaTranscriptionModelConfig extends GladiaConfig {
@@ -333,8 +333,8 @@ interface GladiaTranscriptionModelConfig extends GladiaConfig {
   };
 }
 
-export class GladiaTranscriptionModel implements TranscriptionModelV3 {
-  readonly specificationVersion = 'v3';
+export class GladiaTranscriptionModel implements TranscriptionModelV4 {
+  readonly specificationVersion = 'v4';
 
   get provider(): string {
     return this.config.provider;
@@ -347,14 +347,14 @@ export class GladiaTranscriptionModel implements TranscriptionModelV3 {
 
   private async getArgs({
     providerOptions,
-  }: Parameters<TranscriptionModelV3['doGenerate']>[0]) {
-    const warnings: SharedV3Warning[] = [];
+  }: Parameters<TranscriptionModelV4['doGenerate']>[0]) {
+    const warnings: SharedV4Warning[] = [];
 
     // Parse provider options
     const gladiaOptions = await parseProviderOptions({
       provider: 'gladia',
       providerOptions,
-      schema: gladiaProviderOptionsSchema,
+      schema: gladiaTranscriptionModelOptionsSchema,
     });
 
     const body: Omit<GladiaTranscriptionInitiateAPITypes, 'audio_url'> = {};
@@ -487,8 +487,8 @@ export class GladiaTranscriptionModel implements TranscriptionModelV3 {
   }
 
   async doGenerate(
-    options: Parameters<TranscriptionModelV3['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<TranscriptionModelV3['doGenerate']>>> {
+    options: Parameters<TranscriptionModelV4['doGenerate']>[0],
+  ): Promise<Awaited<ReturnType<TranscriptionModelV4['doGenerate']>>> {
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
 
     // Create form data with base fields
@@ -551,7 +551,7 @@ export class GladiaTranscriptionModel implements TranscriptionModelV3 {
     while (true) {
       // Check if we've exceeded the timeout
       if (Date.now() - startTime > timeoutMs) {
-        throw new AITOOLKITError({
+        throw new AISDKError({
           message: 'Transcription job polling timed out',
           name: 'TranscriptionJobPollingTimedOut',
           cause: transcriptionResult,
@@ -577,7 +577,7 @@ export class GladiaTranscriptionModel implements TranscriptionModelV3 {
       }
 
       if (transcriptionResult.status === 'error') {
-        throw new AITOOLKITError({
+        throw new AISDKError({
           message: 'Transcription job failed',
           name: 'TranscriptionJobFailed',
           cause: transcriptionResult,
@@ -589,7 +589,7 @@ export class GladiaTranscriptionModel implements TranscriptionModelV3 {
     }
 
     if (!transcriptionResult.result) {
-      throw new AITOOLKITError({
+      throw new AISDKError({
         message: 'Transcription result is empty',
         name: 'TranscriptionResultEmpty',
         cause: transcriptionResult,

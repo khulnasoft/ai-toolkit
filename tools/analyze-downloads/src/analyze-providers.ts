@@ -24,6 +24,7 @@ async function main() {
     '@ai-toolkit/groq',
     '@ai-toolkit/huggingface',
     '@ai-toolkit/hume',
+    '@ai-toolkit/klingai',
     '@ai-toolkit/lmnt',
     '@ai-toolkit/luma',
     '@ai-toolkit/mistral',
@@ -33,13 +34,13 @@ async function main() {
     '@ai-toolkit/replicate',
     '@ai-toolkit/revai',
     '@ai-toolkit/togetherai',
-    '@ai-toolkit/khulnasoft',
+    '@ai-toolkit/vercel',
     '@ai-toolkit/xai',
 
     'ollama-ai-provider',
     '@portkey-ai/vercel-provider',
     'workers-ai-provider',
-    '@openrouter/ai-toolkit-provider',
+    '@openrouter/ai-sdk-provider',
   ];
   const results: Array<{
     package: string;

@@ -35,6 +35,7 @@ export * from './generate-image';
 export * from './generate-object';
 export * from './generate-speech';
 export * from './generate-text';
+export * from './generate-video';
 export * from './logger';
 export * from './middleware';
 export * from './prompt';
@@ -46,9 +47,7 @@ export * from './types';
 export * from './ui';
 export * from './ui-message-stream';
 export * from './util';
-
-// telemetry types:
-export type { TelemetrySettings } from './telemetry/telemetry-settings';
+export * from './telemetry';
 
 // import globals
 import './global';

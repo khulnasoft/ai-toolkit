@@ -1,6 +1,6 @@
 ---
 title: Get started with Llama 3.1
-description: Get started with Llama 3.1 using the AI TOOLKIT.
+description: Get started with Llama 3.1 using the AI SDK.
 tags: ['getting-started']
 ---
 
@@ -16,7 +16,7 @@ tags: ['getting-started']
 
 With the [release of Llama 3.1](https://ai.meta.com/blog/meta-llama-3-1/), there has never been a better time to start building AI applications.
 
-The [AI TOOLKIT](/) is a powerful TypeScript toolkit for building AI application with large language models (LLMs) like Llama 3.1 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more
+The [AI SDK](/) is a powerful TypeScript toolkit for building AI application with large language models (LLMs) like Llama 3.1 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more
 
 ## Llama 3.1
 
@@ -35,13 +35,13 @@ Llama 3.1 includes a new 405B parameter model, becoming the largest open-source 
 
 When choosing between the different sizes of Llama 3.1 models (405B, 70B, 8B), consider the trade-off between performance and computational requirements. The 405B model offers the highest accuracy and capability for complex tasks but requires significant computational resources. The 70B model provides a good balance of performance and efficiency for most applications, while the 8B model is suitable for simpler tasks or resource-constrained environments where speed and lower computational overhead are priorities.
 
-## Getting Started with the AI TOOLKIT
+## Getting Started with the AI SDK
 
-The AI TOOLKIT is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
+The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
 
-The AI TOOLKIT abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
+The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
 
-At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Llama 3.1 (using [DeepInfra](https://deepinfra.com)) with the AI TOOLKIT:
+At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Llama 3.1 (using [DeepInfra](https://deepinfra.com)) with the AI SDK:
 
 ```ts
 import { deepinfra } from '@ai-toolkit/deepinfra';
@@ -54,14 +54,14 @@ const { text } = await generateText({
 ```
 
 <Note>
-  Llama 3.1 is available to use with many AI TOOLKIT providers including
-  [DeepInfra](/providers/ai-toolkit-providers/deepinfra), [Amazon
-  Bedrock](/providers/ai-toolkit-providers/amazon-bedrock),
-  [Baseten](/providers/ai-toolkit-providers/baseten)
-  [Fireworks](/providers/ai-toolkit-providers/fireworks), and more.
+  Llama 3.1 is available to use with many AI SDK providers including
+  [DeepInfra](/providers/ai-sdk-providers/deepinfra), [Amazon
+  Bedrock](/providers/ai-sdk-providers/amazon-bedrock),
+  [Baseten](/providers/ai-sdk-providers/baseten)
+  [Fireworks](/providers/ai-sdk-providers/fireworks), and more.
 </Note>
 
-AI TOOLKIT Core abstracts away the differences between model providers, allowing you to focus on building great applications. Prefer to use [Amazon Bedrock](/providers/ai-toolkit-providers/amazon-bedrock)? The unified interface also means that you can easily switch between models by changing just two lines of code.
+AI SDK Core abstracts away the differences between model providers, allowing you to focus on building great applications. Prefer to use [Amazon Bedrock](/providers/ai-sdk-providers/amazon-bedrock)? The unified interface also means that you can easily switch between models by changing just two lines of code.
 
 ```tsx highlight="2,5"
 import { generateText } from 'ai';
@@ -75,7 +75,7 @@ const { text } = await generateText({
 
 ### Streaming the Response
 
-To stream the model's response as it's being generated, update your code snippet to use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function.
+To stream the model's response as it's being generated, update your code snippet to use the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function.
 
 ```tsx
 import { streamText } from 'ai';
@@ -89,20 +89,24 @@ const { textStream } = streamText({
 
 ### Generating Structured Data
 
-While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
+While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamText`](/docs/reference/ai-sdk-core/stream-text) with `Output` to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai';
+import { generateText, Output } from 'ai';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 import { z } from 'zod';
 
-const { object } = await generateObject({
+const { output } = await generateText({
   model: deepinfra('meta-llama/Meta-Llama-3.1-70B-Instruct'),
-  schema: z.object({
-    recipe: z.object({
-      name: z.string(),
-      ingredients: z.array(z.object({ name: z.string(), amount: z.string() })),
-      steps: z.array(z.string()),
+  output: Output.object({
+    schema: z.object({
+      recipe: z.object({
+        name: z.string(),
+        ingredients: z.array(
+          z.object({ name: z.string(), amount: z.string() }),
+        ),
+        steps: z.array(z.string()),
+      }),
     }),
   }),
   prompt: 'Generate a lasagna recipe.',
@@ -115,11 +119,11 @@ This code snippet will generate a type-safe recipe that conforms to the specifie
 
 While LLMs have incredible generation capabilities, they struggle with discrete tasks (e.g. mathematics) and interacting with the outside world (e.g. getting the weather). The solution: tools, which are like programs that you provide to the model, which it can choose to call as necessary.
 
-### Using Tools with the AI TOOLKIT
+### Using Tools with the AI SDK
 
-The AI TOOLKIT supports tool usage across several of its functions, including [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui). By passing one or more tools to the `tools` parameter, you can extend the capabilities of LLMs, allowing them to perform discrete tasks and interact with external systems.
+The AI SDK supports tool usage across several of its functions, including [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamUI`](/docs/reference/ai-sdk-rsc/stream-ui). By passing one or more tools to the `tools` parameter, you can extend the capabilities of LLMs, allowing them to perform discrete tasks and interact with external systems.
 
-Here's an example of how you can use a tool with the AI TOOLKIT and Llama 3.1:
+Here's an example of how you can use a tool with the AI SDK and Llama 3.1:
 
 ```ts
 import { generateText, tool } from 'ai';
@@ -152,9 +156,9 @@ Agents take your AI applications a step further by allowing models to execute mu
 
 Agents use LLMs to choose the next step in a problem-solving process. They can reason at each step and make decisions based on the evolving context.
 
-### Implementing Agents with the AI TOOLKIT
+### Implementing Agents with the AI SDK
 
-The AI TOOLKIT supports agent implementation through the `maxSteps` parameter. This allows the model to make multiple decisions and tool calls in a single interaction.
+The AI SDK supports agent implementation through the `maxSteps` parameter. This allows the model to make multiple decisions and tool calls in a single interaction.
 
 Here's an example of an agent that solves math problems:
 
@@ -187,23 +191,23 @@ In this example, the agent can use the calculator tool multiple times if needed,
 
 ### Building Interactive Interfaces
 
-AI TOOLKIT Core can be paired with [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview), another powerful component of the AI TOOLKIT, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
+AI SDK Core can be paired with [AI SDK UI](/docs/ai-sdk-ui/overview), another powerful component of the AI SDK, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
 
-AI TOOLKIT UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
+AI SDK UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
 
-With four main hooks — [`useChat`](/docs/reference/ai-toolkit-ui/use-chat), [`useCompletion`](/docs/reference/ai-toolkit-ui/use-completion), and [`useObject`](/docs/reference/ai-toolkit-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
+With four main hooks — [`useChat`](/docs/reference/ai-sdk-ui/use-chat), [`useCompletion`](/docs/reference/ai-sdk-ui/use-completion), and [`useObject`](/docs/reference/ai-sdk-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
 
-Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOLKIT, and Llama 3.1 (via [DeepInfra](https://deepinfra.com)):
+Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI SDK, and Llama 3.1 (via [DeepInfra](https://deepinfra.com)):
 
 ```tsx filename="app/api/chat/route.ts"
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
     model: deepinfra('meta-llama/Meta-Llama-3.1-70B-Instruct'),
@@ -218,20 +222,39 @@ export async function POST(req: Request) {
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
+import { useState } from 'react';
 
 export default function Page() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const [input, setInput] = useState('');
+  const { messages, sendMessage } = useChat();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input.trim()) {
+      sendMessage({ text: input });
+      setInput('');
+    }
+  };
 
   return (
     <>
       {messages.map(message => (
         <div key={message.id}>
           {message.role === 'user' ? 'User: ' : 'AI: '}
-          {message.content}
+          {message.parts.map((part, index) => {
+            if (part.type === 'text') {
+              return <span key={index}>{part.text}</span>;
+            }
+            return null;
+          })}
         </div>
       ))}
       <form onSubmit={handleSubmit}>
-        <input name="prompt" value={input} onChange={handleInputChange} />
+        <input
+          name="prompt"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+        />
         <button type="submit">Submit</button>
       </form>
     </>
@@ -245,9 +268,9 @@ This enables a seamless chat experience where the user can see the AI response a
 
 ### Going Beyond Text
 
-The AI TOOLKIT's React Server Components (RSC) API enables you to create rich, interactive interfaces that go beyond simple text generation. With the [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function, you can dynamically stream React components from the server to the client.
+The AI SDK's React Server Components (RSC) API enables you to create rich, interactive interfaces that go beyond simple text generation. With the [`streamUI`](/docs/reference/ai-sdk-rsc/stream-ui) function, you can dynamically stream React components from the server to the client.
 
-Let's dive into how you can leverage tools with [AI TOOLKIT RSC](/docs/ai-toolkit-rsc/overview) to build a generative user interface with Next.js (App Router).
+Let's dive into how you can leverage tools with [AI SDK RSC](/docs/ai-sdk-rsc/overview) to build a generative user interface with Next.js (App Router).
 
 First, create a Server Action.
 
@@ -312,11 +335,11 @@ export default function Page() {
 }
 ```
 
-To see AI TOOLKIT RSC in action, check out our open-source [Next.js Gemini Chatbot](https://gemini.vercel.ai/).
+To see AI SDK RSC in action, check out our open-source [Next.js Gemini Chatbot](https://gemini.vercel.ai/).
 
 ## Migrate from OpenAI
 
-One of the key advantages of the AI TOOLKIT is its unified API, which makes it incredibly easy to switch between different AI models and providers. This flexibility is particularly useful when you want to migrate from one model to another, such as moving from OpenAI's GPT models to Meta's Llama models hosted on DeepInfra.
+One of the key advantages of the AI SDK is its unified API, which makes it incredibly easy to switch between different AI models and providers. This flexibility is particularly useful when you want to migrate from one model to another, such as moving from OpenAI's GPT models to Meta's Llama models hosted on DeepInfra.
 
 Here's how simple the migration process can be:
 
@@ -349,7 +372,7 @@ Thanks to the unified API, the core structure of the code remains the same. The 
 1. Creating a DeepInfra client
 2. Changing the model name from `openai("gpt-4.1")` to `deepinfra("meta-llama/Meta-Llama-3.1-70B-Instruct")`.
 
-With just these few changes, you've migrated from using OpenAI's GPT-4-Turbo to Meta's Llama 3.1 hosted on DeepInfra. The `generateText` function and its usage remain identical, showcasing the power of the AI TOOLKIT's unified API.
+With just these few changes, you've migrated from using OpenAI's GPT-4-Turbo to Meta's Llama 3.1 hosted on DeepInfra. The `generateText` function and its usage remain identical, showcasing the power of the AI SDK's unified API.
 
 This feature allows you to easily experiment with different models, compare their performance, and choose the best one for your specific use case without having to rewrite large portions of your codebase.
 
@@ -380,13 +403,13 @@ To learn more about fine-tuning Llama models, check out these resources:
 
 ## Conclusion
 
-The AI TOOLKIT offers a powerful and flexible way to integrate cutting-edge AI models like Llama 3.1 into your applications. With AI TOOLKIT Core, you can seamlessly switch between different AI models and providers by changing just two lines of code. This flexibility allows for quick experimentation and adaptation, reducing the time required to change models from days to minutes.
+The AI SDK offers a powerful and flexible way to integrate cutting-edge AI models like Llama 3.1 into your applications. With AI SDK Core, you can seamlessly switch between different AI models and providers by changing just two lines of code. This flexibility allows for quick experimentation and adaptation, reducing the time required to change models from days to minutes.
 
-The AI TOOLKIT ensures that your application remains clean and modular, accelerating development and future-proofing against the rapidly evolving landscape.
+The AI SDK ensures that your application remains clean and modular, accelerating development and future-proofing against the rapidly evolving landscape.
 
 Ready to get started? Here's how you can dive in:
 
-1. Explore the documentation at [studio.khulnasoft.com/docs](/docs) to understand the full capabilities of the AI TOOLKIT.
-2. Check out practical examples at [studio.khulnasoft.com/examples](/examples) to see the SDK in action and get inspired for your own projects.
-3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [studio.khulnasoft.com/docs/guides](/docs/guides).
+1. Explore the documentation at [ai-sdk.dev/docs](/docs) to understand the full capabilities of the AI SDK.
+2. Check out practical examples at [ai-sdk.dev/examples](/examples) to see the SDK in action and get inspired for your own projects.
+3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [ai-sdk.dev/docs/guides](/cookbook/guides).
 4. Check out ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

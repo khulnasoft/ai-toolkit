@@ -9,7 +9,7 @@ async function main() {
   let mcpClient;
 
   try {
-    // Or use the AI TOOLKIT's stdio transport by importing:
+    // Or use the AI SDK's stdio transport by importing:
     // import { Experimental_StdioMCPTransport as StdioClientTransport } from 'ai/mcp-stdio'
     const stdioTransport = new StdioClientTransport({
       command: 'node',

@@ -1,4 +1,4 @@
-import type { ImageModelV3, SharedV3Warning } from '@ai-toolkit/provider';
+import type { ImageModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import type { Resolvable } from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
@@ -15,7 +15,7 @@ import {
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { FalImageModelId, FalImageSize } from './fal-image-settings';
-import { falImageProviderOptionsSchema } from './fal-image-options';
+import { falImageModelOptionsSchema } from './fal-image-options';
 
 interface FalImageModelConfig {
   provider: string;
@@ -27,8 +27,8 @@ interface FalImageModelConfig {
   };
 }
 
-export class FalImageModel implements ImageModelV3 {
-  readonly specificationVersion = 'v3';
+export class FalImageModel implements ImageModelV4 {
+  readonly specificationVersion = 'v4';
   readonly maxImagesPerCall = 1;
 
   get provider(): string {
@@ -49,8 +49,8 @@ export class FalImageModel implements ImageModelV3 {
     providerOptions,
     files,
     mask,
-  }: Parameters<ImageModelV3['doGenerate']>[0]) {
-    const warnings: Array<SharedV3Warning> = [];
+  }: Parameters<ImageModelV4['doGenerate']>[0]) {
+    const warnings: Array<SharedV4Warning> = [];
 
     let imageSize: FalImageSize | undefined;
     if (size) {
@@ -63,7 +63,7 @@ export class FalImageModel implements ImageModelV3 {
     const falOptions = await parseProviderOptions({
       provider: 'fal',
       providerOptions,
-      schema: falImageProviderOptionsSchema,
+      schema: falImageModelOptionsSchema,
     });
 
     const requestBody: Record<string, unknown> = {
@@ -149,8 +149,8 @@ export class FalImageModel implements ImageModelV3 {
   }
 
   async doGenerate(
-    options: Parameters<ImageModelV3['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<ImageModelV3['doGenerate']>>> {
+    options: Parameters<ImageModelV4['doGenerate']>[0],
+  ): Promise<Awaited<ReturnType<ImageModelV4['doGenerate']>>> {
     const { requestBody, warnings } = await this.getArgs(options);
 
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
@@ -251,9 +251,9 @@ function removeOnlyUndefined<T extends Record<string, unknown>>(obj: T) {
 }
 
 /**
-Converts an aspect ratio to an image size compatible with fal.ai APIs.
-@param aspectRatio - The aspect ratio to convert.
-@returns The image size.
+ * Converts an aspect ratio to an image size compatible with fal.ai APIs.
+ * @param aspectRatio - The aspect ratio to convert.
+ * @returns The image size.
  */
 function convertAspectRatioToSize(
   aspectRatio: `${number}:${number}`,

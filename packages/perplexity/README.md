@@ -1,6 +1,6 @@
-# AI TOOLKIT - Perplexity Provider
+# AI SDK - Perplexity Provider
 
-The **[Perplexity provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Perplexity provider](https://ai-sdk.dev/providers/ai-sdk-providers/perplexity)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for Perplexity's Sonar API - a powerful answer engine with real-time web search capabilities.
 
 ## Features
@@ -20,6 +20,14 @@ The Perplexity provider is available in the `@ai-toolkit/perplexity` module. You
 
 ```bash
 npm i @ai-toolkit/perplexity
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -44,4 +52,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Perplexity provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for more information.
+Please check out the **[Perplexity provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/perplexity)** for more information.

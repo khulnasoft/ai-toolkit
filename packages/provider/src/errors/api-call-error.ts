@@ -1,10 +1,10 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_APICallError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class APICallError extends AITOOLKITError {
+export class APICallError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly url: string;
@@ -54,6 +54,6 @@ export class APICallError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is APICallError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

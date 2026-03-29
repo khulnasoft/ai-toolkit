@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     });
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages using the simplified API
+     * Convert AI SDK UIMessages to LangChain messages using the simplified API
      */
     const langchainMessages = await toBaseMessages(messages);
 

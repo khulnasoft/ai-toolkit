@@ -1,6 +1,6 @@
-# AI TOOLKIT - Hume Provider
+# AI SDK - Hume Provider
 
-The **[Hume provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/hume)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Hume provider](https://ai-sdk.dev/providers/ai-sdk-providers/hume)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains support for the Hume API.
 
 ## Setup
@@ -9,6 +9,14 @@ The Hume provider is available in the `@ai-toolkit/hume` module. You can install
 
 ```bash
 npm i @ai-toolkit/hume
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -33,4 +41,4 @@ const result = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Hume provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/hume)** for more information.
+Please check out the **[Hume provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/hume)** for more information.

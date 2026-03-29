@@ -27,15 +27,15 @@
     "type-check": "tsc --build"
   },
   "dependencies": {
-    "@ai-toolkit/openai": "0.0.0",
-    "@modelcontextprotocol/sdk": "^1.24.0",
-    "ai": "6.0.45",
+    "@ai-toolkit/openai": "4.0.0-beta.16",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "ai": "7.0.0-beta.45",
     "dotenv": "16.4.5",
     "express": "5.0.1",
     "zod": "3.25.76"
   },
   "devDependencies": {
-    "@ai-toolkit/mcp": "0.0.0",
+    "@ai-toolkit/mcp": "workspace:*",
     "@types/express": "5.0.0",
     "@types/node": "20.17.24",
     "tsx": "4.19.2",

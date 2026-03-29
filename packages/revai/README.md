@@ -1,6 +1,6 @@
-# AI TOOLKIT - Rev.ai Provider
+# AI SDK - Rev.ai Provider
 
-The **[Rev.ai provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Rev.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the Rev.ai transcription API.
 
 ## Setup
@@ -9,6 +9,14 @@ The Rev.ai provider is available in the `@ai-toolkit/revai` module. You can inst
 
 ```bash
 npm i @ai-toolkit/revai
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -35,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Rev.ai provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for more information.
+Please check out the **[Rev.ai provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for more information.

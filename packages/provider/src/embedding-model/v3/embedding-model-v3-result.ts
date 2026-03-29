@@ -21,7 +21,7 @@ export type EmbeddingModelV3Result = {
 
   /**
    * Additional provider-specific metadata. They are passed through
-   * from the provider to the AI TOOLKIT and enable provider-specific
+   * from the provider to the AI SDK and enable provider-specific
    * results that can be fully encapsulated in the provider.
    */
   providerMetadata?: SharedV3ProviderMetadata;
@@ -36,8 +36,8 @@ export type EmbeddingModelV3Result = {
     headers?: SharedV3Headers;
 
     /**
-      The response body.
-      */
+     * The response body.
+     */
     body?: unknown;
   };
 

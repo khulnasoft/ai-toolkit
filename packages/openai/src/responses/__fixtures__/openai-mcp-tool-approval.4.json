@@ -112,10 +112,10 @@
         "type": "mcp_call",
         "status": "completed",
         "approval_request_id": "mcpr_04f6b17429cf2b02006949a68bf5808196b6f2008a315c9aa4",
-        "arguments": "{\"alias\":\"\",\"description\":\"\",\"max_clicks\":100,\"password\":\"\",\"url\":\"https://studio.khulnasoft.com/\"}",
+        "arguments": "{\"alias\":\"\",\"description\":\"\",\"max_clicks\":100,\"password\":\"\",\"url\":\"https://ai-sdk.dev/\"}",
         "error": null,
         "name": "create_short_url",
-        "output": "✅ Short URL created: https://zip1.io/oMAchr\n🔤 Generated code: oMAchr\n🔢 Max clicks: 100\n🔗 Original URL: https://studio.khulnasoft.com/\n\n📊 View stats: https://zip1.io/stats/oMAchr",
+        "output": "✅ Short URL created: https://zip1.io/oMAchr\n🔤 Generated code: oMAchr\n🔢 Max clicks: 100\n🔗 Original URL: https://ai-sdk.dev/\n\n📊 View stats: https://zip1.io/stats/oMAchr",
         "server_label": "zip1"
       },
       {
@@ -127,7 +127,7 @@
             "type": "output_text",
             "annotations": [],
             "logprobs": [],
-            "text": "Done — I created a short link for you.\n\nShort URL: https://zip1.io/oMAchr\nOriginal URL: https://studio.khulnasoft.com/\nMax clicks: 100\nStats page: https://zip1.io/stats/oMAchr\n\nWould you like a custom alias, password protection, or a description added to this short link?"
+            "text": "Done — I created a short link for you.\n\nShort URL: https://zip1.io/oMAchr\nOriginal URL: https://ai-sdk.dev/\nMax clicks: 100\nStats page: https://zip1.io/stats/oMAchr\n\nWould you like a custom alias, password protection, or a description added to this short link?"
           }
         ],
         "role": "assistant"

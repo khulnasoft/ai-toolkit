@@ -1,6 +1,6 @@
-# AI TOOLKIT - Valibot Schema Support
+# AI SDK - Valibot Schema Support
 
-Allows you to use [Valibot](https://valibot.dev/) schemas with AI TOOLKIT.
+Allows you to use [Valibot](https://valibot.dev/) schemas with AI SDK.
 
 The `valibotSchema` function supports both validation and JSON schema conversion
 for Valibot schemas.
@@ -20,7 +20,7 @@ import { generateText, Output } from 'ai';
 import * as v from 'valibot';
 
 const result = await generateText({
-  model: anthropic('claude-3-7-sonnet-latest'),
+  model: anthropic('claude-sonnet-4-5-20250929'),
   output: Output.object({
     schema: valibotSchema(
       v.object({

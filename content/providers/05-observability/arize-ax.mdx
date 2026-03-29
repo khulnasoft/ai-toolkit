@@ -14,7 +14,7 @@ description: Trace, monitor, and evaluate LLM applications with Arize AX
 
 ## Setup
 
-Arize AX offers first-class OpenTelemetry integration and works directly with the AI TOOLKIT in both Next.js and Node.js environments.
+Arize AX offers first-class OpenTelemetry integration and works directly with the AI SDK in both Next.js and Node.js environments.
 
 <Note>
   Arize AX has an
@@ -30,7 +30,7 @@ Arize AX offers first-class OpenTelemetry integration and works directly with th
 
 In Next.js applications, use one of the OpenInference span processors with `registerOtel` from `@vercel/otel`.
 
-First, install the required dependencies for the AI TOOLKIT, OpenTelemetry and OpenInference.
+First, install the required dependencies for the AI SDK, OpenTelemetry and OpenInference.
 
 ```bash
 npm install ai @ai-toolkit/openai @vercel/otel @arizeai/openinference-vercel @opentelemetry/exporter-trace-otlp-proto
@@ -71,7 +71,7 @@ export function register() {
 
 Spans will show up in Arize AX under the project specified in the `model_id` field above.
 
-You must set the `experimental_telemetry` flag to true in all calls using the AI TOOLKIT.
+You must set the `experimental_telemetry` flag to true in all calls using the AI SDK.
 
 ```typescript
 const result = await generateText({
@@ -89,7 +89,7 @@ In Node.js you can use the `NodeSDK` or the `NodeTraceProvider`.
 
 #### NodeSDK
 
-First, install the required dependencies for the AI TOOLKIT, OpenTelemetry and OpenInference.
+First, install the required dependencies for the AI SDK, OpenTelemetry and OpenInference.
 
 ```bash
 npm install ai @ai-toolkit/openai @opentelemetry/sdk-node @arizeai/openinference-vercel @opentelemetry/exporter-trace-otlp-proto @opentelemetry/resources
@@ -130,7 +130,7 @@ sdk.start();
 
 Spans will show up in Arize AX under the project specified in the `model_id` field above.
 
-You must set the `experimental_telemetry` flag to true in all calls using the AI TOOLKIT.
+You must set the `experimental_telemetry` flag to true in all calls using the AI SDK.
 
 ```typescript
 const result = await generateText({
@@ -144,7 +144,7 @@ const result = await generateText({
 
 #### NodeTraceProvider
 
-First, install the required dependencies for the AI TOOLKIT, OpenTelemetry and OpenInference.
+First, install the required dependencies for the AI SDK, OpenTelemetry and OpenInference.
 
 ```bash
 npm install ai @ai-toolkit/openai @opentelemetry/sdk-trace-node @arizeai/openinference-vercel @opentelemetry/exporter-trace-otlp-proto @opentelemetry/resources
@@ -184,7 +184,7 @@ provider.register();
 
 Spans will show up in Arize AX under the project specified in the `model_id` field above.
 
-You must set the `experimental_telemetry` flag to true in all calls using the AI TOOLKIT.
+You must set the `experimental_telemetry` flag to true in all calls using the AI SDK.
 
 ```typescript
 const result = await generateText({

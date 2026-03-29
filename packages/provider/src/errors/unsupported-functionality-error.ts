@@ -1,10 +1,10 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_UnsupportedFunctionalityError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class UnsupportedFunctionalityError extends AITOOLKITError {
+export class UnsupportedFunctionalityError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly functionality: string;
@@ -21,6 +21,6 @@ export class UnsupportedFunctionalityError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is UnsupportedFunctionalityError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

@@ -1,6 +1,6 @@
-# AI TOOLKIT - Baseten Provider
+# AI SDK - Baseten Provider
 
-The **[Baseten provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/baseten)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
+The **[Baseten provider](https://ai-sdk.dev/providers/ai-sdk-providers/baseten)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The Baseten provider is available in the `@ai-toolkit/baseten` module. You can i
 
 ```bash
 npm i @ai-toolkit/baseten
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Baseten provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/baseten)** for more information.
+Please check out the **[Baseten provider](https://ai-sdk.dev/providers/ai-sdk-providers/baseten)** for more information.

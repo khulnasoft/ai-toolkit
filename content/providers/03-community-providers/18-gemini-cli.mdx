@@ -5,41 +5,41 @@ description: Learn how to use the Gemini CLI provider to access Google's Gemini 
 
 # Gemini CLI Provider
 
-The [ai-toolkit-provider-gemini-cli](https://github.com/ben-vargas/ai-toolkit-provider-gemini-cli) community provider enables using Google's Gemini models through the [@google/gemini-cli-core](https://www.npmjs.com/package/@google/gemini-cli-core) library. It's useful for developers who want to use their existing Gemini Code Assist subscription or API key authentication.
+The [ai-sdk-provider-gemini-cli](https://github.com/ben-vargas/ai-sdk-provider-gemini-cli) community provider enables using Google's Gemini models through the [@google/gemini-cli-core](https://www.npmjs.com/package/@google/gemini-cli-core) library. It's useful for developers who want to use their existing Gemini Code Assist subscription or API key authentication.
 
 ## Version Compatibility
 
-| Provider Version | AI TOOLKIT Version | NPM Tag         | Status      |
-| ---------------- | ------------------ | --------------- | ----------- |
-| 2.x              | v6                 | `latest`        | Stable      |
-| 1.x              | v5                 | `ai-toolkit-v5` | Maintenance |
-| 0.x              | v4                 | `ai-toolkit-v4` | Legacy      |
+| Provider Version | AI SDK Version | NPM Tag     | Status      |
+| ---------------- | -------------- | ----------- | ----------- |
+| 2.x              | v6             | `latest`    | Stable      |
+| 1.x              | v5             | `ai-sdk-v5` | Maintenance |
+| 0.x              | v4             | `ai-sdk-v4` | Legacy      |
 
 ```bash
-# AI TOOLKIT v6 (default)
-npm install ai-toolkit-provider-gemini-cli ai
+# AI SDK v6 (default)
+npm install ai-sdk-provider-gemini-cli ai
 
-# AI TOOLKIT v5
-npm install ai-toolkit-provider-gemini-cli@ai-toolkit-v5 ai@^5.0.0
+# AI SDK v5
+npm install ai-sdk-provider-gemini-cli@ai-sdk-v5 ai@^5.0.0
 
-# AI TOOLKIT v4
-npm install ai-toolkit-provider-gemini-cli@ai-toolkit-v4 ai@^4.0.0
+# AI SDK v4
+npm install ai-sdk-provider-gemini-cli@ai-sdk-v4 ai@^4.0.0
 ```
 
 ## Setup
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add ai-toolkit-provider-gemini-cli" dark />
+    <Snippet text="pnpm add ai-sdk-provider-gemini-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install ai-toolkit-provider-gemini-cli" dark />
+    <Snippet text="npm install ai-sdk-provider-gemini-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add ai-toolkit-provider-gemini-cli" dark />
+    <Snippet text="yarn add ai-sdk-provider-gemini-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add ai-toolkit-provider-gemini-cli" dark />
+    <Snippet text="bun add ai-sdk-provider-gemini-cli" dark />
   </Tab>
 </Tabs>
 
@@ -48,7 +48,7 @@ npm install ai-toolkit-provider-gemini-cli@ai-toolkit-v4 ai@^4.0.0
 Import `createGeminiProvider` and create a provider instance with your authentication settings:
 
 ```ts
-import { createGeminiProvider } from 'ai-toolkit-provider-gemini-cli';
+import { createGeminiProvider } from 'ai-sdk-provider-gemini-cli';
 
 // OAuth authentication (default if authType omitted)
 const gemini = createGeminiProvider({ authType: 'oauth-personal' });
@@ -94,15 +94,16 @@ const model = gemini('gemini-2.5-pro');
 
 Supported models:
 
-- **gemini-3-pro-preview**: Latest model with enhanced reasoning (supports `thinkingLevel`)
+- **gemini-3.1-pro-preview**: Latest model with enhanced reasoning (supports `thinkingLevel`)
 - **gemini-3-flash-preview**: Fast Gemini 3 model (supports `thinkingLevel`)
+- **gemini-3.1-flash-lite-preview**: Latest model with enhanced reasoning (supports `thinkingLevel`)
 - **gemini-2.5-pro**: Production-ready model with 64K output tokens (supports `thinkingBudget`)
 - **gemini-2.5-flash**: Fast, efficient model with 64K output tokens (supports `thinkingBudget`)
 
 ### Example
 
 ```ts
-import { createGeminiProvider } from 'ai-toolkit-provider-gemini-cli';
+import { createGeminiProvider } from 'ai-sdk-provider-gemini-cli';
 import { generateText } from 'ai';
 
 const gemini = createGeminiProvider({
@@ -118,7 +119,7 @@ const { text } = await generateText({
 ### Model Settings
 
 ```ts
-const model = gemini('gemini-3-pro-preview', {
+const model = gemini('gemini-3.1-pro-preview', {
   temperature: 0.7,
   topP: 0.95,
   topK: 40,
@@ -135,6 +136,7 @@ const model = gemini('gemini-3-pro-preview', {
 
 | Model                    | Image Input         | Object Generation   | Tool Usage          | Tool Streaming      |
 | ------------------------ | ------------------- | ------------------- | ------------------- | ------------------- |
+| `gemini-3.1-pro-preview` | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | `gemini-3-pro-preview`   | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | `gemini-3-flash-preview` | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
 | `gemini-2.5-pro`         | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> | <Check size={18} /> |
@@ -169,4 +171,4 @@ Then use OAuth authentication in your code with `authType: 'oauth-personal'`.
 - Gemini CLI installed globally for OAuth authentication
 - Valid Google account or Gemini API key
 
-For more details, see the [provider documentation](https://github.com/ben-vargas/ai-toolkit-provider-gemini-cli).
+For more details, see the [provider documentation](https://github.com/ben-vargas/ai-sdk-provider-gemini-cli).

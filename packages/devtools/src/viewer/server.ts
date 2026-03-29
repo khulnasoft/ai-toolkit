@@ -36,12 +36,19 @@ const broadcastToClients = (event: string, data: Record<string, unknown>) => {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Determine if we're running from source (tsx) or built (dist)
-const isDevMode =
-  __dirname.includes('/src/') || process.env.NODE_ENV === 'development';
-const projectRoot = isDevMode
-  ? path.resolve(__dirname, '../..')
-  : path.resolve(__dirname, '../..');
+// Determine whether to use the dev-mode Vite proxy or serve the built client.
+//
+// We rely exclusively on an explicit env flag to avoid false positives in
+// monorepos where /dist paths are common.
+//
+//   AI_SDK_DEVTOOLS_DEV=true  → use dev mode (Vite proxy)
+//   AI_SDK_DEVTOOLS_DEV=false → use production mode (serve built client)
+//
+// If the flag is unset, default to production mode.
+const devEnv = process.env.AI_SDK_DEVTOOLS_DEV;
+const isDevMode = devEnv !== undefined && devEnv !== 'false' && devEnv !== '0';
+// __dirname points at packages/devtools/src/viewer, so ../.. is the package root.
+const projectRoot = path.resolve(__dirname, '../..');
 
 // Client directory: dist/client in both cases
 const clientDir = path.join(projectRoot, 'dist/client');
@@ -207,7 +214,7 @@ app.get('*', async c => {
       <html>
         <head>
           <meta charset="UTF-8">
-          <title>AI TOOLKIT DevTools</title>
+          <title>AI SDK DevTools</title>
           <style>
             body { font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #0a0a0a; color: #fafafa; }
             .container { text-align: center; }
@@ -237,23 +244,17 @@ app.get('*', async c => {
 });
 
 export const startViewer = (port = 4983) => {
-  const isDev =
-    process.env.NODE_ENV === 'development' ||
-    process.argv[1]?.includes('/src/');
-
   const server = serve(
     {
       fetch: app.fetch,
       port,
     },
     () => {
-      if (isDev) {
-        console.log(`🔍 AI TOOLKIT DevTools API running on port ${port}`);
+      if (isDevMode) {
+        console.log(`🔍 AI SDK DevTools API running on port ${port}`);
         console.log(`   Open http://localhost:5173 for the dev UI`);
       } else {
-        console.log(
-          `🔍 AI TOOLKIT DevTools running at http://localhost:${port}`,
-        );
+        console.log(`🔍 AI SDK DevTools running at http://localhost:${port}`);
       }
     },
   );
@@ -262,15 +263,11 @@ export const startViewer = (port = 4983) => {
     if (err.code === 'EADDRINUSE') {
       console.error(`\n❌ Port ${port} is already in use.`);
       console.error(
-        `\n   This likely means AI TOOLKIT DevTools is already running.`,
+        `\n   This likely means AI SDK DevTools is already running.`,
       );
       console.error(`   Open http://localhost:${port} in your browser.\n`);
-      console.error(
-        `   To use a different port, set AI_TOOLKIT_DEVTOOLS_PORT:\n`,
-      );
-      console.error(
-        `   AI_TOOLKIT_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`,
-      );
+      console.error(`   To use a different port, set AI_SDK_DEVTOOLS_PORT:\n`);
+      console.error(`   AI_SDK_DEVTOOLS_PORT=4984 npx ai-sdk-devtools\n`);
       process.exit(1);
     }
     throw err;
@@ -285,8 +282,8 @@ const isDirectRun =
   process.argv[1]?.endsWith('/server.js');
 
 if (isDirectRun) {
-  const port = process.env.AI_TOOLKIT_DEVTOOLS_PORT
-    ? parseInt(process.env.AI_TOOLKIT_DEVTOOLS_PORT)
+  const port = process.env.AI_SDK_DEVTOOLS_PORT
+    ? parseInt(process.env.AI_SDK_DEVTOOLS_PORT)
     : 4983;
   startViewer(port);
 }

@@ -32,13 +32,13 @@ export type DynamicToolCall = BaseToolCall & {
    * a tool that does not exist.
    */
   // Added into DynamicToolCall to avoid breaking changes.
-  // TODO AI TOOLKIT 6: separate into a new InvalidToolCall type
+  // TODO AI SDK 6: separate into a new InvalidToolCall type
   invalid?: boolean;
 
   /**
    * The error that caused the tool call to be invalid.
    */
-  // TODO AI TOOLKIT 6: separate into a new InvalidToolCall type
+  // TODO AI SDK 6: separate into a new InvalidToolCall type
   error?: unknown;
 };
 

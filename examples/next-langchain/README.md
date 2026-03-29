@@ -1,6 +1,6 @@
-# AI TOOLKIT, Next.js, LangChain, OpenAI Examples
+# AI SDK, Next.js, LangChain, OpenAI Examples
 
-This example demonstrates how to use the [AI TOOLKIT](https://studio.khulnasoft.com/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
+This example demonstrates how to use the [AI SDK](https://ai-sdk.dev/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
 
 ## Examples Included
 
@@ -12,9 +12,9 @@ Basic chat example using LangChain's `ChatOpenAI` with message streaming and the
 
 Simple text completion using the `useCompletion` hook with LangChain streaming:
 
-- **`useCompletion`**: Uses AI TOOLKIT's completion hook for single-turn text generation
+- **`useCompletion`**: Uses AI SDK's completion hook for single-turn text generation
 - **Streaming**: Real-time token streaming from LangChain's `ChatOpenAI`
-- **`toUIMessageStream`**: Converts LangChain stream to AI TOOLKIT format
+- **`toUIMessageStream`**: Converts LangChain stream to AI SDK format
 
 ```typescript
 import { ChatOpenAI } from '@langchain/openai';
@@ -32,10 +32,10 @@ return createUIMessageStreamResponse({
 
 Demonstrates the `@ai-toolkit/langchain` adapter with LangGraph:
 
-- **`toBaseMessages`**: Converts AI TOOLKIT `UIMessage` to LangChain `BaseMessage` format
-- **`toUIMessageStream`**: Converts LangGraph streams to AI TOOLKIT `UIMessageChunk` format
+- **`toBaseMessages`**: Converts AI SDK `UIMessage` to LangChain `BaseMessage` format
+- **`toUIMessageStream`**: Converts LangGraph streams to AI SDK `UIMessageChunk` format
 
-This example shows how to integrate a LangGraph agent with the AI TOOLKIT's `useChat` hook.
+This example shows how to integrate a LangGraph agent with the AI SDK's `useChat` hook.
 
 ### 4. Multimodal Vision Input (`/multimodal`)
 
@@ -54,7 +54,7 @@ Demonstrates generating images as multimodal output using OpenAI's image generat
 - **Responses API**: Uses `ChatOpenAI` with `useResponsesApi: true` to access built-in tools
 - **Image generation tool**: Uses `tools.imageGeneration()` from `@langchain/openai`
 - **Streaming output**: Generated images are streamed back as part of the response
-- **AI TOOLKIT integration**: Images are rendered using the standard message parts system
+- **AI SDK integration**: Images are rendered using the standard message parts system
 
 ```typescript
 import { ChatOpenAI, tools } from '@langchain/openai';
@@ -75,7 +75,7 @@ const modelWithImageGeneration = model.bindTools([
 
 ### 6. ReAct Agent (`/createAgent`)
 
-Showcases LangChain's `createAgent` with the AI TOOLKIT adapter:
+Showcases LangChain's `createAgent` with the AI SDK adapter:
 
 - Create agents with LangChain's `createAgent()`
 - Define tools with `@langchain/core/tools`
@@ -88,7 +88,7 @@ Demonstrates LangChain's `humanInTheLoopMiddleware` for requiring user approval 
 
 - **`humanInTheLoopMiddleware`**: Middleware that intercepts tool calls and requests user approval
 - **Selective approval**: Configure which tools require approval vs auto-approve
-- **Approval workflow**: Uses `addToolApprovalResponse` with AI TOOLKIT's `dynamic-tool` parts
+- **Approval workflow**: Uses `addToolApprovalResponse` with AI SDK's `dynamic-tool` parts
 - **Thread persistence**: Uses `MemorySaver` to maintain conversation state across approvals
 
 ```typescript
@@ -131,7 +131,7 @@ Connect directly to a LangGraph app from the browser using `LangSmithDeploymentT
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-sdk-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-langchain&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=ai-chat-langchain&repository-name=next-ai-chat-langchain)
 
@@ -305,7 +305,7 @@ The `@ai-toolkit/langchain` adapter supports both `graph.stream()` and `streamEv
 | **Tool execution tracking** | Clean tool call lifecycle with `messages` mode                              |
 | **Custom data streaming**   | Use `custom` mode with `config.writer()` for typed events                   |
 | **State snapshots**         | Get full state after each step with `values` mode                           |
-| **Production apps**         | Simpler integration with AI TOOLKIT's `toUIMessageStream`                   |
+| **Production apps**         | Simpler integration with AI SDK's `toUIMessageStream`                       |
 
 ```typescript
 const stream = await graph.stream(
@@ -345,10 +345,10 @@ For most LangGraph applications, `graph.stream()` with appropriate `streamMode` 
 
 ## Learn More
 
-To learn more about LangChain, LangGraph, OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
+To learn more about LangChain, LangGraph, OpenAI, Next.js, and the AI SDK take a look at the following resources:
 
-- [AI TOOLKIT docs](https://studio.khulnasoft.com/docs) - learn more about the AI TOOLKIT
-- [Vercel AI Playground](https://studio.khulnasoft.com/playground) - compare and tune 20+ AI models side-by-side
+- [AI SDK docs](https://ai-sdk.dev/docs) - learn more about the AI SDK
+- [Vercel AI Playground](https://ai-sdk.dev/playground) - compare and tune 20+ AI models side-by-side
 - [LangChain Documentation](https://js.langchain.com/docs) - learn about LangChain
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) - learn about LangGraph
 - [LangSmith Documentation](https://docs.smith.langchain.com/) - learn about LangSmith deployments

@@ -65,7 +65,7 @@ class InMemoryOAuthClientProvider implements OAuthClientProvider {
   }
   get clientMetadata(): OAuthClientMetadata {
     return {
-      client_name: 'AI TOOLKIT MCP OAuth Example',
+      client_name: 'AI SDK MCP OAuth Example',
       redirect_uris: [String(this._redirectUrl)],
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],

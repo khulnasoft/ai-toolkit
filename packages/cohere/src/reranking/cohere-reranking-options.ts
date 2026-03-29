@@ -12,7 +12,7 @@ export type CohereRerankingModelId =
   | 'rerank-multilingual-v3.0'
   | (string & {});
 
-export type CohereRerankingOptions = {
+export type CohereRerankingModelOptions = {
   /**
    * Long documents will be automatically truncated to the specified number of tokens.
    *
@@ -28,7 +28,7 @@ export type CohereRerankingOptions = {
   priority?: number;
 };
 
-export const cohereRerankingOptionsSchema: FlexibleSchema<CohereRerankingOptions> =
+export const cohereRerankingModelOptionsSchema: FlexibleSchema<CohereRerankingModelOptions> =
   lazySchema(() =>
     zodSchema(
       z.object({

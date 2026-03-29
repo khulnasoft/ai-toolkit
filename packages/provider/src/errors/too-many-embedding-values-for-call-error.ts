@@ -1,10 +1,10 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_TooManyEmbeddingValuesForCallError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class TooManyEmbeddingValuesForCallError extends AITOOLKITError {
+export class TooManyEmbeddingValuesForCallError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly provider: string;
@@ -35,6 +35,6 @@ export class TooManyEmbeddingValuesForCallError extends AITOOLKITError {
   static isInstance(
     error: unknown,
   ): error is TooManyEmbeddingValuesForCallError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

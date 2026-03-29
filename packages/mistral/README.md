@@ -1,6 +1,6 @@
-# AI TOOLKIT - Mistral Provider
+# AI SDK - Mistral Provider
 
-The **[Mistral provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/mistral)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the Mistral chat API.
+The **[Mistral provider](https://ai-sdk.dev/providers/ai-sdk-providers/mistral)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the Mistral chat API.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The Mistral provider is available in the `@ai-toolkit/mistral` module. You can i
 
 ```bash
 npm i @ai-toolkit/mistral
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Mistral provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/mistral)** for more information.
+Please check out the **[Mistral provider](https://ai-sdk.dev/providers/ai-sdk-providers/mistral)** for more information.

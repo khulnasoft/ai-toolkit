@@ -1,6 +1,6 @@
 # Provider Architecture
 
-The AI TOOLKIT uses a layered provider architecture that follows the adapter pattern, enabling support for multiple AI providers through a unified interface.
+The AI SDK uses a layered provider architecture that follows the adapter pattern, enabling support for multiple AI providers through a unified interface.
 
 ## Architecture Overview
 
@@ -25,3 +25,5 @@ graph LR
     class OPENAI provider
     class OPENAI_API external
 ```
+
+See the [provider abstraction architecture doc](../architecture/provider-abstraction.md) for a more in-depth guide.

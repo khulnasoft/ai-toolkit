@@ -6,9 +6,9 @@ tags: ['next', 'streaming', 'tool use']
 
 # Streaming with Custom Format
 
-Create a custom stream to control the streaming format and structure of tool calls instead of using the built-in AI TOOLKIT data stream format (`toUIMessageStream()`).
+Create a custom stream to control the streaming format and structure of tool calls instead of using the built-in AI SDK data stream format (`toUIMessageStream()`).
 
-`fullStream` (on `StreamTextResult`) gives you direct access to all model events. You can transform, filter, and structure these events into your own streaming format. This gives you the benefits of the AI TOOLKIT's unified provider interface without prescribing how you consume the stream.
+`fullStream` (on `StreamTextResult`) gives you direct access to all model events. You can transform, filter, and structure these events into your own streaming format. This gives you the benefits of the AI SDK's unified provider interface without prescribing how you consume the stream.
 
 You can:
 
@@ -17,7 +17,7 @@ You can:
 - Parse the stream manually on the client
 - Build custom UI from your stream data
 
-For complete control over both the streaming format and the execution loop, combine this pattern with a [manual agent loop](/docs/cookbook/node/manual-agent-loop).
+For complete control over both the streaming format and the execution loop, combine this pattern with a [manual agent loop](/cookbook/node/manual-agent-loop).
 
 ## Implementation
 

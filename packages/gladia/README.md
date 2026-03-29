@@ -1,6 +1,6 @@
-# AI TOOLKIT - Gladia Provider
+# AI SDK - Gladia Provider
 
-The **[Gladia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Gladia provider](https://ai-sdk.dev/providers/ai-sdk-providers/assemblyai)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains transcription model support for the Gladia transcription API.
 
 ## Setup
@@ -9,6 +9,14 @@ The Gladia provider is available in the `@ai-toolkit/gladia` module. You can ins
 
 ```bash
 npm i @ai-toolkit/gladia
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -35,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Gladia provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/gladia)** for more information.
+Please check out the **[Gladia provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/gladia)** for more information.

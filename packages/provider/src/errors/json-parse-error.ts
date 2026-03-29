@@ -1,11 +1,11 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 import { getErrorMessage } from './get-error-message';
 
 const name = 'AI_JSONParseError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class JSONParseError extends AITOOLKITError {
+export class JSONParseError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly text: string;
@@ -24,6 +24,6 @@ export class JSONParseError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is JSONParseError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

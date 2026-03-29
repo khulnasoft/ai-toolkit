@@ -68,7 +68,7 @@ export const graph = workflow.compile();
 
 See the [LangGraph documentation](https://langchain-ai.github.io/langgraph/) for more examples.
 
-## Usage with AI TOOLKIT
+## Usage with AI SDK
 
 Connect to this server from the frontend using `LangSmithDeploymentTransport`:
 

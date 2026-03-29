@@ -82,12 +82,12 @@ type ToolOutputProperties<INPUT, OUTPUT> = NeverOptional<
   OUTPUT,
   | {
       /**
-An async function that is called with the arguments from the tool call and produces a result.
-If not provided, the tool will not be executed automatically.
-
-@args is the input of the tool call.
-@options.abortSignal is a signal that can be used to abort the tool call.
-    */
+       * An async function that is called with the arguments from the tool call and produces a result.
+       * If not provided, the tool will not be executed automatically.
+       *
+       * @args is the input of the tool call.
+       * @options.abortSignal is a signal that can be used to abort the tool call.
+       */
       execute: ToolExecuteFunction<INPUT, OUTPUT>;
 
       outputSchema?: FlexibleSchema<OUTPUT>;
@@ -100,19 +100,19 @@ If not provided, the tool will not be executed automatically.
 >;
 
 /**
-A tool contains the description and the schema of the input that the tool expects.
-This enables the language model to generate the input.
-
-The tool can also contain an optional execute function for the actual execution function of the tool.
+ * A tool contains the description and the schema of the input that the tool expects.
+ * This enables the language model to generate the input.
+ *
+ * The tool can also contain an optional execute function for the actual execution function of the tool.
  */
 export type Tool<
   INPUT extends JSONValue | unknown | never = any,
   OUTPUT extends JSONValue | unknown | never = any,
 > = {
   /**
-An optional description of what the tool does.
-Will be used by the language model to decide whether to use the tool.
-Not used for provider-defined tools.
+   * An optional description of what the tool does.
+   * Will be used by the language model to decide whether to use the tool.
+   * Not used for provider-defined tools.
    */
   description?: string;
 
@@ -122,9 +122,9 @@ Not used for provider-defined tools.
   title?: string;
 
   /**
-Additional provider-specific metadata. They are passed through
-to the provider from the AI TOOLKIT and enable provider-specific
-functionality that can be fully encapsulated in the provider.
+   * Additional provider-specific metadata. They are passed through
+   * to the provider from the AI SDK and enable provider-specific
+   * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: ProviderOptions;
 
@@ -187,6 +187,8 @@ functionality that can be fully encapsulated in the provider.
      * Optional conversion function that maps the tool result to an output that can be used by the language model.
      *
      * If not provided, the tool result will be sent as a JSON object.
+     *
+     * This function is invoked on the server by `convertToModelMessages`, so ensure that you pass the same "tools" (ToolSet) to both "convertToModelMessages" and "streamText" (or other generation APIs).
      */
     toModelOutput?: (options: {
       /**
@@ -211,31 +213,31 @@ functionality that can be fully encapsulated in the provider.
   } & (
     | {
         /**
-Tool with user-defined input and output schemas.
-     */
+         * Tool with user-defined input and output schemas.
+         */
         type?: undefined | 'function';
       }
     | {
         /**
-Tool that is defined at runtime (e.g. an MCP tool).
-The types of input and output are not known at development time.
-       */
+         * Tool that is defined at runtime (e.g. an MCP tool).
+         * The types of input and output are not known at development time.
+         */
         type: 'dynamic';
       }
     | {
         /**
-Tool with provider-defined input and output schemas.
-     */
+         * Tool with provider-defined input and output schemas.
+         */
         type: 'provider';
 
         /**
-The ID of the tool. Must follow the format `<provider-name>.<unique-tool-name>`.
-   */
+         * The ID of the tool. Must follow the format `<provider-name>.<unique-tool-name>`.
+         */
         id: `${string}.${string}`;
 
         /**
-The arguments for configuring the tool. Must match the expected arguments defined by the provider for this tool.
-     */
+         * The arguments for configuring the tool. Must match the expected arguments defined by the provider for this tool.
+         */
         args: Record<string, unknown>;
 
         /**
@@ -246,7 +248,7 @@ The arguments for configuring the tool. Must match the expected arguments define
          * triggers a client-executed tool, and the server tool's result is deferred
          * until the client tool is resolved).
          *
-         * This flag allows the AI TOOLKIT to handle tool results that arrive without
+         * This flag allows the AI SDK to handle tool results that arrive without
          * a matching tool call in the current response.
          *
          * @default false
@@ -268,7 +270,7 @@ export type InferToolOutput<TOOL extends Tool> =
   TOOL extends Tool<any, infer OUTPUT> ? OUTPUT : never;
 
 /**
-Helper function for inferring the execute args of a tool.
+ * Helper function for inferring the execute args of a tool.
  */
 // Note: overload order is important for auto-completion
 export function tool<INPUT, OUTPUT>(

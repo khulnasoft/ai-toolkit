@@ -1,4 +1,4 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_InvalidResponseDataError';
 const marker = `vercel.ai.error.${name}`;
@@ -8,7 +8,7 @@ const symbol = Symbol.for(marker);
  * Server returned a response with invalid data content.
  * This should be thrown by providers when they cannot parse the response from the API.
  */
-export class InvalidResponseDataError extends AITOOLKITError {
+export class InvalidResponseDataError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly data: unknown;
@@ -26,6 +26,6 @@ export class InvalidResponseDataError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is InvalidResponseDataError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

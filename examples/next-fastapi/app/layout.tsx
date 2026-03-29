@@ -6,7 +6,7 @@ import { GeistSans } from 'geist/font/sans';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI TOOLKIT and FastAPI Examples',
+  title: 'AI SDK and FastAPI Examples',
 };
 
 export default function RootLayout({

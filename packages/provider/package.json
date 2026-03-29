@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/provider",
-  "version": "2.0.0",
+  "version": "4.0.0-beta.5",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -10,6 +10,10 @@
   "files": [
     "dist/**/*",
     "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts",
+    "!src/**/__snapshots__",
+    "!src/**/__fixtures__",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -17,9 +21,7 @@
     "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm clean && tsup --watch",
     "clean": "del-cli dist *.tsbuildinfo",
-    "lint": "eslint \"./**/*.ts*\"",
-    "type-check": "tsc --build",
-    "prettier-check": "prettier --check \"./**/*.ts*\""
+    "type-check": "tsc --build"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -45,7 +47,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://studio.khulnasoft.com/docs",
+  "homepage": "https://ai-sdk.dev/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

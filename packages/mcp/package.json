@@ -1,6 +1,6 @@
 {
   "name": "@ai-toolkit/mcp",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.11",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -8,6 +8,11 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist/**/*",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts",
+    "!src/**/__snapshots__",
+    "!src/**/__fixtures__",
     "CHANGELOG.md",
     "README.md",
     "internal.d.ts"
@@ -16,9 +21,7 @@
     "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm clean && tsup --watch",
     "clean": "rm -rf dist *.tsbuildinfo",
-    "lint": "eslint \"./**/*.ts*\"",
     "type-check": "tsc --build",
-    "prettier-check": "prettier --check \"./**/*.ts*\"",
     "test": "pnpm test:node && pnpm test:edge",
     "test:update": "pnpm test:node -u",
     "test:watch": "vitest --config vitest.node.config.js",
@@ -40,17 +43,17 @@
     }
   },
   "dependencies": {
-    "@ai-toolkit/provider": "0.0.0",
-    "@ai-toolkit/provider-utils": "0.0.0",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "pkce-challenge": "^5.0.0"
   },
   "devDependencies": {
-    "@ai-toolkit/test-server": "0.0.0",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",
     "typescript": "5.8.3",
-    "vitest": "2.1.4",
+    "vitest": "^4.1.0",
     "zod": "3.25.76"
   },
   "peerDependencies": {
@@ -62,7 +65,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://studio.khulnasoft.com/docs",
+  "homepage": "https://ai-sdk.dev/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

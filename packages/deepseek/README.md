@@ -1,6 +1,6 @@
-# AI TOOLKIT - DeepSeek Provider
+# AI SDK - DeepSeek Provider
 
-The **[DeepSeek provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the [DeepSeek](https://www.deepseek.com) platform.
+The **[DeepSeek provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the [DeepSeek](https://www.deepseek.com) platform.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The DeepSeek provider is available in the `@ai-toolkit/deepseek` module. You can
 
 ```bash
 npm i @ai-toolkit/deepseek
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[DeepSeek provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepseek)** for more information.
+Please check out the **[DeepSeek provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek)** for more information.

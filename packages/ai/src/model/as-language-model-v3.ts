@@ -68,7 +68,7 @@ function convertV2StreamToV3(
             });
             break;
           default:
-            // TODO: AI TOOLKIT 6 - no casting (stream parts need to be mapped)
+            // TODO: AI SDK 6 - no casting (stream parts need to be mapped)
             controller.enqueue(chunk as LanguageModelV3StreamPart);
             break;
         }

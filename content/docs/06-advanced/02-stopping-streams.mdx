@@ -1,6 +1,6 @@
 ---
 title: Stopping Streams
-description: Learn how to cancel streams with the AI TOOLKIT
+description: Learn how to cancel streams with the AI SDK
 ---
 
 # Stopping Streams
@@ -8,11 +8,11 @@ description: Learn how to cancel streams with the AI TOOLKIT
 Canceling ongoing streams is often needed.
 For example, users might want to stop a stream when they realize that the response is not what they want.
 
-The different parts of the AI TOOLKIT support canceling streams in different ways.
+The different parts of the AI SDK support canceling streams in different ways.
 
-## AI TOOLKIT Core
+## AI SDK Core
 
-The AI TOOLKIT functions have an `abortSignal` argument that you can use to cancel a stream.
+The AI SDK functions have an `abortSignal` argument that you can use to cancel a stream.
 You would use this if you want to cancel a stream from the server side to the LLM API, e.g. by
 forwarding the `abortSignal` from the request.
 
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 }
 ```
 
-## AI TOOLKIT UI
+## AI SDK UI
 
 The hooks, e.g. `useChat` or `useCompletion`, provide a `stop` helper function that can be used to cancel a stream.
 This will cancel the stream from the client side to the server.
@@ -177,8 +177,8 @@ export async function POST(req: Request) {
 
 The `consumeStream` function is necessary for proper abort handling in UI message streams. It ensures that the stream is properly consumed even when aborted, preventing potential memory leaks or hanging connections.
 
-## AI TOOLKIT RSC
+## AI SDK RSC
 
 <Note type="warning">
-  The AI TOOLKIT RSC does not currently support stopping streams.
+  The AI SDK RSC does not currently support stopping streams.
 </Note>

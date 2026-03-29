@@ -1,6 +1,6 @@
 ---
 title: RAG Agent
-description: Learn how to build a RAG Agent with the AI TOOLKIT and Next.js
+description: Learn how to build a RAG Agent with the AI SDK and Next.js
 tags:
   [
     'rag',
@@ -70,7 +70,7 @@ Just like that, you have augmented the model’s generation by providing relevan
 
 ### Embedding
 
-[Embeddings](/docs/ai-toolkit-core/embeddings) are a way to represent words, phrases, or images as vectors in a high-dimensional space. In this space, similar words are close to each other, and the distance between words can be used to measure their similarity.
+[Embeddings](/docs/ai-sdk-core/embeddings) are a way to represent words, phrases, or images as vectors in a high-dimensional space. In this space, similar words are close to each other, and the distance between words can be used to measure their similarity.
 
 In practice, this means that if you embedded the words `cat` and `dog`, you would expect them to be plotted close to each other in vector space. The process of calculating the similarity between two vectors is called ‘cosine similarity’ where a value of 1 would indicate high similarity and a value of -1 would indicate high opposition.
 
@@ -117,15 +117,15 @@ In this project, you will build a agent that will only respond with information 
 This project will use the following stack:
 
 - [Next.js](https://nextjs.org) 14 (App Router)
-- [ AI TOOLKIT ](/docs)
-- [ Vercel AI Gateway ](/providers/ai-toolkit-providers/ai-gateway)
+- [ AI SDK ](/docs)
+- [ Vercel AI Gateway ](/providers/ai-sdk-providers/ai-gateway)
 - [ Drizzle ORM ](https://orm.drizzle.team)
 - [ Postgres ](https://www.postgresql.org/) with [ pgvector ](https://github.com/pgvector/pgvector)
 - [ shadcn-ui ](https://ui.shadcn.com) and [ TailwindCSS ](https://tailwindcss.com) for styling
 
 ### Clone Repo
 
-To reduce the scope of this guide, you will be starting with a [repository](https://github.com/vercel/ai-toolkit-rag-starter) that already has a few things set up for you:
+To reduce the scope of this guide, you will be starting with a [repository](https://github.com/khulnasoft/ai-toolkit-sdk-rag-starter) that already has a few things set up for you:
 
 - Drizzle ORM (`lib/db`) including an initial migration and a script to migrate (`db:migrate`)
 - a basic schema for the `resources` table (this will be for source material)
@@ -135,8 +135,8 @@ To get started, clone the starter repository with the following command:
 
 <Snippet
   text={[
-    'git clone https://github.com/vercel/ai-toolkit-rag-starter',
-    'cd ai-toolkit-rag-starter',
+    'git clone https://github.com/khulnasoft/ai-toolkit-sdk-rag-starter',
+    'cd ai-sdk-rag-starter',
   ]}
 />
 
@@ -199,10 +199,10 @@ This will first add the `pgvector` extension to your database. Then it will crea
 For this guide, you will need a Vercel AI Gateway API key, which gives you access to hundreds of models from different providers with one API key. If you haven't obtained your Vercel AI Gateway API key, you can do so by [signing up](https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai&title=Go+to+AI+Gateway) on the Vercel website.
 
 <Note>
-  The AI TOOLKIT's Vercel AI Gateway Provider is the default global provider, so
-  you can access models using a simple string in the model configuration. If you
+  The AI SDK's Vercel AI Gateway Provider is the default global provider, so you
+  can access models using a simple string in the model configuration. If you
   prefer to use a specific provider like OpenAI directly, see the [provider
-  management](/docs/ai-toolkit-core/provider-management) documentation.
+  management](/docs/ai-sdk-core/provider-management) documentation.
 </Note>
 
 Now, open your `.env` file and add your API Gateway key:
@@ -291,18 +291,18 @@ const generateChunks = (input: string): string[] => {
 
 This function will take an input string and split it by periods, filtering out any empty items. This will return an array of strings. It is worth experimenting with different chunking techniques in your projects as the best technique will vary.
 
-### Install AI TOOLKIT
+### Install AI SDK
 
-You will use the AI TOOLKIT to create embeddings. This will require two more dependencies, which you can install by running the following command:
+You will use the AI SDK to create embeddings. This will require two more dependencies, which you can install by running the following command:
 
 <Snippet text="pnpm add ai @ai-toolkit/react" />
 
-This will install the [AI TOOLKIT](/docs) and the AI TOOLKIT's React hooks.
+This will install the [AI SDK](/docs) and the AI SDK's React hooks.
 
 <Note>
-  The AI TOOLKIT is designed to be a unified interface to interact with any
-  large language model. This means that you can change model and providers with
-  just one line of code! Learn more about [available providers](/providers) and
+  The AI SDK is designed to be a unified interface to interact with any large
+  language model. This means that you can change model and providers with just
+  one line of code! Learn more about [available providers](/providers) and
   [building custom providers](/providers/community-providers/custom-providers)
   in the [providers](/providers) section.
 </Note>
@@ -337,7 +337,7 @@ export const generateEmbeddings = async (
 
 In this code, you first define the model you want to use for the embeddings. In this example, you are using OpenAI’s `text-embedding-ada-002` embedding model.
 
-Next, you create an asynchronous function called `generateEmbeddings`. This function will take in the source material (`value`) as an input and return a promise of an array of objects, each containing an embedding and content. Within the function, you first generate chunks for the input. Then, you pass those chunks to the [`embedMany`](/docs/reference/ai-toolkit-core/embed-many) function imported from the AI TOOLKIT which will return embeddings of the chunks you passed in. Finally, you map over and return the embeddings in a format that is ready to save in the database.
+Next, you create an asynchronous function called `generateEmbeddings`. This function will take in the source material (`value`) as an input and return a promise of an array of objects, each containing an embedding and content. Within the function, you first generate chunks for the input. Then, you pass those chunks to the [`embedMany`](/docs/reference/ai-sdk-core/embed-many) function imported from the AI SDK which will return embeddings of the chunks you passed in. Finally, you map over and return the embeddings in a format that is ready to save in the database.
 
 ### Update Server Action
 
@@ -416,7 +416,7 @@ First, you call the `generateEmbeddings` function created in the previous step, 
 
 ### Create Root Page
 
-Great! Let's build the frontend. The AI TOOLKIT’s [`useChat`](/docs/reference/ai-toolkit-ui/use-chat) hook allows you to easily create a conversational user interface for your agent.
+Great! Let's build the frontend. The AI SDK’s [`useChat`](/docs/reference/ai-sdk-ui/use-chat) hook allows you to easily create a conversational user interface for your agent.
 
 Replace your root page (`app/page.tsx`) with the following code.
 
@@ -504,7 +504,7 @@ export async function POST(req: Request) {
 }
 ```
 
-In this code, you declare and export an asynchronous function called POST. You retrieve the `messages` from the request body and then pass them to the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function imported from the AI TOOLKIT, alongside the model you would like to use. Finally, you return the model’s response in `UIMessageStreamResponse` format.
+In this code, you declare and export an asynchronous function called POST. You retrieve the `messages` from the request body and then pass them to the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function imported from the AI SDK, alongside the model you would like to use. Finally, you return the model’s response in `UIMessageStreamResponse` format.
 
 Head back to the browser and try to send a message again. You should see a response from the model streamed directly in!
 
@@ -590,7 +590,7 @@ In this code, you define a tool called `addResource`. This tool has three elemen
 - **inputSchema**: [Zod schema](/docs/foundations/tools#schema-specification-and-validation-with-zod) that defines the input necessary for the tool to run.
 - **execute**: An asynchronous function that is called with the arguments from the tool call.
 
-In simple terms, on each generation, the model will decide whether it should call the tool. If it deems it should call the tool, it will extract the input and then append a new `message` to the `messages` array of type `tool-call`. The AI TOOLKIT will then run the `execute` function with the parameters provided by the `tool-call` message.
+In simple terms, on each generation, the model will decide whether it should call the tool. If it deems it should call the tool, it will extract the input and then append a new `message` to the `messages` array of type `tool-call`. The AI SDK will then run the `execute` function with the parameters provided by the `tool-call` message.
 
 Head back to the browser and tell the model your favorite food. You should see an empty response in the UI. Did anything happen? Let’s see. Run the following command in a new terminal window.
 
@@ -668,7 +668,7 @@ With this change, you now conditionally render the tool that has been called dir
 
 It would be nice if the model could summarize the action too. However, technically, once the model calls a tool, it has completed its generation as it ‘generated’ a tool call. How could you achieve this desired behavior?
 
-The AI TOOLKIT has a feature called [`stopWhen`](/docs/ai-toolkit-core/tools-and-tool-calling#multi-step-calls) which allows stopping conditions when the model generates a tool call. If those stopping conditions haven't been hit, the AI TOOLKIT will automatically send tool call results back to the model!
+The AI SDK has a feature called [`stopWhen`](/docs/ai-sdk-core/tools-and-tool-calling#multi-step-calls) which allows stopping conditions when the model generates a tool call. If those stopping conditions haven't been hit, the AI SDK will automatically send tool call results back to the model!
 
 Open your root page (`api/chat/route.ts`) and add the following key to the `streamText` configuration object:
 
@@ -847,4 +847,4 @@ If you're using the Vercel setup above, you can run the command directly by eith
 - Going to the Neon console and entering the command there, or
 - Going back to the Vercel platform, navigating to the Quick Start section of your database, and finding the PSQL connection command (second tab). This will connect to your instance in the terminal where you can run the command directly.
 
-[More info](https://github.com/vercel/ai-toolkit-rag-starter/issues/1).
+[More info](https://github.com/khulnasoft/ai-toolkit-sdk-rag-starter/issues/1).

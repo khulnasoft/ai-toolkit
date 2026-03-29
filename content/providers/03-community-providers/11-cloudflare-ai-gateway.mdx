@@ -1,15 +1,15 @@
 ---
 title: Cloudflare AI Gateway
-description: Learn how to use the Cloudflare AI Gateway provider for the AI TOOLKIT.
+description: Learn how to use the Cloudflare AI Gateway provider for the AI SDK.
 ---
 
 # Cloudflare AI Gateway
 
-The Cloudflare AI Gateway Provider is a library that integrates Cloudflare's AI Gateway with the Vercel AI TOOLKIT. It enables seamless access to multiple AI models from various providers through a unified interface, with automatic fallback for high availability.
+The Cloudflare AI Gateway Provider is a library that integrates Cloudflare's AI Gateway with the Vercel AI SDK. It enables seamless access to multiple AI models from various providers through a unified interface, with automatic fallback for high availability.
 
 ## Features
 
-- **Runtime Agnostic**: Compatible with Node.js, Edge Runtime, and other JavaScript runtimes supported by the Vercel AI TOOLKIT.
+- **Runtime Agnostic**: Compatible with Node.js, Edge Runtime, and other JavaScript runtimes supported by the Vercel AI SDK.
 - **Automatic Fallback**: Automatically switches to the next available model if one fails, ensuring resilience.
 - **Multi-Provider Support**: Supports models from OpenAI, Anthropic, DeepSeek, Google AI Studio, Grok, Mistral, Perplexity AI, Replicate, and Groq.
 - **Cloudflare AI Gateway Integration**: Leverages Cloudflare's AI Gateway for request management, caching, and rate limiting.
@@ -97,7 +97,7 @@ const openai = createOpenAI({ apiKey: 'openai-api-key' });
 const anthropic = createAnthropic({ apiKey: 'anthropic-api-key' });
 
 const model = aigateway([
-  anthropic('claude-3-5-haiku-20241022'), // Primary model
+  anthropic('claude-haiku-4-5'), // Primary model
   openai('gpt-4o-mini'), // Fallback model
 ]);
 ```

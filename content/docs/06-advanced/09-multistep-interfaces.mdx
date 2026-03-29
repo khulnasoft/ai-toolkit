@@ -12,7 +12,7 @@ In order to understand multistep interfaces, it is important to understand two c
 - Tool composition
 - Application context
 
-**Tool composition** is the process of combining multiple [tools](/docs/ai-toolkit-core/tools-and-tool-calling) to create a new tool. This is a powerful concept that allows you to break down complex tasks into smaller, more manageable steps.
+**Tool composition** is the process of combining multiple [tools](/docs/ai-sdk-core/tools-and-tool-calling) to create a new tool. This is a powerful concept that allows you to break down complex tasks into smaller, more manageable steps.
 
 **Application context** refers to the state of the application at any given point in time. This includes the user's input, the output of the language model, and any other relevant information.
 
@@ -92,7 +92,7 @@ Looking up passenger information could've been another tool that the model could
 User: I want to book a flight from New York to London.
 Tool: searchFlights("New York", "London")
 Model: Here are the available flights from New York to London.
-User: I want to book flight number BA123 on 12th December for myself an my wife.
+User: I want to book flight number BA123 on 12th December for myself and my wife.
 Tool: lookupContacts() -> ["John Doe", "Jane Doe"]
 Tool: bookFlight("BA123", "12th December", ["John Doe", "Jane Doe"])
 Model: Your flight has been booked!

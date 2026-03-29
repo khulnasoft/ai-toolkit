@@ -1,5 +1,4 @@
 import { APICallError, EmptyResponseBodyError } from '@ai-toolkit/provider';
-import { ZodType } from 'zod/v4';
 import { extractResponseHeaders } from './extract-response-headers';
 import { parseJSON, ParseResult, safeParseJSON } from './parse-json';
 import { parseJsonEventStream } from './parse-json-event-stream';

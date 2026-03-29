@@ -1,6 +1,6 @@
-# AI TOOLKIT - LMNT Provider
+# AI SDK - LMNT Provider
 
-The **[LMNT provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/lmnt)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[LMNT provider](https://ai-sdk.dev/providers/ai-sdk-providers/lmnt)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the LMNT API.
 
 ## Setup
@@ -9,6 +9,14 @@ The LMNT provider is available in the `@ai-toolkit/lmnt` module. You can install
 
 ```bash
 npm i @ai-toolkit/lmnt
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -33,4 +41,4 @@ const result = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[LMNT provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/lmnt)** for more information.
+Please check out the **[LMNT provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/lmnt)** for more information.

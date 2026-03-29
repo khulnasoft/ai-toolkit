@@ -1,6 +1,6 @@
 ---
 title: Helicone
-description: Monitor and optimize your AI TOOLKIT applications with minimal configuration using Helicone
+description: Monitor and optimize your AI SDK applications with minimal configuration using Helicone
 ---
 
 # Helicone Observability
@@ -9,20 +9,20 @@ description: Monitor and optimize your AI TOOLKIT applications with minimal conf
 
 ## Setup
 
-The Helicone provider is available in the `@helicone/ai-toolkit-provider` package. Install it with:
+The Helicone provider is available in the `@helicone/ai-sdk-provider` package. Install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @helicone/ai-toolkit-provider" dark />
+    <Snippet text="pnpm add @helicone/ai-sdk-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @helicone/ai-toolkit-provider" dark />
+    <Snippet text="npm install @helicone/ai-sdk-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @helicone/ai-toolkit-provider" dark />
+    <Snippet text="yarn add @helicone/ai-sdk-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @helicone/ai-toolkit-provider" dark />
+    <Snippet text="bun add @helicone/ai-sdk-provider" dark />
   </Tab>
 </Tabs>
 
@@ -37,7 +37,7 @@ Setting up Helicone:
 4. Use Helicone in your application:
 
    ```javascript
-   import { createHelicone } from '@helicone/ai-toolkit-provider';
+   import { createHelicone } from '@helicone/ai-sdk-provider';
    import { generateText } from 'ai';
 
    const helicone = createHelicone({
@@ -100,7 +100,7 @@ Helicone provides comprehensive observability for your AI applications with zero
 Track individual user behavior and analyze usage patterns across your application. This helps you understand which users are most active, identify power users, and monitor per-user costs:
 
 ```javascript
-import { createHelicone } from '@helicone/ai-toolkit-provider';
+import { createHelicone } from '@helicone/ai-sdk-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({
@@ -133,7 +133,7 @@ const result = await generateText({
 Add structured metadata to segment and analyze requests by feature, environment, or any custom dimension. This enables powerful filtering and insights in your analytics dashboard:
 
 ```javascript
-import { createHelicone } from '@helicone/ai-toolkit-provider';
+import { createHelicone } from '@helicone/ai-sdk-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({
@@ -171,7 +171,7 @@ const result = await generateText({
 Group related requests into sessions to analyze conversation flows and multi-turn interactions. This is essential for understanding user journeys and debugging complex conversations:
 
 ```javascript
-import { createHelicone } from '@helicone/ai-toolkit-provider';
+import { createHelicone } from '@helicone/ai-sdk-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({
@@ -209,7 +209,7 @@ const result = await generateText({
 Add tags to organize and filter requests in your analytics dashboard:
 
 ```javascript
-import { createHelicone } from '@helicone/ai-toolkit-provider';
+import { createHelicone } from '@helicone/ai-sdk-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({
@@ -247,7 +247,7 @@ const result = await generateText({
 Monitor streaming responses with full observability, including time-to-first-token and total streaming duration:
 
 ```javascript
-import { createHelicone } from '@helicone/ai-toolkit-provider';
+import { createHelicone } from '@helicone/ai-sdk-provider';
 import { streamText } from 'ai';
 
 const helicone = createHelicone({
@@ -284,7 +284,7 @@ for await (const chunk of result.textStream) {
 ## Resources
 
 - [Helicone Documentation](https://docs.helicone.ai)
-- [AI TOOLKIT Provider Package](https://github.com/Helicone/ai-toolkit-provider)
+- [AI SDK Provider Package](https://github.com/Helicone/ai-sdk-provider)
 - [Helicone GitHub Repository](https://github.com/Helicone/helicone)
 - [Discord Community](https://discord.gg/7aSCGCGUeu)
 - [Supported Models](https://helicone.ai/models)

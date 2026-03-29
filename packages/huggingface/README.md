@@ -1,6 +1,6 @@
-# Vercel AI TOOLKIT - Hugging Face Provider
+# Vercel AI SDK - Hugging Face Provider
 
-The **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/index)** for the [Vercel AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for thousands of models through multiple inference providers via the Hugging Face router API.
+The **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/index)** for the [Vercel AI SDK](https://ai-sdk.dev/docs) contains language model support for thousands of models through multiple inference providers via the Hugging Face router API.
 
 ## Setup
 
@@ -8,6 +8,14 @@ The Hugging Face provider is available in the `@ai-toolkit/huggingface` module. 
 
 ```bash
 npm i @ai-toolkit/huggingface
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add khulnasoft/ai
 ```
 
 ## Provider Instance
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Hugging Face provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/huggingface)** for more information.
+Please check out the **[Hugging Face provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/huggingface)** for more information.

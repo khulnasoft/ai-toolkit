@@ -1,9 +1,9 @@
 <!--
-Welcome to contributing to AI TOOLKIT! We're excited to see your changes.
+Welcome to contributing to AI SDK! We're excited to see your changes.
 
 We suggest you read the following contributing guide we've created before submitting:
 
-https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md
+https://github.com/khulnasoft/ai/blob/main/CONTRIBUTING.md
 -->
 
 ## Background

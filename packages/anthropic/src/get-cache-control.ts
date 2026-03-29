@@ -1,6 +1,6 @@
 import {
-  SharedV3Warning,
-  SharedV3ProviderMetadata,
+  SharedV4Warning,
+  SharedV4ProviderMetadata,
 } from '@ai-toolkit/provider';
 import { AnthropicCacheControl } from './anthropic-messages-api';
 
@@ -10,7 +10,7 @@ const MAX_CACHE_BREAKPOINTS = 4;
 // Helper function to extract cache_control from provider metadata
 // Allows both cacheControl and cache_control for flexibility
 function getCacheControl(
-  providerMetadata: SharedV3ProviderMetadata | undefined,
+  providerMetadata: SharedV4ProviderMetadata | undefined,
 ): AnthropicCacheControl | undefined {
   const anthropic = providerMetadata?.anthropic;
 
@@ -24,10 +24,10 @@ function getCacheControl(
 
 export class CacheControlValidator {
   private breakpointCount = 0;
-  private warnings: SharedV3Warning[] = [];
+  private warnings: SharedV4Warning[] = [];
 
   getCacheControl(
-    providerMetadata: SharedV3ProviderMetadata | undefined,
+    providerMetadata: SharedV4ProviderMetadata | undefined,
     context: { type: string; canCache: boolean },
   ): AnthropicCacheControl | undefined {
     const cacheControlValue = getCacheControl(providerMetadata);
@@ -60,7 +60,7 @@ export class CacheControlValidator {
     return cacheControlValue;
   }
 
-  getWarnings(): SharedV3Warning[] {
+  getWarnings(): SharedV4Warning[] {
     return this.warnings;
   }
 }
