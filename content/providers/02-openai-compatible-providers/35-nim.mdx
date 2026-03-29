@@ -1,39 +1,39 @@
 ---
 title: NVIDIA NIM
-description: Use NVIDIA NIM OpenAI compatible API with the AI TOOLKIT.
+description: Use NVIDIA NIM OpenAI compatible API with the AI SDK.
 ---
 
 # NVIDIA NIM Provider
 
-[NVIDIA NIM](https://www.nvidia.com/en-us/ai/) provides optimized inference microservices for deploying foundation models. It offers an OpenAI-compatible API that you can use with the AI TOOLKIT.
+[NVIDIA NIM](https://www.nvidia.com/en-us/ai/) provides optimized inference microservices for deploying foundation models. It offers an OpenAI-compatible API that you can use with the AI SDK.
 
 ## Setup
 
-The NVIDIA NIM provider is available via the `@ai-toolkit/openai-compatible` module as it is compatible with the OpenAI API.
+The NVIDIA NIM provider is available via the `@ai-tools/openai-compatible` module as it is compatible with the OpenAI API.
 You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-toolkit/openai-compatible" dark />
+    <Snippet text="pnpm add @ai-tools/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-toolkit/openai-compatible" dark />
+    <Snippet text="npm install @ai-tools/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-toolkit/openai-compatible" dark />
+    <Snippet text="yarn add @ai-tools/openai-compatible" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-toolkit/openai-compatible" dark />
+    <Snippet text="bun add @ai-tools/openai-compatible" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-To use NVIDIA NIM, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-toolkit/openai-compatible`:
+To use NVIDIA NIM, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-tools/openai-compatible`:
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 
 const nim = createOpenAICompatible({
   name: 'nim',
@@ -63,7 +63,7 @@ const model = nim.chatModel('deepseek-ai/deepseek-r1');
 You can use NIM language models to generate text with the `generateText` function:
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 import { generateText } from 'ai';
 
 const nim = createOpenAICompatible({
@@ -89,7 +89,7 @@ console.log('Finish reason:', finishReason);
 NIM language models can also generate text in a streaming fashion with the `streamText` function:
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 import { streamText } from 'ai';
 
 const nim = createOpenAICompatible({
@@ -114,12 +114,11 @@ console.log('Token usage:', await result.usage);
 console.log('Finish reason:', await result.finishReason);
 ```
 
-NIM language models can also be used with other AI TOOLKIT functions like `generateObject` and `streamObject`.
+NIM language models also support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output).
 
 <Note>
-  Model support for tool calls and structured object generation varies. For
-  example, the
+  Model support for tool calls and structured output varies. For example, the
   [`meta/llama-3.3-70b-instruct`](https://build.nvidia.com/meta/llama-3_3-70b-instruct)
-  model supports object generation capabilities. Check each model's
+  model supports structured output capabilities. Check each model's
   documentation on NVIDIA Build for specific supported features.
 </Note>

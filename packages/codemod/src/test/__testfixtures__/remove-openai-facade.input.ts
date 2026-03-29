@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createOpenAI } from '@ai-toolkit/openai';
+import { createOpenAI } from '@ai-tools/openai';
 
 const openai = createOpenAI({
   apiKey: 'key',

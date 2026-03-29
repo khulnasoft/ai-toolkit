@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-toolkit/anthropic';
+import { anthropic } from '@ai-tools/anthropic';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';

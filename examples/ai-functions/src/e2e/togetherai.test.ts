@@ -3,7 +3,7 @@ import { expect } from 'vitest';
 import {
   togetherai as provider,
   TogetherAIErrorData,
-} from '@ai-toolkit/togetherai';
+} from '@ai-tools/togetherai';
 import { APICallError } from 'ai';
 import {
   createEmbeddingModelWithCapabilities,

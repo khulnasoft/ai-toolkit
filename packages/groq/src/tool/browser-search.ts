@@ -1,4 +1,4 @@
-import { createProviderToolFactory } from '@ai-toolkit/provider-utils';
+import { createProviderToolFactory } from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 /**

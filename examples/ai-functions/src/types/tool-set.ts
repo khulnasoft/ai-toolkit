@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { StaticToolCall, StaticToolResult, generateText, tool } from 'ai';
 import { z } from 'zod';
 

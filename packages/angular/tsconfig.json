@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
+  "extends": "./node_modules/@vercel/ai-tsconfig/ts-library.json",
   "compilerOptions": {
     "composite": true,
     "declaration": true,
@@ -19,6 +19,9 @@
     },
     {
       "path": "../ai"
+    },
+    {
+      "path": "../test-server"
     }
   ]
 }

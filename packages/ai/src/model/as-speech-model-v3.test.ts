@@ -1,4 +1,4 @@
-import { SpeechModelV2 } from '@ai-toolkit/provider';
+import { SpeechModelV2 } from '@ai-tools/provider';
 import { asSpeechModelV3 } from './as-speech-model-v3';
 import { MockSpeechModelV2 } from '../test/mock-speech-model-v2';
 import { MockSpeechModelV3 } from '../test/mock-speech-model-v3';

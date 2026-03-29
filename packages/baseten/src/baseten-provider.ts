@@ -2,19 +2,19 @@ import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleEmbeddingModel,
   ProviderErrorStructure,
-} from '@ai-toolkit/openai-compatible';
+} from '@ai-tools/openai-compatible';
 import {
-  EmbeddingModelV3,
-  LanguageModelV3,
+  EmbeddingModelV4,
+  LanguageModelV4,
   NoSuchModelError,
-  ProviderV3,
-} from '@ai-toolkit/provider';
+  ProviderV4,
+} from '@ai-tools/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { BasetenChatModelId } from './baseten-chat-options';
 import { BasetenEmbeddingModelId } from './baseten-embedding-options';
@@ -61,31 +61,31 @@ export interface BasetenProviderSettings {
   fetch?: FetchFunction;
 }
 
-export interface BasetenProvider extends ProviderV3 {
+export interface BasetenProvider extends ProviderV4 {
   /**
-Creates a chat model for text generation.
-*/
-  (modelId?: BasetenChatModelId): LanguageModelV3;
+   * Creates a chat model for text generation.
+   */
+  (modelId?: BasetenChatModelId): LanguageModelV4;
 
   /**
-Creates a chat model for text generation.
-*/
-  chatModel(modelId?: BasetenChatModelId): LanguageModelV3;
+   * Creates a chat model for text generation.
+   */
+  chatModel(modelId?: BasetenChatModelId): LanguageModelV4;
 
   /**
-Creates a language model for text generation. Alias for chatModel.
-*/
-  languageModel(modelId?: BasetenChatModelId): LanguageModelV3;
+   * Creates a language model for text generation. Alias for chatModel.
+   */
+  languageModel(modelId?: BasetenChatModelId): LanguageModelV4;
 
   /**
-Creates a embedding model for text generation.
-*/
-  embeddingModel(modelId?: BasetenEmbeddingModelId): EmbeddingModelV3;
+   * Creates a embedding model for text generation.
+   */
+  embeddingModel(modelId?: BasetenEmbeddingModelId): EmbeddingModelV4;
 
   /**
    * @deprecated Use `embeddingModel` instead.
    */
-  textEmbeddingModel(modelId?: BasetenEmbeddingModelId): EmbeddingModelV3;
+  textEmbeddingModel(modelId?: BasetenEmbeddingModelId): EmbeddingModelV4;
 }
 
 // by default, we use the Model APIs
@@ -105,7 +105,7 @@ export function createBaseten(
         })}`,
         ...options.headers,
       },
-      `ai-toolkit/baseten/${VERSION}`,
+      `ai-sdk/baseten/${VERSION}`,
     );
 
   interface CommonModelConfig {
@@ -233,7 +233,7 @@ export function createBaseten(
 
   const provider = (modelId?: BasetenChatModelId) => createChatModel(modelId);
 
-  provider.specificationVersion = 'v3' as const;
+  provider.specificationVersion = 'v4' as const;
   provider.chatModel = createChatModel;
   provider.languageModel = createChatModel;
   provider.imageModel = (modelId: string) => {

@@ -8,7 +8,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     const match = sourceValue.match(/^ai\/(svelte|vue|solid)$/);
     if (match) {
       context.hasChanges = true;
-      path.node.source.value = `@ai-toolkit/${match[1]}`;
+      path.node.source.value = `@ai-tools/${match[1]}`;
     }
   });
 });

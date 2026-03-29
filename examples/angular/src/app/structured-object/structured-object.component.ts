@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StructuredObject } from '@ai-toolkit/angular';
+import { StructuredObject } from '@ai-tools/angular';
 import { z } from 'zod';
 import { FormsModule } from '@angular/forms';
 
@@ -37,9 +37,7 @@ const schema = z.object({
         <div class="result-section">
           <h4>Analysis:</h4>
           <div class="result-text">
-            <div>
-              <strong>Title:</strong> {{ structuredObject.object.title }}
-            </div>
+            <div><strong>Title:</strong> {{ structuredObject.object.title }}</div>
             <div>
               <strong>Summary:</strong> {{ structuredObject.object.summary }}
             </div>

@@ -3,7 +3,7 @@ import {
   loadSetting,
   withUserAgentSuffix,
   getRuntimeEnvironmentUserAgent,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { VERSION } from '../version';
 
 export interface GoogleCredentials {
@@ -140,7 +140,7 @@ export async function generateAuthToken(credentials?: GoogleCredentials) {
       method: 'POST',
       headers: withUserAgentSuffix(
         { 'Content-Type': 'application/x-www-form-urlencoded' },
-        `ai-toolkit/google-vertex/${VERSION}`,
+        `ai-sdk/google-vertex/${VERSION}`,
         getRuntimeEnvironmentUserAgent(),
       ),
       body: new URLSearchParams({

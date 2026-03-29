@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createGoogleGenerativeAI } from '@ai-toolkit/google';
+import { createGoogleGenerativeAI } from '@ai-tools/google';
 
 const google = createGoogleGenerativeAI({
   apiKey: 'key',

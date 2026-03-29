@@ -1,4 +1,4 @@
-import { JSONSchema7 } from '@ai-toolkit/provider';
+import { JSONSchema7 } from '@ai-tools/provider';
 
 const DEFAULT_SCHEMA_PREFIX = 'JSON schema:';
 const DEFAULT_SCHEMA_SUFFIX =

@@ -1,11 +1,8 @@
-import {
-  ImageModelV3,
-  ImageModelV3ProviderMetadata,
-} from '@ai-toolkit/provider';
+import { ImageModelV4, ImageModelV4ProviderMetadata } from '@ai-tools/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import {
   afterEach,
   beforeEach,
@@ -17,7 +14,7 @@ import {
   vitest,
 } from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';
-import { MockImageModelV3 } from '../test/mock-image-model-v3';
+import { MockImageModelV4 } from '../test/mock-image-model-v4';
 import { Warning } from '../types/warning';
 import { generateImage } from './generate-image';
 
@@ -41,7 +38,7 @@ const createMockResponse = (options: {
   warnings?: Warning[];
   timestamp?: Date;
   modelId?: string;
-  providerMetaData?: ImageModelV3ProviderMetadata;
+  providerMetaData?: ImageModelV4ProviderMetadata;
   headers?: Record<string, string>;
 }) => ({
   images: options.images,
@@ -75,10 +72,10 @@ describe('generateImage', () => {
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -134,7 +131,7 @@ describe('generateImage', () => {
 
   it('should return warnings', async () => {
     const result = await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -171,7 +168,7 @@ describe('generateImage', () => {
     ];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -203,7 +200,7 @@ describe('generateImage', () => {
     let callCount = 0;
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         maxImagesPerCall: 1,
         doGenerate: async () => {
           switch (callCount++) {
@@ -236,7 +233,7 @@ describe('generateImage', () => {
 
   it('should call logWarnings with empty array when no warnings are present', async () => {
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -257,7 +254,7 @@ describe('generateImage', () => {
   describe('base64 image data', () => {
     it('should return generated images with correct mime types', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64, jpegBase64],
@@ -288,7 +285,7 @@ describe('generateImage', () => {
 
     it('should return the first image with correct mime type', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64, jpegBase64],
@@ -317,7 +314,7 @@ describe('generateImage', () => {
       ];
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: uint8ArrayImages,
@@ -351,7 +348,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 2,
           doGenerate: async options => {
             switch (callCount++) {
@@ -422,7 +419,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 2,
           doGenerate: async options => {
             switch (callCount++) {
@@ -500,7 +497,7 @@ describe('generateImage', () => {
         const maxImagesPerCallMock = vitest.fn(maxImagesPerCall);
 
         const result = await generateImage({
-          model: new MockImageModelV3({
+          model: new MockImageModelV4({
             maxImagesPerCall: maxImagesPerCallMock,
             doGenerate: async options => {
               switch (callCount++) {
@@ -575,7 +572,7 @@ describe('generateImage', () => {
     it('should throw NoImageGeneratedError when no images are returned', async () => {
       await expect(
         generateImage({
-          model: new MockImageModelV3({
+          model: new MockImageModelV4({
             doGenerate: async () =>
               createMockResponse({
                 images: [],
@@ -599,7 +596,7 @@ describe('generateImage', () => {
     it('should include response headers in error when no images generated', async () => {
       await expect(
         generateImage({
-          model: new MockImageModelV3({
+          model: new MockImageModelV4({
             doGenerate: async () =>
               createMockResponse({
                 images: [],
@@ -633,7 +630,7 @@ describe('generateImage', () => {
     const testHeaders = { 'x-test': 'value' };
 
     const result = await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -656,7 +653,7 @@ describe('generateImage', () => {
 
   it('should return provider metadata', async () => {
     const result = await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64, pngBase64],
@@ -682,7 +679,7 @@ describe('generateImage', () => {
 
   it('should expose empty usage when provider does not report usage', async () => {
     const result = await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -702,7 +699,7 @@ describe('generateImage', () => {
     let callCount = 0;
 
     const result = await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         maxImagesPerCall: 1,
         doGenerate: async () => {
           switch (callCount++) {
@@ -766,7 +763,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 1,
           doGenerate: async () => {
             switch (callCount++) {
@@ -811,7 +808,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 1,
           doGenerate: async () => {
             switch (callCount++) {
@@ -855,7 +852,7 @@ describe('generateImage', () => {
 
     it('should drop empty images array for gateway provider', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64],
@@ -880,7 +877,7 @@ describe('generateImage', () => {
 
     it('should not drop empty images array for non-gateway providers', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64],
@@ -902,9 +899,9 @@ describe('generateImage', () => {
 
     it('should handle provider metadata without images field', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () => {
-            const response: Awaited<ReturnType<ImageModelV3['doGenerate']>> = {
+            const response: Awaited<ReturnType<ImageModelV4['doGenerate']>> = {
               images: [pngBase64],
               warnings: [],
               providerMetadata: {
@@ -912,7 +909,7 @@ describe('generateImage', () => {
                   routing: { provider: 'vertex' },
                   cost: '0.04',
                 },
-              } as unknown as ImageModelV3ProviderMetadata,
+              } as unknown as ImageModelV4ProviderMetadata,
               response: {
                 timestamp: new Date(),
                 modelId: 'test-model-id',
@@ -934,7 +931,7 @@ describe('generateImage', () => {
 
     it('should handle undefined providerMetadata', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () => ({
             images: [pngBase64],
             warnings: [],
@@ -954,7 +951,7 @@ describe('generateImage', () => {
 
     it('should merge multiple providers from same call', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 2,
           doGenerate: async () => ({
             images: [pngBase64, jpegBase64],
@@ -1001,7 +998,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 1,
           doGenerate: async () => {
             switch (callCount++) {
@@ -1056,7 +1053,7 @@ describe('generateImage', () => {
 
     it('should preserve null values in images array', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 2,
           doGenerate: async () => ({
             images: [pngBase64, jpegBase64],
@@ -1084,7 +1081,7 @@ describe('generateImage', () => {
 
     it('should handle complex nested metadata structures', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64],
@@ -1126,7 +1123,7 @@ describe('generateImage', () => {
       let callCount = 0;
 
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           maxImagesPerCall: 1,
           doGenerate: async () => {
             switch (callCount++) {
@@ -1168,7 +1165,7 @@ describe('generateImage', () => {
 
     it('should keep images array for gateway if non-empty', async () => {
       const result = await generateImage({
-        model: new MockImageModelV3({
+        model: new MockImageModelV4({
           doGenerate: async () =>
             createMockResponse({
               images: [pngBase64],
@@ -1197,10 +1194,10 @@ describe('data URL handling', () => {
   it('should handle data URL with media type in prompt images', async () => {
     const dataUrl = `data:image/png;base64,${pngBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1226,10 +1223,10 @@ describe('data URL handling', () => {
   it('should handle data URL with jpeg media type', async () => {
     const dataUrl = `data:image/jpeg;base64,${jpegBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1255,10 +1252,10 @@ describe('data URL handling', () => {
   it('should handle data URL as mask', async () => {
     const dataUrl = `data:image/png;base64,${pngBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1284,10 +1281,10 @@ describe('data URL handling', () => {
     // Data URL with minimal header (no explicit media type before semicolon)
     const dataUrl = `data:;base64,${pngBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1315,10 +1312,10 @@ describe('data URL handling', () => {
     const pngDataUrl = `data:image/png;base64,${pngBase64}`;
     const jpegDataUrl = `data:image/jpeg;base64,${jpegBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1349,10 +1346,10 @@ describe('data URL handling', () => {
   it('should handle mix of data URLs and base64 strings', async () => {
     const pngDataUrl = `data:image/png;base64,${pngBase64}`;
 
-    let capturedArgs!: Parameters<ImageModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<ImageModelV4['doGenerate']>[0];
 
     await generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -1387,7 +1384,7 @@ describe('deprecated APIs', () => {
     const { experimental_generateImage } = await import('./index');
 
     const result = await experimental_generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],
@@ -1406,7 +1403,7 @@ describe('deprecated APIs', () => {
     type ResultType = import('./index').Experimental_GenerateImageResult;
 
     const result: ResultType = await experimental_generateImage({
-      model: new MockImageModelV3({
+      model: new MockImageModelV4({
         doGenerate: async () =>
           createMockResponse({
             images: [pngBase64],

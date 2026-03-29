@@ -1,16 +1,16 @@
 import {
   JSONObject,
-  LanguageModelV3Message,
-  LanguageModelV3Prompt,
-  SharedV3ProviderMetadata,
+  LanguageModelV4Message,
+  LanguageModelV4Prompt,
+  SharedV4ProviderMetadata,
   UnsupportedFunctionalityError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import {
   convertToBase64,
   parseProviderOptions,
-} from '@ai-toolkit/provider-utils';
+  stripFileExtension,
+} from '@ai-tools/provider-utils';
 import {
-  BEDROCK_CACHE_POINT,
   BEDROCK_DOCUMENT_MIME_TYPES,
   BEDROCK_IMAGE_MIME_TYPES,
   BedrockAssistantMessage,
@@ -28,13 +28,21 @@ import { bedrockFilePartProviderOptions } from './bedrock-chat-options';
 import { normalizeToolCallId } from './normalize-tool-call-id';
 
 function getCachePoint(
-  providerMetadata: SharedV3ProviderMetadata | undefined,
+  providerMetadata: SharedV4ProviderMetadata | undefined,
 ): BedrockCachePoint | undefined {
-  return providerMetadata?.bedrock?.cachePoint as BedrockCachePoint | undefined;
+  const cachePointConfig = providerMetadata?.bedrock?.cachePoint as
+    | BedrockCachePoint['cachePoint']
+    | undefined;
+
+  if (!cachePointConfig) {
+    return undefined;
+  }
+
+  return { cachePoint: cachePointConfig };
 }
 
 async function shouldEnableCitations(
-  providerMetadata: SharedV3ProviderMetadata | undefined,
+  providerMetadata: SharedV4ProviderMetadata | undefined,
 ): Promise<boolean> {
   const bedrockOptions = await parseProviderOptions({
     provider: 'bedrock',
@@ -46,7 +54,7 @@ async function shouldEnableCitations(
 }
 
 export async function convertToBedrockChatMessages(
-  prompt: LanguageModelV3Prompt,
+  prompt: LanguageModelV4Prompt,
   isMistral: boolean = false,
 ): Promise<{
   system: BedrockSystemMessages;
@@ -76,8 +84,9 @@ export async function convertToBedrockChatMessages(
 
         for (const message of block.messages) {
           system.push({ text: message.content });
-          if (getCachePoint(message.providerOptions)) {
-            system.push(BEDROCK_CACHE_POINT);
+          const cachePoint = getCachePoint(message.providerOptions);
+          if (cachePoint) {
+            system.push(cachePoint);
           }
         }
         break;
@@ -104,7 +113,7 @@ export async function convertToBedrockChatMessages(
 
                   case 'file': {
                     if (part.data instanceof URL) {
-                      // The AI TOOLKIT automatically downloads files for user file parts with URLs
+                      // The AI SDK automatically downloads files for user file parts with URLs
                       throw new UnsupportedFunctionalityError({
                         functionality: 'File URL data',
                       });
@@ -133,7 +142,9 @@ export async function convertToBedrockChatMessages(
                       bedrockContent.push({
                         document: {
                           format: getBedrockDocumentFormat(part.mediaType),
-                          name: part.filename ?? generateDocumentName(),
+                          name: part.filename
+                            ? stripFileExtension(part.filename)
+                            : generateDocumentName(),
                           source: { bytes: convertToBase64(part.data) },
                           ...(enableCitations && {
                             citations: { enabled: true },
@@ -223,8 +234,9 @@ export async function convertToBedrockChatMessages(
             }
           }
 
-          if (getCachePoint(providerOptions)) {
-            bedrockContent.push(BEDROCK_CACHE_POINT);
+          const cachePoint = getCachePoint(providerOptions);
+          if (cachePoint) {
+            bedrockContent.push(cachePoint);
           }
         }
 
@@ -319,8 +331,9 @@ export async function convertToBedrockChatMessages(
               }
             }
           }
-          if (getCachePoint(message.providerOptions)) {
-            bedrockContent.push(BEDROCK_CACHE_POINT);
+          const cachePoint = getCachePoint(message.providerOptions);
+          if (cachePoint) {
+            bedrockContent.push(cachePoint);
           }
         }
 
@@ -387,19 +400,19 @@ function trimIfLast(
 
 type SystemBlock = {
   type: 'system';
-  messages: Array<LanguageModelV3Message & { role: 'system' }>;
+  messages: Array<LanguageModelV4Message & { role: 'system' }>;
 };
 type AssistantBlock = {
   type: 'assistant';
-  messages: Array<LanguageModelV3Message & { role: 'assistant' }>;
+  messages: Array<LanguageModelV4Message & { role: 'assistant' }>;
 };
 type UserBlock = {
   type: 'user';
-  messages: Array<LanguageModelV3Message & { role: 'user' | 'tool' }>;
+  messages: Array<LanguageModelV4Message & { role: 'user' | 'tool' }>;
 };
 
 function groupIntoBlocks(
-  prompt: LanguageModelV3Prompt,
+  prompt: LanguageModelV4Prompt,
 ): Array<SystemBlock | AssistantBlock | UserBlock> {
   const blocks: Array<SystemBlock | AssistantBlock | UserBlock> = [];
   let currentBlock: SystemBlock | AssistantBlock | UserBlock | undefined =

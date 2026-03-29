@@ -6,7 +6,7 @@ import {
   appendResponseMessages,
   StreamData,
 } from 'ai';
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 
 const updatedMessages = appendClientMessage({
   messages,

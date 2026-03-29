@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { tool, type ToolRuntime } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import {
   StateGraph,
   MessagesAnnotation,
@@ -198,7 +198,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages
+     * Convert AI SDK UIMessages to LangChain messages
      */
     const langchainMessages = await toBaseMessages(messages);
 

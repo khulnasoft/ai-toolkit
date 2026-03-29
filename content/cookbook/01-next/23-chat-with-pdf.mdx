@@ -1,6 +1,6 @@
 ---
 title: Chat with PDFs
-description: Learn how to build a chatbot that can understand PDFs using the AI TOOLKIT and Next.js
+description: Learn how to build a chatbot that can understand PDFs using the AI SDK and Next.js
 tags: ['next', 'pdf', 'multimodal']
 ---
 
@@ -11,7 +11,7 @@ Some language models like Anthropic's Claude Sonnet 3.5 and Google's Gemini 2.0 
 <Note>
   This example requires a provider that supports PDFs, such as Anthropic's
   Claude 3.7, Google's Gemini 2.5, or OpenAI's GPT-4.1. Check the [provider
-  documentation](/providers/ai-toolkit-providers) for up-to-date support
+  documentation](/providers/ai-sdk-providers) for up-to-date support
   information.
 </Note>
 
@@ -43,7 +43,7 @@ Create a chat interface that allows uploading PDFs alongside messages:
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { DefaultChatTransport } from 'ai';
 import { useRef, useState } from 'react';
 

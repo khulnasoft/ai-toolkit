@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { SemanticRouter } from './semantic-router';
 import { run } from '../../lib/run';
 

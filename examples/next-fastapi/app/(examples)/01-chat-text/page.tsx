@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/app/components';
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { TextStreamChatTransport } from 'ai';
 import { useState } from 'react';
 

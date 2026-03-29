@@ -3,7 +3,7 @@ import {
   getRuntimeEnvironmentUserAgent,
   normalizeHeaders,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { VERSION } from './version';
 
 /**
@@ -20,7 +20,7 @@ export function injectFetchHeaders(
         ...normalizeHeaders(init.headers),
         ...customHeaders,
       },
-      `ai-toolkit/amazon-bedrock/${VERSION}`,
+      `ai-sdk/amazon-bedrock/${VERSION}`,
       getRuntimeEnvironmentUserAgent(),
     );
 

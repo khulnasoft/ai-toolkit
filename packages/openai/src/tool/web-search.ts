@@ -2,7 +2,7 @@ import {
   createProviderToolFactoryWithOutputSchema,
   lazySchema,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 export const webSearchArgsSchema = lazySchema(() =>
@@ -31,21 +31,23 @@ const webSearchInputSchema = lazySchema(() => zodSchema(z.object({})));
 export const webSearchOutputSchema = lazySchema(() =>
   zodSchema(
     z.object({
-      action: z.discriminatedUnion('type', [
-        z.object({
-          type: z.literal('search'),
-          query: z.string().optional(),
-        }),
-        z.object({
-          type: z.literal('openPage'),
-          url: z.string().nullish(),
-        }),
-        z.object({
-          type: z.literal('findInPage'),
-          url: z.string().nullish(),
-          pattern: z.string().nullish(),
-        }),
-      ]),
+      action: z
+        .discriminatedUnion('type', [
+          z.object({
+            type: z.literal('search'),
+            query: z.string().optional(),
+          }),
+          z.object({
+            type: z.literal('openPage'),
+            url: z.string().nullish(),
+          }),
+          z.object({
+            type: z.literal('findInPage'),
+            url: z.string().nullish(),
+            pattern: z.string().nullish(),
+          }),
+        ])
+        .optional(),
       sources: z
         .array(
           z.discriminatedUnion('type', [
@@ -67,7 +69,7 @@ export const webSearchToolFactory = createProviderToolFactoryWithOutputSchema<
      * An object describing the specific action taken in this web search call.
      * Includes details on how the model used the web (search, open_page, find_in_page).
      */
-    action:
+    action?:
       | {
           /**
            * Action type "search" - Performs a web search query.

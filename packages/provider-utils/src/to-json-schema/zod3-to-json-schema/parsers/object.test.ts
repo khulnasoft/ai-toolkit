@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v3';
 import { parseObjectDef } from './object';
 import { getRefs } from '../refs';
-import { JSONSchema7 } from '@ai-toolkit/provider';
+import { JSONSchema7 } from '@ai-tools/provider';
 
 describe('object', () => {
   it('should be possible to describe catchAll schema', () => {

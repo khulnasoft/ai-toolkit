@@ -1,6 +1,6 @@
 ---
 title: Stream Text
-description: Learn how to stream text using the AI TOOLKIT and Next.js
+description: Learn how to stream text using the AI SDK and Next.js
 tags: ['next', 'streaming']
 ---
 
@@ -14,12 +14,12 @@ Text generation can sometimes take a long time to complete, especially when you'
 
 ## Client
 
-Let's create a simple React component that imports the `useCompletion` hook from the `@ai-toolkit/react` module. The `useCompletion` hook will call the `/api/completion` endpoint when a button is clicked. The endpoint will generate text based on the input prompt and stream it to the client.
+Let's create a simple React component that imports the `useCompletion` hook from the `@ai-tools/react` module. The `useCompletion` hook will call the `/api/completion` endpoint when a button is clicked. The endpoint will generate text based on the input prompt and stream it to the client.
 
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useCompletion } from '@ai-toolkit/react';
+import { useCompletion } from '@ai-tools/react';
 
 export default function Page() {
   const { completion, complete } = useCompletion({

@@ -1,8 +1,8 @@
-import { vertex } from '@ai-toolkit/google-vertex';
+import { vertex } from '@ai-tools/google-vertex';
 import { generateText } from 'ai';
 
 export async function GET() {
-  const model = vertex('gemini-1.5-flash');
+  const model = vertex('gemini-2.5-flash');
   const { text } = await generateText({
     model,
     prompt: 'tell me a story',

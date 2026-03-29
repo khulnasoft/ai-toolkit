@@ -2,7 +2,7 @@ import {
   createProviderToolFactory,
   lazySchema,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 const computer_20250124InputSchema = lazySchema(() =>

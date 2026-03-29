@@ -1,28 +1,36 @@
-# AI TOOLKIT - AssemblyAI Provider
+# AI SDK - AssemblyAI Provider
 
-The **[AssemblyAI provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[AssemblyAI provider](https://ai-sdk.dev/providers/ai-sdk-providers/assemblyai)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains transcription model support for the AssemblyAI transcription API.
 
 ## Setup
 
-The AssemblyAI provider is available in the `@ai-toolkit/assemblyai` module. You can install it with
+The AssemblyAI provider is available in the `@ai-tools/assemblyai` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/assemblyai
+npm i @ai-tools/assemblyai
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `assemblyai` from `@ai-toolkit/assemblyai`:
+You can import the default provider instance `assemblyai` from `@ai-tools/assemblyai`:
 
 ```ts
-import { assemblyai } from '@ai-toolkit/assemblyai';
+import { assemblyai } from '@ai-tools/assemblyai';
 ```
 
 ## Example
 
 ```ts
-import { assemblyai } from '@ai-toolkit/assemblyai';
+import { assemblyai } from '@ai-tools/assemblyai';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -35,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[AssemblyAI provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/assemblyai)** for more information.
+Please check out the **[AssemblyAI provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/assemblyai)** for more information.

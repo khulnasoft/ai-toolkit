@@ -2,7 +2,7 @@ import {
   createProviderToolFactoryWithOutputSchema,
   lazySchema,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 export const xSearchArgsSchema = lazySchema(() =>
@@ -35,7 +35,7 @@ const xSearchOutputSchema = lazySchema(() =>
 );
 
 const xSearchToolFactory = createProviderToolFactoryWithOutputSchema<
-  Record<string, never>,
+  {},
   {
     query: string;
     posts: Array<{

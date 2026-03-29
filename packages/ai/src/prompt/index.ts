@@ -24,4 +24,4 @@ export type {
   ToolResultPart,
   UserContent,
   UserModelMessage,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';

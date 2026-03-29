@@ -1,8 +1,7 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-toolkit/test-server/with-vitest';
-import '@testing-library/jest-dom/vitest';
+} from '@ai-tools/test-server/with-vitest';
 import { cleanup, screen, waitFor } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';

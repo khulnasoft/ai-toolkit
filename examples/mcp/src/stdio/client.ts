@@ -1,7 +1,7 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { generateText, stepCountIs } from 'ai';
-import { createMCPClient } from '@ai-toolkit/mcp';
+import { createMCPClient } from '@ai-tools/mcp';
 import 'dotenv/config';
 import { z } from 'zod';
 
@@ -9,7 +9,7 @@ async function main() {
   let mcpClient;
 
   try {
-    // Or use the AI TOOLKIT's stdio transport by importing:
+    // Or use the AI SDK's stdio transport by importing:
     // import { Experimental_StdioMCPTransport as StdioClientTransport } from 'ai/mcp-stdio'
     const stdioTransport = new StdioClientTransport({
       command: 'node',

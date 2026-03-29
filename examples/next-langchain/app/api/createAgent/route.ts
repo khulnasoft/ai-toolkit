@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { createAgent } from 'langchain';
 import { ChatOpenAI, tools } from '@langchain/openai';
 import { tool } from '@langchain/core/tools';
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { z } from 'zod';
 
 /**
@@ -202,7 +202,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages
+     * Convert AI SDK UIMessages to LangChain messages
      */
     const langchainMessages = await toBaseMessages(messages);
 

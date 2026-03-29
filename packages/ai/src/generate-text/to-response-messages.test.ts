@@ -1,4 +1,4 @@
-import { tool } from '@ai-toolkit/provider-utils';
+import { tool } from '@ai-tools/provider-utils';
 import z from 'zod/v4';
 import { DefaultGeneratedFile } from './generated-file';
 import { toResponseMessages } from './to-response-messages';
@@ -120,6 +120,40 @@ describe('toResponseMessages', () => {
         },
       ]
     `);
+  });
+
+  it('should include custom parts in the assistant message', async () => {
+    const result = await toResponseMessages({
+      content: [
+        {
+          type: 'custom',
+          kind: 'mock-provider.compaction',
+          providerMetadata: {
+            openai: {
+              itemId: 'cmp_123',
+            },
+          },
+        },
+      ],
+      tools: undefined,
+    });
+
+    expect(result).toEqual([
+      {
+        role: 'assistant',
+        content: [
+          {
+            type: 'custom',
+            kind: 'mock-provider.compaction',
+            providerOptions: {
+              openai: {
+                itemId: 'cmp_123',
+              },
+            },
+          },
+        ],
+      },
+    ]);
   });
 
   it('should include tool results as a separate message', async () => {
@@ -421,6 +455,55 @@ describe('toResponseMessages', () => {
             },
           ],
           "role": "tool",
+        },
+      ]
+    `);
+  });
+
+  it('should include reasoning-file parts in the assistant message', async () => {
+    const pngFile = new DefaultGeneratedFile({
+      data: new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]),
+      mediaType: 'image/png',
+    });
+
+    const result = await toResponseMessages({
+      content: [
+        {
+          type: 'reasoning-file',
+          file: pngFile,
+          providerMetadata: {
+            testProvider: { signature: 'sig' },
+          },
+        },
+        {
+          type: 'text',
+          text: 'Here is my analysis',
+        },
+      ],
+      tools: {},
+    });
+
+    expect(result).toMatchInlineSnapshot(`
+      [
+        {
+          "content": [
+            {
+              "data": "iVBORw0KGgo=",
+              "mediaType": "image/png",
+              "providerOptions": {
+                "testProvider": {
+                  "signature": "sig",
+                },
+              },
+              "type": "reasoning-file",
+            },
+            {
+              "providerOptions": undefined,
+              "text": "Here is my analysis",
+              "type": "text",
+            },
+          ],
+          "role": "assistant",
         },
       ]
     `);

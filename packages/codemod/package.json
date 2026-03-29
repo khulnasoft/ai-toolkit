@@ -1,20 +1,26 @@
 {
-  "name": "@ai-toolkit/codemod",
-  "version": "2.0.0",
+  "name": "@ai-tools/codemod",
+  "version": "4.0.0-beta.0",
   "license": "Apache-2.0",
   "sideEffects": false,
   "files": [
     "dist/**/*",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "!src/**/*.test-d.ts",
+    "!src/**/__snapshots__",
+    "!src/**/__fixtures__",
+    "!src/**/__testfixtures__",
+    "!src/**/test",
     "CHANGELOG.md",
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm generate-readme && prettier --write \"README.md\" && pnpm clean && tsup --tsconfig tsconfig.build.json",
+    "build": "pnpm generate-readme && pnpm clean && tsup --tsconfig tsconfig.build.json",
     "clean": "del-cli dist *.tsbuildinfo",
     "dev": "tsup --watch",
-    "lint": "eslint \"./**/*.ts*\"",
     "type-check": "tsc --build",
-    "prettier-check": "prettier --check \"./**/*.ts*\"",
     "test": "vitest --config vitest.config.ts --run",
     "test:watch": "vitest",
     "test:update": "UPDATE_SNAPSHOT=true vitest -u --run",
@@ -28,7 +34,7 @@
     "@types/jscodeshift": "^0.12.0",
     "@types/node": "20.17.24",
     "@types/semver": "^7.5.8",
-    "@khulnasoft/ai-tsconfig": "workspace:*",
+    "@vercel/ai-tsconfig": "workspace:*",
     "msw": "2.6.4",
     "tsup": "^8",
     "tsx": "4.19.2",
@@ -44,7 +50,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://studio.khulnasoft.com/docs",
+  "homepage": "https://ai-sdk.dev/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

@@ -1,10 +1,10 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_LoadSettingError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class LoadSettingError extends AITOOLKITError {
+export class LoadSettingError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   constructor({ message }: { message: string }) {
@@ -12,6 +12,6 @@ export class LoadSettingError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is LoadSettingError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

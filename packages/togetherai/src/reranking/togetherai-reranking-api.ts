@@ -1,5 +1,5 @@
-import { JSONObject } from '@ai-toolkit/provider';
-import { lazySchema, zodSchema } from '@ai-toolkit/provider-utils';
+import { JSONObject } from '@ai-tools/provider';
+import { lazySchema, zodSchema } from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 // https://docs.together.ai/reference/rerank-1

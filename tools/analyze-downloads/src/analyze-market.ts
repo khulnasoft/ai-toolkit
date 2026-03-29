@@ -6,7 +6,7 @@
 async function main() {
   // Map of group name to list of npm packages
   const packageGroups: Record<string, string[]> = {
-    'AI TOOLKIT': ['ai'],
+    'AI SDK': ['ai'],
     OpenAI: ['openai'],
     Anthropic: ['@anthropic-ai/sdk'],
     LangChain: ['@langchain/core'],

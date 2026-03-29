@@ -1,67 +1,68 @@
 import {
-  OpenAICompatibleImageModel,
-  ProviderErrorStructure,
-} from '@ai-toolkit/openai-compatible';
-import {
-  ImageModelV3,
-  LanguageModelV3,
+  type Experimental_VideoModelV4,
+  ImageModelV4,
+  LanguageModelV4,
   NoSuchModelError,
-  ProviderV3,
-} from '@ai-toolkit/provider';
+  ProviderV4,
+} from '@ai-tools/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { XaiChatLanguageModel } from './xai-chat-language-model';
 import { XaiChatModelId } from './xai-chat-options';
-import { XaiErrorData, xaiErrorDataSchema } from './xai-error';
+import { XaiImageModel } from './xai-image-model';
 import { XaiImageModelId } from './xai-image-settings';
 import { XaiResponsesLanguageModel } from './responses/xai-responses-language-model';
 import { XaiResponsesModelId } from './responses/xai-responses-options';
 import { xaiTools } from './tool';
 import { VERSION } from './version';
+import { XaiVideoModel } from './xai-video-model';
+import { XaiVideoModelId } from './xai-video-settings';
 
-const xaiErrorStructure: ProviderErrorStructure<XaiErrorData> = {
-  errorSchema: xaiErrorDataSchema,
-  errorToMessage: data => data.error.message,
-};
+export interface XaiProvider extends ProviderV4 {
+  (modelId: XaiResponsesModelId): LanguageModelV4;
 
-export interface XaiProvider extends ProviderV3 {
   /**
-Creates an Xai chat model for text generation.
+   * Creates an Xai language model for text generation.
    */
-  (modelId: XaiChatModelId): LanguageModelV3;
+  languageModel(modelId: XaiResponsesModelId): LanguageModelV4;
 
   /**
-Creates an Xai language model for text generation.
+   * Creates an Xai chat model for text generation.
    */
-  languageModel(modelId: XaiChatModelId): LanguageModelV3;
+  chat: (modelId: XaiChatModelId) => LanguageModelV4;
 
   /**
-Creates an Xai chat model for text generation.
+   * Creates an Xai responses model for text generation.
    */
-  chat: (modelId: XaiChatModelId) => LanguageModelV3;
+  responses: (modelId: XaiResponsesModelId) => LanguageModelV4;
 
   /**
-Creates an Xai responses model for agentic tool calling.
+   * Creates an Xai image model for image generation.
    */
-  responses: (modelId: XaiResponsesModelId) => LanguageModelV3;
+  image(modelId: XaiImageModelId): ImageModelV4;
 
   /**
-Creates an Xai image model for image generation.
+   * Creates an Xai image model for image generation.
    */
-  image(modelId: XaiImageModelId): ImageModelV3;
+  imageModel(modelId: XaiImageModelId): ImageModelV4;
 
   /**
-Creates an Xai image model for image generation.
+   * Creates an Xai video model for video generation.
    */
-  imageModel(modelId: XaiImageModelId): ImageModelV3;
+  video(modelId: XaiVideoModelId): Experimental_VideoModelV4;
 
   /**
-Server-side agentic tools for use with the responses API.
+   * Creates an Xai video model for video generation.
+   */
+  videoModel(modelId: XaiVideoModelId): Experimental_VideoModelV4;
+
+  /**
+   * Server-side agentic tools for use with the responses API.
    */
   tools: typeof xaiTools;
 
@@ -73,24 +74,24 @@ Server-side agentic tools for use with the responses API.
 
 export interface XaiProviderSettings {
   /**
-Base URL for the xAI API calls.
-     */
+   * Base URL for the xAI API calls.
+   */
   baseURL?: string;
 
   /**
-API key for authenticating requests.
+   * API key for authenticating requests.
    */
   apiKey?: string;
 
   /**
-Custom headers to include in the requests.
+   * Custom headers to include in the requests.
    */
   headers?: Record<string, string>;
 
   /**
-Custom fetch implementation. You can use it as a middleware to intercept requests,
-or to provide a custom fetch implementation for e.g. testing.
-  */
+   * Custom fetch implementation. You can use it as a middleware to intercept requests,
+   * or to provide a custom fetch implementation for e.g. testing.
+   */
   fetch?: FetchFunction;
 }
 
@@ -108,7 +109,7 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
         })}`,
         ...options.headers,
       },
-      `ai-toolkit/xai/${VERSION}`,
+      `ai-sdk/xai/${VERSION}`,
     );
 
   const createChatLanguageModel = (modelId: XaiChatModelId) => {
@@ -132,20 +133,28 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
   };
 
   const createImageModel = (modelId: XaiImageModelId) => {
-    return new OpenAICompatibleImageModel(modelId, {
+    return new XaiImageModel(modelId, {
       provider: 'xai.image',
-      url: ({ path }) => `${baseURL}${path}`,
+      baseURL,
       headers: getHeaders,
       fetch: options.fetch,
-      errorStructure: xaiErrorStructure,
     });
   };
 
-  const provider = (modelId: XaiChatModelId) =>
-    createChatLanguageModel(modelId);
+  const createVideoModel = (modelId: XaiVideoModelId) => {
+    return new XaiVideoModel(modelId, {
+      provider: 'xai.video',
+      baseURL,
+      headers: getHeaders,
+      fetch: options.fetch,
+    });
+  };
 
-  provider.specificationVersion = 'v3' as const;
-  provider.languageModel = createChatLanguageModel;
+  const provider = (modelId: XaiResponsesModelId) =>
+    createResponsesLanguageModel(modelId);
+
+  provider.specificationVersion = 'v4' as const;
+  provider.languageModel = createResponsesLanguageModel;
   provider.chat = createChatLanguageModel;
   provider.responses = createResponsesLanguageModel;
   provider.embeddingModel = (modelId: string) => {
@@ -154,6 +163,8 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
   provider.textEmbeddingModel = provider.embeddingModel;
   provider.imageModel = createImageModel;
   provider.image = createImageModel;
+  provider.videoModel = createVideoModel;
+  provider.video = createVideoModel;
   provider.tools = xaiTools;
 
   return provider;

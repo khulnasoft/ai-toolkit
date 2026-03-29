@@ -1,26 +1,26 @@
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 
 /**
  * A generated file.
  */
 export interface GeneratedFile {
   /**
-File as a base64 encoded string.
-     */
+   * File as a base64 encoded string.
+   */
   readonly base64: string;
 
   /**
-File as a Uint8Array.
-     */
+   * File as a Uint8Array.
+   */
   readonly uint8Array: Uint8Array;
 
   /**
-The IANA media type of the file.
-
-@see https://www.iana.org/assignments/media-types/media-types.xhtml
+   * The IANA media type of the file.
+   *
+   * @see https://www.iana.org/assignments/media-types/media-types.xhtml
    */
   readonly mediaType: string;
 }

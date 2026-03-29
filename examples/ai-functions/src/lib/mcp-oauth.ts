@@ -1,9 +1,9 @@
-import { auth, type OAuthClientProvider } from '@ai-toolkit/mcp';
+import { auth, type OAuthClientProvider } from '@ai-tools/mcp';
 import type {
   OAuthClientInformation,
   OAuthClientMetadata,
   OAuthTokens,
-} from '@ai-toolkit/mcp';
+} from '@ai-tools/mcp';
 import { createServer } from 'node:http';
 
 /**
@@ -48,7 +48,7 @@ class MinimalOAuthProvider implements OAuthClientProvider {
 
   get clientMetadata(): OAuthClientMetadata {
     return {
-      client_name: 'AI TOOLKIT OpenAI Responses MCP Example',
+      client_name: 'AI SDK OpenAI Responses MCP Example',
       redirect_uris: [String(this._redirectUrl)],
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],

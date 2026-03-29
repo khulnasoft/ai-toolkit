@@ -1,7 +1,7 @@
 import { createTransformer } from '../lib/create-transformer';
 
 /*
-The `ai/rsc` export has been extracted to a separate package `@ai-toolkit/rsc`
+The `ai/rsc` export has been extracted to a separate package `@ai-tools/rsc`
 
 Before:
 
@@ -12,11 +12,11 @@ import { createStreamableValue } from 'ai/rsc';
 After:
 
 ```bash
-pnpm add @ai-toolkit/rsc
+pnpm add @ai-tools/rsc
 ```
 
 ```jsx
-import { createStreamableValue } from '@ai-toolkit/rsc';
+import { createStreamableValue } from '@ai-tools/rsc';
 ```
 
 Commit: https://github.com/khulnasoft/ai-toolkit/pull/5542
@@ -29,7 +29,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     .find(j.ImportDeclaration)
     .filter(path => path.node.source.value === 'ai/rsc')
     .forEach(path => {
-      path.node.source.value = '@ai-toolkit/rsc';
+      path.node.source.value = '@ai-tools/rsc';
       context.hasChanges = true;
     });
 });

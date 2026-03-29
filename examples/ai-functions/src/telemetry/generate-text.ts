@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { generateText } from 'ai';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';

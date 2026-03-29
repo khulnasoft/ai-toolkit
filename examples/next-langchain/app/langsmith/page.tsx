@@ -1,7 +1,7 @@
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
-import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
+import { useChat } from '@ai-tools/react';
+import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
 import { useState, useMemo } from 'react';
 import { ChatContainer } from '../../components/chat-container';
 import { LangsmithConfigPanel } from '../../components/langsmith-config-panel';

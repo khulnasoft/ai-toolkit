@@ -7,7 +7,7 @@ import { UIMessage } from 'ai';
 /**
  * Tool Approval Card Component
  *
- * Note: The AI TOOLKIT's addToolApprovalResponse doesn't currently support
+ * Note: The AI SDK's addToolApprovalResponse doesn't currently support
  * passing edited input values. The edit functionality would require
  * extending the API to support edited input in the approval response.
  */

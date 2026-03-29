@@ -1,4 +1,4 @@
-import { createOpenAI } from '@ai-toolkit/openai';
+import { createOpenAI } from '@ai-tools/openai';
 import { streamText } from 'ai';
 
 export default defineLazyEventHandler(async () => {

@@ -4,7 +4,7 @@ import {
   normalizeHeaders,
   withUserAgentSuffix,
   getRuntimeEnvironmentUserAgent,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { AwsV4Signer } from 'aws4fetch';
 import { VERSION } from './version';
 
@@ -16,11 +16,11 @@ export interface BedrockCredentials {
 }
 
 /**
-Creates a fetch function that applies AWS Signature Version 4 signing.
-
-@param getCredentials - Function that returns the AWS credentials to use when signing.
-@param fetch - Optional original fetch implementation to wrap. Defaults to global fetch.
-@returns A FetchFunction that signs requests before passing them to the underlying fetch.
+ * Creates a fetch function that applies AWS Signature Version 4 signing.
+ *
+ * @param getCredentials - Function that returns the AWS credentials to use when signing.
+ * @param fetch - Optional original fetch implementation to wrap. Defaults to global fetch.
+ * @returns A FetchFunction that signs requests before passing them to the underlying fetch.
  */
 export function createSigV4FetchFunction(
   getCredentials: () => BedrockCredentials | PromiseLike<BedrockCredentials>,
@@ -37,7 +37,7 @@ export function createSigV4FetchFunction(
     );
     const headersWithUserAgent = withUserAgentSuffix(
       originalHeaders,
-      `ai-toolkit/amazon-bedrock/${VERSION}`,
+      `ai-sdk/amazon-bedrock/${VERSION}`,
       getRuntimeEnvironmentUserAgent(),
     );
 
@@ -105,11 +105,11 @@ function prepareBodyString(body: BodyInit | undefined): string {
 }
 
 /**
-Creates a fetch function that applies Bearer token authentication.
-
-@param apiKey - The API key to use for Bearer token authentication.
-@param fetch - Optional original fetch implementation to wrap. Defaults to global fetch.
-@returns A FetchFunction that adds Authorization header with Bearer token to requests.
+ * Creates a fetch function that applies Bearer token authentication.
+ *
+ * @param apiKey - The API key to use for Bearer token authentication.
+ * @param fetch - Optional original fetch implementation to wrap. Defaults to global fetch.
+ * @returns A FetchFunction that adds Authorization header with Bearer token to requests.
  */
 export function createApiKeyFetchFunction(
   apiKey: string,
@@ -122,7 +122,7 @@ export function createApiKeyFetchFunction(
     const originalHeaders = normalizeHeaders(init?.headers);
     const headersWithUserAgent = withUserAgentSuffix(
       originalHeaders,
-      `ai-toolkit/amazon-bedrock/${VERSION}`,
+      `ai-sdk/amazon-bedrock/${VERSION}`,
       getRuntimeEnvironmentUserAgent(),
     );
 

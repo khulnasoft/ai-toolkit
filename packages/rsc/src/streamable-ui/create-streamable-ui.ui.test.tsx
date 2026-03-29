@@ -1,4 +1,4 @@
-import { delay } from '@ai-toolkit/provider-utils';
+import { delay } from '@ai-tools/provider-utils';
 import { createStreamableUI } from './create-streamable-ui';
 import { describe, it, expect } from 'vitest';
 

@@ -1,6 +1,6 @@
 'use server';
 
-import { createStreamableUI, createStreamableValue } from '@ai-toolkit/rsc';
+import { createStreamableUI, createStreamableValue } from '@ai-tools/rsc';
 import { ClientInfo } from './client-utils';
 
 function sleep(ms = 0) {

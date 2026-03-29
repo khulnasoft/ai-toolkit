@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { Controller, Post, Res } from '@nestjs/common';
 import {
   createUIMessageStream,
@@ -40,7 +40,7 @@ export class AppController {
         writer.merge(
           result.toUIMessageStream({
             sendStart: false,
-            onError: (error) => {
+            onError: error => {
               // Error messages are masked by default for security reasons.
               // If you want to expose the error message to the client, you can do so here:
               return error instanceof Error ? error.message : String(error);

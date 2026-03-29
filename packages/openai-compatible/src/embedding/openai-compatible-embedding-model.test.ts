@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { EmbeddingModelV3Embedding } from '@ai-toolkit/provider';
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { EmbeddingModelV4Embedding } from '@ai-tools/provider';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { createOpenAICompatible } from '../openai-compatible-provider';
 
 const dummyEmbeddings = [
@@ -28,7 +28,7 @@ describe('doEmbed', () => {
     usage = { prompt_tokens: 8, total_tokens: 8 },
     headers,
   }: {
-    embeddings?: EmbeddingModelV3Embedding[];
+    embeddings?: EmbeddingModelV4Embedding[];
     usage?: { prompt_tokens: number; total_tokens: number };
     headers?: Record<string, string>;
   } = {}) {

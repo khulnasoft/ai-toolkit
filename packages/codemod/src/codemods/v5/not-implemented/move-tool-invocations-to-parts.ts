@@ -1,6 +1,6 @@
 import { createTransformer } from '../../lib/create-transformer';
 import {
-  AI_TOOLKIT_CODEMOD_ERROR_PREFIX,
+  AI_SDK_CODEMOD_ERROR_PREFIX,
   insertCommentOnce,
 } from '../../lib/add-comment';
 import type { ASTPath } from 'jscodeshift';
@@ -37,7 +37,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
     const hasChanges = insertCommentOnce(
       targetNode,
       j,
-      `${AI_TOOLKIT_CODEMOD_ERROR_PREFIX}${message}`,
+      `${AI_SDK_CODEMOD_ERROR_PREFIX}${message}`,
     );
 
     if (hasChanges) {
@@ -61,7 +61,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The part.toolInvocation.toolName property has been removed. Tool parts now use typed naming: part.type === 'tool-\${toolName}'. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The part.toolInvocation.toolName property has been removed. Tool parts now use typed naming: part.type === 'tool-\${toolName}'. See migration guide: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -82,7 +82,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The part.toolInvocation.state property has been removed. Tool parts now have specific states: 'input-available', 'calling', 'output-available'. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The part.toolInvocation.state property has been removed. Tool parts now have specific states: 'input-available', 'calling', 'output-available'. See migration guide: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -102,7 +102,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });
@@ -122,7 +122,7 @@ export default createTransformer((fileInfo, _api, _options, context) => {
       ) {
         processMatch(
           path,
-          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
+          `The generic 'tool-invocation' type has been replaced with typed naming: 'tool-\${toolName}'. Update to check for specific tool types. See migration guide: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage`,
         );
       }
     });

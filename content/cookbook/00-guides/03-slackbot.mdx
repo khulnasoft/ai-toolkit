@@ -1,12 +1,12 @@
 ---
 title: Slackbot Agent Guide
-description: Learn how to use the AI TOOLKIT to build an AI Agent in Slack.
+description: Learn how to use the AI SDK to build an AI Agent in Slack.
 tags: ['agents', 'chatbot']
 ---
 
-# Building an AI Agent in Slack with the AI TOOLKIT
+# Building an AI Agent in Slack with the AI SDK
 
-In this guide, you will learn how to build a Slackbot powered by the AI TOOLKIT. The bot will be able to respond to direct messages and mentions in channels using the full context of the thread.
+In this guide, you will learn how to build a Slackbot powered by the AI SDK. The bot will be able to respond to direct messages and mentions in channels using the full context of the thread.
 
 ## Slack App Setup
 
@@ -29,19 +29,19 @@ Before we start building, you'll need to create and configure a Slack app:
 
 This project uses the following stack:
 
-- [AI TOOLKIT by Vercel](/docs)
+- [AI SDK by Vercel](/docs)
 - [Slack Web API](https://api.slack.com/web)
 - [Vercel](https://vercel.com)
 - [OpenAI](https://openai.com)
 
 ## Getting Started
 
-1. Clone [the repository](https://github.com/vercel-labs/ai-toolkit-slackbot) and check out the `starter` branch
+1. Clone [the repository](https://github.com/vercel-labs/ai-sdk-slackbot) and check out the `starter` branch
 
 <Snippet
   text={[
-    'git clone https://github.com/vercel-labs/ai-toolkit-slackbot.git',
-    'cd ai-toolkit-slackbot',
+    'git clone https://github.com/vercel-labs/ai-sdk-slackbot.git',
+    'cd ai-sdk-slackbot',
     'git checkout starter',
   ]}
 />
@@ -54,7 +54,7 @@ This project uses the following stack:
 
 The starter repository already includes:
 
-- Slack utilities (`lib/slack-utils.ts`) including functions for validating incoming requests, converting Slack threads to AI TOOLKIT compatible message formats, and getting the Slackbot's user ID
+- Slack utilities (`lib/slack-utils.ts`) including functions for validating incoming requests, converting Slack threads to AI SDK compatible message formats, and getting the Slackbot's user ID
 - General utility functions (`lib/utils.ts`) including initial Exa setup
 - Files to handle the different types of Slack events (`lib/handle-messages.ts` and `lib/handle-app-mention.ts`)
 - An API endpoint (`POST`) for Slack events (`api/events.ts`)
@@ -233,7 +233,7 @@ export async function assistantThreadMessage(
   await client.chat.postMessage({
     channel: channel_id,
     thread_ts: thread_ts,
-    text: "Hello, I'm an AI assistant built with the AI TOOLKIT by Vercel!",
+    text: "Hello, I'm an AI assistant built with the AI SDK by Vercel!",
   });
 
   await client.assistant.threads.setSuggestedPrompts({
@@ -313,7 +313,7 @@ With the event handlers in place, let's now implement the AI logic.
 
 ## Implementing AI Logic
 
-The core of our application is the `generateResponse` function in `lib/generate-response.ts`, which processes messages and generates responses using the AI TOOLKIT.
+The core of our application is the `generateResponse` function in `lib/generate-response.ts`, which processes messages and generates responses using the AI SDK.
 
 Here's how to implement it:
 
@@ -340,13 +340,13 @@ export const generateResponse = async (
 
 This basic implementation:
 
-1. Uses the AI TOOLKIT's `generateText` function to call Anthropic's `claude-sonnet-4.5` model
+1. Uses the AI SDK's `generateText` function to call Anthropic's `claude-sonnet-4.5` model
 2. Provides a system prompt to guide the model's behavior
 3. Formats the response for Slack's markdown format
 
 ## Enhancing with Tools
 
-The real power of the AI TOOLKIT comes from tools that enable your bot to perform actions. Let's add two useful tools:
+The real power of the AI SDK comes from tools that enable your bot to perform actions. Let's add two useful tools:
 
 ```typescript filename="lib/generate-response.ts"
 import { generateText, tool, ModelMessage, stepCountIs } from 'ai';
@@ -441,7 +441,7 @@ When a user interacts with your bot:
 
 1. The Slack event is received and processed by your API endpoint
 2. The user's message and the thread history is passed to the `generateResponse` function
-3. The AI TOOLKIT processes the message and may invoke tools as needed
+3. The AI SDK processes the message and may invoke tools as needed
 4. The response is formatted for Slack and sent back to the user
 
 The tools are automatically invoked based on the user's intent. For example, if a user asks "What's the weather in London?", the AI will:
@@ -490,7 +490,7 @@ Finally, head to Slack and test the app by sending a message to the bot.
 
 ## Next Steps
 
-You've built a Slack chatbot powered by the AI TOOLKIT! Here are some ways you could extend it:
+You've built a Slack chatbot powered by the AI SDK! Here are some ways you could extend it:
 
 1. Add memory for specific users to give the LLM context of previous interactions
 2. Implement more tools like database queries or knowledge base searches

@@ -1,4 +1,4 @@
-import { SpeechModelV2 } from '@ai-toolkit/provider';
+import { SpeechModelV2 } from '@ai-tools/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockSpeechModelV2 implements SpeechModelV2 {

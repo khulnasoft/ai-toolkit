@@ -1,18 +1,20 @@
 import {
   EmbeddingModelV2,
   EmbeddingModelV3,
-  EmbeddingModelV3Embedding,
-} from '@ai-toolkit/provider';
+  EmbeddingModelV4,
+  EmbeddingModelV4Embedding,
+} from '@ai-tools/provider';
 
 /**
-Embedding model that is used by the AI TOOLKIT.
-*/
+ * Embedding model that is used by the AI SDK.
+ */
 export type EmbeddingModel =
   | string
+  | EmbeddingModelV4
   | EmbeddingModelV3
   | EmbeddingModelV2<string>;
 
 /**
-Embedding.
+ * Embedding.
  */
-export type Embedding = EmbeddingModelV3Embedding;
+export type Embedding = EmbeddingModelV4Embedding;

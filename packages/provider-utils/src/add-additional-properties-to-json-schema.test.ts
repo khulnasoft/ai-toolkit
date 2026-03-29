@@ -1,4 +1,4 @@
-import { JSONSchema7 } from '@ai-toolkit/provider';
+import { JSONSchema7 } from '@ai-tools/provider';
 import { describe, expect, it } from 'vitest';
 import { addAdditionalPropertiesToJsonSchema } from './add-additional-properties-to-json-schema';
 

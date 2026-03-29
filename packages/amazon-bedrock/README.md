@@ -1,22 +1,30 @@
-# AI TOOLKIT - Amazon Bedrock Provider
+# AI SDK - Amazon Bedrock Provider
 
-The **[Amazon Bedrock provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/amazon-bedrock)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Amazon Bedrock provider](https://ai-sdk.dev/providers/ai-sdk-providers/amazon-bedrock)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the Amazon Bedrock [converse API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
 
 ## Setup
 
-The Amazon Bedrock provider is available in the `@ai-toolkit/amazon-bedrock` module. You can install it with
+The Amazon Bedrock provider is available in the `@ai-tools/amazon-bedrock` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/amazon-bedrock
+npm i @ai-tools/amazon-bedrock
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `bedrock` from `@ai-toolkit/amazon-bedrock`:
+You can import the default provider instance `bedrock` from `@ai-tools/amazon-bedrock`:
 
 ```ts
-import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { bedrock } from '@ai-tools/amazon-bedrock';
 ```
 
 ## Authentication
@@ -36,7 +44,7 @@ export AWS_BEARER_TOKEN_BEDROCK=your-api-key-here
 ```
 
 ```ts
-import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { bedrock } from '@ai-tools/amazon-bedrock';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -51,7 +59,7 @@ const { text } = await generateText({
 You can also pass the API key directly in the provider configuration:
 
 ```ts
-import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { bedrock } from '@ai-tools/amazon-bedrock';
 import { generateText } from 'ai';
 
 const bedrockWithApiKey = bedrock.withSettings({
@@ -70,7 +78,7 @@ const { text } = await generateText({
 If no API key is provided, the provider automatically falls back to AWS SigV4 authentication using standard AWS credentials:
 
 ```ts
-import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { bedrock } from '@ai-tools/amazon-bedrock';
 import { generateText } from 'ai';
 
 // Uses AWS credentials from environment variables or AWS credential chain
@@ -97,7 +105,7 @@ The provider uses the following authentication precedence:
 ## Example
 
 ```ts
-import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { bedrock } from '@ai-tools/amazon-bedrock';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -108,4 +116,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Amazon Bedrock provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/amazon-bedrock)** for more information.
+Please check out the **[Amazon Bedrock provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/amazon-bedrock)** for more information.

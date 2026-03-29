@@ -1,12 +1,12 @@
 ---
 title: Restore Messages From Database
-description: Learn how to restore messages from an external database using the AI TOOLKIT and React Server Components
+description: Learn how to restore messages from an external database using the AI SDK and React Server Components
 tags: ['rsc', 'tool use']
 ---
 
 # Restore Messages from Database
 
-When building AI applications, you might want to restore previous conversations from a database to allow users to continue their conversations or review past interactions. The AI TOOLKIT provides mechanisms to restore conversation state through `initialAIState` and `onGetUIState`.
+When building AI applications, you might want to restore previous conversations from a database to allow users to continue their conversations or review past interactions. The AI SDK provides mechanisms to restore conversation state through `initialAIState` and `onGetUIState`.
 
 ## Client
 
@@ -39,7 +39,7 @@ export default function RootLayout({
 
 import { useState, useEffect } from 'react';
 import { ClientMessage } from './actions';
-import { useActions, useUIState } from '@ai-toolkit/rsc';
+import { useActions, useUIState } from '@ai-tools/rsc';
 import { generateId } from 'ai';
 
 export default function Home() {
@@ -97,7 +97,7 @@ export default function Home() {
 The server-side implementation handles the restoration of messages and their transformation into the appropriate format for display.
 
 ```tsx filename='app/ai.ts'
-import { createAI } from '@ai-toolkit/rsc';
+import { createAI } from '@ai-tools/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 import { Stock } from '@ai-studio/components/stock';
 import { generateId } from 'ai';
@@ -126,7 +126,8 @@ export const AI = createAI<ServerMessage[], ClientMessage[]>({
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { getAIState } from '@ai-toolkit/rsc';
+import { getAIState } from '@ai-tools/rsc';
+import type { ReactNode } from 'react';
 
 export interface ServerMessage {
   role: 'user' | 'assistant' | 'function';

@@ -1,21 +1,29 @@
-# AI TOOLKIT - Cerebras Provider
+# AI SDK - Cerebras Provider
 
-The **Cerebras provider** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.
+The **Cerebras provider** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.
 
 ## Setup
 
-The Cerebras provider is available in the `@ai-toolkit/cerebras` module. You can install it with
+The Cerebras provider is available in the `@ai-tools/cerebras` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/cerebras
+npm i @ai-tools/cerebras
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `cerebras` from `@ai-toolkit/cerebras`:
+You can import the default provider instance `cerebras` from `@ai-tools/cerebras`:
 
 ```ts
-import { cerebras } from '@ai-toolkit/cerebras';
+import { cerebras } from '@ai-tools/cerebras';
 ```
 
 ## Available Models
@@ -26,7 +34,7 @@ https://inference-docs.cerebras.ai/models/overview
 ## Example
 
 ```ts
-import { cerebras } from '@ai-toolkit/cerebras';
+import { cerebras } from '@ai-tools/cerebras';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

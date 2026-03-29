@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { createOpenAI } from '../openai-provider';
 import { OpenAISpeechModel } from './openai-speech-model';
 import { describe, it, expect, vi } from 'vitest';
@@ -38,12 +38,12 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     await model.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
     });
 
     expect(await server.calls[0].requestBodyJson).toMatchObject({
       model: 'tts-1',
-      input: 'Hello from the AI TOOLKIT!',
+      input: 'Hello from the AI SDK!',
     });
   });
 
@@ -60,7 +60,7 @@ describe('doGenerate', () => {
     });
 
     await provider.speech('tts-1').doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
       headers: {
         'Custom-Request-Header': 'request-header-value',
       },
@@ -76,7 +76,7 @@ describe('doGenerate', () => {
     });
 
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-toolkit/openai/0.0.0-test`,
+      `ai-sdk/openai/0.0.0-test`,
     );
   });
 
@@ -84,7 +84,7 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     await model.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
       voice: 'nova',
       outputFormat: 'opus',
       speed: 1.5,
@@ -92,7 +92,7 @@ describe('doGenerate', () => {
 
     expect(await server.calls[0].requestBodyJson).toMatchObject({
       model: 'tts-1',
-      input: 'Hello from the AI TOOLKIT!',
+      input: 'Hello from the AI SDK!',
       voice: 'nova',
       speed: 1.5,
       response_format: 'opus',
@@ -110,7 +110,7 @@ describe('doGenerate', () => {
     });
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
       outputFormat: 'opus',
     });
 
@@ -136,7 +136,7 @@ describe('doGenerate', () => {
     });
 
     const result = await customModel.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
     });
 
     expect(result.response).toMatchObject({
@@ -164,7 +164,7 @@ describe('doGenerate', () => {
     });
 
     const result = await customModel.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
     });
 
     expect(result.response.timestamp.getTime()).toEqual(testDate.getTime());
@@ -178,7 +178,7 @@ describe('doGenerate', () => {
       const audio = prepareAudioResponse({ format });
 
       const result = await model.doGenerate({
-        text: 'Hello from the AI TOOLKIT!',
+        text: 'Hello from the AI SDK!',
         providerOptions: {
           openai: {
             response_format: format,
@@ -194,7 +194,7 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI TOOLKIT!',
+      text: 'Hello from the AI SDK!',
     });
 
     expect(result.warnings).toEqual([]);

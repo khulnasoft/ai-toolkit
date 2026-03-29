@@ -6,16 +6,16 @@ description: Monitoring and evaluating LLM applications with Scorecard
 # Scorecard
 
 [Scorecard](https://www.scorecard.io/) is an observability platform for monitoring and evaluating LLM applications.
-After integrating with the AI TOOLKIT, you can use Scorecard to trace, monitor, and analyze your LLM providers, prompts, and application flows.
+After integrating with the AI SDK, you can use Scorecard to trace, monitor, and analyze your LLM providers, prompts, and application flows.
 
 ## Setup
 
-Scorecard supports [AI TOOLKIT telemetry data](/docs/ai-toolkit-core/telemetry).
+Scorecard supports [AI SDK telemetry data](/docs/ai-sdk-core/telemetry).
 You'll need to sign up at https://app.scorecard.io and get your API Key from your [settings page](https://app.scorecard.io/settings).
 
 ### Next.js
 
-To use the AI TOOLKIT to send telemetry data to Scorecard, first set these environment variables in your project:
+To use the AI SDK to send telemetry data to Scorecard, first set these environment variables in your project:
 
 ```bash
 OTEL_EXPORTER_OTLP_ENDPOINT=https://tracing.scorecard.io/otel/v1/traces
@@ -34,10 +34,10 @@ export function register() {
 }
 ```
 
-You can then use the `experimental_telemetry` option to enable telemetry on supported AI TOOLKIT function calls:
+You can then use the `experimental_telemetry` option to enable telemetry on supported AI SDK function calls:
 
 ```typescript"
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -51,7 +51,7 @@ const result = await generateText({
 
 After integrating, you'll be able to view in your Scorecard dashboard:
 
-- **LLM call traces**: Detailed information about each AI TOOLKIT call
+- **LLM call traces**: Detailed information about each AI SDK call
 - **Performance metrics**: Latency, token usage, and cost tracking
 - **Model information**: Which models and providers were used
 - **Custom metadata**: Any additional context you provide via telemetry

@@ -1,5 +1,5 @@
-import { JSONParseError, TypeValidationError } from '@ai-toolkit/provider';
-import { safeParseJSON } from '@ai-toolkit/provider-utils';
+import { JSONParseError, TypeValidationError } from '@ai-tools/provider';
+import { safeParseJSON } from '@ai-tools/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import type {
   FinishReason,

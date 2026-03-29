@@ -1,4 +1,4 @@
-import { InferToolInput, InferToolOutput } from '@ai-toolkit/provider-utils';
+import { InferToolInput, InferToolOutput } from '@ai-tools/provider-utils';
 import { ProviderMetadata } from '../types';
 import { ValueOf } from '../../src/util/value-of';
 import { ToolSet } from './tool-set';

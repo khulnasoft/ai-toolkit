@@ -1,11 +1,11 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { generateText } from 'ai';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   const { text } = await generateText({
-    model: openai('gpt-4-turbo'),
+    model: openai('gpt-5-mini'),
     maxOutputTokens: 100,
     prompt,
     experimental_telemetry: {

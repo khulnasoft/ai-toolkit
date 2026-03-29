@@ -2,7 +2,7 @@ import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { NextResponse } from 'next/server';
 
 import { ChatOpenAI } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 
 /**
  * Allow streaming responses up to 30 seconds
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     });
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages using the simplified API
+     * Convert AI SDK UIMessages to LangChain messages using the simplified API
      */
     const langchainMessages = await toBaseMessages(messages);
 

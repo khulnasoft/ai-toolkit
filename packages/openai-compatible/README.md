@@ -1,4 +1,4 @@
-# AI TOOLKIT - OpenAI Compatible Provider
+# AI SDK - OpenAI Compatible Provider
 
 This package provides a foundation for implementing providers that expose an OpenAI-compatible API.
 
@@ -6,24 +6,32 @@ The primary [OpenAI provider](../openai/README.md) is more feature-rich, includi
 
 ## Setup
 
-The provider is available in the `@ai-toolkit/openai-compatible` module. You can install it with
+The provider is available in the `@ai-tools/openai-compatible` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/openai-compatible
+npm i @ai-tools/openai-compatible
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the provider creation method `createOpenAICompatible` from `@ai-toolkit/openai-compatible`:
+You can import the provider creation method `createOpenAICompatible` from `@ai-tools/openai-compatible`:
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 ```
 
 ## Example
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -41,7 +49,7 @@ const { text } = await generateText({
 You can further customize headers if desired. For example, here is an alternate implementation to pass along api key authentication:
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -59,7 +67,7 @@ const { text } = await generateText({
 ### Including model ids for auto-completion
 
 ```ts
-import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { createOpenAICompatible } from '@ai-tools/openai-compatible';
 import { generateText } from 'ai';
 
 type ExampleChatModelIds =
@@ -97,4 +105,4 @@ const { text } = await generateText({
 });
 ```
 
-For more examples, see the [OpenAI Compatible Providers](https://studio.khulnasoft.com/providers/openai-compatible-providers) documentation.
+For more examples, see the [OpenAI Compatible Providers](https://ai-sdk.dev/providers/openai-compatible-providers) documentation.

@@ -1,27 +1,35 @@
-# AI TOOLKIT - Together.ai Provider
+# AI SDK - Together.ai Provider
 
-The **[Together.ai provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/togetherai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains language model support for the [Together.ai](https://together.ai) platform.
+The **[Together.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/togetherai)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the [Together.ai](https://together.ai) platform.
 
 ## Setup
 
-The Together.ai provider is available in the `@ai-toolkit/togetherai` module. You can install it with
+The Together.ai provider is available in the `@ai-tools/togetherai` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/togetherai
+npm i @ai-tools/togetherai
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `togetherai` from `@ai-toolkit/togetherai`:
+You can import the default provider instance `togetherai` from `@ai-tools/togetherai`:
 
 ```ts
-import { togetherai } from '@ai-toolkit/togetherai';
+import { togetherai } from '@ai-tools/togetherai';
 ```
 
 ## Example
 
 ```ts
-import { togetherai } from '@ai-toolkit/togetherai';
+import { togetherai } from '@ai-tools/togetherai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -32,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Together.ai provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/togetherai)** for more information.
+Please check out the **[Together.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/togetherai)** for more information.

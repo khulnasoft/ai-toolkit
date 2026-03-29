@@ -6,7 +6,7 @@ const moduleName = process.argv[2];
 
 if (!moduleName) {
   console.error(
-    'Please provide a module name as an argument, e.g., "@ai-toolkit/anthropic"',
+    'Please provide a module name as an argument, e.g., "@ai-tools/anthropic"',
   );
   process.exit(1);
 }
@@ -74,8 +74,8 @@ run(async () => {
 
   // Write to GitHub Actions output if running in CI
   if (process.env.GITHUB_OUTPUT) {
-    // remove "@ai-toolkit/" prefix if present
-    const outputKey = moduleName.replace(/^@ai-toolkit\//, '');
+    // remove "@ai-tools/" prefix if present
+    const outputKey = moduleName.replace(/^@ai-sdk\//, '');
     const outputValue = median.toFixed(1);
 
     try {

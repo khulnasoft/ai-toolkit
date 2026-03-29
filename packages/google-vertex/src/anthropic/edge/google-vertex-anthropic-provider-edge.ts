@@ -1,4 +1,4 @@
-import { resolve } from '@ai-toolkit/provider-utils';
+import { resolve } from '@ai-tools/provider-utils';
 import {
   generateAuthToken,
   GoogleCredentials,
@@ -11,8 +11,7 @@ import {
 
 export type { GoogleVertexAnthropicProvider };
 
-export interface GoogleVertexAnthropicProviderSettings
-  extends GoogleVertexAnthropicProviderSettingsOriginal {
+export interface GoogleVertexAnthropicProviderSettings extends GoogleVertexAnthropicProviderSettingsOriginal {
   /**
    * Optional. The Google credentials for the Google Cloud service account. If
    * not provided, the Google Vertex provider will use environment variables to

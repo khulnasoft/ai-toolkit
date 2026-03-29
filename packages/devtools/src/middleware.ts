@@ -1,9 +1,9 @@
 import {
-  type LanguageModelV3FinishReason,
-  type LanguageModelV3Usage,
-  type LanguageModelV3Middleware,
-  type LanguageModelV3StreamPart,
-} from '@ai-toolkit/provider';
+  type LanguageModelV4FinishReason,
+  type LanguageModelV4Usage,
+  type LanguageModelV4Middleware,
+  type LanguageModelV4StreamPart,
+} from '@ai-tools/provider';
 import {
   createRun,
   createStep,
@@ -97,10 +97,10 @@ const generateRunId = (): string => {
  * });
  * ```
  */
-export const devToolsMiddleware = (): LanguageModelV3Middleware => {
+export const devToolsMiddleware = (): LanguageModelV4Middleware => {
   if (process.env.NODE_ENV === 'production') {
     throw new Error(
-      '@ai-toolkit/devtools should not be used in production. ' +
+      '@ai-tools/devtools should not be used in production. ' +
         'Remove devToolsMiddleware from your model configuration for production builds.',
     );
   }
@@ -125,7 +125,7 @@ export const devToolsMiddleware = (): LanguageModelV3Middleware => {
   };
 
   return {
-    specificationVersion: 'v3',
+    specificationVersion: 'v4',
 
     wrapGenerate: async ({ doGenerate, params, model }) => {
       const startTime = Date.now();
@@ -242,9 +242,9 @@ export const devToolsMiddleware = (): LanguageModelV3Middleware => {
         const collectedOutput: {
           textParts: Array<{ id: string; text: string }>;
           reasoningParts: Array<{ id: string; text: string }>;
-          toolCalls: LanguageModelV3StreamPart[];
-          finishReason?: LanguageModelV3FinishReason;
-          usage?: LanguageModelV3Usage;
+          toolCalls: LanguageModelV4StreamPart[];
+          finishReason?: LanguageModelV4FinishReason;
+          usage?: LanguageModelV4Usage;
         } = {
           textParts: [],
           reasoningParts: [],
@@ -253,7 +253,7 @@ export const devToolsMiddleware = (): LanguageModelV3Middleware => {
 
         const currentText: Map<string, string> = new Map();
         const currentReasoning: Map<string, string> = new Map();
-        const fullStreamChunks: LanguageModelV3StreamPart[] = [];
+        const fullStreamChunks: LanguageModelV4StreamPart[] = [];
         const rawChunks: unknown[] = [];
 
         // Track this step for cleanup on process exit
@@ -266,8 +266,8 @@ export const devToolsMiddleware = (): LanguageModelV3Middleware => {
         });
 
         const transformStream = new TransformStream<
-          LanguageModelV3StreamPart,
-          LanguageModelV3StreamPart
+          LanguageModelV4StreamPart,
+          LanguageModelV4StreamPart
         >({
           transform(chunk, controller) {
             // Separate raw provider chunks from other stream chunks

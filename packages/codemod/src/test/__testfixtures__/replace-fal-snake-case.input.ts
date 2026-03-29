@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { fal } from '@ai-toolkit/fal';
+import { fal } from '@ai-tools/fal';
 import { generateImage } from 'ai';
 
 // Test 1: Basic snake_case conversion

@@ -1,6 +1,6 @@
 ---
 title: Render Visual Interface in Chat
-description: Learn how to generate text using the AI TOOLKIT and React Server Components.
+description: Learn how to generate text using the AI SDK and React Server Components.
 tags: ['rsc', 'generative user interface']
 ---
 
@@ -8,7 +8,7 @@ tags: ['rsc', 'generative user interface']
 
 We've now seen how a language model can call a function and render a component based on a conversation with the user.
 
-When we define multiple functions in [`tools`](/docs/reference/ai-toolkit-core/generate-text#tools), it is possible for the model to reason out the right functions to call based on whatever the user's intent is. This means that you can write a bunch of functions without the burden of implementing complex routing logic to run them.
+When we define multiple functions in [`tools`](/docs/reference/ai-sdk-core/generate-text#tools), it is possible for the model to reason out the right functions to call based on whatever the user's intent is. This means that you can write a bunch of functions without the burden of implementing complex routing logic to run them.
 
 ## Client
 
@@ -17,7 +17,7 @@ When we define multiple functions in [`tools`](/docs/reference/ai-toolkit-core/g
 
 import { useState } from 'react';
 import { ClientMessage } from './actions';
-import { useActions, useUIState } from '@ai-toolkit/rsc';
+import { useActions, useUIState } from '@ai-tools/rsc';
 import { generateId } from 'ai';
 
 // Allow streaming responses up to 30 seconds
@@ -112,8 +112,7 @@ export async function Flight({ flightNumber }) {
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { getMutableAIState, streamUI } from '@ai-toolkit/rsc';
-import { openai } from '@ai-toolkit/openai';
+import { getMutableAIState, streamUI } from '@ai-tools/rsc';
 import { ReactNode } from 'react';
 import { z } from 'zod';
 import { generateId } from 'ai';
@@ -139,7 +138,7 @@ export async function continueConversation(
   const history = getMutableAIState();
 
   const result = await streamUI({
-    model: openai('gpt-3.5-turbo'),
+    model: 'openai/gpt-5.4',
     messages: [...history.get(), { role: 'user', content: input }],
     text: ({ content, done }) => {
       if (done) {
@@ -206,7 +205,7 @@ export async function continueConversation(
 ```
 
 ```typescript filename='app/ai.ts'
-import { createAI } from '@ai-toolkit/rsc';
+import { createAI } from '@ai-tools/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 
 export const AI = createAI<ServerMessage[], ClientMessage[]>({

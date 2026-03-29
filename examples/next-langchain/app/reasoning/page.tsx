@@ -1,6 +1,6 @@
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { DefaultChatTransport } from 'ai';
 import { useMemo } from 'react';
 import { ChatContainer } from '../../components/chat-container';
@@ -23,7 +23,7 @@ export default function ReasoningChat() {
         <>
           Uses <code>ChatOpenAI</code> with OpenAI Responses API and reasoning
           enabled. This streams reasoning summaries before the final response,
-          demonstrating the <code>@ai-toolkit/langchain</code> adapter&apos;s
+          demonstrating the <code>@ai-tools/langchain</code> adapter&apos;s
           support for reasoning content.
         </>
       }

@@ -1,4 +1,4 @@
-import { dynamicTool, jsonSchema, tool } from '@ai-toolkit/provider-utils';
+import { dynamicTool, jsonSchema, tool } from '@ai-tools/provider-utils';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod/v4';
 import { InvalidToolInputError } from '../error/invalid-tool-input-error';

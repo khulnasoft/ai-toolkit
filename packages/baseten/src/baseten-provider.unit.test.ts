@@ -1,15 +1,15 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createBaseten } from './baseten-provider';
 import {
-  LanguageModelV3,
-  EmbeddingModelV3,
+  LanguageModelV4,
+  EmbeddingModelV4,
   NoSuchModelError,
-} from '@ai-toolkit/provider';
-import { loadApiKey } from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider';
+import { loadApiKey } from '@ai-tools/provider-utils';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleEmbeddingModel,
-} from '@ai-toolkit/openai-compatible';
+} from '@ai-tools/openai-compatible';
 
 // Mock the OpenAI-compatible classes
 const OpenAICompatibleChatLanguageModelMock =
@@ -17,7 +17,7 @@ const OpenAICompatibleChatLanguageModelMock =
 const OpenAICompatibleEmbeddingModelMock =
   OpenAICompatibleEmbeddingModel as unknown as Mock;
 
-vi.mock('@ai-toolkit/openai-compatible', () => {
+vi.mock('@ai-tools/openai-compatible', () => {
   const createMockConstructor = (providerName: string) => {
     const mockConstructor = vi.fn().mockImplementation(function (
       this: any,
@@ -39,8 +39,8 @@ vi.mock('@ai-toolkit/openai-compatible', () => {
   };
 });
 
-vi.mock('@ai-toolkit/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+vi.mock('@ai-tools/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-tools/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
@@ -49,10 +49,12 @@ vi.mock('@ai-toolkit/provider-utils', async () => {
 });
 
 vi.mock('@basetenlabs/performance-client', () => ({
-  PerformanceClient: vi.fn().mockImplementation(() => ({
-    embed: vi.fn(),
-    embedBatch: vi.fn(),
-  })),
+  PerformanceClient: vi.fn(function () {
+    return {
+      embed: vi.fn(),
+      embedBatch: vi.fn(),
+    };
+  }),
 }));
 
 vi.mock('./version', () => ({
@@ -397,7 +399,7 @@ describe('BasetenProvider', () => {
       });
 
       expect(fetchMock.mock.calls[0][1].headers['user-agent']).toContain(
-        'ai-toolkit/baseten/0.0.0-test',
+        'ai-sdk/baseten/0.0.0-test',
       );
     });
   });

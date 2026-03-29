@@ -1,4 +1,4 @@
-import { AITOOLKITError, getErrorMessage } from '@ai-toolkit/provider';
+import { AISDKError, getErrorMessage } from '@ai-tools/provider';
 import { InvalidToolInputError } from './invalid-tool-input-error';
 import { NoSuchToolError } from './no-such-tool-error';
 
@@ -6,7 +6,7 @@ const name = 'AI_ToolCallRepairError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class ToolCallRepairError extends AITOOLKITError {
+export class ToolCallRepairError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly originalError: NoSuchToolError | InvalidToolInputError;
@@ -25,6 +25,6 @@ export class ToolCallRepairError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is ToolCallRepairError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

@@ -1,22 +1,24 @@
 import {
-  LanguageModelV3FilePart,
-  LanguageModelV3Message,
-  LanguageModelV3Prompt,
-  LanguageModelV3TextPart,
-  LanguageModelV3ToolResultOutput,
-} from '@ai-toolkit/provider';
+  LanguageModelV4FilePart,
+  LanguageModelV4Message,
+  LanguageModelV4Prompt,
+  LanguageModelV4TextPart,
+  LanguageModelV4ToolResultOutput,
+} from '@ai-tools/provider';
 import {
+  CustomPart,
   DataContent,
   FilePart,
   ImagePart,
   isUrlSupported,
   ModelMessage,
+  ReasoningFilePart,
   ReasoningPart,
   TextPart,
   ToolCallPart,
   ToolResultOutput,
   ToolResultPart,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import {
   detectMediaType,
   imageMediaTypeSignatures,
@@ -25,7 +27,7 @@ import {
   createDefaultDownloadFunction,
   DownloadFunction,
 } from '../util/download/download-function';
-import { convertToLanguageModelV3DataContent } from './data-content';
+import { convertToLanguageModelV4DataContent } from './data-content';
 import { InvalidMessageRoleError } from './invalid-message-role-error';
 import { StandardizedPrompt } from './standardize-prompt';
 import { asArray } from '../util/as-array';
@@ -39,7 +41,7 @@ export async function convertToLanguageModelPrompt({
   prompt: StandardizedPrompt;
   supportedUrls: Record<string, RegExp[]>;
   download: DownloadFunction | undefined;
-}): Promise<LanguageModelV3Prompt> {
+}): Promise<LanguageModelV4Prompt> {
   const downloadedAssets = await downloadAssets(
     prompt.messages,
     download,
@@ -164,11 +166,11 @@ export async function convertToLanguageModelPrompt({
 }
 
 /**
- * Convert a ModelMessage to a LanguageModelV3Message.
+ * Convert a ModelMessage to a LanguageModelV4Message.
  *
- * @param message The ModelMessage to convert.
- * @param downloadedAssets A map of URLs to their downloaded data. Only
- *   available if the model does not support URLs, null otherwise.
+ * @param message - The ModelMessage to convert.
+ * @param downloadedAssets - A map of URLs to their downloaded data. Only
+ * available if the model does not support URLs, null otherwise.
  */
 export function convertToLanguageModelMessage({
   message,
@@ -179,7 +181,7 @@ export function convertToLanguageModelMessage({
     string,
     { mediaType: string | undefined; data: Uint8Array }
   >;
-}): LanguageModelV3Message {
+}): LanguageModelV4Message {
   const role = message.role;
   switch (role) {
     case 'system': {
@@ -232,9 +234,11 @@ export function convertToLanguageModelMessage({
             (
               part,
             ): part is
+              | CustomPart
               | TextPart
               | FilePart
               | ReasoningPart
+              | ReasoningFilePart
               | ToolCallPart
               | ToolResultPart => part.type !== 'tool-approval-request',
           )
@@ -242,8 +246,15 @@ export function convertToLanguageModelMessage({
             const providerOptions = part.providerOptions;
 
             switch (part.type) {
+              case 'custom': {
+                return {
+                  type: 'custom' as const,
+                  kind: part.kind,
+                  providerOptions,
+                };
+              }
               case 'file': {
-                const { data, mediaType } = convertToLanguageModelV3DataContent(
+                const { data, mediaType } = convertToLanguageModelV4DataContent(
                   part.data,
                 );
                 return {
@@ -258,6 +269,17 @@ export function convertToLanguageModelMessage({
                 return {
                   type: 'reasoning',
                   text: part.text,
+                  providerOptions,
+                };
+              }
+              case 'reasoning-file': {
+                const { data, mediaType } = convertToLanguageModelV4DataContent(
+                  part.data,
+                );
+                return {
+                  type: 'reasoning-file' as const,
+                  data,
+                  mediaType: mediaType ?? part.mediaType,
                   providerOptions,
                 };
               }
@@ -402,11 +424,11 @@ async function downloadAssets(
 }
 
 /**
- * Convert part of a message to a LanguageModelV3Part.
- * @param part The part to convert.
- * @param downloadedAssets A map of URLs to their downloaded data. Only
- *  available if the model does not support URLs, null otherwise.
+ * Convert part of a message to a LanguageModelV4Part.
  *
+ * @param part - The part to convert.
+ * @param downloadedAssets - A map of URLs to their downloaded data. Only
+ * available if the model does not support URLs, null otherwise.
  * @returns The converted part.
  */
 function convertPartToLanguageModelPart(
@@ -415,7 +437,7 @@ function convertPartToLanguageModelPart(
     string,
     { mediaType: string | undefined; data: Uint8Array }
   >,
-): LanguageModelV3TextPart | LanguageModelV3FilePart {
+): LanguageModelV4TextPart | LanguageModelV4FilePart {
   if (part.type === 'text') {
     return {
       type: 'text',
@@ -439,7 +461,7 @@ function convertPartToLanguageModelPart(
   }
 
   const { data: convertedData, mediaType: convertedMediaType } =
-    convertToLanguageModelV3DataContent(originalData);
+    convertToLanguageModelV4DataContent(originalData);
 
   let mediaType: string | undefined = convertedMediaType ?? part.mediaType;
   let data: Uint8Array | string | URL = convertedData; // binary | base64 | url
@@ -454,7 +476,7 @@ function convertPartToLanguageModelPart(
   }
 
   // Now that we have the normalized data either as a URL or a Uint8Array,
-  // we can create the LanguageModelV3Part.
+  // we can create the LanguageModelV4Part.
   switch (type) {
     case 'image': {
       // When possible, try to detect the media type automatically
@@ -494,7 +516,7 @@ function convertPartToLanguageModelPart(
 
 function mapToolResultOutput(
   output: ToolResultOutput,
-): LanguageModelV3ToolResultOutput {
+): LanguageModelV4ToolResultOutput {
   if (output.type !== 'content') {
     return output;
   }
@@ -506,7 +528,7 @@ function mapToolResultOutput(
         return item;
       }
 
-      // AI TOOLKIT 5 tool backwards compatibility:
+      // AI SDK 5 tool backwards compatibility:
       // map media type to image-data or file-data
       if (item.mediaType.startsWith('image/')) {
         return {

@@ -1,19 +1,18 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createFireworks } from './fireworks-provider';
-import { LanguageModelV3, EmbeddingModelV3 } from '@ai-toolkit/provider';
-import { loadApiKey } from '@ai-toolkit/provider-utils';
+import { loadApiKey } from '@ai-tools/provider-utils';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
-} from '@ai-toolkit/openai-compatible';
+} from '@ai-tools/openai-compatible';
 import { FireworksImageModel } from './fireworks-image-model';
 
 // Add type assertion for the mocked class
 const OpenAICompatibleChatLanguageModelMock =
   OpenAICompatibleChatLanguageModel as unknown as Mock;
 
-vi.mock('@ai-toolkit/openai-compatible', () => {
+vi.mock('@ai-tools/openai-compatible', () => {
   // Create mock constructor functions that behave like classes
   const createMockConstructor = (providerName: string) => {
     const mockConstructor = vi.fn().mockImplementation(function (
@@ -39,8 +38,8 @@ vi.mock('@ai-toolkit/openai-compatible', () => {
   };
 });
 
-vi.mock('@ai-toolkit/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+vi.mock('@ai-tools/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-tools/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
@@ -53,19 +52,7 @@ vi.mock('./fireworks-image-model', () => ({
 }));
 
 describe('FireworksProvider', () => {
-  let mockLanguageModel: LanguageModelV3;
-  let mockEmbeddingModel: EmbeddingModelV3;
-
   beforeEach(() => {
-    // Mock implementations of models
-    mockLanguageModel = {
-      // Add any required methods for LanguageModelV3
-    } as LanguageModelV3;
-    mockEmbeddingModel = {
-      // Add any required methods for EmbeddingModelV3
-    } as EmbeddingModelV3;
-
-    // Reset mocks
     vi.clearAllMocks();
   });
 
@@ -125,6 +112,138 @@ describe('FireworksProvider', () => {
       const model = provider.chatModel(modelId);
 
       expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
+    });
+
+    it('should pass transformRequestBody that converts thinking options', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+        thinking: { type: 'enabled', budgetTokens: 2048 },
+        reasoningHistory: 'interleaved',
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+        thinking: { type: 'enabled', budget_tokens: 2048 },
+        reasoning_history: 'interleaved',
+      });
+    });
+
+    it('should handle thinking without budgetTokens', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+        thinking: { type: 'enabled' },
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+        thinking: { type: 'enabled' },
+      });
+    });
+
+    it('should remap reasoning_effort xhigh to high', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'xhigh',
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'high',
+      });
+    });
+
+    it('should remap reasoning_effort minimal to low', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'minimal',
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'low',
+      });
+    });
+
+    it('should pass through supported reasoning_effort values unchanged', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'medium',
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+        reasoning_effort: 'medium',
+      });
+    });
+
+    it('should handle request without thinking options', () => {
+      const provider = createFireworks();
+      provider.chatModel('test-model');
+
+      const constructorCall =
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const config = constructorCall[1];
+      const transformRequestBody = config.transformRequestBody;
+
+      const result = transformRequestBody({
+        model: 'test-model',
+        messages: [],
+      });
+
+      expect(result).toEqual({
+        model: 'test-model',
+        messages: [],
+      });
     });
   });
 

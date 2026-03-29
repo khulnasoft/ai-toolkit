@@ -1,6 +1,6 @@
 ---
 title: Stream Text with Image Prompt
-description: Learn how to stream text with an image prompt using the AI TOOLKIT and Next.js
+description: Learn how to stream text with an image prompt using the AI SDK and Next.js
 tags: ['next', 'streaming', 'multimodal']
 ---
 
@@ -40,7 +40,7 @@ On the client side, we use the new `useChat` hook and send multimodal messages u
 ```typescript filename='app/page.tsx'
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 

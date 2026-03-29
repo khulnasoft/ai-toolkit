@@ -1,12 +1,12 @@
 ---
 title: Model Context Protocol (MCP) Tools
-description: Learn how to use MCP tools with the AI TOOLKIT and Next.js
+description: Learn how to use MCP tools with the AI SDK and Next.js
 tags: ['next', 'tool use', 'agent', 'mcp']
 ---
 
 # MCP Tools
 
-The AI TOOLKIT supports Model Context Protocol (MCP) tools by offering a lightweight client that exposes a `tools` method for retrieving tools from a MCP server. After use, the client should always be closed to release resources.
+The AI SDK supports Model Context Protocol (MCP) tools by offering a lightweight client that exposes a `tools` method for retrieving tools from a MCP server. After use, the client should always be closed to release resources.
 
 ## Server
 
@@ -17,10 +17,10 @@ If you prefer to use the official transports (optional), install the official Ty
 <Snippet text="pnpm install @modelcontextprotocol/sdk" />
 
 ```ts filename="app/api/completion/route.ts"
-import { createMCPClient } from '@ai-toolkit/mcp';
+import { createMCPClient } from '@ai-tools/mcp';
 import { streamText } from 'ai';
-import { Experimental_StdioMCPTransport } from '@ai-toolkit/mcp/mcp-stdio';
-import { openai } from '@ai-toolkit/openai';
+import { Experimental_StdioMCPTransport } from '@ai-tools/mcp/mcp-stdio';
+import { openai } from '@ai-tools/openai';
 // Optional: Official transports if you prefer them
 // import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio';
 // import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse';
@@ -112,12 +112,12 @@ export async function POST(req: Request) {
 
 ## Client
 
-Let's create a simple React component that imports the `useCompletion` hook from the `@ai-toolkit/react` module. The `useCompletion` hook will call the `/api/completion` endpoint when a button is clicked. The endpoint will generate text based on the input prompt and stream it to the client.
+Let's create a simple React component that imports the `useCompletion` hook from the `@ai-tools/react` module. The `useCompletion` hook will call the `/api/completion` endpoint when a button is clicked. The endpoint will generate text based on the input prompt and stream it to the client.
 
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useCompletion } from '@ai-toolkit/react';
+import { useCompletion } from '@ai-tools/react';
 
 export default function Page() {
   const { completion, complete } = useCompletion({

@@ -3,7 +3,7 @@ import {
   ProviderOptions,
   SystemModelMessage,
   Tool,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { LanguageModel, ToolChoice } from '../types/language-model';
 import { StepResult } from './step-result';
 

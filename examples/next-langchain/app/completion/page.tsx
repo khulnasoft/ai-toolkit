@@ -1,6 +1,6 @@
 'use client';
 
-import { useCompletion } from '@ai-toolkit/react';
+import { useCompletion } from '@ai-tools/react';
 import { useState, FormEvent, KeyboardEvent } from 'react';
 import { Send, Sparkles, AlertCircle, Square } from 'lucide-react';
 

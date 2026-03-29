@@ -3,7 +3,7 @@ import {
   ParseResult,
   withUserAgentSuffix,
   getRuntimeEnvironmentUserAgent,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import {
   UIMessageChunk,
   uiMessageChunkSchema,
@@ -66,7 +66,7 @@ export async function callCompletionApi({
           'Content-Type': 'application/json',
           ...headers,
         },
-        `ai-toolkit/${VERSION}`,
+        `ai-sdk/${VERSION}`,
         getRuntimeEnvironmentUserAgent(),
       ),
       signal: abortController.signal,

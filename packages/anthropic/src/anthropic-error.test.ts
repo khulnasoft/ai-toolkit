@@ -1,4 +1,4 @@
-import { safeValidateTypes } from '@ai-toolkit/provider-utils';
+import { safeValidateTypes } from '@ai-tools/provider-utils';
 import { anthropicErrorDataSchema } from './anthropic-error';
 import { describe, it, expect } from 'vitest';
 

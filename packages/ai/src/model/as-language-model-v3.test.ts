@@ -1,8 +1,8 @@
-import { LanguageModelV2 } from '@ai-toolkit/provider';
+import { LanguageModelV2 } from '@ai-tools/provider';
 import {
   convertArrayToReadableStream,
   convertReadableStreamToArray,
-} from '@ai-toolkit/provider-utils/test';
+} from '@ai-tools/provider-utils/test';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';
 import { MockLanguageModelV2 } from '../test/mock-language-model-v2';

@@ -7,7 +7,7 @@ import {
   SpeechModelV3,
   TranscriptionModelV3,
   RerankingModelV3,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 
 export class MockProviderV3 implements ProviderV3 {
   readonly specificationVersion = 'v3' as const;

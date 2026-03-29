@@ -3,15 +3,15 @@ import { createTransformer } from '../lib/create-transformer';
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Only apply to files that import from @ai-toolkit/google-vertex
+  // Only apply to files that import from @ai-tools/google-vertex
   const hasVertexImport =
     root
       .find(j.ImportDeclaration)
       .filter(path => {
         return (
           path.node.source.type === 'StringLiteral' &&
-          (path.node.source.value === '@ai-toolkit/google-vertex' ||
-            path.node.source.value === '@ai-toolkit/google-vertex/edge')
+          (path.node.source.value === '@ai-tools/google-vertex' ||
+            path.node.source.value === '@ai-tools/google-vertex/edge')
         );
       })
       .size() > 0;

@@ -1,13 +1,13 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_NoContentGeneratedError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
 /**
-Thrown when the AI provider fails to generate any content.
+ * Thrown when the AI provider fails to generate any content.
  */
-export class NoContentGeneratedError extends AITOOLKITError {
+export class NoContentGeneratedError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   constructor({
@@ -17,6 +17,6 @@ export class NoContentGeneratedError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is NoContentGeneratedError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

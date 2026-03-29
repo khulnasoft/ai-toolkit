@@ -1,6 +1,6 @@
 ---
 title: Multi-Modal Agent
-description: Learn how to build a multi-modal agent that can process images and PDFs with the AI TOOLKIT.
+description: Learn how to build a multi-modal agent that can process images and PDFs with the AI SDK.
 tags: ['multi-modal', 'agent', 'images', 'pdf', 'vision', 'next']
 ---
 
@@ -12,7 +12,7 @@ Multi-modal refers to the ability of the agent to understand and generate respon
 
 <Note>
   For a complete list of providers and their multi-modal capabilities, visit the
-  [providers documentation](/providers/ai-toolkit-providers).
+  [providers documentation](/providers/ai-sdk-providers).
 </Note>
 
 We'll build this agent using OpenAI's GPT-4o, but the same code works seamlessly with other providers - you can switch between them by changing just one line of code.
@@ -46,10 +46,10 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai` and `@ai-toolkit/react`, the AI TOOLKIT package and the AI TOOLKIT's React package respectively.
+Install `ai` and `@ai-tools/react`, the AI SDK package and the AI SDK's React package respectively.
 
 <Note>
-  The AI TOOLKIT is designed to be a unified interface to interact with any large
+  The AI SDK is designed to be a unified interface to interact with any large
   language model. This means that you can change model and providers with just
   one line of code! Learn more about [available providers](/providers) and
   [building custom providers](/providers/community-providers/custom-providers)
@@ -58,17 +58,17 @@ Install `ai` and `@ai-toolkit/react`, the AI TOOLKIT package and the AI TOOLKIT'
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add ai @ai-toolkit/react" dark />
+      <Snippet text="pnpm add ai @ai-tools/react" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install ai @ai-toolkit/react" dark />
+      <Snippet text="npm install ai @ai-tools/react" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add ai @ai-toolkit/react" dark />
+      <Snippet text="yarn add ai @ai-tools/react" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add ai @ai-toolkit/react" dark />
+      <Snippet text="bun add ai @ai-tools/react" dark />
     </Tab>
 
   </Tabs>
@@ -89,10 +89,10 @@ AI_GATEWAY_API_KEY=your_api_key_here
 Replace `your_api_key_here` with your actual Vercel AI Gateway API key.
 
 <Note className="mb-4">
-  The AI TOOLKIT's Vercel AI Gateway Provider is the default global provider, so
-  you can access models using a simple string in the model configuration. If you
+  The AI SDK's Vercel AI Gateway Provider is the default global provider, so you
+  can access models using a simple string in the model configuration. If you
   prefer to use a specific provider like OpenAI directly, see the [provider
-  management](/docs/ai-toolkit-core/provider-management) documentation.
+  management](/docs/ai-sdk-core/provider-management) documentation.
 </Note>
 
 ## Implementation Plan
@@ -129,22 +129,22 @@ Let's take a look at what is happening in this code:
 
 1. Define an asynchronous `POST` request handler and extract `messages` from the body of the request. The `messages` variable contains a history of the conversation between you and the agent and provides the agent with the necessary context to make the next generation.
 2. Convert the UI messages to model messages using `convertToModelMessages`, which transforms the UI-focused message format to the format expected by the language model.
-3. Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider and `messages` (converted in step 2). You can pass additional [settings](/docs/ai-toolkit-core/settings) to further customize the model's behavior.
-4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-toolkit-core/stream-text#result-object). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-toolkit-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
+3. Call [`streamText`](/docs/reference/ai-sdk-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider and `messages` (converted in step 2). You can pass additional [settings](/docs/ai-sdk-core/settings) to further customize the model's behavior.
+4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-sdk-core/stream-text#result-object). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-sdk-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
 5. Finally, return the result to the client to stream the response.
 
 This Route Handler creates a POST request endpoint at `/api/chat`.
 
 ## Wire up the UI
 
-Now that you have a Route Handler that can query a large language model (LLM), it's time to setup your frontend. [ AI TOOLKIT UI ](/docs/ai-toolkit-ui) abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
+Now that you have a Route Handler that can query a large language model (LLM), it's time to setup your frontend. [ AI SDK UI ](/docs/ai-sdk-ui) abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-sdk-ui/use-chat).
 
 Update your root page (`app/page.tsx`) with the following code to show a list of chat messages and provide a user message input:
 
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 
@@ -215,7 +215,7 @@ Update your root page (`app/page.tsx`) with the following code:
 ```tsx filename="app/page.tsx" highlight="4-5,10-12,15-39,46-81,87-97"
 'use client';
 
-import { useChat } from '@ai-toolkit/react';
+import { useChat } from '@ai-tools/react';
 import { DefaultChatTransport } from 'ai';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
@@ -359,7 +359,7 @@ Try uploading an image or PDF and asking the model questions about it. Watch as 
 
 ## Using Other Providers
 
-With the AI TOOLKIT's unified provider interface you can easily switch to other providers that support multi-modal capabilities:
+With the AI SDK's unified provider interface you can easily switch to other providers that support multi-modal capabilities:
 
 ```tsx filename="app/api/chat/route.ts"
 // Using Anthropic
@@ -375,14 +375,14 @@ const result = streamText({
 });
 ```
 
-Install the provider package (`@ai-toolkit/anthropic` or `@ai-toolkit/google`) and update your API keys in `.env.local`. The rest of your code remains the same.
+Install the provider package (`@ai-tools/anthropic` or `@ai-tools/google`) and update your API keys in `.env.local`. The rest of your code remains the same.
 
 <Note>
   Different providers may have varying file size limits and performance
   characteristics. Check the [provider
-  documentation](/providers/ai-toolkit-providers) for specific details.
+  documentation](/providers/ai-sdk-providers) for specific details.
 </Note>
 
 ## Where to Next?
 
-You've built a multi-modal AI agent using the AI TOOLKIT! Experiment and extend the functionality of this application further by exploring [tool calling](/docs/ai-toolkit-core/tools-and-tool-calling).
+You've built a multi-modal AI agent using the AI SDK! Experiment and extend the functionality of this application further by exploring [tool calling](/docs/ai-sdk-core/tools-and-tool-calling).

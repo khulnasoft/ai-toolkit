@@ -2,7 +2,7 @@ import {
   createProviderToolFactoryWithOutputSchema,
   lazySchema,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 /**
@@ -64,6 +64,7 @@ const factory = createProviderToolFactoryWithOutputSchema<
   id: 'anthropic.tool_search_bm25_20251119',
   inputSchema: toolSearchBm25_20251119InputSchema,
   outputSchema: toolSearchBm25_20251119OutputSchema,
+  supportsDeferredResults: true,
 });
 
 /**
@@ -81,7 +82,7 @@ const factory = createProviderToolFactoryWithOutputSchema<
  *
  * @example
  * ```ts
- * import { anthropicTools } from '@ai-toolkit/anthropic';
+ * import { anthropicTools } from '@ai-tools/anthropic';
  *
  * const tools = {
  *   toolSearch: anthropicTools.toolSearchBm25_20251119(),

@@ -1,8 +1,8 @@
 import {
-  TranscriptionModelV3,
-  TranscriptionModelV3CallOptions,
-  SharedV3Warning,
-} from '@ai-toolkit/provider';
+  TranscriptionModelV4,
+  TranscriptionModelV4CallOptions,
+  SharedV4Warning,
+} from '@ai-tools/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -10,22 +10,22 @@ import {
   mediaTypeToExtension,
   parseProviderOptions,
   postFormDataToApi,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { OpenAIConfig } from '../openai-config';
 import { openaiFailedResponseHandler } from '../openai-error';
 import { openaiTranscriptionResponseSchema } from './openai-transcription-api';
 import {
   OpenAITranscriptionModelId,
-  openAITranscriptionProviderOptions,
-  OpenAITranscriptionProviderOptions,
+  openAITranscriptionModelOptions,
+  OpenAITranscriptionModelOptions,
 } from './openai-transcription-options';
 
 export type OpenAITranscriptionCallOptions = Omit<
-  TranscriptionModelV3CallOptions,
+  TranscriptionModelV4CallOptions,
   'providerOptions'
 > & {
   providerOptions?: {
-    openai?: OpenAITranscriptionProviderOptions;
+    openai?: OpenAITranscriptionModelOptions;
   };
 };
 
@@ -96,8 +96,8 @@ const languageMap = {
   welsh: 'cy',
 };
 
-export class OpenAITranscriptionModel implements TranscriptionModelV3 {
-  readonly specificationVersion = 'v3';
+export class OpenAITranscriptionModel implements TranscriptionModelV4 {
+  readonly specificationVersion = 'v4';
 
   get provider(): string {
     return this.config.provider;
@@ -113,13 +113,13 @@ export class OpenAITranscriptionModel implements TranscriptionModelV3 {
     mediaType,
     providerOptions,
   }: OpenAITranscriptionCallOptions) {
-    const warnings: SharedV3Warning[] = [];
+    const warnings: SharedV4Warning[] = [];
 
     // Parse provider options
     const openAIOptions = await parseProviderOptions({
       provider: 'openai',
       providerOptions,
-      schema: openAITranscriptionProviderOptions,
+      schema: openAITranscriptionModelOptions,
     });
 
     // Create form data with base fields
@@ -176,7 +176,7 @@ export class OpenAITranscriptionModel implements TranscriptionModelV3 {
 
   async doGenerate(
     options: OpenAITranscriptionCallOptions,
-  ): Promise<Awaited<ReturnType<TranscriptionModelV3['doGenerate']>>> {
+  ): Promise<Awaited<ReturnType<TranscriptionModelV4['doGenerate']>>> {
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
     const { formData, warnings } = await this.getArgs(options);
 

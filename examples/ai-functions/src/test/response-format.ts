@@ -1,8 +1,8 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { run } from '../lib/run';
 
 run(async () => {
-  const result = await openai('gpt-4-turbo').doStream({
+  const result = await openai('gpt-5-mini').doStream({
     responseFormat: {
       type: 'json',
       schema: {

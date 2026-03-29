@@ -4,7 +4,7 @@ import {
   detectMediaType,
   imageMediaTypeSignatures,
 } from './detect-media-type';
-import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
+import { convertUint8ArrayToBase64 } from '@ai-tools/provider-utils';
 
 describe('detectMediaType', () => {
   describe('GIF', () => {

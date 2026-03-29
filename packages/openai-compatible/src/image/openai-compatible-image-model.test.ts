@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { FetchFunction } from '@ai-toolkit/provider-utils';
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { FetchFunction } from '@ai-tools/provider-utils';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { OpenAICompatibleImageModel } from './openai-compatible-image-model';
 import { z } from 'zod/v4';
 import { ProviderErrorStructure } from '../openai-compatible-error';
-import { ImageModelV3CallOptions } from '@ai-toolkit/provider';
+import { ImageModelV4CallOptions } from '@ai-tools/provider';
 
 const prompt = 'A photorealistic astronaut riding a horse';
 
@@ -31,7 +31,7 @@ function createBasicModel({
   });
 }
 
-function createDefaultGenerateParams(overrides = {}): ImageModelV3CallOptions {
+function createDefaultGenerateParams(overrides = {}): ImageModelV4CallOptions {
   return {
     prompt: 'A photorealistic astronaut riding a horse',
     files: undefined,
@@ -84,7 +84,7 @@ describe('OpenAICompatibleImageModel', () => {
 
       expect(model.provider).toBe('openai-compatible');
       expect(model.modelId).toBe('dall-e-3');
-      expect(model.specificationVersion).toBe('v3');
+      expect(model.specificationVersion).toBe('v4');
       expect(model.maxImagesPerCall).toBe(10);
     });
   });

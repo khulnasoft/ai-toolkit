@@ -1,4 +1,4 @@
-import { lazySchema, zodSchema } from '@ai-toolkit/provider-utils';
+import { lazySchema, zodSchema } from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 
 export const openaiTranscriptionResponseSchema = lazySchema(() =>

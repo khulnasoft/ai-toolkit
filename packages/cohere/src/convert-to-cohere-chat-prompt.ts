@@ -1,20 +1,20 @@
 import {
-  SharedV3Warning,
-  LanguageModelV3Prompt,
+  SharedV4Warning,
+  LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import { CohereAssistantMessage, CohereChatPrompt } from './cohere-chat-prompt';
 
-export function convertToCohereChatPrompt(prompt: LanguageModelV3Prompt): {
+export function convertToCohereChatPrompt(prompt: LanguageModelV4Prompt): {
   messages: CohereChatPrompt;
   documents: Array<{
     data: { text: string; title?: string };
   }>;
-  warnings: SharedV3Warning[];
+  warnings: SharedV4Warning[];
 } {
   const messages: CohereChatPrompt = [];
   const documents: Array<{ data: { text: string; title?: string } }> = [];
-  const warnings: SharedV3Warning[] = [];
+  const warnings: SharedV4Warning[] = [];
 
   for (const { role, content } of prompt) {
     switch (role) {
@@ -57,7 +57,7 @@ export function convertToCohereChatPrompt(prompt: LanguageModelV3Prompt): {
                     throw new UnsupportedFunctionalityError({
                       functionality: 'File URL data',
                       message:
-                        'URLs should be downloaded by the AI TOOLKIT and not reach this point. This indicates a configuration issue.',
+                        'URLs should be downloaded by the AI SDK and not reach this point. This indicates a configuration issue.',
                     });
                   }
 

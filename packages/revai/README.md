@@ -1,28 +1,36 @@
-# AI TOOLKIT - Rev.ai Provider
+# AI SDK - Rev.ai Provider
 
-The **[Rev.ai provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Rev.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the Rev.ai transcription API.
 
 ## Setup
 
-The Rev.ai provider is available in the `@ai-toolkit/revai` module. You can install it with
+The Rev.ai provider is available in the `@ai-tools/revai` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/revai
+npm i @ai-tools/revai
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `revai` from `@ai-toolkit/revai`:
+You can import the default provider instance `revai` from `@ai-tools/revai`:
 
 ```ts
-import { revai } from '@ai-toolkit/revai';
+import { revai } from '@ai-tools/revai';
 ```
 
 ## Example
 
 ```ts
-import { revai } from '@ai-toolkit/revai';
+import { revai } from '@ai-tools/revai';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -35,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Rev.ai provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/revai)** for more information.
+Please check out the **[Rev.ai provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for more information.

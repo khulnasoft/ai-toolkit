@@ -1,4 +1,4 @@
-import { safeParseJSON } from '@ai-toolkit/provider-utils';
+import { safeParseJSON } from '@ai-tools/provider-utils';
 import { deepgramErrorDataSchema } from './deepgram-error';
 import { describe, expect, it } from 'vitest';
 

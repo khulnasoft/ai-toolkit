@@ -1,8 +1,8 @@
-import { delay as originalDelay } from '@ai-toolkit/provider-utils';
-import { SharedV3ProviderMetadata } from '@ai-toolkit/provider';
+import { delay as originalDelay } from '@ai-tools/provider-utils';
+import { SharedV4ProviderMetadata } from '@ai-tools/provider';
 import { TextStreamPart } from './stream-text-result';
 import { ToolSet } from './tool-set';
-import { InvalidArgumentError } from '@ai-toolkit/provider';
+import { InvalidArgumentError } from '@ai-tools/provider';
 
 const CHUNKING_REGEXPS = {
   word: /\S+\s+/m,
@@ -108,7 +108,7 @@ export function smoothStream<TOOLS extends ToolSet>({
     let buffer = '';
     let id = '';
     let type: 'text-delta' | 'reasoning-delta' | undefined = undefined;
-    let providerMetadata: SharedV3ProviderMetadata | undefined = undefined;
+    let providerMetadata: SharedV4ProviderMetadata | undefined = undefined;
 
     function flushBuffer(
       controller: TransformStreamDefaultController<TextStreamPart<TOOLS>>,

@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-toolkit/provider';
+import { APICallError } from '@ai-tools/provider';
 import { extractResponseHeaders } from './extract-response-headers';
 import { FetchFunction } from './fetch-function';
 import { handleFetchError } from './handle-fetch-error';
@@ -99,7 +99,7 @@ export const postToApi = async <T>({
       method: 'POST',
       headers: withUserAgentSuffix(
         headers,
-        `ai-toolkit/provider-utils/${VERSION}`,
+        `ai-sdk/provider-utils/${VERSION}`,
         getRuntimeEnvironmentUserAgent(),
       ),
       body: body.content,

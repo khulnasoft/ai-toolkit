@@ -54,7 +54,7 @@ export function EmptyUseChat() {
 }
 
 // Test with new import syntax
-import { useChat as useChatNew } from '@ai-toolkit/react';
+import { useChat as useChatNew } from '@ai-tools/react';
 
 export function ChatWithNewImportSyntax() {
   const { messages, sendMessage } = useChatNew({

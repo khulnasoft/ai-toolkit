@@ -1,4 +1,4 @@
-import { togetherai } from '@ai-toolkit/togetherai';
+import { togetherai } from '@ai-tools/togetherai';
 import { rerank } from 'ai';
 import { print } from '../lib/print';
 import { run } from '../lib/run';

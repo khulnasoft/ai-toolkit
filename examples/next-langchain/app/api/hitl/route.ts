@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { createAgent, humanInTheLoopMiddleware } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { tool } from '@langchain/core/tools';
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { MemorySaver, Command } from '@langchain/langgraph';
 import { z } from 'zod';
 
@@ -214,7 +214,7 @@ export async function POST(req: Request) {
       );
     } else {
       /**
-       * Convert AI TOOLKIT UIMessages to LangChain messages and start new conversation
+       * Convert AI SDK UIMessages to LangChain messages and start new conversation
        */
       const langchainMessages = await toBaseMessages(messages);
       stream = await agent.stream({ messages: langchainMessages }, config);

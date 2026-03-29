@@ -1,7 +1,11 @@
 export type {
-  OpenAIResponsesProviderOptions,
-  OpenAIChatLanguageModelOptions,
-} from '@ai-toolkit/openai';
+  OpenAILanguageModelResponsesOptions,
+  /** @deprecated Use `OpenAILanguageModelResponsesOptions` instead. */
+  OpenAILanguageModelResponsesOptions as OpenAIResponsesProviderOptions,
+  OpenAILanguageModelChatOptions,
+  /** @deprecated Use `OpenAILanguageModelChatOptions` instead. */
+  OpenAILanguageModelChatOptions as OpenAIChatLanguageModelOptions,
+} from '@ai-tools/openai';
 
 export { azure, createAzure } from './azure-openai-provider';
 export type {
@@ -9,6 +13,8 @@ export type {
   AzureOpenAIProviderSettings,
 } from './azure-openai-provider';
 export type {
+  AzureResponsesProviderMetadata,
+  AzureResponsesReasoningProviderMetadata,
   AzureResponsesTextProviderMetadata,
   AzureResponsesSourceDocumentProviderMetadata,
 } from './azure-openai-provider-metadata';

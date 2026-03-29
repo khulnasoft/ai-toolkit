@@ -1,6 +1,6 @@
-# AI TOOLKIT - Perplexity Provider
+# AI SDK - Perplexity Provider
 
-The **[Perplexity provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Perplexity provider](https://ai-sdk.dev/providers/ai-sdk-providers/perplexity)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for Perplexity's Sonar API - a powerful answer engine with real-time web search capabilities.
 
 ## Features
@@ -16,24 +16,32 @@ contains language model support for Perplexity's Sonar API - a powerful answer e
 
 ## Setup
 
-The Perplexity provider is available in the `@ai-toolkit/perplexity` module. You can install it with:
+The Perplexity provider is available in the `@ai-tools/perplexity` module. You can install it with:
 
 ```bash
-npm i @ai-toolkit/perplexity
+npm i @ai-tools/perplexity
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `perplexity` from `@ai-toolkit/perplexity`:
+You can import the default provider instance `perplexity` from `@ai-tools/perplexity`:
 
 ```ts
-import { perplexity } from '@ai-toolkit/perplexity';
+import { perplexity } from '@ai-tools/perplexity';
 ```
 
 ## Example
 
 ```ts
-import { perplexity } from '@ai-toolkit/perplexity';
+import { perplexity } from '@ai-tools/perplexity';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -44,4 +52,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Perplexity provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/perplexity)** for more information.
+Please check out the **[Perplexity provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/perplexity)** for more information.

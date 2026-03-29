@@ -1,3 +1,3 @@
-# AI TOOLKIT - LlamaIndex Adapter
+# AI SDK - LlamaIndex Adapter
 
-This package contains a LlamaIndex adapter for the AI TOOLKIT.
+This package contains a LlamaIndex adapter for the AI SDK.

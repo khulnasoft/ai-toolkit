@@ -1,4 +1,4 @@
-import { experimental_useObject } from '@ai-toolkit/react';
+import { experimental_useObject } from '@ai-tools/react';
 import { z } from 'zod';
 
 export default function Page() {

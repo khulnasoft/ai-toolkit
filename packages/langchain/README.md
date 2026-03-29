@@ -1,19 +1,19 @@
-# AI TOOLKIT - LangChain Adapter
+# AI SDK - LangChain Adapter
 
-The **[AI TOOLKIT](https://studio.khulnasoft.com)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI TOOLKIT, enabling you to use LangChain agents and graphs with AI TOOLKIT UI components.
+The **[AI SDK](https://ai-sdk.dev)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI SDK, enabling you to use LangChain agents and graphs with AI SDK UI components.
 
 ## Installation
 
 ```bash
-npm install @ai-toolkit/langchain @langchain/core
+npm install @ai-tools/langchain @langchain/core
 ```
 
 > **Note:** `@langchain/core` is a required peer dependency.
 
 ## Features
 
-- Convert AI TOOLKIT `UIMessage` to LangChain `BaseMessage` format
-- Transform LangChain/LangGraph streams to AI TOOLKIT `UIMessageStream`
+- Convert AI SDK `UIMessage` to LangChain `BaseMessage` format
+- Transform LangChain/LangGraph streams to AI SDK `UIMessageStream`
 - `ChatTransport` implementation for LangSmith deployments
 - Full support for text, tool calls, and tool results
 - Custom data streaming with typed events (`data-{type}`)
@@ -22,10 +22,10 @@ npm install @ai-toolkit/langchain @langchain/core
 
 ### Converting Messages
 
-Use `toBaseMessages` to convert AI TOOLKIT messages to LangChain format:
+Use `toBaseMessages` to convert AI SDK messages to LangChain format:
 
 ```ts
-import { toBaseMessages } from '@ai-toolkit/langchain';
+import { toBaseMessages } from '@ai-tools/langchain';
 
 // Convert UI messages to LangChain format
 const langchainMessages = await toBaseMessages(uiMessages);
@@ -36,10 +36,10 @@ const response = await model.invoke(langchainMessages);
 
 ### Streaming from LangGraph
 
-Use `toUIMessageStream` to convert LangGraph streams to AI TOOLKIT format:
+Use `toUIMessageStream` to convert LangGraph streams to AI SDK format:
 
 ```ts
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 // Convert messages and stream from a LangGraph graph
@@ -56,12 +56,36 @@ return createUIMessageStreamResponse({
 });
 ```
 
+### Streaming with Callbacks
+
+Use callbacks to access the final LangGraph state, handle errors, or detect aborts:
+
+```ts
+const langchainStream = await graph.stream(
+  { messages: langchainMessages },
+  { streamMode: ['values', 'messages'] },
+);
+
+return createUIMessageStreamResponse({
+  stream: toUIMessageStream<MyGraphState>(langchainStream, {
+    onFinish: async finalState => {
+      if (finalState) {
+        await saveConversation(finalState.messages);
+        await sendAnalytics(finalState);
+      }
+    },
+    onError: error => console.error('Stream failed:', error),
+    onAbort: () => console.log('Client disconnected'),
+  }),
+});
+```
+
 ### Streaming with `streamEvents`
 
 You can also use `toUIMessageStream` with `streamEvents()` for more granular event handling:
 
 ```ts
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 // Using streamEvents with an agent
@@ -138,11 +162,11 @@ const stream = await graph.stream(
 
 ### LangSmith Deployment Transport
 
-Use `LangSmithDeploymentTransport` with the AI TOOLKIT `useChat` hook to connect directly to a LangGraph deployment from the browser:
+Use `LangSmithDeploymentTransport` with the AI SDK `useChat` hook to connect directly to a LangGraph deployment from the browser:
 
 ```tsx
 import { useChat } from 'ai/react';
-import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
+import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
 import { useMemo } from 'react';
 
 function Chat() {
@@ -177,17 +201,17 @@ function Chat() {
 
 ### `toBaseMessages(messages)`
 
-Converts AI TOOLKIT `UIMessage` objects to LangChain `BaseMessage` objects.
+Converts AI SDK `UIMessage` objects to LangChain `BaseMessage` objects.
 
 **Parameters:**
 
-- `messages`: `UIMessage[]` - Array of AI TOOLKIT UI messages
+- `messages`: `UIMessage[]` - Array of AI SDK UI messages
 
 **Returns:** `Promise<BaseMessage[]>`
 
 ### `convertModelMessages(modelMessages)`
 
-Converts AI TOOLKIT `ModelMessage` objects to LangChain `BaseMessage` objects.
+Converts AI SDK `ModelMessage` objects to LangChain `BaseMessage` objects.
 
 **Parameters:**
 
@@ -195,13 +219,21 @@ Converts AI TOOLKIT `ModelMessage` objects to LangChain `BaseMessage` objects.
 
 **Returns:** `BaseMessage[]`
 
-### `toUIMessageStream(stream)`
+### `toUIMessageStream(stream, callbacks?)`
 
-Converts a LangChain/LangGraph stream to an AI TOOLKIT `UIMessageStream`.
+Converts a LangChain/LangGraph stream to an AI SDK `UIMessageStream`.
 
 **Parameters:**
 
 - `stream`: `AsyncIterable | ReadableStream` - A stream from LangChain `model.stream()`, LangGraph `graph.stream()`, or `streamEvents()`
+- `callbacks?`: `StreamCallbacks<TState>` - Optional lifecycle callbacks:
+  - `onStart()` - Called when stream initializes
+  - `onToken(token)` - Called for each token
+  - `onText(text)` - Called for each text chunk
+  - `onFinal(text)` - Called with aggregated text (on success, error, or abort)
+  - `onFinish(state)` - Called on success with LangGraph state (or `undefined` for other streams)
+  - `onError(error)` - Called when stream errors
+  - `onAbort()` - Called when stream is aborted
 
 **Returns:** `ReadableStream<UIMessageChunk>`
 
@@ -238,4 +270,4 @@ A `ChatTransport` implementation for LangSmith/LangGraph deployments.
 
 ## Documentation
 
-Please check out the [AI TOOLKIT documentation](https://studio.khulnasoft.com) for more information.
+Please check out the [AI SDK documentation](https://ai-sdk.dev) for more information.

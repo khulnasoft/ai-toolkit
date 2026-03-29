@@ -1,11 +1,11 @@
 import { streamText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 
 export async function POST(req: Request) {
   const { prompt }: { prompt: string } = await req.json();
 
   const result = streamText({
-    model: openai('gpt-4'),
+    model: openai('gpt-5'),
     system: 'You are a helpful assistant.',
     prompt,
   });

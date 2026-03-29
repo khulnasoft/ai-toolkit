@@ -2,7 +2,7 @@ import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { NextResponse } from 'next/server';
 
 import { ChatOpenAI, tools } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 
 /**
  * Allow streaming responses up to 120 seconds for image generation
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages
+     * Convert AI SDK UIMessages to LangChain messages
      */
     const langchainMessages = await toBaseMessages(messages);
 

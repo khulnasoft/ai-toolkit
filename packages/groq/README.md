@@ -1,22 +1,30 @@
-# AI TOOLKIT - Groq Provider
+# AI SDK - Groq Provider
 
-The **[Groq provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Groq provider](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the Groq chat and completion APIs, transcription support, and browser search tool.
 
 ## Setup
 
-The Groq provider is available in the `@ai-toolkit/groq` module. You can install it with
+The Groq provider is available in the `@ai-tools/groq` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/groq
+npm i @ai-tools/groq
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `groq` from `@ai-toolkit/groq`:
+You can import the default provider instance `groq` from `@ai-tools/groq`:
 
 ```ts
-import { groq } from '@ai-toolkit/groq';
+import { groq } from '@ai-tools/groq';
 ```
 
 ## Browser Search Tool
@@ -35,7 +43,7 @@ Browser search is only available for these models:
 ### Basic Usage
 
 ```ts
-import { groq } from '@ai-toolkit/groq';
+import { groq } from '@ai-tools/groq';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -54,7 +62,7 @@ console.log(result.text);
 ### Streaming Example
 
 ```ts
-import { groq } from '@ai-toolkit/groq';
+import { groq } from '@ai-tools/groq';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -110,7 +118,7 @@ const result = await generateText({
 ## Basic Text Generation
 
 ```ts
-import { groq } from '@ai-toolkit/groq';
+import { groq } from '@ai-tools/groq';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -121,6 +129,6 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Groq provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/groq)** for more information.
+Please check out the **[Groq provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for more information.
 
 For browser search details, see the **[Groq Browser Search Documentation](https://console.groq.com/docs/browser-search)**.

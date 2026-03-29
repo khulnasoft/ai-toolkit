@@ -16,7 +16,7 @@ jobs:
         run: |
           lockSucceeded="$(gh api graphql -F discussionId=$DISCUSSION_ID -f query='
           mutation lock($discussionId:ID!) {
-            addDiscussionComment(input:{discussionId:$discussionId, body:"This discussion was automatically closed because the community moved to [community.vercel.com/ai-toolkit](https://community.vercel.com/ai-toolkit)"}) {
+            addDiscussionComment(input:{discussionId:$discussionId, body:"This discussion was automatically closed because the community moved to [community.vercel.com/ai-sdk](https://community.vercel.com/ai-sdk)"}) {
               comment{
                 url
               }
@@ -40,7 +40,7 @@ jobs:
           ' --jq '.data.lockLockable.lockedRecord.locked')"
 
           echo "LOCKED =" $lockSucceeded
-          echo '${{ github.event.discussion.number }}' | jq -r '"https://github.com/khulnasoft/ai-toolkit/discussions/\(.)"'
+          echo '${{ github.event.discussion.number }}' | jq -r '"https://github.com/vercel/ai/discussions/\(.)"'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCUSSION_ID: ${{ github.event.discussion.node_id }}

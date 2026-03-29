@@ -1,13 +1,13 @@
-import { LanguageModelV3Prompt } from '@ai-toolkit/provider';
+import { LanguageModelV4Prompt } from '@ai-tools/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-toolkit/provider-utils/test';
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+} from '@ai-tools/provider-utils/test';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HuggingFaceResponsesLanguageModel } from './huggingface-responses-language-model';
 
-const TEST_PROMPT: LanguageModelV3Prompt = [
+const TEST_PROMPT: LanguageModelV4Prompt = [
   { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
 ];
 

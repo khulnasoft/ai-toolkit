@@ -1,4 +1,4 @@
-import { safeParseJSON } from '@ai-toolkit/provider-utils';
+import { safeParseJSON } from '@ai-tools/provider-utils';
 import { elevenlabsErrorDataSchema } from './elevenlabs-error';
 import { describe, it, expect } from 'vitest';
 

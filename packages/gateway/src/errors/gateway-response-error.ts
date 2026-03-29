@@ -1,4 +1,4 @@
-import { TypeValidationError } from '@ai-toolkit/provider';
+import { TypeValidationError } from '@ai-tools/provider';
 import { GatewayError } from './gateway-error';
 
 const name = 'GatewayResponseError';

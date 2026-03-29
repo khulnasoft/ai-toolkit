@@ -1,6 +1,6 @@
-# AI TOOLKIT - Luma Provider
+# AI SDK - Luma Provider
 
-The **Luma provider** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
+The **Luma provider** for the [AI SDK](https://ai-sdk.dev/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
 
 ## About Luma Photon Models
 
@@ -16,24 +16,32 @@ For more detailed information about the Luma models and their capabilities, plea
 
 ## Setup
 
-The Luma provider is available in the `@ai-toolkit/luma` module. You can install it with:
+The Luma provider is available in the `@ai-tools/luma` module. You can install it with:
 
 ```bash
-npm i @ai-toolkit/luma
+npm i @ai-tools/luma
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `luma` from `@ai-toolkit/luma`:
+You can import the default provider instance `luma` from `@ai-tools/luma`:
 
 ```ts
-import { luma } from '@ai-toolkit/luma';
+import { luma } from '@ai-tools/luma';
 ```
 
 ## Image Generation Example
 
 ```ts
-import { luma } from '@ai-toolkit/luma';
+import { luma } from '@ai-tools/luma';
 import { generateImage } from 'ai';
 import fs from 'fs';
 
@@ -49,4 +57,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Luma provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/luma)** for more information.
+Please check out the **[Luma provider](https://ai-sdk.dev/providers/ai-sdk-providers/luma)** for more information.

@@ -1,10 +1,10 @@
-import { AITOOLKITError } from '@ai-toolkit/provider';
+import { AISDKError } from '@ai-tools/provider';
 
 const name = 'AI_DownloadError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class DownloadError extends AITOOLKITError {
+export class DownloadError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly url: string;
@@ -34,6 +34,6 @@ export class DownloadError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is DownloadError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

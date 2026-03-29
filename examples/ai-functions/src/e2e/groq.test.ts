@@ -1,4 +1,4 @@
-import { groq as provider } from '@ai-toolkit/groq';
+import { groq as provider } from '@ai-tools/groq';
 import {
   createFeatureTestSuite,
   createLanguageModelWithCapabilities,

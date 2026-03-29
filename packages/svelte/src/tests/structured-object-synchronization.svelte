@@ -1,5 +1,5 @@
 <script lang="ts" generics="RESULT">
-  import type { FlexibleSchema } from '@ai-toolkit/provider-utils';
+  import type { FlexibleSchema } from '@ai-tools/provider-utils';
   import { createAIContext } from '../context-provider.js';
   import { StructuredObject } from '../structured-object.svelte.js';
 

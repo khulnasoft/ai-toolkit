@@ -5,7 +5,7 @@ import {
   lazySchema,
   resolve,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { asGatewayError } from './errors';
 import type { GatewayConfig } from './gateway-config';
@@ -101,11 +101,13 @@ const gatewayAvailableModelsResponseSchema = lazySchema(() =>
             )
             .nullish(),
           specification: z.object({
-            specificationVersion: z.literal('v3'),
+            specificationVersion: z.literal('v4'),
             provider: z.string(),
             modelId: z.string(),
           }),
-          modelType: z.enum(['language', 'embedding', 'image']).nullish(),
+          modelType: z
+            .enum(['embedding', 'image', 'language', 'video'])
+            .nullish(),
         }),
       ),
     }),

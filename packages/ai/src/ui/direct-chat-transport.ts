@@ -37,7 +37,7 @@ export type DirectChatTransportOptions<
  *
  * @example
  * ```tsx
- * import { useChat } from '@ai-toolkit/react';
+ * import { useChat } from '@ai-tools/react';
  * import { DirectChatTransport } from 'ai';
  * import { myAgent } from './my-agent';
  *
@@ -55,8 +55,7 @@ export class DirectChatTransport<
     never,
     InferUITools<TOOLS>
   >,
-> implements ChatTransport<UI_MESSAGE>
-{
+> implements ChatTransport<UI_MESSAGE> {
   private readonly agent: Agent<CALL_OPTIONS, TOOLS, OUTPUT>;
   private readonly agentOptions: CALL_OPTIONS | undefined;
   private readonly uiMessageStreamOptions: Omit<

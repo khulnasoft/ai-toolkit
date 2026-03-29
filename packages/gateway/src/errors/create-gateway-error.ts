@@ -15,7 +15,7 @@ import {
   safeValidateTypes,
   validateTypes,
   zodSchema,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 
 export async function createGatewayErrorFromResponse({
   response,

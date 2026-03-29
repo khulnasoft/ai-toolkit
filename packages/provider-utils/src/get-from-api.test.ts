@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-toolkit/provider';
+import { APICallError } from '@ai-tools/provider';
 import { describe, it, expect, vi } from 'vitest';
 import { getFromApi } from './get-from-api';
 import {
@@ -60,7 +60,7 @@ describe('getFromApi', () => {
         method: 'GET',
         headers: {
           authorization: 'Bearer test',
-          'user-agent': 'ai-toolkit/provider-utils/0.0.0-test runtime/test-env',
+          'user-agent': 'ai-sdk/provider-utils/0.0.0-test runtime/test-env',
         },
       }),
     );
@@ -148,7 +148,7 @@ describe('getFromApi', () => {
       expect.objectContaining({
         headers: {
           authorization: 'Bearer test',
-          'user-agent': 'ai-toolkit/provider-utils/0.0.0-test runtime/test-env',
+          'user-agent': 'ai-sdk/provider-utils/0.0.0-test runtime/test-env',
         },
       }),
     );

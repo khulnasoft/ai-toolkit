@@ -1,13 +1,13 @@
 import {
-  EmbeddingModelV3,
+  EmbeddingModelV4,
   TooManyEmbeddingValuesForCallError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   FetchFunction,
   postJsonToApi,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { MistralEmbeddingModelId } from './mistral-embedding-options';
 import { mistralFailedResponseHandler } from './mistral-error';
@@ -19,8 +19,8 @@ type MistralEmbeddingConfig = {
   fetch?: FetchFunction;
 };
 
-export class MistralEmbeddingModel implements EmbeddingModelV3 {
-  readonly specificationVersion = 'v3';
+export class MistralEmbeddingModel implements EmbeddingModelV4 {
+  readonly specificationVersion = 'v4';
   readonly modelId: MistralEmbeddingModelId;
   readonly maxEmbeddingsPerCall = 32;
   readonly supportsParallelCalls = false;
@@ -43,8 +43,8 @@ export class MistralEmbeddingModel implements EmbeddingModelV3 {
     values,
     abortSignal,
     headers,
-  }: Parameters<EmbeddingModelV3['doEmbed']>[0]): Promise<
-    Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>
+  }: Parameters<EmbeddingModelV4['doEmbed']>[0]): Promise<
+    Awaited<ReturnType<EmbeddingModelV4['doEmbed']>>
   > {
     if (values.length > this.maxEmbeddingsPerCall) {
       throw new TooManyEmbeddingValuesForCallError({

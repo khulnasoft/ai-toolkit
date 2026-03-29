@@ -1,20 +1,20 @@
-# AI TOOLKIT DevTools
+# AI SDK DevTools
 
-A local development tool for debugging and inspecting AI TOOLKIT applications. View LLM requests, responses, tool calls, and multi-step interactions in a web-based UI.
+A local development tool for debugging and inspecting AI SDK applications. View LLM requests, responses, tool calls, and multi-step interactions in a web-based UI.
 
 > **Note**: This package is experimental and intended for local development only. Do not use in production environments.
 
 ## Installation
 
 ```bash
-npm install @ai-toolkit/devtools
+npm install @ai-tools/devtools
 # or
-pnpm add @ai-toolkit/devtools
+pnpm add @ai-tools/devtools
 ```
 
 ## Requirements
 
-- AI TOOLKIT v6 beta (`ai@^6.0.0-beta.0`)
+- AI SDK v6 beta (`ai@^6.0.0-beta.0`)
 - Node.js compatible runtime
 
 ## Usage
@@ -23,10 +23,10 @@ pnpm add @ai-toolkit/devtools
 
 ```typescript
 import { wrapLanguageModel } from 'ai';
-import { devToolsMiddleware } from '@ai-toolkit/devtools';
+import { devToolsMiddleware } from '@ai-tools/devtools';
 
 const model = wrapLanguageModel({
-  middleware: devToolsMiddleware,
+  middleware: devToolsMiddleware(),
   model: yourModel,
 });
 ```
@@ -34,10 +34,10 @@ const model = wrapLanguageModel({
 ### 2. Run the viewer
 
 ```bash
-npx @ai-toolkit/devtools
+npx @ai-tools/devtools
 ```
 
-Open http://localhost:4983 to view your AI TOOLKIT interactions.
+Open http://localhost:4983 to view your AI SDK interactions.
 
 ## How it works
 
@@ -53,7 +53,7 @@ Data is stored locally in a JSON file (`.devtools/generations.json`) and served 
 ### Data flow
 
 ```
-AI TOOLKIT call → devToolsMiddleware → JSON file → Hono API → React UI
+AI SDK call → devToolsMiddleware → JSON file → Hono API → React UI
 ```
 
 ### Key concepts

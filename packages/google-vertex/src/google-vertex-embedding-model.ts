@@ -1,24 +1,24 @@
 import {
-  EmbeddingModelV3,
+  EmbeddingModelV4,
   TooManyEmbeddingValuesForCallError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   postJsonToApi,
   resolve,
   parseProviderOptions,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
 import {
   GoogleVertexEmbeddingModelId,
-  googleVertexEmbeddingProviderOptions,
+  googleVertexEmbeddingModelOptions,
 } from './google-vertex-embedding-options';
 import { GoogleVertexConfig } from './google-vertex-config';
 
-export class GoogleVertexEmbeddingModel implements EmbeddingModelV3 {
-  readonly specificationVersion = 'v3';
+export class GoogleVertexEmbeddingModel implements EmbeddingModelV4 {
+  readonly specificationVersion = 'v4';
   readonly modelId: GoogleVertexEmbeddingModelId;
   readonly maxEmbeddingsPerCall = 2048;
   readonly supportsParallelCalls = true;
@@ -42,20 +42,20 @@ export class GoogleVertexEmbeddingModel implements EmbeddingModelV3 {
     headers,
     abortSignal,
     providerOptions,
-  }: Parameters<EmbeddingModelV3['doEmbed']>[0]): Promise<
-    Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>
+  }: Parameters<EmbeddingModelV4['doEmbed']>[0]): Promise<
+    Awaited<ReturnType<EmbeddingModelV4['doEmbed']>>
   > {
     let googleOptions = await parseProviderOptions({
       provider: 'vertex',
       providerOptions,
-      schema: googleVertexEmbeddingProviderOptions,
+      schema: googleVertexEmbeddingModelOptions,
     });
 
     if (googleOptions == null) {
       googleOptions = await parseProviderOptions({
         provider: 'google',
         providerOptions,
-        schema: googleVertexEmbeddingProviderOptions,
+        schema: googleVertexEmbeddingModelOptions,
       });
     }
 

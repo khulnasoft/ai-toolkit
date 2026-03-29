@@ -1,4 +1,4 @@
-import { loadOptionalSetting, resolve } from '@ai-toolkit/provider-utils';
+import { loadOptionalSetting, resolve } from '@ai-tools/provider-utils';
 import { GoogleAuthOptions } from 'google-auth-library';
 import { generateAuthToken } from './google-vertex-auth-google-auth-library';
 import {
@@ -7,8 +7,7 @@ import {
   GoogleVertexProviderSettings as GoogleVertexProviderSettingsOriginal,
 } from './google-vertex-provider';
 
-export interface GoogleVertexProviderSettings
-  extends GoogleVertexProviderSettingsOriginal {
+export interface GoogleVertexProviderSettings extends GoogleVertexProviderSettingsOriginal {
   /**
    * Optional. The Authentication options provided by google-auth-library.
    * Complete list of authentication options is documented in the
@@ -44,6 +43,6 @@ export function createVertex(
 }
 
 /**
-Default Google Vertex AI provider instance.
+ * Default Google Vertex AI provider instance.
  */
 export const vertex = createVertex();

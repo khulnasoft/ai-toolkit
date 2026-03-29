@@ -1,18 +1,18 @@
-import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
+import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
 import {
-  LanguageModelV3,
+  LanguageModelV4,
   NoSuchModelError,
-  ProviderV3,
-} from '@ai-toolkit/provider';
+  ProviderV4,
+} from '@ai-tools/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { CerebrasChatModelId } from './cerebras-chat-options';
 import { z } from 'zod/v4';
-import { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
+import { ProviderErrorStructure } from '@ai-tools/openai-compatible';
 import { VERSION } from './version';
 
 // Add error schema and structure
@@ -32,39 +32,39 @@ const cerebrasErrorStructure: ProviderErrorStructure<CerebrasErrorData> = {
 
 export interface CerebrasProviderSettings {
   /**
-Cerebras API key.
-*/
+   * Cerebras API key.
+   */
   apiKey?: string;
   /**
-Base URL for the API calls.
-*/
+   * Base URL for the API calls.
+   */
   baseURL?: string;
   /**
-Custom headers to include in the requests.
-*/
+   * Custom headers to include in the requests.
+   */
   headers?: Record<string, string>;
   /**
-Custom fetch implementation. You can use it as a middleware to intercept requests,
-or to provide a custom fetch implementation for e.g. testing.
-*/
+   * Custom fetch implementation. You can use it as a middleware to intercept requests,
+   * or to provide a custom fetch implementation for e.g. testing.
+   */
   fetch?: FetchFunction;
 }
 
-export interface CerebrasProvider extends ProviderV3 {
+export interface CerebrasProvider extends ProviderV4 {
   /**
-Creates a Cerebras model for text generation.
-*/
-  (modelId: CerebrasChatModelId): LanguageModelV3;
+   * Creates a Cerebras model for text generation.
+   */
+  (modelId: CerebrasChatModelId): LanguageModelV4;
 
   /**
-Creates a Cerebras model for text generation.
-*/
-  languageModel(modelId: CerebrasChatModelId): LanguageModelV3;
+   * Creates a Cerebras model for text generation.
+   */
+  languageModel(modelId: CerebrasChatModelId): LanguageModelV4;
 
   /**
-Creates a Cerebras chat model for text generation.
-*/
-  chat(modelId: CerebrasChatModelId): LanguageModelV3;
+   * Creates a Cerebras chat model for text generation.
+   */
+  chat(modelId: CerebrasChatModelId): LanguageModelV4;
 
   /**
    * @deprecated Use `embeddingModel` instead.
@@ -88,7 +88,7 @@ export function createCerebras(
         })}`,
         ...options.headers,
       },
-      `ai-toolkit/cerebras/${VERSION}`,
+      `ai-sdk/cerebras/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: CerebrasChatModelId) => {
@@ -105,7 +105,7 @@ export function createCerebras(
   const provider = (modelId: CerebrasChatModelId) =>
     createLanguageModel(modelId);
 
-  provider.specificationVersion = 'v3' as const;
+  provider.specificationVersion = 'v4' as const;
   provider.languageModel = createLanguageModel;
   provider.chat = createLanguageModel;
 

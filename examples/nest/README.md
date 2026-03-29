@@ -1,6 +1,6 @@
-# Nest.js + AI TOOLKIT Example
+# Nest.js + AI SDK Example
 
-You can use the AI TOOLKIT in an [Nest.js](https://nestjs.com/) server to generate and stream text and objects.
+You can use the AI SDK in an [Nest.js](https://nestjs.com/) server to generate and stream text and objects.
 
 ## Usage
 
@@ -10,7 +10,7 @@ You can use the AI TOOLKIT in an [Nest.js](https://nestjs.com/) server to genera
 OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 ```
 
-2. Run the following commands from the root directory of the AI TOOLKIT repo:
+2. Run the following commands from the root directory of the AI SDK repo:
 
 ```sh
 pnpm install

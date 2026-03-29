@@ -64,7 +64,7 @@ describe('OpenAICompatibleProvider', () => {
       expect(headers).toEqual({
         authorization: 'Bearer test-api-key',
         'custom-header': 'value',
-        'user-agent': 'ai-toolkit/openai-compatible/0.0.0-test',
+        'user-agent': 'ai-sdk/openai-compatible/0.0.0-test',
       });
       expect(config.provider).toBe('test-provider.chat');
       expect(config.url({ modelId: 'model-id', path: '/v1/chat' })).toBe(
@@ -89,7 +89,7 @@ describe('OpenAICompatibleProvider', () => {
 
       expect(headers).toEqual({
         'custom-header': 'value',
-        'user-agent': 'ai-toolkit/openai-compatible/0.0.0-test',
+        'user-agent': 'ai-sdk/openai-compatible/0.0.0-test',
       });
     });
   });
@@ -116,7 +116,7 @@ describe('OpenAICompatibleProvider', () => {
       expect(headers).toEqual({
         authorization: 'Bearer test-api-key',
         'custom-header': 'value',
-        'user-agent': 'ai-toolkit/openai-compatible/0.0.0-test',
+        'user-agent': 'ai-sdk/openai-compatible/0.0.0-test',
       });
       expect(config.provider).toBe('test-provider.chat');
       expect(config.url({ modelId: 'model-id', path: '/v1/chat' })).toBe(
@@ -137,7 +137,7 @@ describe('OpenAICompatibleProvider', () => {
       expect(headers).toEqual({
         authorization: 'Bearer test-api-key',
         'custom-header': 'value',
-        'user-agent': 'ai-toolkit/openai-compatible/0.0.0-test',
+        'user-agent': 'ai-sdk/openai-compatible/0.0.0-test',
       });
       expect(config.provider).toBe('test-provider.completion');
       expect(
@@ -157,7 +157,7 @@ describe('OpenAICompatibleProvider', () => {
       expect(headers).toEqual({
         authorization: 'Bearer test-api-key',
         'custom-header': 'value',
-        'user-agent': 'ai-toolkit/openai-compatible/0.0.0-test',
+        'user-agent': 'ai-sdk/openai-compatible/0.0.0-test',
       });
       expect(config.provider).toBe('test-provider.embedding');
       expect(
@@ -324,6 +324,31 @@ describe('OpenAICompatibleProvider', () => {
         // @ts-expect-error - testing
         imageModelConfigArg.supportsStructuredOutputs,
       ).toBe(undefined);
+    });
+  });
+
+  describe('metadataExtractor setting', () => {
+    it('should pass metadataExtractor to chat model', () => {
+      const mockExtractor = {
+        extractMetadata: async () => undefined,
+        createStreamExtractor: () => ({
+          processChunk: () => {},
+          buildMetadata: () => undefined,
+        }),
+      };
+
+      const provider = createOpenAICompatible({
+        baseURL: 'https://api.example.com',
+        name: 'test-provider',
+        metadataExtractor: mockExtractor,
+      });
+
+      provider.chatModel('chat-model');
+
+      expect(
+        OpenAICompatibleChatLanguageModelMock.mock.calls[0][1]
+          .metadataExtractor,
+      ).toBe(mockExtractor);
     });
   });
 });

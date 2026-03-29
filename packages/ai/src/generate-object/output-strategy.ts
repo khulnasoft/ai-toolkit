@@ -6,14 +6,14 @@ import {
   JSONValue,
   TypeValidationError,
   UnsupportedFunctionalityError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import {
   asSchema,
   FlexibleSchema,
   safeValidateTypes,
   Schema,
   ValidationResult,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import {
   FinishReason,

@@ -1,8 +1,8 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { generateText, stepCountIs } from 'ai';
 
 /**
- * @deprecated Use the `@ai-toolkit/mcp` package instead.
+ * @deprecated Use the `@ai-tools/mcp` package instead.
  *
 import { experimental_createMCPClient, auth } from 'ai';
 import type {
@@ -13,14 +13,14 @@ import type {
 } from 'ai';
 */
 
-import { createMCPClient, auth } from '@ai-toolkit/mcp';
+import { createMCPClient, auth } from '@ai-tools/mcp';
 import 'dotenv/config';
 import type {
   OAuthClientProvider,
   OAuthClientInformation,
   OAuthClientMetadata,
   OAuthTokens,
-} from '@ai-toolkit/mcp';
+} from '@ai-tools/mcp';
 import { createServer } from 'node:http';
 import { exec } from 'node:child_process';
 
@@ -65,7 +65,7 @@ class InMemoryOAuthClientProvider implements OAuthClientProvider {
   }
   get clientMetadata(): OAuthClientMetadata {
     return {
-      client_name: 'AI TOOLKIT MCP OAuth Example',
+      client_name: 'AI SDK MCP OAuth Example',
       redirect_uris: [String(this._redirectUrl)],
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],

@@ -1,14 +1,14 @@
 import {
-  LanguageModelV3FunctionTool,
-  LanguageModelV3ProviderTool,
-} from '@ai-toolkit/provider';
+  LanguageModelV4FunctionTool,
+  LanguageModelV4ProviderTool,
+} from '@ai-tools/provider';
 import { describe, expect, it } from 'vitest';
 import { createToolNameMapping } from './create-tool-name-mapping';
 
 describe('createToolNameMapping', () => {
   it('should create mappings for provider-defined tools', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [
       {
         type: 'provider',
@@ -47,7 +47,7 @@ describe('createToolNameMapping', () => {
 
   it('should ignore function tools', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [
       {
         type: 'function',
@@ -71,7 +71,7 @@ describe('createToolNameMapping', () => {
 
   it('should return input name when tool is not in providerToolNames', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [
       {
         type: 'provider',
@@ -91,7 +91,7 @@ describe('createToolNameMapping', () => {
 
   it('should return input name when mapping does not exist', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [
       {
         type: 'provider',
@@ -117,7 +117,7 @@ describe('createToolNameMapping', () => {
 
   it('should handle empty tools array', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [];
 
     const providerToolNames: Record<`${string}.${string}`, string> = {};
@@ -130,7 +130,7 @@ describe('createToolNameMapping', () => {
 
   it('should handle mixed function and provider-defined tools', () => {
     const tools: Array<
-      LanguageModelV3FunctionTool | LanguageModelV3ProviderTool
+      LanguageModelV4FunctionTool | LanguageModelV4ProviderTool
     > = [
       {
         type: 'function',

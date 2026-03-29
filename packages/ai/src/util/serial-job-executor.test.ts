@@ -1,4 +1,4 @@
-import { DelayedPromise } from '@ai-toolkit/provider-utils';
+import { DelayedPromise } from '@ai-tools/provider-utils';
 import { describe, expect, it } from 'vitest';
 import { SerialJobExecutor } from './serial-job-executor';
 

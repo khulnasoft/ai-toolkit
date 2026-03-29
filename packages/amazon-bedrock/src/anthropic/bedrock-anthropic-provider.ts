@@ -1,8 +1,8 @@
 import {
-  LanguageModelV3,
+  LanguageModelV4,
   NoSuchModelError,
-  ProviderV3,
-} from '@ai-toolkit/provider';
+  ProviderV4,
+} from '@ai-tools/provider';
 import {
   FetchFunction,
   loadOptionalSetting,
@@ -11,11 +11,11 @@ import {
   resolve,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import {
   anthropicTools,
   AnthropicMessagesLanguageModel,
-} from '@ai-toolkit/anthropic/internal';
+} from '@ai-tools/anthropic/internal';
 import {
   BedrockCredentials,
   createApiKeyFetchFunction,
@@ -49,19 +49,19 @@ const BEDROCK_TOOL_BETA_MAP: Record<string, string> = {
   computer_20241022: 'computer-use-2024-10-22',
 };
 
-export interface BedrockAnthropicProvider extends ProviderV3 {
+export interface BedrockAnthropicProvider extends ProviderV4 {
   /**
-Creates a model for text generation.
-*/
-  (modelId: BedrockAnthropicModelId): LanguageModelV3;
+   * Creates a model for text generation.
+   */
+  (modelId: BedrockAnthropicModelId): LanguageModelV4;
 
   /**
-Creates a model for text generation.
-*/
-  languageModel(modelId: BedrockAnthropicModelId): LanguageModelV3;
+   * Creates a model for text generation.
+   */
+  languageModel(modelId: BedrockAnthropicModelId): LanguageModelV4;
 
   /**
-Anthropic-specific computer use tool.
+   * Anthropic-specific computer use tool.
    */
   tools: typeof anthropicTools;
 
@@ -73,65 +73,65 @@ Anthropic-specific computer use tool.
 
 export interface BedrockAnthropicProviderSettings {
   /**
-The AWS region to use for the Bedrock provider. Defaults to the value of the
-`AWS_REGION` environment variable.
+   * The AWS region to use for the Bedrock provider. Defaults to the value of the
+   * `AWS_REGION` environment variable.
    */
   region?: string;
 
   /**
-API key for authenticating requests using Bearer token authentication.
-When provided, this will be used instead of AWS SigV4 authentication.
-Defaults to the value of the `AWS_BEARER_TOKEN_BEDROCK` environment variable.
+   * API key for authenticating requests using Bearer token authentication.
+   * When provided, this will be used instead of AWS SigV4 authentication.
+   * Defaults to the value of the `AWS_BEARER_TOKEN_BEDROCK` environment variable.
    */
   apiKey?: string;
 
   /**
-The AWS access key ID to use for the Bedrock provider. Defaults to the value of the
-`AWS_ACCESS_KEY_ID` environment variable.
+   * The AWS access key ID to use for the Bedrock provider. Defaults to the value of the
+   * `AWS_ACCESS_KEY_ID` environment variable.
    */
   accessKeyId?: string;
 
   /**
-The AWS secret access key to use for the Bedrock provider. Defaults to the value of the
-`AWS_SECRET_ACCESS_KEY` environment variable.
+   * The AWS secret access key to use for the Bedrock provider. Defaults to the value of the
+   * `AWS_SECRET_ACCESS_KEY` environment variable.
    */
   secretAccessKey?: string;
 
   /**
-The AWS session token to use for the Bedrock provider. Defaults to the value of the
-`AWS_SESSION_TOKEN` environment variable.
+   * The AWS session token to use for the Bedrock provider. Defaults to the value of the
+   * `AWS_SESSION_TOKEN` environment variable.
    */
   sessionToken?: string;
 
   /**
-Base URL for the Bedrock API calls.
+   * Base URL for the Bedrock API calls.
    */
   baseURL?: string;
 
   /**
-Custom headers to include in the requests.
+   * Custom headers to include in the requests.
    */
   headers?: Resolvable<Record<string, string | undefined>>;
 
   /**
-Custom fetch implementation. You can use it as a middleware to intercept requests,
-or to provide a custom fetch implementation for e.g. testing.
-*/
+   * Custom fetch implementation. You can use it as a middleware to intercept requests,
+   * or to provide a custom fetch implementation for e.g. testing.
+   */
   fetch?: FetchFunction;
 
   /**
-The AWS credential provider to use for the Bedrock provider to get dynamic
-credentials similar to the AWS SDK. Setting a provider here will cause its
-credential values to be used instead of the `accessKeyId`, `secretAccessKey`,
-and `sessionToken` settings.
+   * The AWS credential provider to use for the Bedrock provider to get dynamic
+   * credentials similar to the AWS SDK. Setting a provider here will cause its
+   * credential values to be used instead of the `accessKeyId`, `secretAccessKey`,
+   * and `sessionToken` settings.
    */
   credentialProvider?: () => PromiseLike<Omit<BedrockCredentials, 'region'>>;
 }
 
 /**
-Create an Amazon Bedrock Anthropic provider instance.
-This provider uses the native Anthropic API through Bedrock's InvokeModel endpoint,
-bypassing the Converse API for better feature compatibility.
+ * Create an Amazon Bedrock Anthropic provider instance.
+ * This provider uses the native Anthropic API through Bedrock's InvokeModel endpoint,
+ * bypassing the Converse API for better feature compatibility.
  */
 export function createBedrockAnthropic(
   options: BedrockAnthropicProviderSettings = {},
@@ -241,10 +241,7 @@ export function createBedrockAnthropic(
 
   const getHeaders = async () => {
     const baseHeaders = (await resolve(options.headers)) ?? {};
-    return withUserAgentSuffix(
-      baseHeaders,
-      `ai-toolkit/amazon-bedrock/${VERSION}`,
-    );
+    return withUserAgentSuffix(baseHeaders, `ai-sdk/amazon-bedrock/${VERSION}`);
   };
 
   const createChatModel = (modelId: BedrockAnthropicModelId) =>
@@ -259,7 +256,7 @@ export function createBedrockAnthropic(
           isStreaming ? 'invoke-with-response-stream' : 'invoke'
         }`,
 
-      transformRequestBody: args => {
+      transformRequestBody: (args, betas) => {
         const { model, stream, tool_choice, tools, ...rest } = args;
 
         const transformedToolChoice =
@@ -270,7 +267,7 @@ export function createBedrockAnthropic(
               }
             : undefined;
 
-        const requiredBetas = new Set<string>();
+        const requiredBetas = new Set<string>(betas);
         const transformedTools = tools?.map((tool: Record<string, unknown>) => {
           const toolType = tool.type as string | undefined;
 
@@ -322,8 +319,8 @@ export function createBedrockAnthropic(
 
       // Bedrock Anthropic doesn't support URL sources, force download and base64 conversion
       supportedUrls: () => ({}),
-      // force the use of JSON tool fallback for structured outputs since beta header isn't supported
-      supportsNativeStructuredOutput: false,
+      // native structured output via output_config.format is supported on Bedrock
+      supportsNativeStructuredOutput: true,
     });
 
   const provider = function (modelId: BedrockAnthropicModelId) {
@@ -336,7 +333,7 @@ export function createBedrockAnthropic(
     return createChatModel(modelId);
   };
 
-  provider.specificationVersion = 'v3' as const;
+  provider.specificationVersion = 'v4' as const;
   provider.languageModel = createChatModel;
   provider.chat = createChatModel;
   provider.messages = createChatModel;
@@ -355,6 +352,6 @@ export function createBedrockAnthropic(
 }
 
 /**
-Default Bedrock Anthropic provider instance.
+ * Default Bedrock Anthropic provider instance.
  */
 export const bedrockAnthropic = createBedrockAnthropic();

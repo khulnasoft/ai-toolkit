@@ -1,6 +1,6 @@
 ---
 title: LangSmith
-description: Monitor and evaluate your AI TOOLKIT application with LangSmith
+description: Monitor and evaluate your AI SDK application with LangSmith
 ---
 
 # LangSmith Observability
@@ -12,30 +12,30 @@ Use of LangChain's open-source frameworks is not necessary.
 
 <Note>
   A version of this guide is also available in the [LangSmith
-  documentation](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit).
-  If you are using AI TOOLKIT v4 an older version of the `langsmith` client, see
-  the legacy guide linked from that page.
+  documentation](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk).
+  If you are using AI SDK v4 an older version of the `langsmith` client, see the
+  legacy guide linked from that page.
 </Note>
 
 ## Setup
 
 <Note>The steps in this guide assume you are using `langsmith>=0.3.63.`.</Note>
 
-Install an [AI TOOLKIT model provider](/providers/ai-toolkit-providers) and the [LangSmith client SDK](https://npmjs.com/package/langsmith).
-The code snippets below will use the [AI TOOLKIT's OpenAI provider](/providers/ai-toolkit-providers/openai), but you can use any [other supported provider](/providers/ai-toolkit-providers/) as well.
+Install an [AI SDK model provider](/providers/ai-sdk-providers) and the [LangSmith client SDK](https://npmjs.com/package/langsmith).
+The code snippets below will use the [AI SDK's OpenAI provider](/providers/ai-sdk-providers/openai), but you can use any [other supported provider](/providers/ai-sdk-providers) as well.
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-toolkit/openai langsmith" dark />
+    <Snippet text="pnpm add @ai-tools/openai langsmith" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-toolkit/openai langsmith" dark />
+    <Snippet text="npm install @ai-tools/openai langsmith" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-toolkit/openai langsmith" dark />
+    <Snippet text="yarn add @ai-tools/openai langsmith" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @ai-toolkit/openai langsmith" dark />
+    <Snippet text="bun add @ai-tools/openai langsmith" dark />
   </Tab>
 </Tabs>
 
@@ -50,16 +50,15 @@ export OPENAI_API_KEY=<your-openai-api-key> # The examples use OpenAI (replace w
 
 ## Trace Logging
 
-To start tracing, you will need to import and call the `wrapAITOOLKIT` method at the start of your code:
+To start tracing, you will need to import and call the `wrapAISDK` method at the start of your code:
 
 ```ts highlight="6-7"
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import * as ai from 'ai';
 
-import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
+import { wrapAISDK } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText, generateObject, streamObject } =
-  wrapAITOOLKIT(ai);
+const { generateText, streamText } = wrapAISDK(ai);
 
 await generateText({
   model: openai('gpt-5-nano'),
@@ -74,13 +73,12 @@ You can also trace runs with tool calls:
 ```ts
 import * as ai from 'ai';
 import { tool, stepCountIs } from 'ai';
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { z } from 'zod';
 
-import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
+import { wrapAISDK } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText, generateObject, streamObject } =
-  wrapAITOOLKIT(ai);
+const { generateText, streamText } = wrapAISDK(ai);
 
 await generateText({
   model: openai('gpt-5-nano'),
@@ -110,24 +108,23 @@ await generateText({
 
 Which results in a trace like [this one](https://smith.langchain.com/public/6075fa2c-d255-4885-a66a-4fc798afaa9f/r).
 
-You can use other AI TOOLKIT methods exactly as you usually would.
+You can use other AI SDK methods exactly as you usually would.
 
 ### With `traceable`
 
-You can wrap `traceable` calls around AI TOOLKIT calls or within AI TOOLKIT tool calls. This is useful if you
+You can wrap `traceable` calls around AI SDK calls or within AI SDK tool calls. This is useful if you
 want to group runs together in LangSmith:
 
 ```ts
 import * as ai from 'ai';
 import { tool, stepCountIs } from 'ai';
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { z } from 'zod';
 
 import { traceable } from 'langsmith/traceable';
-import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
+import { wrapAISDK } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText, generateObject, streamObject } =
-  wrapAITOOLKIT(ai);
+const { generateText, streamText } = wrapAISDK(ai);
 
 const wrapper = traceable(
   async (input: string) => {
@@ -170,14 +167,14 @@ The resulting trace will look [like this](https://smith.langchain.com/public/ff2
 ## Tracing in serverless environments
 
 When tracing in serverless environments, you must wait for all runs to flush before your environment
-shuts down. See [this section](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit#tracing-in-serverless-environments) of the LangSmith docs for examples.
+shuts down. See [this section](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk#tracing-in-serverless-environments) of the LangSmith docs for examples.
 
 ## Further reading
 
 For more examples and instructions for setting up tracing in specific environments, see the links below:
 
 - [LangSmith docs](https://docs.langchain.com/langsmith/)
-- [LangSmith guide on tracing with the AI TOOLKIT](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit)
+- [LangSmith guide on tracing with the AI SDK](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk)
 
 And once you've set up LangSmith tracing for your project, try gathering a dataset and evaluating it:
 

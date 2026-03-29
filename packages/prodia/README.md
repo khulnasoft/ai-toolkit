@@ -1,28 +1,36 @@
-# AI TOOLKIT - Prodia Provider
+# AI SDK - Prodia Provider
 
-The **[Prodia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/prodia)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
+The **[Prodia provider](https://ai-sdk.dev/providers/ai-sdk-providers/prodia)** for the [AI SDK](https://ai-sdk.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
 
 ## Setup
 
-The Prodia provider is available in the `@ai-toolkit/prodia` module. You can install it with
+The Prodia provider is available in the `@ai-tools/prodia` module. You can install it with
 
 ```bash
-pnpm add @ai-toolkit/prodia
+pnpm add @ai-tools/prodia
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `prodia` from `@ai-toolkit/prodia`:
+You can import the default provider instance `prodia` from `@ai-tools/prodia`:
 
 ```ts
-import { prodia } from '@ai-toolkit/prodia';
+import { prodia } from '@ai-tools/prodia';
 ```
 
 ## Image Generation Example
 
 ```ts
 import fs from 'node:fs';
-import { prodia } from '@ai-toolkit/prodia';
+import { prodia } from '@ai-tools/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -40,7 +48,7 @@ console.log(`Image saved to ${filename}`);
 If you want to pass additional inputs to the model besides the prompt, use the `providerOptions.prodia` property:
 
 ```ts
-import { prodia, type ProdiaImageProviderOptions } from '@ai-toolkit/prodia';
+import { prodia, type ProdiaImageProviderOptions } from '@ai-tools/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -61,7 +69,7 @@ const { image } = await generateImage({
 By default, the provider uses `https://inference.prodia.com/v2`. You can override this if needed:
 
 ```ts
-import { createProdia } from '@ai-toolkit/prodia';
+import { createProdia } from '@ai-tools/prodia';
 
 const prodia = createProdia({
   baseURL: 'https://inference.prodia.com/v2',
@@ -71,4 +79,4 @@ const prodia = createProdia({
 
 ## Documentation
 
-See the [Prodia provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/prodia) for more information.
+See the [Prodia provider](https://ai-sdk.dev/providers/ai-sdk-providers/prodia) for more information.

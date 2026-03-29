@@ -1,4 +1,4 @@
-import { LanguageModelV3Usage } from '@ai-toolkit/provider';
+import { LanguageModelV4Usage } from '@ai-tools/provider';
 
 export type BedrockUsage = {
   inputTokens: number;
@@ -10,7 +10,7 @@ export type BedrockUsage = {
 
 export function convertBedrockUsage(
   usage: BedrockUsage | undefined | null,
-): LanguageModelV3Usage {
+): LanguageModelV4Usage {
   if (usage == null) {
     return {
       inputTokens: {

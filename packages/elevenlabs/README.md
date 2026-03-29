@@ -1,28 +1,36 @@
-# AI TOOLKIT - ElevenLabs Provider
+# AI SDK - ElevenLabs Provider
 
-The **[ElevenLabs provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[ElevenLabs provider](https://ai-sdk.dev/providers/ai-sdk-providers/elevenlabs)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains language model support for the ElevenLabs chat and completion APIs and embedding model support for the ElevenLabs embeddings API.
 
 ## Setup
 
-The ElevenLabs provider is available in the `@ai-toolkit/elevenlabs` module. You can install it with
+The ElevenLabs provider is available in the `@ai-tools/elevenlabs` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/elevenlabs
+npm i @ai-tools/elevenlabs
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `elevenlabs` from `@ai-toolkit/elevenlabs`:
+You can import the default provider instance `elevenlabs` from `@ai-tools/elevenlabs`:
 
 ```ts
-import { elevenlabs } from '@ai-toolkit/elevenlabs';
+import { elevenlabs } from '@ai-tools/elevenlabs';
 ```
 
 ## Example
 
 ```ts
-import { elevenlabs } from '@ai-toolkit/elevenlabs';
+import { elevenlabs } from '@ai-tools/elevenlabs';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -35,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[ElevenLabs provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/elevenlabs)** for more information.
+Please check out the **[ElevenLabs provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/elevenlabs)** for more information.

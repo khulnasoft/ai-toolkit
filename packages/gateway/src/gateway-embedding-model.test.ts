@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { GatewayEmbeddingModel } from './gateway-embedding-model';
 import type { GatewayConfig } from './gateway-config';
 import {
@@ -67,7 +67,7 @@ describe('GatewayEmbeddingModel', () => {
       expect(headers).toMatchObject({
         authorization: 'Bearer test-token',
         'custom-header': 'test-value',
-        'ai-embedding-model-specification-version': '3',
+        'ai-embedding-model-specification-version': '4',
         'ai-model-id': 'openai/text-embedding-3-small',
       });
     });

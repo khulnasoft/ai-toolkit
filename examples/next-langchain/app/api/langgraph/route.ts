@@ -1,4 +1,4 @@
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { StateGraph, MessagesAnnotation } from '@langchain/langgraph';
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       .compile();
 
     /**
-     * Convert AI TOOLKIT UIMessages to LangChain messages using the simplified API
+     * Convert AI SDK UIMessages to LangChain messages using the simplified API
      */
     const langchainMessages = await toBaseMessages(messages);
 

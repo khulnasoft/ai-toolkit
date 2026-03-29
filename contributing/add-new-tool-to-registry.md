@@ -1,6 +1,6 @@
-# AI TOOLKIT Tools Registry - Contributing a Tool
+# AI SDK Tools Registry - Contributing a Tool
 
-You can add your tool to the [registry](https://studio.khulnasoft.com/tools-registry) by submitting a pull request that updates the `content/tools-registry/registry.ts` file.
+You can add your tool to the [registry](https://ai-sdk.dev/tools-registry) by submitting a pull request that updates the `content/tools-registry/registry.ts` file.
 
 ### Prerequisites
 
@@ -8,7 +8,7 @@ Before submitting your tool, ensure you have:
 
 - Published your tool package to npm
 - Documented your tool with clear usage instructions
-- Tested your tool with the AI TOOLKIT
+- Tested your tool with the AI SDK
 
 ### Adding Your Tool
 
@@ -65,7 +65,7 @@ Before submitting your tool, ensure you have:
 
    - Be a complete, working example
    - Show realistic usage of your tool
-   - Use the latest AI TOOLKIT patterns
+   - Use the latest AI SDK patterns
    - Include necessary imports
    - Be tested to ensure it works
 

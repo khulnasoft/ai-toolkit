@@ -1,22 +1,30 @@
-# AI TOOLKIT - Deepgram Provider
+# AI SDK - Deepgram Provider
 
-The **[Deepgram provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepgram)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs)
+The **[Deepgram provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for the [AI SDK](https://ai-sdk.dev/docs)
 contains transcription model support for the Deepgram transcription API and speech model support for the Deepgram text-to-speech API.
 
 ## Setup
 
-The Deepgram provider is available in the `@ai-toolkit/deepgram` module. You can install it with
+The Deepgram provider is available in the `@ai-tools/deepgram` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/deepgram
+npm i @ai-tools/deepgram
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `deepgram` from `@ai-toolkit/deepgram`:
+You can import the default provider instance `deepgram` from `@ai-tools/deepgram`:
 
 ```ts
-import { deepgram } from '@ai-toolkit/deepgram';
+import { deepgram } from '@ai-tools/deepgram';
 ```
 
 ## Examples
@@ -24,7 +32,7 @@ import { deepgram } from '@ai-toolkit/deepgram';
 ### Transcription
 
 ```ts
-import { deepgram } from '@ai-toolkit/deepgram';
+import { deepgram } from '@ai-tools/deepgram';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -38,7 +46,7 @@ const { text } = await transcribe({
 ### Transcription with Language Detection
 
 ```ts
-import { deepgram } from '@ai-toolkit/deepgram';
+import { deepgram } from '@ai-tools/deepgram';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text, language } = await transcribe({
@@ -57,7 +65,7 @@ const { text, language } = await transcribe({
 ### Text-to-Speech
 
 ```ts
-import { deepgram } from '@ai-toolkit/deepgram';
+import { deepgram } from '@ai-tools/deepgram';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const { audio } = await generateSpeech({
@@ -68,4 +76,4 @@ const { audio } = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Deepgram provider documentation](https://studio.khulnasoft.com/providers/ai-toolkit-providers/deepgram)** for more information.
+Please check out the **[Deepgram provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for more information.

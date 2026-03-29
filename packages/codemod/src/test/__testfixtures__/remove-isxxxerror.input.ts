@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { APICallError, TypeValidationError } from 'ai';
-import { NoSuchModelError } from '@ai-toolkit/provider';
+import { NoSuchModelError } from '@ai-tools/provider';
 import { CustomError } from 'other-pkg';
 
 if (APICallError.isInstance(error)) {

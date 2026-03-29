@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { serve } from '@hono/node-server';
 import {
   createAgentUIStreamResponse,
@@ -89,7 +89,7 @@ app.post('/chat', async c => {
   });
 });
 
-app.get('/health', c => c.text('Hono AI TOOLKIT example server is running!'));
+app.get('/health', c => c.text('Hono AI SDK example server is running!'));
 
 console.log('Server starting on http://localhost:8080');
 serve({ fetch: app.fetch, port: 8080 });

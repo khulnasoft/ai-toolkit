@@ -1,10 +1,10 @@
-import { AITOOLKITError } from './ai-toolkit-error';
+import { AISDKError } from './ai-sdk-error';
 
 const name = 'AI_NoSuchModelError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class NoSuchModelError extends AITOOLKITError {
+export class NoSuchModelError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly modelId: string;
@@ -14,7 +14,8 @@ export class NoSuchModelError extends AITOOLKITError {
     | 'imageModel'
     | 'transcriptionModel'
     | 'speechModel'
-    | 'rerankingModel';
+    | 'rerankingModel'
+    | 'videoModel';
 
   constructor({
     errorName = name,
@@ -30,7 +31,8 @@ export class NoSuchModelError extends AITOOLKITError {
       | 'imageModel'
       | 'transcriptionModel'
       | 'speechModel'
-      | 'rerankingModel';
+      | 'rerankingModel'
+      | 'videoModel';
     message?: string;
   }) {
     super({ name: errorName, message });
@@ -40,6 +42,6 @@ export class NoSuchModelError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is NoSuchModelError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

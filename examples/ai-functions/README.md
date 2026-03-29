@@ -15,7 +15,7 @@ OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 ...
 ```
 
-2. Run the following commands from the root directory of the AI TOOLKIT repo:
+2. Run the following commands from the root directory of the AI SDK repo:
 
 ```sh
 pnpm install
@@ -32,7 +32,7 @@ pnpm tsx src/path/to/example.ts
 
 There are a set of end-to-end provider integration tests under `src/e2e`. These tests are not run on the CI pipeline -- they are only run manually. Failures can be seen due to external issues e.g. quota restrictions, vendor-side changes, missing or stale credentials, etc.
 
-The intent is to allow an easy way for an AI TOOLKIT developer to smoke-test provider support for a set of common features. Test filtering can allow slicing to a subset of tests. Most of the test cases in these end-to-end tests are also represented in some form as basic example scripts in the appropriate sub-directory of the `src` directory.
+The intent is to allow an easy way for an AI SDK developer to smoke-test provider support for a set of common features. Test filtering can allow slicing to a subset of tests. Most of the test cases in these end-to-end tests are also represented in some form as basic example scripts in the appropriate sub-directory of the `src` directory.
 
 ```sh
 pnpm run test:e2e:all

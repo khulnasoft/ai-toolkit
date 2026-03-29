@@ -1,15 +1,15 @@
 ---
-title: "Jest: cannot find module '@ai-toolkit/rsc'"
-description: "Troubleshooting AI TOOLKIT errors related to the Jest: cannot find module '@ai-toolkit/rsc' error"
+title: "Jest: cannot find module '@ai-tools/rsc'"
+description: "Troubleshooting AI SDK errors related to the Jest: cannot find module '@ai-tools/rsc' error"
 ---
 
-# Jest: cannot find module '@ai-toolkit/rsc'
+# Jest: cannot find module '@ai-tools/rsc'
 
 ## Issue
 
-I am using AI TOOLKIT RSC and am writing tests for my RSC components with Jest.
+I am using AI SDK RSC and am writing tests for my RSC components with Jest.
 
-I am getting the following error: `Cannot find module '@ai-toolkit/rsc'`.
+I am getting the following error: `Cannot find module '@ai-tools/rsc'`.
 
 ## Solution
 
@@ -17,6 +17,6 @@ Configure the module resolution via `jest config update` in `moduleNameMapper`:
 
 ```json filename="jest.config.js"
 "moduleNameMapper": {
-  "^@ai-toolkit/rsc$": "<rootDir>/node_modules/@ai-toolkit/rsc/dist"
+  "^@ai-tools/rsc$": "<rootDir>/node_modules/@ai-tools/rsc/dist"
 }
 ```

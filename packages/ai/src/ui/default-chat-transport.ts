@@ -1,4 +1,4 @@
-import { parseJsonEventStream, ParseResult } from '@ai-toolkit/provider-utils';
+import { parseJsonEventStream, ParseResult } from '@ai-tools/provider-utils';
 import {
   UIMessageChunk,
   uiMessageChunkSchema,

@@ -4,12 +4,14 @@ import {
   SystemModelMessage,
   ToolModelMessage,
   UserModelMessage,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { providerMetadataSchema } from '../types/provider-metadata';
 import {
+  customPartSchema,
   filePartSchema,
   imagePartSchema,
+  reasoningFilePartSchema,
   reasoningPartSchema,
   textPartSchema,
   toolApprovalRequestSchema,
@@ -43,8 +45,10 @@ export const assistantModelMessageSchema: z.ZodType<AssistantModelMessage> =
       z.array(
         z.union([
           textPartSchema,
+          customPartSchema,
           filePartSchema,
           reasoningPartSchema,
+          reasoningFilePartSchema,
           toolCallPartSchema,
           toolResultPartSchema,
           toolApprovalRequestSchema,

@@ -1,22 +1,22 @@
 ---
 title: Model Context Protocol (MCP) Tools
-description: Learn how to use MCP tools with the AI TOOLKIT and Node
+description: Learn how to use MCP tools with the AI SDK and Node
 tags: ['node', 'tool use', 'agent', 'mcp']
 ---
 
 # MCP Tools
 
-The AI TOOLKIT supports Model Context Protocol (MCP) tools by offering a lightweight client that exposes a `tools` method for retrieving tools from a MCP server. After use, the client should always be closed to release resources.
+The AI SDK supports Model Context Protocol (MCP) tools by offering a lightweight client that exposes a `tools` method for retrieving tools from a MCP server. After use, the client should always be closed to release resources.
 
 If you prefer to use the official transports (optional), install the official Model Context Protocol TypeScript SDK.
 
 <Snippet text="pnpm install @modelcontextprotocol/sdk" />
 
 ```ts
-import { createMCPClient } from '@ai-toolkit/mcp';
+import { createMCPClient } from '@ai-tools/mcp';
 import { generateText, stepCountIs } from 'ai';
-import { Experimental_StdioMCPTransport } from '@ai-toolkit/mcp/mcp-stdio';
-import { openai } from '@ai-toolkit/openai';
+import { Experimental_StdioMCPTransport } from '@ai-tools/mcp/mcp-stdio';
+import { openai } from '@ai-tools/openai';
 // Optional: Official transports if you prefer them
 // import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio';
 // import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse';

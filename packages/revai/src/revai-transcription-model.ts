@@ -1,8 +1,8 @@
 import {
-  AITOOLKITError,
-  TranscriptionModelV3,
-  SharedV3Warning,
-} from '@ai-toolkit/provider';
+  AISDKError,
+  TranscriptionModelV4,
+  SharedV4Warning,
+} from '@ai-tools/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -12,7 +12,7 @@ import {
   getFromApi,
   parseProviderOptions,
   postFormDataToApi,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { RevaiConfig } from './revai-config';
 import { revaiFailedResponseHandler } from './revai-error';
@@ -20,7 +20,7 @@ import { RevaiTranscriptionModelId } from './revai-transcription-options';
 import { RevaiTranscriptionAPITypes } from './revai-api-types';
 
 // https://docs.rev.ai/api/asynchronous/reference/#operation/SubmitTranscriptionJob
-const revaiProviderOptionsSchema = z.object({
+const revaiTranscriptionModelOptionsSchema = z.object({
   /**
    * Optional metadata string to associate with the transcription job.
    */
@@ -210,8 +210,8 @@ const revaiProviderOptionsSchema = z.object({
   forced_alignment: z.boolean().nullish().default(false),
 });
 
-export type RevaiTranscriptionCallOptions = z.infer<
-  typeof revaiProviderOptionsSchema
+export type RevaiTranscriptionModelOptions = z.infer<
+  typeof revaiTranscriptionModelOptionsSchema
 >;
 
 interface RevaiTranscriptionModelConfig extends RevaiConfig {
@@ -220,8 +220,8 @@ interface RevaiTranscriptionModelConfig extends RevaiConfig {
   };
 }
 
-export class RevaiTranscriptionModel implements TranscriptionModelV3 {
-  readonly specificationVersion = 'v3';
+export class RevaiTranscriptionModel implements TranscriptionModelV4 {
+  readonly specificationVersion = 'v4';
 
   get provider(): string {
     return this.config.provider;
@@ -236,14 +236,14 @@ export class RevaiTranscriptionModel implements TranscriptionModelV3 {
     audio,
     mediaType,
     providerOptions,
-  }: Parameters<TranscriptionModelV3['doGenerate']>[0]) {
-    const warnings: SharedV3Warning[] = [];
+  }: Parameters<TranscriptionModelV4['doGenerate']>[0]) {
+    const warnings: SharedV4Warning[] = [];
 
     // Parse provider options
     const revaiOptions = await parseProviderOptions({
       provider: 'revai',
       providerOptions,
-      schema: revaiProviderOptionsSchema,
+      schema: revaiTranscriptionModelOptionsSchema,
     });
 
     // Create form data with base fields
@@ -314,8 +314,8 @@ export class RevaiTranscriptionModel implements TranscriptionModelV3 {
   }
 
   async doGenerate(
-    options: Parameters<TranscriptionModelV3['doGenerate']>[0],
-  ): Promise<Awaited<ReturnType<TranscriptionModelV3['doGenerate']>>> {
+    options: Parameters<TranscriptionModelV4['doGenerate']>[0],
+  ): Promise<Awaited<ReturnType<TranscriptionModelV4['doGenerate']>>> {
     const currentDate = this.config._internal?.currentDate?.() ?? new Date();
     const { formData, warnings } = await this.getArgs(options);
 
@@ -335,7 +335,7 @@ export class RevaiTranscriptionModel implements TranscriptionModelV3 {
     });
 
     if (submissionResponse.status === 'failed') {
-      throw new AITOOLKITError({
+      throw new AISDKError({
         message: 'Failed to submit transcription job to Rev.ai',
         name: 'TranscriptionJobSubmissionFailed',
         cause: submissionResponse,
@@ -351,7 +351,7 @@ export class RevaiTranscriptionModel implements TranscriptionModelV3 {
     while (jobResponse.status !== 'transcribed') {
       // Check if we've exceeded the timeout
       if (Date.now() - startTime > timeoutMs) {
-        throw new AITOOLKITError({
+        throw new AISDKError({
           message: 'Transcription job polling timed out',
           name: 'TranscriptionJobPollingTimedOut',
           cause: submissionResponse,
@@ -376,7 +376,7 @@ export class RevaiTranscriptionModel implements TranscriptionModelV3 {
       jobResponse = pollingResult.value;
 
       if (jobResponse.status === 'failed') {
-        throw new AITOOLKITError({
+        throw new AISDKError({
           message: 'Transcription job failed',
           name: 'TranscriptionJobFailed',
           cause: jobResponse,

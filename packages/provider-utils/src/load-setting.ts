@@ -1,4 +1,4 @@
-import { LoadSettingError } from '@ai-toolkit/provider';
+import { LoadSettingError } from '@ai-tools/provider';
 
 /**
  * Loads a `string` setting from the environment or a parameter.

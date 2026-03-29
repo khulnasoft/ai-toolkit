@@ -48,7 +48,7 @@ export function OnlyHandleInputChange() {
 }
 
 // Test with new import syntax
-import { useChat as useChatNew } from '@ai-toolkit/react';
+import { useChat as useChatNew } from '@ai-tools/react';
 
 export function WithNewImportSyntax() {
   const { input } = useChatNew();

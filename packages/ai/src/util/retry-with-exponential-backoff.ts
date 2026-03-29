@@ -1,9 +1,5 @@
-import { APICallError } from '@ai-toolkit/provider';
-import {
-  delay,
-  getErrorMessage,
-  isAbortError,
-} from '@ai-toolkit/provider-utils';
+import { APICallError } from '@ai-tools/provider';
+import { delay, getErrorMessage, isAbortError } from '@ai-tools/provider-utils';
 import { RetryError } from './retry-error';
 
 export type RetryFunction = <OUTPUT>(
@@ -57,9 +53,9 @@ function getRetryDelayInMs({
 }
 
 /**
-The `retryWithExponentialBackoffRespectingRetryHeaders` strategy retries a failed API call with an exponential backoff,
-while respecting rate limit headers (retry-after-ms and retry-after) if they are provided and reasonable (0-60 seconds).
-You can configure the maximum number of retries, the initial delay, and the backoff factor.
+ * The `retryWithExponentialBackoffRespectingRetryHeaders` strategy retries a failed API call with an exponential backoff,
+ * while respecting rate limit headers (retry-after-ms and retry-after) if they are provided and reasonable (0-60 seconds).
+ * You can configure the maximum number of retries, the initial delay, and the backoff factor.
  */
 export const retryWithExponentialBackoffRespectingRetryHeaders =
   ({

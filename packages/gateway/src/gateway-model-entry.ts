@@ -1,4 +1,4 @@
-import type { LanguageModelV3 } from '@ai-toolkit/provider';
+import type { LanguageModelV4 } from '@ai-tools/provider';
 
 export interface GatewayLanguageModelEntry {
   /**
@@ -42,17 +42,17 @@ export interface GatewayLanguageModelEntry {
   } | null;
 
   /**
-   * Additional AI TOOLKIT language model specifications for the model.
+   * Additional AI SDK language model specifications for the model.
    */
   specification: GatewayLanguageModelSpecification;
 
   /**
    * Optional field to differentiate between model types.
    */
-  modelType?: 'language' | 'embedding' | 'image' | null;
+  modelType?: 'language' | 'embedding' | 'image' | 'video' | null;
 }
 
 export type GatewayLanguageModelSpecification = Pick<
-  LanguageModelV3,
+  LanguageModelV4,
   'specificationVersion' | 'provider' | 'modelId'
 >;

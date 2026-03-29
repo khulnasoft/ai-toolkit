@@ -2,7 +2,7 @@ import {
   ModelMessage,
   ToolApprovalRequest,
   ToolApprovalResponse,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { InvalidToolApprovalError } from '../error/invalid-tool-approval-error';
 import { ToolCallNotFoundForApprovalError } from '../error/tool-call-not-found-for-approval-error';
 import { TypedToolCall } from './tool-call';

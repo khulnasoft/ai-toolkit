@@ -1,27 +1,35 @@
-# AI TOOLKIT - fal Provider
+# AI SDK - fal Provider
 
-The **[fal provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fal)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains image model support for the [fal.ai API](https://fal.ai/).
+The **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for the [AI SDK](https://ai-sdk.dev/docs) contains image model support for the [fal.ai API](https://fal.ai/).
 
 ## Setup
 
-The fal provider is available in the `@ai-toolkit/fal` module. You can install it with
+The fal provider is available in the `@ai-tools/fal` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/fal
+npm i @ai-tools/fal
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Provider Instance
 
-You can import the default provider instance `fal` from `@ai-toolkit/fal`:
+You can import the default provider instance `fal` from `@ai-tools/fal`:
 
 ```ts
-import { fal } from '@ai-toolkit/fal';
+import { fal } from '@ai-tools/fal';
 ```
 
 ## Image Generation Example
 
 ```ts
-import { fal } from '@ai-toolkit/fal';
+import { fal } from '@ai-tools/fal';
 import { generateImage } from 'ai';
 import fs from 'fs';
 const { image } = await generateImage({
@@ -53,4 +61,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[fal provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/fal)** for more information.
+Please check out the **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for more information.

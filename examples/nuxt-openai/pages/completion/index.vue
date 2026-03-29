@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCompletion } from '@ai-toolkit/vue';
+import { useCompletion } from '@ai-tools/vue';
 
 const { completion, input, handleSubmit, data } = useCompletion();
 </script>

@@ -1,7 +1,7 @@
 import {
   convertArrayToReadableStream,
   convertReadableStreamToArray,
-} from '@ai-toolkit/provider-utils/test';
+} from '@ai-tools/provider-utils/test';
 import { createUIMessageStreamResponse } from './create-ui-message-stream-response';
 import { describe, it, expect, vi } from 'vitest';
 

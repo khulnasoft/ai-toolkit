@@ -1,4 +1,4 @@
-import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
 import { processTextStream } from './process-text-stream';
 import { describe, it, expect, vi } from 'vitest';
 

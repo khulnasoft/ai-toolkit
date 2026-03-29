@@ -3,7 +3,7 @@ import {
   fileSearch,
   imageGeneration,
   webSearchPreview,
-} from '@ai-toolkit/openai/internal';
+} from '@ai-tools/openai/internal';
 
 export const azureOpenaiTools: {
   codeInterpreter: typeof codeInterpreter;

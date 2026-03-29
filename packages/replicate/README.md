@@ -1,19 +1,27 @@
-# AI TOOLKIT - Replicate Provider
+# AI SDK - Replicate Provider
 
-The **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for the [AI TOOLKIT](https://studio.khulnasoft.com/docs) contains image model support for the Replicate API.
+The **[Replicate provider](https://ai-sdk.dev/providers/ai-sdk-providers/replicate)** for the [AI SDK](https://ai-sdk.dev/docs) contains image model support for the Replicate API.
 
 ## Setup
 
-The Replicate provider is available in the `@ai-toolkit/replicate` module. You can install it with
+The Replicate provider is available in the `@ai-tools/replicate` module. You can install it with
 
 ```bash
-npm i @ai-toolkit/replicate
+npm i @ai-tools/replicate
+```
+
+## Skill for Coding Agents
+
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+
+```shell
+npx skills add vercel/ai
 ```
 
 ## Usage
 
 ```ts
-import { replicate } from '@ai-toolkit/replicate';
+import { replicate } from '@ai-tools/replicate';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -43,4 +51,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[Replicate provider](https://studio.khulnasoft.com/providers/ai-toolkit-providers/replicate)** for more information.
+Please check out the **[Replicate provider](https://ai-sdk.dev/providers/ai-sdk-providers/replicate)** for more information.

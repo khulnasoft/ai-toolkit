@@ -1,5 +1,5 @@
 import { z } from 'zod/v4';
-import { createJsonErrorResponseHandler } from '@ai-toolkit/provider-utils';
+import { createJsonErrorResponseHandler } from '@ai-tools/provider-utils';
 
 export const groqErrorDataSchema = z.object({
   error: z.object({

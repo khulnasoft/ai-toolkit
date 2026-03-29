@@ -1,18 +1,15 @@
-import {
-  AITOOLKITError,
-  LanguageModelV3DataContent,
-} from '@ai-toolkit/provider';
+import { AISDKError, LanguageModelV4DataContent } from '@ai-tools/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
   DataContent,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { z } from 'zod/v4';
 import { InvalidDataContentError } from './invalid-data-content-error';
 import { splitDataUrl } from './split-data-url';
 
 /**
-@internal
+ * @internal
  */
 export const dataContentSchema: z.ZodType<DataContent> = z.union([
   z.string(),
@@ -26,10 +23,10 @@ export const dataContentSchema: z.ZodType<DataContent> = z.union([
   ),
 ]);
 
-export function convertToLanguageModelV3DataContent(
+export function convertToLanguageModelV4DataContent(
   content: DataContent | URL,
 ): {
-  data: LanguageModelV3DataContent;
+  data: LanguageModelV4DataContent;
   mediaType: string | undefined;
 } {
   // Buffer & Uint8Array:
@@ -59,7 +56,7 @@ export function convertToLanguageModelV3DataContent(
     );
 
     if (dataUrlMediaType == null || base64Content == null) {
-      throw new AITOOLKITError({
+      throw new AISDKError({
         name: 'InvalidDataContentError',
         message: `Invalid data URL format in content ${content.toString()}`,
       });
@@ -72,11 +69,11 @@ export function convertToLanguageModelV3DataContent(
 }
 
 /**
-Converts data content to a base64-encoded string.
-
-@param content - Data content to convert.
-@returns Base64-encoded string.
-*/
+ * Converts data content to a base64-encoded string.
+ *
+ * @param content - Data content to convert.
+ * @returns Base64-encoded string.
+ */
 export function convertDataContentToBase64String(content: DataContent): string {
   if (typeof content === 'string') {
     return content;
@@ -90,10 +87,10 @@ export function convertDataContentToBase64String(content: DataContent): string {
 }
 
 /**
-Converts data content to a Uint8Array.
-
-@param content - Data content to convert.
-@returns Uint8Array.
+ * Converts data content to a Uint8Array.
+ *
+ * @param content - Data content to convert.
+ * @returns Uint8Array.
  */
 export function convertDataContentToUint8Array(
   content: DataContent,

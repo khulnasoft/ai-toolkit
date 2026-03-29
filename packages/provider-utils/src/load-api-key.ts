@@ -1,4 +1,4 @@
-import { LoadAPIKeyError } from '@ai-toolkit/provider';
+import { LoadAPIKeyError } from '@ai-tools/provider';
 
 export function loadApiKey({
   apiKey,

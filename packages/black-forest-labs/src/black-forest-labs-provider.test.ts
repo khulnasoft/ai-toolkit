@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { describe, expect, it } from 'vitest';
 import { createBlackForestLabs } from './black-forest-labs-provider';
 
@@ -41,7 +41,7 @@ describe('BlackForestLabs provider', () => {
     expect(imageModel.provider).toBe('black-forest-labs.image');
     expect(imageModel.modelId).toBe('flux-pro-1.1');
     expect(imageModel2.modelId).toBe('flux-pro-1.1-ultra');
-    expect(imageModel.specificationVersion).toBe('v3');
+    expect(imageModel.specificationVersion).toBe('v4');
   });
 
   it('configures baseURL and headers correctly', async () => {
@@ -78,13 +78,13 @@ describe('BlackForestLabs provider', () => {
     });
 
     expect(server.calls[0].requestUserAgent).toContain(
-      'ai-toolkit/black-forest-labs/',
+      'ai-sdk/black-forest-labs/',
     );
     expect(server.calls[1].requestUserAgent).toContain(
-      'ai-toolkit/black-forest-labs/',
+      'ai-sdk/black-forest-labs/',
     );
     expect(server.calls[2].requestUserAgent).toContain(
-      'ai-toolkit/black-forest-labs/',
+      'ai-sdk/black-forest-labs/',
     );
   });
 

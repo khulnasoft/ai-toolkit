@@ -1,4 +1,4 @@
-import { google } from '@ai-toolkit/google';
+import { google } from '@ai-tools/google';
 import {
   customProvider,
   defaultEmbeddingSettingsMiddleware,

@@ -1,11 +1,11 @@
-import { EmptyResponseBodyError } from '@ai-toolkit/provider';
+import { EmptyResponseBodyError } from '@ai-tools/provider';
 import {
   ParseResult,
   safeParseJSON,
   extractResponseHeaders,
   ResponseHandler,
   safeValidateTypes,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { ZodType } from 'zod/v4';
 import { createBedrockEventStreamDecoder } from './bedrock-event-stream-decoder';
 

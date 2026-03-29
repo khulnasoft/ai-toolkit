@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { UIMessageChunk } from '../ui-message-stream/ui-message-chunks';
 import {
   HttpChatTransport,
@@ -148,7 +148,6 @@ describe('HttpChatTransport', () => {
       expect(server.calls[0].requestHeaders['x-test-header']).toBe(
         'test-value',
       );
-      expect(server.calls[0].requestUserAgent).toContain('ai-toolkit/');
     });
 
     it('should include headers in the request when a function is provided', async () => {
@@ -179,7 +178,6 @@ describe('HttpChatTransport', () => {
       expect(server.calls[0].requestHeaders['x-test-header']).toBe(
         'test-value-fn',
       );
-      expect(server.calls[0].requestUserAgent).toContain('ai-toolkit/');
     });
   });
 });

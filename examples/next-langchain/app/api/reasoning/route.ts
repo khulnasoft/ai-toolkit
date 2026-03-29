@@ -1,4 +1,4 @@
-import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { NextResponse } from 'next/server';

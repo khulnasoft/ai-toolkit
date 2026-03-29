@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { APICallError } from '@ai-toolkit/provider';
+import { APICallError } from '@ai-tools/provider';
 import { extractApiCallResponse } from './extract-api-call-response';
 
 describe('extractResponseFromAPICallError', () => {
   describe('when error.data is available', () => {
-    it('should return error.data when successfully parsed by AI TOOLKIT', () => {
+    it('should return error.data when successfully parsed by AI SDK', () => {
       const parsedData = {
         error: { message: 'Parsed error', type: 'authentication_error' },
       };

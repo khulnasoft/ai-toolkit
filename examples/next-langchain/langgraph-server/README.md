@@ -1,6 +1,6 @@
 # LangGraph Development Server
 
-This is a simple LangGraph agent for local development and testing with the `@ai-toolkit/langchain` adapter.
+This is a simple LangGraph agent for local development and testing with the `@ai-tools/langchain` adapter.
 
 ## Setup
 
@@ -68,13 +68,13 @@ export const graph = workflow.compile();
 
 See the [LangGraph documentation](https://langchain-ai.github.io/langgraph/) for more examples.
 
-## Usage with AI TOOLKIT
+## Usage with AI SDK
 
 Connect to this server from the frontend using `LangSmithDeploymentTransport`:
 
 ```typescript
-import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
-import { useChat } from '@ai-toolkit/react';
+import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
+import { useChat } from '@ai-tools/react';
 
 const transport = new LangSmithDeploymentTransport({
   url: 'http://localhost:2024',

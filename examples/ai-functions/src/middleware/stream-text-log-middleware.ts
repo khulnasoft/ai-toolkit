@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { streamText, wrapLanguageModel } from 'ai';
 import { yourLogMiddleware } from './your-log-middleware';
 import { run } from '../lib/run';

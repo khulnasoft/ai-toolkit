@@ -1,8 +1,7 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-toolkit/test-server/with-vitest';
-import '@testing-library/jest-dom/vitest';
+} from '@ai-tools/test-server/with-vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { z } from 'zod/v4';

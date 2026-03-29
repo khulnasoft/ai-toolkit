@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useChat } from 'ai';
-import { useChat as useReactChat } from '@ai-toolkit/react';
+import { useChat as useReactChat } from '@ai-tools/react';
 
 // Test 1: Destructuring from useChat hook
 function ChatComponent1() {
@@ -36,8 +36,8 @@ function ChatComponent3() {
   const chat = useChat();
 
   return (
-    (<button onClick={() => chat.addToolOutput({ tool: 'test', toolCallId: 'id', output: 'out' })}>Submit
-                </button>)
+    <button onClick={() => chat.addToolOutput({ tool: 'test', toolCallId: 'id', output: 'out' })}>Submit
+                </button>
   );
 }
 

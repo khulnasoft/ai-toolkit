@@ -1,26 +1,29 @@
 import { DeepInfraImageModel } from './deepinfra-image-model';
 import { createDeepInfra } from './deepinfra-provider';
+import { DeepInfraChatLanguageModel } from './deepinfra-chat-language-model';
 import {
-  OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
-} from '@ai-toolkit/openai-compatible';
-import { LanguageModelV3, EmbeddingModelV3 } from '@ai-toolkit/provider';
-import { loadApiKey } from '@ai-toolkit/provider-utils';
+} from '@ai-tools/openai-compatible';
+import { LanguageModelV4, EmbeddingModelV4 } from '@ai-tools/provider';
+import { loadApiKey } from '@ai-tools/provider-utils';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 
 // Add type assertion for the mocked class
-const OpenAICompatibleChatLanguageModelMock =
-  OpenAICompatibleChatLanguageModel as unknown as Mock;
+const DeepInfraChatLanguageModelMock =
+  DeepInfraChatLanguageModel as unknown as Mock;
 
-vi.mock('@ai-toolkit/openai-compatible', () => ({
-  OpenAICompatibleChatLanguageModel: vi.fn(),
+vi.mock('./deepinfra-chat-language-model', () => ({
+  DeepInfraChatLanguageModel: vi.fn(),
+}));
+
+vi.mock('@ai-tools/openai-compatible', () => ({
   OpenAICompatibleCompletionLanguageModel: vi.fn(),
   OpenAICompatibleEmbeddingModel: vi.fn(),
 }));
 
-vi.mock('@ai-toolkit/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-toolkit/provider-utils');
+vi.mock('@ai-tools/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-tools/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
@@ -33,17 +36,17 @@ vi.mock('./deepinfra-image-model', () => ({
 }));
 
 describe('DeepInfraProvider', () => {
-  let mockLanguageModel: LanguageModelV3;
-  let mockEmbeddingModel: EmbeddingModelV3;
+  let mockLanguageModel: LanguageModelV4;
+  let mockEmbeddingModel: EmbeddingModelV4;
 
   beforeEach(() => {
     // Mock implementations of models
     mockLanguageModel = {
-      // Add any required methods for LanguageModelV3
-    } as LanguageModelV3;
+      // Add any required methods for LanguageModelV4
+    } as LanguageModelV4;
     mockEmbeddingModel = {
-      // Add any required methods for EmbeddingModelV3
-    } as EmbeddingModelV3;
+      // Add any required methods for EmbeddingModelV4
+    } as EmbeddingModelV4;
 
     // Reset mocks
     vi.clearAllMocks();
@@ -55,8 +58,7 @@ describe('DeepInfraProvider', () => {
       const model = provider('model-id');
 
       // Use the mocked version
-      const constructorCall =
-        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const constructorCall = DeepInfraChatLanguageModelMock.mock.calls[0];
       const config = constructorCall[1];
       config.headers();
 
@@ -76,8 +78,7 @@ describe('DeepInfraProvider', () => {
       const provider = createDeepInfra(options);
       const model = provider('model-id');
 
-      const constructorCall =
-        OpenAICompatibleChatLanguageModelMock.mock.calls[0];
+      const constructorCall = DeepInfraChatLanguageModelMock.mock.calls[0];
       const config = constructorCall[1];
       config.headers();
 
@@ -93,7 +94,7 @@ describe('DeepInfraProvider', () => {
       const modelId = 'foo-model-id';
 
       const model = provider(modelId);
-      expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
+      expect(model).toBeInstanceOf(DeepInfraChatLanguageModel);
     });
   });
 
@@ -104,8 +105,8 @@ describe('DeepInfraProvider', () => {
 
       const model = provider.chatModel(modelId);
 
-      expect(model).toBeInstanceOf(OpenAICompatibleChatLanguageModel);
-      expect(OpenAICompatibleChatLanguageModelMock).toHaveBeenCalledWith(
+      expect(model).toBeInstanceOf(DeepInfraChatLanguageModel);
+      expect(DeepInfraChatLanguageModelMock).toHaveBeenCalledWith(
         modelId,
         expect.objectContaining({
           provider: 'deepinfra.chat',

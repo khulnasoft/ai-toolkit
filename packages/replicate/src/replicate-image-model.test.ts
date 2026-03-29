@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { createReplicate } from './replicate-provider';
 import { ReplicateImageModel } from './replicate-image-model';
 import { describe, it, expect, vi } from 'vitest';
@@ -140,7 +140,7 @@ describe('doGenerate', () => {
     });
 
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-toolkit/replicate/0.0.0-test`,
+      `ai-sdk/replicate/0.0.0-test`,
     );
   });
 

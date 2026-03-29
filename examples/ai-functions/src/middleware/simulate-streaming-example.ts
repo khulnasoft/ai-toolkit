@@ -1,4 +1,4 @@
-import { openai } from '@ai-toolkit/openai';
+import { openai } from '@ai-tools/openai';
 import { simulateStreamingMiddleware, streamText, wrapLanguageModel } from 'ai';
 import { run } from '../lib/run';
 

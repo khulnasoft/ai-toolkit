@@ -6,7 +6,7 @@ import {
   ProviderV2,
   SpeechModelV2,
   TranscriptionModelV2,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 
 export class MockProviderV2 implements ProviderV2 {
   languageModel: ProviderV2['languageModel'];

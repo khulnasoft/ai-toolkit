@@ -1,19 +1,19 @@
 ---
 title: ACP (Agent Client Protocol)
-description: ACP Provider for the AI TOOLKIT
+description: ACP Provider for the AI SDK
 ---
 
 # ACP (Agent Client Protocol)
 
 [ACP (Agent Client Protocol)](https://agentclientprotocol.com/) is an open protocol that enables seamless communication between AI agents and client applications.
 
-The ACP provider bridges ACP agents (like Claude Code, Gemini CLI, Codex CLI, and **[many more](https://agentclientprotocol.com/overview/agents)**) to the AI TOOLKIT by communicating with them via the Agent Client Protocol and exposing them through the `LanguageModel` interface, enabling you to build web applications and Node.js services with ACP agents.
+The ACP provider bridges ACP agents (like Claude Code, Gemini CLI, Codex CLI, and **[many more](https://agentclientprotocol.com/overview/agents)**) to the AI SDK by communicating with them via the Agent Client Protocol and exposing them through the `LanguageModel` interface, enabling you to build web applications and Node.js services with ACP agents.
 
 ## Key Features
 
 - **Multiple Agent Support**: Works with Claude Code, Gemini CLI, Codex CLI, and other ACP-compatible agents
 - **MCP Server Integration**: Connect MCP (Model Context Protocol) servers to enhance agent capabilities
-- **Tool Execution**: Agents can execute tools and report results through the AI TOOLKIT interface
+- **Tool Execution**: Agents can execute tools and report results through the AI SDK interface
 - **Process Management**: Automatic spawning and lifecycle management of agent processes
 
 Learn more about ACP in the [Agent Client Protocol Documentation](https://agentclientprotocol.com).
@@ -142,7 +142,7 @@ for await (const chunk of textStream) {
 
 ### Using with MCP Servers (Tools)
 
-Tools are provided to ACP agents through MCP (Model Context Protocol) servers, not through the AI TOOLKIT's `tools` parameter:
+Tools are provided to ACP agents through MCP (Model Context Protocol) servers, not through the AI SDK's `tools` parameter:
 
 ```javascript
 import { createACPProvider } from '@mcpc-tech/acp-ai-provider';
@@ -172,9 +172,9 @@ const result = await generateText({
 
 ## Working with Tools
 
-The ACP provider handles tool execution through provider-defined tools. Tools are called and executed by the ACP agent, and results are reported back through the AI TOOLKIT's streaming interface.
+The ACP provider handles tool execution through provider-defined tools. Tools are called and executed by the ACP agent, and results are reported back through the AI SDK's streaming interface.
 
-To stream tool calls, pass the provider tools to the AI TOOLKIT:
+To stream tool calls, pass the provider tools to the AI SDK:
 
 ```javascript
 const result = await generateText({
@@ -242,7 +242,7 @@ const provider = createACPProvider({
 
 ## Limitations
 
-- **Tool Definition**: Tools must be provided through MCP servers in the session configuration, not through the AI TOOLKIT's `tools` parameter
+- **Tool Definition**: Tools must be provided through MCP servers in the session configuration, not through the AI SDK's `tools` parameter
 - **Process Lifecycle**: Each language model instance spawns a new agent process; ensure proper cleanup
 - **Node.js Only**: Currently supports Node.js environments with child process capabilities
 - **File Operations**: Basic file operation support through ACP's client interface

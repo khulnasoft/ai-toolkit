@@ -1,6 +1,6 @@
 ---
 title: Save Messages To Database
-description: Learn how to save messages to an external database using the AI TOOLKIT and React Server Components
+description: Learn how to save messages to an external database using the AI SDK and React Server Components
 tags: ['rsc', 'tool use']
 ---
 
@@ -41,7 +41,7 @@ export default function RootLayout({
 
 import { useState } from 'react';
 import { ClientMessage } from './actions';
-import { useActions, useUIState } from '@ai-toolkit/rsc';
+import { useActions, useUIState } from '@ai-tools/rsc';
 import { generateId } from 'ai';
 
 // Allow streaming responses up to 30 seconds
@@ -100,8 +100,7 @@ We will use the callback function to listen to state changes and save the conver
 ```tsx filename='app/actions.tsx'
 'use server';
 
-import { getAIState, getMutableAIState, streamUI } from '@ai-toolkit/rsc';
-import { openai } from '@ai-toolkit/openai';
+import { getAIState, getMutableAIState, streamUI } from '@ai-tools/rsc';
 import { ReactNode } from 'react';
 import { z } from 'zod';
 import { generateId } from 'ai';
@@ -126,7 +125,7 @@ export async function continueConversation(
   const history = getMutableAIState();
 
   const result = await streamUI({
-    model: openai('gpt-3.5-turbo'),
+    model: 'openai/gpt-5.4',
     messages: [...history.get(), { role: 'user', content: input }],
     text: ({ content, done }) => {
       if (done) {
@@ -176,7 +175,7 @@ export async function continueConversation(
 ```
 
 ```ts filename='app/ai.ts'
-import { createAI } from '@ai-toolkit/rsc';
+import { createAI } from '@ai-tools/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 
 export const AI = createAI<ServerMessage[], ClientMessage[]>({

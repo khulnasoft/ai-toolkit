@@ -1,13 +1,13 @@
-import { AITOOLKITError } from '@ai-toolkit/provider';
+import { AISDKError } from '@ai-tools/provider';
 
 const name = 'AI_NoOutputGeneratedError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
 /**
-Thrown when no LLM output was generated, e.g. because of errors.
+ * Thrown when no LLM output was generated, e.g. because of errors.
  */
-export class NoOutputGeneratedError extends AITOOLKITError {
+export class NoOutputGeneratedError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   constructor({
@@ -21,6 +21,6 @@ export class NoOutputGeneratedError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is NoOutputGeneratedError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

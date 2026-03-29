@@ -1,6 +1,6 @@
-# MCP + AI TOOLKIT Example
+# MCP + AI SDK Example
 
-You can use the AI TOOLKIT with MCP to convert between MCP and AI TOOLKIT tool calls.
+You can use the AI SDK with MCP to convert between MCP and AI SDK tool calls.
 This example demonstrates tool conversion from both SSE and `stdio` MCP servers.
 
 ## Build
@@ -11,7 +11,7 @@ This example demonstrates tool conversion from both SSE and `stdio` MCP servers.
 OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 ```
 
-2. Run the following commands from the root directory of the AI TOOLKIT repo:
+2. Run the following commands from the root directory of the AI SDK repo:
 
 ```sh
 pnpm install
@@ -63,4 +63,4 @@ To test the example with the UI, you will first need to run the MCP server:
 pnpm server:elicitation-ui
 ```
 
-and then start the dev server in a new terminal in `examples/next-openai` and navigate to `localhost:3000/mcp-elicitation`
+and then start the dev server in a new terminal in `examples/ai-e2e-next` and navigate to `localhost:3000/chat/mcp-elicitation`

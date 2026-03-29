@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { createDeepgram } from './deepgram-provider';
 import { DeepgramSpeechModel } from './deepgram-speech-model';
 import { describe, it, expect, vi } from 'vitest';
@@ -72,7 +72,7 @@ describe('doGenerate', () => {
     });
 
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-toolkit/deepgram/0.0.0-test`,
+      `ai-sdk/deepgram/0.0.0-test`,
     );
   });
 

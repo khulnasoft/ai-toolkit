@@ -1,4 +1,4 @@
-import { TypeValidationError } from '@ai-toolkit/provider';
+import { TypeValidationError } from '@ai-tools/provider';
 import { describe, expect, it } from 'vitest';
 import { safeValidateTypes, validateTypes } from './validate-types';
 import { StandardSchema } from './schema';

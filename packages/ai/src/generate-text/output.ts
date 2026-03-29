@@ -1,15 +1,15 @@
 import {
   JSONValue,
-  LanguageModelV3CallOptions,
+  LanguageModelV4CallOptions,
   TypeValidationError,
-} from '@ai-toolkit/provider';
+} from '@ai-tools/provider';
 import {
   asSchema,
   FlexibleSchema,
   resolve,
   safeParseJSON,
   safeValidateTypes,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import { FinishReason } from '../types/language-model';
 import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
@@ -27,7 +27,7 @@ export interface Output<OUTPUT = any, PARTIAL = any, ELEMENT = any> {
   /**
    * The response format to use for the model.
    */
-  responseFormat: PromiseLike<LanguageModelV3CallOptions['responseFormat']>;
+  responseFormat: PromiseLike<LanguageModelV4CallOptions['responseFormat']>;
 
   /**
    * Parses the complete output of the model.

@@ -1,4 +1,4 @@
-# AI TOOLKIT Usage
+# AI SDK Usage
 
 ## Use Cases
 

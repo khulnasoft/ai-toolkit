@@ -1,4 +1,4 @@
-import { SpeechModelV2, SpeechModelV3 } from '@ai-toolkit/provider';
+import { SpeechModelV2, SpeechModelV3 } from '@ai-tools/provider';
 import { logV2CompatibilityWarning } from '../util/log-v2-compatibility-warning';
 
 export function asSpeechModelV3(

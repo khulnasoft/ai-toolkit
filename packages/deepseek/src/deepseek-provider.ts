@@ -1,14 +1,14 @@
 import {
-  LanguageModelV3,
+  LanguageModelV4,
   NoSuchModelError,
-  ProviderV3,
-} from '@ai-toolkit/provider';
+  ProviderV4,
+} from '@ai-tools/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-toolkit/provider-utils';
+} from '@ai-tools/provider-utils';
 import { DeepSeekChatModelId } from './chat/deepseek-chat-options';
 import { DeepSeekChatLanguageModel } from './chat/deepseek-chat-language-model';
 import { VERSION } from './version';
@@ -36,21 +36,21 @@ export interface DeepSeekProviderSettings {
   fetch?: FetchFunction;
 }
 
-export interface DeepSeekProvider extends ProviderV3 {
+export interface DeepSeekProvider extends ProviderV4 {
   /**
-Creates a DeepSeek model for text generation.
-*/
-  (modelId: DeepSeekChatModelId): LanguageModelV3;
+   * Creates a DeepSeek model for text generation.
+   */
+  (modelId: DeepSeekChatModelId): LanguageModelV4;
 
   /**
-Creates a DeepSeek model for text generation.
-*/
-  languageModel(modelId: DeepSeekChatModelId): LanguageModelV3;
+   * Creates a DeepSeek model for text generation.
+   */
+  languageModel(modelId: DeepSeekChatModelId): LanguageModelV4;
 
   /**
-Creates a DeepSeek chat model for text generation.
-*/
-  chat(modelId: DeepSeekChatModelId): LanguageModelV3;
+   * Creates a DeepSeek chat model for text generation.
+   */
+  chat(modelId: DeepSeekChatModelId): LanguageModelV4;
 
   /**
    * @deprecated Use `embeddingModel` instead.
@@ -75,7 +75,7 @@ export function createDeepSeek(
         })}`,
         ...options.headers,
       },
-      `ai-toolkit/deepseek/${VERSION}`,
+      `ai-sdk/deepseek/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: DeepSeekChatModelId) => {
@@ -90,7 +90,7 @@ export function createDeepSeek(
   const provider = (modelId: DeepSeekChatModelId) =>
     createLanguageModel(modelId);
 
-  provider.specificationVersion = 'v3' as const;
+  provider.specificationVersion = 'v4' as const;
   provider.languageModel = createLanguageModel;
   provider.chat = createLanguageModel;
 

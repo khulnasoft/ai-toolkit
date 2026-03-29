@@ -1,8 +1,8 @@
-import { FetchFunction } from '@ai-toolkit/provider-utils';
-import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { FetchFunction } from '@ai-tools/provider-utils';
+import { createTestServer } from '@ai-tools/test-server/with-vitest';
 import { describe, expect, it } from 'vitest';
 import { LumaImageModel } from './luma-image-model';
-import { InvalidResponseDataError } from '@ai-toolkit/provider';
+import { InvalidResponseDataError } from '@ai-tools/provider';
 
 const prompt = 'A cute baby sea otter';
 
@@ -312,7 +312,7 @@ describe('LumaImageModel', () => {
 
       expect(model.provider).toBe('luma');
       expect(model.modelId).toBe('test-model');
-      expect(model.specificationVersion).toBe('v3');
+      expect(model.specificationVersion).toBe('v4');
       expect(model.maxImagesPerCall).toBe(1);
     });
   });

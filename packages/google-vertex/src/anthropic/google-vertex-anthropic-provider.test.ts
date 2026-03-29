@@ -2,12 +2,12 @@ import {
   createVertexAnthropic,
   vertexAnthropicTools,
 } from './google-vertex-anthropic-provider';
-import { NoSuchModelError } from '@ai-toolkit/provider';
-import { AnthropicMessagesLanguageModel } from '@ai-toolkit/anthropic/internal';
+import { NoSuchModelError } from '@ai-tools/provider';
+import { AnthropicMessagesLanguageModel } from '@ai-tools/anthropic/internal';
 import { vi, describe, beforeEach, it, expect } from 'vitest';
 
 // Mock the imported modules
-vi.mock('@ai-toolkit/provider-utils', () => ({
+vi.mock('@ai-tools/provider-utils', () => ({
   loadOptionalSetting: vi
     .fn()
     .mockImplementation(({ settingValue }) => settingValue),
@@ -19,10 +19,8 @@ vi.mock('@ai-toolkit/provider-utils', () => ({
   zodSchema: vi.fn(),
 }));
 
-vi.mock('@ai-toolkit/anthropic/internal', async () => {
-  const originalModule = await vi.importActual(
-    '@ai-toolkit/anthropic/internal',
-  );
+vi.mock('@ai-tools/anthropic/internal', async () => {
+  const originalModule = await vi.importActual('@ai-tools/anthropic/internal');
   return {
     ...originalModule,
     AnthropicMessagesLanguageModel: vi.fn(),
@@ -52,6 +50,8 @@ describe('google-vertex-anthropic-provider', () => {
         headers: expect.any(Object),
         buildRequestUrl: expect.any(Function),
         transformRequestBody: expect.any(Function),
+        supportsNativeStructuredOutput: false,
+        supportsStrictTools: false,
       }),
     );
   });
@@ -101,7 +101,10 @@ describe('google-vertex-anthropic-provider', () => {
     expect(provider.tools).toHaveProperty('textEditor_20250728');
     expect(provider.tools).toHaveProperty('computer_20241022');
     expect(provider.tools).toHaveProperty('webSearch_20250305');
+    expect(provider.tools).toHaveProperty('toolSearchRegex_20251119');
+    expect(provider.tools).toHaveProperty('toolSearchBm25_20251119');
     expect(provider.tools).not.toHaveProperty('codeExecution_20250825');
+    expect(provider.tools).not.toHaveProperty('codeExecution_20260120');
   });
 
   it('should pass custom headers to the model constructor', () => {
