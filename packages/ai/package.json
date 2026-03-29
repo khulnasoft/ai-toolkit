@@ -68,7 +68,7 @@
     "@edge-runtime/vm": "^5.0.0",
     "@types/json-schema": "7.0.15",
     "@types/node": "20.17.24",
-    "@vercel/ai-tsconfig": "workspace:*",
+    "@khulnasoft/ai-tsconfig": "workspace:*",
     "esbuild": "^0.24.2",
     "tsup": "^7.2.0",
     "tsx": "^4.19.2",

@@ -13,7 +13,7 @@ run(async () => {
       }),
     },
     prompt:
-      'Use the deepwiki tool to tell me about the vercel/ai repository on GitHub',
+      'Use the deepwiki tool to tell me about the khulnasoft/ai repository on GitHub',
   });
 
   console.log('Text:', result.text);

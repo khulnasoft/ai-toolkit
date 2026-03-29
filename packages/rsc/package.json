@@ -59,7 +59,7 @@
     "react-dom": "^18",
     "react": "^18",
     "react-server-dom-webpack": "18.3.0-canary-eb33bd747-20240312",
-    "@vercel/ai-tsconfig": "workspace:*",
+    "@khulnasoft/ai-tsconfig": "workspace:*",
     "jsdom": "^24.0.0",
     "msw": "2.6.4",
     "tsup": "^7.2.0",

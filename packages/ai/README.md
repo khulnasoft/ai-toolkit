@@ -19,7 +19,7 @@ npm install ai
 If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
 
 ```shell
-npx skills add vercel/ai
+npx skills add khulnasoft/ai
 ```
 
 ## Unified Provider Architecture

@@ -6,4 +6,4 @@
 '@ai-sdk/groq': patch
 ---
 
-revert incorrect fix https://github.com/vercel/ai/pull/13172
+revert incorrect fix https://github.com/khulnasoft/ai/pull/13172

@@ -63,7 +63,7 @@ Set up your `package.json` with:
 - `"license": "Apache-2.0"`
 - `"sideEffects": false`
 - Dependencies on `@ai-tools/provider` and `@ai-tools/provider-utils` (use `workspace:*`)
-- Dev dependencies: `@ai-tools/test-server`, `@types/node`, `@vercel/ai-tsconfig`, `tsup`, `typescript`, `zod`
+- Dev dependencies: `@ai-tools/test-server`, `@types/node`, `@khulnasoft/ai-tsconfig`, `tsup`, `typescript`, `zod`
 - `"engines": { "node": ">=18" }`
 - Peer dependency on `zod` (both v3 and v4): `"zod": "^3.25.76 || ^4.1.8"`
 
@@ -88,7 +88,7 @@ Example exports configuration:
 
 ```json
 {
-  "extends": "@vercel/ai-tsconfig/base.json",
+  "extends": "@khulnasoft/ai-tsconfig/base.json",
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

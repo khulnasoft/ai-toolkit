@@ -12,7 +12,7 @@ run(async () => {
         model: alibaba.video('wan2.6-i2v'),
         prompt: {
           image:
-            'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
+            'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
           text: 'The cat slowly turns its head and blinks',
         },
         duration: 5,

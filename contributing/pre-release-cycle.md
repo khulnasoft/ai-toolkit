@@ -135,7 +135,7 @@ Run `pnpm test` in `packages/ai` and `pnpm type-check:full` from the workspace r
 
 The documentation site lives in the `ai-studio` repository and uses a Git submodule pointing at this repository. During the pre-release cycle the site needs versioned branches and Vercel deployments for both stable and beta docs.
 
-In the `vercel/ai` repository:
+In the `khulnasoft/ai` repository:
 
 1. Update `.github/workflows/update-sdk-submodule-v6.yml` to track the `release-v6.0` branch instead of `main`.
 2. Create `.github/workflows/update-sdk-submodule-v7.yml` — this workflow fetches `main`, checks out the `sdk/v7` branch in `ai-studio`, and pushes to `origin sdk/v7`.

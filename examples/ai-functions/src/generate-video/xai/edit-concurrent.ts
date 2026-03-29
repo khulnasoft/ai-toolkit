@@ -13,7 +13,7 @@ run(async () => {
       providerOptions: {
         xai: {
           videoUrl:
-            'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/prudence.mp4',
+            'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/prudence.mp4',
           pollTimeoutMs: 600000,
         } satisfies XaiVideoModelOptions,
       },

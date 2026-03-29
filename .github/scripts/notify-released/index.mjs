@@ -27,7 +27,7 @@ if (!githubToken) {
   throw new Error('GITHUB_TOKEN environment variable is required');
 }
 
-const [owner, repo] = (process.env.GITHUB_REPOSITORY || 'vercel/ai').split('/');
+const [owner, repo] = (process.env.GITHUB_REPOSITORY || 'khulnasoft/ai').split('/');
 
 const octokit = new Octokit({ auth: githubToken });
 

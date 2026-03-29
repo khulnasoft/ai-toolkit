@@ -17,7 +17,7 @@ run(async () => {
         providerOptions: {
           alibaba: {
             referenceUrls: [
-              'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
+              'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
             ],
             pollTimeoutMs: 600000, // 10 minutes
           } satisfies AlibabaVideoModelOptions,

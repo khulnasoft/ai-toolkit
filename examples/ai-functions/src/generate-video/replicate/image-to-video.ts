@@ -10,7 +10,7 @@ run(async () => {
       model: replicate.video('kwaivgi/kling-v2.5-turbo-pro'),
       prompt: {
         image:
-          'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
+          'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
         text: 'The cat slowly turns its head and blinks',
       },
       aspectRatio: '16:9',

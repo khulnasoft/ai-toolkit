@@ -17,7 +17,7 @@ jobs:
       - name: get-stale-discussions
         id: get-stale-discussions
         run: |
-          staleDiscussionsQuery="repo:vercel/ai updated:<$(date -d "-30days" -I) sort:updated-asc is:unlocked"
+          staleDiscussionsQuery="repo:khulnasoft/ai updated:<$(date -d "-30days" -I) sort:updated-asc is:unlocked"
 
           discussions=$(gh api graphql -F searchQuery="$staleDiscussionsQuery" -f query='
            query oldDiscussions($searchQuery: String!) {

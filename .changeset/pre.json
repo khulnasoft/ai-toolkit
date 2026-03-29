@@ -80,7 +80,7 @@
     "analyze-downloads": "0.0.0",
     "eslint-config-vercel-ai": "0.0.0",
     "generate-llms-txt": "0.0.0",
-    "@vercel/ai-tsconfig": "0.0.0"
+    "@khulnasoft/ai-tsconfig": "0.0.0"
   },
   "changesets": [
     "angry-tigers-heal",

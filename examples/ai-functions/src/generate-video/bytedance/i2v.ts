@@ -15,7 +15,7 @@ run(async () => {
         model: byteDance.video('seedance-1-5-pro-251215'),
         prompt: {
           image:
-            'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
+            'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
           text: 'The cat slowly turns its head and blinks, then yawns lazily',
         },
         duration: 5,

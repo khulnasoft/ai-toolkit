@@ -13,7 +13,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute `create-nuxt` to bootstrap the example:
 
 ```bash
-npx create-nuxt -t github:vercel/ai/examples/nuxt-openai nuxt-openai
+npx create-nuxt -t github:khulnasoft/ai/examples/nuxt-openai nuxt-openai
 ```
 
 To run the example locally you need to:

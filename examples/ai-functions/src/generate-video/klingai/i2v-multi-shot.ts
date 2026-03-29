@@ -12,7 +12,7 @@ run(async () => {
         model: klingai.video('kling-v3.0-i2v'),
         prompt: {
           image:
-            'https://raw.githubusercontent.com/vercel/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
+            'https://raw.githubusercontent.com/khulnasoft/ai/refs/heads/main/examples/ai-functions/data/comic-cat.png',
           text: '',
         },
         duration: 8,
