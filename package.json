@@ -13,6 +13,7 @@
     "type-check": "tsc --build",
     "type-check:full": "tsc --build tsconfig.with-examples.json",
     "publint": "turbo publint",
+    "pre-build": "turbo lint && turo build",
     "test": "turbo test --concurrency 16 --filter=!@example/*",
     "test:update": "turbo test:update --concurrency 16 --filter=!@example/*",
     "ci:release": "turbo clean && turbo build && changeset publish",
