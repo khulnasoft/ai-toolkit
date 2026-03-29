@@ -1,0 +1,11 @@
+{
+  "framework": "nextjs",
+  "installCommand": "pnpm install",
+  "buildCommand": "next build",
+  "env": {
+    "VERCEL_API_KEY": "@vercel-api-key",
+    "VERCEL_OIDC_TOKEN": "@vercel-oidc-token",
+    "BLOB_READ_WRITE_TOKEN": "@blob-read-write-token",
+    "REDIS_URL": "@redis-url"
+  }
+}
