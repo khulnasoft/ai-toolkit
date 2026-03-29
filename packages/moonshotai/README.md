@@ -4,10 +4,10 @@ The **[Moonshot AI provider](https://ai-sdk.dev/providers/ai-sdk-providers/moons
 
 ## Setup
 
-The Moonshot AI provider is available in the `@ai-tools/moonshotai` module. You can install it with
+The Moonshot AI provider is available in the `@ai-toolkit/moonshotai` module. You can install it with
 
 ```bash
-npm i @ai-tools/moonshotai
+npm i @ai-toolkit/moonshotai
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `moonshotai` from `@ai-tools/moonshotai`:
+You can import the default provider instance `moonshotai` from `@ai-toolkit/moonshotai`:
 
 ```ts
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 ```
 
 ## Language Model Example
 
 ```ts
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -41,7 +41,7 @@ const { text } = await generateText({
 ## Thinking Mode Example (Kimi K2 Thinking)
 
 ```ts
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

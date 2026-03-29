@@ -1,5 +1,5 @@
 import { GoogleAIFileManager } from '@google/generative-ai/server';
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText, Output } from 'ai';
 import path from 'path';
 import { z } from 'zod';

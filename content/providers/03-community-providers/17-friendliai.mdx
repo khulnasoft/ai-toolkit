@@ -223,10 +223,10 @@ FriendliAI language models can also be used in the `streamText` function and sup
 
 ### OpenAI Compatibility
 
-You can also use `@ai-tools/openai` as the APIs are OpenAI-compatible.
+You can also use `@ai-toolkit/openai` as the APIs are OpenAI-compatible.
 
 ```ts
-import { createOpenAI } from '@ai-tools/openai';
+import { createOpenAI } from '@ai-toolkit/openai';
 
 const friendli = createOpenAI({
   baseURL: 'https://api.friendli.ai/serverless/v1',
@@ -237,7 +237,7 @@ const friendli = createOpenAI({
 If you are using dedicated endpoints
 
 ```ts
-import { createOpenAI } from '@ai-tools/openai';
+import { createOpenAI } from '@ai-toolkit/openai';
 
 const friendli = createOpenAI({
   baseURL: 'https://api.friendli.ai/dedicated/v1',

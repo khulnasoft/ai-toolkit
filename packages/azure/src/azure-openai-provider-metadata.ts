@@ -3,7 +3,7 @@ import {
   ResponsesReasoningProviderMetadata,
   ResponsesSourceDocumentProviderMetadata,
   ResponsesTextProviderMetadata,
-} from '@ai-tools/openai/internal';
+} from '@ai-toolkit/openai/internal';
 
 export type AzureResponsesProviderMetadata = {
   azure: ResponsesProviderMetadata;

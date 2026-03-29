@@ -9,36 +9,36 @@ The [Anthropic](https://www.anthropic.com/) provider contains language model sup
 
 ## Setup
 
-The Anthropic provider is available in the `@ai-tools/anthropic` module. You can install it with
+The Anthropic provider is available in the `@ai-toolkit/anthropic` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/anthropic" dark />
+    <Snippet text="pnpm add @ai-toolkit/anthropic" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/anthropic" dark />
+    <Snippet text="npm install @ai-toolkit/anthropic" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/anthropic" dark />
+    <Snippet text="yarn add @ai-toolkit/anthropic" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/anthropic" dark />
+    <Snippet text="bun add @ai-toolkit/anthropic" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `anthropic` from `@ai-tools/anthropic`:
+You can import the default provider instance `anthropic` from `@ai-toolkit/anthropic`:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 ```
 
-If you need a customized setup, you can import `createAnthropic` from `@ai-tools/anthropic` and create a provider instance with your settings:
+If you need a customized setup, you can import `createAnthropic` from `@ai-toolkit/anthropic` and create a provider instance with your settings:
 
 ```ts
-import { createAnthropic } from '@ai-tools/anthropic';
+import { createAnthropic } from '@ai-toolkit/anthropic';
 
 const anthropic = createAnthropic({
   // custom settings
@@ -94,7 +94,7 @@ You can also use the following aliases for model creation:
 You can use Anthropic language models to generate text with the `generateText` function:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -158,7 +158,7 @@ Tool call streaming is enabled by default. You can opt out by setting the
 `toolStreaming` provider option to `false`.
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { streamText, tool } from 'ai';
 import { z } from 'zod';
 
@@ -186,7 +186,7 @@ const result = streamText({
 Anthropic introduced an `effort` option with `claude-opus-4-5` that affects thinking, text responses, and function calls. Effort defaults to `high` and you can set it to `medium` or `low` to save tokens and to lower time-to-last-token latency (TTLT).
 
 ```ts highlight="8-10"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, usage } = await generateText({
@@ -208,7 +208,7 @@ console.log(usage); // token usage
 Anthropic supports a [`speed` option](https://code.claude.com/docs/en/fast-mode) for `claude-opus-4-6` that enables faster inference with approximately 2.5x faster output token speeds.
 
 ```ts highlight="8-10"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -234,7 +234,7 @@ For newer models (`claude-sonnet-4-6`, `claude-opus-4-6`, and later), use adapti
 Claude automatically determines how much reasoning to use based on the complexity of the prompt.
 
 ```ts highlight="4,8-10"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoningText, reasoning } = await generateText({
@@ -273,7 +273,7 @@ For earlier models (`claude-opus-4-20250514`, `claude-sonnet-4-20250514`, `claud
 use `type: 'enabled'` with an explicit token budget:
 
 ```ts highlight="4,8-10"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoningText, reasoning } = await generateText({
@@ -301,7 +301,7 @@ Anthropic's Context Management feature allows you to automatically manage conver
 You can configure context management using the `contextManagement` provider option:
 
 ```ts highlight="7-20"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -374,7 +374,7 @@ const result = await generateText({
 The `compact_20260112` edit type automatically summarizes earlier conversation context when token limits are reached. This is useful for long-running conversations where you want to preserve the essence of earlier exchanges while staying within token limits.
 
 ```ts highlight="7-19"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -497,7 +497,7 @@ that resolves to the metadata. Alternatively you can receive it in the
 `onFinish` callback.
 
 ```ts highlight="8,18-20,29-30"
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const errorMessage = '... long error message ...';
@@ -776,7 +776,7 @@ Anthropic provides a provider-defined web search tool that gives Claude direct a
 You can enable web search using the provider-defined web search tool:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const webSearchTool = anthropic.tools.webSearch_20250305({
@@ -847,7 +847,7 @@ Anthropic provides a provider-defined web fetch tool that allows Claude to retri
 You can enable web fetch using the provider-defined web fetch tool:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -872,7 +872,7 @@ There are two variants:
 #### Basic Usage
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 
@@ -923,7 +923,7 @@ Claude will construct regex patterns like `weather|temperature|forecast` to find
 You can implement your own tool search logic (e.g., using embeddings or semantic search) by returning `tool-reference` content blocks via `toModelOutput`:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 
@@ -976,7 +976,7 @@ Anthropic supports connecting to [MCP servers](https://docs.claude.com/en/docs/a
 You can enable this feature with the `mcpServers` provider option:
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -1080,7 +1080,7 @@ Anthropic provides a provider-defined code execution tool that gives Claude dire
 You can enable code execution using the provider-defined code execution tool:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const codeExecutionTool = anthropic.tools.codeExecution_20260120();
@@ -1160,7 +1160,7 @@ To enable programmatic tool calling, use the `allowedCallers` provider option on
 import {
   anthropic,
   forwardAnthropicContainerIdFromLastStep,
-} from '@ai-tools/anthropic';
+} from '@ai-toolkit/anthropic';
 import { generateText, tool, stepCountIs } from 'ai';
 import { z } from 'zod';
 
@@ -1230,7 +1230,7 @@ To use skills, you need to:
 2. Specify the container with skills in `providerOptions`
 
 ```ts highlight="4,9-17,19-23"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({

@@ -1,8 +1,8 @@
 import {
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
-import { convertToBase64 } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 import {
   GoogleGenerativeAIContent,
   GoogleGenerativeAIContentPart,

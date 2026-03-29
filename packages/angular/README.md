@@ -4,7 +4,7 @@ Angular UI components for the [AI SDK v6](https://ai-sdk.dev/docs).
 
 ## Overview
 
-The `@ai-tools/angular` package provides Angular-specific implementations using Angular signals for reactive state management:
+The `@ai-toolkit/angular` package provides Angular-specific implementations using Angular signals for reactive state management:
 
 - **Chat** - Multi-turn conversations with streaming responses
 - **Completion** - Single-turn text generation
@@ -13,7 +13,7 @@ The `@ai-tools/angular` package provides Angular-specific implementations using 
 ## Installation
 
 ```bash
-npm install @ai-tools/angular ai
+npm install @ai-toolkit/angular ai
 ```
 
 ### Peer Dependencies
@@ -30,7 +30,7 @@ Real-time conversation interface with streaming support.
 ```typescript
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Chat } from '@ai-tools/angular';
+import { Chat } from '@ai-toolkit/angular';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -241,7 +241,7 @@ Single-turn text generation with streaming.
 
 ```typescript
 import { Component } from '@angular/core';
-import { Completion } from '@ai-tools/angular';
+import { Completion } from '@ai-toolkit/angular';
 
 @Component({
   selector: 'app-completion',
@@ -363,7 +363,7 @@ Generate structured data with Zod schemas and streaming.
 
 ```typescript
 import { Component } from '@angular/core';
-import { StructuredObject } from '@ai-tools/angular';
+import { StructuredObject } from '@ai-toolkit/angular';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -608,7 +608,7 @@ pnpm test:update       # Update snapshots
 Full type safety with automatic type inference:
 
 ```typescript
-import { Chat, UIMessage, StructuredObject } from '@ai-tools/angular';
+import { Chat, UIMessage, StructuredObject } from '@ai-toolkit/angular';
 import { z } from 'zod';
 
 // Custom message types

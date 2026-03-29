@@ -1,4 +1,4 @@
-import { deepinfra } from '@ai-tools/deepinfra';
+import { deepinfra } from '@ai-toolkit/deepinfra';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

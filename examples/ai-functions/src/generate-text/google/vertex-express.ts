@@ -1,4 +1,4 @@
-import { createVertex } from '@ai-tools/google-vertex';
+import { createVertex } from '@ai-toolkit/google-vertex';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

@@ -2,8 +2,8 @@ import type {
   Experimental_VideoModelV4,
   Experimental_VideoModelV4VideoData,
   SharedV4ProviderMetadata,
-} from '@ai-tools/provider';
-import { convertBase64ToUint8Array } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { convertBase64ToUint8Array } from '@ai-toolkit/provider-utils';
 import {
   afterEach,
   beforeEach,

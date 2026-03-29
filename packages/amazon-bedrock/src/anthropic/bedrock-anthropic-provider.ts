@@ -2,7 +2,7 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadOptionalSetting,
@@ -11,11 +11,11 @@ import {
   resolve,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   anthropicTools,
   AnthropicMessagesLanguageModel,
-} from '@ai-tools/anthropic/internal';
+} from '@ai-toolkit/anthropic/internal';
 import {
   BedrockCredentials,
   createApiKeyFetchFunction,
@@ -241,7 +241,10 @@ export function createBedrockAnthropic(
 
   const getHeaders = async () => {
     const baseHeaders = (await resolve(options.headers)) ?? {};
-    return withUserAgentSuffix(baseHeaders, `ai-sdk/amazon-bedrock/${VERSION}`);
+    return withUserAgentSuffix(
+      baseHeaders,
+      `ai-toolkit/amazon-bedrock/${VERSION}`,
+    );
   };
 
   const createChatModel = (modelId: BedrockAnthropicModelId) =>

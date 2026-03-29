@@ -2,7 +2,7 @@ import {
   EmbeddingModelV3,
   EmbeddingModelV4,
   EmbeddingModelV4CallOptions,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { asEmbeddingModelV4 } from '../model/as-embedding-model-v4';
 import { EmbeddingModelMiddleware } from '../types';
 import { asArray } from '../util/as-array';

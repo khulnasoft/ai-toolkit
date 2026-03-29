@@ -1,5 +1,5 @@
-import { FetchFunction } from '@ai-tools/provider-utils';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { FetchFunction } from '@ai-toolkit/provider-utils';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, expect, it } from 'vitest';
 import { FalImageModel } from './fal-image-model';
 

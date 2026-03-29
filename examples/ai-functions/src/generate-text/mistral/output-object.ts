@@ -1,4 +1,4 @@
-import { mistral, type MistralLanguageModelOptions } from '@ai-tools/mistral';
+import { mistral, type MistralLanguageModelOptions } from '@ai-toolkit/mistral';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

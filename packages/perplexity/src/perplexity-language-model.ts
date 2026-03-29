@@ -7,7 +7,7 @@ import {
   LanguageModelV4StreamPart,
   LanguageModelV4StreamResult,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   ParseResult,
@@ -17,7 +17,7 @@ import {
   createJsonResponseHandler,
   isCustomReasoning,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { convertPerplexityUsage } from './convert-perplexity-usage';
 import { convertToPerplexityMessages } from './convert-to-perplexity-messages';

@@ -2,7 +2,7 @@ import {
   ImageModelV4Usage,
   JSONObject,
   LanguageModelV4Usage,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 /**
  * Represents the number of tokens used in a prompt and completion.
@@ -80,7 +80,7 @@ export type LanguageModelUsage = {
 /**
  * Represents the number of tokens used in an embedding.
  */
-// TODO replace with EmbeddingModelV4Usage once available in @ai-tools/provider
+// TODO replace with EmbeddingModelV4Usage once available in @ai-toolkit/provider
 export type EmbeddingModelUsage = {
   /**
    * The number of tokens used in the embedding.

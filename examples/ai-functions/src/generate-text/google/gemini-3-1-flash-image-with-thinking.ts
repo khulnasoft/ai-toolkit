@@ -1,4 +1,4 @@
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 import { presentImages } from '../../lib/present-image';
 import { run } from '../../lib/run';

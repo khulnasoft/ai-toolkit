@@ -2,12 +2,12 @@ import {
   LanguageModelV4Prompt,
   SharedV4ProviderMetadata,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { OpenAICompatibleChatPrompt } from './openai-compatible-api-types';
 import {
   convertBase64ToUint8Array,
   convertToBase64,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 
 function getOpenAIMetadata(message: {
   providerOptions?: SharedV4ProviderMetadata;

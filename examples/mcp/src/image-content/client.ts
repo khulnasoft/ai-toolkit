@@ -1,4 +1,4 @@
-import { createMCPClient } from '@ai-tools/mcp';
+import { createMCPClient } from '@ai-toolkit/mcp';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';

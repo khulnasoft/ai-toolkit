@@ -1,4 +1,4 @@
-import { togetherai } from '@ai-tools/togetherai';
+import { togetherai } from '@ai-toolkit/togetherai';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 import { weatherTool } from '../../tools/weather-tool';

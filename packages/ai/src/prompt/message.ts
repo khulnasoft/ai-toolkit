@@ -4,7 +4,7 @@ import {
   SystemModelMessage,
   ToolModelMessage,
   UserModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { providerMetadataSchema } from '../types/provider-metadata';
 import {

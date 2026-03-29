@@ -1,14 +1,14 @@
 import {
   EmbeddingModelV4,
   TooManyEmbeddingValuesForCallError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   postJsonToApi,
   resolve,
   parseProviderOptions,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
 import {

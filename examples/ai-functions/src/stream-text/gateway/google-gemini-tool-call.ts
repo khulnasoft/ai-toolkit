@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import { google } from '@ai-tools/google';
-import { createVertex } from '@ai-tools/google-vertex';
+import { google } from '@ai-toolkit/google';
+import { createVertex } from '@ai-toolkit/google-vertex';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';
 

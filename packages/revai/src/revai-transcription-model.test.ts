@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { RevaiTranscriptionModel } from './revai-transcription-model';
 import { createRevai } from './revai-provider';
 import { readFile } from 'node:fs/promises';
@@ -88,7 +88,7 @@ describe('doGenerate', () => {
       });
 
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/revai/0.0.0-test`,
+        `ai-toolkit/revai/0.0.0-test`,
       );
     });
 

@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 import { run } from '../../lib/run';

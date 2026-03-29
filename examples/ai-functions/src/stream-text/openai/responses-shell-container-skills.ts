@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import { readFileSync } from 'fs';
 import { run } from '../../lib/run';

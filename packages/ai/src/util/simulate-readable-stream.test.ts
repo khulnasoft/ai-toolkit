@@ -1,5 +1,5 @@
 import { simulateReadableStream } from './simulate-readable-stream';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('simulateReadableStream', () => {

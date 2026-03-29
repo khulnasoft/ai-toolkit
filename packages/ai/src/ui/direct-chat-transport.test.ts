@@ -1,4 +1,4 @@
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { describe, expect, it, beforeEach } from 'vitest';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
 import { ToolLoopAgent } from '../agent/tool-loop-agent';

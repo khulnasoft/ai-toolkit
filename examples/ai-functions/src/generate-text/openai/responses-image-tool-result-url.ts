@@ -1,7 +1,7 @@
 import { generateText, stepCountIs, tool } from 'ai';
 import { run } from '../../lib/run';
 import { z } from 'zod';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 run(async () => {
   const readImage = tool({

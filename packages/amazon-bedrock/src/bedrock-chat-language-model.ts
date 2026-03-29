@@ -11,7 +11,7 @@ import {
   LanguageModelV4StreamResult,
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   ParseResult,
@@ -25,8 +25,8 @@ import {
   parseProviderOptions,
   postJsonToApi,
   resolve,
-} from '@ai-tools/provider-utils';
-import { getModelCapabilities } from '@ai-tools/anthropic/internal';
+} from '@ai-toolkit/provider-utils';
+import { getModelCapabilities } from '@ai-toolkit/anthropic/internal';
 import { z } from 'zod/v4';
 import {
   BEDROCK_STOP_REASONS,

@@ -101,13 +101,13 @@ tracerProvider.register();
 Install dependencies:
 
 ```bash
-npm install ai @ai-tools/openai @langfuse/otel @opentelemetry/sdk-node
+npm install ai @ai-toolkit/openai @langfuse/otel @opentelemetry/sdk-node
 ```
 
 Add `LangfuseSpanProcessor` to your OpenTelemetry setup:
 
 ```ts highlight="3-4, 6-8"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 import { LangfuseSpanProcessor } from '@langfuse/otel';
 import { NodeSDK } from '@opentelemetry/sdk-node';

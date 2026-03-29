@@ -1,4 +1,4 @@
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 
 export const xaiWebSearchAgent = new ToolLoopAgent({

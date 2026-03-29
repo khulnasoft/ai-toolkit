@@ -2,7 +2,7 @@ import {
   EmbeddingModelV2,
   EmbeddingModelV3,
   EmbeddingModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { asEmbeddingModelV3 } from './as-embedding-model-v3';
 
 export function asEmbeddingModelV4(

@@ -1,4 +1,4 @@
-import { JSONSchema7, TypeValidationError } from '@ai-tools/provider';
+import { JSONSchema7, TypeValidationError } from '@ai-toolkit/provider';
 import { StandardSchemaV1, StandardJSONSchemaV1 } from '@standard-schema/spec';
 import * as z3 from 'zod/v3';
 import * as z4 from 'zod/v4';

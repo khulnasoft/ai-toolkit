@@ -1,4 +1,4 @@
-import { mistral } from '@ai-tools/mistral';
+import { mistral } from '@ai-toolkit/mistral';
 import { ModelMessage, generateText } from 'ai';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../../tools/weather-tool';

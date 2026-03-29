@@ -1,5 +1,5 @@
 import { DelayedPromise } from './delayed-promise';
-import { delay } from '@ai-tools/provider-utils';
+import { delay } from '@ai-toolkit/provider-utils';
 import { describe, it, expect } from 'vitest';
 
 describe('DelayedPromise', () => {

@@ -7,9 +7,9 @@ A local development tool for debugging and inspecting AI SDK applications. View 
 ## Installation
 
 ```bash
-npm install @ai-tools/devtools
+npm install @ai-toolkit/devtools
 # or
-pnpm add @ai-tools/devtools
+pnpm add @ai-toolkit/devtools
 ```
 
 ## Requirements
@@ -23,7 +23,7 @@ pnpm add @ai-tools/devtools
 
 ```typescript
 import { wrapLanguageModel } from 'ai';
-import { devToolsMiddleware } from '@ai-tools/devtools';
+import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({
   middleware: devToolsMiddleware(),
@@ -34,7 +34,7 @@ const model = wrapLanguageModel({
 ### 2. Run the viewer
 
 ```bash
-npx @ai-tools/devtools
+npx @ai-toolkit/devtools
 ```
 
 Open http://localhost:4983 to view your AI SDK interactions.

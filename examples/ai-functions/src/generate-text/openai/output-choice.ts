@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { generateText, Output, stepCountIs } from 'ai';
 import { print } from '../../lib/print';
 import { run } from '../../lib/run';

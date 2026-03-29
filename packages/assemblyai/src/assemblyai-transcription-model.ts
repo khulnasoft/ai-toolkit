@@ -1,4 +1,4 @@
-import { TranscriptionModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { TranscriptionModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
@@ -6,7 +6,7 @@ import {
   parseProviderOptions,
   postJsonToApi,
   postToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { AssemblyAIConfig } from './assemblyai-config';
 import { assemblyaiFailedResponseHandler } from './assemblyai-error';

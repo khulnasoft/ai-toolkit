@@ -1,4 +1,4 @@
-import { DownloadError } from '@ai-tools/provider-utils';
+import { DownloadError } from '@ai-toolkit/provider-utils';
 import { download } from './download';
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 

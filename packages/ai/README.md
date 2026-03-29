@@ -38,11 +38,11 @@ const result = await generateText({
 You can also connect to providers directly using their SDK packages:
 
 ```shell
-npm install @ai-tools/openai @ai-tools/anthropic @ai-tools/google
+npm install @ai-toolkit/openai @ai-toolkit/anthropic @ai-toolkit/google
 ```
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 
 const result = await generateText({
   model: anthropic('claude-opus-4-6'), // or openai('gpt-5.4'), google('gemini-3-flash'), etc.
@@ -114,13 +114,13 @@ The [AI SDK UI](https://ai-sdk.dev/docs/ai-sdk-ui/overview) module provides a se
 You need to install the package for your framework, e.g.:
 
 ```shell
-npm install @ai-tools/react
+npm install @ai-toolkit/react
 ```
 
 #### Agent @/agent/image-generation-agent.ts
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 
 export const imageGenerationAgent = new ToolLoopAgent({
@@ -156,7 +156,7 @@ export async function POST(req: Request) {
 #### UI Component for Tool @/component/image-generation-view.tsx
 
 ```tsx
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { UIToolInvocation } from 'ai';
 
 export default function ImageGenerationView({
@@ -180,7 +180,7 @@ export default function ImageGenerationView({
 
 import { ImageGenerationAgentMessage } from '@/agent/image-generation-agent';
 import ImageGenerationView from '@/component/image-generation-view';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 export default function Page() {
   const { messages, status, sendMessage } =
@@ -227,7 +227,7 @@ We've built [templates](https://ai-sdk.dev/docs/introduction#templates) that inc
 
 ## Community
 
-The AI SDK community can be found on [the Vercel Community](https://community.vercel.com/c/ai-sdk/62) where you can ask questions, voice ideas, and share your projects with other people.
+The AI SDK community can be found on [the Vercel Community](https://community.vercel.com/c/ai-toolkit/62) where you can ask questions, voice ideas, and share your projects with other people.
 
 ## Contributing
 

@@ -6,7 +6,7 @@ import ChatInput from '@/components/chat-input';
 import AnthropicToolSearchView from '@/components/tool/anthropic-tool-search-view';
 import WeatherView from '@/components/tool/weather-view';
 import SendEmailView from '@/components/tool/send-email-view';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 export default function ChatAnthropicToolSearch() {

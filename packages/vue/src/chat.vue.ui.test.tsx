@@ -1,7 +1,7 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/test-server/with-vitest';
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/vue';
 import { UIMessageChunk } from 'ai';

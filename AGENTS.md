@@ -19,8 +19,8 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 | Directory                 | Description                                                                          |
 | ------------------------- | ------------------------------------------------------------------------------------ |
 | `packages/ai`             | Main SDK package (`ai` on npm)                                                       |
-| `packages/provider`       | Provider interface specifications (`@ai-tools/provider`)                               |
-| `packages/provider-utils` | Shared utilities for providers and core (`@ai-tools/provider-utils`)                   |
+| `packages/provider`       | Provider interface specifications (`@ai-toolkit/provider`)                               |
+| `packages/provider-utils` | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)                   |
 | `packages/<provider>`     | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.) |
 | `packages/<framework>`    | UI framework integrations (react, vue, svelte, angular, rsc)                         |
 | `packages/codemod`        | Automated migrations for major releases                                              |
@@ -32,9 +32,9 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 ### Core Package Dependencies
 
 ```
-ai ─────────────────┬──▶ @ai-tools/provider-utils ──▶ @ai-tools/provider
+ai ─────────────────┬──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
                     │
-@ai-tools/<provider> ─┴──▶ @ai-tools/provider-utils ──▶ @ai-tools/provider
+@ai-toolkit/<provider> ─┴──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
 ```
 
 ## Development Setup
@@ -112,10 +112,10 @@ pnpm tsx src/stream-text/openai/basic.ts    # Run a specific example
 | --------------------------------------------- | --------------------------------------------- |
 | Core functions (`generateText`, `streamText`) | `ai`                                          |
 | Tool/schema utilities (`tool`, `jsonSchema`)  | `ai`                                          |
-| Provider implementations                      | `@ai-tools/<provider>` (e.g., `@ai-tools/openai`) |
-| Error classes                                 | `ai` (re-exports from `@ai-tools/provider`)     |
-| Provider type interfaces (`LanguageModelV4`)  | `@ai-tools/provider`                            |
-| Provider implementation utilities             | `@ai-tools/provider-utils`                      |
+| Provider implementations                      | `@ai-toolkit/<provider>` (e.g., `@ai-toolkit/openai`) |
+| Error classes                                 | `ai` (re-exports from `@ai-toolkit/provider`)     |
+| Provider type interfaces (`LanguageModelV4`)  | `@ai-toolkit/provider`                            |
+| Provider implementation utilities             | `@ai-toolkit/provider-utils`                      |
 
 ## Coding Standards
 
@@ -150,7 +150,7 @@ import * as z4 from 'zod/v4';
 ### JSON parsing
 
 Never use `JSON.parse` directly in production code to prevent security risks.
-Instead use `parseJSON` or `safeParseJSON` from `@ai-tools/provider-utils`.
+Instead use `parseJSON` or `safeParseJSON` from `@ai-toolkit/provider-utils`.
 
 ### Type Checking
 
@@ -171,10 +171,10 @@ This ensures your changes don't introduce type errors across the codebase, inclu
 
 ## Error Pattern
 
-Errors extend `AISDKError` from `@ai-tools/provider` and use a marker pattern for `instanceof` checks:
+Errors extend `AISDKError` from `@ai-toolkit/provider` and use a marker pattern for `instanceof` checks:
 
 ```typescript
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 
 const name = 'AI_MyError';
 const marker = `vercel.ai.error.${name}`;
@@ -214,9 +214,9 @@ For an overview of the project's key philosophies that guide decision making, se
 
 The SDK uses a layered provider architecture following the adapter pattern:
 
-1. **Specifications** (`@ai-tools/provider`): Defines interfaces like `LanguageModelV4`
-2. **Utilities** (`@ai-tools/provider-utils`): Shared code for implementing providers
-3. **Providers** (`@ai-tools/<provider>`): Concrete implementations for each AI service
+1. **Specifications** (`@ai-toolkit/provider`): Defines interfaces like `LanguageModelV4`
+2. **Utilities** (`@ai-toolkit/provider-utils`): Shared code for implementing providers
+3. **Providers** (`@ai-toolkit/<provider>`): Concrete implementations for each AI service
 4. **Core** (`ai`): High-level functions like `generateText`, `streamText`, `generateObject`
 
 For a focused conceptual walkthrough of AI functions, model specifications, and provider implementations, see `architecture/provider-abstraction.md`.

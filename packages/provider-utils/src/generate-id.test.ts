@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '@ai-tools/provider';
+import { InvalidArgumentError } from '@ai-toolkit/provider';
 import { expect, it } from 'vitest';
 import { createIdGenerator, generateId } from './generate-id';
 import { describe } from 'vitest';

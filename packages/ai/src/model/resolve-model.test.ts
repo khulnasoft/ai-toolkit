@@ -1,5 +1,5 @@
-import { gateway } from '@ai-tools/gateway';
-import { EmbeddingModelV2, LanguageModelV2 } from '@ai-tools/provider';
+import { gateway } from '@ai-toolkit/gateway';
+import { EmbeddingModelV2, LanguageModelV2 } from '@ai-toolkit/provider';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 
 import { MockEmbeddingModelV3 } from '../test/mock-embedding-model-v3';

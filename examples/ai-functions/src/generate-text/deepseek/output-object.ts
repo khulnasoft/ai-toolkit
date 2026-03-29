@@ -1,4 +1,4 @@
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import { generateText, Output, stepCountIs } from 'ai';
 import { z } from 'zod';
 import { print } from '../../lib/print';

@@ -33,7 +33,7 @@ import { type StreamCallbacks } from './stream-callbacks';
  *
  * @example
  * ```ts
- * import { toBaseMessages } from '@ai-tools/langchain';
+ * import { toBaseMessages } from '@ai-toolkit/langchain';
  *
  * const langchainMessages = await toBaseMessages(uiMessages);
  *

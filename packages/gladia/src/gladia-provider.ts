@@ -2,12 +2,12 @@ import {
   TranscriptionModelV4,
   ProviderV4,
   NoSuchModelError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { GladiaTranscriptionModel } from './gladia-transcription-model';
 import { VERSION } from './version';
 
@@ -61,7 +61,7 @@ export function createGladia(
         }),
         ...options.headers,
       },
-      `ai-sdk/gladia/${VERSION}`,
+      `ai-toolkit/gladia/${VERSION}`,
     );
 
   const createTranscriptionModel = () =>

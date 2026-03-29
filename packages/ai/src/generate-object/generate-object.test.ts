@@ -2,9 +2,9 @@ import {
   JSONParseError,
   SharedV4Warning,
   TypeValidationError,
-} from '@ai-tools/provider';
-import { jsonSchema } from '@ai-tools/provider-utils';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider';
+import { jsonSchema } from '@ai-toolkit/provider-utils';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import assert, { fail } from 'node:assert';
 import {
   afterEach,

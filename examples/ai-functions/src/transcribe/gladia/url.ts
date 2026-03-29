@@ -1,4 +1,4 @@
-import { gladia } from '@ai-tools/gladia';
+import { gladia } from '@ai-toolkit/gladia';
 import { experimental_transcribe as transcribe } from 'ai';
 import { run } from '../../lib/run';
 

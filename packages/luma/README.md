@@ -16,10 +16,10 @@ For more detailed information about the Luma models and their capabilities, plea
 
 ## Setup
 
-The Luma provider is available in the `@ai-tools/luma` module. You can install it with:
+The Luma provider is available in the `@ai-toolkit/luma` module. You can install it with:
 
 ```bash
-npm i @ai-tools/luma
+npm i @ai-toolkit/luma
 ```
 
 ## Skill for Coding Agents
@@ -32,16 +32,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `luma` from `@ai-tools/luma`:
+You can import the default provider instance `luma` from `@ai-toolkit/luma`:
 
 ```ts
-import { luma } from '@ai-tools/luma';
+import { luma } from '@ai-toolkit/luma';
 ```
 
 ## Image Generation Example
 
 ```ts
-import { luma } from '@ai-tools/luma';
+import { luma } from '@ai-toolkit/luma';
 import { generateImage } from 'ai';
 import fs from 'fs';
 

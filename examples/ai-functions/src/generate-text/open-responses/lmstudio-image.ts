@@ -1,4 +1,4 @@
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 import { generateText } from 'ai';
 import fs from 'node:fs';
 import { run } from '../../lib/run';

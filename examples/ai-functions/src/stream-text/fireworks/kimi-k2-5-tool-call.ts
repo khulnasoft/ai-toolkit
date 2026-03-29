@@ -1,7 +1,7 @@
 import {
   fireworks,
   type FireworksLanguageModelOptions,
-} from '@ai-tools/fireworks';
+} from '@ai-toolkit/fireworks';
 import { stepCountIs, streamText } from 'ai';
 import { printFullStream } from '../../lib/print-full-stream';
 import { run } from '../../lib/run';

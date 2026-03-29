@@ -1,4 +1,4 @@
-import { gateway } from '@ai-tools/gateway';
+import { gateway } from '@ai-toolkit/gateway';
 import {
   EmbeddingModelV4,
   Experimental_VideoModelV4,
@@ -7,7 +7,7 @@ import {
   ProviderV4,
   SpeechModelV4,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { UnsupportedModelVersionError } from '../error';
 import { EmbeddingModel } from '../types/embedding-model';
 import { LanguageModel } from '../types/language-model';

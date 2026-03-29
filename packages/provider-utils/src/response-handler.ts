@@ -1,4 +1,4 @@
-import { APICallError, EmptyResponseBodyError } from '@ai-tools/provider';
+import { APICallError, EmptyResponseBodyError } from '@ai-toolkit/provider';
 import { extractResponseHeaders } from './extract-response-headers';
 import { parseJSON, ParseResult, safeParseJSON } from './parse-json';
 import { parseJsonEventStream } from './parse-json-event-stream';

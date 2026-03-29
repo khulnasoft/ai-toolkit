@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Textarea } from '$lib/components/ui/textarea/index.js';
-  import { Completion } from '@ai-tools/svelte';
+  import { Completion } from '@ai-toolkit/svelte';
 
   const completion = new Completion();
 

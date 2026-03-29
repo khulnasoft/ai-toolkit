@@ -1,4 +1,4 @@
-import { togetherai } from '@ai-tools/togetherai';
+import { togetherai } from '@ai-toolkit/togetherai';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

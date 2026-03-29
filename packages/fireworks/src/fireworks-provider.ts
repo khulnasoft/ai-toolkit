@@ -3,19 +3,19 @@ import {
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
   ProviderErrorStructure,
-} from '@ai-tools/openai-compatible';
+} from '@ai-toolkit/openai-compatible';
 import {
   EmbeddingModelV4,
   ImageModelV4,
   LanguageModelV4,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { FireworksChatModelId } from './fireworks-chat-options';
 import { FireworksCompletionModelId } from './fireworks-completion-options';
@@ -114,7 +114,7 @@ export function createFireworks(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/fireworks/${VERSION}`,
+      `ai-toolkit/fireworks/${VERSION}`,
     );
 
   interface CommonModelConfig {

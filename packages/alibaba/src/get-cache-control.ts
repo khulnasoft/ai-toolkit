@@ -1,7 +1,7 @@
 import type {
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import type { AlibabaCacheControl } from './alibaba-chat-prompt';
 
 // Alibaba allows a maximum of 4 cache breakpoints per request

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { expect } from 'vitest';
-import { bedrock as provider } from '@ai-tools/amazon-bedrock';
+import { bedrock as provider } from '@ai-toolkit/amazon-bedrock';
 import { APICallError } from 'ai';
 import {
   createFeatureTestSuite,

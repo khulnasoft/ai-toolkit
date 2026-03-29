@@ -1,5 +1,5 @@
 import { z } from 'zod/v4';
-import { createJsonErrorResponseHandler } from '@ai-tools/provider-utils';
+import { createJsonErrorResponseHandler } from '@ai-toolkit/provider-utils';
 
 export const assemblyaiErrorDataSchema = z.object({
   error: z.object({

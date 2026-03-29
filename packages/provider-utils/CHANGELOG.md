@@ -1,4 +1,4 @@
-# @ai-tools/provider-utils
+# @ai-toolkit/provider-utils
 
 ## 5.0.0-beta.7
 
@@ -6,7 +6,7 @@
 
 - 1f509d4: fix(ai): force template check on 'kind' param
 - Updated dependencies [1f509d4]
-  - @ai-tools/provider@4.0.0-beta.5
+  - @ai-toolkit/provider@4.0.0-beta.5
 
 ## 5.0.0-beta.6
 
@@ -14,7 +14,7 @@
 
 - 3887c70: feat(provider): add new top-level reasoning parameter to spec and support it in `generateText` and `streamText`
 - Updated dependencies [3887c70]
-  - @ai-tools/provider@4.0.0-beta.4
+  - @ai-toolkit/provider@4.0.0-beta.4
 
 ## 5.0.0-beta.5
 
@@ -25,13 +25,13 @@
 ### Patch Changes
 
 - Updated dependencies [776b617]
-  - @ai-tools/provider@4.0.0-beta.3
+  - @ai-toolkit/provider@4.0.0-beta.3
 
 ## 5.0.0-beta.4
 
 ### Major Changes
 
-- 61753c3: ### `@ai-tools/openai`: remove redundant `name` argument from `openai.tools.customTool()`
+- 61753c3: ### `@ai-toolkit/openai`: remove redundant `name` argument from `openai.tools.customTool()`
 
   `openai.tools.customTool()` no longer accepts a `name` field. the tool name is now derived from the sdk tool key (the object key in the `tools` object).
 
@@ -58,7 +58,7 @@
   }
   ```
 
-  ### `@ai-tools/provider-utils`: `createToolNameMapping()` no longer accepts the `resolveProviderToolName` parameter
+  ### `@ai-toolkit/provider-utils`: `createToolNameMapping()` no longer accepts the `resolveProviderToolName` parameter
 
   before: tool name can be set dynamically
 
@@ -108,14 +108,14 @@
 
 - f7d4f01: feat(provider): add support for `reasoning-file` type for files that are part of reasoning
 - Updated dependencies [f7d4f01]
-  - @ai-tools/provider@4.0.0-beta.2
+  - @ai-toolkit/provider@4.0.0-beta.2
 
 ## 5.0.0-beta.2
 
 ### Patch Changes
 
 - Updated dependencies [5c2a5a2]
-  - @ai-tools/provider@4.0.0-beta.1
+  - @ai-toolkit/provider@4.0.0-beta.1
 
 ## 5.0.0-beta.1
 
@@ -134,7 +134,7 @@
 ### Patch Changes
 
 - Updated dependencies [8359612]
-  - @ai-tools/provider@4.0.0-beta.0
+  - @ai-toolkit/provider@4.0.0-beta.0
 
 ## 4.0.19
 
@@ -175,14 +175,14 @@
 ### Patch Changes
 
 - Updated dependencies [7168375]
-  - @ai-tools/provider@3.0.8
+  - @ai-toolkit/provider@3.0.8
 
 ## 4.0.13
 
 ### Patch Changes
 
 - Updated dependencies [53f6731]
-  - @ai-tools/provider@3.0.7
+  - @ai-toolkit/provider@3.0.7
 
 ## 4.0.12
 
@@ -196,7 +196,7 @@
 
 - 2810850: fix(ai): improve type validation error messages with field paths and entity identifiers
 - Updated dependencies [2810850]
-  - @ai-tools/provider@3.0.6
+  - @ai-toolkit/provider@3.0.6
 
 ## 4.0.10
 
@@ -210,14 +210,14 @@
 
 - 4de5a1d: chore: excluded tests from src folder in npm package
 - Updated dependencies [4de5a1d]
-  - @ai-tools/provider@3.0.5
+  - @ai-toolkit/provider@3.0.5
 
 ## 4.0.8
 
 ### Patch Changes
 
 - Updated dependencies [5c090e7]
-  - @ai-tools/provider@3.0.4
+  - @ai-toolkit/provider@3.0.4
 
 ## 4.0.7
 
@@ -231,7 +231,7 @@
 
 - 1b11dcb: chore(ai): include sources in npm package
 - Updated dependencies [1b11dcb]
-  - @ai-tools/provider@3.0.3
+  - @ai-toolkit/provider@3.0.3
 
 ## 4.0.5
 
@@ -244,7 +244,7 @@
 ### Patch Changes
 
 - Updated dependencies [d937c8f]
-  - @ai-tools/provider@3.0.2
+  - @ai-toolkit/provider@3.0.2
 
 ## 4.0.3
 
@@ -258,7 +258,7 @@
 
 - 863d34f: fix: trigger release to update `@latest`
 - Updated dependencies [863d34f]
-  - @ai-tools/provider@3.0.1
+  - @ai-toolkit/provider@3.0.1
 
 ## 4.0.1
 
@@ -316,35 +316,35 @@
 - f0b2157: fix: revert zod import change
 - 95f65c2: chore: load zod schemas lazily
 - Updated dependencies
-  - @ai-tools/provider@3.0.0
+  - @ai-toolkit/provider@3.0.0
 
 ## 4.0.0-beta.59
 
 ### Patch Changes
 
 - Updated dependencies [475189e]
-  - @ai-tools/provider@3.0.0-beta.32
+  - @ai-toolkit/provider@3.0.0-beta.32
 
 ## 4.0.0-beta.58
 
 ### Patch Changes
 
 - Updated dependencies [2625a04]
-  - @ai-tools/provider@3.0.0-beta.31
+  - @ai-toolkit/provider@3.0.0-beta.31
 
 ## 4.0.0-beta.57
 
 ### Patch Changes
 
 - Updated dependencies [cbf52cd]
-  - @ai-tools/provider@3.0.0-beta.30
+  - @ai-toolkit/provider@3.0.0-beta.30
 
 ## 4.0.0-beta.56
 
 ### Patch Changes
 
 - Updated dependencies [9549c9e]
-  - @ai-tools/provider@3.0.0-beta.29
+  - @ai-toolkit/provider@3.0.0-beta.29
 
 ## 4.0.0-beta.55
 
@@ -358,14 +358,14 @@
 
 - 9061dc0: feat: image editing
 - Updated dependencies [9061dc0]
-  - @ai-tools/provider@3.0.0-beta.28
+  - @ai-toolkit/provider@3.0.0-beta.28
 
 ## 4.0.0-beta.53
 
 ### Patch Changes
 
 - Updated dependencies [366f50b]
-  - @ai-tools/provider@3.0.0-beta.27
+  - @ai-toolkit/provider@3.0.0-beta.27
 
 ## 4.0.0-beta.52
 
@@ -414,14 +414,14 @@
 ### Patch Changes
 
 - Updated dependencies [3bd2689]
-  - @ai-tools/provider@3.0.0-beta.26
+  - @ai-toolkit/provider@3.0.0-beta.26
 
 ## 4.0.0-beta.44
 
 ### Patch Changes
 
 - Updated dependencies [53f3368]
-  - @ai-tools/provider@3.0.0-beta.25
+  - @ai-toolkit/provider@3.0.0-beta.25
 
 ## 4.0.0-beta.43
 
@@ -429,7 +429,7 @@
 
 - dce03c4: feat: tool input examples
 - Updated dependencies [dce03c4]
-  - @ai-tools/provider@3.0.0-beta.24
+  - @ai-toolkit/provider@3.0.0-beta.24
 
 ## 4.0.0-beta.42
 
@@ -443,7 +443,7 @@
 
 - 1bd7d32: feat: tool-specific strict mode
 - Updated dependencies [1bd7d32]
-  - @ai-tools/provider@3.0.0-beta.23
+  - @ai-toolkit/provider@3.0.0-beta.23
 
 ## 4.0.0-beta.40
 
@@ -451,7 +451,7 @@
 
 - 544d4e8: chore(specification): rename v3 provider defined tool to provider tool
 - Updated dependencies [544d4e8]
-  - @ai-tools/provider@3.0.0-beta.22
+  - @ai-toolkit/provider@3.0.0-beta.22
 
 ## 4.0.0-beta.39
 
@@ -459,7 +459,7 @@
 
 - 954c356: feat(openai): allow custom names for provider-defined tools
 - Updated dependencies [954c356]
-  - @ai-tools/provider@3.0.0-beta.21
+  - @ai-toolkit/provider@3.0.0-beta.21
 
 ## 4.0.0-beta.38
 
@@ -472,35 +472,35 @@
 ### Patch Changes
 
 - Updated dependencies [457318b]
-  - @ai-tools/provider@3.0.0-beta.20
+  - @ai-toolkit/provider@3.0.0-beta.20
 
 ## 4.0.0-beta.36
 
 ### Patch Changes
 
 - Updated dependencies [8d9e8ad]
-  - @ai-tools/provider@3.0.0-beta.19
+  - @ai-toolkit/provider@3.0.0-beta.19
 
 ## 4.0.0-beta.35
 
 ### Patch Changes
 
 - Updated dependencies [10d819b]
-  - @ai-tools/provider@3.0.0-beta.18
+  - @ai-toolkit/provider@3.0.0-beta.18
 
 ## 4.0.0-beta.34
 
 ### Patch Changes
 
 - Updated dependencies [db913bd]
-  - @ai-tools/provider@3.0.0-beta.17
+  - @ai-toolkit/provider@3.0.0-beta.17
 
 ## 4.0.0-beta.33
 
 ### Patch Changes
 
 - Updated dependencies [b681d7d]
-  - @ai-tools/provider@3.0.0-beta.16
+  - @ai-toolkit/provider@3.0.0-beta.16
 
 ## 4.0.0-beta.32
 
@@ -513,7 +513,7 @@
 ### Patch Changes
 
 - Updated dependencies [bb36798]
-  - @ai-tools/provider@3.0.0-beta.15
+  - @ai-toolkit/provider@3.0.0-beta.15
 
 ## 4.0.0-beta.30
 
@@ -526,7 +526,7 @@
 ### Patch Changes
 
 - Updated dependencies [af3780b]
-  - @ai-tools/provider@3.0.0-beta.14
+  - @ai-toolkit/provider@3.0.0-beta.14
 
 ## 4.0.0-beta.28
 
@@ -539,35 +539,35 @@
 ### Patch Changes
 
 - Updated dependencies [37c58a0]
-  - @ai-tools/provider@3.0.0-beta.13
+  - @ai-toolkit/provider@3.0.0-beta.13
 
 ## 4.0.0-beta.26
 
 ### Patch Changes
 
 - Updated dependencies [d1bdadb]
-  - @ai-tools/provider@3.0.0-beta.12
+  - @ai-toolkit/provider@3.0.0-beta.12
 
 ## 4.0.0-beta.25
 
 ### Patch Changes
 
 - Updated dependencies [4c44a5b]
-  - @ai-tools/provider@3.0.0-beta.11
+  - @ai-toolkit/provider@3.0.0-beta.11
 
 ## 4.0.0-beta.24
 
 ### Patch Changes
 
 - Updated dependencies [0c3b58b]
-  - @ai-tools/provider@3.0.0-beta.10
+  - @ai-toolkit/provider@3.0.0-beta.10
 
 ## 4.0.0-beta.23
 
 ### Patch Changes
 
 - Updated dependencies [a755db5]
-  - @ai-tools/provider@3.0.0-beta.9
+  - @ai-toolkit/provider@3.0.0-beta.9
 
 ## 4.0.0-beta.22
 
@@ -593,14 +593,14 @@
 
 - 3794514: feat: flexible tool output content support
 - Updated dependencies [3794514]
-  - @ai-tools/provider@3.0.0-beta.8
+  - @ai-toolkit/provider@3.0.0-beta.8
 
 ## 4.0.0-beta.18
 
 ### Patch Changes
 
 - Updated dependencies [81d4308]
-  - @ai-tools/provider@3.0.0-beta.7
+  - @ai-toolkit/provider@3.0.0-beta.7
 
 ## 4.0.0-beta.17
 
@@ -654,7 +654,7 @@
 ### Patch Changes
 
 - Updated dependencies [dee8b05]
-  - @ai-tools/provider@3.0.0-beta.6
+  - @ai-toolkit/provider@3.0.0-beta.6
 
 ## 3.1.0-beta.9
 
@@ -674,7 +674,7 @@
 
 - e8109d3: feat: tool execution approval
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.5
+  - @ai-toolkit/provider@2.1.0-beta.5
 
 ## 3.1.0-beta.6
 
@@ -682,7 +682,7 @@
 
 - 0adc679: feat(provider): shared spec v3
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.4
+  - @ai-toolkit/provider@2.1.0-beta.4
 
 ## 3.1.0-beta.5
 
@@ -690,7 +690,7 @@
 
 - 8dac895: feat: `LanguageModelV3`
 - Updated dependencies [8dac895]
-  - @ai-tools/provider@2.1.0-beta.3
+  - @ai-toolkit/provider@2.1.0-beta.3
 
 ## 3.1.0-beta.4
 
@@ -703,14 +703,14 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.2
+  - @ai-toolkit/provider@2.1.0-beta.2
 
 ## 3.1.0-beta.2
 
 ### Patch Changes
 
 - Updated dependencies [0c4822d]
-  - @ai-tools/provider@2.1.0-beta.1
+  - @ai-toolkit/provider@2.1.0-beta.1
 
 ## 3.1.0-beta.1
 
@@ -727,13 +727,13 @@
 ### Patch Changes
 
 - Updated dependencies [78928cb]
-  - @ai-tools/provider@2.1.0-beta.0
+  - @ai-toolkit/provider@2.1.0-beta.0
 
 ## 3.0.9
 
 ### Patch Changes
 
-- 0294b58: feat(ai): set `ai`, `@ai-tools/provider-utils`, and runtime in `user-agent` header
+- 0294b58: feat(ai): set `ai`, `@ai-toolkit/provider-utils`, and runtime in `user-agent` header
 
 ## 3.0.8
 
@@ -811,8 +811,8 @@
   - `generateObject()`
   - `streamObject()`
   - `generateText()`
-  - `experimental_useObject()` from `@ai-tools/react`
-  - `streamUI()` from `@ai-tools/rsc`
+  - `experimental_useObject()` from `@ai-toolkit/react`
+  - `streamUI()` from `@ai-toolkit/rsc`
 
 - 0c0c0b3: refactor (provider-utils): move `customAlphabet()` method from `nanoid` into codebase
 - 8ba77a7: chore (provider-utils): use eventsource-parser library
@@ -835,7 +835,7 @@
 - dd5fd43: feat (ai): support dynamic tools in Chat onToolCall
 - 383cbfa: feat (ai): add isAborted to onFinish callback for ui message streams
 - Updated dependencies
-  - @ai-tools/provider@2.0.0
+  - @ai-toolkit/provider@2.0.0
 
 ## 3.0.0-beta.10
 
@@ -848,7 +848,7 @@
 ### Patch Changes
 
 - Updated dependencies [27deb4d]
-  - @ai-tools/provider@2.0.0-beta.2
+  - @ai-toolkit/provider@2.0.0-beta.2
 
 ## 3.0.0-beta.8
 
@@ -908,7 +908,7 @@
 - bfdca8d: feat (ai): add InferToolInput and InferToolOutput helpers
 - 28a5ed5: refactoring: move tools helper into provider-utils
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-beta.1
+  - @ai-toolkit/provider@2.0.0-beta.1
 
 ## 3.0.0-alpha.15
 
@@ -916,49 +916,49 @@
 
 - 8ba77a7: chore (provider-utils): use eventsource-parser library
 - Updated dependencies [48d257a]
-  - @ai-tools/provider@2.0.0-alpha.15
+  - @ai-toolkit/provider@2.0.0-alpha.15
 
 ## 3.0.0-alpha.14
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.14
+  - @ai-toolkit/provider@2.0.0-alpha.14
 
 ## 3.0.0-alpha.13
 
 ### Patch Changes
 
 - Updated dependencies [68ecf2f]
-  - @ai-tools/provider@2.0.0-alpha.13
+  - @ai-toolkit/provider@2.0.0-alpha.13
 
 ## 3.0.0-alpha.12
 
 ### Patch Changes
 
 - Updated dependencies [e2aceaf]
-  - @ai-tools/provider@2.0.0-alpha.12
+  - @ai-toolkit/provider@2.0.0-alpha.12
 
 ## 3.0.0-alpha.11
 
 ### Patch Changes
 
 - Updated dependencies [c1e6647]
-  - @ai-tools/provider@2.0.0-alpha.11
+  - @ai-toolkit/provider@2.0.0-alpha.11
 
 ## 3.0.0-alpha.10
 
 ### Patch Changes
 
 - Updated dependencies [c4df419]
-  - @ai-tools/provider@2.0.0-alpha.10
+  - @ai-toolkit/provider@2.0.0-alpha.10
 
 ## 3.0.0-alpha.9
 
 ### Patch Changes
 
 - Updated dependencies [811dff3]
-  - @ai-tools/provider@2.0.0-alpha.9
+  - @ai-toolkit/provider@2.0.0-alpha.9
 
 ## 3.0.0-alpha.8
 
@@ -971,53 +971,53 @@
   - `generateObject()`
   - `streamObject()`
   - `generateText()`
-  - `experimental_useObject()` from `@ai-tools/react`
-  - `streamUI()` from `@ai-tools/rsc`
+  - `experimental_useObject()` from `@ai-toolkit/react`
+  - `streamUI()` from `@ai-toolkit/rsc`
 
 - Updated dependencies [9222aeb]
-  - @ai-tools/provider@2.0.0-alpha.8
+  - @ai-toolkit/provider@2.0.0-alpha.8
 
 ## 3.0.0-alpha.7
 
 ### Patch Changes
 
 - Updated dependencies [5c56081]
-  - @ai-tools/provider@2.0.0-alpha.7
+  - @ai-toolkit/provider@2.0.0-alpha.7
 
 ## 3.0.0-alpha.6
 
 ### Patch Changes
 
 - Updated dependencies [0d2c085]
-  - @ai-tools/provider@2.0.0-alpha.6
+  - @ai-toolkit/provider@2.0.0-alpha.6
 
 ## 3.0.0-alpha.4
 
 ### Patch Changes
 
 - Updated dependencies [dc714f3]
-  - @ai-tools/provider@2.0.0-alpha.4
+  - @ai-toolkit/provider@2.0.0-alpha.4
 
 ## 3.0.0-alpha.3
 
 ### Patch Changes
 
 - Updated dependencies [6b98118]
-  - @ai-tools/provider@2.0.0-alpha.3
+  - @ai-toolkit/provider@2.0.0-alpha.3
 
 ## 3.0.0-alpha.2
 
 ### Patch Changes
 
 - Updated dependencies [26535e0]
-  - @ai-tools/provider@2.0.0-alpha.2
+  - @ai-toolkit/provider@2.0.0-alpha.2
 
 ## 3.0.0-alpha.1
 
 ### Patch Changes
 
 - Updated dependencies [3f2f00c]
-  - @ai-tools/provider@2.0.0-alpha.1
+  - @ai-toolkit/provider@2.0.0-alpha.1
 
 ## 3.0.0-canary.19
 
@@ -1053,7 +1053,7 @@
 
 - a571d6e: chore(provider-utils): move ToolResultContent to provider-utils
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.14
+  - @ai-toolkit/provider@2.0.0-canary.14
 
 ## 3.0.0-canary.14
 
@@ -1064,7 +1064,7 @@
 ### Patch Changes
 
 - Updated dependencies [9bd5ab5]
-  - @ai-tools/provider@2.0.0-canary.13
+  - @ai-toolkit/provider@2.0.0-canary.13
 
 ## 3.0.0-canary.13
 
@@ -1072,14 +1072,14 @@
 
 - 0ff02bb: chore(provider-utils): move over jsonSchema
 - Updated dependencies [7b3ae3f]
-  - @ai-tools/provider@2.0.0-canary.12
+  - @ai-toolkit/provider@2.0.0-canary.12
 
 ## 3.0.0-canary.12
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.11
+  - @ai-toolkit/provider@2.0.0-canary.11
 
 ## 3.0.0-canary.11
 
@@ -1087,21 +1087,21 @@
 
 - 66962ed: fix(packages): export node10 compatible types
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.10
+  - @ai-toolkit/provider@2.0.0-canary.10
 
 ## 3.0.0-canary.10
 
 ### Patch Changes
 
 - Updated dependencies [e86be6f]
-  - @ai-tools/provider@2.0.0-canary.9
+  - @ai-toolkit/provider@2.0.0-canary.9
 
 ## 3.0.0-canary.9
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.8
+  - @ai-toolkit/provider@2.0.0-canary.8
 
 ## 3.0.0-canary.8
 
@@ -1112,35 +1112,35 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.7
+  - @ai-toolkit/provider@2.0.0-canary.7
 
 ## 3.0.0-canary.7
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.6
+  - @ai-toolkit/provider@2.0.0-canary.6
 
 ## 3.0.0-canary.6
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.5
+  - @ai-toolkit/provider@2.0.0-canary.5
 
 ## 3.0.0-canary.5
 
 ### Patch Changes
 
 - Updated dependencies [6f6bb89]
-  - @ai-tools/provider@2.0.0-canary.4
+  - @ai-toolkit/provider@2.0.0-canary.4
 
 ## 3.0.0-canary.4
 
 ### Patch Changes
 
 - Updated dependencies [d1a1aa1]
-  - @ai-tools/provider@2.0.0-canary.3
+  - @ai-toolkit/provider@2.0.0-canary.3
 
 ## 3.0.0-canary.3
 
@@ -1149,14 +1149,14 @@
 - a166433: feat: add transcription with experimental_transcribe
 - 9f95b35: refactor (provider-utils): copy relevant code from `secure-json-parse` into codebase
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.2
+  - @ai-toolkit/provider@2.0.0-canary.2
 
 ## 3.0.0-canary.2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.1
+  - @ai-toolkit/provider@2.0.0-canary.1
 
 ## 3.0.0-canary.1
 
@@ -1175,7 +1175,7 @@
 ### Patch Changes
 
 - Updated dependencies [d5f588f]
-  - @ai-tools/provider@2.0.0-canary.0
+  - @ai-toolkit/provider@2.0.0-canary.0
 
 ## 2.2.3
 
@@ -1204,7 +1204,7 @@
 ### Patch Changes
 
 - Updated dependencies [5bc638d]
-  - @ai-tools/provider@1.1.0
+  - @ai-toolkit/provider@1.1.0
 
 ## 2.1.15
 
@@ -1217,14 +1217,14 @@
 ### Patch Changes
 
 - Updated dependencies [0bd5bc6]
-  - @ai-tools/provider@1.0.12
+  - @ai-toolkit/provider@1.0.12
 
 ## 2.1.13
 
 ### Patch Changes
 
 - Updated dependencies [2e1101a]
-  - @ai-tools/provider@1.0.11
+  - @ai-toolkit/provider@1.0.11
 
 ## 2.1.12
 
@@ -1237,21 +1237,21 @@
 ### Patch Changes
 
 - Updated dependencies [e1d3d42]
-  - @ai-tools/provider@1.0.10
+  - @ai-toolkit/provider@1.0.10
 
 ## 2.1.10
 
 ### Patch Changes
 
 - Updated dependencies [ddf9740]
-  - @ai-tools/provider@1.0.9
+  - @ai-toolkit/provider@1.0.9
 
 ## 2.1.9
 
 ### Patch Changes
 
 - Updated dependencies [2761f06]
-  - @ai-tools/provider@1.0.8
+  - @ai-toolkit/provider@1.0.8
 
 ## 2.1.8
 
@@ -1270,7 +1270,7 @@
 ### Patch Changes
 
 - Updated dependencies [d89c3b9]
-  - @ai-tools/provider@1.0.7
+  - @ai-toolkit/provider@1.0.7
 
 ## 2.1.5
 
@@ -1296,7 +1296,7 @@
 
 - ed012d2: feat (provider): add metadata extraction mechanism to openai-compatible providers
 - Updated dependencies [3a58a2e]
-  - @ai-tools/provider@1.0.6
+  - @ai-toolkit/provider@1.0.6
 
 ## 2.1.1
 
@@ -1304,7 +1304,7 @@
 
 - e7a9ec9: feat (provider-utils): include raw value in json parse results
 - Updated dependencies [0a699f1]
-  - @ai-tools/provider@1.0.5
+  - @ai-toolkit/provider@1.0.5
 
 ## 2.1.0
 
@@ -1333,7 +1333,7 @@
 - 19a2ce7: feat (provider/fireworks): Add image model support.
 - 6337688: feat: change image generation errors to warnings
 - Updated dependencies
-  - @ai-tools/provider@1.0.4
+  - @ai-toolkit/provider@1.0.4
 
 ## 2.0.5
 
@@ -1341,14 +1341,14 @@
 
 - 5ed5e45: chore (config): Use ts-library.json tsconfig for no-UI libs.
 - Updated dependencies [5ed5e45]
-  - @ai-tools/provider@1.0.3
+  - @ai-toolkit/provider@1.0.3
 
 ## 2.0.4
 
 ### Patch Changes
 
 - Updated dependencies [09a9cab]
-  - @ai-tools/provider@1.0.2
+  - @ai-toolkit/provider@1.0.2
 
 ## 2.0.3
 
@@ -1361,7 +1361,7 @@
 ### Patch Changes
 
 - Updated dependencies [b446ae5]
-  - @ai-tools/provider@1.0.1
+  - @ai-toolkit/provider@1.0.1
 
 ## 2.0.1
 
@@ -1383,7 +1383,7 @@
 - dce4158: chore (dependencies): update eventsource-parser to 3.0.0
 - dce4158: chore (dependencies): update nanoid to 5.0.8
 - Updated dependencies
-  - @ai-tools/provider@1.0.0
+  - @ai-toolkit/provider@1.0.0
 
 ## 2.0.0-canary.3
 
@@ -1414,7 +1414,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@1.0.0-canary.0
+  - @ai-toolkit/provider@1.0.0-canary.0
 
 ## 1.0.22
 
@@ -1424,21 +1424,21 @@
 - 7b937c5: feat (provider-utils): improve id generator robustness
 - 811a317: feat (ai/core): multi-part tool results (incl. images)
 - Updated dependencies
-  - @ai-tools/provider@0.0.26
+  - @ai-toolkit/provider@0.0.26
 
 ## 1.0.21
 
 ### Patch Changes
 
 - Updated dependencies [b9b0d7b]
-  - @ai-tools/provider@0.0.25
+  - @ai-toolkit/provider@0.0.25
 
 ## 1.0.20
 
 ### Patch Changes
 
 - Updated dependencies [d595d0d]
-  - @ai-tools/provider@0.0.24
+  - @ai-toolkit/provider@0.0.24
 
 ## 1.0.19
 
@@ -1452,14 +1452,14 @@
 
 - 03313cd: feat (ai): expose response id, response model, response timestamp in telemetry and api
 - Updated dependencies
-  - @ai-tools/provider@0.0.23
+  - @ai-toolkit/provider@0.0.23
 
 ## 1.0.17
 
 ### Patch Changes
 
 - Updated dependencies [26515cb]
-  - @ai-tools/provider@0.0.22
+  - @ai-toolkit/provider@0.0.22
 
 ## 1.0.16
 
@@ -1478,14 +1478,14 @@
 ### Patch Changes
 
 - Updated dependencies [f2c025e]
-  - @ai-tools/provider@0.0.21
+  - @ai-toolkit/provider@0.0.21
 
 ## 1.0.13
 
 ### Patch Changes
 
 - Updated dependencies [6ac355e]
-  - @ai-tools/provider@0.0.20
+  - @ai-toolkit/provider@0.0.20
 
 ## 1.0.12
 
@@ -1498,7 +1498,7 @@
 ### Patch Changes
 
 - Updated dependencies [dd4a0f5]
-  - @ai-tools/provider@0.0.19
+  - @ai-toolkit/provider@0.0.19
 
 ## 1.0.10
 
@@ -1507,28 +1507,28 @@
 - 4bd27a9: chore (ai/provider): refactor type validation
 - 845754b: fix (ai/provider): fix atob/btoa execution on cloudflare edge workers
 - Updated dependencies [4bd27a9]
-  - @ai-tools/provider@0.0.18
+  - @ai-toolkit/provider@0.0.18
 
 ## 1.0.9
 
 ### Patch Changes
 
 - Updated dependencies [029af4c]
-  - @ai-tools/provider@0.0.17
+  - @ai-toolkit/provider@0.0.17
 
 ## 1.0.8
 
 ### Patch Changes
 
 - Updated dependencies [d58517b]
-  - @ai-tools/provider@0.0.16
+  - @ai-toolkit/provider@0.0.16
 
 ## 1.0.7
 
 ### Patch Changes
 
 - Updated dependencies [96aed25]
-  - @ai-tools/provider@0.0.15
+  - @ai-toolkit/provider@0.0.15
 
 ## 1.0.6
 
@@ -1543,7 +1543,7 @@
 
 - a8d1c9e9: feat (ai/core): parallel image download
 - Updated dependencies [a8d1c9e9]
-  - @ai-tools/provider@0.0.14
+  - @ai-toolkit/provider@0.0.14
 
 ## 1.0.4
 
@@ -1556,14 +1556,14 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@0.0.13
+  - @ai-toolkit/provider@0.0.13
 
 ## 1.0.2
 
 ### Patch Changes
 
 - Updated dependencies [b7290943]
-  - @ai-tools/provider@0.0.12
+  - @ai-toolkit/provider@0.0.12
 
 ## 1.0.1
 
@@ -1581,7 +1581,7 @@
 
 - 5edc6110: feat (provider-utils): add combineHeaders helper
 - Updated dependencies [5edc6110]
-  - @ai-tools/provider@0.0.11
+  - @ai-toolkit/provider@0.0.11
 
 ## 0.0.16
 
@@ -1593,8 +1593,8 @@
 
 ### Patch Changes
 
-- 85712895: feat (@ai-tools/provider-utils): add createJsonStreamResponseHandler
-- 85712895: chore (@ai-tools/provider-utils): move test helper to provider utils
+- 85712895: feat (@ai-toolkit/provider-utils): add createJsonStreamResponseHandler
+- 85712895: chore (@ai-toolkit/provider-utils): move test helper to provider utils
 
 ## 0.0.14
 
@@ -1607,30 +1607,30 @@
 ### Patch Changes
 
 - Updated dependencies [102ca22f]
-  - @ai-tools/provider@0.0.10
+  - @ai-toolkit/provider@0.0.10
 
 ## 0.0.12
 
 ### Patch Changes
 
-- 09295e2e: feat (@ai-tools/provider-utils): add download helper
+- 09295e2e: feat (@ai-toolkit/provider-utils): add download helper
 - 043a5de2: fix (provider-utils): rename to isParsableJson
 - Updated dependencies [09295e2e]
-  - @ai-tools/provider@0.0.9
+  - @ai-toolkit/provider@0.0.9
 
 ## 0.0.11
 
 ### Patch Changes
 
 - Updated dependencies [f39c0dd2]
-  - @ai-tools/provider@0.0.8
+  - @ai-toolkit/provider@0.0.8
 
 ## 0.0.10
 
 ### Patch Changes
 
 - Updated dependencies [8e780288]
-  - @ai-tools/provider@0.0.7
+  - @ai-toolkit/provider@0.0.7
 
 ## 0.0.9
 
@@ -1638,21 +1638,21 @@
 
 - 6a50ac4: feat (provider-utils): add loadSetting and convertAsyncGeneratorToReadableStream helpers
 - Updated dependencies [6a50ac4]
-  - @ai-tools/provider@0.0.6
+  - @ai-toolkit/provider@0.0.6
 
 ## 0.0.8
 
 ### Patch Changes
 
 - Updated dependencies [0f6bc4e]
-  - @ai-tools/provider@0.0.5
+  - @ai-toolkit/provider@0.0.5
 
 ## 0.0.7
 
 ### Patch Changes
 
 - Updated dependencies [325ca55]
-  - @ai-tools/provider@0.0.4
+  - @ai-toolkit/provider@0.0.4
 
 ## 0.0.6
 
@@ -1665,7 +1665,7 @@
 ### Patch Changes
 
 - Updated dependencies [41d5736]
-  - @ai-tools/provider@0.0.3
+  - @ai-toolkit/provider@0.0.3
 
 ## 0.0.4
 
@@ -1679,7 +1679,7 @@
 
 - 25f3350: ai/core: add support for getting raw response headers.
 - Updated dependencies
-  - @ai-tools/provider@0.0.2
+  - @ai-toolkit/provider@0.0.2
 
 ## 0.0.2
 
@@ -1687,7 +1687,7 @@
 
 - eb150a6: ai/core: remove scaling of setting values (breaking change). If you were using the temperature, frequency penalty, or presence penalty settings, you need to update the providers and adjust the setting values.
 - Updated dependencies [eb150a6]
-  - @ai-tools/provider@0.0.1
+  - @ai-toolkit/provider@0.0.1
 
 ## 0.0.1
 

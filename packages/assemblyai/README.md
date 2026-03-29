@@ -5,10 +5,10 @@ contains transcription model support for the AssemblyAI transcription API.
 
 ## Setup
 
-The AssemblyAI provider is available in the `@ai-tools/assemblyai` module. You can install it with
+The AssemblyAI provider is available in the `@ai-toolkit/assemblyai` module. You can install it with
 
 ```bash
-npm i @ai-tools/assemblyai
+npm i @ai-toolkit/assemblyai
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `assemblyai` from `@ai-tools/assemblyai`:
+You can import the default provider instance `assemblyai` from `@ai-toolkit/assemblyai`:
 
 ```ts
-import { assemblyai } from '@ai-tools/assemblyai';
+import { assemblyai } from '@ai-toolkit/assemblyai';
 ```
 
 ## Example
 
 ```ts
-import { assemblyai } from '@ai-tools/assemblyai';
+import { assemblyai } from '@ai-toolkit/assemblyai';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({

@@ -1,9 +1,9 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { beforeEach, describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { XaiResponsesLanguageModel } from './xai-responses-language-model';

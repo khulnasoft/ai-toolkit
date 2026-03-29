@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { createVertex } from './google-vertex-provider';
-import { GoogleGenerativeAILanguageModel } from '@ai-tools/google/internal';
+import { GoogleGenerativeAILanguageModel } from '@ai-toolkit/google/internal';
 import { GoogleVertexEmbeddingModel } from './google-vertex-embedding-model';
 import { GoogleVertexImageModel } from './google-vertex-image-model';
 import { GoogleVertexVideoModel } from './google-vertex-video-model';
 
 // Mock the imported modules
-vi.mock('@ai-tools/provider-utils', async importOriginal => {
+vi.mock('@ai-toolkit/provider-utils', async importOriginal => {
   const actual =
-    await importOriginal<typeof import('@ai-tools/provider-utils')>();
+    await importOriginal<typeof import('@ai-toolkit/provider-utils')>();
   return {
     ...actual,
     loadSetting: vi.fn().mockImplementation(({ settingValue }) => settingValue),
@@ -34,7 +34,7 @@ vi.mock('@ai-tools/provider-utils', async importOriginal => {
   };
 });
 
-vi.mock('@ai-tools/google/internal', () => ({
+vi.mock('@ai-toolkit/google/internal', () => ({
   GoogleGenerativeAILanguageModel: vi.fn(),
   googleTools: {
     googleSearch: vi.fn(),

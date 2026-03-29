@@ -1,11 +1,11 @@
-import type { GoogleLanguageModelOptions } from '@ai-tools/google';
-import { GoogleGenerativeAILanguageModel } from '@ai-tools/google/internal';
+import type { GoogleLanguageModelOptions } from '@ai-toolkit/google';
+import { GoogleGenerativeAILanguageModel } from '@ai-toolkit/google/internal';
 import {
   ImageModelV4,
   ImageModelV4File,
   LanguageModelV4Prompt,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   Resolvable,
   combineHeaders,
@@ -16,7 +16,7 @@ import {
   parseProviderOptions,
   postJsonToApi,
   resolve,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
 import { GoogleVertexImageModelId } from './google-vertex-image-settings';

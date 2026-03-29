@@ -5,7 +5,7 @@ The **[AI SDK](https://ai-sdk.dev)** LangChain adapter provides seamless integra
 ## Installation
 
 ```bash
-npm install @ai-tools/langchain @langchain/core
+npm install @ai-toolkit/langchain @langchain/core
 ```
 
 > **Note:** `@langchain/core` is a required peer dependency.
@@ -25,7 +25,7 @@ npm install @ai-tools/langchain @langchain/core
 Use `toBaseMessages` to convert AI SDK messages to LangChain format:
 
 ```ts
-import { toBaseMessages } from '@ai-tools/langchain';
+import { toBaseMessages } from '@ai-toolkit/langchain';
 
 // Convert UI messages to LangChain format
 const langchainMessages = await toBaseMessages(uiMessages);
@@ -39,7 +39,7 @@ const response = await model.invoke(langchainMessages);
 Use `toUIMessageStream` to convert LangGraph streams to AI SDK format:
 
 ```ts
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 // Convert messages and stream from a LangGraph graph
@@ -85,7 +85,7 @@ return createUIMessageStreamResponse({
 You can also use `toUIMessageStream` with `streamEvents()` for more granular event handling:
 
 ```ts
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 // Using streamEvents with an agent
@@ -166,7 +166,7 @@ Use `LangSmithDeploymentTransport` with the AI SDK `useChat` hook to connect dir
 
 ```tsx
 import { useChat } from 'ai/react';
-import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
+import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
 import { useMemo } from 'react';
 
 function Chat() {

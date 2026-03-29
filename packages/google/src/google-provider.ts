@@ -4,14 +4,14 @@ import {
   ImageModelV4,
   LanguageModelV4,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { VERSION } from './version';
 import { GoogleGenerativeAIEmbeddingModel } from './google-generative-ai-embedding-model';
 import { GoogleGenerativeAIEmbeddingModelId } from './google-generative-ai-embedding-options';
@@ -142,7 +142,7 @@ export function createGoogleGenerativeAI(
         }),
         ...options.headers,
       },
-      `ai-sdk/google/${VERSION}`,
+      `ai-toolkit/google/${VERSION}`,
     );
 
   const createChatModel = (modelId: GoogleGenerativeAIModelId) =>

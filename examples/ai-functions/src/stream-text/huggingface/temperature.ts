@@ -1,4 +1,4 @@
-import { huggingface } from '@ai-tools/huggingface';
+import { huggingface } from '@ai-toolkit/huggingface';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

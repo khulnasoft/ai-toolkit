@@ -1,6 +1,6 @@
 'use client';
 
-import { experimental_useObject as useObject } from '@ai-tools/react';
+import { experimental_useObject as useObject } from '@ai-toolkit/react';
 import { notificationSchema } from '../api/use-object/schema';
 
 export default function Page() {

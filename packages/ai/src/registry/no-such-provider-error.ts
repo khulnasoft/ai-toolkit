@@ -1,4 +1,4 @@
-import { AISDKError, NoSuchModelError } from '@ai-tools/provider';
+import { AISDKError, NoSuchModelError } from '@ai-toolkit/provider';
 
 const name = 'AI_NoSuchProviderError';
 const marker = `vercel.ai.error.${name}`;

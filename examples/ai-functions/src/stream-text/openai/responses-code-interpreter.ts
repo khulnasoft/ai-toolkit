@@ -2,7 +2,7 @@ import {
   openai,
   type OpenaiResponsesSourceDocumentProviderMetadata,
   type OpenaiResponsesTextProviderMetadata,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 import { downloadOpenaiContainerFile } from '../../lib/download-openai-container-file';

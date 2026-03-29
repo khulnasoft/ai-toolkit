@@ -8,14 +8,14 @@ for Valibot schemas.
 ## Setup
 
 ```bash
-npm install @ai-tools/valibot
+npm install @ai-toolkit/valibot
 ```
 
 ## Example
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
-import { valibotSchema } from '@ai-tools/valibot';
+import { anthropic } from '@ai-toolkit/anthropic';
+import { valibotSchema } from '@ai-toolkit/valibot';
 import { generateText, Output } from 'ai';
 import * as v from 'valibot';
 

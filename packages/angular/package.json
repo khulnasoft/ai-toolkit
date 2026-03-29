@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/angular",
+  "name": "@ai-toolkit/angular",
   "version": "3.0.0-beta.45",
   "description": "Angular implementation of ai-sdk.",
   "license": "Apache-2.0",
@@ -34,11 +34,11 @@
     "README.md"
   ],
   "dependencies": {
-    "@ai-tools/provider-utils": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "ai": "workspace:*"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "jsdom": "^24.0.0",

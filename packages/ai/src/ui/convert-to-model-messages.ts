@@ -7,7 +7,7 @@ import {
   TextPart,
   ToolApprovalResponse,
   ToolResultPart,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ToolSet } from '../generate-text/tool-set';
 import { createToolModelOutput } from '../prompt/create-tool-model-output';
 import { MessageConversionError } from '../prompt/message-conversion-error';

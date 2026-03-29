@@ -4,12 +4,12 @@ import {
   LanguageModelV4,
   EmbeddingModelV4,
   NoSuchModelError,
-} from '@ai-tools/provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleEmbeddingModel,
-} from '@ai-tools/openai-compatible';
+} from '@ai-toolkit/openai-compatible';
 
 // Mock the OpenAI-compatible classes
 const OpenAICompatibleChatLanguageModelMock =
@@ -17,7 +17,7 @@ const OpenAICompatibleChatLanguageModelMock =
 const OpenAICompatibleEmbeddingModelMock =
   OpenAICompatibleEmbeddingModel as unknown as Mock;
 
-vi.mock('@ai-tools/openai-compatible', () => {
+vi.mock('@ai-toolkit/openai-compatible', () => {
   const createMockConstructor = (providerName: string) => {
     const mockConstructor = vi.fn().mockImplementation(function (
       this: any,
@@ -39,8 +39,8 @@ vi.mock('@ai-tools/openai-compatible', () => {
   };
 });
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
@@ -399,7 +399,7 @@ describe('BasetenProvider', () => {
       });
 
       expect(fetchMock.mock.calls[0][1].headers['user-agent']).toContain(
-        'ai-sdk/baseten/0.0.0-test',
+        'ai-toolkit/baseten/0.0.0-test',
       );
     });
   });

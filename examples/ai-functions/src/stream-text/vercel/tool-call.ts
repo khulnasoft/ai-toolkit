@@ -1,4 +1,4 @@
-import { vercel } from '@ai-tools/vercel';
+import { vercel } from '@ai-toolkit/vercel';
 import { streamText, ToolCallPart, ToolResultPart, ModelMessage } from 'ai';
 import { weatherTool } from '../../tools/weather-tool';
 import { run } from '../../lib/run';

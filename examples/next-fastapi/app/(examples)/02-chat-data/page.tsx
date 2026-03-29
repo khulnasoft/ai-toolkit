@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/app/components';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { getStaticToolName, isStaticToolUIPart } from 'ai';
 import { GeistMono } from 'geist/font/mono';
 import { useState } from 'react';

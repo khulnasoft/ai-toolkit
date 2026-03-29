@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/google-vertex",
+  "name": "@ai-toolkit/google-vertex",
   "version": "5.0.0-beta.23",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -60,14 +60,14 @@
     }
   },
   "dependencies": {
-    "@ai-tools/anthropic": "workspace:*",
-    "@ai-tools/google": "workspace:*",
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*",
+    "@ai-toolkit/anthropic": "workspace:*",
+    "@ai-toolkit/google": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "google-auth-library": "^10.5.0"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",

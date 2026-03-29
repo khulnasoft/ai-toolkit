@@ -1,4 +1,4 @@
-import { alibaba, type AlibabaLanguageModelOptions } from '@ai-tools/alibaba';
+import { alibaba, type AlibabaLanguageModelOptions } from '@ai-toolkit/alibaba';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

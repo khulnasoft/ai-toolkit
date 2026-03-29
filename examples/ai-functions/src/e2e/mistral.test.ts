@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { expect } from 'vitest';
-import { mistral as provider } from '@ai-tools/mistral';
+import { mistral as provider } from '@ai-toolkit/mistral';
 import { APICallError } from 'ai';
 import {
   createFeatureTestSuite,

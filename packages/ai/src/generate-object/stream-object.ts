@@ -5,14 +5,14 @@ import {
   LanguageModelV4Usage,
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   createIdGenerator,
   DelayedPromise,
   FlexibleSchema,
   ProviderOptions,
   type InferSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ServerResponse } from 'http';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveLanguageModel } from '../model/resolve-model';

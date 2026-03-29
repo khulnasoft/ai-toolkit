@@ -2,7 +2,7 @@ import {
   LanguageModelV4CallOptions,
   LanguageModelV4Prompt,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { DeepSeekChatPrompt } from './deepseek-chat-api-types';
 
 export function convertToDeepSeekChatMessages({

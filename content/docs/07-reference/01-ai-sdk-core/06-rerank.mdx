@@ -10,7 +10,7 @@ Rerank a set of documents based on their relevance to a query using a reranking 
 This is ideal for improving search relevance by reordering documents, emails, or other content based on semantic understanding of the query and documents.
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -250,7 +250,7 @@ const { ranking } = await rerank({
 ### String Documents
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking, rerankedDocuments } = await rerank({
@@ -277,7 +277,7 @@ console.log(ranking);
 ### Object Documents
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const documents = [
@@ -307,7 +307,7 @@ console.log(ranking[0].document);
 ### With Provider Options
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({

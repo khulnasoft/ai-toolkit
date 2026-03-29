@@ -6,7 +6,7 @@ import {
   OpenAIResponsesLanguageModel,
   OpenAISpeechModel,
   OpenAITranscriptionModel,
-} from '@ai-tools/openai/internal';
+} from '@ai-toolkit/openai/internal';
 import {
   EmbeddingModelV4,
   LanguageModelV4,
@@ -14,13 +14,13 @@ import {
   ImageModelV4,
   SpeechModelV4,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   loadSetting,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { azureOpenaiTools } from './azure-openai-tools';
 import { VERSION } from './version';
 
@@ -153,7 +153,7 @@ export function createAzure(
       }),
       ...options.headers,
     };
-    return withUserAgentSuffix(baseHeaders, `ai-sdk/azure/${VERSION}`);
+    return withUserAgentSuffix(baseHeaders, `ai-toolkit/azure/${VERSION}`);
   };
 
   const getResourceName = () =>

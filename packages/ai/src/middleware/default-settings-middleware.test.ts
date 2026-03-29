@@ -1,4 +1,4 @@
-import { LanguageModelV4CallOptions } from '@ai-tools/provider';
+import { LanguageModelV4CallOptions } from '@ai-toolkit/provider';
 import { defaultSettingsMiddleware } from './default-settings-middleware';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
 import { describe, it, expect } from 'vitest';

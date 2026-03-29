@@ -2,7 +2,7 @@ import {
   createIdGenerator,
   ProviderOptions,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveEmbeddingModel } from '../model/resolve-model';
 import { getGlobalTelemetryIntegration } from '../telemetry/get-global-telemetry-integration';

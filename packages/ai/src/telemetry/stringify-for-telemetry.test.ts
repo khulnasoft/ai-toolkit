@@ -1,5 +1,5 @@
 import { stringifyForTelemetry } from './stringify-for-telemetry';
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
 import { describe, it, expect } from 'vitest';
 
 describe('stringifyForTelemetry', () => {

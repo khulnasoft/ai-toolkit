@@ -18,14 +18,14 @@ description: Learn how to upgrade AI SDK 5.x to 6.0.
 You need to update the following packages to the latest versions in your `package.json` file(s):
 
 - `ai` package: `^6.0.0`
-- `@ai-tools/provider` package: `^3.0.0`
-- `@ai-tools/provider-utils` package: `^4.0.0`
-- `@ai-tools/*` packages: `^3.0.0`
+- `@ai-toolkit/provider` package: `^3.0.0`
+- `@ai-toolkit/provider-utils` package: `^4.0.0`
+- `@ai-toolkit/*` packages: `^3.0.0`
 
 An example upgrade command would be:
 
 ```
-pnpm install ai@latest @ai-tools/react@latest @ai-tools/openai@latest
+pnpm install ai@latest @ai-toolkit/react@latest @ai-toolkit/openai@latest
 ```
 
 ## Codemods
@@ -41,24 +41,24 @@ You can run all v6 codemods (v5 → v6 migration) by running the following comma
 from the root of your project:
 
 ```sh
-npx @ai-tools/codemod v6
+npx @ai-toolkit/codemod v6
 ```
 
 <Note>
-  There is also an `npx @ai-tools/codemod upgrade` command, but it runs all
+  There is also an `npx @ai-toolkit/codemod upgrade` command, but it runs all
   codemods from all versions (v4, v5, and v6). Use `v6` when upgrading from v5.
 </Note>
 
 Individual codemods can be run by specifying the name of the codemod:
 
 ```sh
-npx @ai-tools/codemod <codemod-name> <path>
+npx @ai-toolkit/codemod <codemod-name> <path>
 ```
 
 For example, to run a specific v6 codemod:
 
 ```sh
-npx @ai-tools/codemod v6/rename-text-embedding-to-embedding src/
+npx @ai-toolkit/codemod v6/rename-text-embedding-to-embedding src/
 ```
 
 <Note>
@@ -418,7 +418,7 @@ const repairToolCall: ToolCallRepairFunction<MyTools> = async ({
 The `textEmbeddingModel` and `textEmbedding` methods on providers have been renamed to `embeddingModel` and `embedding` respectively. Additionally, generics have been removed from `EmbeddingModel`, `embed`, and `embedMany` ([PR #10592](https://github.com/khulnasoft/ai-toolkit/pull/10592)).
 
 ```tsx filename="AI SDK 5"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { embed } from 'ai';
 
 // Using the full method name
@@ -434,7 +434,7 @@ const { embedding } = await embed({
 ```
 
 ```tsx filename="AI SDK 6"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { embed } from 'ai';
 
 // Using the full method name
@@ -584,7 +584,7 @@ The `strictJsonSchema` setting for JSON outputs and tool calls is enabled by def
 However, strict mode is stricter about schema requirements. If you receive schema rejection errors, adjust your schema (for example, use `null` instead of `undefined`) or disable strict mode.
 
 ```tsx filename="AI SDK 5"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -599,7 +599,7 @@ const result = await generateObject({
 ```
 
 ```tsx filename="AI SDK 6"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -635,17 +635,17 @@ The `structuredOutputs` provider option has been removed from chat models ([PR #
 
 #### Default Provider Uses Responses API
 
-The `@ai-tools/azure` provider now uses the Responses API by default when calling `azure()` ([PR #9868](https://github.com/khulnasoft/ai-toolkit/pull/9868)). To use the previous Chat Completions API behavior, use `azure.chat()` instead.
+The `@ai-toolkit/azure` provider now uses the Responses API by default when calling `azure()` ([PR #9868](https://github.com/khulnasoft/ai-toolkit/pull/9868)). To use the previous Chat Completions API behavior, use `azure.chat()` instead.
 
 ```tsx filename="AI SDK 5"
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 
 // Used Chat Completions API
 const model = azure('gpt-4o');
 ```
 
 ```tsx filename="AI SDK 6"
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 
 // Now uses Responses API by default
 const model = azure('gpt-4o');
@@ -665,10 +665,10 @@ const responsesModel = azure.responses('gpt-4o');
 
 #### Responses API `providerMetadata` and `providerOptions` Key
 
-For the **Responses API**, the `@ai-tools/azure` provider now uses `azure` as the key for `providerMetadata` and `providerOptions` instead of `openai`. The `openai` key is still supported for `providerOptions` input, but resulting `providerMetadata` output now uses `azure`.
+For the **Responses API**, the `@ai-toolkit/azure` provider now uses `azure` as the key for `providerMetadata` and `providerOptions` instead of `openai`. The `openai` key is still supported for `providerOptions` input, but resulting `providerMetadata` output now uses `azure`.
 
 ```tsx filename="AI SDK 5"
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -687,7 +687,7 @@ console.log(result.providerMetadata?.openai?.responseId);
 ```
 
 ```tsx filename="AI SDK 6"
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -710,7 +710,7 @@ console.log(result.providerMetadata?.azure?.responseId);
 
 #### Structured Outputs Mode
 
-Anthropic has [ introduced native structured outputs for Claude Sonnet 4.5 and later models ](https://www.claude.com/blog/structured-outputs-on-the-claude-developer-platform). The `@ai-tools/anthropic` provider now includes a `structuredOutputMode` option to control how structured outputs are generated ([PR #10502](https://github.com/khulnasoft/ai-toolkit/pull/10502)).
+Anthropic has [ introduced native structured outputs for Claude Sonnet 4.5 and later models ](https://www.claude.com/blog/structured-outputs-on-the-claude-developer-platform). The `@ai-toolkit/anthropic` provider now includes a `structuredOutputMode` option to control how structured outputs are generated ([PR #10502](https://github.com/khulnasoft/ai-toolkit/pull/10502)).
 
 The available modes are:
 
@@ -719,7 +719,7 @@ The available modes are:
 - `'auto'` (default): Use `'outputFormat'` when supported by the model, otherwise fall back to `'jsonTool'`
 
 ```tsx filename="AI SDK 6"
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -743,10 +743,10 @@ const result = await generateObject({
 
 #### `providerMetadata` and `providerOptions` Key
 
-The `@ai-tools/google-vertex` provider now uses `vertex` as the key for `providerMetadata` and `providerOptions` instead of `google`. The `google` key is still supported for `providerOptions` input, but resulting `providerMetadata` output now uses `vertex`.
+The `@ai-toolkit/google-vertex` provider now uses `vertex` as the key for `providerMetadata` and `providerOptions` instead of `google`. The `google` key is still supported for `providerOptions` input, but resulting `providerMetadata` output now uses `vertex`.
 
 ```tsx filename="AI SDK 5"
-import { vertex } from '@ai-tools/google-vertex';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -766,7 +766,7 @@ console.log(result.providerMetadata?.google?.safetyRatings);
 ```
 
 ```tsx filename="AI SDK 6"
-import { vertex } from '@ai-tools/google-vertex';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { generateText } from 'ai';
 
 const result = await generateText({

@@ -1,5 +1,5 @@
 import { run } from '../../lib/run';
-import { vertexAnthropic } from '@ai-tools/google-vertex/anthropic';
+import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
 import { generateText, stepCountIs } from 'ai';
 import fs from 'node:fs';
 

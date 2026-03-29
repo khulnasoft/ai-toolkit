@@ -48,7 +48,7 @@ For reasoning models (e.g. `o3`, `o4-mini`, `gpt-5.2`), `reasoningEffort` contro
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const { text, usage, providerMetadata } = await generateText({
@@ -88,7 +88,7 @@ When working with reasoning models, you may want to see _how_ the model arrived 
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -116,7 +116,7 @@ for await (const part of result.fullStream) {
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -145,7 +145,7 @@ Control the length and detail of the model's text response independently of reas
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -174,7 +174,7 @@ const result = await generateText({
 Anthropic's thinking feature gives Claude models a dedicated "thinking" phase before they respond. You enable it by providing a `thinking` object with a token budget.
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoning, reasoningText } = await generateText({
@@ -203,7 +203,7 @@ The `budgetTokens` value sets the upper limit on how many tokens the model can u
 The `effort` option provides a simpler way to control reasoning depth without specifying a token budget. It affects thinking, text responses, and function calls.
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, usage } = await generateText({
@@ -228,7 +228,7 @@ const { text, usage } = await generateText({
 For `claude-opus-4-6`, the `speed` option enables approximately 2.5x faster output token speeds:
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -252,7 +252,7 @@ You can combine multiple provider options in a single call. For example, using b
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -270,7 +270,7 @@ const result = await generateText({
 Or enabling thinking with a low effort level for Anthropic:
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -290,7 +290,7 @@ const result = await generateText({
 Provider options work the same way when using the [Vercel AI Gateway](/providers/ai-sdk-providers/ai-gateway). Use the underlying provider name (e.g. `openai`, `anthropic`) as the key — not `gateway`. The AI Gateway forwards these options to the target provider automatically.
 
 ```ts
-import type { OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import type { OpenAILanguageModelResponsesOptions } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -308,8 +308,8 @@ const result = await generateText({
 You can also combine gateway-specific options (like routing and fallbacks) with provider-specific options in the same call:
 
 ```ts
-import type { AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
-import type { GatewayProviderOptions } from '@ai-tools/gateway';
+import type { AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
+import type { GatewayProviderOptions } from '@ai-toolkit/gateway';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -335,8 +335,8 @@ For more on gateway routing, fallbacks, and other gateway-specific options, see 
 Each provider exports a type for its options, which you can use with `satisfies` to get autocomplete and catch typos at build time:
 
 ```ts
-import { type OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
-import { type AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { type OpenAILanguageModelResponsesOptions } from '@ai-toolkit/openai';
+import { type AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 ```
 
 For a full list of available options, see the provider-specific documentation:

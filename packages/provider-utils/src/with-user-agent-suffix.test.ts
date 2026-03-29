@@ -11,11 +11,13 @@ describe('withUserAgentSuffix', () => {
 
     const result = withUserAgentSuffix(
       headers,
-      'ai-sdk/0.0.0-test',
+      'ai-toolkit/0.0.0-test',
       'provider/test-openai',
     );
 
-    expect(result['user-agent']).toBe('ai-sdk/0.0.0-test provider/test-openai');
+    expect(result['user-agent']).toBe(
+      'ai-toolkit/0.0.0-test provider/test-openai',
+    );
     expect(result['content-type']).toBe('application/json');
     expect(result['authorization']).toBe('Bearer token123');
   });
@@ -28,12 +30,12 @@ describe('withUserAgentSuffix', () => {
 
     const result = withUserAgentSuffix(
       headers,
-      'ai-sdk/0.0.0-test',
+      'ai-toolkit/0.0.0-test',
       'provider/test-anthropic',
     );
 
     expect(result['user-agent']).toBe(
-      'TestApp/0.0.0-test ai-sdk/0.0.0-test provider/test-anthropic',
+      'TestApp/0.0.0-test ai-toolkit/0.0.0-test provider/test-anthropic',
     );
     expect(result['accept']).toBe('application/json');
   });
@@ -47,9 +49,11 @@ describe('withUserAgentSuffix', () => {
       'cache-control': null,
     };
 
-    const result = withUserAgentSuffix(headers as any, 'ai-sdk/0.0.0-test');
+    const result = withUserAgentSuffix(headers as any, 'ai-toolkit/0.0.0-test');
 
-    expect(result['user-agent']).toBe('TestApp/0.0.0-test ai-sdk/0.0.0-test');
+    expect(result['user-agent']).toBe(
+      'TestApp/0.0.0-test ai-toolkit/0.0.0-test',
+    );
     expect(result['content-type']).toBe('application/json');
     expect(result['accept']).toBe('application/json');
     expect(result['authorization']).toBeUndefined();
@@ -62,11 +66,11 @@ describe('withUserAgentSuffix', () => {
       'X-Custom': 'value',
     });
 
-    const result = withUserAgentSuffix(headers, 'ai-sdk/0.0.0-test');
+    const result = withUserAgentSuffix(headers, 'ai-toolkit/0.0.0-test');
 
     expect(result['authorization']).toBe('Bearer token123');
     expect(result['x-custom']).toBe('value');
-    expect(result['user-agent']).toBe('ai-sdk/0.0.0-test');
+    expect(result['user-agent']).toBe('ai-toolkit/0.0.0-test');
   });
 
   it('should handle array header entries', () => {
@@ -75,10 +79,10 @@ describe('withUserAgentSuffix', () => {
       ['X-Feature', 'alpha'],
     ];
 
-    const result = withUserAgentSuffix(headers, 'ai-sdk/0.0.0-test');
+    const result = withUserAgentSuffix(headers, 'ai-toolkit/0.0.0-test');
 
     expect(result['authorization']).toBe('Bearer token123');
     expect(result['x-feature']).toBe('alpha');
-    expect(result['user-agent']).toBe('ai-sdk/0.0.0-test');
+    expect(result['user-agent']).toBe('ai-toolkit/0.0.0-test');
   });
 });

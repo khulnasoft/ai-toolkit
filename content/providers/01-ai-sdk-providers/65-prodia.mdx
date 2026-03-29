@@ -9,36 +9,36 @@ description: Learn how to use Prodia models with the AI SDK.
 
 ## Setup
 
-The Prodia provider is available via the `@ai-tools/prodia` module. You can install it with
+The Prodia provider is available via the `@ai-toolkit/prodia` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/prodia" dark />
+    <Snippet text="pnpm add @ai-toolkit/prodia" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/prodia" dark />
+    <Snippet text="npm install @ai-toolkit/prodia" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/prodia" dark />
+    <Snippet text="yarn add @ai-toolkit/prodia" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/prodia" dark />
+    <Snippet text="bun add @ai-toolkit/prodia" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `prodia` from `@ai-tools/prodia`:
+You can import the default provider instance `prodia` from `@ai-toolkit/prodia`:
 
 ```ts
-import { prodia } from '@ai-tools/prodia';
+import { prodia } from '@ai-toolkit/prodia';
 ```
 
 If you need a customized setup, you can import `createProdia` and create a provider instance with your settings:
 
 ```ts
-import { createProdia } from '@ai-tools/prodia';
+import { createProdia } from '@ai-toolkit/prodia';
 
 const prodia = createProdia({
   apiKey: 'your-api-key', // optional, defaults to PRODIA_TOKEN environment variable
@@ -80,7 +80,7 @@ For more on image generation with the AI SDK see [generateImage()](/docs/referen
 
 ```ts
 import { writeFileSync } from 'node:fs';
-import { prodia } from '@ai-tools/prodia';
+import { prodia } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -113,7 +113,7 @@ Prodia offers fast inference for various image generation models. Here are the s
 You can specify the image size using the `size` parameter in `WIDTHxHEIGHT` format:
 
 ```ts
-import { prodia } from '@ai-tools/prodia';
+import { prodia } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -128,7 +128,7 @@ const { image } = await generateImage({
 Prodia image models support additional options through the `providerOptions.prodia` object:
 
 ```ts
-import { prodia, type ProdiaImageModelOptions } from '@ai-tools/prodia';
+import { prodia, type ProdiaImageModelOptions } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -159,7 +159,7 @@ The following provider options are supported:
 You can use the `seed` parameter to get reproducible results:
 
 ```ts
-import { prodia } from '@ai-tools/prodia';
+import { prodia } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -181,7 +181,7 @@ The `generateImage` response includes provider-specific metadata in `providerMet
 - **updatedAt** _string_ - Timestamp when the job was last updated.
 
 ```ts
-import { prodia } from '@ai-tools/prodia';
+import { prodia } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 
 const { image, providerMetadata } = await generateImage({

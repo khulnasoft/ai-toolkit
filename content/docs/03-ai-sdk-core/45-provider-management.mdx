@@ -141,8 +141,8 @@ You can create a [provider registry](/docs/reference/ai-sdk-core/provider-regist
 ### Setup
 
 ```ts filename={"registry.ts"}
-import { anthropic } from '@ai-tools/anthropic';
-import { openai } from '@ai-tools/openai';
+import { anthropic } from '@ai-toolkit/anthropic';
+import { openai } from '@ai-toolkit/openai';
 import { createProviderRegistry, gateway } from 'ai';
 
 export const registry = createProviderRegistry({
@@ -160,8 +160,8 @@ export const registry = createProviderRegistry({
 By default, the registry uses `:` as the separator between provider and model IDs. You can customize this separator:
 
 ```ts filename={"registry.ts"}
-import { anthropic } from '@ai-tools/anthropic';
-import { openai } from '@ai-tools/openai';
+import { anthropic } from '@ai-toolkit/anthropic';
+import { openai } from '@ai-toolkit/openai';
 import { createProviderRegistry, gateway } from 'ai';
 
 export const customSeparatorRegistry = createProviderRegistry(
@@ -239,10 +239,10 @@ Here is an example that implements the following concepts:
 - define a custom separator for the provider registry (here: `>`)
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
-import { xai } from '@ai-tools/xai';
-import { groq } from '@ai-tools/groq';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
+import { xai } from '@ai-toolkit/xai';
+import { groq } from '@ai-toolkit/groq';
 import {
   createProviderRegistry,
   customProvider,
@@ -331,7 +331,7 @@ By default, the global provider is set to the Vercel AI Gateway.
 You can set your own preferred global provider:
 
 ```ts filename="setup.ts"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 // Initialize once during startup:
 globalThis.AI_SDK_DEFAULT_PROVIDER = openai;

@@ -1,10 +1,10 @@
-import { JSONObject } from '@ai-tools/provider';
+import { JSONObject } from '@ai-toolkit/provider';
 import {
   createProviderToolFactoryWithOutputSchema,
   FlexibleSchema,
   lazySchema,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 
 export const toolSearchArgsSchema = lazySchema(() =>

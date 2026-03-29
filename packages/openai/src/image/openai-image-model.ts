@@ -2,7 +2,7 @@ import {
   ImageModelV4,
   ImageModelV4File,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -11,7 +11,7 @@ import {
   downloadBlob,
   postFormDataToApi,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { OpenAIConfig } from '../openai-config';
 import { openaiFailedResponseHandler } from '../openai-error';
 import { openaiImageResponseSchema } from './openai-image-api';

@@ -2,8 +2,8 @@ import {
   createProviderToolFactoryWithOutputSchema,
   lazySchema,
   zodSchema,
-} from '@ai-tools/provider-utils';
-import { JSONValue } from '@ai-tools/provider';
+} from '@ai-toolkit/provider-utils';
+import { JSONValue } from '@ai-toolkit/provider';
 import { z } from 'zod/v4';
 
 const jsonValueSchema: z.ZodType<JSONValue> = z.lazy(() =>

@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { streamText, stepCountIs } from 'ai';
 import { run } from '../../lib/run';
 import { anthropicLocalFsMemoryTool } from '../../lib/anthropic-local-fs-memory-tool';

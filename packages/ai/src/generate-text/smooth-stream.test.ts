@@ -1,4 +1,4 @@
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { smoothStream } from './smooth-stream';
 import { TextStreamPart } from './stream-text-result';
 import { ToolSet } from './tool-set';

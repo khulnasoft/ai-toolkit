@@ -1,4 +1,4 @@
-import { JSONSchema7, LanguageModelV4ToolCall } from '@ai-tools/provider';
+import { JSONSchema7, LanguageModelV4ToolCall } from '@ai-toolkit/provider';
 import { InvalidToolInputError } from '../error/invalid-tool-input-error';
 import { NoSuchToolError } from '../error/no-such-tool-error';
 import { ModelMessage, SystemModelMessage } from '../prompt';

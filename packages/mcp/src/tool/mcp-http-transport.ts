@@ -2,7 +2,7 @@ import {
   EventSourceParserStream,
   withUserAgentSuffix,
   getRuntimeEnvironmentUserAgent,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { MCPClientError } from '../error/mcp-client-error';
 import { JSONRPCMessage, JSONRPCMessageSchema } from './json-rpc-message';
 import { MCPTransport } from './mcp-transport';
@@ -85,7 +85,7 @@ export class HttpMCPTransport implements MCPTransport {
 
     return withUserAgentSuffix(
       headers,
-      `ai-sdk/${VERSION}`,
+      `ai-toolkit/${VERSION}`,
       getRuntimeEnvironmentUserAgent(),
     );
   }

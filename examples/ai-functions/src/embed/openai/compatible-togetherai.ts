@@ -1,4 +1,4 @@
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { embed } from 'ai';
 import { run } from '../../lib/run';
 

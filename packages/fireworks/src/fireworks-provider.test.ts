@@ -1,18 +1,18 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createFireworks } from './fireworks-provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import {
   OpenAICompatibleChatLanguageModel,
   OpenAICompatibleCompletionLanguageModel,
   OpenAICompatibleEmbeddingModel,
-} from '@ai-tools/openai-compatible';
+} from '@ai-toolkit/openai-compatible';
 import { FireworksImageModel } from './fireworks-image-model';
 
 // Add type assertion for the mocked class
 const OpenAICompatibleChatLanguageModelMock =
   OpenAICompatibleChatLanguageModel as unknown as Mock;
 
-vi.mock('@ai-tools/openai-compatible', () => {
+vi.mock('@ai-toolkit/openai-compatible', () => {
   // Create mock constructor functions that behave like classes
   const createMockConstructor = (providerName: string) => {
     const mockConstructor = vi.fn().mockImplementation(function (
@@ -38,8 +38,8 @@ vi.mock('@ai-tools/openai-compatible', () => {
   };
 });
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),

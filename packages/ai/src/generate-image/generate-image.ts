@@ -3,13 +3,13 @@ import {
   ImageModelV4CallOptions,
   ImageModelV4File,
   ImageModelV4ProviderMetadata,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   DataContent,
   ProviderOptions,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { NoImageGeneratedError } from '../error/no-image-generated-error';
 import {
   DefaultGeneratedFile,

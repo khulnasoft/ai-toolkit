@@ -1,9 +1,9 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HuggingFaceResponsesLanguageModel } from './huggingface-responses-language-model';
 

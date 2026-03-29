@@ -1,4 +1,4 @@
-import { vertexAnthropic } from '@ai-tools/google-vertex/anthropic';
+import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
 import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai';
 import { weatherTool } from '../../tools/weather-tool';
 import { run } from '../../lib/run';

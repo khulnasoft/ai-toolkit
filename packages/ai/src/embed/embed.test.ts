@@ -1,4 +1,4 @@
-import { EmbeddingModelV4 } from '@ai-tools/provider';
+import { EmbeddingModelV4 } from '@ai-toolkit/provider';
 import assert from 'node:assert';
 import { beforeEach, describe, expect, it, vi, vitest } from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';

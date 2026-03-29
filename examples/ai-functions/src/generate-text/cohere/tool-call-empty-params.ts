@@ -1,4 +1,4 @@
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

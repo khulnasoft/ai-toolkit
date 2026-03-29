@@ -4,7 +4,7 @@ import {
   openai,
   OpenAILanguageModelResponsesOptions,
   OpenaiResponsesReasoningProviderMetadata,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 
 run(async () => {
   const result = await generateText({

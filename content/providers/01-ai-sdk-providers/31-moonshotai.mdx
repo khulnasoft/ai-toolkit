@@ -11,35 +11,35 @@ API keys can be obtained from the [Moonshot Platform](https://platform.moonshot.
 
 ## Setup
 
-The Moonshot AI provider is available via the `@ai-tools/moonshotai` module. You can install it with:
+The Moonshot AI provider is available via the `@ai-toolkit/moonshotai` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/moonshotai" dark />
+    <Snippet text="pnpm add @ai-toolkit/moonshotai" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/moonshotai" dark />
+    <Snippet text="npm install @ai-toolkit/moonshotai" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/moonshotai" dark />
+    <Snippet text="yarn add @ai-toolkit/moonshotai" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @ai-tools/moonshotai" dark />
+    <Snippet text="bun add @ai-toolkit/moonshotai" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `moonshotai` from `@ai-tools/moonshotai`:
+You can import the default provider instance `moonshotai` from `@ai-toolkit/moonshotai`:
 
 ```ts
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 ```
 
 For custom configuration, you can import `createMoonshotAI` and create a provider instance with your settings:
 
 ```ts
-import { createMoonshotAI } from '@ai-tools/moonshotai';
+import { createMoonshotAI } from '@ai-toolkit/moonshotai';
 
 const moonshotai = createMoonshotAI({
   apiKey: process.env.MOONSHOT_API_KEY ?? '',
@@ -71,7 +71,7 @@ You can use the following optional settings to customize the Moonshot AI provide
 You can create language models using a provider instance:
 
 ```ts
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -99,7 +99,7 @@ Moonshot AI offers thinking models like `kimi-k2-thinking` that generate interme
 import {
   moonshotai,
   type MoonshotAILanguageModelOptions,
-} from '@ai-tools/moonshotai';
+} from '@ai-toolkit/moonshotai';
 import { generateText } from 'ai';
 
 const { text, reasoningText } = await generateText({

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createXai } from './xai-provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { XaiChatLanguageModel } from './xai-chat-language-model';
 import { XaiResponsesLanguageModel } from './responses/xai-responses-language-model';
 import { XaiImageModel } from './xai-image-model';
@@ -28,8 +28,8 @@ vi.mock('./xai-video-model', () => ({
   XaiVideoModel: vi.fn(),
 }));
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),
@@ -161,7 +161,7 @@ describe('xAIProvider', () => {
       expect(headers).toMatchObject({
         authorization: 'Bearer mock-api-key',
         'custom-header': 'test-value',
-        'user-agent': 'ai-sdk/xai/0.0.0-test',
+        'user-agent': 'ai-toolkit/xai/0.0.0-test',
       });
     });
   });
@@ -207,7 +207,7 @@ describe('xAIProvider', () => {
       expect(headers).toMatchObject({
         authorization: 'Bearer mock-api-key',
         'custom-header': 'test-value',
-        'user-agent': 'ai-sdk/xai/0.0.0-test',
+        'user-agent': 'ai-toolkit/xai/0.0.0-test',
       });
     });
 

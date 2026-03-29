@@ -3,7 +3,7 @@ import {
   ImageModelV3,
   ImageModelV4,
   ImageModelV4CallOptions,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { asImageModelV4 } from '../model/as-image-model-v4';
 import { ImageModelMiddleware } from '../types';
 import { asArray } from '../util/as-array';

@@ -1,7 +1,7 @@
 import {
   anthropic,
   type AnthropicLanguageModelOptions,
-} from '@ai-tools/anthropic';
+} from '@ai-toolkit/anthropic';
 import { streamText } from 'ai';
 import fs from 'node:fs';
 import { run } from '../../lib/run';

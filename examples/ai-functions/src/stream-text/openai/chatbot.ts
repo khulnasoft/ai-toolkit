@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { stepCountIs, ModelMessage, streamText, tool, APICallError } from 'ai';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';

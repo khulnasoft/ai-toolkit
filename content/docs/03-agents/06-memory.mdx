@@ -26,7 +26,7 @@ You can add memory to your agent with the AI SDK in three ways, each with differ
 The [Anthropic Memory Tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) gives Claude a structured interface for managing a `/memories` directory. Claude reads its memory before starting tasks, creates and updates files as it works, and references them in future conversations.
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { ToolLoopAgent } from 'ai';
 
 const memory = anthropic.tools.memory_20250818({
@@ -188,7 +188,7 @@ __PROVIDER_IMPORT__;
 import { HindsightClient } from '@vectorize-io/hindsight-client';
 import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
 import { ToolLoopAgent, stepCountIs } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const client = new HindsightClient({ baseUrl: process.env.HINDSIGHT_API_URL });
 

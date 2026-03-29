@@ -9,36 +9,36 @@ The [Kling AI](https://klingai.com/) provider contains support for Kling AI's vi
 
 ## Setup
 
-The Kling AI provider is available in the `@ai-tools/klingai` module. You can install it with
+The Kling AI provider is available in the `@ai-toolkit/klingai` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/klingai" dark />
+    <Snippet text="pnpm add @ai-toolkit/klingai" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/klingai" dark />
+    <Snippet text="npm install @ai-toolkit/klingai" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/klingai" dark />
+    <Snippet text="yarn add @ai-toolkit/klingai" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/klingai" dark />
+    <Snippet text="bun add @ai-toolkit/klingai" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `klingai` from `@ai-tools/klingai`:
+You can import the default provider instance `klingai` from `@ai-toolkit/klingai`:
 
 ```ts
-import { klingai } from '@ai-tools/klingai';
+import { klingai } from '@ai-toolkit/klingai';
 ```
 
-If you need a customized setup, you can import `createKlingAI` from `@ai-tools/klingai` and create a provider instance with your settings:
+If you need a customized setup, you can import `createKlingAI` from `@ai-toolkit/klingai` and create a provider instance with your settings:
 
 ```ts
-import { createKlingAI } from '@ai-tools/klingai';
+import { createKlingAI } from '@ai-toolkit/klingai';
 
 const klingai = createKlingAI({
   accessKey: 'your-access-key',
@@ -90,7 +90,7 @@ This provider currently supports three video generation modes: text-to-video, im
 Generate videos from text prompts:
 
 ```ts
-import { klingai, type KlingAIVideoModelOptions } from '@ai-tools/klingai';
+import { klingai, type KlingAIVideoModelOptions } from '@ai-toolkit/klingai';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { videos } = await generateVideo({
@@ -111,7 +111,7 @@ const { videos } = await generateVideo({
 Generate videos from a start frame image with an optional text prompt. The popular start+end frame feature is available via the `imageTail` option:
 
 ```ts
-import { klingai, type KlingAIVideoModelOptions } from '@ai-tools/klingai';
+import { klingai, type KlingAIVideoModelOptions } from '@ai-toolkit/klingai';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { videos } = await generateVideo({
@@ -137,7 +137,7 @@ const { videos } = await generateVideo({
 Generate videos with multiple storyboard shots, each with its own prompt and duration (Kling v3.0+):
 
 ```ts
-import { klingai, type KlingAIVideoModelOptions } from '@ai-tools/klingai';
+import { klingai, type KlingAIVideoModelOptions } from '@ai-toolkit/klingai';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { videos } = await generateVideo({
@@ -180,7 +180,7 @@ Multi-shot also works with image-to-video by combining a start frame image with 
 Generate video by transferring motion from a reference video to a character image:
 
 ```ts
-import { klingai, type KlingAIVideoModelOptions } from '@ai-tools/klingai';
+import { klingai, type KlingAIVideoModelOptions } from '@ai-toolkit/klingai';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { videos } = await generateVideo({

@@ -2,7 +2,7 @@ import {
   getResponseMetadata,
   mapOpenAICompatibleFinishReason,
   prepareTools,
-} from '@ai-tools/openai-compatible/internal';
+} from '@ai-toolkit/openai-compatible/internal';
 import {
   InvalidResponseDataError,
   type LanguageModelV4,
@@ -13,7 +13,7 @@ import {
   type LanguageModelV4StreamPart,
   type LanguageModelV4StreamResult,
   type SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
@@ -26,7 +26,7 @@ import {
   parseProviderOptions,
   postJsonToApi,
   type ParseResult,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import {
   alibabaLanguageModelOptions,

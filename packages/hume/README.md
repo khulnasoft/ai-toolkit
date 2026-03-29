@@ -5,10 +5,10 @@ contains support for the Hume API.
 
 ## Setup
 
-The Hume provider is available in the `@ai-tools/hume` module. You can install it with
+The Hume provider is available in the `@ai-toolkit/hume` module. You can install it with
 
 ```bash
-npm i @ai-tools/hume
+npm i @ai-toolkit/hume
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `hume` from `@ai-tools/hume`:
+You can import the default provider instance `hume` from `@ai-toolkit/hume`:
 
 ```ts
-import { hume } from '@ai-tools/hume';
+import { hume } from '@ai-toolkit/hume';
 ```
 
 ## Example
 
 ```ts
-import { hume } from '@ai-tools/hume';
+import { hume } from '@ai-toolkit/hume';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const result = await generateSpeech({

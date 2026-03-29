@@ -1,7 +1,7 @@
 import {
   openai,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText, streamText } from 'ai';
 import { run } from '../../lib/run';
 

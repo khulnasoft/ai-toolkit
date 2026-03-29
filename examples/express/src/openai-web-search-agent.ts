@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { ToolLoopAgent } from 'ai';
 
 export const openaiWebSearchAgent = new ToolLoopAgent({

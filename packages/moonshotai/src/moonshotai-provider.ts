@@ -1,15 +1,15 @@
-import { ProviderErrorStructure } from '@ai-tools/openai-compatible';
+import { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
 import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { MoonshotAIChatLanguageModel } from './moonshotai-chat-language-model';
 import { MoonshotAIChatModelId } from './moonshotai-chat-options';
@@ -83,7 +83,7 @@ export function createMoonshotAI(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/moonshotai/${VERSION}`,
+      `ai-toolkit/moonshotai/${VERSION}`,
     );
 
   interface CommonModelConfig {

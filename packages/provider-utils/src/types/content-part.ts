@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import { DataContent } from './data-content';
 import { ProviderOptions } from './provider-options';
 

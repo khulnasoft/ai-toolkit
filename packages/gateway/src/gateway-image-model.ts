@@ -2,7 +2,7 @@ import type {
   ImageModelV4,
   ImageModelV4File,
   ImageModelV4ProviderMetadata,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertUint8ArrayToBase64,
@@ -11,7 +11,7 @@ import {
   postJsonToApi,
   resolve,
   type Resolvable,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { GatewayConfig } from './gateway-config';
 import { asGatewayError } from './errors';

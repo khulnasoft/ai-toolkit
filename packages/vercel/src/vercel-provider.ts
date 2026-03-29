@@ -2,14 +2,14 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
-import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
+} from '@ai-toolkit/provider';
+import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { VercelChatModelId } from './vercel-chat-options';
 import { VERSION } from './version';
 
@@ -66,7 +66,7 @@ export function createVercel(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/vercel/${VERSION}`,
+      `ai-toolkit/vercel/${VERSION}`,
     );
 
   interface CommonModelConfig {

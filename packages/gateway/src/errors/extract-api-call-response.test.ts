@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { APICallError } from '@ai-tools/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import { extractApiCallResponse } from './extract-api-call-response';
 
 describe('extractResponseFromAPICallError', () => {

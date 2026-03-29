@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { vertex } from '@ai-tools/google-vertex';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { generateText, streamText } from 'ai';
 
 // Case 1: Direct providerMetadata access with optional chaining

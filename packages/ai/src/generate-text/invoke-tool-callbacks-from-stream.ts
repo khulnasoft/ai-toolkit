@@ -1,6 +1,6 @@
 import { ModelCallStreamPart } from './stream-model-call';
 import { ToolSet } from './tool-set';
-import { ModelMessage } from '@ai-tools/provider-utils';
+import { ModelMessage } from '@ai-toolkit/provider-utils';
 
 export function invokeToolCallbacksFromStream<TOOLS extends ToolSet>({
   stream,

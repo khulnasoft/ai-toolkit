@@ -1,4 +1,4 @@
-import { type AlibabaVideoModelOptions, alibaba } from '@ai-tools/alibaba';
+import { type AlibabaVideoModelOptions, alibaba } from '@ai-toolkit/alibaba';
 import { experimental_generateVideo as generateVideo } from 'ai';
 import { presentVideos } from '../../lib/present-video';
 import { run } from '../../lib/run';

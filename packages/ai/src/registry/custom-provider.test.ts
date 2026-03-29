@@ -1,4 +1,4 @@
-import { NoSuchModelError } from '@ai-tools/provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
 import { describe, expect, it, vi } from 'vitest';
 import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';
 import { MockImageModelV4 } from '../test/mock-image-model-v4';

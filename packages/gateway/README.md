@@ -4,10 +4,10 @@ The Gateway provider for the [AI SDK](https://ai-sdk.dev/docs) allows the use of
 
 ## Setup
 
-The Gateway provider is available in the `@ai-tools/gateway` module. You can install it with
+The Gateway provider is available in the `@ai-toolkit/gateway` module. You can install it with
 
 ```bash
-npm i @ai-tools/gateway
+npm i @ai-toolkit/gateway
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `gateway` from `@ai-tools/gateway`:
+You can import the default provider instance `gateway` from `@ai-toolkit/gateway`:
 
 ```ts
-import { gateway } from '@ai-tools/gateway';
+import { gateway } from '@ai-toolkit/gateway';
 ```
 
 ## Example
 
 ```ts
-import { gateway } from '@ai-tools/gateway';
+import { gateway } from '@ai-toolkit/gateway';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

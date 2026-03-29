@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import * as fs from 'node:fs';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import {
@@ -90,7 +90,7 @@ describe('GoogleVertexImageModel', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/google-vertex/0.0.0-test`,
+        `ai-toolkit/google-vertex/0.0.0-test`,
       );
     });
 

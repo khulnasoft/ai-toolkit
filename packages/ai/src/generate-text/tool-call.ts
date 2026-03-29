@@ -1,4 +1,4 @@
-import { Tool } from '@ai-tools/provider-utils';
+import { Tool } from '@ai-toolkit/provider-utils';
 import { ProviderMetadata } from '../types';
 import { ValueOf } from '../util/value-of';
 import { ToolSet } from './tool-set';

@@ -1,7 +1,7 @@
 import {
   EmbeddingModelV4CallOptions,
   EmbeddingModelV4Middleware,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { wrapEmbeddingModel } from '../middleware/wrap-embedding-model';
 import { describe, it, expect, vi } from 'vitest';
 import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';

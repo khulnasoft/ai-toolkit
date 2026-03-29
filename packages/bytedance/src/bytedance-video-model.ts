@@ -2,7 +2,7 @@ import {
   AISDKError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertImageModelFileToDataUri,
@@ -15,7 +15,7 @@ import {
   postJsonToApi,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { ByteDanceConfig } from './bytedance-config';
 import type { ByteDanceVideoModelId } from './bytedance-video-settings';

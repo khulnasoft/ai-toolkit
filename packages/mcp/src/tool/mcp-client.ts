@@ -1,4 +1,4 @@
-import { JSONSchema7, JSONValue } from '@ai-tools/provider';
+import { JSONSchema7, JSONValue } from '@ai-toolkit/provider';
 import {
   asSchema,
   dynamicTool,
@@ -10,7 +10,7 @@ import {
   tool,
   ToolExecutionOptions,
   ToolResultOutput,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { MCPClientError } from '../error/mcp-client-error';
 import {

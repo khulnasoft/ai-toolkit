@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { SpeechModelResponseMetadata } from '../types/speech-model-response-metadata';
 
 const name = 'AI_NoSpeechGeneratedError';

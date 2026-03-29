@@ -1,4 +1,4 @@
-import { type OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import { type OpenAILanguageModelResponsesOptions } from '@ai-toolkit/openai';
 import { convertToModelMessages, Output, stepCountIs, streamText } from 'ai';
 import 'dotenv/config';
 import express, { Request, Response } from 'express';

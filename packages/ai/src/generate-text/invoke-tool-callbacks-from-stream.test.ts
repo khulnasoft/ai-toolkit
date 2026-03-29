@@ -1,8 +1,8 @@
-import { ModelMessage, tool } from '@ai-tools/provider-utils';
+import { ModelMessage, tool } from '@ai-toolkit/provider-utils';
 import {
   convertArrayToReadableStream,
   convertReadableStreamToArray,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod/v4';
 import { ModelCallStreamPart } from './stream-model-call';

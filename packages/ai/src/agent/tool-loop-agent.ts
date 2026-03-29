@@ -48,8 +48,8 @@ export class ToolLoopAgent<
   }
 
   private async prepareCall(options: {
-    prompt?: string | Array<import('@ai-tools/provider-utils').ModelMessage>;
-    messages?: Array<import('@ai-tools/provider-utils').ModelMessage>;
+    prompt?: string | Array<import('@ai-toolkit/provider-utils').ModelMessage>;
+    messages?: Array<import('@ai-toolkit/provider-utils').ModelMessage>;
     options?: CALL_OPTIONS;
   }): Promise<
     Omit<

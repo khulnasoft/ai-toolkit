@@ -1,10 +1,14 @@
-import { ImageModelV4, NoSuchModelError, ProviderV4 } from '@ai-tools/provider';
-import type { FetchFunction } from '@ai-tools/provider-utils';
+import {
+  ImageModelV4,
+  NoSuchModelError,
+  ProviderV4,
+} from '@ai-toolkit/provider';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { BlackForestLabsImageModel } from './black-forest-labs-image-model';
 import { BlackForestLabsImageModelId } from './black-forest-labs-image-settings';
 import { VERSION } from './version';
@@ -75,7 +79,7 @@ export function createBlackForestLabs(
         }),
         ...options.headers,
       },
-      `ai-sdk/black-forest-labs/${VERSION}`,
+      `ai-toolkit/black-forest-labs/${VERSION}`,
     );
 
   const createImageModel = (modelId: BlackForestLabsImageModelId) =>

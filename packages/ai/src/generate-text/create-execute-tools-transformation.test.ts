@@ -1,9 +1,9 @@
-import { delay, tool } from '@ai-tools/provider-utils';
+import { delay, tool } from '@ai-toolkit/provider-utils';
 import {
   convertArrayToReadableStream,
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod/v4';
 import { asLanguageModelUsage } from '../types/usage';

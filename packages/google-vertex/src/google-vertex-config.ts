@@ -1,4 +1,4 @@
-import { FetchFunction, Resolvable } from '@ai-tools/provider-utils';
+import { FetchFunction, Resolvable } from '@ai-toolkit/provider-utils';
 
 export interface GoogleVertexConfig {
   provider: string;

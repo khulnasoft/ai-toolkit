@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Chat } from '@ai-tools/angular';
+import { Chat } from '@ai-toolkit/angular';
 import {
   isToolUIPart,
   type DataUIPart,

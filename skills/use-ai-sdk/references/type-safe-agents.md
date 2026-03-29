@@ -77,7 +77,7 @@ export type MyAgentUIMessage = InferAgentUIMessage<typeof myAgent, MyMetadata>;
 
 ```tsx
 // app/chat.tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import type { MyAgentUIMessage } from '@/lib/agents/my-agent';
 
 export function Chat() {

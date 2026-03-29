@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import { FlexibleSchema } from '../schema';
 import { ToolResultOutput } from './content-part';
 import { ModelMessage } from './model-message';

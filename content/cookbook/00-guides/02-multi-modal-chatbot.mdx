@@ -46,7 +46,7 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai` and `@ai-tools/react`, the AI SDK package and the AI SDK's React package respectively.
+Install `ai` and `@ai-toolkit/react`, the AI SDK package and the AI SDK's React package respectively.
 
 <Note>
   The AI SDK is designed to be a unified interface to interact with any large
@@ -58,17 +58,17 @@ Install `ai` and `@ai-tools/react`, the AI SDK package and the AI SDK's React pa
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add ai @ai-tools/react" dark />
+      <Snippet text="pnpm add ai @ai-toolkit/react" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install ai @ai-tools/react" dark />
+      <Snippet text="npm install ai @ai-toolkit/react" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add ai @ai-tools/react" dark />
+      <Snippet text="yarn add ai @ai-toolkit/react" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add ai @ai-tools/react" dark />
+      <Snippet text="bun add ai @ai-toolkit/react" dark />
     </Tab>
 
   </Tabs>
@@ -144,7 +144,7 @@ Update your root page (`app/page.tsx`) with the following code to show a list of
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 
@@ -215,7 +215,7 @@ Update your root page (`app/page.tsx`) with the following code:
 ```tsx filename="app/page.tsx" highlight="4-5,10-12,15-39,46-81,87-97"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
@@ -375,7 +375,7 @@ const result = streamText({
 });
 ```
 
-Install the provider package (`@ai-tools/anthropic` or `@ai-tools/google`) and update your API keys in `.env.local`. The rest of your code remains the same.
+Install the provider package (`@ai-toolkit/anthropic` or `@ai-toolkit/google`) and update your API keys in `.env.local`. The rest of your code remains the same.
 
 <Note>
   Different providers may have varying file size limits and performance

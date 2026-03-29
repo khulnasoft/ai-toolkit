@@ -24,7 +24,7 @@ There are several models that offer native web-searching capabilities (Perplexit
 OpenAI's Responses API has a built-in web search tool that can be used to search the web and return search results. This tool is called `web_search` and is accessed via the `openai` provider.
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const { text, sources } = await generateText({
@@ -42,7 +42,7 @@ console.log(sources);
 You can also use the `ToolLoopAgent` to build a web search agent with OpenAI. This following example shows how to extract query and sources from tool calls:
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -92,7 +92,7 @@ console.log(sources);
 With compatible Gemini models, you can enable search grounding to give the model access to the latest information using Google search.
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({

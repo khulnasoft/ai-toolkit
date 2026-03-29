@@ -2,12 +2,12 @@ import {
   TranscriptionModelV4,
   ProviderV4,
   NoSuchModelError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { AssemblyAITranscriptionModel } from './assemblyai-transcription-model';
 import { AssemblyAITranscriptionModelId } from './assemblyai-transcription-settings';
 import { VERSION } from './version';
@@ -65,7 +65,7 @@ export function createAssemblyAI(
         }),
         ...options.headers,
       },
-      `ai-sdk/assemblyai/${VERSION}`,
+      `ai-toolkit/assemblyai/${VERSION}`,
     );
 
   const createTranscriptionModel = (modelId: AssemblyAITranscriptionModelId) =>

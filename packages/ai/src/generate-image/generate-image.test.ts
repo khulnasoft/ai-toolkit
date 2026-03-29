@@ -1,8 +1,11 @@
-import { ImageModelV4, ImageModelV4ProviderMetadata } from '@ai-tools/provider';
+import {
+  ImageModelV4,
+  ImageModelV4ProviderMetadata,
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   afterEach,
   beforeEach,

@@ -3,7 +3,7 @@ import {
   type Experimental_VideoModelV4,
   NoSuchModelError,
   type SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertUint8ArrayToBase64,
@@ -17,7 +17,7 @@ import {
   type Resolvable,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { klingaiFailedResponseHandler } from './klingai-error';
 import type { KlingAIVideoModelId } from './klingai-video-settings';

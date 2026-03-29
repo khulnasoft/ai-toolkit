@@ -16,7 +16,7 @@ You can use it with reranking models, e.g. `cohere.reranking('rerank-v3.5')` or 
 
 ```tsx
 import { rerank } from 'ai';
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 
 const documents = [
   'sunny day at the beach',
@@ -44,7 +44,7 @@ Reranking also supports structured documents (JSON objects), making it ideal for
 
 ```tsx
 import { rerank } from 'ai';
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 
 const documents = [
   {
@@ -75,7 +75,7 @@ console.log(rerankedDocuments[0]);
 The `rerank` function returns a comprehensive result object:
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking, rerankedDocuments, originalDocuments } = await rerank({
@@ -102,7 +102,7 @@ Each item in the `ranking` array contains:
 Use `topN` to limit the number of results returned. This is useful for retrieving only the most relevant documents:
 
 ```ts highlight={"7"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -118,7 +118,7 @@ const { ranking } = await rerank({
 Reranking model settings can be configured using `providerOptions` for provider-specific parameters:
 
 ```ts highlight={"8-12"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -140,7 +140,7 @@ that you can use to set the maximum number of retries for the reranking process.
 It defaults to `2` retries (3 attempts in total). You can set it to `0` to disable retries.
 
 ```ts highlight={"7"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -158,7 +158,7 @@ type [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSigna
 that you can use to abort the reranking process or set a timeout.
 
 ```ts highlight={"7"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -175,7 +175,7 @@ The `rerank` function accepts an optional `headers` parameter of type `Record<st
 that you can use to add custom headers to the reranking request.
 
 ```ts highlight={"7"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -191,7 +191,7 @@ const { ranking } = await rerank({
 The `rerank` function returns response information that includes the raw provider response:
 
 ```ts highlight={"4,10"}
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { rerank } from 'ai';
 
 const { ranking, response } = await rerank({

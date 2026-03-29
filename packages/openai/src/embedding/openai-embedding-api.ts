@@ -1,4 +1,4 @@
-import { lazySchema, zodSchema } from '@ai-tools/provider-utils';
+import { lazySchema, zodSchema } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 
 // minimal version of the schema, focussed on what is needed for the implementation

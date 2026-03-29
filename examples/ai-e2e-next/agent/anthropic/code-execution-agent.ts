@@ -1,7 +1,7 @@
 import {
   anthropic,
   type AnthropicLanguageModelOptions,
-} from '@ai-tools/anthropic';
+} from '@ai-toolkit/anthropic';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 import { z } from 'zod';
 

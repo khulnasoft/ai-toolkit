@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/gateway",
+  "name": "@ai-toolkit/gateway",
   "private": false,
   "version": "4.0.0-beta.25",
   "license": "Apache-2.0",
@@ -44,12 +44,12 @@
     }
   },
   "dependencies": {
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "@vercel/oidc": "3.2.0"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "18.15.11",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createMoonshotAI } from './moonshotai-provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { MoonshotAIChatLanguageModel } from './moonshotai-chat-language-model';
 
 const MoonshotAIChatLanguageModelMock =
@@ -21,8 +21,8 @@ vi.mock('./moonshotai-chat-language-model', () => {
   };
 });
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createAIContext } from '@ai-tools/svelte';
+  import { createAIContext } from '@ai-toolkit/svelte';
   import '../app.css';
   let { children } = $props();
 

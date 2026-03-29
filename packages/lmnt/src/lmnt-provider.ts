@@ -1,9 +1,9 @@
-import { SpeechModelV4, ProviderV4 } from '@ai-tools/provider';
+import { SpeechModelV4, ProviderV4 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { LMNTSpeechModel } from './lmnt-speech-model';
 import { LMNTSpeechModelId } from './lmnt-speech-options';
 import { VERSION } from './version';
@@ -54,7 +54,7 @@ export function createLMNT(options: LMNTProviderSettings = {}): LMNTProvider {
         }),
         ...options.headers,
       },
-      `ai-sdk/lmnt/${VERSION}`,
+      `ai-toolkit/lmnt/${VERSION}`,
     );
 
   const createSpeechModel = (modelId: LMNTSpeechModelId) =>

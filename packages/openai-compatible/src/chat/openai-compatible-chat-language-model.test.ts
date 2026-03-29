@@ -1,11 +1,11 @@
 import fs from 'fs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import {
   convertReadableStreamToArray,
   isNodeVersion,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import { createOpenAICompatible } from '../openai-compatible-provider';
 import { OpenAICompatibleChatLanguageModel } from './openai-compatible-chat-language-model';
 

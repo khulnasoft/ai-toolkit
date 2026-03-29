@@ -1,4 +1,4 @@
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { ModelMessage, generateText, stepCountIs } from 'ai';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../../tools/weather-tool';

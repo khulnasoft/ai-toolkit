@@ -1,6 +1,6 @@
-import type { LanguageModelV4Prompt } from '@ai-tools/provider';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import type { LanguageModelV4Prompt } from '@ai-toolkit/provider';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import fs from 'node:fs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createAlibaba } from './alibaba-provider';
@@ -9,8 +9,9 @@ vi.mock('./version', () => ({
   VERSION: '0.0.0-test',
 }));
 
-vi.mock('@ai-tools/provider-utils', async importOriginal => {
-  const mod = await importOriginal<typeof import('@ai-tools/provider-utils')>();
+vi.mock('@ai-toolkit/provider-utils', async importOriginal => {
+  const mod =
+    await importOriginal<typeof import('@ai-toolkit/provider-utils')>();
   return { ...mod, generateId: () => 'test-reasoning-id' };
 });
 

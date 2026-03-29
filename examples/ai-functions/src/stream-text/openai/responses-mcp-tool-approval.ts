@@ -1,4 +1,4 @@
-import { createOpenAI } from '@ai-tools/openai';
+import { createOpenAI } from '@ai-toolkit/openai';
 import {
   ModelMessage,
   stepCountIs,

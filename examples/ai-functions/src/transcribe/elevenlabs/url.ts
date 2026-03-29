@@ -1,4 +1,4 @@
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 import { experimental_transcribe as transcribe } from 'ai';
 import { run } from '../../lib/run';
 

@@ -4,10 +4,10 @@ The **Cerebras provider** for the [AI SDK](https://ai-sdk.dev/docs) contains lan
 
 ## Setup
 
-The Cerebras provider is available in the `@ai-tools/cerebras` module. You can install it with
+The Cerebras provider is available in the `@ai-toolkit/cerebras` module. You can install it with
 
 ```bash
-npm i @ai-tools/cerebras
+npm i @ai-toolkit/cerebras
 ```
 
 ## Skill for Coding Agents
@@ -20,10 +20,10 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `cerebras` from `@ai-tools/cerebras`:
+You can import the default provider instance `cerebras` from `@ai-toolkit/cerebras`:
 
 ```ts
-import { cerebras } from '@ai-tools/cerebras';
+import { cerebras } from '@ai-toolkit/cerebras';
 ```
 
 ## Available Models
@@ -34,7 +34,7 @@ https://inference-docs.cerebras.ai/models/overview
 ## Example
 
 ```ts
-import { cerebras } from '@ai-tools/cerebras';
+import { cerebras } from '@ai-toolkit/cerebras';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

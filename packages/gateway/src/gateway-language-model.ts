@@ -6,7 +6,7 @@ import type {
   LanguageModelV4StreamPart,
   LanguageModelV4GenerateResult,
   LanguageModelV4StreamResult,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
@@ -16,7 +16,7 @@ import {
   resolve,
   type ParseResult,
   type Resolvable,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { GatewayConfig } from './gateway-config';
 import type { GatewayModelId } from './gateway-language-model-settings';

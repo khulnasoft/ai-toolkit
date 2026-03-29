@@ -1,6 +1,6 @@
-import { LanguageModelV4CallOptions } from '@ai-tools/provider';
-import { tool } from '@ai-tools/provider-utils';
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { LanguageModelV4CallOptions } from '@ai-toolkit/provider';
+import { tool } from '@ai-toolkit/provider-utils';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod/v4';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';

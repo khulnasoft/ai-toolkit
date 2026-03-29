@@ -4,10 +4,10 @@ The **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for th
 
 ## Setup
 
-The fal provider is available in the `@ai-tools/fal` module. You can install it with
+The fal provider is available in the `@ai-toolkit/fal` module. You can install it with
 
 ```bash
-npm i @ai-tools/fal
+npm i @ai-toolkit/fal
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `fal` from `@ai-tools/fal`:
+You can import the default provider instance `fal` from `@ai-toolkit/fal`:
 
 ```ts
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 ```
 
 ## Image Generation Example
 
 ```ts
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 import { generateImage } from 'ai';
 import fs from 'fs';
 const { image } = await generateImage({

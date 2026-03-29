@@ -1,5 +1,5 @@
 import { anthropicCodeExecutionAgent } from '@/agent/anthropic/code-execution-agent';
-import { AnthropicMessageMetadata } from '@ai-tools/anthropic';
+import { AnthropicMessageMetadata } from '@ai-toolkit/anthropic';
 import { createAgentUIStreamResponse, UIMessage, validateUIMessages } from 'ai';
 
 export async function POST(request: Request) {

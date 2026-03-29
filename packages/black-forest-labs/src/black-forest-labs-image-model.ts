@@ -1,5 +1,5 @@
-import type { ImageModelV4, SharedV4Warning } from '@ai-tools/provider';
-import type { InferSchema, Resolvable } from '@ai-tools/provider-utils';
+import type { ImageModelV4, SharedV4Warning } from '@ai-toolkit/provider';
+import type { InferSchema, Resolvable } from '@ai-toolkit/provider-utils';
 import {
   FetchFunction,
   combineHeaders,
@@ -14,7 +14,7 @@ import {
   postJsonToApi,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { BlackForestLabsAspectRatio } from './black-forest-labs-image-settings';
 import { BlackForestLabsImageModelId } from './black-forest-labs-image-settings';

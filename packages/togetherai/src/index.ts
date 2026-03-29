@@ -1,4 +1,4 @@
-export type { OpenAICompatibleErrorData as TogetherAIErrorData } from '@ai-tools/openai-compatible';
+export type { OpenAICompatibleErrorData as TogetherAIErrorData } from '@ai-toolkit/openai-compatible';
 export type {
   TogetherAIRerankingModelOptions,
   /** @deprecated Use `TogetherAIRerankingModelOptions` instead. */

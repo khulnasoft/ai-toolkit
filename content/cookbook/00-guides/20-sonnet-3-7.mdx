@@ -29,7 +29,7 @@ The AI SDK abstracts away the differences between model providers, eliminates bo
 At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Claude 3.7 Sonnet with the AI SDK:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoningText, reasoning } = await generateText({
@@ -42,7 +42,7 @@ console.log(text); // text response
 The unified interface also means that you can easily switch between providers by changing just two lines of code. For example, to use Claude 3.7 Sonnet via Amazon Bedrock:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const { reasoning, text } = await generateText({
@@ -56,7 +56,7 @@ const { reasoning, text } = await generateText({
 Claude 3.7 Sonnet introduces a new extended thinking—the ability to solve complex problems with careful, step-by-step reasoning. You can enable it using the `thinking` provider option and specifying a thinking budget in tokens:
 
 ```ts
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoningText, reasoning } = await generateText({
@@ -86,12 +86,12 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI SDK,
 
 In a new Next.js application, first install the AI SDK and the Anthropic provider:
 
-<Snippet text="pnpm install ai @ai-tools/anthropic" />
+<Snippet text="pnpm install ai @ai-toolkit/anthropic" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
-import { anthropic, AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { anthropic, AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { streamText, convertToModelMessages, type UIMessage } from 'ai';
 
 export async function POST(req: Request) {
@@ -123,7 +123,7 @@ Finally, update the root page (`app/page.tsx`) to use the `useChat` hook:
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 

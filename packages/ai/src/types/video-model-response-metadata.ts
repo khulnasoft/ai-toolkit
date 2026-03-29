@@ -1,4 +1,4 @@
-import type { SharedV4ProviderMetadata } from '@ai-tools/provider';
+import type { SharedV4ProviderMetadata } from '@ai-toolkit/provider';
 
 /**
  * Response metadata for a video model call.

@@ -9,36 +9,36 @@ The [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai
 
 ## Setup
 
-The Azure OpenAI provider is available in the `@ai-tools/azure` module. You can install it with
+The Azure OpenAI provider is available in the `@ai-toolkit/azure` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/azure" dark />
+    <Snippet text="pnpm add @ai-toolkit/azure" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/azure" dark />
+    <Snippet text="npm install @ai-toolkit/azure" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/azure" dark />
+    <Snippet text="yarn add @ai-toolkit/azure" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/azure" dark />
+    <Snippet text="bun add @ai-toolkit/azure" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `azure` from `@ai-tools/azure`:
+You can import the default provider instance `azure` from `@ai-toolkit/azure`:
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 ```
 
-If you need a customized setup, you can import `createAzure` from `@ai-tools/azure` and create a provider instance with your settings:
+If you need a customized setup, you can import `createAzure` from `@ai-toolkit/azure` and create a provider instance with your settings:
 
 ```ts
-import { createAzure } from '@ai-tools/azure';
+import { createAzure } from '@ai-toolkit/azure';
 
 const azure = createAzure({
   resourceName: 'your-resource-name', // Azure resource name
@@ -112,7 +112,7 @@ Azure exposes the thinking of `DeepSeek-R1` in the generated text using the `<th
 You can use the `extractReasoningMiddleware` to extract this reasoning and expose it as a `reasoning` property on the result:
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
 
 const enhancedModel = wrapLanguageModel({
@@ -133,7 +133,7 @@ You can then use that enhanced model in functions like `generateText` and `strea
 You can use OpenAI language models to generate text with the `generateText` function:
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -157,7 +157,7 @@ and support structured data generation with [`Output`](/docs/reference/ai-sdk-co
 When using OpenAI language models on Azure, you can configure provider-specific options using `providerOptions.openai`. More information on available configuration options are on [the OpenAI provider page](/providers/ai-sdk-providers/openai#language-models).
 
 ```ts highlight="12-14,24-26"
-import { azure, type OpenAILanguageModelResponsesOptions } from '@ai-tools/azure';
+import { azure, type OpenAILanguageModelResponsesOptions } from '@ai-toolkit/azure';
 
 const messages = [
   {
@@ -205,7 +205,7 @@ Azure OpenAI chat models support also some model specific settings that are not 
 You can pass them as an options argument:
 
 ```ts
-import { azure, type OpenAILanguageModelChatOptions } from '@ai-tools/azure';
+import { azure, type OpenAILanguageModelChatOptions } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -278,7 +278,7 @@ You can validate the provider options using the `OpenAILanguageModelResponsesOpt
 </Note>
 
 ```ts
-import { azure, OpenAILanguageModelResponsesOptions } from '@ai-tools/azure';
+import { azure, OpenAILanguageModelResponsesOptions } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -328,7 +328,7 @@ The Azure OpenAI provider also returns provider-specific metadata:
 For Responses models (`azure(deploymentName)`), you can type this metadata using `AzureResponsesProviderMetadata`:
 
 ```ts
-import { azure, type AzureResponsesProviderMetadata } from '@ai-tools/azure';
+import { azure, type AzureResponsesProviderMetadata } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -444,7 +444,7 @@ Azure OpenAI's Responses API supports multi-modal image generation as a provider
 Availability is restricted to specific models (for example, `gpt-5` variants).
 
 ```ts
-import { createAzure } from '@ai-tools/azure';
+import { createAzure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const azure = createAzure({
@@ -498,7 +498,7 @@ for (const toolResult of result.staticToolResults) {
 The Azure OpenAI provider supports the code interpreter tool through the `azure.tools.codeInterpreter` tool. This allows models to write and execute Python code.
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -604,7 +604,7 @@ This metadata includes the following fields:
   [Responses API – output text annotations](https://platform.openai.com/docs/api-reference/responses/object?lang=javascript#responses-object-output-output_message-content-output_text-annotations).
 
 ```ts
-import { azure, type AzureResponsesTextProviderMetadata } from '@ai-tools/azure';
+import { azure, type AzureResponsesTextProviderMetadata } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -684,7 +684,7 @@ import {
   azure,
   type AzureResponsesReasoningProviderMetadata,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -726,7 +726,7 @@ Each type includes the identifiers required to work with the referenced resource
 import {
   azure,
   type AzureResponsesSourceDocumentProviderMetadata,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -801,7 +801,7 @@ You can pass them as an options argument:
 import {
   azure,
   type OpenAILanguageModelCompletionOptions,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -876,7 +876,7 @@ Azure OpenAI embedding models support several additional settings.
 You can pass them as an options argument:
 
 ```ts
-import { azure, type OpenAIEmbeddingModelOptions } from '@ai-tools/azure';
+import { azure, type OpenAIEmbeddingModelOptions } from '@ai-toolkit/azure';
 import { embed } from 'ai';
 
 const { embedding } = await embed({
@@ -932,7 +932,7 @@ await generateImage({
 You can use Azure OpenAI image models to generate images with the `generateImage` function:
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -994,7 +994,7 @@ You can also pass additional provider-specific options using the `providerOption
 
 ```ts highlight="6"
 import { experimental_transcribe as transcribe } from 'ai';
-import { azure, type OpenAITranscriptionModelOptions } from '@ai-tools/azure';
+import { azure, type OpenAITranscriptionModelOptions } from '@ai-toolkit/azure';
 import { readFile } from 'fs/promises';
 
 const result = await transcribe({
@@ -1053,7 +1053,7 @@ const model = azure.speech('your-tts-deployment-name');
 ### Example
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const result = await generateSpeech({
@@ -1066,7 +1066,7 @@ const result = await generateSpeech({
 You can also pass additional provider-specific options using the `providerOptions` argument:
 
 ```ts
-import { azure, type OpenAISpeechModelOptions } from '@ai-tools/azure';
+import { azure, type OpenAISpeechModelOptions } from '@ai-toolkit/azure';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const result = await generateSpeech({

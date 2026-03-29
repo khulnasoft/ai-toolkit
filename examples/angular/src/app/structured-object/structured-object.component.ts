@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StructuredObject } from '@ai-tools/angular';
+import { StructuredObject } from '@ai-toolkit/angular';
 import { z } from 'zod';
 import { FormsModule } from '@angular/forms';
 

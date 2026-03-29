@@ -1,11 +1,11 @@
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import {
   createIdGenerator,
   FlexibleSchema,
   InferSchema,
   ProviderOptions,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import { extractReasoningContent } from '../generate-text/extract-reasoning-content';
 import { extractTextContent } from '../generate-text/extract-text-content';

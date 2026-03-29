@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { createOpenAI } from '../openai-provider';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -158,7 +158,7 @@ describe('doEmbed', () => {
       'openai-project': 'test-project',
     });
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/openai/0.0.0-test`,
+      `ai-toolkit/openai/0.0.0-test`,
     );
   });
 });

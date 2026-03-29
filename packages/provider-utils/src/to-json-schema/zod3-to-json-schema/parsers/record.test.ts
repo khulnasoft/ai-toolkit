@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v3';
 import { parseRecordDef } from './record';
 import { getRefs } from '../refs';
-import { JSONSchema7 } from '@ai-tools/provider';
+import { JSONSchema7 } from '@ai-toolkit/provider';
 
 describe('record', () => {
   it('should be possible to describe a simple record', () => {

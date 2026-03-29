@@ -3,14 +3,14 @@ import {
   type LanguageModelV4,
   NoSuchModelError,
   type ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   createJsonErrorResponseHandler,
   type FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { AlibabaLanguageModel } from './alibaba-chat-language-model';
 import type { AlibabaChatModelId } from './alibaba-chat-options';
@@ -121,7 +121,7 @@ export function createAlibaba(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/alibaba/${VERSION}`,
+      `ai-toolkit/alibaba/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: AlibabaChatModelId) =>

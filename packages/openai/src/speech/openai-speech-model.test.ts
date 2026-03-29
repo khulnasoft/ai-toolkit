@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { createOpenAI } from '../openai-provider';
 import { OpenAISpeechModel } from './openai-speech-model';
 import { describe, it, expect, vi } from 'vitest';
@@ -76,7 +76,7 @@ describe('doGenerate', () => {
     });
 
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/openai/0.0.0-test`,
+      `ai-toolkit/openai/0.0.0-test`,
     );
   });
 

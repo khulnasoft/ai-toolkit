@@ -1,6 +1,6 @@
 'use client';
 
-import { useCompletion } from '@ai-tools/react';
+import { useCompletion } from '@ai-toolkit/react';
 import { useLayoutEffect, useRef } from 'react';
 
 export default function Chat() {

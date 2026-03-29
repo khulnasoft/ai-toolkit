@@ -1,4 +1,4 @@
-import { tool, Tool } from '@ai-tools/provider-utils';
+import { tool, Tool } from '@ai-toolkit/provider-utils';
 import { createToolModelOutput } from './create-tool-model-output';
 import z from 'zod/v4';
 import { describe, it, expect } from 'vitest';

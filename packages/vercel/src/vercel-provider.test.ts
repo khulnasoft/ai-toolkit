@@ -1,19 +1,19 @@
 import { createVercel } from './vercel-provider';
-import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
-import { LanguageModelV4 } from '@ai-tools/provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
+import { LanguageModelV4 } from '@ai-toolkit/provider';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 
 const OpenAICompatibleChatLanguageModelMock =
   OpenAICompatibleChatLanguageModel as unknown as Mock;
 
-vi.mock('@ai-tools/openai-compatible', () => ({
+vi.mock('@ai-toolkit/openai-compatible', () => ({
   OpenAICompatibleChatLanguageModel: vi.fn(),
   OpenAICompatibleCompletionLanguageModel: vi.fn(),
 }));
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),

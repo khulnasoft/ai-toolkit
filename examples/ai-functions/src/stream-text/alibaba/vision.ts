@@ -1,4 +1,4 @@
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

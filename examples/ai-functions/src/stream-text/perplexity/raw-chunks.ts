@@ -1,4 +1,4 @@
-import { perplexity } from '@ai-tools/perplexity';
+import { perplexity } from '@ai-toolkit/perplexity';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

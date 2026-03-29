@@ -21,7 +21,7 @@ import {
   TranscriptionModelV2,
   TranscriptionModelV3,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { asEmbeddingModelV4 } from '../model/as-embedding-model-v4';
 import { asImageModelV4 } from '../model/as-image-model-v4';
 import { asLanguageModelV4 } from '../model/as-language-model-v4';

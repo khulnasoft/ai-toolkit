@@ -6,7 +6,7 @@ This example demonstrates how to use the [AI SDK](https://ai-sdk.dev/docs) with 
 
 ### 1. Basic Chat (`/`)
 
-Basic chat example using LangChain's `ChatOpenAI` with message streaming and the `@ai-tools/langchain` adapter.
+Basic chat example using LangChain's `ChatOpenAI` with message streaming and the `@ai-toolkit/langchain` adapter.
 
 ### 2. Text Completion (`/completion`)
 
@@ -18,7 +18,7 @@ Simple text completion using the `useCompletion` hook with LangChain streaming:
 
 ```typescript
 import { ChatOpenAI } from '@langchain/openai';
-import { toUIMessageStream } from '@ai-tools/langchain';
+import { toUIMessageStream } from '@ai-toolkit/langchain';
 
 const model = new ChatOpenAI({ model: 'gpt-4o-mini' });
 const stream = await model.stream([{ role: 'user', content: prompt }]);
@@ -30,7 +30,7 @@ return createUIMessageStreamResponse({
 
 ### 3. LangGraph (`/langgraph`)
 
-Demonstrates the `@ai-tools/langchain` adapter with LangGraph:
+Demonstrates the `@ai-toolkit/langchain` adapter with LangGraph:
 
 - **`toBaseMessages`**: Converts AI SDK `UIMessage` to LangChain `BaseMessage` format
 - **`toUIMessageStream`**: Converts LangGraph streams to AI SDK `UIMessageChunk` format
@@ -39,7 +39,7 @@ This example shows how to integrate a LangGraph agent with the AI SDK's `useChat
 
 ### 4. Multimodal Vision Input (`/multimodal`)
 
-Demonstrates sending images to the model for analysis using the `@ai-tools/langchain` adapter:
+Demonstrates sending images to the model for analysis using the `@ai-toolkit/langchain` adapter:
 
 - **Image upload**: Attach images directly in the chat interface
 - **Vision analysis**: Uses GPT-4o's vision capabilities to analyze images
@@ -164,7 +164,7 @@ To run the example locally you need to:
 ### Converting UIMessages to LangChain Messages
 
 ```typescript
-import { toBaseMessages } from '@ai-tools/langchain';
+import { toBaseMessages } from '@ai-toolkit/langchain';
 
 // Simple one-line conversion - no factory functions needed!
 const langchainMessages = await toBaseMessages(uiMessages);
@@ -173,7 +173,7 @@ const langchainMessages = await toBaseMessages(uiMessages);
 ### Streaming from LangGraph
 
 ```typescript
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 
 // Convert messages
 const langchainMessages = await toBaseMessages(messages);
@@ -195,7 +195,7 @@ return createUIMessageStreamResponse({
 ```typescript
 import { createAgent } from 'langchain';
 import { tool } from '@langchain/core/tools';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 import { z } from 'zod';
 
@@ -268,8 +268,8 @@ const stream = await graph.stream(
 ```typescript
 'use client';
 
-import { useChat } from '@ai-tools/react';
-import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
+import { useChat } from '@ai-toolkit/react';
+import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
 import { useMemo } from 'react';
 
 function Chat() {
@@ -295,7 +295,7 @@ function Chat() {
 
 ## Choosing Between stream() and streamEvents()
 
-The `@ai-tools/langchain` adapter supports both `graph.stream()` and `streamEvents()`. Here's when to use each:
+The `@ai-toolkit/langchain` adapter supports both `graph.stream()` and `streamEvents()`. Here's when to use each:
 
 ### When to use `graph.stream()` with `streamMode`
 

@@ -5,7 +5,7 @@ import {
   LanguageModelV4Prompt,
   SharedV4ProviderMetadata,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertToBase64,
@@ -13,7 +13,7 @@ import {
   validateTypes,
   isNonNullable,
   ToolNameMapping,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   AnthropicAssistantMessage,
   AnthropicMessagesPrompt,

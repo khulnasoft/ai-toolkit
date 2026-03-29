@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { convertToModelMessages, streamText } from 'ai';
 
 // Allow streaming responses up to 30 seconds

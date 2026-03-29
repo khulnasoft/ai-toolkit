@@ -2,9 +2,9 @@ import {
   SharedV4Warning,
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { OpenAIChatPrompt } from './openai-chat-prompt';
-import { convertToBase64 } from '@ai-tools/provider-utils';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 
 export function convertToOpenAIChatMessages({
   prompt,

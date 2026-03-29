@@ -1,7 +1,7 @@
 import {
   LanguageModelV4FunctionTool,
   LanguageModelV4ProviderTool,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 /**
  * Interface for mapping between custom tool names and provider tool names.

@@ -1,5 +1,5 @@
-import { JSONObject, RerankingModelV4CallOptions } from '@ai-tools/provider';
-import { createIdGenerator, ProviderOptions } from '@ai-tools/provider-utils';
+import { JSONObject, RerankingModelV4CallOptions } from '@ai-toolkit/provider';
+import { createIdGenerator, ProviderOptions } from '@ai-toolkit/provider-utils';
 import { prepareRetries } from '../../src/util/prepare-retries';
 import { logWarnings } from '../logger/log-warnings';
 import { getGlobalTelemetryIntegration } from '../telemetry/get-global-telemetry-integration';

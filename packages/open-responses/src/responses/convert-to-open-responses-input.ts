@@ -1,5 +1,5 @@
-import { LanguageModelV4Prompt, SharedV4Warning } from '@ai-tools/provider';
-import { convertToBase64 } from '@ai-tools/provider-utils';
+import { LanguageModelV4Prompt, SharedV4Warning } from '@ai-toolkit/provider';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 import {
   FunctionCallItemParam,
   FunctionCallOutputItemParam,

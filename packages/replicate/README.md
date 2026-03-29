@@ -4,10 +4,10 @@ The **[Replicate provider](https://ai-sdk.dev/providers/ai-sdk-providers/replica
 
 ## Setup
 
-The Replicate provider is available in the `@ai-tools/replicate` module. You can install it with
+The Replicate provider is available in the `@ai-toolkit/replicate` module. You can install it with
 
 ```bash
-npm i @ai-tools/replicate
+npm i @ai-toolkit/replicate
 ```
 
 ## Skill for Coding Agents
@@ -21,7 +21,7 @@ npx skills add khulnasoft/ai
 ## Usage
 
 ```ts
-import { replicate } from '@ai-tools/replicate';
+import { replicate } from '@ai-toolkit/replicate';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({

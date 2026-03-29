@@ -2,7 +2,7 @@ import {
   TranscriptionModelV2,
   TranscriptionModelV3,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 /**
  * Transcription model that is used by the AI SDK.

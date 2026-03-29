@@ -1,4 +1,4 @@
-import { NoSuchModelError } from '@ai-tools/provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
 import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
 import { NoSuchProviderError } from './no-such-provider-error';

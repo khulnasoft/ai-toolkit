@@ -5,7 +5,7 @@ export type {
   OpenAILanguageModelChatOptions,
   /** @deprecated Use `OpenAILanguageModelChatOptions` instead. */
   OpenAILanguageModelChatOptions as OpenAIChatLanguageModelOptions,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 
 export { azure, createAzure } from './azure-openai-provider';
 export type {

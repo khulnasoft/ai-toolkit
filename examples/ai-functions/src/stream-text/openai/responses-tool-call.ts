@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { weatherTool } from '../../tools/weather-tool';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';

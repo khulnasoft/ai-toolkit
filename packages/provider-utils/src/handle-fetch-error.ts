@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-tools/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import { isAbortError } from './is-abort-error';
 
 const FETCH_FAILED_ERROR_MESSAGES = ['fetch failed', 'failed to fetch'];

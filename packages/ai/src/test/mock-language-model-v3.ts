@@ -3,7 +3,7 @@ import {
   LanguageModelV3CallOptions,
   LanguageModelV3GenerateResult,
   LanguageModelV3StreamResult,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockLanguageModelV3 implements LanguageModelV3 {

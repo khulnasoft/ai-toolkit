@@ -3,12 +3,12 @@ import {
   LanguageModelV4Prompt,
   LanguageModelV4StreamPart,
   SharedV4Headers,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   ModelMessage,
   ProviderOptions,
   SystemModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ToolCallNotFoundForApprovalError } from '../error/tool-call-not-found-for-approval-error';
 import { resolveLanguageModel } from '../model/resolve-model';
 import { CallSettings, Prompt } from '../prompt';

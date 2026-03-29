@@ -8,7 +8,7 @@ import SourcesView from '@/components/sources-view';
 import AnthropicCodeExecutionView from '@/components/tool/anthropic-code-execution-view';
 import AnthropicWebFetchView from '@/components/tool/anthropic-web-fetch-view';
 import AnthropicWebSearchView from '@/components/tool/anthropic-web-search-view';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 export default function TestAnthropicWebFetch() {

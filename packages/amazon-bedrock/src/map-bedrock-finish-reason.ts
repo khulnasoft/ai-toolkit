@@ -1,4 +1,4 @@
-import { LanguageModelV4FinishReason } from '@ai-tools/provider';
+import { LanguageModelV4FinishReason } from '@ai-toolkit/provider';
 import { BedrockStopReason } from './bedrock-api-types';
 
 export function mapBedrockFinishReason(

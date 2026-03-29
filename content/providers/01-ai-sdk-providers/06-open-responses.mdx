@@ -9,20 +9,20 @@ The [Open Responses](https://www.openresponses.org/) provider contains language 
 
 ## Setup
 
-The Open Responses provider is available in the `@ai-tools/open-responses` module. You can install it with
+The Open Responses provider is available in the `@ai-toolkit/open-responses` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/open-responses" dark />
+    <Snippet text="pnpm add @ai-toolkit/open-responses" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/open-responses" dark />
+    <Snippet text="npm install @ai-toolkit/open-responses" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/open-responses" dark />
+    <Snippet text="yarn add @ai-toolkit/open-responses" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @ai-tools/open-responses" dark />
+    <Snippet text="bun add @ai-toolkit/open-responses" dark />
   </Tab>
 </Tabs>
 
@@ -31,7 +31,7 @@ The Open Responses provider is available in the `@ai-tools/open-responses` modul
 Create an Open Responses provider instance using `createOpenResponses`:
 
 ```ts
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 
 const openResponses = createOpenResponses({
   name: 'aProvider',
@@ -79,7 +79,7 @@ and they support structured data generation with [`Output`](/docs/reference/ai-s
 ### Example
 
 ```ts
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 import { generateText } from 'ai';
 
 const openResponses = createOpenResponses({

@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText, wrapLanguageModel } from 'ai';
 import { yourRagMiddleware } from './your-rag-middleware';
 import { run } from '../lib/run';

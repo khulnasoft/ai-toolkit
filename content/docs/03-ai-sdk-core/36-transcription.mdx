@@ -12,7 +12,7 @@ function to transcribe audio using a transcription model.
 
 ```ts
 import { experimental_transcribe as transcribe } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { readFile } from 'fs/promises';
 
 const transcript = await transcribe({
@@ -40,7 +40,7 @@ Transcription models often have provider or model-specific settings which you ca
 
 ```ts highlight="8-12"
 import { experimental_transcribe as transcribe } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { readFile } from 'fs/promises';
 
 const transcript = await transcribe({
@@ -61,7 +61,7 @@ You can customize this using `createDownload`:
 
 ```ts highlight="1,8"
 import { experimental_transcribe as transcribe, createDownload } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const transcript = await transcribe({
   model: openai.transcription('whisper-1'),
@@ -74,7 +74,7 @@ You can also provide a fully custom download function:
 
 ```ts highlight="6-12"
 import { experimental_transcribe as transcribe } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const transcript = await transcribe({
   model: openai.transcription('whisper-1'),
@@ -93,7 +93,7 @@ If a download exceeds the size limit, a `DownloadError` is thrown:
 
 ```ts
 import { experimental_transcribe as transcribe, DownloadError } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 try {
   await transcribe({
@@ -116,7 +116,7 @@ that you can use to abort the transcription process or set a timeout.
 This is particularly useful when combined with URL downloads to prevent long-running requests:
 
 ```ts highlight="8"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const transcript = await transcribe({
@@ -132,7 +132,7 @@ const transcript = await transcribe({
 that you can use to add custom headers to the transcription request.
 
 ```ts highlight="8"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 
@@ -148,7 +148,7 @@ const transcript = await transcribe({
 Warnings (e.g. unsupported parameters) are available on the `warnings` property.
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 
@@ -179,7 +179,7 @@ import {
   experimental_transcribe as transcribe,
   NoTranscriptGeneratedError,
 } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { readFile } from 'fs/promises';
 
 try {

@@ -5,12 +5,12 @@ import {
   LanguageModelV4Prompt,
   LanguageModelV4StreamPart,
   LanguageModelV4StreamResult,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import fs from 'node:fs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AnthropicLanguageModelOptions } from './anthropic-messages-options';
@@ -1419,7 +1419,7 @@ describe('AnthropicMessagesLanguageModel', () => {
         'test-header': 'test-value',
       });
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/anthropic/0.0.0-test`,
+        `ai-toolkit/anthropic/0.0.0-test`,
       );
     });
 

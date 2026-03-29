@@ -1,4 +1,4 @@
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai';
 import { weatherTool } from '../../tools/weather-tool';
 import { run } from '../../lib/run';

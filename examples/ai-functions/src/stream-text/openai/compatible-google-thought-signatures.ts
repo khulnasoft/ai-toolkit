@@ -1,4 +1,4 @@
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { streamText, tool, ModelMessage } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

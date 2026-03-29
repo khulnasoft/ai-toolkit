@@ -1,6 +1,6 @@
 import { streamText, simulateReadableStream } from 'ai';
 import { MockLanguageModelV3 } from 'ai/test';
-import { LanguageModelV3StreamPart } from '@ai-tools/provider';
+import { LanguageModelV3StreamPart } from '@ai-toolkit/provider';
 import { run } from '../lib/run';
 
 const generateLongContent = (tokens: number, includeTools = false) => {

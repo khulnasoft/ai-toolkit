@@ -1,4 +1,4 @@
-import { LanguageModelV4CallOptions } from '@ai-tools/provider';
+import { LanguageModelV4CallOptions } from '@ai-toolkit/provider';
 import { LanguageModelMiddleware } from '../types';
 import { mergeObjects } from '../util/merge-objects';
 

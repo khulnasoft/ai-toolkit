@@ -1,4 +1,4 @@
-import { tool } from '@ai-tools/provider-utils';
+import { tool } from '@ai-toolkit/provider-utils';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as z from 'zod/v4';
 import { executeToolCall } from './execute-tool-call';
@@ -861,7 +861,7 @@ describe('executeToolCall', () => {
 
   describe('dynamic tools', () => {
     it('should set dynamic: true for dynamic tools on success', async () => {
-      const { dynamicTool } = await import('@ai-tools/provider-utils');
+      const { dynamicTool } = await import('@ai-toolkit/provider-utils');
 
       const result = await executeToolCall({
         toolCall: createToolCall({ dynamic: true }),
@@ -885,7 +885,7 @@ describe('executeToolCall', () => {
     });
 
     it('should set dynamic: true for dynamic tools on error', async () => {
-      const { dynamicTool } = await import('@ai-tools/provider-utils');
+      const { dynamicTool } = await import('@ai-toolkit/provider-utils');
 
       const result = await executeToolCall({
         toolCall: createToolCall({ dynamic: true }),

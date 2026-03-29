@@ -1,5 +1,5 @@
 import { generateText, Output } from 'ai';
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { z } from 'zod';
 import { run } from '../../lib/run';
 

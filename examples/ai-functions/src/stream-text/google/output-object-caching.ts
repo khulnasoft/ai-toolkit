@@ -1,4 +1,4 @@
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { Output, streamText } from 'ai';
 import fs from 'node:fs';
 import { z } from 'zod';

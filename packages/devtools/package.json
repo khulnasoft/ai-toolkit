@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/devtools",
+  "name": "@ai-toolkit/devtools",
   "version": "1.0.0-beta.5",
   "type": "module",
   "main": "./dist/index.js",
@@ -36,7 +36,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@ai-tools/provider": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
     "@hono/node-server": "^1.13.7",
     "hono": "^4.6.14"
   },

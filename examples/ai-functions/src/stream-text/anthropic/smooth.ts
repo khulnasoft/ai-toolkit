@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { smoothStream, streamText } from 'ai';
 import { run } from '../../lib/run';
 

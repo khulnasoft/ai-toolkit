@@ -1,4 +1,4 @@
-import { vertex } from '@ai-tools/google-vertex';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { embedMany } from 'ai';
 import { run } from '../../lib/run';
 

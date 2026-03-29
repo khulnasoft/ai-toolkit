@@ -1,9 +1,9 @@
-import { InvalidPromptError } from '@ai-tools/provider';
+import { InvalidPromptError } from '@ai-toolkit/provider';
 import {
   ModelMessage,
   safeValidateTypes,
   SystemModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { modelMessageSchema } from './message';
 import { Prompt } from './prompt';

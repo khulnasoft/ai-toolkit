@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { streamText } from 'ai';
 import { print } from '../../lib/print';
 import { printFullStream } from '../../lib/print-full-stream';

@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
 
 const name = 'AI_NoTranscriptGeneratedError';

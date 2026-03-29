@@ -3,7 +3,7 @@ import {
   MaybePromiseLike,
   ProviderOptions,
   SystemModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import type {
   OnFinishEvent,
   OnStartEvent,

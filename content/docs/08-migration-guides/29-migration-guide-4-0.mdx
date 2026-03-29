@@ -28,7 +28,7 @@ You need to update the following packages to the following versions in your `pac
 
 - `ai` package: `4.0.*`
 - `ai-sdk@provider-utils` package: `2.0.*`
-- `ai-sdk/*` packages: `1.0.*` (other `@ai-sdk` packages)
+- `ai-toolkit/*` packages: `1.0.*` (other `@ai-sdk` packages)
 
 ## Codemods
 
@@ -49,30 +49,30 @@ You can run all codemods provided as part of the 4.0 upgrade process by running
 the following command from the root of your project:
 
 ```sh
-npx @ai-tools/codemod upgrade
+npx @ai-toolkit/codemod upgrade
 ```
 
 To run only the v4 codemods:
 
 ```sh
-npx @ai-tools/codemod v4
+npx @ai-toolkit/codemod v4
 ```
 
 Individual codemods can be run by specifying the name of the codemod:
 
 ```sh
-npx @ai-tools/codemod <codemod-name> <path>
+npx @ai-toolkit/codemod <codemod-name> <path>
 ```
 
 For example, to run a specific v4 codemod:
 
 ```sh
-npx @ai-tools/codemod v4/replace-baseurl src/
+npx @ai-toolkit/codemod v4/replace-baseurl src/
 ```
 
 See also the [table of codemods](#codemod-table). In addition, the latest set of
 codemods can be found in the
-[`@ai-tools/codemod`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/codemod/src/codemods)
+[`@ai-toolkit/codemod`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/codemod/src/codemods)
 repository.
 
 ## Provider Changes
@@ -743,11 +743,11 @@ The AI SDK RSC 3.0 `render` function has been removed.
 Please use the `streamUI` function instead or [switch to AI SDK UI](/docs/ai-sdk-rsc/migrating-to-ui).
 
 ```ts filename="AI SDK 3.0"
-import { render } from '@ai-tools/rsc';
+import { render } from '@ai-toolkit/rsc';
 ```
 
 ```ts filename="AI SDK 4.0"
-import { streamUI } from '@ai-tools/rsc';
+import { streamUI } from '@ai-toolkit/rsc';
 ```
 
 ## AI SDK UI Changes
@@ -760,14 +760,14 @@ import { streamUI } from '@ai-tools/rsc';
 </Note>
 
 The `ai` package no longer exports Svelte, Vue, and SolidJS UI integrations.
-You need to install the `@ai-tools/svelte`, `@ai-tools/vue`, and `@ai-tools/solid` packages directly.
+You need to install the `@ai-toolkit/svelte`, `@ai-toolkit/vue`, and `@ai-toolkit/solid` packages directly.
 
 ```ts filename="AI SDK 3.4"
 import { useChat } from 'ai/svelte';
 ```
 
 ```ts filename="AI SDK 4.0"
-import { useChat } from '@ai-tools/svelte';
+import { useChat } from '@ai-toolkit/svelte';
 ```
 
 ### Removed `experimental_StreamData`
@@ -930,11 +930,11 @@ The `experimental_useAssistant` export has been removed from the `useAssistant` 
 Please use the `useAssistant` hook directly instead.
 
 ```ts filename="AI SDK 3.4"
-import { experimental_useAssistant } from '@ai-tools/react';
+import { experimental_useAssistant } from '@ai-toolkit/react';
 ```
 
 ```ts filename="AI SDK 4.0"
-import { useAssistant } from '@ai-tools/react';
+import { useAssistant } from '@ai-toolkit/react';
 ```
 
 #### Removed `threadId` and `messageId` from `AssistantResponse`

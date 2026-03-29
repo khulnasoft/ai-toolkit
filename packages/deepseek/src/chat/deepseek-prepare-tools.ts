@@ -1,4 +1,7 @@
-import { LanguageModelV4CallOptions, SharedV4Warning } from '@ai-tools/provider';
+import {
+  LanguageModelV4CallOptions,
+  SharedV4Warning,
+} from '@ai-toolkit/provider';
 import {
   DeepSeekFunctionTool,
   DeepSeekToolChoice,

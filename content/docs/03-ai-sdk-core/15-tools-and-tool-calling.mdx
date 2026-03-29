@@ -416,7 +416,7 @@ prepareStep: async ({ stepNumber, steps, messages }) => {
 You can use `providerOptions` in `prepareStep` to pass provider-specific configuration for each step. This is useful for features like Anthropic's code execution container persistence:
 
 ```tsx
-import { forwardAnthropicContainerIdFromLastStep } from '@ai-tools/anthropic';
+import { forwardAnthropicContainerIdFromLastStep } from '@ai-toolkit/anthropic';
 
 // Propagate container ID from previous step for code execution continuity
 prepareStep: forwardAnthropicContainerIdFromLastStep,
@@ -900,7 +900,7 @@ You can use different strategies to repair the tool call:
 ### Example: Use a model with structured outputs for repair
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText, NoSuchToolError, Output, tool } from 'ai';
 
 const result = await generateText({
@@ -941,7 +941,7 @@ const result = await generateText({
 ### Example: Use the re-ask strategy for repair
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText, NoSuchToolError, tool } from 'ai';
 
 const result = await generateText({
@@ -1013,7 +1013,7 @@ It is an array of tool names that are currently active.
 By default, the value is `undefined` and all tools are active.
 
 ```ts highlight="7"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 __PROVIDER_IMPORT__;
 

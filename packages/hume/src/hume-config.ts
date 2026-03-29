@@ -1,4 +1,4 @@
-import { FetchFunction } from '@ai-tools/provider-utils';
+import { FetchFunction } from '@ai-toolkit/provider-utils';
 
 export type HumeConfig = {
   provider: string;

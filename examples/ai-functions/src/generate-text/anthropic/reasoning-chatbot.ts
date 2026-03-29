@@ -1,4 +1,4 @@
-import { createAnthropic } from '@ai-tools/anthropic';
+import { createAnthropic } from '@ai-toolkit/anthropic';
 import { ModelMessage, generateText, stepCountIs } from 'ai';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../../tools/weather-tool';

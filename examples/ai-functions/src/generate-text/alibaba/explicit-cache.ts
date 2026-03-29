@@ -1,4 +1,4 @@
-import { alibaba, AlibabaUsage } from '@ai-tools/alibaba';
+import { alibaba, AlibabaUsage } from '@ai-toolkit/alibaba';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

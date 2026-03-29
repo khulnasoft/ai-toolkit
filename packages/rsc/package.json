@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/rsc",
+  "name": "@ai-toolkit/rsc",
   "version": "3.0.0-beta.46",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -44,8 +44,8 @@
   ],
   "dependencies": {
     "ai": "workspace:*",
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "jsondiffpatch": "0.7.3"
   },
   "devDependencies": {

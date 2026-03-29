@@ -1,4 +1,4 @@
-import { IdGenerator, ModelMessage } from '@ai-tools/provider-utils';
+import { IdGenerator, ModelMessage } from '@ai-toolkit/provider-utils';
 import { TimeoutConfiguration } from '../prompt/call-settings';
 import type { TelemetryIntegration } from '../telemetry/telemetry-integration';
 import { TelemetrySettings } from '../telemetry/telemetry-settings';

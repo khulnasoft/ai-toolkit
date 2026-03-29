@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import { expectTypeOf } from 'vitest';
 import { z } from 'zod/v4';
 import { AsyncIterableStream } from '../util/async-iterable-stream';

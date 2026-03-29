@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { UIToolInvocation } from 'ai';
 
 export default function AnthropicToolSearchView({

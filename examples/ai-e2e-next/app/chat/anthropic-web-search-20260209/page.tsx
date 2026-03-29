@@ -7,7 +7,7 @@ import SourcesView from '@/components/sources-view';
 import AnthropicCodeExecution20260120View from '@/components/tool/anthropic-code-execution-20260120-view';
 import AnthropicWebSearch20260209View from '@/components/tool/anthropic-web-search-20260209-view';
 import DynamicToolView from '@/components/tool/dynamic-tool-view';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 export default function TestAnthropicWebSearch20260209() {

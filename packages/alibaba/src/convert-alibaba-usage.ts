@@ -1,5 +1,5 @@
-import { convertOpenAICompatibleChatUsage } from '@ai-tools/openai-compatible/internal';
-import type { LanguageModelV4Usage } from '@ai-tools/provider';
+import { convertOpenAICompatibleChatUsage } from '@ai-toolkit/openai-compatible/internal';
+import type { LanguageModelV4Usage } from '@ai-toolkit/provider';
 
 export type AlibabaUsage = {
   prompt_tokens?: number | null;

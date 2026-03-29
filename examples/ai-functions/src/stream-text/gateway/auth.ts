@@ -1,5 +1,5 @@
 import { streamText } from 'ai';
-import { gateway } from '@ai-tools/gateway';
+import { gateway } from '@ai-toolkit/gateway';
 import { run } from '../../lib/run';
 
 // An integration test for Vercel AI Gateway provider authentication. There are

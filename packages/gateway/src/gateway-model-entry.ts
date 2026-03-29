@@ -1,4 +1,4 @@
-import type { LanguageModelV4 } from '@ai-tools/provider';
+import type { LanguageModelV4 } from '@ai-toolkit/provider';
 
 export interface GatewayLanguageModelEntry {
   /**

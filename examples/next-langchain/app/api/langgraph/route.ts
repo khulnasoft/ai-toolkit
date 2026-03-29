@@ -1,4 +1,4 @@
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { StateGraph, MessagesAnnotation } from '@langchain/langgraph';

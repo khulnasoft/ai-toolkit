@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { GoogleGenerativeAIImageModel } from './google-generative-ai-image-model';
 import { describe, it, expect } from 'vitest';
 
@@ -382,7 +382,7 @@ describe('GoogleGenerativeAIImageModel', () => {
         }),
       ).rejects.toThrow(
         'Google Generative AI does not support image editing with Imagen models. ' +
-          'Use Google Vertex AI (@ai-tools/google-vertex) for image editing capabilities.',
+          'Use Google Vertex AI (@ai-toolkit/google-vertex) for image editing capabilities.',
       );
     });
 
@@ -404,7 +404,7 @@ describe('GoogleGenerativeAIImageModel', () => {
         }),
       ).rejects.toThrow(
         'Google Generative AI does not support image editing with masks. ' +
-          'Use Google Vertex AI (@ai-tools/google-vertex) for image editing capabilities.',
+          'Use Google Vertex AI (@ai-toolkit/google-vertex) for image editing capabilities.',
       );
     });
   });

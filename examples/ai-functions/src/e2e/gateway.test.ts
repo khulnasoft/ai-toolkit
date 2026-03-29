@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { gateway as provider } from '@ai-tools/gateway';
+import { gateway as provider } from '@ai-toolkit/gateway';
 import {
   createFeatureTestSuite,
   createLanguageModelWithCapabilities,

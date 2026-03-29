@@ -41,8 +41,8 @@ import {
   type LanguageModelV4StreamPart,
   type LanguageModelV4CallOptions,
   type LanguageModelV4,
-} from '@ai-tools/provider';
-import { safeParseJSON } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { safeParseJSON } from '@ai-toolkit/provider-utils';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
@@ -218,7 +218,7 @@ export const cacheMiddleware: LanguageModelV4Middleware = {
 The middleware can be easily integrated into your existing AI SDK setup:
 
 ```ts highlight="4,8"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import 'dotenv/config';
 import { cached } from '../middleware/your-cache-middleware';

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { GatewayImageModel } from './gateway-image-model';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import type { GatewayConfig } from './gateway-config';
 
 const TEST_MODEL_ID = 'google/imagen-4.0-generate';

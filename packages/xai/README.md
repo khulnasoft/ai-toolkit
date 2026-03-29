@@ -5,10 +5,10 @@ contains language model support for the xAI chat and completion APIs.
 
 ## Setup
 
-The xAI Grok provider is available in the `@ai-tools/xai` module. You can install it with
+The xAI Grok provider is available in the `@ai-toolkit/xai` module. You can install it with
 
 ```bash
-npm i @ai-tools/xai
+npm i @ai-toolkit/xai
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `xai` from `@ai-tools/xai`:
+You can import the default provider instance `xai` from `@ai-toolkit/xai`:
 
 ```ts
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 ```
 
 ## Example
 
 ```ts
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

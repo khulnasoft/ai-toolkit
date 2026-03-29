@@ -5,10 +5,10 @@ contains transcription model support for the Gladia transcription API.
 
 ## Setup
 
-The Gladia provider is available in the `@ai-tools/gladia` module. You can install it with
+The Gladia provider is available in the `@ai-toolkit/gladia` module. You can install it with
 
 ```bash
-npm i @ai-tools/gladia
+npm i @ai-toolkit/gladia
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `gladia` from `@ai-tools/gladia`:
+You can import the default provider instance `gladia` from `@ai-toolkit/gladia`:
 
 ```ts
-import { gladia } from '@ai-tools/gladia';
+import { gladia } from '@ai-toolkit/gladia';
 ```
 
 ## Example
 
 ```ts
-import { gladia } from '@ai-tools/gladia';
+import { gladia } from '@ai-toolkit/gladia';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({

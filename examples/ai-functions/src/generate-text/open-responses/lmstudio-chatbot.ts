@@ -1,4 +1,4 @@
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 import { ModelMessage, generateText } from 'ai';
 import * as readline from 'node:readline/promises';
 import { run } from '../../lib/run';

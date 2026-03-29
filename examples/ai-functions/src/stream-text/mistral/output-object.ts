@@ -1,4 +1,4 @@
-import { mistral } from '@ai-tools/mistral';
+import { mistral } from '@ai-toolkit/mistral';
 import { Output, streamText } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

@@ -1,10 +1,10 @@
 # Add new provider
 
-## `@ai-tools/<provider>` vs 3rd party package
+## `@ai-toolkit/<provider>` vs 3rd party package
 
 Every provider is welcome to create a 3rd party package. We are happy to link to it from our documentation.
 
-If you would prefer a 1st party `@ai-tools/<provider>` package, please create an issue first to discuss.
+If you would prefer a 1st party `@ai-toolkit/<provider>` package, please create an issue first to discuss.
 
 ## Example
 

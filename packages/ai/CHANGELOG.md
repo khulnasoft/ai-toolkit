@@ -5,21 +5,21 @@
 ### Patch Changes
 
 - Updated dependencies [435895b]
-  - @ai-tools/gateway@4.0.0-beta.25
+  - @ai-toolkit/gateway@4.0.0-beta.25
 
 ## 7.0.0-beta.44
 
 ### Patch Changes
 
 - Updated dependencies [d30466c]
-  - @ai-tools/gateway@4.0.0-beta.24
+  - @ai-toolkit/gateway@4.0.0-beta.24
 
 ## 7.0.0-beta.43
 
 ### Patch Changes
 
 - Updated dependencies [4ec78cd]
-  - @ai-tools/gateway@4.0.0-beta.23
+  - @ai-toolkit/gateway@4.0.0-beta.23
 
 ## 7.0.0-beta.42
 
@@ -32,7 +32,7 @@
 ### Patch Changes
 
 - Updated dependencies [7ceff62]
-  - @ai-tools/gateway@4.0.0-beta.22
+  - @ai-toolkit/gateway@4.0.0-beta.22
 
 ## 7.0.0-beta.40
 
@@ -52,16 +52,16 @@
 
 - 1f509d4: fix(ai): force template check on 'kind' param
 - Updated dependencies [1f509d4]
-  - @ai-tools/provider-utils@5.0.0-beta.7
-  - @ai-tools/provider@4.0.0-beta.5
-  - @ai-tools/gateway@4.0.0-beta.21
+  - @ai-toolkit/provider-utils@5.0.0-beta.7
+  - @ai-toolkit/provider@4.0.0-beta.5
+  - @ai-toolkit/gateway@4.0.0-beta.21
 
 ## 7.0.0-beta.37
 
 ### Patch Changes
 
 - Updated dependencies [4f91b5d]
-  - @ai-tools/gateway@4.0.0-beta.20
+  - @ai-toolkit/gateway@4.0.0-beta.20
 
 ## 7.0.0-beta.36
 
@@ -80,7 +80,7 @@
 ### Patch Changes
 
 - Updated dependencies [72889f8]
-  - @ai-tools/gateway@4.0.0-beta.19
+  - @ai-toolkit/gateway@4.0.0-beta.19
 
 ## 7.0.0-beta.33
 
@@ -97,7 +97,7 @@
 ### Patch Changes
 
 - Updated dependencies [165b97a]
-  - @ai-tools/gateway@4.0.0-beta.18
+  - @ai-toolkit/gateway@4.0.0-beta.18
 
 ## 7.0.0-beta.31
 
@@ -129,9 +129,9 @@
 
 - 3887c70: feat(provider): add new top-level reasoning parameter to spec and support it in `generateText` and `streamText`
 - Updated dependencies [3887c70]
-  - @ai-tools/provider-utils@5.0.0-beta.6
-  - @ai-tools/provider@4.0.0-beta.4
-  - @ai-tools/gateway@4.0.0-beta.17
+  - @ai-toolkit/provider-utils@5.0.0-beta.6
+  - @ai-toolkit/provider@4.0.0-beta.4
+  - @ai-toolkit/gateway@4.0.0-beta.17
 
 ## 7.0.0-beta.26
 
@@ -154,9 +154,9 @@
 ### Patch Changes
 
 - Updated dependencies [776b617]
-  - @ai-tools/provider-utils@5.0.0-beta.5
-  - @ai-tools/provider@4.0.0-beta.3
-  - @ai-tools/gateway@4.0.0-beta.16
+  - @ai-toolkit/provider-utils@5.0.0-beta.5
+  - @ai-toolkit/provider@4.0.0-beta.3
+  - @ai-toolkit/gateway@4.0.0-beta.16
 
 ## 7.0.0-beta.23
 
@@ -164,15 +164,15 @@
 
 - 80d4dde: fix(ai): include tool input on tool result for provider executed dynamic tools
 - Updated dependencies [61753c3]
-  - @ai-tools/provider-utils@5.0.0-beta.4
-  - @ai-tools/gateway@4.0.0-beta.15
+  - @ai-toolkit/provider-utils@5.0.0-beta.4
+  - @ai-toolkit/gateway@4.0.0-beta.15
 
 ## 7.0.0-beta.22
 
 ### Patch Changes
 
 - Updated dependencies [ead9144]
-  - @ai-tools/gateway@4.0.0-beta.14
+  - @ai-toolkit/gateway@4.0.0-beta.14
 
 ## 7.0.0-beta.21
 
@@ -185,32 +185,32 @@
 ### Patch Changes
 
 - Updated dependencies [2095655]
-  - @ai-tools/gateway@4.0.0-beta.13
+  - @ai-toolkit/gateway@4.0.0-beta.13
 
 ## 7.0.0-beta.19
 
 ### Patch Changes
 
 - Updated dependencies [f7d4f01]
-  - @ai-tools/provider-utils@5.0.0-beta.3
-  - @ai-tools/provider@4.0.0-beta.2
-  - @ai-tools/gateway@4.0.0-beta.12
+  - @ai-toolkit/provider-utils@5.0.0-beta.3
+  - @ai-toolkit/provider@4.0.0-beta.2
+  - @ai-toolkit/gateway@4.0.0-beta.12
 
 ## 7.0.0-beta.18
 
 ### Patch Changes
 
 - Updated dependencies [5c2a5a2]
-  - @ai-tools/provider@4.0.0-beta.1
-  - @ai-tools/gateway@4.0.0-beta.11
-  - @ai-tools/provider-utils@5.0.0-beta.2
+  - @ai-toolkit/provider@4.0.0-beta.1
+  - @ai-toolkit/gateway@4.0.0-beta.11
+  - @ai-toolkit/provider-utils@5.0.0-beta.2
 
 ## 7.0.0-beta.17
 
 ### Patch Changes
 
 - Updated dependencies [4d6ab9a]
-  - @ai-tools/gateway@4.0.0-beta.10
+  - @ai-toolkit/gateway@4.0.0-beta.10
 
 ## 7.0.0-beta.16
 
@@ -224,14 +224,14 @@
 
 - Updated dependencies [980f777]
 - Updated dependencies [7185ba2]
-  - @ai-tools/gateway@4.0.0-beta.9
+  - @ai-toolkit/gateway@4.0.0-beta.9
 
 ## 7.0.0-beta.14
 
 ### Patch Changes
 
 - Updated dependencies [4adc485]
-  - @ai-tools/gateway@4.0.0-beta.8
+  - @ai-toolkit/gateway@4.0.0-beta.8
 
 ## 7.0.0-beta.13
 
@@ -244,21 +244,21 @@
 ### Patch Changes
 
 - Updated dependencies [e046ea3]
-  - @ai-tools/gateway@4.0.0-beta.7
+  - @ai-toolkit/gateway@4.0.0-beta.7
 
 ## 7.0.0-beta.11
 
 ### Patch Changes
 
 - Updated dependencies [82288b0]
-  - @ai-tools/gateway@4.0.0-beta.6
+  - @ai-toolkit/gateway@4.0.0-beta.6
 
 ## 7.0.0-beta.10
 
 ### Patch Changes
 
 - Updated dependencies [aa5a583]
-  - @ai-tools/gateway@4.0.0-beta.5
+  - @ai-toolkit/gateway@4.0.0-beta.5
 
 ## 7.0.0-beta.9
 
@@ -271,7 +271,7 @@
 ### Patch Changes
 
 - Updated dependencies [f32d84a]
-  - @ai-tools/gateway@4.0.0-beta.4
+  - @ai-toolkit/gateway@4.0.0-beta.4
 
 ## 7.0.0-beta.7
 
@@ -284,7 +284,7 @@
 ### Patch Changes
 
 - Updated dependencies [c949e25]
-  - @ai-tools/gateway@4.0.0-beta.3
+  - @ai-toolkit/gateway@4.0.0-beta.3
 
 ## 7.0.0-beta.5
 
@@ -307,8 +307,8 @@
   Both `downloadBlob` and `download` now validate the final URL after following HTTP redirects, preventing attackers from bypassing SSRF protections via open redirects to internal/private addresses.
 
 - Updated dependencies [531251e]
-  - @ai-tools/provider-utils@5.0.0-beta.1
-  - @ai-tools/gateway@4.0.0-beta.2
+  - @ai-toolkit/provider-utils@5.0.0-beta.1
+  - @ai-toolkit/gateway@4.0.0-beta.2
 
 ## 7.0.0-beta.2
 
@@ -316,7 +316,7 @@
 
 - Updated dependencies [7afaece]
 - Updated dependencies [f16c103]
-  - @ai-tools/gateway@4.0.0-beta.1
+  - @ai-toolkit/gateway@4.0.0-beta.1
 
 ## 7.0.0-beta.1
 
@@ -333,9 +333,9 @@
 ### Patch Changes
 
 - Updated dependencies [8359612]
-  - @ai-tools/gateway@4.0.0-beta.0
-  - @ai-tools/provider@4.0.0-beta.0
-  - @ai-tools/provider-utils@5.0.0-beta.0
+  - @ai-toolkit/gateway@4.0.0-beta.0
+  - @ai-toolkit/provider@4.0.0-beta.0
+  - @ai-toolkit/provider-utils@5.0.0-beta.0
 
 ## 6.0.116
 
@@ -343,16 +343,16 @@
 
 - ad4cfc2: Add URL validation to `downloadBlob` and `download` to prevent blind SSRF attacks. Private/internal IP addresses, localhost, and non-HTTP protocols are now rejected before fetching.
 - Updated dependencies [ad4cfc2]
-  - @ai-tools/provider-utils@4.0.19
-  - @ai-tools/gateway@3.0.66
+  - @ai-toolkit/provider-utils@4.0.19
+  - @ai-toolkit/gateway@3.0.66
 
 ## 6.0.115
 
 ### Patch Changes
 
 - Updated dependencies [824b295]
-  - @ai-tools/provider-utils@4.0.18
-  - @ai-tools/gateway@3.0.65
+  - @ai-toolkit/provider-utils@4.0.18
+  - @ai-toolkit/gateway@3.0.65
 
 ## 6.0.114
 
@@ -371,7 +371,7 @@
 ### Patch Changes
 
 - Updated dependencies [db3d4ca]
-  - @ai-tools/gateway@3.0.64
+  - @ai-toolkit/gateway@3.0.64
 
 ## 6.0.111
 
@@ -385,14 +385,14 @@
 
 - Updated dependencies [1b01ec1]
 - Updated dependencies [8df8e11]
-  - @ai-tools/gateway@3.0.63
+  - @ai-toolkit/gateway@3.0.63
 
 ## 6.0.109
 
 ### Patch Changes
 
 - Updated dependencies [10bec50]
-  - @ai-tools/gateway@3.0.62
+  - @ai-toolkit/gateway@3.0.62
 
 ## 6.0.108
 
@@ -405,44 +405,44 @@
 ### Patch Changes
 
 - Updated dependencies [08336f1]
-  - @ai-tools/provider-utils@4.0.17
-  - @ai-tools/gateway@3.0.61
+  - @ai-toolkit/provider-utils@4.0.17
+  - @ai-toolkit/gateway@3.0.61
 
 ## 6.0.106
 
 ### Patch Changes
 
 - Updated dependencies [29e9f4d]
-  - @ai-tools/gateway@3.0.60
+  - @ai-toolkit/gateway@3.0.60
 
 ## 6.0.105
 
 ### Patch Changes
 
 - Updated dependencies [58bc42d]
-  - @ai-tools/provider-utils@4.0.16
-  - @ai-tools/gateway@3.0.59
+  - @ai-toolkit/provider-utils@4.0.16
+  - @ai-toolkit/gateway@3.0.59
 
 ## 6.0.104
 
 ### Patch Changes
 
 - Updated dependencies [1330f2f]
-  - @ai-tools/gateway@3.0.58
+  - @ai-toolkit/gateway@3.0.58
 
 ## 6.0.103
 
 ### Patch Changes
 
 - Updated dependencies [ba63bc2]
-  - @ai-tools/gateway@3.0.57
+  - @ai-toolkit/gateway@3.0.57
 
 ## 6.0.102
 
 ### Patch Changes
 
 - Updated dependencies [45f0a7f]
-  - @ai-tools/gateway@3.0.56
+  - @ai-toolkit/gateway@3.0.56
 
 ## 6.0.101
 
@@ -461,14 +461,14 @@
 ### Patch Changes
 
 - Updated dependencies [e8172b6]
-  - @ai-tools/gateway@3.0.55
+  - @ai-toolkit/gateway@3.0.55
 
 ## 6.0.98
 
 ### Patch Changes
 
 - Updated dependencies [0c9395b]
-  - @ai-tools/gateway@3.0.54
+  - @ai-toolkit/gateway@3.0.54
 
 ## 6.0.97
 
@@ -487,14 +487,14 @@
 ### Patch Changes
 
 - Updated dependencies [73b7e09]
-  - @ai-tools/gateway@3.0.53
+  - @ai-toolkit/gateway@3.0.53
 
 ## 6.0.94
 
 ### Patch Changes
 
 - Updated dependencies [363fa44]
-  - @ai-tools/gateway@3.0.52
+  - @ai-toolkit/gateway@3.0.52
 
 ## 6.0.93
 
@@ -507,14 +507,14 @@
 ### Patch Changes
 
 - Updated dependencies [765b013]
-  - @ai-tools/gateway@3.0.51
+  - @ai-toolkit/gateway@3.0.51
 
 ## 6.0.91
 
 ### Patch Changes
 
 - Updated dependencies [a433cd3]
-  - @ai-tools/gateway@3.0.50
+  - @ai-toolkit/gateway@3.0.50
 
 ## 6.0.90
 
@@ -527,35 +527,35 @@
 ### Patch Changes
 
 - Updated dependencies [5f693c8]
-  - @ai-tools/gateway@3.0.49
+  - @ai-toolkit/gateway@3.0.49
 
 ## 6.0.88
 
 ### Patch Changes
 
 - Updated dependencies [2a1c664]
-  - @ai-tools/gateway@3.0.48
+  - @ai-toolkit/gateway@3.0.48
 
 ## 6.0.87
 
 ### Patch Changes
 
 - Updated dependencies [6bbd05b]
-  - @ai-tools/gateway@3.0.47
+  - @ai-toolkit/gateway@3.0.47
 
 ## 6.0.86
 
 ### Patch Changes
 
 - Updated dependencies [f75f18c]
-  - @ai-tools/gateway@3.0.46
+  - @ai-toolkit/gateway@3.0.46
 
 ## 6.0.85
 
 ### Patch Changes
 
 - Updated dependencies [e858654]
-  - @ai-tools/gateway@3.0.45
+  - @ai-toolkit/gateway@3.0.45
 
 ## 6.0.84
 
@@ -568,22 +568,22 @@
   Added `download` option to `transcribe()` and `experimental_generateVideo()` for providing a custom download function. Use the new `createDownload({ maxBytes })` factory to configure download size limits.
 
 - Updated dependencies [4024a3a]
-  - @ai-tools/provider-utils@4.0.15
-  - @ai-tools/gateway@3.0.44
+  - @ai-toolkit/provider-utils@4.0.15
+  - @ai-toolkit/gateway@3.0.44
 
 ## 6.0.83
 
 ### Patch Changes
 
 - Updated dependencies [b424e50]
-  - @ai-tools/gateway@3.0.43
+  - @ai-toolkit/gateway@3.0.43
 
 ## 6.0.82
 
 ### Patch Changes
 
 - Updated dependencies [1819bc1]
-  - @ai-tools/gateway@3.0.42
+  - @ai-toolkit/gateway@3.0.42
 
 ## 6.0.81
 
@@ -596,14 +596,14 @@
 ### Patch Changes
 
 - Updated dependencies [99fbed8]
-  - @ai-tools/gateway@3.0.41
+  - @ai-toolkit/gateway@3.0.41
 
 ## 6.0.79
 
 ### Patch Changes
 
 - Updated dependencies [a2208a2]
-  - @ai-tools/gateway@3.0.40
+  - @ai-toolkit/gateway@3.0.40
 
 ## 6.0.78
 
@@ -618,14 +618,14 @@
 ### Patch Changes
 
 - Updated dependencies [eea5d30]
-  - @ai-tools/gateway@3.0.39
+  - @ai-toolkit/gateway@3.0.39
 
 ## 6.0.76
 
 ### Patch Changes
 
 - Updated dependencies [70028ab]
-  - @ai-tools/gateway@3.0.38
+  - @ai-toolkit/gateway@3.0.38
 
 ## 6.0.75
 
@@ -633,9 +633,9 @@
 
 - 7168375: feat (ai, provider): default global provider video model resolution
 - Updated dependencies [7168375]
-  - @ai-tools/provider@3.0.8
-  - @ai-tools/gateway@3.0.37
-  - @ai-tools/provider-utils@4.0.14
+  - @ai-toolkit/provider@3.0.8
+  - @ai-toolkit/gateway@3.0.37
+  - @ai-toolkit/provider-utils@4.0.14
 
 ## 6.0.74
 
@@ -648,28 +648,28 @@
 ### Patch Changes
 
 - Updated dependencies [9892c58]
-  - @ai-tools/gateway@3.0.36
+  - @ai-toolkit/gateway@3.0.36
 
 ## 6.0.72
 
 ### Patch Changes
 
 - Updated dependencies [8e2eaac]
-  - @ai-tools/gateway@3.0.35
+  - @ai-toolkit/gateway@3.0.35
 
 ## 6.0.71
 
 ### Patch Changes
 
 - Updated dependencies [4867635]
-  - @ai-tools/gateway@3.0.34
+  - @ai-toolkit/gateway@3.0.34
 
 ## 6.0.70
 
 ### Patch Changes
 
 - Updated dependencies [ae30443]
-  - @ai-tools/gateway@3.0.33
+  - @ai-toolkit/gateway@3.0.33
 
 ## 6.0.69
 
@@ -689,24 +689,24 @@
 
 - 53f6731: feat (ai, provider): experimental generate video support
 - Updated dependencies [53f6731]
-  - @ai-tools/provider@3.0.7
-  - @ai-tools/gateway@3.0.32
-  - @ai-tools/provider-utils@4.0.13
+  - @ai-toolkit/provider@3.0.7
+  - @ai-toolkit/gateway@3.0.32
+  - @ai-toolkit/provider-utils@4.0.13
 
 ## 6.0.66
 
 ### Patch Changes
 
 - Updated dependencies [96936e5]
-  - @ai-tools/provider-utils@4.0.12
-  - @ai-tools/gateway@3.0.31
+  - @ai-toolkit/provider-utils@4.0.12
+  - @ai-toolkit/gateway@3.0.31
 
 ## 6.0.65
 
 ### Patch Changes
 
 - Updated dependencies [1a74972]
-  - @ai-tools/gateway@3.0.30
+  - @ai-toolkit/gateway@3.0.30
 
 ## 6.0.64
 
@@ -726,16 +726,16 @@
 
 - 2810850: fix(ai): improve type validation error messages with field paths and entity identifiers
 - Updated dependencies [2810850]
-  - @ai-tools/provider-utils@4.0.11
-  - @ai-tools/provider@3.0.6
-  - @ai-tools/gateway@3.0.29
+  - @ai-toolkit/provider-utils@4.0.11
+  - @ai-toolkit/provider@3.0.6
+  - @ai-toolkit/gateway@3.0.29
 
 ## 6.0.61
 
 ### Patch Changes
 
 - Updated dependencies [1524271]
-  - @ai-tools/gateway@3.0.28
+  - @ai-toolkit/gateway@3.0.28
 
 ## 6.0.60
 
@@ -748,14 +748,14 @@
 ### Patch Changes
 
 - Updated dependencies [0acff64]
-  - @ai-tools/gateway@3.0.27
+  - @ai-toolkit/gateway@3.0.27
 
 ## 6.0.58
 
 ### Patch Changes
 
 - Updated dependencies [a8be296]
-  - @ai-tools/gateway@3.0.26
+  - @ai-toolkit/gateway@3.0.26
 
 ## 6.0.57
 
@@ -768,7 +768,7 @@
 ### Patch Changes
 
 - Updated dependencies [15a78c7]
-  - @ai-tools/gateway@3.0.25
+  - @ai-toolkit/gateway@3.0.25
 
 ## 6.0.55
 
@@ -793,8 +793,8 @@
 ### Patch Changes
 
 - Updated dependencies [462ad00]
-  - @ai-tools/provider-utils@4.0.10
-  - @ai-tools/gateway@3.0.24
+  - @ai-toolkit/provider-utils@4.0.10
+  - @ai-toolkit/gateway@3.0.24
 
 ## 6.0.51
 
@@ -807,7 +807,7 @@
 ### Patch Changes
 
 - Updated dependencies [cbf1704]
-  - @ai-tools/gateway@3.0.23
+  - @ai-toolkit/gateway@3.0.23
 
 ## 6.0.49
 
@@ -821,37 +821,37 @@
 
 - 4de5a1d: chore: excluded tests from src folder in npm package
 - Updated dependencies [4de5a1d]
-  - @ai-tools/gateway@3.0.22
-  - @ai-tools/provider@3.0.5
-  - @ai-tools/provider-utils@4.0.9
+  - @ai-toolkit/gateway@3.0.22
+  - @ai-toolkit/provider@3.0.5
+  - @ai-toolkit/provider-utils@4.0.9
 
 ## 6.0.47
 
 ### Patch Changes
 
 - Updated dependencies [2b8369d]
-  - @ai-tools/gateway@3.0.21
+  - @ai-toolkit/gateway@3.0.21
 
 ## 6.0.46
 
 ### Patch Changes
 
 - Updated dependencies [8dc54db]
-  - @ai-tools/gateway@3.0.20
+  - @ai-toolkit/gateway@3.0.20
 
 ## 6.0.45
 
 ### Patch Changes
 
 - Updated dependencies [c60fdd8]
-  - @ai-tools/gateway@3.0.19
+  - @ai-toolkit/gateway@3.0.19
 
 ## 6.0.44
 
 ### Patch Changes
 
 - Updated dependencies [7af4eb4]
-  - @ai-tools/gateway@3.0.18
+  - @ai-toolkit/gateway@3.0.18
 
 ## 6.0.43
 
@@ -869,7 +869,7 @@
 ### Patch Changes
 
 - Updated dependencies [66d78d5]
-  - @ai-tools/gateway@3.0.17
+  - @ai-toolkit/gateway@3.0.17
 
 ## 6.0.41
 
@@ -896,9 +896,9 @@
 ### Patch Changes
 
 - Updated dependencies [5c090e7]
-  - @ai-tools/provider@3.0.4
-  - @ai-tools/gateway@3.0.16
-  - @ai-tools/provider-utils@4.0.8
+  - @ai-toolkit/provider@3.0.4
+  - @ai-toolkit/gateway@3.0.16
+  - @ai-toolkit/provider-utils@4.0.8
 
 ## 6.0.37
 
@@ -918,8 +918,8 @@
 
 - 46f46e4: fix(provider-utils): improve tool type inference when using `inputExamples` with Zod schemas that use `.optional().default()` or `.refine()`.
 - Updated dependencies [46f46e4]
-  - @ai-tools/provider-utils@4.0.7
-  - @ai-tools/gateway@3.0.15
+  - @ai-toolkit/provider-utils@4.0.7
+  - @ai-toolkit/gateway@3.0.15
 
 ## 6.0.35
 
@@ -933,9 +933,9 @@
 
 - 1b11dcb: chore(ai): include sources in npm package
 - Updated dependencies [1b11dcb]
-  - @ai-tools/provider-utils@4.0.6
-  - @ai-tools/provider@3.0.3
-  - @ai-tools/gateway@3.0.14
+  - @ai-toolkit/provider-utils@4.0.6
+  - @ai-toolkit/provider@3.0.3
+  - @ai-toolkit/gateway@3.0.14
 
 ## 6.0.33
 
@@ -954,21 +954,21 @@
 ### Patch Changes
 
 - Updated dependencies [92b339b]
-  - @ai-tools/gateway@3.0.13
+  - @ai-toolkit/gateway@3.0.13
 
 ## 6.0.30
 
 ### Patch Changes
 
 - Updated dependencies [34d1c8a]
-  - @ai-tools/provider-utils@4.0.5
-  - @ai-tools/gateway@3.0.12
+  - @ai-toolkit/provider-utils@4.0.5
+  - @ai-toolkit/gateway@3.0.12
 
 ## 6.0.29
 
 ### Patch Changes
 
-- fdce123: docs: update README with usage example for @ai-tools/anthropic
+- fdce123: docs: update README with usage example for @ai-toolkit/anthropic
 
 ## 6.0.28
 
@@ -981,7 +981,7 @@
 ### Patch Changes
 
 - Updated dependencies [891a60a]
-  - @ai-tools/gateway@3.0.11
+  - @ai-toolkit/gateway@3.0.11
 
 ## 6.0.26
 
@@ -1033,7 +1033,7 @@
 ### Patch Changes
 
 - Updated dependencies [2696fd2]
-  - @ai-tools/gateway@3.0.10
+  - @ai-toolkit/gateway@3.0.10
 
 ## 6.0.18
 
@@ -1077,16 +1077,16 @@
 
 - d937c8f: Add Image model middleware support via `wrapImageModel` and `ImageModelV3Middleware`.
 - Updated dependencies [d937c8f]
-  - @ai-tools/provider@3.0.2
-  - @ai-tools/gateway@3.0.9
-  - @ai-tools/provider-utils@4.0.4
+  - @ai-toolkit/provider@3.0.2
+  - @ai-toolkit/gateway@3.0.9
+  - @ai-toolkit/provider-utils@4.0.4
 
 ## 6.0.11
 
 ### Patch Changes
 
 - Updated dependencies [8ec1984]
-  - @ai-tools/gateway@3.0.8
+  - @ai-toolkit/gateway@3.0.8
 
 ## 6.0.10
 
@@ -1105,22 +1105,22 @@
 ### Patch Changes
 
 - Updated dependencies [0b429d4]
-  - @ai-tools/provider-utils@4.0.3
-  - @ai-tools/gateway@3.0.7
+  - @ai-toolkit/provider-utils@4.0.3
+  - @ai-toolkit/gateway@3.0.7
 
 ## 6.0.7
 
 ### Patch Changes
 
 - Updated dependencies [74c0157]
-  - @ai-tools/gateway@3.0.6
+  - @ai-toolkit/gateway@3.0.6
 
 ## 6.0.6
 
 ### Patch Changes
 
 - Updated dependencies [7ee2d12]
-  - @ai-tools/gateway@3.0.5
+  - @ai-toolkit/gateway@3.0.5
 
 ## 6.0.5
 
@@ -1128,16 +1128,16 @@
 
 - 863d34f: fix: trigger release to update `@latest`
 - Updated dependencies [863d34f]
-  - @ai-tools/gateway@3.0.4
-  - @ai-tools/provider@3.0.1
-  - @ai-tools/provider-utils@4.0.2
+  - @ai-toolkit/gateway@3.0.4
+  - @ai-toolkit/provider@3.0.1
+  - @ai-toolkit/provider-utils@4.0.2
 
 ## 6.0.4
 
 ### Patch Changes
 
 - Updated dependencies [1dad057]
-  - @ai-tools/gateway@3.0.3
+  - @ai-toolkit/gateway@3.0.3
 
 ## 6.0.3
 
@@ -1145,8 +1145,8 @@
 
 - 29264a3: feat: add MCP tool approval
 - Updated dependencies [29264a3]
-  - @ai-tools/provider-utils@4.0.1
-  - @ai-tools/gateway@3.0.2
+  - @ai-toolkit/provider-utils@4.0.1
+  - @ai-toolkit/gateway@3.0.2
 
 ## 6.0.2
 
@@ -1157,14 +1157,14 @@
   Fixes #11392
 
 - Updated dependencies [c0c8a0e]
-  - @ai-tools/gateway@3.0.1
+  - @ai-toolkit/gateway@3.0.1
 
 ## 6.0.1
 
 ### Patch Changes
 
 - Updated dependencies [387980f]
-  - @ai-tools/gateway@3.0.0
+  - @ai-toolkit/gateway@3.0.0
 
 ## 6.0.0
 
@@ -1228,8 +1228,8 @@
   with
 
   ```ts
-  import { experimental_createMCPClient } from "@ai-tools/mcp";
-  import { Experimental_StdioMCPTransport } from "@ai-tools/mcp/mcp-stdio";
+  import { experimental_createMCPClient } from "@ai-toolkit/mcp";
+  import { Experimental_StdioMCPTransport } from "@ai-toolkit/mcp/mcp-stdio";
   ```
 
 - 90e5bdd: chore(ai): restructure agent files
@@ -1337,16 +1337,16 @@
 - 3794514: feat: flexible tool output content support
 - cbf52cd: feat: expose raw finish reason
 - 14ca35d: feat: add support for v2 specs
-- 10c1322: fix: moved dependency `@ai-tools/test-server` to devDependencies
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
 - dcdac8c: chore(ai): rename tool helpers
 - 960ec8f: chore: change argument of toModelOutput to parameter object
 - b59d924: feat(ai): support SystemModelMessage in system and instructions properties
 - 1bd7d32: feat: tool-specific strict mode
 - 95f65c2: chore: load zod schemas lazily
 - Updated dependencies
-  - @ai-tools/provider@3.0.0
-  - @ai-tools/gateway@2.0.0
-  - @ai-tools/provider-utils@4.0.0
+  - @ai-toolkit/provider@3.0.0
+  - @ai-toolkit/gateway@2.0.0
+  - @ai-toolkit/provider-utils@4.0.0
 
 ## 6.0.0-beta.169
 
@@ -1359,7 +1359,7 @@
 ### Patch Changes
 
 - Updated dependencies [7294355]
-  - @ai-tools/gateway@2.0.0-beta.93
+  - @ai-toolkit/gateway@2.0.0-beta.93
 
 ## 6.0.0-beta.167
 
@@ -1367,9 +1367,9 @@
 
 - 475189e: chore(specification): rename EmbeddingModelCallOptions
 - Updated dependencies [475189e]
-  - @ai-tools/provider@3.0.0-beta.32
-  - @ai-tools/gateway@2.0.0-beta.92
-  - @ai-tools/provider-utils@4.0.0-beta.59
+  - @ai-toolkit/provider@3.0.0-beta.32
+  - @ai-toolkit/gateway@2.0.0-beta.92
+  - @ai-toolkit/provider-utils@4.0.0-beta.59
 
 ## 6.0.0-beta.166
 
@@ -1383,9 +1383,9 @@
 
 - 2625a04: feat(openai); update spec for mcp approval
 - Updated dependencies [2625a04]
-  - @ai-tools/provider@3.0.0-beta.31
-  - @ai-tools/gateway@2.0.0-beta.91
-  - @ai-tools/provider-utils@4.0.0-beta.58
+  - @ai-toolkit/provider@3.0.0-beta.31
+  - @ai-toolkit/gateway@2.0.0-beta.91
+  - @ai-toolkit/provider-utils@4.0.0-beta.58
 
 ## 6.0.0-beta.164
 
@@ -1393,18 +1393,18 @@
 
 - cbf52cd: feat: expose raw finish reason
 - Updated dependencies [cbf52cd]
-  - @ai-tools/provider@3.0.0-beta.30
-  - @ai-tools/gateway@2.0.0-beta.90
-  - @ai-tools/provider-utils@4.0.0-beta.57
+  - @ai-toolkit/provider@3.0.0-beta.30
+  - @ai-toolkit/gateway@2.0.0-beta.90
+  - @ai-toolkit/provider-utils@4.0.0-beta.57
 
 ## 6.0.0-beta.163
 
 ### Patch Changes
 
 - Updated dependencies [9549c9e]
-  - @ai-tools/provider@3.0.0-beta.29
-  - @ai-tools/gateway@2.0.0-beta.89
-  - @ai-tools/provider-utils@4.0.0-beta.56
+  - @ai-toolkit/provider@3.0.0-beta.29
+  - @ai-toolkit/gateway@2.0.0-beta.89
+  - @ai-toolkit/provider-utils@4.0.0-beta.56
 
 ## 6.0.0-beta.162
 
@@ -1412,15 +1412,15 @@
 
 - 50b70d6: feat(anthropic): add programmatic tool calling
 - Updated dependencies [50b70d6]
-  - @ai-tools/provider-utils@4.0.0-beta.55
-  - @ai-tools/gateway@2.0.0-beta.88
+  - @ai-toolkit/provider-utils@4.0.0-beta.55
+  - @ai-toolkit/gateway@2.0.0-beta.88
 
 ## 6.0.0-beta.161
 
 ### Patch Changes
 
 - Updated dependencies [ee71658]
-  - @ai-tools/gateway@2.0.0-beta.87
+  - @ai-toolkit/gateway@2.0.0-beta.87
 
 ## 6.0.0-beta.160
 
@@ -1428,9 +1428,9 @@
 
 - 9061dc0: feat: image editing
 - Updated dependencies [9061dc0]
-  - @ai-tools/provider-utils@4.0.0-beta.54
-  - @ai-tools/provider@3.0.0-beta.28
-  - @ai-tools/gateway@2.0.0-beta.86
+  - @ai-toolkit/provider-utils@4.0.0-beta.54
+  - @ai-toolkit/provider@3.0.0-beta.28
+  - @ai-toolkit/gateway@2.0.0-beta.86
 
 ## 6.0.0-beta.159
 
@@ -1438,16 +1438,16 @@
 
 - 3071620: fix header loss when statusText is undefined in writeHead
 - Updated dependencies [870297d]
-  - @ai-tools/gateway@2.0.0-beta.85
+  - @ai-toolkit/gateway@2.0.0-beta.85
 
 ## 6.0.0-beta.158
 
 ### Patch Changes
 
 - Updated dependencies [366f50b]
-  - @ai-tools/provider@3.0.0-beta.27
-  - @ai-tools/gateway@2.0.0-beta.84
-  - @ai-tools/provider-utils@4.0.0-beta.53
+  - @ai-toolkit/provider@3.0.0-beta.27
+  - @ai-toolkit/gateway@2.0.0-beta.84
+  - @ai-toolkit/provider-utils@4.0.0-beta.53
 
 ## 6.0.0-beta.157
 
@@ -1455,8 +1455,8 @@
 
 - 763d04a: feat: Standard JSON Schema support
 - Updated dependencies [763d04a]
-  - @ai-tools/provider-utils@4.0.0-beta.52
-  - @ai-tools/gateway@2.0.0-beta.83
+  - @ai-toolkit/provider-utils@4.0.0-beta.52
+  - @ai-toolkit/gateway@2.0.0-beta.83
 
 ## 6.0.0-beta.156
 
@@ -1469,8 +1469,8 @@
 ### Patch Changes
 
 - Updated dependencies [c1efac4]
-  - @ai-tools/provider-utils@4.0.0-beta.51
-  - @ai-tools/gateway@2.0.0-beta.82
+  - @ai-toolkit/provider-utils@4.0.0-beta.51
+  - @ai-toolkit/gateway@2.0.0-beta.82
 
 ## 6.0.0-beta.154
 
@@ -1478,8 +1478,8 @@
 
 - 32223c8: feat: add toolCallId arg to toModelOutput
 - Updated dependencies [32223c8]
-  - @ai-tools/provider-utils@4.0.0-beta.50
-  - @ai-tools/gateway@2.0.0-beta.81
+  - @ai-toolkit/provider-utils@4.0.0-beta.50
+  - @ai-toolkit/gateway@2.0.0-beta.81
 
 ## 6.0.0-beta.153
 
@@ -1487,8 +1487,8 @@
 
 - 83e5744: feat: support async Tool.toModelOutput
 - Updated dependencies [83e5744]
-  - @ai-tools/provider-utils@4.0.0-beta.49
-  - @ai-tools/gateway@2.0.0-beta.80
+  - @ai-toolkit/provider-utils@4.0.0-beta.49
+  - @ai-toolkit/gateway@2.0.0-beta.80
 
 ## 6.0.0-beta.152
 
@@ -1496,8 +1496,8 @@
 
 - 960ec8f: chore: change argument of toModelOutput to parameter object
 - Updated dependencies [960ec8f]
-  - @ai-tools/provider-utils@4.0.0-beta.48
-  - @ai-tools/gateway@2.0.0-beta.79
+  - @ai-toolkit/provider-utils@4.0.0-beta.48
+  - @ai-toolkit/gateway@2.0.0-beta.79
 
 ## 6.0.0-beta.151
 
@@ -1522,7 +1522,7 @@
 ### Patch Changes
 
 - Updated dependencies [f18ef7f]
-  - @ai-tools/gateway@2.0.0-beta.78
+  - @ai-toolkit/gateway@2.0.0-beta.78
 
 ## 6.0.0-beta.147
 
@@ -1535,15 +1535,15 @@
 ### Patch Changes
 
 - Updated dependencies [e9e157f]
-  - @ai-tools/provider-utils@4.0.0-beta.47
-  - @ai-tools/gateway@2.0.0-beta.77
+  - @ai-toolkit/provider-utils@4.0.0-beta.47
+  - @ai-toolkit/gateway@2.0.0-beta.77
 
 ## 6.0.0-beta.145
 
 ### Patch Changes
 
 - Updated dependencies [34ee8d0]
-  - @ai-tools/gateway@2.0.0-beta.76
+  - @ai-toolkit/gateway@2.0.0-beta.76
 
 ## 6.0.0-beta.144
 
@@ -1557,8 +1557,8 @@
 
 - 81e29ab: feat(ai): allow modifying experimental context in prepareStep
 - Updated dependencies [81e29ab]
-  - @ai-tools/provider-utils@4.0.0-beta.46
-  - @ai-tools/gateway@2.0.0-beta.75
+  - @ai-toolkit/provider-utils@4.0.0-beta.46
+  - @ai-toolkit/gateway@2.0.0-beta.75
 
 ## 6.0.0-beta.142
 
@@ -1585,18 +1585,18 @@
 
 - 3bd2689: feat: extended token usage
 - Updated dependencies [3bd2689]
-  - @ai-tools/provider@3.0.0-beta.26
-  - @ai-tools/gateway@2.0.0-beta.74
-  - @ai-tools/provider-utils@4.0.0-beta.45
+  - @ai-toolkit/provider@3.0.0-beta.26
+  - @ai-toolkit/gateway@2.0.0-beta.74
+  - @ai-toolkit/provider-utils@4.0.0-beta.45
 
 ## 6.0.0-beta.138
 
 ### Patch Changes
 
 - Updated dependencies [53f3368]
-  - @ai-tools/provider@3.0.0-beta.25
-  - @ai-tools/gateway@2.0.0-beta.73
-  - @ai-tools/provider-utils@4.0.0-beta.44
+  - @ai-toolkit/provider@3.0.0-beta.25
+  - @ai-toolkit/gateway@2.0.0-beta.73
+  - @ai-toolkit/provider-utils@4.0.0-beta.44
 
 ## 6.0.0-beta.137
 
@@ -1628,9 +1628,9 @@
 
 - dce03c4: feat: tool input examples
 - Updated dependencies [dce03c4]
-  - @ai-tools/provider-utils@4.0.0-beta.43
-  - @ai-tools/provider@3.0.0-beta.24
-  - @ai-tools/gateway@2.0.0-beta.72
+  - @ai-toolkit/provider-utils@4.0.0-beta.43
+  - @ai-toolkit/provider@3.0.0-beta.24
+  - @ai-toolkit/gateway@2.0.0-beta.72
 
 ## 6.0.0-beta.132
 
@@ -1644,8 +1644,8 @@
 
 - 3ed5519: chore: rename ToolCallOptions to ToolExecutionOptions
 - Updated dependencies [3ed5519]
-  - @ai-tools/provider-utils@4.0.0-beta.42
-  - @ai-tools/gateway@2.0.0-beta.71
+  - @ai-toolkit/provider-utils@4.0.0-beta.42
+  - @ai-toolkit/gateway@2.0.0-beta.71
 
 ## 6.0.0-beta.130
 
@@ -1653,9 +1653,9 @@
 
 - 1bd7d32: feat: tool-specific strict mode
 - Updated dependencies [1bd7d32]
-  - @ai-tools/provider-utils@4.0.0-beta.41
-  - @ai-tools/provider@3.0.0-beta.23
-  - @ai-tools/gateway@2.0.0-beta.70
+  - @ai-toolkit/provider-utils@4.0.0-beta.41
+  - @ai-toolkit/provider@3.0.0-beta.23
+  - @ai-toolkit/gateway@2.0.0-beta.70
 
 ## 6.0.0-beta.129
 
@@ -1668,7 +1668,7 @@
 ### Patch Changes
 
 - Updated dependencies [b1624f0]
-  - @ai-tools/gateway@2.0.0-beta.69
+  - @ai-toolkit/gateway@2.0.0-beta.69
 
 ## 6.0.0-beta.127
 
@@ -1694,9 +1694,9 @@
 
 - 544d4e8: chore(specification): rename v3 provider defined tool to provider tool
 - Updated dependencies [544d4e8]
-  - @ai-tools/provider-utils@4.0.0-beta.40
-  - @ai-tools/provider@3.0.0-beta.22
-  - @ai-tools/gateway@2.0.0-beta.68
+  - @ai-toolkit/provider-utils@4.0.0-beta.40
+  - @ai-toolkit/provider@3.0.0-beta.22
+  - @ai-toolkit/gateway@2.0.0-beta.68
 
 ## 6.0.0-beta.123
 
@@ -1704,9 +1704,9 @@
 
 - 954c356: feat(openai): allow custom names for provider-defined tools
 - Updated dependencies [954c356]
-  - @ai-tools/provider-utils@4.0.0-beta.39
-  - @ai-tools/provider@3.0.0-beta.21
-  - @ai-tools/gateway@2.0.0-beta.67
+  - @ai-toolkit/provider-utils@4.0.0-beta.39
+  - @ai-toolkit/provider@3.0.0-beta.21
+  - @ai-toolkit/gateway@2.0.0-beta.67
 
 ## 6.0.0-beta.122
 
@@ -1714,15 +1714,15 @@
 
 - 03849b0: move DelayedPromise into provider utils
 - Updated dependencies [03849b0]
-  - @ai-tools/provider-utils@4.0.0-beta.38
-  - @ai-tools/gateway@2.0.0-beta.66
+  - @ai-toolkit/provider-utils@4.0.0-beta.38
+  - @ai-toolkit/gateway@2.0.0-beta.66
 
 ## 6.0.0-beta.121
 
 ### Patch Changes
 
 - Updated dependencies [cdd0bc2]
-  - @ai-tools/gateway@2.0.0-beta.65
+  - @ai-toolkit/gateway@2.0.0-beta.65
 
 ## 6.0.0-beta.120
 
@@ -1730,9 +1730,9 @@
 
 - 457318b: chore(provider,ai): switch to SharedV3Warning and unified warnings
 - Updated dependencies [457318b]
-  - @ai-tools/provider@3.0.0-beta.20
-  - @ai-tools/gateway@2.0.0-beta.64
-  - @ai-tools/provider-utils@4.0.0-beta.37
+  - @ai-toolkit/provider@3.0.0-beta.20
+  - @ai-toolkit/gateway@2.0.0-beta.64
+  - @ai-toolkit/provider-utils@4.0.0-beta.37
 
 ## 6.0.0-beta.119
 
@@ -1759,18 +1759,18 @@
   ```
 
 - Updated dependencies [8d9e8ad]
-  - @ai-tools/provider@3.0.0-beta.19
-  - @ai-tools/gateway@2.0.0-beta.63
-  - @ai-tools/provider-utils@4.0.0-beta.36
+  - @ai-toolkit/provider@3.0.0-beta.19
+  - @ai-toolkit/gateway@2.0.0-beta.63
+  - @ai-toolkit/provider-utils@4.0.0-beta.36
 
 ## 6.0.0-beta.117
 
 ### Patch Changes
 
 - Updated dependencies [10d819b]
-  - @ai-tools/provider@3.0.0-beta.18
-  - @ai-tools/gateway@2.0.0-beta.62
-  - @ai-tools/provider-utils@4.0.0-beta.35
+  - @ai-toolkit/provider@3.0.0-beta.18
+  - @ai-toolkit/gateway@2.0.0-beta.62
+  - @ai-toolkit/provider-utils@4.0.0-beta.35
 
 ## 6.0.0-beta.116
 
@@ -1807,7 +1807,7 @@
 ### Patch Changes
 
 - Updated dependencies [e8694af]
-  - @ai-tools/gateway@2.0.0-beta.61
+  - @ai-toolkit/gateway@2.0.0-beta.61
 
 ## 6.0.0-beta.110
 
@@ -1815,9 +1815,9 @@
 
 - db913bd: fix(google): add thought signature to gemini 3 pro image parts
 - Updated dependencies [db913bd]
-  - @ai-tools/provider@3.0.0-beta.17
-  - @ai-tools/gateway@2.0.0-beta.60
-  - @ai-tools/provider-utils@4.0.0-beta.34
+  - @ai-toolkit/provider@3.0.0-beta.17
+  - @ai-toolkit/gateway@2.0.0-beta.60
+  - @ai-toolkit/provider-utils@4.0.0-beta.34
 
 ## 6.0.0-beta.109
 
@@ -1830,7 +1830,7 @@
 ### Patch Changes
 
 - Updated dependencies [5dd4c6a]
-  - @ai-tools/gateway@2.0.0-beta.59
+  - @ai-toolkit/gateway@2.0.0-beta.59
 
 ## 6.0.0-beta.107
 
@@ -1843,14 +1843,14 @@
 ### Patch Changes
 
 - Updated dependencies [1425df5]
-  - @ai-tools/gateway@2.0.0-beta.58
+  - @ai-toolkit/gateway@2.0.0-beta.58
 
 ## 6.0.0-beta.105
 
 ### Patch Changes
 
 - Updated dependencies [bca7e61]
-  - @ai-tools/gateway@2.0.0-beta.57
+  - @ai-toolkit/gateway@2.0.0-beta.57
 
 ## 6.0.0-beta.104
 
@@ -1858,28 +1858,28 @@
 
 - 2d166e4: feat(provider/gateway): add support for image models
 - Updated dependencies [2d166e4]
-  - @ai-tools/gateway@2.0.0-beta.56
+  - @ai-toolkit/gateway@2.0.0-beta.56
 
 ## 6.0.0-beta.103
 
 ### Patch Changes
 
 - Updated dependencies [cc5170d]
-  - @ai-tools/gateway@2.0.0-beta.55
+  - @ai-toolkit/gateway@2.0.0-beta.55
 
 ## 6.0.0-beta.102
 
 ### Patch Changes
 
 - Updated dependencies [5f66123]
-  - @ai-tools/gateway@2.0.0-beta.54
+  - @ai-toolkit/gateway@2.0.0-beta.54
 
 ## 6.0.0-beta.101
 
 ### Patch Changes
 
 - Updated dependencies [3782645]
-  - @ai-tools/gateway@2.0.0-beta.53
+  - @ai-toolkit/gateway@2.0.0-beta.53
 
 ## 6.0.0-beta.100
 
@@ -1899,17 +1899,17 @@
 
 - b681d7d: feat: expose usage tokens for 'generateImage' function
 - Updated dependencies [b681d7d]
-  - @ai-tools/provider@3.0.0-beta.16
-  - @ai-tools/gateway@2.0.0-beta.52
-  - @ai-tools/provider-utils@4.0.0-beta.33
+  - @ai-toolkit/provider@3.0.0-beta.16
+  - @ai-toolkit/gateway@2.0.0-beta.52
+  - @ai-toolkit/provider-utils@4.0.0-beta.33
 
 ## 6.0.0-beta.97
 
 ### Patch Changes
 
 - Updated dependencies [32d8dbb]
-  - @ai-tools/provider-utils@4.0.0-beta.32
-  - @ai-tools/gateway@2.0.0-beta.51
+  - @ai-toolkit/provider-utils@4.0.0-beta.32
+  - @ai-toolkit/gateway@2.0.0-beta.51
 
 ## 6.0.0-beta.96
 
@@ -1934,9 +1934,9 @@
 ### Patch Changes
 
 - Updated dependencies [bb36798]
-  - @ai-tools/provider@3.0.0-beta.15
-  - @ai-tools/gateway@2.0.0-beta.50
-  - @ai-tools/provider-utils@4.0.0-beta.31
+  - @ai-toolkit/provider@3.0.0-beta.15
+  - @ai-toolkit/gateway@2.0.0-beta.50
+  - @ai-toolkit/provider-utils@4.0.0-beta.31
 
 ## 6.0.0-beta.92
 
@@ -1949,17 +1949,17 @@
 ### Patch Changes
 
 - Updated dependencies [4f16c37]
-  - @ai-tools/provider-utils@4.0.0-beta.30
-  - @ai-tools/gateway@2.0.0-beta.49
+  - @ai-toolkit/provider-utils@4.0.0-beta.30
+  - @ai-toolkit/gateway@2.0.0-beta.49
 
 ## 6.0.0-beta.90
 
 ### Patch Changes
 
 - Updated dependencies [af3780b]
-  - @ai-tools/provider@3.0.0-beta.14
-  - @ai-tools/gateway@2.0.0-beta.48
-  - @ai-tools/provider-utils@4.0.0-beta.29
+  - @ai-toolkit/provider@3.0.0-beta.14
+  - @ai-toolkit/gateway@2.0.0-beta.48
+  - @ai-toolkit/provider-utils@4.0.0-beta.29
 
 ## 6.0.0-beta.89
 
@@ -1990,15 +1990,15 @@
 ### Patch Changes
 
 - Updated dependencies [96322b7]
-  - @ai-tools/gateway@2.0.0-beta.47
+  - @ai-toolkit/gateway@2.0.0-beta.47
 
 ## 6.0.0-beta.84
 
 ### Patch Changes
 
 - Updated dependencies [016b111]
-  - @ai-tools/provider-utils@4.0.0-beta.28
-  - @ai-tools/gateway@2.0.0-beta.46
+  - @ai-toolkit/provider-utils@4.0.0-beta.28
+  - @ai-toolkit/gateway@2.0.0-beta.46
 
 ## 6.0.0-beta.83
 
@@ -2012,16 +2012,16 @@
 
 - 37c58a0: This release introduces `wrapEmbeddingModel`, a new helper that brings embedding model customization capabilities similar to `wrapLanguageModel`.
 - Updated dependencies [37c58a0]
-  - @ai-tools/provider@3.0.0-beta.13
-  - @ai-tools/gateway@2.0.0-beta.45
-  - @ai-tools/provider-utils@4.0.0-beta.27
+  - @ai-toolkit/provider@3.0.0-beta.13
+  - @ai-toolkit/gateway@2.0.0-beta.45
+  - @ai-toolkit/provider-utils@4.0.0-beta.27
 
 ## 6.0.0-beta.81
 
 ### Patch Changes
 
 - Updated dependencies [7d73922]
-  - @ai-tools/gateway@2.0.0-beta.44
+  - @ai-toolkit/gateway@2.0.0-beta.44
 
 ## 6.0.0-beta.80
 
@@ -2035,18 +2035,18 @@
 
 - d1bdadb: Added experimental_rerank support
 - Updated dependencies [d1bdadb]
-  - @ai-tools/provider@3.0.0-beta.12
-  - @ai-tools/gateway@2.0.0-beta.43
-  - @ai-tools/provider-utils@4.0.0-beta.26
+  - @ai-toolkit/provider@3.0.0-beta.12
+  - @ai-toolkit/gateway@2.0.0-beta.43
+  - @ai-toolkit/provider-utils@4.0.0-beta.26
 
 ## 6.0.0-beta.78
 
 ### Patch Changes
 
 - Updated dependencies [4c44a5b]
-  - @ai-tools/provider@3.0.0-beta.11
-  - @ai-tools/gateway@2.0.0-beta.42
-  - @ai-tools/provider-utils@4.0.0-beta.25
+  - @ai-toolkit/provider@3.0.0-beta.11
+  - @ai-toolkit/gateway@2.0.0-beta.42
+  - @ai-toolkit/provider-utils@4.0.0-beta.25
 
 ## 6.0.0-beta.77
 
@@ -2054,9 +2054,9 @@
 
 - 0c3b58b: fix(provider): add specificationVersion to ProviderV3
 - Updated dependencies [0c3b58b]
-  - @ai-tools/provider@3.0.0-beta.10
-  - @ai-tools/gateway@2.0.0-beta.41
-  - @ai-tools/provider-utils@4.0.0-beta.24
+  - @ai-toolkit/provider@3.0.0-beta.10
+  - @ai-toolkit/gateway@2.0.0-beta.41
+  - @ai-toolkit/provider-utils@4.0.0-beta.24
 
 ## 6.0.0-beta.76
 
@@ -2064,9 +2064,9 @@
 
 - a755db5: feat(ai): improve warnings with provider and model id
 - Updated dependencies [a755db5]
-  - @ai-tools/provider@3.0.0-beta.9
-  - @ai-tools/gateway@2.0.0-beta.40
-  - @ai-tools/provider-utils@4.0.0-beta.23
+  - @ai-toolkit/provider@3.0.0-beta.9
+  - @ai-toolkit/gateway@2.0.0-beta.40
+  - @ai-toolkit/provider-utils@4.0.0-beta.23
 
 ## 6.0.0-beta.75
 
@@ -2075,8 +2075,8 @@
 - 58920e0: fix(ai): do not drop custom headers in HttpChatTransport
 - 58920e0: refactor: consolidate header normalization across packages, remove duplicates, preserve custom headers
 - Updated dependencies [58920e0]
-  - @ai-tools/provider-utils@4.0.0-beta.22
-  - @ai-tools/gateway@2.0.0-beta.39
+  - @ai-toolkit/provider-utils@4.0.0-beta.22
+  - @ai-toolkit/gateway@2.0.0-beta.39
 
 ## 6.0.0-beta.74
 
@@ -2084,8 +2084,8 @@
 
 - 293a6b7: Added a title to the tools
 - Updated dependencies [293a6b7]
-  - @ai-tools/provider-utils@4.0.0-beta.21
-  - @ai-tools/gateway@2.0.0-beta.38
+  - @ai-toolkit/provider-utils@4.0.0-beta.21
+  - @ai-toolkit/gateway@2.0.0-beta.38
 
 ## 6.0.0-beta.73
 
@@ -2109,8 +2109,8 @@
   with
 
   ```ts
-  import { experimental_createMCPClient } from "@ai-tools/mcp";
-  import { Experimental_StdioMCPTransport } from "@ai-tools/mcp/mcp-stdio";
+  import { experimental_createMCPClient } from "@ai-toolkit/mcp";
+  import { Experimental_StdioMCPTransport } from "@ai-toolkit/mcp/mcp-stdio";
   ```
 
 ## 6.0.0-beta.71
@@ -2144,7 +2144,7 @@
 ### Patch Changes
 
 - Updated dependencies [2b6a848]
-  - @ai-tools/gateway@2.0.0-beta.37
+  - @ai-toolkit/gateway@2.0.0-beta.37
 
 ## 6.0.0-beta.66
 
@@ -2152,8 +2152,8 @@
 
 - fca786b: feat(agent): configurable call options
 - Updated dependencies [fca786b]
-  - @ai-tools/provider-utils@4.0.0-beta.20
-  - @ai-tools/gateway@2.0.0-beta.36
+  - @ai-toolkit/provider-utils@4.0.0-beta.20
+  - @ai-toolkit/gateway@2.0.0-beta.36
 
 ## 6.0.0-beta.65
 
@@ -2215,9 +2215,9 @@
 
 - 3794514: feat: flexible tool output content support
 - Updated dependencies [3794514]
-  - @ai-tools/provider-utils@4.0.0-beta.19
-  - @ai-tools/provider@3.0.0-beta.8
-  - @ai-tools/gateway@2.0.0-beta.35
+  - @ai-toolkit/provider-utils@4.0.0-beta.19
+  - @ai-toolkit/provider@3.0.0-beta.8
+  - @ai-toolkit/gateway@2.0.0-beta.35
 
 ## 6.0.0-beta.55
 
@@ -2236,14 +2236,14 @@
 ### Patch Changes
 
 - Updated dependencies [2f8b0c8]
-  - @ai-tools/gateway@2.0.0-beta.34
+  - @ai-toolkit/gateway@2.0.0-beta.34
 
 ## 6.0.0-beta.52
 
 ### Patch Changes
 
 - Updated dependencies [1890317]
-  - @ai-tools/gateway@2.0.0-beta.33
+  - @ai-toolkit/gateway@2.0.0-beta.33
 
 ## 6.0.0-beta.51
 
@@ -2258,9 +2258,9 @@
 - 4812235: fix(ai): add missing export for `LoadSettingError`
 - 81d4308: feat: provider-executed dynamic tools
 - Updated dependencies [81d4308]
-  - @ai-tools/provider@3.0.0-beta.7
-  - @ai-tools/gateway@2.0.0-beta.32
-  - @ai-tools/provider-utils@4.0.0-beta.18
+  - @ai-toolkit/provider@3.0.0-beta.7
+  - @ai-toolkit/gateway@2.0.0-beta.32
+  - @ai-toolkit/provider-utils@4.0.0-beta.18
 
 ## 6.0.0-beta.49
 
@@ -2268,8 +2268,8 @@
 
 - 703459a: feat: tool execution approval for dynamic tools
 - Updated dependencies [703459a]
-  - @ai-tools/provider-utils@4.0.0-beta.17
-  - @ai-tools/gateway@2.0.0-beta.31
+  - @ai-toolkit/provider-utils@4.0.0-beta.17
+  - @ai-toolkit/gateway@2.0.0-beta.31
 
 ## 6.0.0-beta.48
 
@@ -2288,7 +2288,7 @@
 ### Patch Changes
 
 - Updated dependencies [0a2ff8a]
-  - @ai-tools/gateway@2.0.0-beta.30
+  - @ai-toolkit/gateway@2.0.0-beta.30
 
 ## 6.0.0-beta.45
 
@@ -2313,24 +2313,24 @@
 ### Patch Changes
 
 - Updated dependencies [6306603]
-  - @ai-tools/provider-utils@4.0.0-beta.16
-  - @ai-tools/gateway@2.0.0-beta.29
+  - @ai-toolkit/provider-utils@4.0.0-beta.16
+  - @ai-toolkit/gateway@2.0.0-beta.29
 
 ## 6.0.0-beta.41
 
 ### Patch Changes
 
 - Updated dependencies [f0b2157]
-  - @ai-tools/gateway@2.0.0-beta.28
-  - @ai-tools/provider-utils@4.0.0-beta.15
+  - @ai-toolkit/gateway@2.0.0-beta.28
+  - @ai-toolkit/provider-utils@4.0.0-beta.15
 
 ## 6.0.0-beta.40
 
 ### Patch Changes
 
 - Updated dependencies [3b1d015]
-  - @ai-tools/provider-utils@4.0.0-beta.14
-  - @ai-tools/gateway@2.0.0-beta.27
+  - @ai-toolkit/provider-utils@4.0.0-beta.14
+  - @ai-toolkit/gateway@2.0.0-beta.27
 
 ## 6.0.0-beta.39
 
@@ -2343,30 +2343,30 @@
 ### Patch Changes
 
 - Updated dependencies [d116b4b]
-  - @ai-tools/provider-utils@4.0.0-beta.13
-  - @ai-tools/gateway@2.0.0-beta.26
+  - @ai-toolkit/provider-utils@4.0.0-beta.13
+  - @ai-toolkit/gateway@2.0.0-beta.26
 
 ## 6.0.0-beta.37
 
 ### Patch Changes
 
 - Updated dependencies [7e32fea]
-  - @ai-tools/provider-utils@4.0.0-beta.12
-  - @ai-tools/gateway@2.0.0-beta.25
+  - @ai-toolkit/provider-utils@4.0.0-beta.12
+  - @ai-toolkit/gateway@2.0.0-beta.25
 
 ## 6.0.0-beta.36
 
 ### Patch Changes
 
 - Updated dependencies [0e29b8b]
-  - @ai-tools/gateway@2.0.0-beta.24
+  - @ai-toolkit/gateway@2.0.0-beta.24
 
 ## 6.0.0-beta.35
 
 ### Patch Changes
 
 - Updated dependencies [acc14d8]
-  - @ai-tools/gateway@2.0.0-beta.23
+  - @ai-toolkit/gateway@2.0.0-beta.23
 
 ## 6.0.0-beta.34
 
@@ -2393,15 +2393,15 @@
 - 95f65c2: chore: use import \* from zod/v4
 - 95f65c2: chore: load zod schemas lazily
 - Updated dependencies
-  - @ai-tools/provider-utils@4.0.0-beta.11
-  - @ai-tools/gateway@2.0.0-beta.22
+  - @ai-toolkit/provider-utils@4.0.0-beta.11
+  - @ai-toolkit/gateway@2.0.0-beta.22
 
 ## 6.0.0-beta.30
 
 ### Patch Changes
 
 - Updated dependencies [7b1b1b1]
-  - @ai-tools/gateway@2.0.0-beta.21
+  - @ai-toolkit/gateway@2.0.0-beta.21
 
 ## 6.0.0-beta.29
 
@@ -2412,9 +2412,9 @@
 ### Patch Changes
 
 - Updated dependencies [dee8b05]
-  - @ai-tools/gateway@2.0.0-beta.20
-  - @ai-tools/provider@3.0.0-beta.6
-  - @ai-tools/provider-utils@4.0.0-beta.10
+  - @ai-toolkit/gateway@2.0.0-beta.20
+  - @ai-toolkit/provider@3.0.0-beta.6
+  - @ai-toolkit/provider-utils@4.0.0-beta.10
 
 ## 5.1.0-beta.28
 
@@ -2422,16 +2422,16 @@
 
 - 521c537: feat(ai): Tool.needsApproval can be a function
 - Updated dependencies [521c537]
-  - @ai-tools/provider-utils@3.1.0-beta.9
-  - @ai-tools/gateway@1.1.0-beta.19
+  - @ai-toolkit/provider-utils@3.1.0-beta.9
+  - @ai-toolkit/gateway@1.1.0-beta.19
 
 ## 5.1.0-beta.27
 
 ### Patch Changes
 
 - Updated dependencies [e06565c]
-  - @ai-tools/provider-utils@3.1.0-beta.8
-  - @ai-tools/gateway@1.1.0-beta.18
+  - @ai-toolkit/provider-utils@3.1.0-beta.8
+  - @ai-toolkit/gateway@1.1.0-beta.18
 
 ## 5.1.0-beta.26
 
@@ -2456,7 +2456,7 @@
 ### Patch Changes
 
 - Updated dependencies [1d8ea2c]
-  - @ai-tools/gateway@1.1.0-beta.17
+  - @ai-toolkit/gateway@1.1.0-beta.17
 
 ## 5.1.0-beta.22
 
@@ -2467,16 +2467,16 @@
 - a5e152d: fix(ai): back version support for V2 providers
 - 21e20c0: feat(provider): transcription model v3 spec
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.5
-  - @ai-tools/provider-utils@3.1.0-beta.7
-  - @ai-tools/gateway@1.1.0-beta.16
+  - @ai-toolkit/provider@2.1.0-beta.5
+  - @ai-toolkit/provider-utils@3.1.0-beta.7
+  - @ai-toolkit/gateway@1.1.0-beta.16
 
 ## 5.1.0-beta.21
 
 ### Patch Changes
 
 - Updated dependencies [ef62178]
-  - @ai-tools/gateway@1.1.0-beta.15
+  - @ai-toolkit/gateway@1.1.0-beta.15
 
 ## 5.1.0-beta.20
 
@@ -2484,7 +2484,7 @@
 
 - 846e80e: fix(ai): bind functions for v2 -> v3 adapter
 - Updated dependencies [a90dca6]
-  - @ai-tools/gateway@1.1.0-beta.14
+  - @ai-toolkit/gateway@1.1.0-beta.14
 
 ## 5.1.0-beta.19
 
@@ -2501,16 +2501,16 @@
 - 0adc679: feat(provider): shared spec v3
 - 9b8d17e: fix(agent): move provider options to main agent config
 - Updated dependencies
-  - @ai-tools/provider-utils@3.1.0-beta.6
-  - @ai-tools/provider@2.1.0-beta.4
-  - @ai-tools/gateway@1.1.0-beta.13
+  - @ai-toolkit/provider-utils@3.1.0-beta.6
+  - @ai-toolkit/provider@2.1.0-beta.4
+  - @ai-toolkit/gateway@1.1.0-beta.13
 
 ## 5.1.0-beta.17
 
 ### Patch Changes
 
 - Updated dependencies [e6bfe91]
-  - @ai-tools/gateway@1.1.0-beta.12
+  - @ai-toolkit/gateway@1.1.0-beta.12
 
 ## 5.1.0-beta.16
 
@@ -2518,14 +2518,14 @@
 
 - 14ca35d: feat: add support for v2 specs
 - Updated dependencies [636e614]
-  - @ai-tools/gateway@1.1.0-beta.11
+  - @ai-toolkit/gateway@1.1.0-beta.11
 
 ## 5.1.0-beta.15
 
 ### Patch Changes
 
 - Updated dependencies [9f6149e]
-  - @ai-tools/gateway@1.1.0-beta.10
+  - @ai-toolkit/gateway@1.1.0-beta.10
 
 ## 5.1.0-beta.14
 
@@ -2534,11 +2534,11 @@
 - 7c3c216: fixed docs and exported NoSpeechGeneratedError
 - 8dac895: feat: `LanguageModelV3`
 - e0d1ea9: fix(ai): align logic of text-end with reasoning-end
-- 10c1322: fix: moved dependency `@ai-tools/test-server` to devDependencies
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
 - Updated dependencies [8dac895]
-  - @ai-tools/provider-utils@3.1.0-beta.5
-  - @ai-tools/provider@2.1.0-beta.3
-  - @ai-tools/gateway@1.1.0-beta.9
+  - @ai-toolkit/provider-utils@3.1.0-beta.5
+  - @ai-toolkit/provider@2.1.0-beta.3
+  - @ai-toolkit/gateway@1.1.0-beta.9
 
 ## 5.1.0-beta.13
 
@@ -2551,7 +2551,7 @@
 ### Patch Changes
 
 - Updated dependencies [c823faf]
-  - @ai-tools/gateway@1.1.0-beta.8
+  - @ai-toolkit/gateway@1.1.0-beta.8
 
 ## 5.1.0-beta.11
 
@@ -2559,8 +2559,8 @@
 
 - 4616b86: chore: update zod peer depenedency version
 - Updated dependencies [4616b86]
-  - @ai-tools/provider-utils@3.1.0-beta.4
-  - @ai-tools/gateway@1.1.0-beta.7
+  - @ai-toolkit/provider-utils@3.1.0-beta.4
+  - @ai-toolkit/gateway@1.1.0-beta.7
 
 ## 5.1.0-beta.10
 
@@ -2576,9 +2576,9 @@
 - 177b475: fix(ai): download files when intermediate file cannot be downloaded
 - 522f6b8: feat: `ImageModelV3`
 - Updated dependencies
-  - @ai-tools/gateway@1.1.0-beta.6
-  - @ai-tools/provider@2.1.0-beta.2
-  - @ai-tools/provider-utils@3.1.0-beta.3
+  - @ai-toolkit/gateway@1.1.0-beta.6
+  - @ai-toolkit/provider@2.1.0-beta.2
+  - @ai-toolkit/provider-utils@3.1.0-beta.3
 
 ## 5.1.0-beta.8
 
@@ -2598,39 +2598,39 @@
 
 - 0c4822d: feat: `EmbeddingModelV3`
 - Updated dependencies
-  - @ai-tools/gateway@1.1.0-beta.5
-  - @ai-tools/provider@2.1.0-beta.1
-  - @ai-tools/provider-utils@3.1.0-beta.2
+  - @ai-toolkit/gateway@1.1.0-beta.5
+  - @ai-toolkit/provider@2.1.0-beta.1
+  - @ai-toolkit/provider-utils@3.1.0-beta.2
 
 ## 5.1.0-beta.5
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.1.0-beta.4
+  - @ai-toolkit/gateway@1.1.0-beta.4
 
 ## 5.1.0-beta.4
 
 ### Patch Changes
 
 - Updated dependencies [ea9ca31]
-  - @ai-tools/gateway@1.1.0-beta.3
+  - @ai-toolkit/gateway@1.1.0-beta.3
 
 ## 5.1.0-beta.3
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.1.0-beta.2
+  - @ai-toolkit/gateway@1.1.0-beta.2
 
 ## 5.1.0-beta.2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/test-server@1.0.0-beta.0
-  - @ai-tools/provider-utils@3.1.0-beta.1
-  - @ai-tools/gateway@1.1.0-beta.1
+  - @ai-toolkit/test-server@1.0.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.1
+  - @ai-toolkit/gateway@1.1.0-beta.1
 
 ## 5.1.0-beta.1
 
@@ -2647,9 +2647,9 @@
 ### Patch Changes
 
 - Updated dependencies [78928cb]
-  - @ai-tools/gateway@1.1.0-beta.0
-  - @ai-tools/provider@2.1.0-beta.0
-  - @ai-tools/provider-utils@3.1.0-beta.0
+  - @ai-toolkit/gateway@1.1.0-beta.0
+  - @ai-toolkit/provider@2.1.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.0
 
 ## 5.0.45
 
@@ -2664,16 +2664,16 @@
 ### Patch Changes
 
 - Updated dependencies [f49f924]
-  - @ai-tools/gateway@1.0.23
+  - @ai-toolkit/gateway@1.0.23
 
 ## 5.0.43
 
 ### Patch Changes
 
-- 0294b58: feat(ai): set `ai`, `@ai-tools/provider-utils`, and runtime in `user-agent` header
+- 0294b58: feat(ai): set `ai`, `@ai-toolkit/provider-utils`, and runtime in `user-agent` header
 - Updated dependencies [0294b58]
-  - @ai-tools/provider-utils@3.0.9
-  - @ai-tools/gateway@1.0.22
+  - @ai-toolkit/provider-utils@3.0.9
+  - @ai-toolkit/gateway@1.0.22
 
 ## 5.0.42
 
@@ -2692,7 +2692,7 @@
 ### Patch Changes
 
 - Updated dependencies [4ee3719]
-  - @ai-tools/gateway@1.0.21
+  - @ai-toolkit/gateway@1.0.21
 
 ## 5.0.39
 
@@ -2705,7 +2705,7 @@
 ### Patch Changes
 
 - Updated dependencies [350a328]
-  - @ai-tools/gateway@1.0.20
+  - @ai-toolkit/gateway@1.0.20
 
 ## 5.0.37
 
@@ -2730,29 +2730,29 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.19
+  - @ai-toolkit/gateway@1.0.19
 
 ## 5.0.33
 
 ### Patch Changes
 
 - Updated dependencies [5d59a8c]
-  - @ai-tools/gateway@1.0.18
+  - @ai-toolkit/gateway@1.0.18
 
 ## 5.0.32
 
 ### Patch Changes
 
 - Updated dependencies [b6005cd]
-  - @ai-tools/gateway@1.0.17
+  - @ai-toolkit/gateway@1.0.17
 
 ## 5.0.31
 
 ### Patch Changes
 
 - Updated dependencies [99964ed]
-  - @ai-tools/provider-utils@3.0.8
-  - @ai-tools/gateway@1.0.16
+  - @ai-toolkit/provider-utils@3.0.8
+  - @ai-toolkit/gateway@1.0.16
 
 ## 5.0.30
 
@@ -2785,7 +2785,7 @@
 
 - 33cf848: feat(ai): pass messages to `useChat({ onFinish })`
 - Updated dependencies
-  - @ai-tools/gateway@1.0.15
+  - @ai-toolkit/gateway@1.0.15
 
 ## 5.0.25
 
@@ -2793,8 +2793,8 @@
 
 - ca65923: fix(ai): remove use of `expect()` from production code
 - Updated dependencies [886e7cd]
-  - @ai-tools/provider-utils@3.0.7
-  - @ai-tools/gateway@1.0.14
+  - @ai-toolkit/provider-utils@3.0.7
+  - @ai-toolkit/gateway@1.0.14
 
 ## 5.0.24
 
@@ -2805,8 +2805,8 @@
   Previously, onFinish was only called on normal stream completion. Now it's also called when the reader is cancelled (e.g., browser close, navigation), ensuring partial messages are persisted.
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.6
-  - @ai-tools/gateway@1.0.13
+  - @ai-toolkit/provider-utils@3.0.6
+  - @ai-toolkit/gateway@1.0.13
 
 ## 5.0.23
 
@@ -2815,14 +2815,14 @@
 - 5099b3d: fix(ai): make `chat.addToolResult()` compatible with dynamic tool calls
 - 7a2bf8d: fix(ai): support loop breaking behavior in async iterable stream
 - Updated dependencies
-  - @ai-tools/gateway@1.0.12
+  - @ai-toolkit/gateway@1.0.12
 
 ## 5.0.22
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.11
+  - @ai-toolkit/gateway@1.0.11
 
 ## 5.0.21
 
@@ -2831,8 +2831,8 @@
 - 581abea: fix(ai): call abort callback when stream is aborted during tool execution
 - 3c178ec: feat(ai): improved type checking for prompt/messages input
 - Updated dependencies [0857788]
-  - @ai-tools/provider-utils@3.0.5
-  - @ai-tools/gateway@1.0.10
+  - @ai-toolkit/provider-utils@3.0.5
+  - @ai-toolkit/gateway@1.0.10
 
 ## 5.0.20
 
@@ -2851,7 +2851,7 @@
 ### Patch Changes
 
 - Updated dependencies [8b96f99]
-  - @ai-tools/gateway@1.0.9
+  - @ai-toolkit/gateway@1.0.9
 
 ## 5.0.17
 
@@ -2865,8 +2865,8 @@
 ### Patch Changes
 
 - Updated dependencies [68751f9]
-  - @ai-tools/provider-utils@3.0.4
-  - @ai-tools/gateway@1.0.8
+  - @ai-toolkit/provider-utils@3.0.4
+  - @ai-toolkit/gateway@1.0.8
 
 ## 5.0.15
 
@@ -2874,7 +2874,7 @@
 
 - ca4f68f: feat(ai): add validateUIMessages function
 - Updated dependencies [28a4006]
-  - @ai-tools/gateway@1.0.7
+  - @ai-toolkit/gateway@1.0.7
 
 ## 5.0.14
 
@@ -2898,8 +2898,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.6
-  - @ai-tools/provider-utils@3.0.3
+  - @ai-toolkit/gateway@1.0.6
+  - @ai-toolkit/provider-utils@3.0.3
 
 ## 5.0.11
 
@@ -2908,8 +2908,8 @@
 - 38ac190: feat(ai): preliminary tool results
 - e3a63cb: fix(ai): streamText promises reject when stream has errors
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.2
-  - @ai-tools/gateway@1.0.5
+  - @ai-toolkit/provider-utils@3.0.2
+  - @ai-toolkit/gateway@1.0.5
 
 ## 5.0.10
 
@@ -2928,7 +2928,7 @@
 ### Patch Changes
 
 - Updated dependencies [35f93ce]
-  - @ai-tools/gateway@1.0.4
+  - @ai-toolkit/gateway@1.0.4
 
 ## 5.0.7
 
@@ -2947,14 +2947,14 @@
 ### Patch Changes
 
 - Updated dependencies [893aed6]
-  - @ai-tools/gateway@1.0.3
+  - @ai-toolkit/gateway@1.0.3
 
 ## 5.0.4
 
 ### Patch Changes
 
 - Updated dependencies [444df49]
-  - @ai-tools/gateway@1.0.2
+  - @ai-toolkit/gateway@1.0.2
 
 ## 5.0.3
 
@@ -2962,8 +2962,8 @@
 
 - 90d212f: feat (ai): add experimental tool call context
 - Updated dependencies
-  - @ai-tools/gateway@1.0.1
-  - @ai-tools/provider-utils@3.0.1
+  - @ai-toolkit/gateway@1.0.1
+  - @ai-toolkit/provider-utils@3.0.1
 
 ## 5.0.2
 
@@ -2982,7 +2982,7 @@
 
 ### Major Changes
 
-- e1cbf8a: chore(@ai-tools/rsc): extract to separate package
+- e1cbf8a: chore(@ai-toolkit/rsc): extract to separate package
 - a847c3e: chore: rename reasoning to reasoningText etc
 - 13fef90: chore (ai): remove automatic conversion of UI messages to model messages
 - d964901: - remove setting temperature to `0` by default
@@ -3116,7 +3116,7 @@
 - 48378b9: fix (ai): send null as tool output when tools return undefined
 - 5d1e3ba: chore (ai): remove provider re-exports
 - 93d53a1: chore (ai): remove cli
-- e90d45d: chore (rsc): move HANGING_STREAM_WARNING_TIME constant into @ai-tools/rsc package
+- e90d45d: chore (rsc): move HANGING_STREAM_WARNING_TIME constant into @ai-toolkit/rsc package
 - b32c141: feat (ai): add array support to stopWhen
 - bc3109f: chore (ai): push stream-callbacks into langchain/llamaindex adapters
 - 0d9583c: fix (ai): use user-provided media type when available
@@ -3135,8 +3135,8 @@
   - `generateObject()`
   - `streamObject()`
   - `generateText()`
-  - `experimental_useObject()` from `@ai-tools/react`
-  - `streamUI()` from `@ai-tools/rsc`
+  - `experimental_useObject()` from `@ai-toolkit/react`
+  - `streamUI()` from `@ai-toolkit/rsc`
 
 - b1e3abd: feat (ai): expose ui message stream headers
 - 4f3e637: fix (ui): avoid caching globalThis.fetch in case it is patched by other libraries
@@ -3306,9 +3306,9 @@
 - f2c7f19: feat (ui): add Chat.clearError()
 - 7bd025b: fix (ai): fix sync tool execute with streamText
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0
-  - @ai-tools/provider@2.0.0
-  - @ai-tools/gateway@1.0.0
+  - @ai-toolkit/provider-utils@3.0.0
+  - @ai-toolkit/provider@2.0.0
+  - @ai-toolkit/gateway@1.0.0
 
 ## 5.0.0-beta.34
 
@@ -3318,8 +3318,8 @@
 - 88a8ee5: fix (ai): support abort during retry waits
 - f2c7f19: feat (ui): add Chat.clearError()
 - Updated dependencies
-  - @ai-tools/gateway@1.0.0-beta.19
-  - @ai-tools/provider-utils@3.0.0-beta.10
+  - @ai-toolkit/gateway@1.0.0-beta.19
+  - @ai-toolkit/provider-utils@3.0.0-beta.10
 
 ## 5.0.0-beta.33
 
@@ -3329,9 +3329,9 @@
 - 93d53a1: chore (ai): remove cli
 - 27deb4d: feat (provider/gateway): Add providerMetadata to embeddings response
 - Updated dependencies [27deb4d]
-  - @ai-tools/gateway@1.0.0-beta.18
-  - @ai-tools/provider@2.0.0-beta.2
-  - @ai-tools/provider-utils@3.0.0-beta.9
+  - @ai-toolkit/gateway@1.0.0-beta.18
+  - @ai-toolkit/provider@2.0.0-beta.2
+  - @ai-toolkit/provider-utils@3.0.0-beta.9
 
 ## 5.0.0-beta.32
 
@@ -3351,15 +3351,15 @@
 - ee38081: Add support for audio/webm to detect-media-type
 - dd5fd43: feat (ai): support dynamic tools in Chat onToolCall
 - Updated dependencies [dd5fd43]
-  - @ai-tools/provider-utils@3.0.0-beta.8
-  - @ai-tools/gateway@1.0.0-beta.17
+  - @ai-toolkit/provider-utils@3.0.0-beta.8
+  - @ai-toolkit/gateway@1.0.0-beta.17
 
 ## 5.0.0-beta.30
 
 ### Patch Changes
 
 - Updated dependencies [fedb55e]
-  - @ai-tools/gateway@1.0.0-beta.16
+  - @ai-toolkit/gateway@1.0.0-beta.16
 
 ## 5.0.0-beta.29
 
@@ -3368,8 +3368,8 @@
 - e7fcc86: feat (ai): introduce dynamic tools
 - d92b9a8: fix(ai): add support for MCP protocol version 2025-06-18
 - Updated dependencies [e7fcc86]
-  - @ai-tools/provider-utils@3.0.0-beta.7
-  - @ai-tools/gateway@1.0.0-beta.15
+  - @ai-toolkit/provider-utils@3.0.0-beta.7
+  - @ai-toolkit/gateway@1.0.0-beta.15
 
 ## 5.0.0-beta.28
 
@@ -3378,8 +3378,8 @@
 - 84343eb: fix (ui): call sendAutomaticallyWhen with updated messages
 - a753b3a: feat (provider/anthropic): cache control for tools
 - Updated dependencies [ac34802]
-  - @ai-tools/provider-utils@3.0.0-beta.6
-  - @ai-tools/gateway@1.0.0-beta.14
+  - @ai-toolkit/provider-utils@3.0.0-beta.6
+  - @ai-toolkit/gateway@1.0.0-beta.14
 
 ## 5.0.0-beta.27
 
@@ -3387,7 +3387,7 @@
 
 - d5ae088: feat (ui): add sendAutomaticallyWhen to Chat
 - Updated dependencies
-  - @ai-tools/gateway@1.0.0-beta.13
+  - @ai-toolkit/gateway@1.0.0-beta.13
 
 ## 5.0.0-beta.26
 
@@ -3400,14 +3400,14 @@
 - 904fa5e: feat (ai/core): add terminateOnError option to readUIMessageStream
 - f81c720: chore(ai): bundle dependencies in CLI binary
 - Updated dependencies [70ebead]
-  - @ai-tools/gateway@1.0.0-beta.12
+  - @ai-toolkit/gateway@1.0.0-beta.12
 
 ## 5.0.0-beta.25
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.0-beta.11
+  - @ai-toolkit/gateway@1.0.0-beta.11
 
 ## 5.0.0-beta.24
 
@@ -3418,8 +3418,8 @@
 - e4c8647: feat (ui): allow asynchronous onFinish in createUIMessageStream
 - 383cbfa: feat (ai): add isAborted to onFinish callback for ui message streams
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-beta.5
-  - @ai-tools/gateway@1.0.0-beta.10
+  - @ai-toolkit/provider-utils@3.0.0-beta.5
+  - @ai-toolkit/gateway@1.0.0-beta.10
 
 ## 5.0.0-beta.23
 
@@ -3438,8 +3438,8 @@
 - 86293e5: fix (ai): use correct generateMessageId in streamText toUIMessageStream
 - 205077b: fix: improve Zod compatibility
 - Updated dependencies [205077b]
-  - @ai-tools/provider-utils@3.0.0-beta.4
-  - @ai-tools/gateway@1.0.0-beta.9
+  - @ai-toolkit/provider-utils@3.0.0-beta.4
+  - @ai-toolkit/gateway@1.0.0-beta.9
 
 ## 5.0.0-beta.21
 
@@ -3468,8 +3468,8 @@
 - 05d2819: feat: allow zod 4.x as peer dependency
 - db64cbe: fix (provider/openai): multi-step reasoning with tool calls
 - Updated dependencies [05d2819]
-  - @ai-tools/provider-utils@3.0.0-beta.3
-  - @ai-tools/gateway@1.0.0-beta.8
+  - @ai-toolkit/provider-utils@3.0.0-beta.3
+  - @ai-toolkit/gateway@1.0.0-beta.8
 
 ## 5.0.0-beta.18
 
@@ -3483,14 +3483,14 @@
 ### Patch Changes
 
 - Updated dependencies [c190907]
-  - @ai-tools/gateway@1.0.0-beta.7
+  - @ai-toolkit/gateway@1.0.0-beta.7
 
 ## 5.0.0-beta.16
 
 ### Patch Changes
 
 - Updated dependencies [9e16bfd]
-  - @ai-tools/gateway@1.0.0-beta.6
+  - @ai-toolkit/gateway@1.0.0-beta.6
 
 ## 5.0.0-beta.15
 
@@ -3503,7 +3503,7 @@
 ### Patch Changes
 
 - Updated dependencies [30ab1de]
-  - @ai-tools/gateway@1.0.0-beta.5
+  - @ai-toolkit/gateway@1.0.0-beta.5
 
 ## 5.0.0-beta.13
 
@@ -3554,7 +3554,7 @@
 - c8fce91: feat (ai): add experimental Agent abstraction
 - 9121250: Expose provider metadata as an attribute on exported OTEL spans
 - Updated dependencies [97fedf9]
-  - @ai-tools/gateway@1.0.0-beta.4
+  - @ai-toolkit/gateway@1.0.0-beta.4
 
 ## 5.0.0-beta.7
 
@@ -3588,7 +3588,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.0-beta.3
+  - @ai-toolkit/gateway@1.0.0-beta.3
 
 ## 5.0.0-beta.2
 
@@ -3599,8 +3599,8 @@
 - cb3b9c9: fix (ai): catch errors in ui message stream
 - d1a034f: feature: using Zod 4 for internal stuff
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-beta.2
-  - @ai-tools/gateway@1.0.0-beta.2
+  - @ai-toolkit/provider-utils@3.0.0-beta.2
+  - @ai-toolkit/gateway@1.0.0-beta.2
 
 ## 5.0.0-beta.1
 
@@ -3620,9 +3620,9 @@
 - e862b5b: feat (ai): allow sync tool.execute
 - 7bd025b: fix (ai): fix sync tool execute with streamText
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-beta.1
-  - @ai-tools/provider-utils@3.0.0-beta.1
-  - @ai-tools/gateway@1.0.0-beta.1
+  - @ai-toolkit/provider@2.0.0-beta.1
+  - @ai-toolkit/provider-utils@3.0.0-beta.1
+  - @ai-toolkit/gateway@1.0.0-beta.1
 
 ## 5.0.0-alpha.15
 
@@ -3640,9 +3640,9 @@
 - 142576e: feat (ui): support message replacement in chat via messageId param on sendMessage
 - 395c85e: feat (ai): add consumeSseStream option to UI message stream responses
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.15
-  - @ai-tools/provider-utils@3.0.0-alpha.15
-  - @ai-tools/gateway@1.0.0-alpha.15
+  - @ai-toolkit/provider@2.0.0-alpha.15
+  - @ai-toolkit/provider-utils@3.0.0-alpha.15
+  - @ai-toolkit/gateway@1.0.0-alpha.15
 
 ## 5.0.0-alpha.14
 
@@ -3653,9 +3653,9 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.14
-  - @ai-tools/gateway@1.0.0-alpha.14
-  - @ai-tools/provider-utils@3.0.0-alpha.14
+  - @ai-toolkit/provider@2.0.0-alpha.14
+  - @ai-toolkit/gateway@1.0.0-alpha.14
+  - @ai-toolkit/provider-utils@3.0.0-alpha.14
 
 ## 5.0.0-alpha.13
 
@@ -3670,9 +3670,9 @@
 ### Patch Changes
 
 - Updated dependencies [68ecf2f]
-  - @ai-tools/provider@2.0.0-alpha.13
-  - @ai-tools/gateway@1.0.0-alpha.13
-  - @ai-tools/provider-utils@3.0.0-alpha.13
+  - @ai-toolkit/provider@2.0.0-alpha.13
+  - @ai-toolkit/gateway@1.0.0-alpha.13
+  - @ai-toolkit/provider-utils@3.0.0-alpha.13
 
 ## 5.0.0-alpha.12
 
@@ -3684,9 +3684,9 @@
 
 - da1e6f0: feat (ui): add generics to ui message stream parts
 - Updated dependencies [e2aceaf]
-  - @ai-tools/gateway@1.0.0-alpha.12
-  - @ai-tools/provider@2.0.0-alpha.12
-  - @ai-tools/provider-utils@3.0.0-alpha.12
+  - @ai-toolkit/gateway@1.0.0-alpha.12
+  - @ai-toolkit/provider@2.0.0-alpha.12
+  - @ai-toolkit/provider-utils@3.0.0-alpha.12
 
 ## 5.0.0-alpha.11
 
@@ -3697,9 +3697,9 @@
 ### Patch Changes
 
 - Updated dependencies [c1e6647]
-  - @ai-tools/provider@2.0.0-alpha.11
-  - @ai-tools/gateway@1.0.0-alpha.11
-  - @ai-tools/provider-utils@3.0.0-alpha.11
+  - @ai-toolkit/provider@2.0.0-alpha.11
+  - @ai-toolkit/gateway@1.0.0-alpha.11
+  - @ai-toolkit/provider-utils@3.0.0-alpha.11
 
 ## 5.0.0-alpha.10
 
@@ -3711,9 +3711,9 @@
 ### Patch Changes
 
 - Updated dependencies [c4df419]
-  - @ai-tools/provider@2.0.0-alpha.10
-  - @ai-tools/gateway@1.0.0-alpha.10
-  - @ai-tools/provider-utils@3.0.0-alpha.10
+  - @ai-toolkit/provider@2.0.0-alpha.10
+  - @ai-toolkit/gateway@1.0.0-alpha.10
+  - @ai-toolkit/provider-utils@3.0.0-alpha.10
 
 ## 5.0.0-alpha.9
 
@@ -3730,9 +3730,9 @@
   pull request: https://github.com/khulnasoft/ai-toolkit/pull/6609
 
 - Updated dependencies
-  - @ai-tools/gateway@1.0.0-alpha.9
-  - @ai-tools/provider@2.0.0-alpha.9
-  - @ai-tools/provider-utils@3.0.0-alpha.9
+  - @ai-toolkit/gateway@1.0.0-alpha.9
+  - @ai-toolkit/provider@2.0.0-alpha.9
+  - @ai-toolkit/provider-utils@3.0.0-alpha.9
 
 ## 5.0.0-alpha.8
 
@@ -3749,15 +3749,15 @@
   - `generateObject()`
   - `streamObject()`
   - `generateText()`
-  - `experimental_useObject()` from `@ai-tools/react`
-  - `streamUI()` from `@ai-tools/rsc`
+  - `experimental_useObject()` from `@ai-toolkit/react`
+  - `streamUI()` from `@ai-toolkit/rsc`
 
 - 6b1c55c: feat (ai): introduce GLOBAL_DEFAULT_PROVIDER
 - 2e4f9e4: feat (ai): improved error messages when using gateway
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-alpha.8
-  - @ai-tools/provider@2.0.0-alpha.8
-  - @ai-tools/gateway@1.0.0-alpha.8
+  - @ai-toolkit/provider-utils@3.0.0-alpha.8
+  - @ai-toolkit/provider@2.0.0-alpha.8
+  - @ai-toolkit/gateway@1.0.0-alpha.8
 
 ## 5.0.0-alpha.7
 
@@ -3770,9 +3770,9 @@
 
 - 9b0da33: fix (ai): do not send id with start unless specified
 - Updated dependencies [5c56081]
-  - @ai-tools/provider@2.0.0-alpha.7
-  - @ai-tools/gateway@1.0.0-alpha.7
-  - @ai-tools/provider-utils@3.0.0-alpha.7
+  - @ai-toolkit/provider@2.0.0-alpha.7
+  - @ai-toolkit/gateway@1.0.0-alpha.7
+  - @ai-toolkit/provider-utils@3.0.0-alpha.7
 
 ## 5.0.0-alpha.6
 
@@ -3781,9 +3781,9 @@
 - 0d2c085: feat (ai): support string model ids through gateway
 - 48a7606: feat (ai): support changing the system prompt in prepareSteps
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.6
-  - @ai-tools/gateway@1.0.0-alpha.6
-  - @ai-tools/provider-utils@3.0.0-alpha.6
+  - @ai-toolkit/provider@2.0.0-alpha.6
+  - @ai-toolkit/gateway@1.0.0-alpha.6
+  - @ai-toolkit/provider-utils@3.0.0-alpha.6
 
 ## 5.0.0-alpha.5
 
@@ -3814,8 +3814,8 @@
 - 37a916d: feat (ai): add prepareSteps to streamText
 - 5f2b3d4: chore (ai): stable prepareStep
 - Updated dependencies [dc714f3]
-  - @ai-tools/provider@2.0.0-alpha.4
-  - @ai-tools/provider-utils@3.0.0-alpha.4
+  - @ai-toolkit/provider@2.0.0-alpha.4
+  - @ai-toolkit/provider-utils@3.0.0-alpha.4
 
 ## 5.0.0-alpha.3
 
@@ -3829,8 +3829,8 @@
 ### Patch Changes
 
 - Updated dependencies [6b98118]
-  - @ai-tools/provider@2.0.0-alpha.3
-  - @ai-tools/provider-utils@3.0.0-alpha.3
+  - @ai-toolkit/provider@2.0.0-alpha.3
+  - @ai-toolkit/provider-utils@3.0.0-alpha.3
 
 ## 5.0.0-alpha.2
 
@@ -3838,8 +3838,8 @@
 
 - 82aa95d: fix (ai): merge data ui stream parts correctly
 - Updated dependencies [26535e0]
-  - @ai-tools/provider@2.0.0-alpha.2
-  - @ai-tools/provider-utils@3.0.0-alpha.2
+  - @ai-toolkit/provider@2.0.0-alpha.2
+  - @ai-toolkit/provider-utils@3.0.0-alpha.2
 
 ## 5.0.0-alpha.1
 
@@ -3851,8 +3851,8 @@
 
 - b346545: feat (ai): add data ui part schemas
 - Updated dependencies [3f2f00c]
-  - @ai-tools/provider@2.0.0-alpha.1
-  - @ai-tools/provider-utils@3.0.0-alpha.1
+  - @ai-toolkit/provider@2.0.0-alpha.1
+  - @ai-toolkit/provider-utils@3.0.0-alpha.1
 
 ## 5.0.0-canary.24
 
@@ -3870,7 +3870,7 @@
 - cda32ba: fix (ai): send `start` part in correct position in stream (streamText)
 - 50f0362: fix (ai): fix experimental sendStart/sendFinish options in streamText
 - Updated dependencies [faf8446]
-  - @ai-tools/provider-utils@3.0.0-canary.19
+  - @ai-toolkit/provider-utils@3.0.0-canary.19
 
 ## 5.0.0-canary.23
 
@@ -3881,7 +3881,7 @@
 ### Patch Changes
 
 - Updated dependencies [40acf9b]
-  - @ai-tools/provider-utils@3.0.0-canary.18
+  - @ai-toolkit/provider-utils@3.0.0-canary.18
 
 ## 5.0.0-canary.22
 
@@ -3941,7 +3941,7 @@
 
 - 66af894: fix (ai): respect content order in toResponseMessages
 - Updated dependencies [ea7a7c9]
-  - @ai-tools/provider-utils@3.0.0-canary.17
+  - @ai-toolkit/provider-utils@3.0.0-canary.17
 
 ## 5.0.0-canary.20
 
@@ -3961,10 +3961,10 @@
 
 ### Patch Changes
 
-- e90d45d: chore (rsc): move HANGING_STREAM_WARNING_TIME constant into @ai-tools/rsc package
+- e90d45d: chore (rsc): move HANGING_STREAM_WARNING_TIME constant into @ai-toolkit/rsc package
 - bc3109f: chore (ai): push stream-callbacks into langchain/llamaindex adapters
 - Updated dependencies [87b828f]
-  - @ai-tools/provider-utils@3.0.0-canary.16
+  - @ai-toolkit/provider-utils@3.0.0-canary.16
 
 ## 5.0.0-canary.19
 
@@ -3996,8 +3996,8 @@
 - 332167b: chore (ai): move maxSteps into UseChatOptions
 - a8c8bd5: feat(embed-many): respect supportsParallelCalls & concurrency
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.15
-  - @ai-tools/provider@2.0.0-canary.14
+  - @ai-toolkit/provider-utils@3.0.0-canary.15
+  - @ai-toolkit/provider@2.0.0-canary.14
 
 ## 5.0.0-canary.17
 
@@ -4035,8 +4035,8 @@
   ```
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.14
-  - @ai-tools/provider@2.0.0-canary.13
+  - @ai-toolkit/provider-utils@3.0.0-canary.14
+  - @ai-toolkit/provider@2.0.0-canary.13
 
 ## 5.0.0-canary.16
 
@@ -4066,8 +4066,8 @@
 - ea27cc6: chore (ai): use JSONValue definition from provider
 - 0ff02bb: chore(provider-utils): move over jsonSchema
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.12
-  - @ai-tools/provider-utils@3.0.0-canary.13
+  - @ai-toolkit/provider@2.0.0-canary.12
+  - @ai-toolkit/provider-utils@3.0.0-canary.13
 
 ## 5.0.0-canary.14
 
@@ -4077,8 +4077,8 @@
 - 4617fab: chore(embedding-models): remove remaining settings
 - a76a62b: feat (ai): add experimental prepareStep callback to generateText
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.11
-  - @ai-tools/provider-utils@3.0.0-canary.12
+  - @ai-toolkit/provider@2.0.0-canary.11
+  - @ai-toolkit/provider-utils@3.0.0-canary.12
 
 ## 5.0.0-canary.13
 
@@ -4088,16 +4088,16 @@
 - 66962ed: fix(packages): export node10 compatible types
 - 9301f86: refactor (image-model): rename `ImageModelV1` to `ImageModelV2`
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.11
-  - @ai-tools/provider@2.0.0-canary.10
+  - @ai-toolkit/provider-utils@3.0.0-canary.11
+  - @ai-toolkit/provider@2.0.0-canary.10
 
 ## 5.0.0-canary.12
 
 ### Patch Changes
 
 - Updated dependencies [e86be6f]
-  - @ai-tools/provider@2.0.0-canary.9
-  - @ai-tools/provider-utils@3.0.0-canary.10
+  - @ai-toolkit/provider@2.0.0-canary.9
+  - @ai-toolkit/provider-utils@3.0.0-canary.10
 
 ## 5.0.0-canary.11
 
@@ -4105,8 +4105,8 @@
 
 - 8e64e9c: feat (ai): allow using provider default temperature by specifying null
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.8
-  - @ai-tools/provider-utils@3.0.0-canary.9
+  - @ai-toolkit/provider@2.0.0-canary.8
+  - @ai-toolkit/provider-utils@3.0.0-canary.9
 
 ## 5.0.0-canary.10
 
@@ -4127,8 +4127,8 @@
 - cb9c9e4: remove deprecated `experimental_wrapLanguageModel`
 - 8aa9e20: feat: add speech with experimental_generateSpeech
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.8
-  - @ai-tools/provider@2.0.0-canary.7
+  - @ai-toolkit/provider-utils@3.0.0-canary.8
+  - @ai-toolkit/provider@2.0.0-canary.7
 
 ## 5.0.0-canary.8
 
@@ -4153,8 +4153,8 @@
   ```
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.6
-  - @ai-tools/provider-utils@3.0.0-canary.7
+  - @ai-toolkit/provider@2.0.0-canary.6
+  - @ai-toolkit/provider-utils@3.0.0-canary.7
 
 ## 5.0.0-canary.7
 
@@ -4169,16 +4169,16 @@
 - 3e3b9df: fix (ai/mcp): better support for zero-argument MCP tools
 - f10304b: feat(tool-calling): don't require the user to have to pass parameters
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.5
-  - @ai-tools/provider-utils@3.0.0-canary.6
+  - @ai-toolkit/provider@2.0.0-canary.5
+  - @ai-toolkit/provider-utils@3.0.0-canary.6
 
 ## 5.0.0-canary.6
 
 ### Patch Changes
 
 - Updated dependencies [6f6bb89]
-  - @ai-tools/provider@2.0.0-canary.4
-  - @ai-tools/provider-utils@3.0.0-canary.5
+  - @ai-toolkit/provider@2.0.0-canary.4
+  - @ai-toolkit/provider-utils@3.0.0-canary.5
 
 ## 5.0.0-canary.5
 
@@ -4187,14 +4187,14 @@
 - b71fe8d: fix(ai): remove jsondiffpatch dependency
 - d91b50d: chore(ui-utils): merge into ai package
 - Updated dependencies [d1a1aa1]
-  - @ai-tools/provider@2.0.0-canary.3
-  - @ai-tools/provider-utils@3.0.0-canary.4
+  - @ai-toolkit/provider@2.0.0-canary.3
+  - @ai-toolkit/provider-utils@3.0.0-canary.4
 
 ## 5.0.0-canary.4
 
 ### Major Changes
 
-- e1cbf8a: chore(@ai-tools/rsc): extract to separate package
+- e1cbf8a: chore(@ai-toolkit/rsc): extract to separate package
 
 ### Patch Changes
 
@@ -4202,18 +4202,18 @@
 - a166433: feat: add transcription with experimental_transcribe
 - 0a87932: core (ai): change transcription model mimeType to mediaType
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.3
-  - @ai-tools/provider@2.0.0-canary.2
-  - @ai-tools/ui-utils@2.0.0-canary.3
+  - @ai-toolkit/provider-utils@3.0.0-canary.3
+  - @ai-toolkit/provider@2.0.0-canary.2
+  - @ai-toolkit/ui-utils@2.0.0-canary.3
 
 ## 5.0.0-canary.3
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.1
-  - @ai-tools/provider-utils@3.0.0-canary.2
-  - @ai-tools/ui-utils@2.0.0-canary.2
+  - @ai-toolkit/provider@2.0.0-canary.1
+  - @ai-toolkit/provider-utils@3.0.0-canary.2
+  - @ai-toolkit/ui-utils@2.0.0-canary.2
 
 ## 5.0.0-canary.2
 
@@ -4232,8 +4232,8 @@
 - c22ad54: feat(smooth-stream): chunking callbacks
 - a4f3007: chore: remove ai/react
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.1
-  - @ai-tools/ui-utils@2.0.0-canary.1
+  - @ai-toolkit/provider-utils@3.0.0-canary.1
+  - @ai-toolkit/ui-utils@2.0.0-canary.1
 
 ## 5.0.0-canary.0
 
@@ -4246,28 +4246,28 @@
 
 - 8026705: fix (core): send buffered text in smooth stream when stream parts change
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.0
-  - @ai-tools/ui-utils@2.0.0-canary.0
-  - @ai-tools/react@2.0.0-canary.0
-  - @ai-tools/provider@2.0.0-canary.0
+  - @ai-toolkit/provider-utils@3.0.0-canary.0
+  - @ai-toolkit/ui-utils@2.0.0-canary.0
+  - @ai-toolkit/react@2.0.0-canary.0
+  - @ai-toolkit/provider@2.0.0-canary.0
 
 ## 4.2.10
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@1.2.5
-  - @ai-tools/provider-utils@2.2.3
-  - @ai-tools/ui-utils@1.2.4
+  - @ai-toolkit/react@1.2.5
+  - @ai-toolkit/provider-utils@2.2.3
+  - @ai-toolkit/ui-utils@1.2.4
 
 ## 4.2.9
 
 ### Patch Changes
 
 - Updated dependencies [b01120e]
-  - @ai-tools/provider-utils@2.2.2
-  - @ai-tools/react@1.2.4
-  - @ai-tools/ui-utils@1.2.3
+  - @ai-toolkit/provider-utils@2.2.2
+  - @ai-toolkit/react@1.2.4
+  - @ai-toolkit/ui-utils@1.2.3
 
 ## 4.2.8
 
@@ -4275,8 +4275,8 @@
 
 - 65243ce: fix (ui): introduce step start parts
 - Updated dependencies [65243ce]
-  - @ai-tools/ui-utils@1.2.2
-  - @ai-tools/react@1.2.3
+  - @ai-toolkit/ui-utils@1.2.2
+  - @ai-toolkit/react@1.2.3
 
 ## 4.2.7
 
@@ -4297,7 +4297,7 @@
 ### Patch Changes
 
 - Updated dependencies [d92fa29]
-  - @ai-tools/react@1.2.2
+  - @ai-toolkit/react@1.2.2
 
 ## 4.2.4
 
@@ -4317,9 +4317,9 @@
 
 - f10f0fa: fix (provider-utils): improve event source stream parsing performance
 - Updated dependencies [f10f0fa]
-  - @ai-tools/provider-utils@2.2.1
-  - @ai-tools/react@1.2.1
-  - @ai-tools/ui-utils@1.2.1
+  - @ai-toolkit/provider-utils@2.2.1
+  - @ai-toolkit/react@1.2.1
+  - @ai-toolkit/ui-utils@1.2.1
 
 ## 4.2.1
 
@@ -4337,10 +4337,10 @@
 ### Patch Changes
 
 - Updated dependencies [5bc638d]
-  - @ai-tools/provider@1.1.0
-  - @ai-tools/provider-utils@2.2.0
-  - @ai-tools/react@1.2.0
-  - @ai-tools/ui-utils@1.2.0
+  - @ai-toolkit/provider@1.1.0
+  - @ai-toolkit/provider-utils@2.2.0
+  - @ai-toolkit/react@1.2.0
+  - @ai-toolkit/ui-utils@1.2.0
 
 ## 4.1.66
 
@@ -4359,9 +4359,9 @@
 ### Patch Changes
 
 - Updated dependencies [d0c4659]
-  - @ai-tools/provider-utils@2.1.15
-  - @ai-tools/react@1.1.25
-  - @ai-tools/ui-utils@1.1.21
+  - @ai-toolkit/provider-utils@2.1.15
+  - @ai-toolkit/react@1.1.25
+  - @ai-toolkit/ui-utils@1.1.21
 
 ## 4.1.63
 
@@ -4369,10 +4369,10 @@
 
 - 0bd5bc6: feat (ai): support model-generated files
 - Updated dependencies [0bd5bc6]
-  - @ai-tools/provider@1.0.12
-  - @ai-tools/provider-utils@2.1.14
-  - @ai-tools/ui-utils@1.1.20
-  - @ai-tools/react@1.1.24
+  - @ai-toolkit/provider@1.0.12
+  - @ai-toolkit/provider-utils@2.1.14
+  - @ai-toolkit/ui-utils@1.1.20
+  - @ai-toolkit/react@1.1.24
 
 ## 4.1.62
 
@@ -4387,10 +4387,10 @@
 
 - 2e1101a: feat (provider/openai): pdf input support
 - Updated dependencies [2e1101a]
-  - @ai-tools/provider@1.0.11
-  - @ai-tools/provider-utils@2.1.13
-  - @ai-tools/ui-utils@1.1.19
-  - @ai-tools/react@1.1.23
+  - @ai-toolkit/provider@1.0.11
+  - @ai-toolkit/provider-utils@2.1.13
+  - @ai-toolkit/ui-utils@1.1.19
+  - @ai-toolkit/react@1.1.23
 
 ## 4.1.60
 
@@ -4429,9 +4429,9 @@
 
 - 1531959: feat (ai/core): add MCP client for using MCP tools
 - Updated dependencies [1531959]
-  - @ai-tools/provider-utils@2.1.12
-  - @ai-tools/react@1.1.22
-  - @ai-tools/ui-utils@1.1.18
+  - @ai-toolkit/provider-utils@2.1.12
+  - @ai-toolkit/react@1.1.22
+  - @ai-toolkit/ui-utils@1.1.18
 
 ## 4.1.54
 
@@ -4445,10 +4445,10 @@
 
 - e1d3d42: feat (ai): expose raw response body in generateText and generateObject
 - Updated dependencies [e1d3d42]
-  - @ai-tools/provider@1.0.10
-  - @ai-tools/provider-utils@2.1.11
-  - @ai-tools/ui-utils@1.1.17
-  - @ai-tools/react@1.1.21
+  - @ai-toolkit/provider@1.0.10
+  - @ai-toolkit/provider-utils@2.1.11
+  - @ai-toolkit/ui-utils@1.1.17
+  - @ai-toolkit/react@1.1.21
 
 ## 4.1.52
 
@@ -4479,14 +4479,14 @@
 ### Patch Changes
 
 - Updated dependencies [6255fbc]
-  - @ai-tools/react@1.1.20
+  - @ai-toolkit/react@1.1.20
 
 ## 4.1.47
 
 ### Patch Changes
 
 - Updated dependencies [da5c734]
-  - @ai-tools/react@1.1.19
+  - @ai-toolkit/react@1.1.19
 
 ## 4.1.46
 
@@ -4494,10 +4494,10 @@
 
 - ddf9740: feat (ai): add anthropic reasoning
 - Updated dependencies [ddf9740]
-  - @ai-tools/provider@1.0.9
-  - @ai-tools/ui-utils@1.1.16
-  - @ai-tools/provider-utils@2.1.10
-  - @ai-tools/react@1.1.18
+  - @ai-toolkit/provider@1.0.9
+  - @ai-toolkit/ui-utils@1.1.16
+  - @ai-toolkit/provider-utils@2.1.10
+  - @ai-toolkit/react@1.1.18
 
 ## 4.1.45
 
@@ -4522,24 +4522,24 @@
 ### Patch Changes
 
 - Updated dependencies [2761f06]
-  - @ai-tools/provider@1.0.8
-  - @ai-tools/provider-utils@2.1.9
-  - @ai-tools/ui-utils@1.1.15
-  - @ai-tools/react@1.1.17
+  - @ai-toolkit/provider@1.0.8
+  - @ai-toolkit/provider-utils@2.1.9
+  - @ai-toolkit/ui-utils@1.1.15
+  - @ai-toolkit/react@1.1.17
 
 ## 4.1.41
 
 ### Patch Changes
 
 - Updated dependencies [60c3220]
-  - @ai-tools/react@1.1.16
+  - @ai-toolkit/react@1.1.16
 
 ## 4.1.40
 
 ### Patch Changes
 
 - Updated dependencies [c43df41]
-  - @ai-tools/react@1.1.15
+  - @ai-toolkit/react@1.1.15
 
 ## 4.1.39
 
@@ -4554,9 +4554,9 @@
 - 4c9c194: chore (ai): add description to provider-defined tools for better accessibility
 - 2e898b4: chore (ai): move mockId test helper into provider utils
 - Updated dependencies [2e898b4]
-  - @ai-tools/provider-utils@2.1.8
-  - @ai-tools/react@1.1.14
-  - @ai-tools/ui-utils@1.1.14
+  - @ai-toolkit/provider-utils@2.1.8
+  - @ai-toolkit/react@1.1.14
+  - @ai-toolkit/ui-utils@1.1.14
 
 ## 4.1.37
 
@@ -4569,9 +4569,9 @@
 ### Patch Changes
 
 - Updated dependencies [3ff4ef8]
-  - @ai-tools/provider-utils@2.1.7
-  - @ai-tools/react@1.1.13
-  - @ai-tools/ui-utils@1.1.13
+  - @ai-toolkit/provider-utils@2.1.7
+  - @ai-toolkit/react@1.1.13
+  - @ai-toolkit/ui-utils@1.1.13
 
 ## 4.1.35
 
@@ -4579,8 +4579,8 @@
 
 - 166e09e: feat (ai/ui): forward source parts to useChat
 - Updated dependencies [166e09e]
-  - @ai-tools/ui-utils@1.1.12
-  - @ai-tools/react@1.1.12
+  - @ai-toolkit/ui-utils@1.1.12
+  - @ai-toolkit/react@1.1.12
 
 ## 4.1.34
 
@@ -4629,8 +4629,8 @@
 ### Patch Changes
 
 - Updated dependencies [318b351]
-  - @ai-tools/ui-utils@1.1.11
-  - @ai-tools/react@1.1.11
+  - @ai-toolkit/ui-utils@1.1.11
+  - @ai-toolkit/react@1.1.11
 
 ## 4.1.26
 
@@ -4674,16 +4674,16 @@
 
 - bcc61d4: feat (ui): introduce message parts for useChat
 - Updated dependencies [bcc61d4]
-  - @ai-tools/ui-utils@1.1.10
-  - @ai-tools/react@1.1.10
+  - @ai-toolkit/ui-utils@1.1.10
+  - @ai-toolkit/react@1.1.10
 
 ## 4.1.19
 
 ### Patch Changes
 
 - Updated dependencies [6b8cc14]
-  - @ai-tools/ui-utils@1.1.9
-  - @ai-tools/react@1.1.9
+  - @ai-toolkit/ui-utils@1.1.9
+  - @ai-toolkit/react@1.1.9
 
 ## 4.1.18
 
@@ -4711,10 +4711,10 @@
 - d89c3b9: feat (core): type ahead for model ids with custom provider
 - 08f54fc: chore (ai/core): move custom provider to stable
 - Updated dependencies [d89c3b9]
-  - @ai-tools/provider@1.0.7
-  - @ai-tools/provider-utils@2.1.6
-  - @ai-tools/ui-utils@1.1.8
-  - @ai-tools/react@1.1.8
+  - @ai-toolkit/provider@1.0.7
+  - @ai-toolkit/provider-utils@2.1.6
+  - @ai-toolkit/ui-utils@1.1.8
+  - @ai-toolkit/react@1.1.8
 
 ## 4.1.14
 
@@ -4734,8 +4734,8 @@
 
 - 0d2d9bf: fix (ui): single assistant message with multiple tool steps
 - Updated dependencies
-  - @ai-tools/react@1.1.7
-  - @ai-tools/ui-utils@1.1.7
+  - @ai-toolkit/react@1.1.7
+  - @ai-toolkit/ui-utils@1.1.7
 
 ## 4.1.11
 
@@ -4755,9 +4755,9 @@
 
 - 3a602ca: chore (core): rename CoreTool to Tool
 - Updated dependencies [3a602ca]
-  - @ai-tools/provider-utils@2.1.5
-  - @ai-tools/ui-utils@1.1.6
-  - @ai-tools/react@1.1.6
+  - @ai-toolkit/provider-utils@2.1.5
+  - @ai-toolkit/ui-utils@1.1.6
+  - @ai-toolkit/react@1.1.6
 
 ## 4.1.8
 
@@ -4771,18 +4771,18 @@
 
 - 066206e: feat (provider-utils): move delay to provider-utils from ai
 - Updated dependencies [066206e]
-  - @ai-tools/provider-utils@2.1.4
-  - @ai-tools/react@1.1.5
-  - @ai-tools/ui-utils@1.1.5
+  - @ai-toolkit/provider-utils@2.1.4
+  - @ai-toolkit/react@1.1.5
+  - @ai-toolkit/ui-utils@1.1.5
 
 ## 4.1.6
 
 ### Patch Changes
 
 - Updated dependencies [39e5c1f]
-  - @ai-tools/provider-utils@2.1.3
-  - @ai-tools/react@1.1.4
-  - @ai-tools/ui-utils@1.1.4
+  - @ai-toolkit/provider-utils@2.1.3
+  - @ai-toolkit/react@1.1.4
+  - @ai-toolkit/ui-utils@1.1.4
 
 ## 4.1.5
 
@@ -4790,8 +4790,8 @@
 
 - 9ce598c: feat (ai/ui): add reasoning support to useChat
 - Updated dependencies [9ce598c]
-  - @ai-tools/ui-utils@1.1.3
-  - @ai-tools/react@1.1.3
+  - @ai-toolkit/ui-utils@1.1.3
+  - @ai-toolkit/react@1.1.3
 
 ## 4.1.4
 
@@ -4814,10 +4814,10 @@
 - 3c5fafa: chore (ai/core): move streamText toolCallStreaming option to stable
 - 3a58a2e: feat (ai/core): throw NoImageGeneratedError from generateImage when no predictions are returned.
 - Updated dependencies
-  - @ai-tools/provider-utils@2.1.2
-  - @ai-tools/react@1.1.2
-  - @ai-tools/provider@1.0.6
-  - @ai-tools/ui-utils@1.1.2
+  - @ai-toolkit/provider-utils@2.1.2
+  - @ai-toolkit/react@1.1.2
+  - @ai-toolkit/provider@1.0.6
+  - @ai-toolkit/ui-utils@1.1.2
 
 ## 4.1.1
 
@@ -4825,10 +4825,10 @@
 
 - 0a699f1: feat: add reasoning token support
 - Updated dependencies
-  - @ai-tools/ui-utils@1.1.1
-  - @ai-tools/provider-utils@2.1.1
-  - @ai-tools/provider@1.0.5
-  - @ai-tools/react@1.1.1
+  - @ai-toolkit/ui-utils@1.1.1
+  - @ai-toolkit/provider-utils@2.1.1
+  - @ai-toolkit/provider@1.0.5
+  - @ai-toolkit/react@1.1.1
 
 ## 4.1.0
 
@@ -4839,16 +4839,16 @@
 ### Patch Changes
 
 - Updated dependencies [62ba5ad]
-  - @ai-tools/provider-utils@2.1.0
-  - @ai-tools/react@1.1.0
-  - @ai-tools/ui-utils@1.1.0
+  - @ai-toolkit/provider-utils@2.1.0
+  - @ai-toolkit/react@1.1.0
+  - @ai-toolkit/ui-utils@1.1.0
 
 ## 4.0.41
 
 ### Patch Changes
 
 - Updated dependencies [44f04d5]
-  - @ai-tools/react@1.0.14
+  - @ai-toolkit/react@1.0.14
 
 ## 4.0.40
 
@@ -4856,8 +4856,8 @@
 
 - 33592d2: fix (ai/core): switch to json schema 7 target for zod to json schema conversion
 - Updated dependencies [33592d2]
-  - @ai-tools/ui-utils@1.0.12
-  - @ai-tools/react@1.0.13
+  - @ai-toolkit/ui-utils@1.0.12
+  - @ai-toolkit/react@1.0.13
 
 ## 4.0.39
 
@@ -4866,9 +4866,9 @@
 - 00114c5: feat: expose IDGenerator and createIdGenerator
 - 00114c5: feat (ui): generate and forward message ids for response messages
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.8
-  - @ai-tools/ui-utils@1.0.11
-  - @ai-tools/react@1.0.12
+  - @ai-toolkit/provider-utils@2.0.8
+  - @ai-toolkit/ui-utils@1.0.11
+  - @ai-toolkit/react@1.0.12
 
 ## 4.0.38
 
@@ -4888,8 +4888,8 @@
 ### Patch Changes
 
 - Updated dependencies [37f4510]
-  - @ai-tools/ui-utils@1.0.10
-  - @ai-tools/react@1.0.11
+  - @ai-toolkit/ui-utils@1.0.10
+  - @ai-toolkit/react@1.0.11
 
 ## 4.0.35
 
@@ -4904,8 +4904,8 @@
 - 2495973: feat (ai/core): use openai compatible mode for json schema conversion
 - 2495973: fix (ai/core): duplicate instead of using reference in json schema
 - Updated dependencies
-  - @ai-tools/ui-utils@1.0.9
-  - @ai-tools/react@1.0.10
+  - @ai-toolkit/ui-utils@1.0.9
+  - @ai-toolkit/react@1.0.10
 
 ## 4.0.33
 
@@ -4924,9 +4924,9 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.7
-  - @ai-tools/react@1.0.9
-  - @ai-tools/ui-utils@1.0.8
+  - @ai-toolkit/provider-utils@2.0.7
+  - @ai-toolkit/react@1.0.9
+  - @ai-toolkit/ui-utils@1.0.8
 
 ## 4.0.30
 
@@ -4948,10 +4948,10 @@
 - 6337688: feat: change image generation errors to warnings
 - 8b422ea: feat (ai/core): add caching to generated images
 - Updated dependencies
-  - @ai-tools/provider@1.0.4
-  - @ai-tools/provider-utils@2.0.6
-  - @ai-tools/ui-utils@1.0.7
-  - @ai-tools/react@1.0.8
+  - @ai-toolkit/provider@1.0.4
+  - @ai-toolkit/provider-utils@2.0.6
+  - @ai-toolkit/ui-utils@1.0.7
+  - @ai-toolkit/react@1.0.8
 
 ## 4.0.27
 
@@ -4991,10 +4991,10 @@
 ### Patch Changes
 
 - Updated dependencies [5ed5e45]
-  - @ai-tools/provider-utils@2.0.5
-  - @ai-tools/provider@1.0.3
-  - @ai-tools/react@1.0.7
-  - @ai-tools/ui-utils@1.0.6
+  - @ai-toolkit/provider-utils@2.0.5
+  - @ai-toolkit/provider@1.0.3
+  - @ai-toolkit/react@1.0.7
+  - @ai-toolkit/ui-utils@1.0.6
 
 ## 4.0.21
 
@@ -5048,10 +5048,10 @@
 
 - 09a9cab: feat (ai/core): add experimental generateImage function
 - Updated dependencies [09a9cab]
-  - @ai-tools/provider@1.0.2
-  - @ai-tools/provider-utils@2.0.4
-  - @ai-tools/ui-utils@1.0.5
-  - @ai-tools/react@1.0.6
+  - @ai-toolkit/provider@1.0.2
+  - @ai-toolkit/provider-utils@2.0.4
+  - @ai-toolkit/ui-utils@1.0.5
+  - @ai-toolkit/react@1.0.6
 
 ## 4.0.13
 
@@ -5066,17 +5066,17 @@
 - 5167bec: fix (ai/core): forward streamText errors as error parts
 - 0984f0b: feat (ai/core): add ToolExecutionError type
 - Updated dependencies [0984f0b]
-  - @ai-tools/provider-utils@2.0.3
-  - @ai-tools/react@1.0.5
-  - @ai-tools/ui-utils@1.0.4
+  - @ai-toolkit/provider-utils@2.0.3
+  - @ai-toolkit/react@1.0.5
+  - @ai-toolkit/ui-utils@1.0.4
 
 ## 4.0.11
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/ui-utils@1.0.3
-  - @ai-tools/react@1.0.4
+  - @ai-toolkit/ui-utils@1.0.3
+  - @ai-toolkit/react@1.0.4
 
 ## 4.0.10
 
@@ -5114,7 +5114,7 @@
 ### Patch Changes
 
 - Updated dependencies [630ac31]
-  - @ai-tools/react@1.0.3
+  - @ai-toolkit/react@1.0.3
 
 ## 4.0.4
 
@@ -5128,19 +5128,19 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/ui-utils@1.0.2
-  - @ai-tools/provider@1.0.1
-  - @ai-tools/react@1.0.2
-  - @ai-tools/provider-utils@2.0.2
+  - @ai-toolkit/ui-utils@1.0.2
+  - @ai-toolkit/provider@1.0.1
+  - @ai-toolkit/react@1.0.2
+  - @ai-toolkit/provider-utils@2.0.2
 
 ## 4.0.2
 
 ### Patch Changes
 
 - Updated dependencies [c3ab5de]
-  - @ai-tools/provider-utils@2.0.1
-  - @ai-tools/react@1.0.1
-  - @ai-tools/ui-utils@1.0.1
+  - @ai-toolkit/provider-utils@2.0.1
+  - @ai-toolkit/react@1.0.1
+  - @ai-toolkit/ui-utils@1.0.1
 
 ## 4.0.1
 
@@ -5192,10 +5192,10 @@
 - f9bb30c: chore (ai): remove unnecessary dev dependencies
 - b053413: chore (ui): refactorings & README update
 - Updated dependencies
-  - @ai-tools/react@1.0.0
-  - @ai-tools/ui-utils@1.0.0
-  - @ai-tools/provider-utils@2.0.0
-  - @ai-tools/provider@1.0.0
+  - @ai-toolkit/react@1.0.0
+  - @ai-toolkit/ui-utils@1.0.0
+  - @ai-toolkit/provider-utils@2.0.0
+  - @ai-toolkit/provider@1.0.0
 
 ## 4.0.0-canary.13
 
@@ -5206,8 +5206,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@1.0.0-canary.9
-  - @ai-tools/ui-utils@1.0.0-canary.9
+  - @ai-toolkit/react@1.0.0-canary.9
+  - @ai-toolkit/ui-utils@1.0.0-canary.9
 
 ## 4.0.0-canary.12
 
@@ -5215,8 +5215,8 @@
 
 - b053413: chore (ui): refactorings & README update
 - Updated dependencies [b053413]
-  - @ai-tools/ui-utils@1.0.0-canary.8
-  - @ai-tools/react@1.0.0-canary.8
+  - @ai-toolkit/ui-utils@1.0.0-canary.8
+  - @ai-toolkit/react@1.0.0-canary.8
 
 ## 4.0.0-canary.11
 
@@ -5234,8 +5234,8 @@
 ### Patch Changes
 
 - Updated dependencies [fe4f109]
-  - @ai-tools/ui-utils@1.0.0-canary.7
-  - @ai-tools/react@1.0.0-canary.7
+  - @ai-toolkit/ui-utils@1.0.0-canary.7
+  - @ai-toolkit/react@1.0.0-canary.7
 
 ## 4.0.0-canary.9
 
@@ -5252,8 +5252,8 @@
 ### Patch Changes
 
 - Updated dependencies [70f28f6]
-  - @ai-tools/ui-utils@1.0.0-canary.6
-  - @ai-tools/react@1.0.0-canary.6
+  - @ai-toolkit/ui-utils@1.0.0-canary.6
+  - @ai-toolkit/react@1.0.0-canary.6
 
 ## 4.0.0-canary.7
 
@@ -5291,9 +5291,9 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/ui-utils@1.0.0-canary.5
-  - @ai-tools/react@1.0.0-canary.5
-  - @ai-tools/provider-utils@2.0.0-canary.3
+  - @ai-toolkit/ui-utils@1.0.0-canary.5
+  - @ai-toolkit/react@1.0.0-canary.5
+  - @ai-toolkit/provider-utils@2.0.0-canary.3
 
 ## 4.0.0-canary.4
 
@@ -5310,18 +5310,18 @@
 
 - dce4158: chore (dependencies): update eventsource-parser to 3.0.0
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.0-canary.2
-  - @ai-tools/react@1.0.0-canary.4
-  - @ai-tools/ui-utils@1.0.0-canary.4
+  - @ai-toolkit/provider-utils@2.0.0-canary.2
+  - @ai-toolkit/react@1.0.0-canary.4
+  - @ai-toolkit/ui-utils@1.0.0-canary.4
 
 ## 4.0.0-canary.3
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@1.0.0-canary.3
-  - @ai-tools/provider-utils@2.0.0-canary.1
-  - @ai-tools/ui-utils@1.0.0-canary.3
+  - @ai-toolkit/react@1.0.0-canary.3
+  - @ai-toolkit/provider-utils@2.0.0-canary.1
+  - @ai-toolkit/ui-utils@1.0.0-canary.3
 
 ## 4.0.0-canary.2
 
@@ -5333,10 +5333,10 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@1.0.0-canary.2
-  - @ai-tools/provider-utils@2.0.0-canary.0
-  - @ai-tools/provider@1.0.0-canary.0
-  - @ai-tools/ui-utils@1.0.0-canary.2
+  - @ai-toolkit/react@1.0.0-canary.2
+  - @ai-toolkit/provider-utils@2.0.0-canary.0
+  - @ai-toolkit/provider@1.0.0-canary.0
+  - @ai-toolkit/ui-utils@1.0.0-canary.2
 
 ## 4.0.0-canary.1
 
@@ -5348,8 +5348,8 @@
 
 - 1c58337: chore (ai): remove 2.x prompt helpers
 - Updated dependencies [8bf5756]
-  - @ai-tools/ui-utils@1.0.0-canary.1
-  - @ai-tools/react@1.0.0-canary.1
+  - @ai-toolkit/ui-utils@1.0.0-canary.1
+  - @ai-toolkit/react@1.0.0-canary.1
 
 ## 4.0.0-canary.0
 
@@ -5362,8 +5362,8 @@
 - a7ad35a: chore: remove legacy providers & rsc render
 - 7e89ccb: chore: remove nanoid export
 - Updated dependencies
-  - @ai-tools/react@1.0.0-canary.0
-  - @ai-tools/ui-utils@1.0.0-canary.0
+  - @ai-toolkit/react@1.0.0-canary.0
+  - @ai-toolkit/ui-utils@1.0.0-canary.0
 
 ## 3.4.33
 
@@ -5382,18 +5382,18 @@
 ### Patch Changes
 
 - Updated dependencies [2dfb93e]
-  - @ai-tools/react@0.0.70
+  - @ai-toolkit/react@0.0.70
 
 ## 3.4.30
 
 ### Patch Changes
 
 - Updated dependencies [a85c965]
-  - @ai-tools/ui-utils@0.0.50
-  - @ai-tools/react@0.0.69
-  - @ai-tools/solid@0.0.54
-  - @ai-tools/svelte@0.0.57
-  - @ai-tools/vue@0.0.59
+  - @ai-toolkit/ui-utils@0.0.50
+  - @ai-toolkit/react@0.0.69
+  - @ai-toolkit/solid@0.0.54
+  - @ai-toolkit/svelte@0.0.57
+  - @ai-toolkit/vue@0.0.59
 
 ## 3.4.29
 
@@ -5431,7 +5431,7 @@
 
 - d92fd9f: feat (ui/svelte): support Svelte 5 peer dependency
 - Updated dependencies [d92fd9f]
-  - @ai-tools/svelte@0.0.56
+  - @ai-toolkit/svelte@0.0.56
 
 ## 3.4.23
 
@@ -5439,18 +5439,18 @@
 
 - 8301e41: fix (ai/react): update React peer dependency version to allow rc releases.
 - Updated dependencies [8301e41]
-  - @ai-tools/react@0.0.68
+  - @ai-toolkit/react@0.0.68
 
 ## 3.4.22
 
 ### Patch Changes
 
 - Updated dependencies [3bf8da0]
-  - @ai-tools/ui-utils@0.0.49
-  - @ai-tools/react@0.0.67
-  - @ai-tools/solid@0.0.53
-  - @ai-tools/svelte@0.0.55
-  - @ai-tools/vue@0.0.58
+  - @ai-toolkit/ui-utils@0.0.49
+  - @ai-toolkit/react@0.0.67
+  - @ai-toolkit/solid@0.0.53
+  - @ai-toolkit/svelte@0.0.55
+  - @ai-toolkit/vue@0.0.58
 
 ## 3.4.21
 
@@ -5469,13 +5469,13 @@
 - 7ceed77: feat (ai/core): expose response message for each step
 - 811a317: feat (ai/core): multi-part tool results (incl. images)
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.22
-  - @ai-tools/provider@0.0.26
-  - @ai-tools/ui-utils@0.0.48
-  - @ai-tools/svelte@0.0.54
-  - @ai-tools/react@0.0.66
-  - @ai-tools/vue@0.0.57
-  - @ai-tools/solid@0.0.52
+  - @ai-toolkit/provider-utils@1.0.22
+  - @ai-toolkit/provider@0.0.26
+  - @ai-toolkit/ui-utils@0.0.48
+  - @ai-toolkit/svelte@0.0.54
+  - @ai-toolkit/react@0.0.66
+  - @ai-toolkit/vue@0.0.57
+  - @ai-toolkit/solid@0.0.52
 
 ## 3.4.19
 
@@ -5483,13 +5483,13 @@
 
 - b9b0d7b: feat (ai): access raw request body
 - Updated dependencies [b9b0d7b]
-  - @ai-tools/provider@0.0.25
-  - @ai-tools/provider-utils@1.0.21
-  - @ai-tools/ui-utils@0.0.47
-  - @ai-tools/react@0.0.65
-  - @ai-tools/solid@0.0.51
-  - @ai-tools/svelte@0.0.53
-  - @ai-tools/vue@0.0.56
+  - @ai-toolkit/provider@0.0.25
+  - @ai-toolkit/provider-utils@1.0.21
+  - @ai-toolkit/ui-utils@0.0.47
+  - @ai-toolkit/react@0.0.65
+  - @ai-toolkit/solid@0.0.51
+  - @ai-toolkit/svelte@0.0.53
+  - @ai-toolkit/vue@0.0.56
 
 ## 3.4.18
 
@@ -5514,7 +5514,7 @@
 ### Patch Changes
 
 - Updated dependencies [98a3b08]
-  - @ai-tools/react@0.0.64
+  - @ai-toolkit/react@0.0.64
 
 ## 3.4.14
 
@@ -5540,10 +5540,10 @@
 
 - caedcda: feat (ai/ui): add setData helper to useChat
 - Updated dependencies [caedcda]
-  - @ai-tools/svelte@0.0.52
-  - @ai-tools/react@0.0.63
-  - @ai-tools/solid@0.0.50
-  - @ai-tools/vue@0.0.55
+  - @ai-toolkit/svelte@0.0.52
+  - @ai-toolkit/react@0.0.63
+  - @ai-toolkit/solid@0.0.50
+  - @ai-toolkit/vue@0.0.55
 
 ## 3.4.10
 
@@ -5563,7 +5563,7 @@
 ### Patch Changes
 
 - Updated dependencies [b5f577e]
-  - @ai-tools/vue@0.0.54
+  - @ai-toolkit/vue@0.0.54
 
 ## 3.4.7
 
@@ -5578,13 +5578,13 @@
 
 - d595d0d: feat (ai/core): file content parts
 - Updated dependencies [d595d0d]
-  - @ai-tools/provider@0.0.24
-  - @ai-tools/provider-utils@1.0.20
-  - @ai-tools/ui-utils@0.0.46
-  - @ai-tools/react@0.0.62
-  - @ai-tools/solid@0.0.49
-  - @ai-tools/svelte@0.0.51
-  - @ai-tools/vue@0.0.53
+  - @ai-toolkit/provider@0.0.24
+  - @ai-toolkit/provider-utils@1.0.20
+  - @ai-toolkit/ui-utils@0.0.46
+  - @ai-toolkit/react@0.0.62
+  - @ai-toolkit/solid@0.0.49
+  - @ai-toolkit/svelte@0.0.51
+  - @ai-toolkit/vue@0.0.53
 
 ## 3.4.5
 
@@ -5592,11 +5592,11 @@
 
 - cd77c5d: feat (ai/core): add isContinued to steps
 - Updated dependencies [cd77c5d]
-  - @ai-tools/ui-utils@0.0.45
-  - @ai-tools/react@0.0.61
-  - @ai-tools/solid@0.0.48
-  - @ai-tools/svelte@0.0.50
-  - @ai-tools/vue@0.0.52
+  - @ai-toolkit/ui-utils@0.0.45
+  - @ai-toolkit/react@0.0.61
+  - @ai-toolkit/solid@0.0.48
+  - @ai-toolkit/svelte@0.0.50
+  - @ai-toolkit/vue@0.0.52
 
 ## 3.4.4
 
@@ -5623,7 +5623,7 @@
 ### Patch Changes
 
 - Updated dependencies [7e7104f]
-  - @ai-tools/react@0.0.60
+  - @ai-toolkit/react@0.0.60
 
 ## 3.4.0
 
@@ -5636,7 +5636,7 @@
 ### Patch Changes
 
 - Updated dependencies [d3933e0]
-  - @ai-tools/vue@0.0.51
+  - @ai-toolkit/vue@0.0.51
 
 ## 3.3.43
 
@@ -5655,7 +5655,7 @@
 ### Patch Changes
 
 - Updated dependencies [692e265]
-  - @ai-tools/vue@0.0.50
+  - @ai-toolkit/vue@0.0.50
 
 ## 3.3.40
 
@@ -5681,12 +5681,12 @@
 ### Patch Changes
 
 - Updated dependencies [273f696]
-  - @ai-tools/provider-utils@1.0.19
-  - @ai-tools/react@0.0.59
-  - @ai-tools/solid@0.0.47
-  - @ai-tools/svelte@0.0.49
-  - @ai-tools/ui-utils@0.0.44
-  - @ai-tools/vue@0.0.49
+  - @ai-toolkit/provider-utils@1.0.19
+  - @ai-toolkit/react@0.0.59
+  - @ai-toolkit/solid@0.0.47
+  - @ai-toolkit/svelte@0.0.49
+  - @ai-toolkit/ui-utils@0.0.44
+  - @ai-toolkit/vue@0.0.49
 
 ## 3.3.36
 
@@ -5696,11 +5696,11 @@
 - 1f590ef: chore (ai): rename roundtrips to steps
 - 7e82d36: fix (ai/core): pass topK to providers
 - Updated dependencies
-  - @ai-tools/react@0.0.58
-  - @ai-tools/ui-utils@0.0.43
-  - @ai-tools/solid@0.0.46
-  - @ai-tools/svelte@0.0.48
-  - @ai-tools/vue@0.0.48
+  - @ai-toolkit/react@0.0.58
+  - @ai-toolkit/ui-utils@0.0.43
+  - @ai-toolkit/solid@0.0.46
+  - @ai-toolkit/svelte@0.0.48
+  - @ai-toolkit/vue@0.0.48
 
 ## 3.3.35
 
@@ -5708,11 +5708,11 @@
 
 - 14210d5: feat (ai/core): add sendUsage information to streamText data stream methods
 - Updated dependencies [14210d5]
-  - @ai-tools/ui-utils@0.0.42
-  - @ai-tools/react@0.0.57
-  - @ai-tools/solid@0.0.45
-  - @ai-tools/svelte@0.0.47
-  - @ai-tools/vue@0.0.47
+  - @ai-toolkit/ui-utils@0.0.42
+  - @ai-toolkit/react@0.0.57
+  - @ai-toolkit/solid@0.0.45
+  - @ai-toolkit/svelte@0.0.47
+  - @ai-toolkit/vue@0.0.47
 
 ## 3.3.34
 
@@ -5722,7 +5722,7 @@
 - 678449a: feat (ai/core): export test helpers
 - ff22fac: fix (ai/rsc): streamUI onFinish is called when tool calls have finished
 - Updated dependencies [a0403d6]
-  - @ai-tools/react@0.0.56
+  - @ai-toolkit/react@0.0.56
 
 ## 3.3.33
 
@@ -5767,20 +5767,20 @@
 - 03313cd: feat (ai): expose response id, response model, response timestamp in telemetry and api
 - 3be7c1c: fix (provider/anthropic): support prompt caching on assistant messages
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.18
-  - @ai-tools/provider@0.0.23
-  - @ai-tools/react@0.0.55
-  - @ai-tools/solid@0.0.44
-  - @ai-tools/svelte@0.0.46
-  - @ai-tools/ui-utils@0.0.41
-  - @ai-tools/vue@0.0.46
+  - @ai-toolkit/provider-utils@1.0.18
+  - @ai-toolkit/provider@0.0.23
+  - @ai-toolkit/react@0.0.55
+  - @ai-toolkit/solid@0.0.44
+  - @ai-toolkit/svelte@0.0.46
+  - @ai-toolkit/ui-utils@0.0.41
+  - @ai-toolkit/vue@0.0.46
 
 ## 3.3.26
 
 ### Patch Changes
 
 - Updated dependencies [4ab883f]
-  - @ai-tools/react@0.0.54
+  - @ai-toolkit/react@0.0.54
 
 ## 3.3.25
 
@@ -5813,11 +5813,11 @@
 
 - aa2dc58: feat (ai/core): add maxToolRoundtrips to streamText
 - Updated dependencies [aa2dc58]
-  - @ai-tools/ui-utils@0.0.40
-  - @ai-tools/react@0.0.53
-  - @ai-tools/solid@0.0.43
-  - @ai-tools/svelte@0.0.45
-  - @ai-tools/vue@0.0.45
+  - @ai-toolkit/ui-utils@0.0.40
+  - @ai-toolkit/react@0.0.53
+  - @ai-toolkit/solid@0.0.43
+  - @ai-toolkit/svelte@0.0.45
+  - @ai-toolkit/vue@0.0.45
 
 ## 3.3.20
 
@@ -5838,13 +5838,13 @@
 - 9e3b5a5: feat (ai/core): add experimental_customProvider
 - 26515cb: feat (ai/provider): introduce ProviderV1 specification
 - Updated dependencies [26515cb]
-  - @ai-tools/provider@0.0.22
-  - @ai-tools/provider-utils@1.0.17
-  - @ai-tools/ui-utils@0.0.39
-  - @ai-tools/react@0.0.52
-  - @ai-tools/solid@0.0.42
-  - @ai-tools/svelte@0.0.44
-  - @ai-tools/vue@0.0.44
+  - @ai-toolkit/provider@0.0.22
+  - @ai-toolkit/provider-utils@1.0.17
+  - @ai-toolkit/ui-utils@0.0.39
+  - @ai-toolkit/react@0.0.52
+  - @ai-toolkit/solid@0.0.42
+  - @ai-toolkit/svelte@0.0.44
+  - @ai-toolkit/vue@0.0.44
 
 ## 3.3.17
 
@@ -5852,11 +5852,11 @@
 
 - d151349: feat (ai/core): array output for generateObject / streamObject
 - Updated dependencies [d151349]
-  - @ai-tools/ui-utils@0.0.38
-  - @ai-tools/react@0.0.51
-  - @ai-tools/solid@0.0.41
-  - @ai-tools/svelte@0.0.43
-  - @ai-tools/vue@0.0.43
+  - @ai-toolkit/ui-utils@0.0.38
+  - @ai-toolkit/react@0.0.51
+  - @ai-toolkit/solid@0.0.41
+  - @ai-toolkit/svelte@0.0.43
+  - @ai-toolkit/vue@0.0.43
 
 ## 3.3.16
 
@@ -5864,12 +5864,12 @@
 
 - 09f895f: feat (ai/core): no-schema output for generateObject / streamObject
 - Updated dependencies [09f895f]
-  - @ai-tools/provider-utils@1.0.16
-  - @ai-tools/react@0.0.50
-  - @ai-tools/solid@0.0.40
-  - @ai-tools/svelte@0.0.42
-  - @ai-tools/ui-utils@0.0.37
-  - @ai-tools/vue@0.0.42
+  - @ai-toolkit/provider-utils@1.0.16
+  - @ai-toolkit/react@0.0.50
+  - @ai-toolkit/solid@0.0.40
+  - @ai-toolkit/svelte@0.0.42
+  - @ai-toolkit/ui-utils@0.0.37
+  - @ai-toolkit/vue@0.0.42
 
 ## 3.3.15
 
@@ -5877,23 +5877,23 @@
 
 - b5a82b7: chore (ai): update zod-to-json-schema to 3.23.2
 - Updated dependencies [b5a82b7]
-  - @ai-tools/ui-utils@0.0.36
-  - @ai-tools/react@0.0.49
-  - @ai-tools/solid@0.0.39
-  - @ai-tools/svelte@0.0.41
-  - @ai-tools/vue@0.0.41
+  - @ai-toolkit/ui-utils@0.0.36
+  - @ai-toolkit/react@0.0.49
+  - @ai-toolkit/solid@0.0.39
+  - @ai-toolkit/svelte@0.0.41
+  - @ai-toolkit/vue@0.0.41
 
 ## 3.3.14
 
 ### Patch Changes
 
 - Updated dependencies [d67fa9c]
-  - @ai-tools/provider-utils@1.0.15
-  - @ai-tools/react@0.0.48
-  - @ai-tools/solid@0.0.38
-  - @ai-tools/svelte@0.0.40
-  - @ai-tools/ui-utils@0.0.35
-  - @ai-tools/vue@0.0.40
+  - @ai-toolkit/provider-utils@1.0.15
+  - @ai-toolkit/react@0.0.48
+  - @ai-toolkit/solid@0.0.38
+  - @ai-toolkit/svelte@0.0.40
+  - @ai-toolkit/ui-utils@0.0.35
+  - @ai-toolkit/vue@0.0.40
 
 ## 3.3.13
 
@@ -5907,13 +5907,13 @@
 
 - f2c025e: feat (ai/core): prompt validation
 - Updated dependencies [f2c025e]
-  - @ai-tools/provider@0.0.21
-  - @ai-tools/provider-utils@1.0.14
-  - @ai-tools/ui-utils@0.0.34
-  - @ai-tools/react@0.0.47
-  - @ai-tools/solid@0.0.37
-  - @ai-tools/svelte@0.0.39
-  - @ai-tools/vue@0.0.39
+  - @ai-toolkit/provider@0.0.21
+  - @ai-toolkit/provider-utils@1.0.14
+  - @ai-toolkit/ui-utils@0.0.34
+  - @ai-toolkit/react@0.0.47
+  - @ai-toolkit/solid@0.0.37
+  - @ai-toolkit/svelte@0.0.39
+  - @ai-toolkit/vue@0.0.39
 
 ## 3.3.11
 
@@ -5922,14 +5922,14 @@
 - 03eb0f4: feat (ai/core): add "ai.operationId" telemetry attribute
 - 099db96: feat (ai/core): add msToFirstChunk telemetry data
 - Updated dependencies [b6c1dee]
-  - @ai-tools/react@0.0.46
+  - @ai-toolkit/react@0.0.46
 
 ## 3.3.10
 
 ### Patch Changes
 
 - Updated dependencies [04084a3]
-  - @ai-tools/vue@0.0.38
+  - @ai-toolkit/vue@0.0.38
 
 ## 3.3.9
 
@@ -5938,25 +5938,25 @@
 - 6ac355e: feat (provider/anthropic): add cache control support
 - b56dee1: chore (ai): deprecate prompt helpers
 - Updated dependencies [6ac355e]
-  - @ai-tools/provider@0.0.20
-  - @ai-tools/provider-utils@1.0.13
-  - @ai-tools/ui-utils@0.0.33
-  - @ai-tools/react@0.0.45
-  - @ai-tools/solid@0.0.36
-  - @ai-tools/svelte@0.0.38
-  - @ai-tools/vue@0.0.37
+  - @ai-toolkit/provider@0.0.20
+  - @ai-toolkit/provider-utils@1.0.13
+  - @ai-toolkit/ui-utils@0.0.33
+  - @ai-toolkit/react@0.0.45
+  - @ai-toolkit/solid@0.0.36
+  - @ai-toolkit/svelte@0.0.38
+  - @ai-toolkit/vue@0.0.37
 
 ## 3.3.8
 
 ### Patch Changes
 
 - Updated dependencies [dd712ac]
-  - @ai-tools/provider-utils@1.0.12
-  - @ai-tools/ui-utils@0.0.32
-  - @ai-tools/react@0.0.44
-  - @ai-tools/solid@0.0.35
-  - @ai-tools/svelte@0.0.37
-  - @ai-tools/vue@0.0.36
+  - @ai-toolkit/provider-utils@1.0.12
+  - @ai-toolkit/ui-utils@0.0.32
+  - @ai-toolkit/react@0.0.44
+  - @ai-toolkit/solid@0.0.35
+  - @ai-toolkit/svelte@0.0.37
+  - @ai-toolkit/vue@0.0.36
 
 ## 3.3.7
 
@@ -5964,13 +5964,13 @@
 
 - eccbd8e: feat (ai/core): add onChunk callback to streamText
 - Updated dependencies [dd4a0f5]
-  - @ai-tools/provider@0.0.19
-  - @ai-tools/provider-utils@1.0.11
-  - @ai-tools/ui-utils@0.0.31
-  - @ai-tools/react@0.0.43
-  - @ai-tools/solid@0.0.34
-  - @ai-tools/svelte@0.0.36
-  - @ai-tools/vue@0.0.35
+  - @ai-toolkit/provider@0.0.19
+  - @ai-toolkit/provider-utils@1.0.11
+  - @ai-toolkit/ui-utils@0.0.31
+  - @ai-toolkit/react@0.0.43
+  - @ai-toolkit/solid@0.0.34
+  - @ai-toolkit/svelte@0.0.36
+  - @ai-toolkit/vue@0.0.35
 
 ## 3.3.6
 
@@ -5979,13 +5979,13 @@
 - e9c891d: feat (ai/react): useObject supports non-Zod schemas
 - 3719e8a: chore (ai/core): provider registry code improvements
 - Updated dependencies
-  - @ai-tools/ui-utils@0.0.30
-  - @ai-tools/react@0.0.42
-  - @ai-tools/provider-utils@1.0.10
-  - @ai-tools/provider@0.0.18
-  - @ai-tools/solid@0.0.33
-  - @ai-tools/svelte@0.0.35
-  - @ai-tools/vue@0.0.34
+  - @ai-toolkit/ui-utils@0.0.30
+  - @ai-toolkit/react@0.0.42
+  - @ai-toolkit/provider-utils@1.0.10
+  - @ai-toolkit/provider@0.0.18
+  - @ai-toolkit/solid@0.0.33
+  - @ai-toolkit/svelte@0.0.35
+  - @ai-toolkit/vue@0.0.34
 
 ## 3.3.5
 
@@ -5993,11 +5993,11 @@
 
 - 9ada023: feat (ai/core): mask data stream error messages with streamText
 - Updated dependencies [e5b58f3]
-  - @ai-tools/ui-utils@0.0.29
-  - @ai-tools/react@0.0.41
-  - @ai-tools/solid@0.0.32
-  - @ai-tools/svelte@0.0.34
-  - @ai-tools/vue@0.0.33
+  - @ai-toolkit/ui-utils@0.0.29
+  - @ai-toolkit/react@0.0.41
+  - @ai-toolkit/solid@0.0.32
+  - @ai-toolkit/svelte@0.0.34
+  - @ai-toolkit/vue@0.0.33
 
 ## 3.3.4
 
@@ -6007,13 +6007,13 @@
 - 3806c0c: chore (ai/ui): increase stream data warning timeout to 15 seconds
 - db0118a: feat (ai/core): export Schema type
 - Updated dependencies [029af4c]
-  - @ai-tools/provider@0.0.17
-  - @ai-tools/provider-utils@1.0.9
-  - @ai-tools/ui-utils@0.0.28
-  - @ai-tools/react@0.0.40
-  - @ai-tools/solid@0.0.31
-  - @ai-tools/svelte@0.0.33
-  - @ai-tools/vue@0.0.32
+  - @ai-toolkit/provider@0.0.17
+  - @ai-toolkit/provider-utils@1.0.9
+  - @ai-toolkit/ui-utils@0.0.28
+  - @ai-toolkit/react@0.0.40
+  - @ai-toolkit/solid@0.0.31
+  - @ai-toolkit/svelte@0.0.33
+  - @ai-toolkit/vue@0.0.32
 
 ## 3.3.3
 
@@ -6021,26 +6021,26 @@
 
 - d58517b: feat (ai/openai): structured outputs
 - Updated dependencies [d58517b]
-  - @ai-tools/provider@0.0.16
-  - @ai-tools/provider-utils@1.0.8
-  - @ai-tools/ui-utils@0.0.27
-  - @ai-tools/react@0.0.39
-  - @ai-tools/solid@0.0.30
-  - @ai-tools/svelte@0.0.32
-  - @ai-tools/vue@0.0.31
+  - @ai-toolkit/provider@0.0.16
+  - @ai-toolkit/provider-utils@1.0.8
+  - @ai-toolkit/ui-utils@0.0.27
+  - @ai-toolkit/react@0.0.39
+  - @ai-toolkit/solid@0.0.30
+  - @ai-toolkit/svelte@0.0.32
+  - @ai-toolkit/vue@0.0.31
 
 ## 3.3.2
 
 ### Patch Changes
 
 - Updated dependencies [96aed25]
-  - @ai-tools/provider@0.0.15
-  - @ai-tools/provider-utils@1.0.7
-  - @ai-tools/ui-utils@0.0.26
-  - @ai-tools/react@0.0.38
-  - @ai-tools/solid@0.0.29
-  - @ai-tools/svelte@0.0.31
-  - @ai-tools/vue@0.0.30
+  - @ai-toolkit/provider@0.0.15
+  - @ai-toolkit/provider-utils@1.0.7
+  - @ai-toolkit/ui-utils@0.0.26
+  - @ai-toolkit/react@0.0.38
+  - @ai-toolkit/solid@0.0.29
+  - @ai-toolkit/svelte@0.0.31
+  - @ai-toolkit/vue@0.0.30
 
 ## 3.3.1
 
@@ -6049,12 +6049,12 @@
 - 9614584: fix (ai/core): use Symbol.for
 - 0762a22: feat (ai/core): support zod transformers in generateObject & streamObject
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.6
-  - @ai-tools/react@0.0.37
-  - @ai-tools/solid@0.0.28
-  - @ai-tools/svelte@0.0.30
-  - @ai-tools/ui-utils@0.0.25
-  - @ai-tools/vue@0.0.29
+  - @ai-toolkit/provider-utils@1.0.6
+  - @ai-toolkit/react@0.0.37
+  - @ai-toolkit/solid@0.0.28
+  - @ai-toolkit/svelte@0.0.30
+  - @ai-toolkit/ui-utils@0.0.25
+  - @ai-toolkit/vue@0.0.29
 
 ## 3.3.0
 
@@ -6071,25 +6071,25 @@
 ### Patch Changes
 
 - Updated dependencies [5be25124]
-  - @ai-tools/ui-utils@0.0.24
-  - @ai-tools/react@0.0.36
-  - @ai-tools/solid@0.0.27
-  - @ai-tools/svelte@0.0.29
-  - @ai-tools/vue@0.0.28
+  - @ai-toolkit/ui-utils@0.0.24
+  - @ai-toolkit/react@0.0.36
+  - @ai-toolkit/solid@0.0.27
+  - @ai-toolkit/svelte@0.0.29
+  - @ai-toolkit/vue@0.0.28
 
 ## 3.2.44
 
 ### Patch Changes
 
 - Updated dependencies [a147d040]
-  - @ai-tools/react@0.0.35
+  - @ai-toolkit/react@0.0.35
 
 ## 3.2.43
 
 ### Patch Changes
 
 - Updated dependencies [b68fae4f]
-  - @ai-tools/react@0.0.34
+  - @ai-toolkit/react@0.0.34
 
 ## 3.2.42
 
@@ -6097,11 +6097,11 @@
 
 - f63c99e7: feat (ai/core): record OpenTelemetry gen_ai attributes
 - Updated dependencies [fea7b604]
-  - @ai-tools/ui-utils@0.0.23
-  - @ai-tools/react@0.0.33
-  - @ai-tools/solid@0.0.26
-  - @ai-tools/svelte@0.0.28
-  - @ai-tools/vue@0.0.27
+  - @ai-toolkit/ui-utils@0.0.23
+  - @ai-toolkit/react@0.0.33
+  - @ai-toolkit/solid@0.0.26
+  - @ai-toolkit/svelte@0.0.28
+  - @ai-toolkit/vue@0.0.27
 
 ## 3.2.41
 
@@ -6109,11 +6109,11 @@
 
 - a12044c7: feat (ai/core): add recordInputs / recordOutputs setting to telemetry options
 - Updated dependencies [1d93d716]
-  - @ai-tools/ui-utils@0.0.22
-  - @ai-tools/react@0.0.32
-  - @ai-tools/solid@0.0.25
-  - @ai-tools/svelte@0.0.27
-  - @ai-tools/vue@0.0.26
+  - @ai-toolkit/ui-utils@0.0.22
+  - @ai-toolkit/react@0.0.32
+  - @ai-toolkit/solid@0.0.25
+  - @ai-toolkit/svelte@0.0.27
+  - @ai-toolkit/vue@0.0.26
 
 ## 3.2.40
 
@@ -6127,7 +6127,7 @@
 
 - b694f2f9: feat (ai/svelte): add tool calling support to useChat
 - Updated dependencies [b694f2f9]
-  - @ai-tools/svelte@0.0.26
+  - @ai-toolkit/svelte@0.0.26
 
 ## 3.2.38
 
@@ -6138,11 +6138,11 @@
 - e4a1719f: chore (ai/ui): rename streamMode to streamProtocol
 - 10158bf2: fix (ai/core): generateObject.doGenerate sets object telemetry attribute
 - Updated dependencies
-  - @ai-tools/ui-utils@0.0.21
-  - @ai-tools/svelte@0.0.25
-  - @ai-tools/react@0.0.31
-  - @ai-tools/solid@0.0.24
-  - @ai-tools/vue@0.0.25
+  - @ai-toolkit/ui-utils@0.0.21
+  - @ai-toolkit/svelte@0.0.25
+  - @ai-toolkit/react@0.0.31
+  - @ai-toolkit/solid@0.0.24
+  - @ai-toolkit/vue@0.0.25
 
 ## 3.2.37
 
@@ -6150,9 +6150,9 @@
 
 - b2bee4c5: fix (ai/ui): send data, body, headers in useChat().reload
 - Updated dependencies [b2bee4c5]
-  - @ai-tools/svelte@0.0.24
-  - @ai-tools/react@0.0.30
-  - @ai-tools/solid@0.0.23
+  - @ai-toolkit/svelte@0.0.24
+  - @ai-toolkit/react@0.0.30
+  - @ai-toolkit/solid@0.0.23
 
 ## 3.2.36
 
@@ -6162,13 +6162,13 @@
 - cfa360a8: feat (ai/core): add telemetry support to embedMany function.
 - 49808ca5: feat (ai/core): add telemetry to streamObject
 - Updated dependencies [a8d1c9e9]
-  - @ai-tools/provider-utils@1.0.5
-  - @ai-tools/provider@0.0.14
-  - @ai-tools/react@0.0.29
-  - @ai-tools/svelte@0.0.23
-  - @ai-tools/ui-utils@0.0.20
-  - @ai-tools/vue@0.0.24
-  - @ai-tools/solid@0.0.22
+  - @ai-toolkit/provider-utils@1.0.5
+  - @ai-toolkit/provider@0.0.14
+  - @ai-toolkit/react@0.0.29
+  - @ai-toolkit/svelte@0.0.23
+  - @ai-toolkit/ui-utils@0.0.20
+  - @ai-toolkit/vue@0.0.24
+  - @ai-toolkit/solid@0.0.22
 
 ## 3.2.35
 
@@ -6178,12 +6178,12 @@
 - 4f88248f: feat (core): support json schema
 - 0d545231: chore (ai/svelte): change sswr into optional peer dependency
 - Updated dependencies [4f88248f]
-  - @ai-tools/provider-utils@1.0.4
-  - @ai-tools/react@0.0.28
-  - @ai-tools/svelte@0.0.22
-  - @ai-tools/ui-utils@0.0.19
-  - @ai-tools/vue@0.0.23
-  - @ai-tools/solid@0.0.21
+  - @ai-toolkit/provider-utils@1.0.4
+  - @ai-toolkit/react@0.0.28
+  - @ai-toolkit/svelte@0.0.22
+  - @ai-toolkit/ui-utils@0.0.19
+  - @ai-toolkit/vue@0.0.23
+  - @ai-toolkit/solid@0.0.21
 
 ## 3.2.34
 
@@ -6195,13 +6195,13 @@
 - 13b27ec6: chore (ai/core): remove grammar mode
 - 644f6582: feat (ai/core): add telemetry to generateObject
 - Updated dependencies
-  - @ai-tools/provider@0.0.13
-  - @ai-tools/provider-utils@1.0.3
-  - @ai-tools/react@0.0.27
-  - @ai-tools/svelte@0.0.21
-  - @ai-tools/ui-utils@0.0.18
-  - @ai-tools/solid@0.0.20
-  - @ai-tools/vue@0.0.22
+  - @ai-toolkit/provider@0.0.13
+  - @ai-toolkit/provider-utils@1.0.3
+  - @ai-toolkit/react@0.0.27
+  - @ai-toolkit/svelte@0.0.21
+  - @ai-toolkit/ui-utils@0.0.18
+  - @ai-toolkit/solid@0.0.20
+  - @ai-toolkit/vue@0.0.22
 
 ## 3.2.33
 
@@ -6210,22 +6210,22 @@
 - 4b2c09d9: feat (ai/ui): add mutator function support to useChat / setMessages
 - 281e7662: chore: add description to ai package
 - Updated dependencies
-  - @ai-tools/ui-utils@0.0.17
-  - @ai-tools/svelte@0.0.20
-  - @ai-tools/react@0.0.26
-  - @ai-tools/solid@0.0.19
-  - @ai-tools/vue@0.0.21
+  - @ai-toolkit/ui-utils@0.0.17
+  - @ai-toolkit/svelte@0.0.20
+  - @ai-toolkit/react@0.0.26
+  - @ai-toolkit/solid@0.0.19
+  - @ai-toolkit/vue@0.0.21
 
 ## 3.2.32
 
 ### Patch Changes
 
 - Updated dependencies [5b7b3bbe]
-  - @ai-tools/ui-utils@0.0.16
-  - @ai-tools/react@0.0.25
-  - @ai-tools/solid@0.0.18
-  - @ai-tools/svelte@0.0.19
-  - @ai-tools/vue@0.0.20
+  - @ai-toolkit/ui-utils@0.0.16
+  - @ai-toolkit/react@0.0.25
+  - @ai-toolkit/solid@0.0.18
+  - @ai-toolkit/svelte@0.0.19
+  - @ai-toolkit/vue@0.0.20
 
 ## 3.2.31
 
@@ -6238,8 +6238,8 @@
 ### Patch Changes
 
 - Updated dependencies [19c3d50f]
-  - @ai-tools/react@0.0.24
-  - @ai-tools/vue@0.0.19
+  - @ai-toolkit/react@0.0.24
+  - @ai-toolkit/vue@0.0.19
 
 ## 3.2.29
 
@@ -6256,11 +6256,11 @@
 - f0bc1e79: feat (ai/ui): add system message support to convertToCoreMessages
 - 1f67fe49: feat (ai/ui): stream tool calls with streamText and useChat
 - Updated dependencies [1f67fe49]
-  - @ai-tools/ui-utils@0.0.15
-  - @ai-tools/react@0.0.23
-  - @ai-tools/solid@0.0.17
-  - @ai-tools/svelte@0.0.18
-  - @ai-tools/vue@0.0.18
+  - @ai-toolkit/ui-utils@0.0.15
+  - @ai-toolkit/react@0.0.23
+  - @ai-toolkit/solid@0.0.17
+  - @ai-toolkit/svelte@0.0.18
+  - @ai-toolkit/vue@0.0.18
 
 ## 3.2.27
 
@@ -6280,11 +6280,11 @@
 
 - 99ddbb74: feat (ai/react): add experimental support for managing attachments to useChat
 - Updated dependencies [99ddbb74]
-  - @ai-tools/ui-utils@0.0.14
-  - @ai-tools/react@0.0.22
-  - @ai-tools/solid@0.0.16
-  - @ai-tools/svelte@0.0.17
-  - @ai-tools/vue@0.0.17
+  - @ai-toolkit/ui-utils@0.0.14
+  - @ai-toolkit/react@0.0.22
+  - @ai-toolkit/solid@0.0.16
+  - @ai-toolkit/svelte@0.0.17
+  - @ai-toolkit/vue@0.0.17
 
 ## 3.2.24
 
@@ -6298,11 +6298,11 @@
 
 - a6cb2c8b: feat (ai/ui): add keepLastMessageOnError option to useChat
 - Updated dependencies [a6cb2c8b]
-  - @ai-tools/ui-utils@0.0.13
-  - @ai-tools/svelte@0.0.16
-  - @ai-tools/react@0.0.21
-  - @ai-tools/solid@0.0.15
-  - @ai-tools/vue@0.0.16
+  - @ai-toolkit/ui-utils@0.0.13
+  - @ai-toolkit/svelte@0.0.16
+  - @ai-toolkit/react@0.0.21
+  - @ai-toolkit/solid@0.0.15
+  - @ai-toolkit/vue@0.0.16
 
 ## 3.2.22
 
@@ -6311,7 +6311,7 @@
 - 53fccf1c: fix (ai/core): report error on controller
 - dd0d854e: feat (ai/vue): add useAssistant
 - Updated dependencies [dd0d854e]
-  - @ai-tools/vue@0.0.15
+  - @ai-toolkit/vue@0.0.15
 
 ## 3.2.21
 
@@ -6319,11 +6319,11 @@
 
 - 56bbc2a7: feat (ai/ui): set body and headers directly on options for handleSubmit and append
 - Updated dependencies [56bbc2a7]
-  - @ai-tools/ui-utils@0.0.12
-  - @ai-tools/svelte@0.0.15
-  - @ai-tools/react@0.0.20
-  - @ai-tools/solid@0.0.14
-  - @ai-tools/vue@0.0.14
+  - @ai-toolkit/ui-utils@0.0.12
+  - @ai-toolkit/svelte@0.0.15
+  - @ai-toolkit/react@0.0.20
+  - @ai-toolkit/solid@0.0.14
+  - @ai-toolkit/vue@0.0.14
 
 ## 3.2.20
 
@@ -6338,20 +6338,20 @@
 - b7290943: chore (ai/core): rename TokenUsage type to CompletionTokenUsage
 - b7290943: feat (ai/core): add token usage to embed and embedMany
 - Updated dependencies [b7290943]
-  - @ai-tools/provider@0.0.12
-  - @ai-tools/provider-utils@1.0.2
-  - @ai-tools/react@0.0.19
-  - @ai-tools/svelte@0.0.14
-  - @ai-tools/ui-utils@0.0.11
-  - @ai-tools/solid@0.0.13
-  - @ai-tools/vue@0.0.13
+  - @ai-toolkit/provider@0.0.12
+  - @ai-toolkit/provider-utils@1.0.2
+  - @ai-toolkit/react@0.0.19
+  - @ai-toolkit/svelte@0.0.14
+  - @ai-toolkit/ui-utils@0.0.11
+  - @ai-toolkit/solid@0.0.13
+  - @ai-toolkit/vue@0.0.13
 
 ## 3.2.18
 
 ### Patch Changes
 
 - Updated dependencies [70d18003]
-  - @ai-tools/react@0.0.18
+  - @ai-toolkit/react@0.0.18
 
 ## 3.2.17
 
@@ -6361,19 +6361,19 @@
 - abb22602: feat (ai): verify that system messages have string content
 - 5c1f0bd3: fix unclosed streamable value console message
 - Updated dependencies
-  - @ai-tools/react@0.0.17
-  - @ai-tools/svelte@0.0.13
-  - @ai-tools/solid@0.0.12
-  - @ai-tools/vue@0.0.12
-  - @ai-tools/provider-utils@1.0.1
-  - @ai-tools/ui-utils@0.0.10
+  - @ai-toolkit/react@0.0.17
+  - @ai-toolkit/svelte@0.0.13
+  - @ai-toolkit/solid@0.0.12
+  - @ai-toolkit/vue@0.0.12
+  - @ai-toolkit/provider-utils@1.0.1
+  - @ai-toolkit/ui-utils@0.0.10
 
 ## 3.2.16
 
 ### Patch Changes
 
 - Updated dependencies [3f756a6b]
-  - @ai-tools/react@0.0.16
+  - @ai-toolkit/react@0.0.16
 
 ## 3.2.15
 
@@ -6381,18 +6381,18 @@
 
 - 6c99581e: fix (ai/react): stop() on useObject does not throw error and clears isLoading
 - Updated dependencies [6c99581e]
-  - @ai-tools/react@0.0.15
+  - @ai-toolkit/react@0.0.15
 
 ## 3.2.14
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@0.0.14
-  - @ai-tools/ui-utils@0.0.9
-  - @ai-tools/solid@0.0.11
-  - @ai-tools/svelte@0.0.12
-  - @ai-tools/vue@0.0.11
+  - @ai-toolkit/react@0.0.14
+  - @ai-toolkit/ui-utils@0.0.9
+  - @ai-toolkit/solid@0.0.11
+  - @ai-toolkit/svelte@0.0.12
+  - @ai-toolkit/vue@0.0.11
 
 ## 3.2.13
 
@@ -6400,11 +6400,11 @@
 
 - d3100b9c: feat (ai/ui): support custom fetch function in useChat, useCompletion, useAssistant, useObject
 - Updated dependencies [d3100b9c]
-  - @ai-tools/ui-utils@0.0.8
-  - @ai-tools/svelte@0.0.11
-  - @ai-tools/react@0.0.13
-  - @ai-tools/solid@0.0.10
-  - @ai-tools/vue@0.0.10
+  - @ai-toolkit/ui-utils@0.0.8
+  - @ai-toolkit/svelte@0.0.11
+  - @ai-toolkit/react@0.0.13
+  - @ai-toolkit/solid@0.0.10
+  - @ai-toolkit/vue@0.0.10
 
 ## 3.2.12
 
@@ -6412,13 +6412,13 @@
 
 - 5edc6110: feat (ai/core): add custom request header support
 - Updated dependencies
-  - @ai-tools/provider@0.0.11
-  - @ai-tools/provider-utils@1.0.0
-  - @ai-tools/react@0.0.12
-  - @ai-tools/svelte@0.0.10
-  - @ai-tools/ui-utils@0.0.7
-  - @ai-tools/solid@0.0.9
-  - @ai-tools/vue@0.0.9
+  - @ai-toolkit/provider@0.0.11
+  - @ai-toolkit/provider-utils@1.0.0
+  - @ai-toolkit/react@0.0.12
+  - @ai-toolkit/svelte@0.0.10
+  - @ai-toolkit/ui-utils@0.0.7
+  - @ai-toolkit/solid@0.0.9
+  - @ai-toolkit/vue@0.0.9
 
 ## 3.2.11
 
@@ -6427,16 +6427,16 @@
 - c908f741: chore (ui/solid): update solidjs useChat and useCompletion to feature parity with React
 - 827ef450: feat (ai/ui): improve error handling in useAssistant
 - Updated dependencies
-  - @ai-tools/solid@0.0.8
-  - @ai-tools/svelte@0.0.9
-  - @ai-tools/react@0.0.11
+  - @ai-toolkit/solid@0.0.8
+  - @ai-toolkit/svelte@0.0.9
+  - @ai-toolkit/react@0.0.11
 
 ## 3.2.10
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/react@0.0.10
+  - @ai-toolkit/react@0.0.10
 
 ## 3.2.9
 
@@ -6444,9 +6444,9 @@
 
 - 82d9c8de: feat (ai/ui): make event in useAssistant submitMessage optional
 - Updated dependencies
-  - @ai-tools/svelte@0.0.8
-  - @ai-tools/react@0.0.9
-  - @ai-tools/vue@0.0.8
+  - @ai-toolkit/svelte@0.0.8
+  - @ai-toolkit/react@0.0.9
+  - @ai-toolkit/vue@0.0.8
 
 ## 3.2.8
 
@@ -6454,11 +6454,11 @@
 
 - 54bf4083: feat (ai/react): control request body in useChat
 - Updated dependencies [54bf4083]
-  - @ai-tools/ui-utils@0.0.6
-  - @ai-tools/react@0.0.8
-  - @ai-tools/solid@0.0.7
-  - @ai-tools/svelte@0.0.7
-  - @ai-tools/vue@0.0.7
+  - @ai-toolkit/ui-utils@0.0.6
+  - @ai-toolkit/react@0.0.8
+  - @ai-toolkit/solid@0.0.7
+  - @ai-toolkit/svelte@0.0.7
+  - @ai-toolkit/vue@0.0.7
 
 ## 3.2.7
 
@@ -6466,10 +6466,10 @@
 
 - d42b8907: feat (ui): make event in handleSubmit optional
 - Updated dependencies [d42b8907]
-  - @ai-tools/svelte@0.0.6
-  - @ai-tools/react@0.0.7
-  - @ai-tools/solid@0.0.6
-  - @ai-tools/vue@0.0.6
+  - @ai-toolkit/svelte@0.0.6
+  - @ai-toolkit/react@0.0.7
+  - @ai-toolkit/solid@0.0.6
+  - @ai-toolkit/vue@0.0.6
 
 ## 3.2.6
 
@@ -6488,7 +6488,7 @@
 ### Patch Changes
 
 - Updated dependencies [3cb103bc]
-  - @ai-tools/react@0.0.6
+  - @ai-toolkit/react@0.0.6
 
 ## 3.2.3
 
@@ -6496,12 +6496,12 @@
 
 - 89b7552b: chore (ai): remove deprecation from ai/react imports, add experimental_useObject
 - Updated dependencies [02f6a088]
-  - @ai-tools/provider-utils@0.0.16
-  - @ai-tools/react@0.0.5
-  - @ai-tools/svelte@0.0.5
-  - @ai-tools/ui-utils@0.0.5
-  - @ai-tools/solid@0.0.5
-  - @ai-tools/vue@0.0.5
+  - @ai-toolkit/provider-utils@0.0.16
+  - @ai-toolkit/react@0.0.5
+  - @ai-toolkit/svelte@0.0.5
+  - @ai-toolkit/ui-utils@0.0.5
+  - @ai-toolkit/solid@0.0.5
+  - @ai-toolkit/vue@0.0.5
 
 ## 3.2.2
 
@@ -6516,11 +6516,11 @@
 - 008725ec: feat (ai): add textStream, toTextStreamResponse(), and pipeTextStreamToResponse() to streamObject
 - 520fb2d5: feat (rsc): add streamUI onFinish callback
 - Updated dependencies
-  - @ai-tools/react@0.0.4
-  - @ai-tools/ui-utils@0.0.4
-  - @ai-tools/solid@0.0.4
-  - @ai-tools/svelte@0.0.4
-  - @ai-tools/vue@0.0.4
+  - @ai-toolkit/react@0.0.4
+  - @ai-toolkit/ui-utils@0.0.4
+  - @ai-toolkit/solid@0.0.4
+  - @ai-toolkit/svelte@0.0.4
+  - @ai-toolkit/vue@0.0.4
 
 ## 3.2.0
 
@@ -6536,14 +6536,14 @@
 
 ### Patch Changes
 
-- 85712895: chore (@ai-tools/provider-utils): move test helper to provider utils
+- 85712895: chore (@ai-toolkit/provider-utils): move test helper to provider utils
 - Updated dependencies
-  - @ai-tools/provider-utils@0.0.15
-  - @ai-tools/react@0.0.3
-  - @ai-tools/svelte@0.0.3
-  - @ai-tools/ui-utils@0.0.3
-  - @ai-tools/solid@0.0.3
-  - @ai-tools/vue@0.0.3
+  - @ai-toolkit/provider-utils@0.0.15
+  - @ai-toolkit/react@0.0.3
+  - @ai-toolkit/svelte@0.0.3
+  - @ai-toolkit/ui-utils@0.0.3
+  - @ai-toolkit/solid@0.0.3
+  - @ai-toolkit/vue@0.0.3
 
 ## 3.1.36
 
@@ -6552,12 +6552,12 @@
 - 4728c37f: feat (core): add text embedding model support to provider registry
 - 8c49166e: chore (core): rename experimental_createModelRegistry to experimental_createProviderRegistry
 - Updated dependencies [7910ae84]
-  - @ai-tools/provider-utils@0.0.14
-  - @ai-tools/react@0.0.2
-  - @ai-tools/svelte@0.0.2
-  - @ai-tools/ui-utils@0.0.2
-  - @ai-tools/solid@0.0.2
-  - @ai-tools/vue@0.0.2
+  - @ai-toolkit/provider-utils@0.0.14
+  - @ai-toolkit/react@0.0.2
+  - @ai-toolkit/svelte@0.0.2
+  - @ai-toolkit/ui-utils@0.0.2
+  - @ai-toolkit/solid@0.0.2
+  - @ai-toolkit/vue@0.0.2
 
 ## 3.1.35
 
@@ -6592,11 +6592,11 @@
 - 85f209a4: chore: extracted ui library support into separate modules
 - 85f209a4: removed (streams): experimental_StreamingReactResponse was removed. Please use AI SDK RSC instead.
 - Updated dependencies [85f209a4]
-  - @ai-tools/ui-utils@0.0.1
-  - @ai-tools/svelte@0.0.1
-  - @ai-tools/react@0.0.1
-  - @ai-tools/solid@0.0.1
-  - @ai-tools/vue@0.0.1
+  - @ai-toolkit/ui-utils@0.0.1
+  - @ai-toolkit/svelte@0.0.1
+  - @ai-toolkit/react@0.0.1
+  - @ai-toolkit/solid@0.0.1
+  - @ai-toolkit/vue@0.0.1
 
 ## 3.1.30
 
@@ -6616,8 +6616,8 @@
 
 - 102ca22f: feat (core): add object promise to streamObject result
 - Updated dependencies [102ca22f]
-  - @ai-tools/provider@0.0.10
-  - @ai-tools/provider-utils@0.0.13
+  - @ai-toolkit/provider@0.0.10
+  - @ai-toolkit/provider-utils@0.0.13
 
 ## 3.1.27
 
@@ -6625,8 +6625,8 @@
 
 - c9198d4d: feat (ui): send annotation and data fields in useChat when sendExtraMessageFields is true
 - Updated dependencies
-  - @ai-tools/provider@0.0.9
-  - @ai-tools/provider-utils@0.0.12
+  - @ai-toolkit/provider@0.0.9
+  - @ai-toolkit/provider-utils@0.0.12
 
 ## 3.1.26
 
@@ -6700,8 +6700,8 @@
 
 - f39c0dd2: feat (core, rsc): add toolChoice setting
 - Updated dependencies [f39c0dd2]
-  - @ai-tools/provider@0.0.8
-  - @ai-tools/provider-utils@0.0.11
+  - @ai-toolkit/provider@0.0.8
+  - @ai-toolkit/provider-utils@0.0.11
 
 ## 3.1.15
 
@@ -6710,8 +6710,8 @@
 - 8e780288: feat (ai/core): add onFinish callback to streamText
 - 8e780288: feat (ai/core): add text, toolCalls, and toolResults promises to StreamTextResult (matching the generateText result API with async methods)
 - Updated dependencies [8e780288]
-  - @ai-tools/provider@0.0.7
-  - @ai-tools/provider-utils@0.0.10
+  - @ai-toolkit/provider@0.0.7
+  - @ai-toolkit/provider-utils@0.0.10
 
 ## 3.1.14
 
@@ -6725,8 +6725,8 @@
 
 - 60117c9: dependencies (ai/ui): add React 18.3 and 19 support (peer dependency)
 - Updated dependencies
-  - @ai-tools/provider@0.0.6
-  - @ai-tools/provider-utils@0.0.9
+  - @ai-toolkit/provider@0.0.6
+  - @ai-toolkit/provider-utils@0.0.9
 
 ## 3.1.12
 
@@ -6758,8 +6758,8 @@
 
 - 0f6bc4e: feat (ai/core): add embed function
 - Updated dependencies [0f6bc4e]
-  - @ai-tools/provider@0.0.5
-  - @ai-tools/provider-utils@0.0.8
+  - @ai-toolkit/provider@0.0.5
+  - @ai-toolkit/provider-utils@0.0.8
 
 ## 3.1.7
 
@@ -6775,8 +6775,8 @@
 - 8439884: ai/rsc: make RSC streamable utils chainable
 - 325ca55: feat (ai/core): improve image content part error message
 - Updated dependencies [325ca55]
-  - @ai-tools/provider@0.0.4
-  - @ai-tools/provider-utils@0.0.7
+  - @ai-toolkit/provider@0.0.4
+  - @ai-toolkit/provider-utils@0.0.7
 
 ## 3.1.5
 
@@ -6798,7 +6798,7 @@
 - 970a099: fix (ai/core): streamObject fixes partial json with empty objects correctly
 - 1ac2390: feat (ai/core): add usage and finishReason to streamText result.
 - Updated dependencies [276f22b]
-  - @ai-tools/provider-utils@0.0.6
+  - @ai-toolkit/provider-utils@0.0.6
 
 ## 3.1.2
 
@@ -6825,8 +6825,8 @@
 - 41d5736: ai/core: re-expose language model types.
 - b4c68ec: ai/rsc: ReadableStream as provider for createStreamableValue; add .append() method
 - Updated dependencies [41d5736]
-  - @ai-tools/provider@0.0.3
-  - @ai-tools/provider-utils@0.0.5
+  - @ai-toolkit/provider@0.0.3
+  - @ai-toolkit/provider-utils@0.0.5
 
 ## 3.0.34
 
@@ -6840,7 +6840,7 @@
 
 - 56ef84a: ai/core: fix abort handling in transformation stream
 - Updated dependencies [56ef84a]
-  - @ai-tools/provider-utils@0.0.4
+  - @ai-toolkit/provider-utils@0.0.4
 
 ## 3.0.32
 
@@ -6873,8 +6873,8 @@
 - d6431ae: ai/core: add logprobs support (thanks @SamStenner for the contribution)
 - 25f3350: ai/core: add support for getting raw response headers.
 - Updated dependencies
-  - @ai-tools/provider@0.0.2
-  - @ai-tools/provider-utils@0.0.3
+  - @ai-toolkit/provider@0.0.2
+  - @ai-toolkit/provider-utils@0.0.3
 
 ## 3.0.27
 
@@ -6882,8 +6882,8 @@
 
 - eb150a6: ai/core: remove scaling of setting values (breaking change). If you were using the temperature, frequency penalty, or presence penalty settings, you need to update the providers and adjust the setting values.
 - Updated dependencies [eb150a6]
-  - @ai-tools/provider-utils@0.0.2
-  - @ai-tools/provider@0.0.1
+  - @ai-toolkit/provider-utils@0.0.2
+  - @ai-toolkit/provider@0.0.1
 
 ## 3.0.26
 
@@ -6910,20 +6910,20 @@
 
 - 66b5892: Add streamMode parameter to useChat and useCompletion.
 - Updated dependencies [7b8791d]
-  - @ai-tools/provider-utils@0.0.1
+  - @ai-toolkit/provider-utils@0.0.1
 
 ## 3.0.22
 
 ### Patch Changes
 
-- d544886: Breaking change: extract experimental AI core provider packages. They can now be imported with e.g. import { openai } from '@ai-tools/openai' after adding them to a project.
+- d544886: Breaking change: extract experimental AI core provider packages. They can now be imported with e.g. import { openai } from '@ai-toolkit/openai' after adding them to a project.
 - ea6b0e1: Expose formatStreamPart, parseStreamPart, and readDataStream helpers.
 
 ## 3.0.21
 
 ### Patch Changes
 
-- 87d3db5: Extracted @ai-tools/provider package
+- 87d3db5: Extracted @ai-toolkit/provider package
 - 8c40f8c: ai/core: Fix openai provider streamObject for gpt-4-turbo
 - 5cd29bd: ai/core: add toTextStreamResponse() method to streamText result
 

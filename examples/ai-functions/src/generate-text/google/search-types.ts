@@ -1,4 +1,4 @@
-import { google, GoogleGenerativeAIProviderMetadata } from '@ai-tools/google';
+import { google, GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

@@ -5,10 +5,10 @@ contains transcription model support for the Deepgram transcription API and spee
 
 ## Setup
 
-The Deepgram provider is available in the `@ai-tools/deepgram` module. You can install it with
+The Deepgram provider is available in the `@ai-toolkit/deepgram` module. You can install it with
 
 ```bash
-npm i @ai-tools/deepgram
+npm i @ai-toolkit/deepgram
 ```
 
 ## Skill for Coding Agents
@@ -21,10 +21,10 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `deepgram` from `@ai-tools/deepgram`:
+You can import the default provider instance `deepgram` from `@ai-toolkit/deepgram`:
 
 ```ts
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 ```
 
 ## Examples
@@ -32,7 +32,7 @@ import { deepgram } from '@ai-tools/deepgram';
 ### Transcription
 
 ```ts
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -46,7 +46,7 @@ const { text } = await transcribe({
 ### Transcription with Language Detection
 
 ```ts
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text, language } = await transcribe({
@@ -65,7 +65,7 @@ const { text, language } = await transcribe({
 ### Text-to-Speech
 
 ```ts
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const { audio } = await generateSpeech({

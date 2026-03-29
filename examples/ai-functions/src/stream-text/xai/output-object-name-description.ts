@@ -1,4 +1,4 @@
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { Output, streamText } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

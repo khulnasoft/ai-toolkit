@@ -1,5 +1,8 @@
-import { JSONObject } from '@ai-tools/provider';
-import { ProviderOptions, withUserAgentSuffix } from '@ai-tools/provider-utils';
+import { JSONObject } from '@ai-toolkit/provider';
+import {
+  ProviderOptions,
+  withUserAgentSuffix,
+} from '@ai-toolkit/provider-utils';
 import { NoTranscriptGeneratedError } from '../error/no-transcript-generated-error';
 import { logWarnings } from '../logger/log-warnings';
 import { DataContent } from '../prompt';

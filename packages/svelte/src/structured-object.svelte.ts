@@ -3,7 +3,7 @@ import {
   isAbortError,
   safeValidateTypes,
   type FetchFunction,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   asSchema,
   isDeepEqualData,

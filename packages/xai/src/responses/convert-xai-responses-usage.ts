@@ -1,4 +1,4 @@
-import { LanguageModelV4Usage } from '@ai-tools/provider';
+import { LanguageModelV4Usage } from '@ai-toolkit/provider';
 import { XaiResponsesUsage } from './xai-responses-api';
 
 export function convertXaiResponsesUsage(

@@ -1,4 +1,4 @@
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { generateText } from 'ai';
 import 'dotenv/config';
 

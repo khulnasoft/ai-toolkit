@@ -1,4 +1,4 @@
-import { EmbeddingModelV4Middleware } from '@ai-tools/provider';
+import { EmbeddingModelV4Middleware } from '@ai-toolkit/provider';
 
 /**
  * Middleware for embedding models.

@@ -1,4 +1,4 @@
-import { EmbeddingModelV4CallOptions } from '@ai-tools/provider';
+import { EmbeddingModelV4CallOptions } from '@ai-toolkit/provider';
 import { EmbeddingModelMiddleware } from '../types';
 import { mergeObjects } from '../util/merge-objects';
 

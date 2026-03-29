@@ -1,9 +1,12 @@
-import type { JSONValue, LanguageModelV4ToolChoice } from '@ai-tools/provider';
+import type {
+  JSONValue,
+  LanguageModelV4ToolChoice,
+} from '@ai-toolkit/provider';
 import type {
   ModelMessage,
   ProviderOptions,
   SystemModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import type { TimeoutConfiguration } from '../prompt/call-settings';
 import type { ToolChoice } from '../types/language-model';
 import type { LanguageModelUsage } from '../types/usage';

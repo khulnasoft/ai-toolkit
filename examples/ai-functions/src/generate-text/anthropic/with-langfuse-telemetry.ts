@@ -1,4 +1,4 @@
-import { anthropic, createAnthropic } from '@ai-tools/anthropic';
+import { anthropic, createAnthropic } from '@ai-toolkit/anthropic';
 import { generateText, stepCountIs } from 'ai';
 import { LangfuseSpanProcessor } from '@langfuse/otel';
 import { NodeSDK } from '@opentelemetry/sdk-node';

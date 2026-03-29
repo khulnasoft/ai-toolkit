@@ -14,7 +14,7 @@ A transport that directly communicates with an [Agent](/docs/reference/ai-sdk-co
 Unlike `DefaultChatTransport` which sends HTTP requests to an API endpoint, `DirectChatTransport` invokes the agent's `stream()` method directly and converts the result to a UI message stream.
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DirectChatTransport, ToolLoopAgent } from 'ai';
 __PROVIDER_IMPORT__;
 
@@ -197,9 +197,9 @@ Always returns `Promise<null>`.
 ### Basic Usage
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DirectChatTransport, ToolLoopAgent } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent({
   model: openai('gpt-4o'),
@@ -230,9 +230,9 @@ export default function Chat() {
 ### With Agent Tools
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DirectChatTransport, ToolLoopAgent, tool } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 const weatherTool = tool({
@@ -263,9 +263,9 @@ export default function Chat() {
 ### With Custom Agent Options
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DirectChatTransport, ToolLoopAgent } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent<{ userId: string }>({
   model: openai('gpt-4o'),
@@ -292,9 +292,9 @@ export default function Chat({ userId }: { userId: string }) {
 ### With Reasoning
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DirectChatTransport, ToolLoopAgent } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent({
   model: openai('o1-preview'),

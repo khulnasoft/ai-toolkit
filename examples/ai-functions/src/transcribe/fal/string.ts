@@ -1,4 +1,4 @@
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 import { run } from '../../lib/run';

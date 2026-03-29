@@ -1,4 +1,4 @@
-import { fireworks } from '@ai-tools/fireworks';
+import { fireworks } from '@ai-toolkit/fireworks';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

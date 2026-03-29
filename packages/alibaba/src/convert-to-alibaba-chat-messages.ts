@@ -2,8 +2,8 @@ import {
   type LanguageModelV4DataContent,
   type LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
-import { convertToBase64 } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 import type { AlibabaChatPrompt } from './alibaba-chat-prompt';
 import type { CacheControlValidator } from './get-cache-control';
 

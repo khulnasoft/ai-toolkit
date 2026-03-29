@@ -1,9 +1,9 @@
 import type {
   LanguageModelV4Prompt,
   LanguageModelV4FilePart,
-} from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import { GatewayLanguageModel } from './gateway-language-model';
 import type { GatewayConfig } from './gateway-config';
 import {

@@ -2,12 +2,12 @@ import {
   type Experimental_VideoModelV4,
   NoSuchModelError,
   type ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   type FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ByteDanceVideoModel } from './bytedance-video-model';
 import type { ByteDanceVideoModelId } from './bytedance-video-settings';
 

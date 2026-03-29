@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/test-server",
+  "name": "@ai-toolkit/test-server",
   "version": "2.0.0-beta.0",
   "license": "Apache-2.0",
   "sideEffects": false,

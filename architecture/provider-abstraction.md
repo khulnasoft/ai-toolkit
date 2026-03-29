@@ -57,7 +57,7 @@ classDiagram
 
 The `reasoning` field on [`LanguageModelV4CallOptions`](packages/provider/src/language-model/v4/language-model-v4-call-options.ts) controls how much reasoning a model performs before responding. Possible values: `'provider-default'`, `'none'`, `'minimal'`, `'low'`, `'medium'`, `'high'`, `'xhigh'`.
 
-Use `isCustomReasoning(reasoning)` from `@ai-tools/provider-utils` to check whether the caller supplied a custom value (anything other than `undefined` or `'provider-default'`). If it returns `false`, no action is needed. If `true`:
+Use `isCustomReasoning(reasoning)` from `@ai-toolkit/provider-utils` to check whether the caller supplied a custom value (anything other than `undefined` or `'provider-default'`). If it returns `false`, no action is needed. If `true`:
 
 1. **`'none'`** — Disable reasoning. Only some providers support this; others should emit an unsupported warning.
 2. **Any other value** — Map it to the provider's native configuration using one of two strategies:

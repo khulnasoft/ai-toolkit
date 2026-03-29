@@ -1,4 +1,4 @@
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 import { saveAudioFile } from '../../lib/save-audio';
 import { run } from '../../lib/run';

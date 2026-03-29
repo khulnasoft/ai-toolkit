@@ -1,2 +1,2 @@
 // @ts-nocheck
-import { useChat } from '@ai-tools/svelte';
+import { useChat } from '@ai-toolkit/svelte';

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { generateText, stepCountIs } from 'ai';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 async function foo() {
   const result = await generateText({

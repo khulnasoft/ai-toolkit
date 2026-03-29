@@ -1,4 +1,4 @@
-import { loadOptionalSetting, resolve } from '@ai-tools/provider-utils';
+import { loadOptionalSetting, resolve } from '@ai-toolkit/provider-utils';
 import { GoogleAuthOptions } from 'google-auth-library';
 import { generateAuthToken } from './google-vertex-auth-google-auth-library';
 import {

@@ -1,18 +1,18 @@
 ---
 name: add-provider-package
-description: Guide for adding new AI provider packages to the AI SDK. Use when creating a new @ai-tools/<provider> package to integrate an AI service into the SDK.
+description: Guide for adding new AI provider packages to the AI SDK. Use when creating a new @ai-toolkit/<provider> package to integrate an AI service into the SDK.
 metadata:
   internal: true
 ---
 
 ## Adding a New Provider Package
 
-This guide covers the process of creating a new `@ai-tools/<provider>` package to integrate an AI service into the AI SDK.
+This guide covers the process of creating a new `@ai-toolkit/<provider>` package to integrate an AI service into the AI SDK.
 
 ## First-Party vs Third-Party Providers
 
 - **Third-party packages**: Any provider can create a third-party package. We're happy to link to it from our documentation.
-- **First-party `@ai-tools/<provider>` packages**: If you prefer a first-party package, please create an issue first to discuss.
+- **First-party `@ai-toolkit/<provider>` packages**: If you prefer a first-party package, please create an issue first to discuss.
 
 ## Reference Example
 
@@ -22,9 +22,9 @@ See https://github.com/khulnasoft/ai-toolkit/pull/8136/files for a complete exam
 
 The AI SDK uses a layered provider architecture following the adapter pattern:
 
-1. **Specifications** (`@ai-tools/provider`): Defines interfaces like `LanguageModelV4`, `EmbeddingModelV4`, etc.
-2. **Utilities** (`@ai-tools/provider-utils`): Shared code for implementing providers
-3. **Providers** (`@ai-tools/<provider>`): Concrete implementations for each AI service
+1. **Specifications** (`@ai-toolkit/provider`): Defines interfaces like `LanguageModelV4`, `EmbeddingModelV4`, etc.
+2. **Utilities** (`@ai-toolkit/provider-utils`): Shared code for implementing providers
+3. **Providers** (`@ai-toolkit/<provider>`): Concrete implementations for each AI service
 4. **Core** (`ai`): High-level functions like `generateText`, `streamText`, `generateObject`
 
 ## Step-by-Step Guide
@@ -58,12 +58,12 @@ Do not create a `CHANGELOG.md` file. It will be auto-generated.
 
 Set up your `package.json` with:
 
-- `"name": "@ai-tools/<provider>"`
+- `"name": "@ai-toolkit/<provider>"`
 - `"version": "0.0.0"` (initial version, will be updated by changeset)
 - `"license": "Apache-2.0"`
 - `"sideEffects": false`
-- Dependencies on `@ai-tools/provider` and `@ai-tools/provider-utils` (use `workspace:*`)
-- Dev dependencies: `@ai-tools/test-server`, `@types/node`, `@khulnasoft/ai-tsconfig`, `tsup`, `typescript`, `zod`
+- Dependencies on `@ai-toolkit/provider` and `@ai-toolkit/provider-utils` (use `workspace:*`)
+- Dev dependencies: `@ai-toolkit/test-server`, `@types/node`, `@khulnasoft/ai-tsconfig`, `tsup`, `typescript`, `zod`
 - `"engines": { "node": ">=18" }`
 - Peer dependency on `zod` (both v3 and v4): `"zod": "^3.25.76 || ^4.1.8"`
 
@@ -134,8 +134,8 @@ Create both `vitest.node.config.js` and `vitest.edge.config.js` (copy from exist
 
 ```typescript
 // <provider>-provider.ts
-import { NoSuchModelError } from '@ai-tools/provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { NoSuchModelError } from '@ai-toolkit/provider';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 
 export interface ProviderSettings {
   apiKey?: string;
@@ -180,7 +180,7 @@ export const providerName = new ProviderInstance();
 
 ### 7. Implement Model Classes
 
-Each model type (language, embedding, image, etc.) should implement the appropriate interface from `@ai-tools/provider`:
+Each model type (language, embedding, image, etc.) should implement the appropriate interface from `@ai-toolkit/provider`:
 
 - `LanguageModelV4` for text generation models
 - `EmbeddingModelV4` for embedding models
@@ -297,16 +297,16 @@ pnpm tsx src/stream-text/<provider>.ts
 
 ## Security Best Practices
 
-- Never use `JSON.parse` directly - use `parseJSON` or `safeParseJSON` from `@ai-tools/provider-utils`
-- Load API keys securely using `loadApiKey` from `@ai-tools/provider-utils`
+- Never use `JSON.parse` directly - use `parseJSON` or `safeParseJSON` from `@ai-toolkit/provider-utils`
+- Load API keys securely using `loadApiKey` from `@ai-toolkit/provider-utils`
 - Validate all API responses against schemas
 
 ## Error Handling
 
-Errors should extend `AISDKError` from `@ai-tools/provider` and use a marker pattern:
+Errors should extend `AISDKError` from `@ai-toolkit/provider` and use a marker pattern:
 
 ```typescript
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 
 const name = 'AI_ProviderError';
 const marker = `vercel.ai.error.${name}`;

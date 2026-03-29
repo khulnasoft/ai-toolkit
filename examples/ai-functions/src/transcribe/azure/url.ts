@@ -1,4 +1,4 @@
-import { createAzure } from '@ai-tools/azure';
+import { createAzure } from '@ai-toolkit/azure';
 import { experimental_transcribe as transcribe } from 'ai';
 import { run } from '../../lib/run';
 

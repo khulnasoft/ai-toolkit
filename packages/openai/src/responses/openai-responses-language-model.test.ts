@@ -5,12 +5,12 @@ import {
   LanguageModelV4ProviderTool,
   LanguageModelV4Prompt,
   LanguageModelV4StreamPart,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import fs from 'node:fs';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { OpenAIResponsesLanguageModel } from './openai-responses-language-model';

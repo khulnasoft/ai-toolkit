@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { GatewayVideoModel } from './gateway-video-model';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import type { GatewayConfig } from './gateway-config';
 
 const TEST_MODEL_ID = 'google/veo-2.0-generate-001';

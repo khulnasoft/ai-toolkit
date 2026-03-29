@@ -32,7 +32,7 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai` and `@ai-tools/vue`. The Vercel AI Gateway provider ships with the `ai` package.
+Install `ai` and `@ai-toolkit/vue`. The Vercel AI Gateway provider ships with the `ai` package.
 
 <Note>
   The AI SDK is designed to be a unified interface to interact with any large
@@ -44,17 +44,17 @@ Install `ai` and `@ai-tools/vue`. The Vercel AI Gateway provider ships with the 
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add ai @ai-tools/vue zod" dark />
+      <Snippet text="pnpm add ai @ai-toolkit/vue zod" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install ai @ai-tools/vue zod" dark />
+      <Snippet text="npm install ai @ai-toolkit/vue zod" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add ai @ai-tools/vue zod" dark />
+      <Snippet text="yarn add ai @ai-toolkit/vue zod" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add ai @ai-tools/vue zod" dark />
+      <Snippet text="bun add ai @ai-toolkit/vue zod" dark />
     </Tab>
 
   </Tabs>
@@ -148,8 +148,8 @@ You can also explicitly import and use the gateway provider in two other equival
 import { gateway } from 'ai';
 model: gateway('anthropic/claude-sonnet-4.5');
 
-// Option 2: Install and import from '@ai-tools/gateway' package
-import { gateway } from '@ai-tools/gateway';
+// Option 2: Install and import from '@ai-toolkit/gateway' package
+import { gateway } from '@ai-toolkit/gateway';
 model: gateway('anthropic/claude-sonnet-4.5');
 ```
 
@@ -160,24 +160,24 @@ To use a different provider, install its package and create a provider instance.
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add @ai-tools/openai" dark />
+      <Snippet text="pnpm add @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install @ai-tools/openai" dark />
+      <Snippet text="npm install @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add @ai-tools/openai" dark />
+      <Snippet text="yarn add @ai-toolkit/openai" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add @ai-tools/openai" dark />
+      <Snippet text="bun add @ai-toolkit/openai" dark />
     </Tab>
 
   </Tabs>
 </div>
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 model: openai('gpt-5.1');
 ```
@@ -190,7 +190,7 @@ Update your root page (`pages/index.vue`) with the following code to show a list
 
 ```typescript filename="pages/index.vue"
 <script setup lang="ts">
-import { Chat } from "@ai-tools/vue";
+import { Chat } from "@ai-toolkit/vue";
 import { ref } from "vue";
 
 const input = ref("");
@@ -332,7 +332,7 @@ To display the tool invocation in your UI, update your `pages/index.vue` file:
 
 ```typescript filename="pages/index.vue" highlight="16-18"
 <script setup lang="ts">
-import { Chat } from "@ai-tools/vue";
+import { Chat } from "@ai-toolkit/vue";
 import { ref } from "vue";
 
 const input = ref("");
@@ -505,7 +505,7 @@ Update your UI to handle the new temperature conversion tool by modifying the to
 
 ```typescript filename="pages/index.vue" highlight="24"
 <script setup lang="ts">
-import { Chat } from "@ai-tools/vue";
+import { Chat } from "@ai-toolkit/vue";
 import { ref } from "vue";
 
 const input = ref("");

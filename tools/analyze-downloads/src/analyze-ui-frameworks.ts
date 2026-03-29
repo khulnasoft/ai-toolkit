@@ -46,11 +46,11 @@ function aggregateDownloadsForLastNMajorReleases(
  */
 async function main() {
   const packages = [
-    '@ai-tools/react',
-    '@ai-tools/svelte',
-    '@ai-tools/vue',
-    '@ai-tools/angular',
-    '@ai-tools/rsc',
+    '@ai-toolkit/react',
+    '@ai-toolkit/svelte',
+    '@ai-toolkit/vue',
+    '@ai-toolkit/angular',
+    '@ai-toolkit/rsc',
   ];
 
   const results: Array<{

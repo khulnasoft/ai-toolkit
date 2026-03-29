@@ -4,7 +4,7 @@ import {
   LanguageModelV4Prompt,
   LanguageModelV4TextPart,
   LanguageModelV4ToolResultOutput,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   CustomPart,
   DataContent,
@@ -18,7 +18,7 @@ import {
   ToolCallPart,
   ToolResultOutput,
   ToolResultPart,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   detectMediaType,
   imageMediaTypeSignatures,

@@ -2,8 +2,8 @@ import {
   LanguageModelV4CallOptions,
   SharedV4Warning,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
-import { ToolNameMapping, validateTypes } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { ToolNameMapping, validateTypes } from '@ai-toolkit/provider-utils';
 import { codeInterpreterArgsSchema } from '../tool/code-interpreter';
 import { fileSearchArgsSchema } from '../tool/file-search';
 import { imageGenerationArgsSchema } from '../tool/image-generation';

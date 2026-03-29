@@ -1,9 +1,9 @@
-import { GoogleErrorData, google as provider } from '@ai-tools/google';
+import { GoogleErrorData, google as provider } from '@ai-toolkit/google';
 import {
   APICallError,
   LanguageModelV3,
   LanguageModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import 'dotenv/config';
 import { expect } from 'vitest';
 import {

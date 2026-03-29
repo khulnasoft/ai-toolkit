@@ -1,4 +1,4 @@
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { streamText } from 'ai';
 import fs from 'node:fs';
 import { run } from '../../lib/run';

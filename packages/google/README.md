@@ -4,10 +4,10 @@ The **[Google Generative AI provider](https://ai-sdk.dev/providers/ai-sdk-provid
 
 ## Setup
 
-The Google Generative AI provider is available in the `@ai-tools/google` module. You can install it with
+The Google Generative AI provider is available in the `@ai-toolkit/google` module. You can install it with
 
 ```bash
-npm i @ai-tools/google
+npm i @ai-toolkit/google
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `google` from `@ai-tools/google`:
+You can import the default provider instance `google` from `@ai-toolkit/google`:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 ```
 
 ## Example
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

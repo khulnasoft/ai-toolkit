@@ -1,4 +1,4 @@
-import { xai, type XaiLanguageModelChatOptions } from '@ai-tools/xai';
+import { xai, type XaiLanguageModelChatOptions } from '@ai-toolkit/xai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

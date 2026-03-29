@@ -3,7 +3,7 @@ import {
   LanguageModelV4,
   SharedV4Warning,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   createIdGenerator,
   DelayedPromise,
@@ -12,7 +12,7 @@ import {
   ProviderOptions,
   ToolApprovalResponse,
   ToolContent,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ServerResponse } from 'node:http';
 import { NoOutputGeneratedError } from '../error';
 import { logWarnings } from '../logger/log-warnings';

@@ -2,7 +2,7 @@ import {
   ImageModelV4,
   ImageModelV4File,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -13,7 +13,7 @@ import {
   FetchFunction,
   postFormDataToApi,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { DeepInfraImageModelId } from './deepinfra-image-settings';
 import { z } from 'zod/v4';
 

@@ -1,5 +1,5 @@
 import { weatherToolValibot } from '@/tool/weather-tool-valibot';
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 
 export const weatherValibotAgent = new ToolLoopAgent({

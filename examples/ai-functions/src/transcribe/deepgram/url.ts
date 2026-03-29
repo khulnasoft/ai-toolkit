@@ -1,4 +1,4 @@
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 import { experimental_transcribe as transcribe } from 'ai';
 import { run } from '../../lib/run';
 

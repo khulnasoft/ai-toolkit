@@ -19,7 +19,7 @@ On the frontend, use the `useChat` hook to manage the message state and user int
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 
@@ -72,7 +72,7 @@ On the backend, create a route handler that uses `streamText` and returns a `UIM
 
 ```ts filename="app/api/chat/route.ts"
 import { streamText, tool } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 export async function POST(req: Request) {
@@ -111,7 +111,7 @@ Add `needsApproval: true` to the tool definition. The tool keeps its `execute` f
 
 ```ts filename="app/api/chat/route.ts" highlight="14"
 import { streamText, tool } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 export async function POST(req: Request) {
@@ -148,7 +148,7 @@ On the frontend, check for the `approval-requested` state and render approve/den
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithApprovalResponses,
@@ -258,7 +258,7 @@ Here's how the approval flow works:
 The `sendAutomaticallyWhen` option with `lastAssistantMessageIsCompleteWithApprovalResponses` automatically sends a message after all tool approvals in the last step have been responded to. Without this, you would need to call `sendMessage()` manually after each approval.
 
 ```tsx
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
 
 const { messages, addToolApprovalResponse } = useChat({
@@ -278,7 +278,7 @@ You can make approval conditional based on the tool's input by providing an asyn
 
 ```ts filename="app/api/chat/route.ts" highlight="15"
 import { streamText, tool } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 export async function POST(req: Request) {

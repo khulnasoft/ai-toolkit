@@ -1,12 +1,12 @@
 import {
   LanguageModelV4GenerateResult,
   LanguageModelV4Prompt,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import fs from 'node:fs';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { OpenResponsesLanguageModel } from './open-responses-language-model';

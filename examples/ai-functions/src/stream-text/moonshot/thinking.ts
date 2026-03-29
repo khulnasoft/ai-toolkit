@@ -1,7 +1,7 @@
 import {
   moonshotai,
   type MoonshotAILanguageModelOptions,
-} from '@ai-tools/moonshotai';
+} from '@ai-toolkit/moonshotai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

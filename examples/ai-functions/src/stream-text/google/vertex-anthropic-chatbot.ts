@@ -1,4 +1,4 @@
-import { vertexAnthropic } from '@ai-tools/google-vertex/anthropic';
+import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
 import { stepCountIs, ModelMessage, streamText, tool } from 'ai';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';

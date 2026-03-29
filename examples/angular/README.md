@@ -24,7 +24,7 @@ This runs both the Angular frontend (localhost:4200) and Express backend (localh
 
 - Angular 20
 - Express.js backend
-- AI SDK (@ai-tools/angular, ai)
+- AI SDK (@ai-toolkit/angular, ai)
 - AI Gateway (default provider)
 
 ## Features

@@ -1,5 +1,5 @@
-import { azure } from '@ai-tools/azure';
-import { type OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import { azure } from '@ai-toolkit/azure';
+import { type OpenAILanguageModelResponsesOptions } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

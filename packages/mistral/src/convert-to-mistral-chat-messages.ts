@@ -2,9 +2,9 @@ import {
   LanguageModelV4DataContent,
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { MistralPrompt } from './mistral-chat-prompt';
-import { convertToBase64 } from '@ai-tools/provider-utils';
+import { convertToBase64 } from '@ai-toolkit/provider-utils';
 
 function formatFileUrl({
   data,

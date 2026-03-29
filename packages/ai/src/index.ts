@@ -1,5 +1,9 @@
 // re-exports:
-export { createGateway, gateway, type GatewayModelId } from '@ai-tools/gateway';
+export {
+  createGateway,
+  gateway,
+  type GatewayModelId,
+} from '@ai-toolkit/gateway';
 export {
   asSchema,
   createIdGenerator,
@@ -21,7 +25,7 @@ export {
   type ToolCallOptions,
   type ToolExecutionOptions,
   type ToolExecuteFunction,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 
 // directory exports
 export * from './agent';

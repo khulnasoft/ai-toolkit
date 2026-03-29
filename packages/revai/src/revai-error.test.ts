@@ -1,4 +1,4 @@
-import { safeParseJSON } from '@ai-tools/provider-utils';
+import { safeParseJSON } from '@ai-toolkit/provider-utils';
 import { revaiErrorDataSchema } from './revai-error';
 import { describe, it, expect } from 'vitest';
 

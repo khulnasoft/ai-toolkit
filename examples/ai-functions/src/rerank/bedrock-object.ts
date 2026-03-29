@@ -1,4 +1,4 @@
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { rerank } from 'ai';
 import { run } from '../lib/run';
 import { print } from '../lib/print';

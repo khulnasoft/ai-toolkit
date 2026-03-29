@@ -1,5 +1,5 @@
-import { openai } from '@ai-tools/openai';
-import { delay } from '@ai-tools/provider-utils';
+import { openai } from '@ai-toolkit/openai';
+import { delay } from '@ai-toolkit/provider-utils';
 import {
   convertToModelMessages,
   createUIMessageStream,

@@ -31,7 +31,7 @@ Start with a basic chat implementation using the `useChat` hook:
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 
 export default function Page() {
@@ -184,7 +184,7 @@ Update your `page.tsx` file:
 ```tsx filename="app/page.tsx" highlight="4,9,14-15,19-46"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 import { Weather } from '@/components/weather';
 
@@ -307,7 +307,7 @@ Finally, update your `page.tsx` file to include the new Stock component:
 ```tsx
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 import { Weather } from '@/components/weather';
 import { Stock } from '@/components/stock';

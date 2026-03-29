@@ -1,4 +1,4 @@
-import { executeTool, ModelMessage } from '@ai-tools/provider-utils';
+import { executeTool, ModelMessage } from '@ai-toolkit/provider-utils';
 import { notify } from '../util/notify';
 import {
   getToolTimeoutMs,

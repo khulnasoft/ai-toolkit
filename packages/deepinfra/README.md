@@ -5,10 +5,10 @@ contains language model support for the DeepInfra API, giving you access to mode
 
 ## Setup
 
-The DeepInfra provider is available in the `@ai-tools/deepinfra` module. You can install it with
+The DeepInfra provider is available in the `@ai-toolkit/deepinfra` module. You can install it with
 
 ```bash
-npm i @ai-tools/deepinfra
+npm i @ai-toolkit/deepinfra
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `deepinfra` from `@ai-tools/deepinfra`:
+You can import the default provider instance `deepinfra` from `@ai-toolkit/deepinfra`:
 
 ```ts
-import { deepinfra } from '@ai-tools/deepinfra';
+import { deepinfra } from '@ai-toolkit/deepinfra';
 ```
 
 ## Example
 
 ```ts
-import { deepinfra } from '@ai-tools/deepinfra';
+import { deepinfra } from '@ai-toolkit/deepinfra';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

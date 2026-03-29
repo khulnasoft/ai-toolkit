@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v3';
 import { parseDateDef } from './date';
 import { getRefs } from '../refs';
-import { JSONSchema7 } from '@ai-tools/provider';
+import { JSONSchema7 } from '@ai-toolkit/provider';
 
 describe('Date validations', it => {
   it('should be possible to date as a string type', () => {

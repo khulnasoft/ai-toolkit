@@ -1,7 +1,7 @@
 import {
   anthropic,
   type AnthropicLanguageModelOptions,
-} from '@ai-tools/anthropic';
+} from '@ai-toolkit/anthropic';
 import { streamText } from 'ai';
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';

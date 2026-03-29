@@ -1,4 +1,7 @@
-import { SharedV4Warning, SharedV4ProviderMetadata } from '@ai-tools/provider';
+import {
+  SharedV4Warning,
+  SharedV4ProviderMetadata,
+} from '@ai-toolkit/provider';
 import { AnthropicCacheControl } from './anthropic-messages-api';
 
 // Anthropic allows a maximum of 4 cache breakpoints per request

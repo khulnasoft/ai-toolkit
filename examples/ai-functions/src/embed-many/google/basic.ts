@@ -1,4 +1,4 @@
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { embedMany } from 'ai';
 import { run } from '../../lib/run';
 

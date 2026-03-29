@@ -5,7 +5,7 @@ import {
   lazySchema,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { asGatewayError } from './errors';
 import type { GatewayConfig } from './gateway-config';

@@ -3,7 +3,7 @@ import {
   LanguageModelV4ToolApprovalResponsePart,
   SharedV4Warning,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertToBase64,
   isNonNullable,
@@ -11,7 +11,7 @@ import {
   parseProviderOptions,
   ToolNameMapping,
   validateTypes,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import {
   applyPatchInputSchema,

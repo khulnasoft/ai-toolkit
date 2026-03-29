@@ -5,10 +5,10 @@ contains language model support for the Rev.ai transcription API.
 
 ## Setup
 
-The Rev.ai provider is available in the `@ai-tools/revai` module. You can install it with
+The Rev.ai provider is available in the `@ai-toolkit/revai` module. You can install it with
 
 ```bash
-npm i @ai-tools/revai
+npm i @ai-toolkit/revai
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `revai` from `@ai-tools/revai`:
+You can import the default provider instance `revai` from `@ai-toolkit/revai`:
 
 ```ts
-import { revai } from '@ai-tools/revai';
+import { revai } from '@ai-toolkit/revai';
 ```
 
 ## Example
 
 ```ts
-import { revai } from '@ai-tools/revai';
+import { revai } from '@ai-toolkit/revai';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({

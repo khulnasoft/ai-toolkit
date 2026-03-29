@@ -1,4 +1,4 @@
-import { JSONObject } from '@ai-tools/provider';
+import { JSONObject } from '@ai-toolkit/provider';
 import { AnthropicMessageMetadata } from './anthropic-message-metadata';
 
 /**

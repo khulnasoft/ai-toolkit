@@ -1,6 +1,6 @@
-import { openai } from '@ai-tools/openai';
-import { anthropic } from '@ai-tools/anthropic';
-import { google } from '@ai-tools/google';
+import { openai } from '@ai-toolkit/openai';
+import { anthropic } from '@ai-toolkit/anthropic';
+import { google } from '@ai-toolkit/google';
 import { streamText } from 'ai';
 import 'dotenv/config';
 import { describe, expect, it, vi } from 'vitest';

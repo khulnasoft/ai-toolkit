@@ -1,4 +1,4 @@
-import { ReasoningFilePart, ReasoningPart } from '@ai-tools/provider-utils';
+import { ReasoningFilePart, ReasoningPart } from '@ai-toolkit/provider-utils';
 import { ProviderMetadata } from '../types/provider-metadata';
 import { DefaultGeneratedFile, GeneratedFile } from './generated-file';
 

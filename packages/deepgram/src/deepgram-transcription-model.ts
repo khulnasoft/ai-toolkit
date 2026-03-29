@@ -1,10 +1,10 @@
-import { SharedV4Warning, TranscriptionModelV4 } from '@ai-tools/provider';
+import { SharedV4Warning, TranscriptionModelV4 } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   parseProviderOptions,
   postToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { DeepgramTranscriptionAPITypes } from './deepgram-api-types';
 import { DeepgramConfig } from './deepgram-config';

@@ -1,7 +1,7 @@
 import { generateText, stepCountIs, tool } from 'ai';
 import { run } from '../../lib/run';
 import { z } from 'zod';
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 
 run(async () => {
   const readPDFDocument = tool({

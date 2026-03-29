@@ -1,4 +1,4 @@
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { createMockServerResponse } from '../test/mock-server-response';
 import { pipeUIMessageStreamToResponse } from './pipe-ui-message-stream-to-response';
 import { describe, it, expect } from 'vitest';

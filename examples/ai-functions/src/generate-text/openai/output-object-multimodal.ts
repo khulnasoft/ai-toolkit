@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText, Output } from 'ai';
 import fs from 'node:fs';
 import { z } from 'zod';

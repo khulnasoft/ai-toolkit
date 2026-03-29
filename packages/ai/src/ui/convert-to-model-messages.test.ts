@@ -1,4 +1,4 @@
-import { ModelMessage } from '@ai-tools/provider-utils';
+import { ModelMessage } from '@ai-toolkit/provider-utils';
 import { describe, expect, it } from 'vitest';
 import { convertToModelMessages } from './convert-to-model-messages';
 import { UIMessage } from './ui-messages';

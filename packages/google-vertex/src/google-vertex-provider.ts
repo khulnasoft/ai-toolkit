@@ -1,10 +1,10 @@
-import { GoogleGenerativeAILanguageModel } from '@ai-tools/google/internal';
+import { GoogleGenerativeAILanguageModel } from '@ai-toolkit/google/internal';
 import {
   Experimental_VideoModelV4,
   ImageModelV4,
   LanguageModelV4,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
@@ -15,7 +15,7 @@ import {
   Resolvable,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { VERSION } from './version';
 import { GoogleVertexConfig } from './google-vertex-config';
 import { GoogleVertexEmbeddingModel } from './google-vertex-embedding-model';
@@ -177,7 +177,7 @@ export function createVertex(
       const originalHeaders = await resolve(options.headers ?? {});
       return withUserAgentSuffix(
         originalHeaders,
-        `ai-sdk/google-vertex/${VERSION}`,
+        `ai-toolkit/google-vertex/${VERSION}`,
       );
     };
 

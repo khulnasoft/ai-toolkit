@@ -1,4 +1,4 @@
-import { IdGenerator } from '@ai-tools/provider-utils';
+import { IdGenerator } from '@ai-toolkit/provider-utils';
 import { ServerResponse } from 'node:http';
 import {
   CallWarning,

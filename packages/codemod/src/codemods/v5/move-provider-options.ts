@@ -15,7 +15,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     'transcribe',
   ];
 
-  // Common provider function names (these typically come from @ai-tools/* packages)
+  // Common provider function names (these typically come from @ai-toolkit/* packages)
   const providerFunctions = [
     'openai',
     'anthropic',

@@ -1,4 +1,4 @@
-import type { JSONValue } from '@ai-tools/provider';
+import type { JSONValue } from '@ai-toolkit/provider';
 import type { Tracer } from '@opentelemetry/api';
 import type { TelemetryIntegration } from './telemetry-integration';
 

@@ -1,7 +1,7 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import { XaiChatLanguageModel } from './xai-chat-language-model';
 import { createXai } from './xai-provider';
 import * as fs from 'node:fs';
@@ -350,7 +350,7 @@ describe('XaiChatLanguageModel', () => {
       });
 
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/xai/0.0.0-test`,
+        `ai-toolkit/xai/0.0.0-test`,
       );
     });
 

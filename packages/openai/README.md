@@ -5,10 +5,10 @@ contains language model support for the OpenAI chat and completion APIs and embe
 
 ## Setup
 
-The OpenAI provider is available in the `@ai-tools/openai` module. You can install it with
+The OpenAI provider is available in the `@ai-toolkit/openai` module. You can install it with
 
 ```bash
-npm i @ai-tools/openai
+npm i @ai-toolkit/openai
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `openai` from `@ai-tools/openai`:
+You can import the default provider instance `openai` from `@ai-toolkit/openai`:
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 ```
 
 ## Example
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

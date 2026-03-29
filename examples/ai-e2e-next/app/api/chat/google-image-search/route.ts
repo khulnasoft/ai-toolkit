@@ -1,4 +1,4 @@
-import { google, type GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, type GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { convertToModelMessages, streamText, UIMessage } from 'ai';
 
 export const maxDuration = 30;

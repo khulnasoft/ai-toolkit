@@ -1,8 +1,8 @@
 'use client';
 
 import { Response } from '@/components/ai-elements/response';
-import type { OpenaiResponsesTextProviderMetadata } from '@ai-tools/openai';
-import type { AzureResponsesTextProviderMetadata } from '@ai-tools/azure';
+import type { OpenaiResponsesTextProviderMetadata } from '@ai-toolkit/openai';
+import type { AzureResponsesTextProviderMetadata } from '@ai-toolkit/azure';
 import { TextUIPart } from 'ai';
 
 type ResponsesOutputTextProviderMetadata =

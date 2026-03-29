@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, expect, it } from 'vitest';
 import { createProdia } from './prodia-provider';
 
@@ -133,7 +133,7 @@ describe('Prodia provider', () => {
       },
     });
 
-    expect(server.calls[0].requestUserAgent).toContain('ai-sdk/prodia/');
+    expect(server.calls[0].requestUserAgent).toContain('ai-toolkit/prodia/');
   });
 
   it('throws NoSuchModelError for unsupported model types', () => {

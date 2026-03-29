@@ -1,4 +1,4 @@
-import { JSONSchema7, LanguageModelV4Prompt } from '@ai-tools/provider';
+import { JSONSchema7, LanguageModelV4Prompt } from '@ai-toolkit/provider';
 import { expect, it, describe } from 'vitest';
 import {
   injectJsonInstruction,

@@ -1,12 +1,12 @@
-import { anthropic } from '@ai-tools/anthropic';
-import { elevenlabs } from '@ai-tools/elevenlabs';
-import { fal } from '@ai-tools/fal';
-import { groq } from '@ai-tools/groq';
-import { luma } from '@ai-tools/luma';
-import { mistral } from '@ai-tools/mistral';
-import { openai } from '@ai-tools/openai';
-import { replicate } from '@ai-tools/replicate';
-import { xai } from '@ai-tools/xai';
+import { anthropic } from '@ai-toolkit/anthropic';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
+import { fal } from '@ai-toolkit/fal';
+import { groq } from '@ai-toolkit/groq';
+import { luma } from '@ai-toolkit/luma';
+import { mistral } from '@ai-toolkit/mistral';
+import { openai } from '@ai-toolkit/openai';
+import { replicate } from '@ai-toolkit/replicate';
+import { xai } from '@ai-toolkit/xai';
 import {
   createProviderRegistry,
   customProvider,

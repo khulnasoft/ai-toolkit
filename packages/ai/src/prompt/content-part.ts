@@ -10,7 +10,7 @@ import {
   ToolApprovalResponse,
   ToolResultOutput,
   ToolResultPart,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { jsonValueSchema } from '../types/json-value';
 import { providerMetadataSchema } from '../types/provider-metadata';

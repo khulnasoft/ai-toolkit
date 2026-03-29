@@ -1,4 +1,7 @@
-import { LanguageModelV4Content, LanguageModelV4Text } from '@ai-tools/provider';
+import {
+  LanguageModelV4Content,
+  LanguageModelV4Text,
+} from '@ai-toolkit/provider';
 
 export function extractTextContent(
   content: LanguageModelV4Content[],

@@ -4,10 +4,10 @@ The **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-p
 
 ## Setup
 
-The Hugging Face provider is available in the `@ai-tools/huggingface` module. You can install it with:
+The Hugging Face provider is available in the `@ai-toolkit/huggingface` module. You can install it with:
 
 ```bash
-npm i @ai-tools/huggingface
+npm i @ai-toolkit/huggingface
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `huggingface` from `@ai-tools/huggingface`:
+You can import the default provider instance `huggingface` from `@ai-toolkit/huggingface`:
 
 ```ts
-import { huggingface } from '@ai-tools/huggingface';
+import { huggingface } from '@ai-toolkit/huggingface';
 ```
 
 ## Example
 
 ```ts
-import { huggingface } from '@ai-tools/huggingface';
+import { huggingface } from '@ai-toolkit/huggingface';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

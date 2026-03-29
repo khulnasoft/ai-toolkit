@@ -2,7 +2,7 @@ import {
   LanguageModelV4CallOptions,
   SharedV4Warning,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { AnthropicTool, AnthropicToolChoice } from './anthropic-messages-api';
 import { CacheControlValidator } from './get-cache-control';
 import { textEditor_20250728ArgsSchema } from './tool/text-editor_20250728';
@@ -10,7 +10,7 @@ import { webSearch_20260209ArgsSchema } from './tool/web-search_20260209';
 import { webSearch_20250305ArgsSchema } from './tool/web-search_20250305';
 import { webFetch_20260209ArgsSchema } from './tool/web-fetch-20260209';
 import { webFetch_20250910ArgsSchema } from './tool/web-fetch-20250910';
-import { validateTypes } from '@ai-tools/provider-utils';
+import { validateTypes } from '@ai-toolkit/provider-utils';
 
 export interface AnthropicToolOptions {
   deferLoading?: boolean;

@@ -1,4 +1,4 @@
-import { vercel } from '@ai-tools/vercel';
+import { vercel } from '@ai-toolkit/vercel';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

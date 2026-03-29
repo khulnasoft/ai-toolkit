@@ -1,4 +1,4 @@
-import { ImageModelV4File } from '@ai-tools/provider';
+import { ImageModelV4File } from '@ai-toolkit/provider';
 import { convertUint8ArrayToBase64 } from './uint8-utils';
 
 /**

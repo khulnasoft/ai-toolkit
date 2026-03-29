@@ -1,4 +1,4 @@
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import { describe, expectTypeOf, it } from 'vitest';
 import { z } from 'zod';
 import { Output, streamText } from '../generate-text';

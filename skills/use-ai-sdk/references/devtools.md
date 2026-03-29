@@ -11,13 +11,13 @@ DevTools captures all AI SDK calls (`generateText`, `streamText`, `ToolLoopAgent
 
 ## Setup
 
-Requires AI SDK 6. Install `@ai-tools/devtools` using your project's package manager.
+Requires AI SDK 6. Install `@ai-toolkit/devtools` using your project's package manager.
 
 Wrap your model with the middleware:
 
 ```ts
 import { wrapLanguageModel, gateway } from 'ai';
-import { devToolsMiddleware } from '@ai-tools/devtools';
+import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({
   model: gateway('anthropic/claude-sonnet-4.5'),
@@ -42,7 +42,7 @@ cat .devtools/generations.json | jq
 Or launch the web UI:
 
 ```bash
-npx @ai-tools/devtools
+npx @ai-toolkit/devtools
 # Open http://localhost:4983
 ```
 

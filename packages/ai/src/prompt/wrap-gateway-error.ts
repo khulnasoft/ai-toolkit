@@ -1,5 +1,5 @@
-import { GatewayAuthenticationError } from '@ai-tools/gateway';
-import { AISDKError } from '@ai-tools/provider';
+import { GatewayAuthenticationError } from '@ai-toolkit/gateway';
+import { AISDKError } from '@ai-toolkit/provider';
 
 export function wrapGatewayError(error: unknown): unknown {
   if (!GatewayAuthenticationError.isInstance(error)) return error;

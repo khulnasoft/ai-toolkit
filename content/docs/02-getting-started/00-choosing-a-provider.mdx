@@ -57,8 +57,8 @@ You can also explicitly import and use the gateway provider:
 import { gateway } from 'ai';
 model: gateway('anthropic/claude-sonnet-4.5');
 
-// Option 2: Install and import from '@ai-tools/gateway' package
-import { gateway } from '@ai-tools/gateway';
+// Option 2: Install and import from '@ai-toolkit/gateway' package
+import { gateway } from '@ai-toolkit/gateway';
 model: gateway('anthropic/claude-sonnet-4.5');
 ```
 
@@ -69,22 +69,22 @@ You can also use [first-party](/providers/ai-sdk-providers), [OpenAI-compatible]
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add @ai-tools/anthropic" dark />
+      <Snippet text="pnpm add @ai-toolkit/anthropic" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install @ai-tools/anthropic" dark />
+      <Snippet text="npm install @ai-toolkit/anthropic" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add @ai-tools/anthropic" dark />
+      <Snippet text="yarn add @ai-toolkit/anthropic" dark />
     </Tab>
     <Tab>
-      <Snippet text="bun add @ai-tools/anthropic" dark />
+      <Snippet text="bun add @ai-toolkit/anthropic" dark />
     </Tab>
   </Tabs>
 </div>
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 
 model: anthropic('claude-sonnet-4-5');
 ```

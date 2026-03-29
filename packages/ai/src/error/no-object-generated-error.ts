@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { FinishReason } from '../types/language-model';
 import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
 import { LanguageModelUsage } from '../types/usage';

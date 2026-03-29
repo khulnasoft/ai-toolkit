@@ -1,4 +1,4 @@
-import type { LanguageModelV4StreamPart } from '@ai-tools/provider';
+import type { LanguageModelV4StreamPart } from '@ai-toolkit/provider';
 import { LanguageModelMiddleware } from '../types';
 
 /**

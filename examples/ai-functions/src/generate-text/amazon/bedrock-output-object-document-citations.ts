@@ -1,7 +1,7 @@
 import {
   bedrock,
   type AmazonBedrockLanguageModelOptions,
-} from '@ai-tools/amazon-bedrock';
+} from '@ai-toolkit/amazon-bedrock';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import fs from 'fs';

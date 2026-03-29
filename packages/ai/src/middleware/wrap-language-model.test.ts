@@ -2,7 +2,7 @@ import {
   LanguageModelV4,
   LanguageModelV4CallOptions,
   LanguageModelV4Middleware,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { wrapLanguageModel } from '../middleware/wrap-language-model';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
 import { describe, it, expect, vi } from 'vitest';

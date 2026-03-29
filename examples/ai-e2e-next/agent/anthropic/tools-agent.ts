@@ -1,5 +1,5 @@
 import { weatherTool } from '@/tool/weather-tool';
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { InferAgentUIMessage, ToolLoopAgent } from 'ai';
 
 export const anthropicToolsAgent = new ToolLoopAgent({

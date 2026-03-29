@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import * as fsSync from 'fs';
 import * as fs from 'fs/promises';
 import * as path from 'path';

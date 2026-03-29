@@ -4,10 +4,10 @@ The **[Together.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/toget
 
 ## Setup
 
-The Together.ai provider is available in the `@ai-tools/togetherai` module. You can install it with
+The Together.ai provider is available in the `@ai-toolkit/togetherai` module. You can install it with
 
 ```bash
-npm i @ai-tools/togetherai
+npm i @ai-toolkit/togetherai
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `togetherai` from `@ai-tools/togetherai`:
+You can import the default provider instance `togetherai` from `@ai-toolkit/togetherai`:
 
 ```ts
-import { togetherai } from '@ai-tools/togetherai';
+import { togetherai } from '@ai-toolkit/togetherai';
 ```
 
 ## Example
 
 ```ts
-import { togetherai } from '@ai-tools/togetherai';
+import { togetherai } from '@ai-toolkit/togetherai';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

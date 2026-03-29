@@ -1,5 +1,5 @@
-import { openai as provider } from '@ai-tools/openai';
-import { LanguageModelV3, LanguageModelV4 } from '@ai-tools/provider';
+import { openai as provider } from '@ai-toolkit/openai';
+import { LanguageModelV3, LanguageModelV4 } from '@ai-toolkit/provider';
 import { APICallError } from 'ai';
 import 'dotenv/config';
 import { expect } from 'vitest';

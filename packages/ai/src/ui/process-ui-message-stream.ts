@@ -1,5 +1,5 @@
-import { TypeValidationContext } from '@ai-tools/provider';
-import { FlexibleSchema, validateTypes } from '@ai-tools/provider-utils';
+import { TypeValidationContext } from '@ai-toolkit/provider';
+import { FlexibleSchema, validateTypes } from '@ai-toolkit/provider-utils';
 import { UIMessageStreamError } from '../error/ui-message-stream-error';
 import { ProviderMetadata } from '../types';
 import { FinishReason } from '../types/language-model';

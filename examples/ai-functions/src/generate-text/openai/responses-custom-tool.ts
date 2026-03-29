@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 import { print } from '../../lib/print';

@@ -2,7 +2,7 @@ import {
   SharedV4Warning,
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { CohereAssistantMessage, CohereChatPrompt } from './cohere-chat-prompt';
 
 export function convertToCohereChatPrompt(prompt: LanguageModelV4Prompt): {

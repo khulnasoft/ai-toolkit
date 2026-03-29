@@ -6,12 +6,12 @@ import {
 } from './gateway-provider';
 import { GatewayFetchMetadata } from './gateway-fetch-metadata';
 import { GatewaySpendReport } from './gateway-spend-report';
-import { NoSuchModelError } from '@ai-tools/provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
 import { GatewayEmbeddingModel } from './gateway-embedding-model';
 import { GatewayImageModel } from './gateway-image-model';
 import { GatewayVideoModel } from './gateway-video-model';
 import { getVercelOidcToken, getVercelRequestId } from './vercel-environment';
-import { resolve } from '@ai-tools/provider-utils';
+import { resolve } from '@ai-toolkit/provider-utils';
 import { GatewayLanguageModel } from './gateway-language-model';
 import {
   GatewayAuthenticationError,
@@ -178,7 +178,7 @@ describe('GatewayProvider', () => {
         'custom-header': 'value',
         'ai-gateway-protocol-version': expect.any(String),
         'ai-gateway-auth-method': 'api-key',
-        'user-agent': 'ai-sdk/gateway/0.0.0-test',
+        'user-agent': 'ai-toolkit/gateway/0.0.0-test',
       });
     });
 
@@ -200,7 +200,7 @@ describe('GatewayProvider', () => {
         'custom-header': 'value',
         'ai-gateway-protocol-version': expect.any(String),
         'ai-gateway-auth-method': 'oidc',
-        'user-agent': 'ai-sdk/gateway/0.0.0-test',
+        'user-agent': 'ai-toolkit/gateway/0.0.0-test',
       });
     });
 
@@ -268,7 +268,7 @@ describe('GatewayProvider', () => {
         'custom-header': 'value',
         'ai-gateway-protocol-version': expect.any(String),
         'ai-gateway-auth-method': 'api-key',
-        'user-agent': 'ai-sdk/gateway/0.0.0-test',
+        'user-agent': 'ai-toolkit/gateway/0.0.0-test',
       });
       expect(config.fetch).toBe(customFetch);
 
@@ -316,7 +316,7 @@ describe('GatewayProvider', () => {
         'custom-header': 'value',
         'ai-gateway-protocol-version': expect.any(String),
         'ai-gateway-auth-method': 'api-key',
-        'user-agent': 'ai-sdk/gateway/0.0.0-test',
+        'user-agent': 'ai-toolkit/gateway/0.0.0-test',
       });
       expect(config.fetch).toBe(customFetch);
 
@@ -600,7 +600,7 @@ describe('GatewayProvider', () => {
       // Verify that the API key was used in the Authorization header
       expect(headers['authorization']).toBe(`Bearer ${testApiKey}`);
       expect(headers['ai-gateway-auth-method']).toBe('api-key');
-      expect(headers['user-agent']).toBe('ai-sdk/gateway/0.0.0-test');
+      expect(headers['user-agent']).toBe('ai-toolkit/gateway/0.0.0-test');
 
       // Verify getVercelOidcToken was never called
       expect(getVercelOidcToken).not.toHaveBeenCalled();
@@ -1156,7 +1156,7 @@ describe('GatewayProvider', () => {
         'ai-gateway-protocol-version': '0.0.1',
         'ai-gateway-auth-method': 'api-key',
         'custom-header': 'custom-value',
-        'user-agent': 'ai-sdk/gateway/0.0.0-test',
+        'user-agent': 'ai-toolkit/gateway/0.0.0-test',
       });
     });
 

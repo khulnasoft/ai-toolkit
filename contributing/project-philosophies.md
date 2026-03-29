@@ -23,15 +23,15 @@
   - Even in a major version, breaking changes should have a good justification.
   - If keeping a public API unchanged would result in inferior or painful DX, making the breaking change is absolutely right — it just must happen as part of a new major release.
 
-- **Be extremely cautious with `@ai-tools/provider`.** This package contains the spec. Treat any spec changes as potentially breaking.
+- **Be extremely cautious with `@ai-toolkit/provider`.** This package contains the spec. Treat any spec changes as potentially breaking.
 
-  - Ideally, `@ai-tools/provider` changes are only made in alignment with a new AI SDK major release.
+  - Ideally, `@ai-toolkit/provider` changes are only made in alignment with a new AI SDK major release.
 
 - **Conservative API surface.** Keep provider option schemas as restrictive as possible to preserve flexibility for future changes.
 
   - Keep response schemas minimal (no unused properties).
   - Keep schemas flexible enough to handle provider API changes without unnecessary breakages.
-  - Use minimal package exports, especially from the `@ai-tools/provider` package, which is responsible for the spec. Usage of the TypeScript primitives `Params` and `ReturnType` is encouraged in consuming code over having direct exports of the underlying types.
+  - Use minimal package exports, especially from the `@ai-toolkit/provider` package, which is responsible for the spec. Usage of the TypeScript primitives `Params` and `ReturnType` is encouraged in consuming code over having direct exports of the underlying types.
 
 - **Beware premature abstraction.** Provider APIs evolve quickly. Avoid adding generic parameters or abstractions that translate differently across providers.
 
@@ -41,7 +41,7 @@
 
 - **Use `Experimental_` prefixes to explore new features outside of major releases.** When a new feature needs to be explored outside of a major release cycle, use code structures explicitly marked as experimental (e.g. `Experimental_*` prefix for types, `experimental_*` prefix for functions). This allows iteration without committing to a stable API contract.
 
-  - It is acceptable for `@ai-tools/provider` to export `Experimental_*` types for this purpose. These types may have breaking changes outside of major releases.
+  - It is acceptable for `@ai-toolkit/provider` to export `Experimental_*` types for this purpose. These types may have breaking changes outside of major releases.
   - Non-experimental types must NEVER include references to experimental types (e.g., do not add a reference to something like `Experimental_VideoModelV4` to `ProviderV4`).
   - Experimental features must remain fully isolated until they are promoted to stable.
   - Adding a new experimental feature requires broad consensus between the maintainers. Use it with caution. Do not use experimental code as a way out when you're unsure about stability.

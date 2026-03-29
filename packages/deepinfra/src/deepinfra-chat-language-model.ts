@@ -2,9 +2,9 @@ import {
   LanguageModelV4CallOptions,
   LanguageModelV4GenerateResult,
   LanguageModelV4StreamResult,
-} from '@ai-tools/provider';
-import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
-import { FetchFunction } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
+import { FetchFunction } from '@ai-toolkit/provider-utils';
 
 type DeepInfraChatConfig = {
   provider: string;

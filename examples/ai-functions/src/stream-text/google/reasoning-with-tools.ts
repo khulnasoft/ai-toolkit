@@ -1,4 +1,4 @@
-import { google, type GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, type GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { streamText } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

@@ -1,4 +1,4 @@
-import type { FetchFunction } from '@ai-tools/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 
 export interface AlibabaConfig {
   provider: string;

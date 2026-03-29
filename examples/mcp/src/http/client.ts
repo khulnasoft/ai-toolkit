@@ -1,8 +1,8 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { generateText, stepCountIs } from 'ai';
 import 'dotenv/config';
-import { createMCPClient, MCPClient } from '@ai-tools/mcp';
+import { createMCPClient, MCPClient } from '@ai-toolkit/mcp';
 
 async function main() {
   const transport = new StreamableHTTPClientTransport(

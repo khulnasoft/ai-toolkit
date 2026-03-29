@@ -1,20 +1,20 @@
-# @ai-tools/amazon-bedrock
+# @ai-toolkit/amazon-bedrock
 
 ## 5.0.0-beta.12
 
 ### Patch Changes
 
 - Updated dependencies [1f509d4]
-  - @ai-tools/provider-utils@5.0.0-beta.7
-  - @ai-tools/provider@4.0.0-beta.5
-  - @ai-tools/anthropic@4.0.0-beta.12
+  - @ai-toolkit/provider-utils@5.0.0-beta.7
+  - @ai-toolkit/provider@4.0.0-beta.5
+  - @ai-toolkit/anthropic@4.0.0-beta.12
 
 ## 5.0.0-beta.11
 
 ### Patch Changes
 
 - Updated dependencies [0ee8aec]
-  - @ai-tools/anthropic@4.0.0-beta.11
+  - @ai-toolkit/anthropic@4.0.0-beta.11
 
 ## 5.0.0-beta.10
 
@@ -22,51 +22,51 @@
 
 - 3887c70: feat(provider): add new top-level reasoning parameter to spec and support it in `generateText` and `streamText`
 - Updated dependencies [3887c70]
-  - @ai-tools/provider-utils@5.0.0-beta.6
-  - @ai-tools/anthropic@4.0.0-beta.10
-  - @ai-tools/provider@4.0.0-beta.4
+  - @ai-toolkit/provider-utils@5.0.0-beta.6
+  - @ai-toolkit/anthropic@4.0.0-beta.10
+  - @ai-toolkit/provider@4.0.0-beta.4
 
 ## 5.0.0-beta.9
 
 ### Patch Changes
 
 - Updated dependencies [776b617]
-  - @ai-tools/provider-utils@5.0.0-beta.5
-  - @ai-tools/provider@4.0.0-beta.3
-  - @ai-tools/anthropic@4.0.0-beta.9
+  - @ai-toolkit/provider-utils@5.0.0-beta.5
+  - @ai-toolkit/provider@4.0.0-beta.3
+  - @ai-toolkit/anthropic@4.0.0-beta.9
 
 ## 5.0.0-beta.8
 
 ### Patch Changes
 
 - Updated dependencies [61753c3]
-  - @ai-tools/provider-utils@5.0.0-beta.4
-  - @ai-tools/anthropic@4.0.0-beta.8
+  - @ai-toolkit/provider-utils@5.0.0-beta.4
+  - @ai-toolkit/anthropic@4.0.0-beta.8
 
 ## 5.0.0-beta.7
 
 ### Patch Changes
 
 - Updated dependencies [f7d4f01]
-  - @ai-tools/provider-utils@5.0.0-beta.3
-  - @ai-tools/provider@4.0.0-beta.2
-  - @ai-tools/anthropic@4.0.0-beta.7
+  - @ai-toolkit/provider-utils@5.0.0-beta.3
+  - @ai-toolkit/provider@4.0.0-beta.2
+  - @ai-toolkit/anthropic@4.0.0-beta.7
 
 ## 5.0.0-beta.6
 
 ### Patch Changes
 
 - Updated dependencies [21d1ee3]
-  - @ai-tools/anthropic@4.0.0-beta.6
+  - @ai-toolkit/anthropic@4.0.0-beta.6
 
 ## 5.0.0-beta.5
 
 ### Patch Changes
 
 - Updated dependencies [5c2a5a2]
-  - @ai-tools/provider@4.0.0-beta.1
-  - @ai-tools/anthropic@4.0.0-beta.5
-  - @ai-tools/provider-utils@5.0.0-beta.2
+  - @ai-toolkit/provider@4.0.0-beta.1
+  - @ai-toolkit/anthropic@4.0.0-beta.5
+  - @ai-toolkit/provider-utils@5.0.0-beta.2
 
 ## 5.0.0-beta.4
 
@@ -74,7 +74,7 @@
 
 - f05a40d: fix(vertex): throw warning when strict: true for vertexAnthropic
 - Updated dependencies [f05a40d]
-  - @ai-tools/anthropic@4.0.0-beta.4
+  - @ai-toolkit/anthropic@4.0.0-beta.4
 
 ## 5.0.0-beta.3
 
@@ -82,22 +82,22 @@
 
 - e748b35: chore: update v3 specs to v4
 - Updated dependencies [e748b35]
-  - @ai-tools/anthropic@4.0.0-beta.3
+  - @ai-toolkit/anthropic@4.0.0-beta.3
 
 ## 5.0.0-beta.2
 
 ### Patch Changes
 
 - Updated dependencies [1fe058b]
-  - @ai-tools/anthropic@4.0.0-beta.2
+  - @ai-toolkit/anthropic@4.0.0-beta.2
 
 ## 5.0.0-beta.1
 
 ### Patch Changes
 
 - Updated dependencies [531251e]
-  - @ai-tools/provider-utils@5.0.0-beta.1
-  - @ai-tools/anthropic@4.0.0-beta.1
+  - @ai-toolkit/provider-utils@5.0.0-beta.1
+  - @ai-toolkit/anthropic@4.0.0-beta.1
 
 ## 5.0.0-beta.0
 
@@ -108,9 +108,9 @@
 ### Patch Changes
 
 - Updated dependencies [8359612]
-  - @ai-tools/anthropic@4.0.0-beta.0
-  - @ai-tools/provider@4.0.0-beta.0
-  - @ai-tools/provider-utils@5.0.0-beta.0
+  - @ai-toolkit/anthropic@4.0.0-beta.0
+  - @ai-toolkit/provider@4.0.0-beta.0
+  - @ai-toolkit/provider-utils@5.0.0-beta.0
 
 ## 4.0.77
 
@@ -118,16 +118,16 @@
 
 - Updated dependencies [ad4cfc2]
 - Updated dependencies [3fb4e70]
-  - @ai-tools/provider-utils@4.0.19
-  - @ai-tools/anthropic@3.0.58
+  - @ai-toolkit/provider-utils@4.0.19
+  - @ai-toolkit/anthropic@3.0.58
 
 ## 4.0.76
 
 ### Patch Changes
 
 - Updated dependencies [824b295]
-  - @ai-tools/provider-utils@4.0.18
-  - @ai-tools/anthropic@3.0.57
+  - @ai-toolkit/provider-utils@4.0.18
+  - @ai-toolkit/anthropic@3.0.57
 
 ## 4.0.75
 
@@ -137,28 +137,28 @@
 - e49c34d: feat(anthropic): expose anthropic.anthropicBeta to downstream provider
 - Updated dependencies [e49c34d]
 - Updated dependencies [e49c34d]
-  - @ai-tools/anthropic@3.0.56
+  - @ai-toolkit/anthropic@3.0.56
 
 ## 4.0.74
 
 ### Patch Changes
 
 - Updated dependencies [7531e72]
-  - @ai-tools/anthropic@3.0.55
+  - @ai-toolkit/anthropic@3.0.55
 
 ## 4.0.73
 
 ### Patch Changes
 
 - Updated dependencies [56c67d5]
-  - @ai-tools/anthropic@3.0.54
+  - @ai-toolkit/anthropic@3.0.54
 
 ## 4.0.72
 
 ### Patch Changes
 
 - Updated dependencies [89caf28]
-  - @ai-tools/anthropic@3.0.53
+  - @ai-toolkit/anthropic@3.0.53
 
 ## 4.0.71
 
@@ -166,23 +166,23 @@
 
 - 08336f1: fix(bedrock): strip file extensions from filename
 - Updated dependencies [08336f1]
-  - @ai-tools/provider-utils@4.0.17
-  - @ai-tools/anthropic@3.0.52
+  - @ai-toolkit/provider-utils@4.0.17
+  - @ai-toolkit/anthropic@3.0.52
 
 ## 4.0.70
 
 ### Patch Changes
 
 - Updated dependencies [64a8fae]
-  - @ai-tools/anthropic@3.0.51
+  - @ai-toolkit/anthropic@3.0.51
 
 ## 4.0.69
 
 ### Patch Changes
 
 - Updated dependencies [58bc42d]
-  - @ai-tools/provider-utils@4.0.16
-  - @ai-tools/anthropic@3.0.50
+  - @ai-toolkit/provider-utils@4.0.16
+  - @ai-toolkit/anthropic@3.0.50
 
 ## 4.0.68
 
@@ -190,14 +190,14 @@
 
 - d98d9ba: Migrated deprecated `output_format` parameter to `output_config.format` for structured outputs + Enabled native structured output support for Bedrock Anthropic models via `output_config.format`.
 - Updated dependencies [d98d9ba]
-  - @ai-tools/anthropic@3.0.49
+  - @ai-toolkit/anthropic@3.0.49
 
 ## 4.0.67
 
 ### Patch Changes
 
 - Updated dependencies [2164cdf]
-  - @ai-tools/anthropic@3.0.48
+  - @ai-toolkit/anthropic@3.0.48
 
 ## 4.0.66
 
@@ -216,7 +216,7 @@
 ### Patch Changes
 
 - Updated dependencies [17978c6]
-  - @ai-tools/anthropic@3.0.47
+  - @ai-toolkit/anthropic@3.0.47
 
 ## 4.0.63
 
@@ -229,7 +229,7 @@
 ### Patch Changes
 
 - Updated dependencies [b094c07]
-  - @ai-tools/anthropic@3.0.46
+  - @ai-toolkit/anthropic@3.0.46
 
 ## 4.0.61
 
@@ -237,22 +237,22 @@
 
 - 2a1c664: feat(provider/anthropic): add support for new Claude Sonnet 4.6 model
 - Updated dependencies [2a1c664]
-  - @ai-tools/anthropic@3.0.45
+  - @ai-toolkit/anthropic@3.0.45
 
 ## 4.0.60
 
 ### Patch Changes
 
 - Updated dependencies [23ac4a3]
-  - @ai-tools/anthropic@3.0.44
+  - @ai-toolkit/anthropic@3.0.44
 
 ## 4.0.59
 
 ### Patch Changes
 
 - Updated dependencies [4024a3a]
-  - @ai-tools/provider-utils@4.0.15
-  - @ai-tools/anthropic@3.0.43
+  - @ai-toolkit/provider-utils@4.0.15
+  - @ai-toolkit/anthropic@3.0.43
 
 ## 4.0.58
 
@@ -273,21 +273,21 @@
 
 - 99fbed8: feat: normalize provider specific model options type names and ensure they are exported
 - Updated dependencies [99fbed8]
-  - @ai-tools/anthropic@3.0.42
+  - @ai-toolkit/anthropic@3.0.42
 
 ## 4.0.55
 
 ### Patch Changes
 
 - Updated dependencies [c60b393]
-  - @ai-tools/anthropic@3.0.41
+  - @ai-toolkit/anthropic@3.0.41
 
 ## 4.0.54
 
 ### Patch Changes
 
 - Updated dependencies [8c2b1e1]
-  - @ai-tools/anthropic@3.0.40
+  - @ai-toolkit/anthropic@3.0.40
 
 ## 4.0.53
 
@@ -300,16 +300,16 @@
 ### Patch Changes
 
 - Updated dependencies [0a0d29c]
-  - @ai-tools/anthropic@3.0.39
+  - @ai-toolkit/anthropic@3.0.39
 
 ## 4.0.51
 
 ### Patch Changes
 
 - Updated dependencies [7168375]
-  - @ai-tools/provider@3.0.8
-  - @ai-tools/anthropic@3.0.38
-  - @ai-tools/provider-utils@4.0.14
+  - @ai-toolkit/provider@3.0.8
+  - @ai-toolkit/anthropic@3.0.38
+  - @ai-toolkit/provider-utils@4.0.14
 
 ## 4.0.50
 
@@ -322,14 +322,14 @@
 ### Patch Changes
 
 - Updated dependencies [e288302]
-  - @ai-tools/anthropic@3.0.37
+  - @ai-toolkit/anthropic@3.0.37
 
 ## 4.0.48
 
 ### Patch Changes
 
 - Updated dependencies [1652320]
-  - @ai-tools/anthropic@3.0.36
+  - @ai-toolkit/anthropic@3.0.36
 
 ## 4.0.47
 
@@ -342,17 +342,17 @@
 ### Patch Changes
 
 - Updated dependencies [53f6731]
-  - @ai-tools/provider@3.0.7
-  - @ai-tools/anthropic@3.0.35
-  - @ai-tools/provider-utils@4.0.13
+  - @ai-toolkit/provider@3.0.7
+  - @ai-toolkit/anthropic@3.0.35
+  - @ai-toolkit/provider-utils@4.0.13
 
 ## 4.0.45
 
 ### Patch Changes
 
 - Updated dependencies [96936e5]
-  - @ai-tools/provider-utils@4.0.12
-  - @ai-tools/anthropic@3.0.34
+  - @ai-toolkit/provider-utils@4.0.12
+  - @ai-toolkit/anthropic@3.0.34
 
 ## 4.0.44
 
@@ -365,14 +365,14 @@
 ### Patch Changes
 
 - Updated dependencies [445cbe3]
-  - @ai-tools/anthropic@3.0.33
+  - @ai-toolkit/anthropic@3.0.33
 
 ## 4.0.42
 
 ### Patch Changes
 
 - Updated dependencies [c33343b]
-  - @ai-tools/anthropic@3.0.32
+  - @ai-toolkit/anthropic@3.0.32
 
 ## 4.0.41
 
@@ -385,9 +385,9 @@
 ### Patch Changes
 
 - Updated dependencies [2810850]
-  - @ai-tools/provider-utils@4.0.11
-  - @ai-tools/provider@3.0.6
-  - @ai-tools/anthropic@3.0.31
+  - @ai-toolkit/provider-utils@4.0.11
+  - @ai-toolkit/provider@3.0.6
+  - @ai-toolkit/anthropic@3.0.31
 
 ## 4.0.39
 
@@ -395,7 +395,7 @@
 
 - 1524271: chore: add skill information to README files
 - Updated dependencies [1524271]
-  - @ai-tools/anthropic@3.0.30
+  - @ai-toolkit/anthropic@3.0.30
 
 ## 4.0.38
 
@@ -408,43 +408,43 @@
 ### Patch Changes
 
 - Updated dependencies [b9d105f]
-  - @ai-tools/anthropic@3.0.29
+  - @ai-toolkit/anthropic@3.0.29
 
 ## 4.0.36
 
 ### Patch Changes
 
 - Updated dependencies [2445da4]
-  - @ai-tools/anthropic@3.0.28
+  - @ai-toolkit/anthropic@3.0.28
 
 ## 4.0.35
 
 ### Patch Changes
 
 - Updated dependencies [572ea12]
-  - @ai-tools/anthropic@3.0.27
+  - @ai-toolkit/anthropic@3.0.27
 
 ## 4.0.34
 
 ### Patch Changes
 
 - Updated dependencies [2c70b90]
-  - @ai-tools/anthropic@3.0.26
+  - @ai-toolkit/anthropic@3.0.26
 
 ## 4.0.33
 
 ### Patch Changes
 
 - Updated dependencies [0bb9bcd]
-  - @ai-tools/anthropic@3.0.25
+  - @ai-toolkit/anthropic@3.0.25
 
 ## 4.0.32
 
 ### Patch Changes
 
 - Updated dependencies [462ad00]
-  - @ai-tools/provider-utils@4.0.10
-  - @ai-tools/anthropic@3.0.24
+  - @ai-toolkit/provider-utils@4.0.10
+  - @ai-toolkit/anthropic@3.0.24
 
 ## 4.0.31
 
@@ -464,23 +464,23 @@
 
 - 4de5a1d: chore: excluded tests from src folder in npm package
 - Updated dependencies [4de5a1d]
-  - @ai-tools/anthropic@3.0.23
-  - @ai-tools/provider@3.0.5
-  - @ai-tools/provider-utils@4.0.9
+  - @ai-toolkit/anthropic@3.0.23
+  - @ai-toolkit/provider@3.0.5
+  - @ai-toolkit/provider-utils@4.0.9
 
 ## 4.0.28
 
 ### Patch Changes
 
 - Updated dependencies [8ccf04b]
-  - @ai-tools/anthropic@3.0.22
+  - @ai-toolkit/anthropic@3.0.22
 
 ## 4.0.27
 
 ### Patch Changes
 
 - Updated dependencies [662d359]
-  - @ai-tools/anthropic@3.0.21
+  - @ai-toolkit/anthropic@3.0.21
 
 ## 4.0.26
 
@@ -488,7 +488,7 @@
 
 - 2b8369d: chore: add docs to package dist
 - Updated dependencies [2b8369d]
-  - @ai-tools/anthropic@3.0.20
+  - @ai-toolkit/anthropic@3.0.20
 
 ## 4.0.25
 
@@ -496,7 +496,7 @@
 
 - 8dc54db: chore: add src folders to package bundle
 - Updated dependencies [8dc54db]
-  - @ai-tools/anthropic@3.0.19
+  - @ai-toolkit/anthropic@3.0.19
 
 ## 4.0.24
 
@@ -511,7 +511,7 @@
 ### Patch Changes
 
 - Updated dependencies [c10bd49]
-  - @ai-tools/anthropic@3.0.18
+  - @ai-toolkit/anthropic@3.0.18
 
 ## 4.0.22
 
@@ -524,62 +524,62 @@
 ### Patch Changes
 
 - Updated dependencies [4729bed]
-  - @ai-tools/anthropic@3.0.17
+  - @ai-toolkit/anthropic@3.0.17
 
 ## 4.0.20
 
 ### Patch Changes
 
 - Updated dependencies [d36fa72]
-  - @ai-tools/anthropic@3.0.16
+  - @ai-toolkit/anthropic@3.0.16
 
 ## 4.0.19
 
 ### Patch Changes
 
 - Updated dependencies [5c090e7]
-  - @ai-tools/provider@3.0.4
-  - @ai-tools/anthropic@3.0.15
-  - @ai-tools/provider-utils@4.0.8
+  - @ai-toolkit/provider@3.0.4
+  - @ai-toolkit/anthropic@3.0.15
+  - @ai-toolkit/provider-utils@4.0.8
 
 ## 4.0.18
 
 ### Patch Changes
 
 - Updated dependencies [46f46e4]
-  - @ai-tools/provider-utils@4.0.7
-  - @ai-tools/anthropic@3.0.14
+  - @ai-toolkit/provider-utils@4.0.7
+  - @ai-toolkit/anthropic@3.0.14
 
 ## 4.0.17
 
 ### Patch Changes
 
 - Updated dependencies [1b11dcb]
-  - @ai-tools/provider-utils@4.0.6
-  - @ai-tools/provider@3.0.3
-  - @ai-tools/anthropic@3.0.13
+  - @ai-toolkit/provider-utils@4.0.6
+  - @ai-toolkit/provider@3.0.3
+  - @ai-toolkit/anthropic@3.0.13
 
 ## 4.0.16
 
 ### Patch Changes
 
 - Updated dependencies [34d1c8a]
-  - @ai-tools/provider-utils@4.0.5
-  - @ai-tools/anthropic@3.0.12
+  - @ai-toolkit/provider-utils@4.0.5
+  - @ai-toolkit/anthropic@3.0.12
 
 ## 4.0.15
 
 ### Patch Changes
 
 - Updated dependencies [8c1c6e3]
-  - @ai-tools/anthropic@3.0.11
+  - @ai-toolkit/anthropic@3.0.11
 
 ## 4.0.14
 
 ### Patch Changes
 
 - Updated dependencies [02d9b68]
-  - @ai-tools/anthropic@3.0.10
+  - @ai-toolkit/anthropic@3.0.10
 
 ## 4.0.13
 
@@ -598,52 +598,52 @@
 ### Patch Changes
 
 - Updated dependencies [de2399b]
-  - @ai-tools/anthropic@3.0.9
+  - @ai-toolkit/anthropic@3.0.9
 
 ## 4.0.10
 
 ### Patch Changes
 
 - Updated dependencies [bee4f82]
-  - @ai-tools/anthropic@3.0.8
+  - @ai-toolkit/anthropic@3.0.8
 
 ## 4.0.9
 
 ### Patch Changes
 
 - Updated dependencies [d937c8f]
-  - @ai-tools/provider@3.0.2
-  - @ai-tools/anthropic@3.0.7
-  - @ai-tools/provider-utils@4.0.4
+  - @ai-toolkit/provider@3.0.2
+  - @ai-toolkit/anthropic@3.0.7
+  - @ai-toolkit/provider-utils@4.0.4
 
 ## 4.0.8
 
 ### Patch Changes
 
 - Updated dependencies [2231e84]
-  - @ai-tools/anthropic@3.0.6
+  - @ai-toolkit/anthropic@3.0.6
 
 ## 4.0.7
 
 ### Patch Changes
 
 - Updated dependencies [0b429d4]
-  - @ai-tools/provider-utils@4.0.3
-  - @ai-tools/anthropic@3.0.5
+  - @ai-toolkit/provider-utils@4.0.3
+  - @ai-toolkit/anthropic@3.0.5
 
 ## 4.0.6
 
 ### Patch Changes
 
 - Updated dependencies [bf39dac]
-  - @ai-tools/anthropic@3.0.4
+  - @ai-toolkit/anthropic@3.0.4
 
 ## 4.0.5
 
 ### Patch Changes
 
 - Updated dependencies [77b760d]
-  - @ai-tools/anthropic@3.0.3
+  - @ai-toolkit/anthropic@3.0.3
 
 ## 4.0.4
 
@@ -651,9 +651,9 @@
 
 - 863d34f: fix: trigger release to update `@latest`
 - Updated dependencies [863d34f]
-  - @ai-tools/anthropic@3.0.2
-  - @ai-tools/provider@3.0.1
-  - @ai-tools/provider-utils@4.0.2
+  - @ai-toolkit/anthropic@3.0.2
+  - @ai-toolkit/provider@3.0.1
+  - @ai-toolkit/provider-utils@4.0.2
 
 ## 4.0.3
 
@@ -666,8 +666,8 @@
 ### Patch Changes
 
 - Updated dependencies [29264a3]
-  - @ai-tools/provider-utils@4.0.1
-  - @ai-tools/anthropic@3.0.1
+  - @ai-toolkit/provider-utils@4.0.1
+  - @ai-toolkit/anthropic@3.0.1
 
 ## 4.0.1
 
@@ -762,29 +762,29 @@
 - 3794514: feat: flexible tool output content support
 - cbf52cd: feat: expose raw finish reason
 - f65d7df: feat(provider/bedrock): Support Nova 2 extended reasoning `maxReasoningEffort` field
-- 10c1322: fix: moved dependency `@ai-tools/test-server` to devDependencies
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
 - 9ab6ebe: Add stop sequence support for amazon bedrock provider
 - 1bd7d32: feat: tool-specific strict mode
 - Updated dependencies
-  - @ai-tools/anthropic@3.0.0
-  - @ai-tools/provider@3.0.0
-  - @ai-tools/provider-utils@4.0.0
+  - @ai-toolkit/anthropic@3.0.0
+  - @ai-toolkit/provider@3.0.0
+  - @ai-toolkit/provider-utils@4.0.0
 
 ## 4.0.0-beta.109
 
 ### Patch Changes
 
 - Updated dependencies [2049c5b]
-  - @ai-tools/anthropic@3.0.0-beta.98
+  - @ai-toolkit/anthropic@3.0.0-beta.98
 
 ## 4.0.0-beta.108
 
 ### Patch Changes
 
 - Updated dependencies [475189e]
-  - @ai-tools/provider@3.0.0-beta.32
-  - @ai-tools/anthropic@3.0.0-beta.97
-  - @ai-tools/provider-utils@4.0.0-beta.59
+  - @ai-toolkit/provider@3.0.0-beta.32
+  - @ai-toolkit/anthropic@3.0.0-beta.97
+  - @ai-toolkit/provider-utils@4.0.0-beta.59
 
 ## 4.0.0-beta.107
 
@@ -792,9 +792,9 @@
 
 - 2625a04: feat(openai); update spec for mcp approval
 - Updated dependencies [2625a04]
-  - @ai-tools/anthropic@3.0.0-beta.96
-  - @ai-tools/provider@3.0.0-beta.31
-  - @ai-tools/provider-utils@4.0.0-beta.58
+  - @ai-toolkit/anthropic@3.0.0-beta.96
+  - @ai-toolkit/provider@3.0.0-beta.31
+  - @ai-toolkit/provider-utils@4.0.0-beta.58
 
 ## 4.0.0-beta.106
 
@@ -802,26 +802,26 @@
 
 - cbf52cd: feat: expose raw finish reason
 - Updated dependencies [cbf52cd]
-  - @ai-tools/anthropic@3.0.0-beta.95
-  - @ai-tools/provider@3.0.0-beta.30
-  - @ai-tools/provider-utils@4.0.0-beta.57
+  - @ai-toolkit/anthropic@3.0.0-beta.95
+  - @ai-toolkit/provider@3.0.0-beta.30
+  - @ai-toolkit/provider-utils@4.0.0-beta.57
 
 ## 4.0.0-beta.105
 
 ### Patch Changes
 
 - Updated dependencies [9549c9e]
-  - @ai-tools/provider@3.0.0-beta.29
-  - @ai-tools/anthropic@3.0.0-beta.94
-  - @ai-tools/provider-utils@4.0.0-beta.56
+  - @ai-toolkit/provider@3.0.0-beta.29
+  - @ai-toolkit/anthropic@3.0.0-beta.94
+  - @ai-toolkit/provider-utils@4.0.0-beta.56
 
 ## 4.0.0-beta.104
 
 ### Patch Changes
 
 - Updated dependencies [50b70d6]
-  - @ai-tools/provider-utils@4.0.0-beta.55
-  - @ai-tools/anthropic@3.0.0-beta.93
+  - @ai-toolkit/provider-utils@4.0.0-beta.55
+  - @ai-toolkit/anthropic@3.0.0-beta.93
 
 ## 4.0.0-beta.103
 
@@ -829,9 +829,9 @@
 
 - 9061dc0: feat: image editing
 - Updated dependencies [9061dc0]
-  - @ai-tools/provider-utils@4.0.0-beta.54
-  - @ai-tools/provider@3.0.0-beta.28
-  - @ai-tools/anthropic@3.0.0-beta.92
+  - @ai-toolkit/provider-utils@4.0.0-beta.54
+  - @ai-toolkit/provider@3.0.0-beta.28
+  - @ai-toolkit/anthropic@3.0.0-beta.92
 
 ## 4.0.0-beta.102
 
@@ -852,7 +852,7 @@
 ### Patch Changes
 
 - Updated dependencies [d129d89]
-  - @ai-tools/anthropic@3.0.0-beta.91
+  - @ai-toolkit/anthropic@3.0.0-beta.91
 
 ## 4.0.0-beta.100
 
@@ -860,86 +860,86 @@
 
 - 366f50b: chore(provider): add deprecated textEmbeddingModel and textEmbedding aliases
 - Updated dependencies [366f50b]
-  - @ai-tools/anthropic@3.0.0-beta.90
-  - @ai-tools/provider@3.0.0-beta.27
-  - @ai-tools/provider-utils@4.0.0-beta.53
+  - @ai-toolkit/anthropic@3.0.0-beta.90
+  - @ai-toolkit/provider@3.0.0-beta.27
+  - @ai-toolkit/provider-utils@4.0.0-beta.53
 
 ## 4.0.0-beta.99
 
 ### Patch Changes
 
 - Updated dependencies [763d04a]
-  - @ai-tools/provider-utils@4.0.0-beta.52
-  - @ai-tools/anthropic@3.0.0-beta.89
+  - @ai-toolkit/provider-utils@4.0.0-beta.52
+  - @ai-toolkit/anthropic@3.0.0-beta.89
 
 ## 4.0.0-beta.98
 
 ### Patch Changes
 
 - Updated dependencies [87db851]
-  - @ai-tools/anthropic@3.0.0-beta.88
+  - @ai-toolkit/anthropic@3.0.0-beta.88
 
 ## 4.0.0-beta.97
 
 ### Patch Changes
 
 - Updated dependencies [c1efac4]
-  - @ai-tools/provider-utils@4.0.0-beta.51
-  - @ai-tools/anthropic@3.0.0-beta.87
+  - @ai-toolkit/provider-utils@4.0.0-beta.51
+  - @ai-toolkit/anthropic@3.0.0-beta.87
 
 ## 4.0.0-beta.96
 
 ### Patch Changes
 
 - Updated dependencies [32223c8]
-  - @ai-tools/provider-utils@4.0.0-beta.50
-  - @ai-tools/anthropic@3.0.0-beta.86
+  - @ai-toolkit/provider-utils@4.0.0-beta.50
+  - @ai-toolkit/anthropic@3.0.0-beta.86
 
 ## 4.0.0-beta.95
 
 ### Patch Changes
 
 - Updated dependencies [83e5744]
-  - @ai-tools/provider-utils@4.0.0-beta.49
-  - @ai-tools/anthropic@3.0.0-beta.85
+  - @ai-toolkit/provider-utils@4.0.0-beta.49
+  - @ai-toolkit/anthropic@3.0.0-beta.85
 
 ## 4.0.0-beta.94
 
 ### Patch Changes
 
 - Updated dependencies [960ec8f]
-  - @ai-tools/provider-utils@4.0.0-beta.48
-  - @ai-tools/anthropic@3.0.0-beta.84
+  - @ai-toolkit/provider-utils@4.0.0-beta.48
+  - @ai-toolkit/anthropic@3.0.0-beta.84
 
 ## 4.0.0-beta.93
 
 ### Patch Changes
 
 - Updated dependencies [6c38080]
-  - @ai-tools/anthropic@3.0.0-beta.83
+  - @ai-toolkit/anthropic@3.0.0-beta.83
 
 ## 4.0.0-beta.92
 
 ### Patch Changes
 
 - Updated dependencies [e9e157f]
-  - @ai-tools/provider-utils@4.0.0-beta.47
-  - @ai-tools/anthropic@3.0.0-beta.82
+  - @ai-toolkit/provider-utils@4.0.0-beta.47
+  - @ai-toolkit/anthropic@3.0.0-beta.82
 
 ## 4.0.0-beta.91
 
 ### Patch Changes
 
 - Updated dependencies [81e29ab]
-  - @ai-tools/provider-utils@4.0.0-beta.46
-  - @ai-tools/anthropic@3.0.0-beta.81
+  - @ai-toolkit/provider-utils@4.0.0-beta.46
+  - @ai-toolkit/anthropic@3.0.0-beta.81
 
 ## 4.0.0-beta.90
 
 ### Patch Changes
 
 - Updated dependencies [05d5b9a]
-  - @ai-tools/anthropic@3.0.0-beta.80
+  - @ai-toolkit/anthropic@3.0.0-beta.80
 
 ## 4.0.0-beta.89
 
@@ -947,56 +947,56 @@
 
 - 3bd2689: feat: extended token usage
 - Updated dependencies [3bd2689]
-  - @ai-tools/anthropic@3.0.0-beta.79
-  - @ai-tools/provider@3.0.0-beta.26
-  - @ai-tools/provider-utils@4.0.0-beta.45
+  - @ai-toolkit/anthropic@3.0.0-beta.79
+  - @ai-toolkit/provider@3.0.0-beta.26
+  - @ai-toolkit/provider-utils@4.0.0-beta.45
 
 ## 4.0.0-beta.88
 
 ### Patch Changes
 
 - Updated dependencies [9e1e758]
-  - @ai-tools/anthropic@3.0.0-beta.78
+  - @ai-toolkit/anthropic@3.0.0-beta.78
 
 ## 4.0.0-beta.87
 
 ### Patch Changes
 
 - Updated dependencies [b2dbfbf]
-  - @ai-tools/anthropic@3.0.0-beta.77
+  - @ai-toolkit/anthropic@3.0.0-beta.77
 
 ## 4.0.0-beta.86
 
 ### Patch Changes
 
 - Updated dependencies [53f3368]
-  - @ai-tools/provider@3.0.0-beta.25
-  - @ai-tools/anthropic@3.0.0-beta.76
-  - @ai-tools/provider-utils@4.0.0-beta.44
+  - @ai-toolkit/provider@3.0.0-beta.25
+  - @ai-toolkit/anthropic@3.0.0-beta.76
+  - @ai-toolkit/provider-utils@4.0.0-beta.44
 
 ## 4.0.0-beta.85
 
 ### Patch Changes
 
 - Updated dependencies [0ae783e]
-  - @ai-tools/anthropic@3.0.0-beta.75
+  - @ai-toolkit/anthropic@3.0.0-beta.75
 
 ## 4.0.0-beta.84
 
 ### Patch Changes
 
 - Updated dependencies [dce03c4]
-  - @ai-tools/provider-utils@4.0.0-beta.43
-  - @ai-tools/anthropic@3.0.0-beta.74
-  - @ai-tools/provider@3.0.0-beta.24
+  - @ai-toolkit/provider-utils@4.0.0-beta.43
+  - @ai-toolkit/anthropic@3.0.0-beta.74
+  - @ai-toolkit/provider@3.0.0-beta.24
 
 ## 4.0.0-beta.83
 
 ### Patch Changes
 
 - Updated dependencies [3ed5519]
-  - @ai-tools/provider-utils@4.0.0-beta.42
-  - @ai-tools/anthropic@3.0.0-beta.73
+  - @ai-toolkit/provider-utils@4.0.0-beta.42
+  - @ai-toolkit/anthropic@3.0.0-beta.73
 
 ## 4.0.0-beta.82
 
@@ -1009,7 +1009,7 @@
 ### Patch Changes
 
 - Updated dependencies [a5f77a6]
-  - @ai-tools/anthropic@3.0.0-beta.72
+  - @ai-toolkit/anthropic@3.0.0-beta.72
 
 ## 4.0.0-beta.80
 
@@ -1023,37 +1023,37 @@
 
 - 1bd7d32: feat: tool-specific strict mode
 - Updated dependencies [1bd7d32]
-  - @ai-tools/provider-utils@4.0.0-beta.41
-  - @ai-tools/anthropic@3.0.0-beta.71
-  - @ai-tools/provider@3.0.0-beta.23
+  - @ai-toolkit/provider-utils@4.0.0-beta.41
+  - @ai-toolkit/anthropic@3.0.0-beta.71
+  - @ai-toolkit/provider@3.0.0-beta.23
 
 ## 4.0.0-beta.78
 
 ### Patch Changes
 
 - Updated dependencies [f13958c]
-  - @ai-tools/anthropic@3.0.0-beta.70
+  - @ai-toolkit/anthropic@3.0.0-beta.70
 
 ## 4.0.0-beta.77
 
 ### Patch Changes
 
 - Updated dependencies [589a4ee]
-  - @ai-tools/anthropic@3.0.0-beta.69
+  - @ai-toolkit/anthropic@3.0.0-beta.69
 
 ## 4.0.0-beta.76
 
 ### Patch Changes
 
 - Updated dependencies [9e35785]
-  - @ai-tools/anthropic@3.0.0-beta.68
+  - @ai-toolkit/anthropic@3.0.0-beta.68
 
 ## 4.0.0-beta.75
 
 ### Patch Changes
 
 - Updated dependencies [eb56fc6]
-  - @ai-tools/anthropic@3.0.0-beta.67
+  - @ai-toolkit/anthropic@3.0.0-beta.67
 
 ## 4.0.0-beta.74
 
@@ -1061,26 +1061,26 @@
 
 - 544d4e8: chore(specification): rename v3 provider defined tool to provider tool
 - Updated dependencies [544d4e8]
-  - @ai-tools/provider-utils@4.0.0-beta.40
-  - @ai-tools/anthropic@3.0.0-beta.66
-  - @ai-tools/provider@3.0.0-beta.22
+  - @ai-toolkit/provider-utils@4.0.0-beta.40
+  - @ai-toolkit/anthropic@3.0.0-beta.66
+  - @ai-toolkit/provider@3.0.0-beta.22
 
 ## 4.0.0-beta.73
 
 ### Patch Changes
 
 - Updated dependencies [954c356]
-  - @ai-tools/provider-utils@4.0.0-beta.39
-  - @ai-tools/anthropic@3.0.0-beta.65
-  - @ai-tools/provider@3.0.0-beta.21
+  - @ai-toolkit/provider-utils@4.0.0-beta.39
+  - @ai-toolkit/anthropic@3.0.0-beta.65
+  - @ai-toolkit/provider@3.0.0-beta.21
 
 ## 4.0.0-beta.72
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@4.0.0-beta.38
-  - @ai-tools/anthropic@3.0.0-beta.64
+  - @ai-toolkit/provider-utils@4.0.0-beta.38
+  - @ai-toolkit/anthropic@3.0.0-beta.64
 
 ## 4.0.0-beta.71
 
@@ -1088,9 +1088,9 @@
 
 - 457318b: chore(provider,ai): switch to SharedV3Warning and unified warnings
 - Updated dependencies [457318b]
-  - @ai-tools/anthropic@3.0.0-beta.63
-  - @ai-tools/provider@3.0.0-beta.20
-  - @ai-tools/provider-utils@4.0.0-beta.37
+  - @ai-toolkit/anthropic@3.0.0-beta.63
+  - @ai-toolkit/provider@3.0.0-beta.20
+  - @ai-toolkit/provider-utils@4.0.0-beta.37
 
 ## 4.0.0-beta.70
 
@@ -1111,62 +1111,62 @@
   ```
 
 - Updated dependencies [8d9e8ad]
-  - @ai-tools/anthropic@3.0.0-beta.62
-  - @ai-tools/provider@3.0.0-beta.19
-  - @ai-tools/provider-utils@4.0.0-beta.36
+  - @ai-toolkit/anthropic@3.0.0-beta.62
+  - @ai-toolkit/provider@3.0.0-beta.19
+  - @ai-toolkit/provider-utils@4.0.0-beta.36
 
 ## 4.0.0-beta.69
 
 ### Patch Changes
 
 - Updated dependencies [10d819b]
-  - @ai-tools/provider@3.0.0-beta.18
-  - @ai-tools/anthropic@3.0.0-beta.61
-  - @ai-tools/provider-utils@4.0.0-beta.35
+  - @ai-toolkit/provider@3.0.0-beta.18
+  - @ai-toolkit/anthropic@3.0.0-beta.61
+  - @ai-toolkit/provider-utils@4.0.0-beta.35
 
 ## 4.0.0-beta.68
 
 ### Patch Changes
 
 - Updated dependencies [6fc35cb]
-  - @ai-tools/anthropic@3.0.0-beta.60
+  - @ai-toolkit/anthropic@3.0.0-beta.60
 
 ## 4.0.0-beta.67
 
 ### Patch Changes
 
 - Updated dependencies [2109385]
-  - @ai-tools/anthropic@3.0.0-beta.59
+  - @ai-toolkit/anthropic@3.0.0-beta.59
 
 ## 4.0.0-beta.66
 
 ### Patch Changes
 
 - Updated dependencies [83aaad8]
-  - @ai-tools/anthropic@3.0.0-beta.58
+  - @ai-toolkit/anthropic@3.0.0-beta.58
 
 ## 4.0.0-beta.65
 
 ### Patch Changes
 
 - Updated dependencies [b8ea36e]
-  - @ai-tools/anthropic@3.0.0-beta.57
+  - @ai-toolkit/anthropic@3.0.0-beta.57
 
 ## 4.0.0-beta.64
 
 ### Patch Changes
 
 - Updated dependencies [983e394]
-  - @ai-tools/anthropic@3.0.0-beta.56
+  - @ai-toolkit/anthropic@3.0.0-beta.56
 
 ## 4.0.0-beta.63
 
 ### Patch Changes
 
 - Updated dependencies [db913bd]
-  - @ai-tools/provider@3.0.0-beta.17
-  - @ai-tools/anthropic@3.0.0-beta.55
-  - @ai-tools/provider-utils@4.0.0-beta.34
+  - @ai-toolkit/provider@3.0.0-beta.17
+  - @ai-toolkit/anthropic@3.0.0-beta.55
+  - @ai-toolkit/provider-utils@4.0.0-beta.34
 
 ## 4.0.0-beta.62
 
@@ -1205,7 +1205,7 @@
 
 - 33343c3: fix(amazon-bedrock): clamp temperature to valid 0-1 range with warnings
 - Updated dependencies [1d15673]
-  - @ai-tools/anthropic@3.0.0-beta.54
+  - @ai-toolkit/anthropic@3.0.0-beta.54
 
 ## 4.0.0-beta.59
 
@@ -1218,81 +1218,81 @@
 ### Patch Changes
 
 - Updated dependencies [b681d7d]
-  - @ai-tools/provider@3.0.0-beta.16
-  - @ai-tools/anthropic@3.0.0-beta.53
-  - @ai-tools/provider-utils@4.0.0-beta.33
+  - @ai-toolkit/provider@3.0.0-beta.16
+  - @ai-toolkit/anthropic@3.0.0-beta.53
+  - @ai-toolkit/provider-utils@4.0.0-beta.33
 
 ## 4.0.0-beta.57
 
 ### Patch Changes
 
 - Updated dependencies [32d8dbb]
-  - @ai-tools/provider-utils@4.0.0-beta.32
-  - @ai-tools/anthropic@3.0.0-beta.52
+  - @ai-toolkit/provider-utils@4.0.0-beta.32
+  - @ai-toolkit/anthropic@3.0.0-beta.52
 
 ## 4.0.0-beta.56
 
 ### Patch Changes
 
 - Updated dependencies [1742445]
-  - @ai-tools/anthropic@3.0.0-beta.51
+  - @ai-toolkit/anthropic@3.0.0-beta.51
 
 ## 4.0.0-beta.55
 
 ### Patch Changes
 
 - Updated dependencies [bb36798]
-  - @ai-tools/provider@3.0.0-beta.15
-  - @ai-tools/anthropic@3.0.0-beta.50
-  - @ai-tools/provider-utils@4.0.0-beta.31
+  - @ai-toolkit/provider@3.0.0-beta.15
+  - @ai-toolkit/anthropic@3.0.0-beta.50
+  - @ai-toolkit/provider-utils@4.0.0-beta.31
 
 ## 4.0.0-beta.54
 
 ### Patch Changes
 
 - Updated dependencies [4f16c37]
-  - @ai-tools/provider-utils@4.0.0-beta.30
-  - @ai-tools/anthropic@3.0.0-beta.49
+  - @ai-toolkit/provider-utils@4.0.0-beta.30
+  - @ai-toolkit/anthropic@3.0.0-beta.49
 
 ## 4.0.0-beta.53
 
 ### Patch Changes
 
 - Updated dependencies [af3780b]
-  - @ai-tools/provider@3.0.0-beta.14
-  - @ai-tools/anthropic@3.0.0-beta.48
-  - @ai-tools/provider-utils@4.0.0-beta.29
+  - @ai-toolkit/provider@3.0.0-beta.14
+  - @ai-toolkit/anthropic@3.0.0-beta.48
+  - @ai-toolkit/provider-utils@4.0.0-beta.29
 
 ## 4.0.0-beta.52
 
 ### Patch Changes
 
 - Updated dependencies [016b111]
-  - @ai-tools/provider-utils@4.0.0-beta.28
-  - @ai-tools/anthropic@3.0.0-beta.47
+  - @ai-toolkit/provider-utils@4.0.0-beta.28
+  - @ai-toolkit/anthropic@3.0.0-beta.47
 
 ## 4.0.0-beta.51
 
 ### Patch Changes
 
 - Updated dependencies [37c58a0]
-  - @ai-tools/provider@3.0.0-beta.13
-  - @ai-tools/anthropic@3.0.0-beta.46
-  - @ai-tools/provider-utils@4.0.0-beta.27
+  - @ai-toolkit/provider@3.0.0-beta.13
+  - @ai-toolkit/anthropic@3.0.0-beta.46
+  - @ai-toolkit/provider-utils@4.0.0-beta.27
 
 ## 4.0.0-beta.50
 
 ### Patch Changes
 
 - Updated dependencies [f4e4a95]
-  - @ai-tools/anthropic@3.0.0-beta.45
+  - @ai-toolkit/anthropic@3.0.0-beta.45
 
 ## 4.0.0-beta.49
 
 ### Patch Changes
 
 - Updated dependencies [cf4e2a9]
-  - @ai-tools/anthropic@3.0.0-beta.44
+  - @ai-toolkit/anthropic@3.0.0-beta.44
 
 ## 4.0.0-beta.48
 
@@ -1306,18 +1306,18 @@
 
 - d1bdadb: Added support for reranking models
 - Updated dependencies [d1bdadb]
-  - @ai-tools/provider@3.0.0-beta.12
-  - @ai-tools/anthropic@3.0.0-beta.43
-  - @ai-tools/provider-utils@4.0.0-beta.26
+  - @ai-toolkit/provider@3.0.0-beta.12
+  - @ai-toolkit/anthropic@3.0.0-beta.43
+  - @ai-toolkit/provider-utils@4.0.0-beta.26
 
 ## 4.0.0-beta.46
 
 ### Patch Changes
 
 - Updated dependencies [4c44a5b]
-  - @ai-tools/provider@3.0.0-beta.11
-  - @ai-tools/anthropic@3.0.0-beta.42
-  - @ai-tools/provider-utils@4.0.0-beta.25
+  - @ai-toolkit/provider@3.0.0-beta.11
+  - @ai-toolkit/anthropic@3.0.0-beta.42
+  - @ai-toolkit/provider-utils@4.0.0-beta.25
 
 ## 4.0.0-beta.45
 
@@ -1325,18 +1325,18 @@
 
 - 0c3b58b: fix(provider): add specificationVersion to ProviderV3
 - Updated dependencies [0c3b58b]
-  - @ai-tools/anthropic@3.0.0-beta.41
-  - @ai-tools/provider@3.0.0-beta.10
-  - @ai-tools/provider-utils@4.0.0-beta.24
+  - @ai-toolkit/anthropic@3.0.0-beta.41
+  - @ai-toolkit/provider@3.0.0-beta.10
+  - @ai-toolkit/provider-utils@4.0.0-beta.24
 
 ## 4.0.0-beta.44
 
 ### Patch Changes
 
 - Updated dependencies [a755db5]
-  - @ai-tools/provider@3.0.0-beta.9
-  - @ai-tools/anthropic@3.0.0-beta.40
-  - @ai-tools/provider-utils@4.0.0-beta.23
+  - @ai-toolkit/provider@3.0.0-beta.9
+  - @ai-toolkit/anthropic@3.0.0-beta.40
+  - @ai-toolkit/provider-utils@4.0.0-beta.23
 
 ## 4.0.0-beta.43
 
@@ -1344,73 +1344,73 @@
 
 - 58920e0: refactor: consolidate header normalization across packages, remove duplicates, preserve custom headers
 - Updated dependencies [58920e0]
-  - @ai-tools/provider-utils@4.0.0-beta.22
-  - @ai-tools/anthropic@3.0.0-beta.39
+  - @ai-toolkit/provider-utils@4.0.0-beta.22
+  - @ai-toolkit/anthropic@3.0.0-beta.39
 
 ## 4.0.0-beta.42
 
 ### Patch Changes
 
 - Updated dependencies [293a6b7]
-  - @ai-tools/provider-utils@4.0.0-beta.21
-  - @ai-tools/anthropic@3.0.0-beta.38
+  - @ai-toolkit/provider-utils@4.0.0-beta.21
+  - @ai-toolkit/anthropic@3.0.0-beta.38
 
 ## 4.0.0-beta.41
 
 ### Patch Changes
 
 - Updated dependencies [7c4328e]
-  - @ai-tools/anthropic@3.0.0-beta.37
+  - @ai-toolkit/anthropic@3.0.0-beta.37
 
 ## 4.0.0-beta.40
 
 ### Patch Changes
 
 - Updated dependencies [21f378c]
-  - @ai-tools/anthropic@3.0.0-beta.36
+  - @ai-toolkit/anthropic@3.0.0-beta.36
 
 ## 4.0.0-beta.39
 
 ### Patch Changes
 
 - Updated dependencies [80894b3]
-  - @ai-tools/anthropic@3.0.0-beta.35
+  - @ai-toolkit/anthropic@3.0.0-beta.35
 
 ## 4.0.0-beta.38
 
 ### Patch Changes
 
 - Updated dependencies [fca786b]
-  - @ai-tools/provider-utils@4.0.0-beta.20
-  - @ai-tools/anthropic@3.0.0-beta.34
+  - @ai-toolkit/provider-utils@4.0.0-beta.20
+  - @ai-toolkit/anthropic@3.0.0-beta.34
 
 ## 4.0.0-beta.37
 
 ### Patch Changes
 
 - Updated dependencies [0e38a79]
-  - @ai-tools/anthropic@3.0.0-beta.33
+  - @ai-toolkit/anthropic@3.0.0-beta.33
 
 ## 4.0.0-beta.36
 
 ### Patch Changes
 
 - Updated dependencies [f4db7b5]
-  - @ai-tools/anthropic@3.0.0-beta.32
+  - @ai-toolkit/anthropic@3.0.0-beta.32
 
 ## 4.0.0-beta.35
 
 ### Patch Changes
 
 - Updated dependencies [ca07285]
-  - @ai-tools/anthropic@3.0.0-beta.31
+  - @ai-toolkit/anthropic@3.0.0-beta.31
 
 ## 4.0.0-beta.34
 
 ### Patch Changes
 
 - Updated dependencies [9354297]
-  - @ai-tools/anthropic@3.0.0-beta.30
+  - @ai-toolkit/anthropic@3.0.0-beta.30
 
 ## 4.0.0-beta.33
 
@@ -1418,25 +1418,25 @@
 
 - 3794514: feat: flexible tool output content support
 - Updated dependencies [3794514]
-  - @ai-tools/provider-utils@4.0.0-beta.19
-  - @ai-tools/anthropic@3.0.0-beta.29
-  - @ai-tools/provider@3.0.0-beta.8
+  - @ai-toolkit/provider-utils@4.0.0-beta.19
+  - @ai-toolkit/anthropic@3.0.0-beta.29
+  - @ai-toolkit/provider@3.0.0-beta.8
 
 ## 4.0.0-beta.32
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/anthropic@3.0.0-beta.28
-  - @ai-tools/provider@3.0.0-beta.7
-  - @ai-tools/provider-utils@4.0.0-beta.18
+  - @ai-toolkit/anthropic@3.0.0-beta.28
+  - @ai-toolkit/provider@3.0.0-beta.7
+  - @ai-toolkit/provider-utils@4.0.0-beta.18
 
 ## 4.0.0-beta.31
 
 ### Patch Changes
 
 - Updated dependencies [4c5a6be]
-  - @ai-tools/anthropic@3.0.0-beta.27
+  - @ai-toolkit/anthropic@3.0.0-beta.27
 
 ## 4.0.0-beta.30
 
@@ -1444,29 +1444,29 @@
 
 - d711ff8: chore: add model ID for Haiku 4.5
 - Updated dependencies [f33a018]
-  - @ai-tools/anthropic@3.0.0-beta.26
+  - @ai-toolkit/anthropic@3.0.0-beta.26
 
 ## 4.0.0-beta.29
 
 ### Patch Changes
 
 - Updated dependencies [703459a]
-  - @ai-tools/provider-utils@4.0.0-beta.17
-  - @ai-tools/anthropic@3.0.0-beta.25
+  - @ai-toolkit/provider-utils@4.0.0-beta.17
+  - @ai-toolkit/anthropic@3.0.0-beta.25
 
 ## 4.0.0-beta.28
 
 ### Patch Changes
 
 - Updated dependencies [d08308b]
-  - @ai-tools/anthropic@3.0.0-beta.24
+  - @ai-toolkit/anthropic@3.0.0-beta.24
 
 ## 4.0.0-beta.27
 
 ### Patch Changes
 
 - Updated dependencies [6f845b4]
-  - @ai-tools/anthropic@3.0.0-beta.23
+  - @ai-toolkit/anthropic@3.0.0-beta.23
 
 ## 4.0.0-beta.26
 
@@ -1479,54 +1479,54 @@
 ### Patch Changes
 
 - Updated dependencies [ed537e1]
-  - @ai-tools/anthropic@3.0.0-beta.22
+  - @ai-toolkit/anthropic@3.0.0-beta.22
 
 ## 4.0.0-beta.24
 
 ### Patch Changes
 
 - Updated dependencies [6306603]
-  - @ai-tools/provider-utils@4.0.0-beta.16
-  - @ai-tools/anthropic@3.0.0-beta.21
+  - @ai-toolkit/provider-utils@4.0.0-beta.16
+  - @ai-toolkit/anthropic@3.0.0-beta.21
 
 ## 4.0.0-beta.23
 
 ### Patch Changes
 
 - Updated dependencies [f0b2157]
-  - @ai-tools/provider-utils@4.0.0-beta.15
-  - @ai-tools/anthropic@3.0.0-beta.20
+  - @ai-toolkit/provider-utils@4.0.0-beta.15
+  - @ai-toolkit/anthropic@3.0.0-beta.20
 
 ## 4.0.0-beta.22
 
 ### Patch Changes
 
 - Updated dependencies [3b1d015]
-  - @ai-tools/provider-utils@4.0.0-beta.14
-  - @ai-tools/anthropic@3.0.0-beta.19
+  - @ai-toolkit/provider-utils@4.0.0-beta.14
+  - @ai-toolkit/anthropic@3.0.0-beta.19
 
 ## 4.0.0-beta.21
 
 ### Patch Changes
 
 - Updated dependencies [d116b4b]
-  - @ai-tools/provider-utils@4.0.0-beta.13
-  - @ai-tools/anthropic@3.0.0-beta.18
+  - @ai-toolkit/provider-utils@4.0.0-beta.13
+  - @ai-toolkit/anthropic@3.0.0-beta.18
 
 ## 4.0.0-beta.20
 
 ### Patch Changes
 
 - Updated dependencies [7e32fea]
-  - @ai-tools/provider-utils@4.0.0-beta.12
-  - @ai-tools/anthropic@3.0.0-beta.17
+  - @ai-toolkit/provider-utils@4.0.0-beta.12
+  - @ai-toolkit/anthropic@3.0.0-beta.17
 
 ## 4.0.0-beta.19
 
 ### Patch Changes
 
 - Updated dependencies [9cff587]
-  - @ai-tools/anthropic@3.0.0-beta.16
+  - @ai-toolkit/anthropic@3.0.0-beta.16
 
 ## 4.0.0-beta.18
 
@@ -1534,8 +1534,8 @@
 
 - 95f65c2: chore: use import \* from zod/v4
 - Updated dependencies
-  - @ai-tools/provider-utils@4.0.0-beta.11
-  - @ai-tools/anthropic@3.0.0-beta.15
+  - @ai-toolkit/provider-utils@4.0.0-beta.11
+  - @ai-toolkit/anthropic@3.0.0-beta.15
 
 ## 4.0.0-beta.17
 
@@ -1546,25 +1546,25 @@
 ### Patch Changes
 
 - Updated dependencies [dee8b05]
-  - @ai-tools/anthropic@3.0.0-beta.14
-  - @ai-tools/provider@3.0.0-beta.6
-  - @ai-tools/provider-utils@4.0.0-beta.10
+  - @ai-toolkit/anthropic@3.0.0-beta.14
+  - @ai-toolkit/provider@3.0.0-beta.6
+  - @ai-toolkit/provider-utils@4.0.0-beta.10
 
 ## 3.1.0-beta.16
 
 ### Patch Changes
 
 - Updated dependencies [521c537]
-  - @ai-tools/provider-utils@3.1.0-beta.9
-  - @ai-tools/anthropic@2.1.0-beta.13
+  - @ai-toolkit/provider-utils@3.1.0-beta.9
+  - @ai-toolkit/anthropic@2.1.0-beta.13
 
 ## 3.1.0-beta.15
 
 ### Patch Changes
 
 - Updated dependencies [e06565c]
-  - @ai-tools/provider-utils@3.1.0-beta.8
-  - @ai-tools/anthropic@2.1.0-beta.12
+  - @ai-toolkit/provider-utils@3.1.0-beta.8
+  - @ai-toolkit/anthropic@2.1.0-beta.12
 
 ## 3.1.0-beta.14
 
@@ -1578,16 +1578,16 @@
 
 - e8109d3: feat: tool execution approval
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.5
-  - @ai-tools/provider-utils@3.1.0-beta.7
-  - @ai-tools/anthropic@2.1.0-beta.11
+  - @ai-toolkit/provider@2.1.0-beta.5
+  - @ai-toolkit/provider-utils@3.1.0-beta.7
+  - @ai-toolkit/anthropic@2.1.0-beta.11
 
 ## 3.1.0-beta.12
 
 ### Patch Changes
 
 - Updated dependencies [dedf206]
-  - @ai-tools/anthropic@2.1.0-beta.10
+  - @ai-toolkit/anthropic@2.1.0-beta.10
 
 ## 3.1.0-beta.11
 
@@ -1595,9 +1595,9 @@
 
 - 0adc679: feat(provider): shared spec v3
 - Updated dependencies
-  - @ai-tools/provider-utils@3.1.0-beta.6
-  - @ai-tools/anthropic@2.1.0-beta.9
-  - @ai-tools/provider@2.1.0-beta.4
+  - @ai-toolkit/provider-utils@3.1.0-beta.6
+  - @ai-toolkit/anthropic@2.1.0-beta.9
+  - @ai-toolkit/provider@2.1.0-beta.4
 
 ## 3.1.0-beta.10
 
@@ -1617,32 +1617,32 @@
 ### Patch Changes
 
 - Updated dependencies [a5a8db4]
-  - @ai-tools/anthropic@2.1.0-beta.8
+  - @ai-toolkit/anthropic@2.1.0-beta.8
 
 ## 3.1.0-beta.7
 
 ### Patch Changes
 
 - Updated dependencies [e1e2821]
-  - @ai-tools/anthropic@2.1.0-beta.7
+  - @ai-toolkit/anthropic@2.1.0-beta.7
 
 ## 3.1.0-beta.6
 
 ### Patch Changes
 
 - 8dac895: feat: `LanguageModelV3`
-- 10c1322: fix: moved dependency `@ai-tools/test-server` to devDependencies
+- 10c1322: fix: moved dependency `@ai-toolkit/test-server` to devDependencies
 - Updated dependencies
-  - @ai-tools/provider-utils@3.1.0-beta.5
-  - @ai-tools/anthropic@2.1.0-beta.6
-  - @ai-tools/provider@2.1.0-beta.3
+  - @ai-toolkit/provider-utils@3.1.0-beta.5
+  - @ai-toolkit/anthropic@2.1.0-beta.6
+  - @ai-toolkit/provider@2.1.0-beta.3
 
 ## 3.1.0-beta.5
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/anthropic@2.1.0-beta.5
+  - @ai-toolkit/anthropic@2.1.0-beta.5
 
 ## 3.1.0-beta.4
 
@@ -1650,8 +1650,8 @@
 
 - 4616b86: chore: update zod peer depenedency version
 - Updated dependencies [4616b86]
-  - @ai-tools/provider-utils@3.1.0-beta.4
-  - @ai-tools/anthropic@2.1.0-beta.4
+  - @ai-toolkit/provider-utils@3.1.0-beta.4
+  - @ai-toolkit/anthropic@2.1.0-beta.4
 
 ## 3.1.0-beta.3
 
@@ -1660,9 +1660,9 @@
 - ed329cb: feat: `Provider-V3`
 - 522f6b8: feat: `ImageModelV3`
 - Updated dependencies
-  - @ai-tools/anthropic@2.1.0-beta.3
-  - @ai-tools/provider@2.1.0-beta.2
-  - @ai-tools/provider-utils@3.1.0-beta.3
+  - @ai-toolkit/anthropic@2.1.0-beta.3
+  - @ai-toolkit/provider@2.1.0-beta.2
+  - @ai-toolkit/provider-utils@3.1.0-beta.3
 
 ## 3.1.0-beta.2
 
@@ -1671,18 +1671,18 @@
 - 0c4822d: feat: `EmbeddingModelV3`
 - 1cad0ab: feat: add provider version to user-agent header
 - Updated dependencies
-  - @ai-tools/provider@2.1.0-beta.1
-  - @ai-tools/anthropic@2.1.0-beta.2
-  - @ai-tools/provider-utils@3.1.0-beta.2
+  - @ai-toolkit/provider@2.1.0-beta.1
+  - @ai-toolkit/anthropic@2.1.0-beta.2
+  - @ai-toolkit/provider-utils@3.1.0-beta.2
 
 ## 3.1.0-beta.1
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/test-server@1.0.0-beta.0
-  - @ai-tools/provider-utils@3.1.0-beta.1
-  - @ai-tools/anthropic@2.1.0-beta.1
+  - @ai-toolkit/test-server@1.0.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.1
+  - @ai-toolkit/anthropic@2.1.0-beta.1
 
 ## 3.1.0-beta.0
 
@@ -1693,9 +1693,9 @@
 ### Patch Changes
 
 - Updated dependencies [78928cb]
-  - @ai-tools/anthropic@2.1.0-beta.0
-  - @ai-tools/provider@2.1.0-beta.0
-  - @ai-tools/provider-utils@3.1.0-beta.0
+  - @ai-toolkit/anthropic@2.1.0-beta.0
+  - @ai-toolkit/provider@2.1.0-beta.0
+  - @ai-toolkit/provider-utils@3.1.0-beta.0
 
 ## 3.0.22
 
@@ -1708,120 +1708,120 @@
 ### Patch Changes
 
 - Updated dependencies [da92132]
-  - @ai-tools/anthropic@2.0.17
+  - @ai-toolkit/anthropic@2.0.17
 
 ## 3.0.20
 
 ### Patch Changes
 
 - Updated dependencies [0294b58]
-  - @ai-tools/provider-utils@3.0.9
-  - @ai-tools/anthropic@2.0.16
+  - @ai-toolkit/provider-utils@3.0.9
+  - @ai-toolkit/anthropic@2.0.16
 
 ## 3.0.19
 
 ### Patch Changes
 
 - Updated dependencies [c8aab0a]
-  - @ai-tools/anthropic@2.0.15
+  - @ai-toolkit/anthropic@2.0.15
 
 ## 3.0.18
 
 ### Patch Changes
 
 - Updated dependencies [2338c79]
-  - @ai-tools/anthropic@2.0.14
+  - @ai-toolkit/anthropic@2.0.14
 
 ## 3.0.17
 
 ### Patch Changes
 
 - Updated dependencies [cd458a8]
-  - @ai-tools/anthropic@2.0.13
+  - @ai-toolkit/anthropic@2.0.13
 
 ## 3.0.16
 
 ### Patch Changes
 
 - Updated dependencies [99964ed]
-  - @ai-tools/provider-utils@3.0.8
-  - @ai-tools/anthropic@2.0.12
+  - @ai-toolkit/provider-utils@3.0.8
+  - @ai-toolkit/anthropic@2.0.12
 
 ## 3.0.15
 
 ### Patch Changes
 
 - Updated dependencies [c7fee29]
-  - @ai-tools/anthropic@2.0.11
+  - @ai-toolkit/anthropic@2.0.11
 
 ## 3.0.14
 
 ### Patch Changes
 
 - Updated dependencies [c152ef7]
-  - @ai-tools/anthropic@2.0.10
+  - @ai-toolkit/anthropic@2.0.10
 
 ## 3.0.13
 
 ### Patch Changes
 
 - Updated dependencies [cdc6b7a]
-  - @ai-tools/anthropic@2.0.9
+  - @ai-toolkit/anthropic@2.0.9
 
 ## 3.0.12
 
 ### Patch Changes
 
 - Updated dependencies [886e7cd]
-  - @ai-tools/provider-utils@3.0.7
-  - @ai-tools/anthropic@2.0.8
+  - @ai-toolkit/provider-utils@3.0.7
+  - @ai-toolkit/anthropic@2.0.8
 
 ## 3.0.11
 
 ### Patch Changes
 
 - Updated dependencies [1b5a3d3]
-  - @ai-tools/provider-utils@3.0.6
-  - @ai-tools/anthropic@2.0.7
+  - @ai-toolkit/provider-utils@3.0.6
+  - @ai-toolkit/anthropic@2.0.7
 
 ## 3.0.10
 
 ### Patch Changes
 
 - Updated dependencies [0857788]
-  - @ai-tools/provider-utils@3.0.5
-  - @ai-tools/anthropic@2.0.6
+  - @ai-toolkit/provider-utils@3.0.5
+  - @ai-toolkit/anthropic@2.0.6
 
 ## 3.0.9
 
 ### Patch Changes
 
 - Updated dependencies [68751f9]
-  - @ai-tools/provider-utils@3.0.4
-  - @ai-tools/anthropic@2.0.5
+  - @ai-toolkit/provider-utils@3.0.4
+  - @ai-toolkit/anthropic@2.0.5
 
 ## 3.0.8
 
 ### Patch Changes
 
 - Updated dependencies [ae859ce]
-  - @ai-tools/anthropic@2.0.4
+  - @ai-toolkit/anthropic@2.0.4
 
 ## 3.0.7
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.3
-  - @ai-tools/anthropic@2.0.3
+  - @ai-toolkit/provider-utils@3.0.3
+  - @ai-toolkit/anthropic@2.0.3
 
 ## 3.0.6
 
 ### Patch Changes
 
 - Updated dependencies [38ac190]
-  - @ai-tools/provider-utils@3.0.2
-  - @ai-tools/anthropic@2.0.2
+  - @ai-toolkit/provider-utils@3.0.2
+  - @ai-toolkit/anthropic@2.0.2
 
 ## 3.0.5
 
@@ -1839,7 +1839,7 @@
 
 ### Patch Changes
 
-- c44166d: Add support for Amazon Nova Models, cross region inference profiles and OpenAI gpt-oss in `@ai-tools/amazon-bedrock` provider
+- c44166d: Add support for Amazon Nova Models, cross region inference profiles and OpenAI gpt-oss in `@ai-toolkit/amazon-bedrock` provider
 - fbc9f06: feat(amazon-bedrock): add topK support
 
 ## 3.0.2
@@ -1853,8 +1853,8 @@
 ### Patch Changes
 
 - Updated dependencies [90d212f]
-  - @ai-tools/provider-utils@3.0.1
-  - @ai-tools/anthropic@2.0.1
+  - @ai-toolkit/provider-utils@3.0.1
+  - @ai-toolkit/anthropic@2.0.1
 
 ## 3.0.0
 
@@ -1888,17 +1888,17 @@
 - 6f231db: fix(providers): always use optional instead of mix of nullish for providerOptions
 - 89eaf5e: Add style parameter support for Amazon Bedrock Nova Canvas image generation
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0
-  - @ai-tools/provider@2.0.0
-  - @ai-tools/anthropic@2.0.0
+  - @ai-toolkit/provider-utils@3.0.0
+  - @ai-toolkit/provider@2.0.0
+  - @ai-toolkit/anthropic@2.0.0
 
 ## 3.0.0-beta.15
 
 ### Patch Changes
 
 - Updated dependencies [88a8ee5]
-  - @ai-tools/provider-utils@3.0.0-beta.10
-  - @ai-tools/anthropic@2.0.0-beta.13
+  - @ai-toolkit/provider-utils@3.0.0-beta.10
+  - @ai-toolkit/anthropic@2.0.0-beta.13
 
 ## 3.0.0-beta.14
 
@@ -1906,9 +1906,9 @@
 
 - f418dd7: Added anthropic provider defined tool support to amazon bedrock
 - Updated dependencies
-  - @ai-tools/anthropic@2.0.0-beta.12
-  - @ai-tools/provider@2.0.0-beta.2
-  - @ai-tools/provider-utils@3.0.0-beta.9
+  - @ai-toolkit/anthropic@2.0.0-beta.12
+  - @ai-toolkit/provider@2.0.0-beta.2
+  - @ai-toolkit/provider-utils@3.0.0-beta.9
 
 ## 3.0.0-beta.13
 
@@ -1916,7 +1916,7 @@
 
 - eb173f1: chore (providers): remove model shorthand deprecation warnings
 - Updated dependencies [dd5fd43]
-  - @ai-tools/provider-utils@3.0.0-beta.8
+  - @ai-toolkit/provider-utils@3.0.0-beta.8
 
 ## 3.0.0-beta.12
 
@@ -1924,7 +1924,7 @@
 
 - 0893170: fix(amazon-bedrock): handle empty activeTools with tool conversation history
 - Updated dependencies [e7fcc86]
-  - @ai-tools/provider-utils@3.0.0-beta.7
+  - @ai-toolkit/provider-utils@3.0.0-beta.7
 
 ## 3.0.0-beta.11
 
@@ -1938,14 +1938,14 @@
 
 - b652872: fix(provider/bedrock): include toolConfig when conversation contains tool content
 - Updated dependencies [ac34802]
-  - @ai-tools/provider-utils@3.0.0-beta.6
+  - @ai-toolkit/provider-utils@3.0.0-beta.6
 
 ## 3.0.0-beta.9
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-beta.5
+  - @ai-toolkit/provider-utils@3.0.0-beta.5
 
 ## 3.0.0-beta.8
 
@@ -1953,7 +1953,7 @@
 
 - 205077b: fix: improve Zod compatibility
 - Updated dependencies [205077b]
-  - @ai-tools/provider-utils@3.0.0-beta.4
+  - @ai-toolkit/provider-utils@3.0.0-beta.4
 
 ## 3.0.0-beta.7
 
@@ -1966,7 +1966,7 @@
 ### Patch Changes
 
 - Updated dependencies [05d2819]
-  - @ai-tools/provider-utils@3.0.0-beta.3
+  - @ai-toolkit/provider-utils@3.0.0-beta.3
 
 ## 3.0.0-beta.5
 
@@ -1992,39 +1992,39 @@
 
 - d1a034f: feature: using Zod 4 for internal stuff
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-beta.2
+  - @ai-toolkit/provider-utils@3.0.0-beta.2
 
 ## 3.0.0-beta.1
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-beta.1
-  - @ai-tools/provider-utils@3.0.0-beta.1
+  - @ai-toolkit/provider@2.0.0-beta.1
+  - @ai-toolkit/provider-utils@3.0.0-beta.1
 
 ## 3.0.0-alpha.15
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.15
-  - @ai-tools/provider-utils@3.0.0-alpha.15
+  - @ai-toolkit/provider@2.0.0-alpha.15
+  - @ai-toolkit/provider-utils@3.0.0-alpha.15
 
 ## 3.0.0-alpha.14
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-alpha.14
-  - @ai-tools/provider-utils@3.0.0-alpha.14
+  - @ai-toolkit/provider@2.0.0-alpha.14
+  - @ai-toolkit/provider-utils@3.0.0-alpha.14
 
 ## 3.0.0-alpha.13
 
 ### Patch Changes
 
 - Updated dependencies [68ecf2f]
-  - @ai-tools/provider@2.0.0-alpha.13
-  - @ai-tools/provider-utils@3.0.0-alpha.13
+  - @ai-toolkit/provider@2.0.0-alpha.13
+  - @ai-toolkit/provider-utils@3.0.0-alpha.13
 
 ## 3.0.0-alpha.12
 
@@ -2032,8 +2032,8 @@
 
 - e2aceaf: feat: add raw chunk support
 - Updated dependencies [e2aceaf]
-  - @ai-tools/provider@2.0.0-alpha.12
-  - @ai-tools/provider-utils@3.0.0-alpha.12
+  - @ai-toolkit/provider@2.0.0-alpha.12
+  - @ai-toolkit/provider-utils@3.0.0-alpha.12
 
 ## 3.0.0-alpha.11
 
@@ -2041,16 +2041,16 @@
 
 - d546725: fix(provider/amazon-bedrock): use consistent document names for prompt cache effectiveness
 - Updated dependencies [c1e6647]
-  - @ai-tools/provider@2.0.0-alpha.11
-  - @ai-tools/provider-utils@3.0.0-alpha.11
+  - @ai-toolkit/provider@2.0.0-alpha.11
+  - @ai-toolkit/provider-utils@3.0.0-alpha.11
 
 ## 3.0.0-alpha.10
 
 ### Patch Changes
 
 - Updated dependencies [c4df419]
-  - @ai-tools/provider@2.0.0-alpha.10
-  - @ai-tools/provider-utils@3.0.0-alpha.10
+  - @ai-toolkit/provider@2.0.0-alpha.10
+  - @ai-toolkit/provider-utils@3.0.0-alpha.10
 
 ## 3.0.0-alpha.9
 
@@ -2058,92 +2058,92 @@
 
 - c87b7e4: feat (provider/amazon-bedrock): add Claude 4 model ids (claude-sonnet-4-20250514-v1:0, claude-opus-4-20250514-v1:0)
 - Updated dependencies [811dff3]
-  - @ai-tools/provider@2.0.0-alpha.9
-  - @ai-tools/provider-utils@3.0.0-alpha.9
+  - @ai-toolkit/provider@2.0.0-alpha.9
+  - @ai-toolkit/provider-utils@3.0.0-alpha.9
 
 ## 3.0.0-alpha.8
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-alpha.8
-  - @ai-tools/provider@2.0.0-alpha.8
+  - @ai-toolkit/provider-utils@3.0.0-alpha.8
+  - @ai-toolkit/provider@2.0.0-alpha.8
 
 ## 3.0.0-alpha.7
 
 ### Patch Changes
 
 - Updated dependencies [5c56081]
-  - @ai-tools/provider@2.0.0-alpha.7
-  - @ai-tools/provider-utils@3.0.0-alpha.7
+  - @ai-toolkit/provider@2.0.0-alpha.7
+  - @ai-toolkit/provider-utils@3.0.0-alpha.7
 
 ## 3.0.0-alpha.6
 
 ### Patch Changes
 
 - Updated dependencies [0d2c085]
-  - @ai-tools/provider@2.0.0-alpha.6
-  - @ai-tools/provider-utils@3.0.0-alpha.6
+  - @ai-toolkit/provider@2.0.0-alpha.6
+  - @ai-toolkit/provider-utils@3.0.0-alpha.6
 
 ## 3.0.0-alpha.4
 
 ### Patch Changes
 
 - Updated dependencies [dc714f3]
-  - @ai-tools/provider@2.0.0-alpha.4
-  - @ai-tools/provider-utils@3.0.0-alpha.4
+  - @ai-toolkit/provider@2.0.0-alpha.4
+  - @ai-toolkit/provider-utils@3.0.0-alpha.4
 
 ## 3.0.0-alpha.3
 
 ### Patch Changes
 
 - Updated dependencies [6b98118]
-  - @ai-tools/provider@2.0.0-alpha.3
-  - @ai-tools/provider-utils@3.0.0-alpha.3
+  - @ai-toolkit/provider@2.0.0-alpha.3
+  - @ai-toolkit/provider-utils@3.0.0-alpha.3
 
 ## 3.0.0-alpha.2
 
 ### Patch Changes
 
 - Updated dependencies [26535e0]
-  - @ai-tools/provider@2.0.0-alpha.2
-  - @ai-tools/provider-utils@3.0.0-alpha.2
+  - @ai-toolkit/provider@2.0.0-alpha.2
+  - @ai-toolkit/provider-utils@3.0.0-alpha.2
 
 ## 3.0.0-alpha.1
 
 ### Patch Changes
 
 - Updated dependencies [3f2f00c]
-  - @ai-tools/provider@2.0.0-alpha.1
-  - @ai-tools/provider-utils@3.0.0-alpha.1
+  - @ai-toolkit/provider@2.0.0-alpha.1
+  - @ai-toolkit/provider-utils@3.0.0-alpha.1
 
 ## 3.0.0-canary.19
 
 ### Patch Changes
 
 - Updated dependencies [faf8446]
-  - @ai-tools/provider-utils@3.0.0-canary.19
+  - @ai-toolkit/provider-utils@3.0.0-canary.19
 
 ## 3.0.0-canary.18
 
 ### Patch Changes
 
 - Updated dependencies [40acf9b]
-  - @ai-tools/provider-utils@3.0.0-canary.18
+  - @ai-toolkit/provider-utils@3.0.0-canary.18
 
 ## 3.0.0-canary.17
 
 ### Patch Changes
 
 - Updated dependencies [ea7a7c9]
-  - @ai-tools/provider-utils@3.0.0-canary.17
+  - @ai-toolkit/provider-utils@3.0.0-canary.17
 
 ## 3.0.0-canary.16
 
 ### Patch Changes
 
 - Updated dependencies [87b828f]
-  - @ai-tools/provider-utils@3.0.0-canary.16
+  - @ai-toolkit/provider-utils@3.0.0-canary.16
 
 ## 3.0.0-canary.15
 
@@ -2152,16 +2152,16 @@
 - a8c8bd5: feat(embed-many): respect supportsParallelCalls & concurrency
 - 6f231db: fix(providers): always use optional instead of mix of nullish for providerOptions
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.15
-  - @ai-tools/provider@2.0.0-canary.14
+  - @ai-toolkit/provider-utils@3.0.0-canary.15
+  - @ai-toolkit/provider@2.0.0-canary.14
 
 ## 3.0.0-canary.14
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.14
-  - @ai-tools/provider@2.0.0-canary.13
+  - @ai-toolkit/provider-utils@3.0.0-canary.14
+  - @ai-toolkit/provider@2.0.0-canary.13
 
 ## 3.0.0-canary.13
 
@@ -2169,16 +2169,16 @@
 
 - d9209ca: fix (image-model): `specificationVersion: v1` -> `v2`
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.12
-  - @ai-tools/provider-utils@3.0.0-canary.13
+  - @ai-toolkit/provider@2.0.0-canary.12
+  - @ai-toolkit/provider-utils@3.0.0-canary.13
 
 ## 3.0.0-canary.12
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.11
-  - @ai-tools/provider-utils@3.0.0-canary.12
+  - @ai-toolkit/provider@2.0.0-canary.11
+  - @ai-toolkit/provider-utils@3.0.0-canary.12
 
 ## 3.0.0-canary.11
 
@@ -2186,16 +2186,16 @@
 
 - 9301f86: refactor (image-model): rename `ImageModelV1` to `ImageModelV2`
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.11
-  - @ai-tools/provider@2.0.0-canary.10
+  - @ai-toolkit/provider-utils@3.0.0-canary.11
+  - @ai-toolkit/provider@2.0.0-canary.10
 
 ## 3.0.0-canary.10
 
 ### Patch Changes
 
 - Updated dependencies [e86be6f]
-  - @ai-tools/provider@2.0.0-canary.9
-  - @ai-tools/provider-utils@3.0.0-canary.10
+  - @ai-toolkit/provider@2.0.0-canary.9
+  - @ai-toolkit/provider-utils@3.0.0-canary.10
 
 ## 3.0.0-canary.9
 
@@ -2203,16 +2203,16 @@
 
 - 92c0b4b: chore(providers/bedrock): update embedding model to use providerOptions
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.8
-  - @ai-tools/provider-utils@3.0.0-canary.9
+  - @ai-toolkit/provider@2.0.0-canary.8
+  - @ai-toolkit/provider-utils@3.0.0-canary.9
 
 ## 3.0.0-canary.8
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.8
-  - @ai-tools/provider@2.0.0-canary.7
+  - @ai-toolkit/provider-utils@3.0.0-canary.8
+  - @ai-toolkit/provider@2.0.0-canary.7
 
 ## 3.0.0-canary.7
 
@@ -2221,8 +2221,8 @@
 - fa49207: feat(providers/openai-compatible): convert to providerOptions
 - 26735b5: chore(embedding-model): add v2 interface
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.6
-  - @ai-tools/provider-utils@3.0.0-canary.7
+  - @ai-toolkit/provider@2.0.0-canary.6
+  - @ai-toolkit/provider-utils@3.0.0-canary.7
 
 ## 3.0.0-canary.6
 
@@ -2231,47 +2231,47 @@
 - 97ea26f: chore(providers/bedrock): convert to providerOptions
 - 97ea26f: chore(providers/bedrock): use camelCase for providerOptions
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.5
-  - @ai-tools/provider-utils@3.0.0-canary.6
+  - @ai-toolkit/provider@2.0.0-canary.5
+  - @ai-toolkit/provider-utils@3.0.0-canary.6
 
 ## 3.0.0-canary.5
 
 ### Patch Changes
 
 - Updated dependencies [6f6bb89]
-  - @ai-tools/provider@2.0.0-canary.4
-  - @ai-tools/provider-utils@3.0.0-canary.5
+  - @ai-toolkit/provider@2.0.0-canary.4
+  - @ai-toolkit/provider-utils@3.0.0-canary.5
 
 ## 3.0.0-canary.4
 
 ### Patch Changes
 
 - Updated dependencies [d1a1aa1]
-  - @ai-tools/provider@2.0.0-canary.3
-  - @ai-tools/provider-utils@3.0.0-canary.4
+  - @ai-toolkit/provider@2.0.0-canary.3
+  - @ai-toolkit/provider-utils@3.0.0-canary.4
 
 ## 3.0.0-canary.3
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.3
-  - @ai-tools/provider@2.0.0-canary.2
+  - @ai-toolkit/provider-utils@3.0.0-canary.3
+  - @ai-toolkit/provider@2.0.0-canary.2
 
 ## 3.0.0-canary.2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@2.0.0-canary.1
-  - @ai-tools/provider-utils@3.0.0-canary.2
+  - @ai-toolkit/provider@2.0.0-canary.1
+  - @ai-toolkit/provider-utils@3.0.0-canary.2
 
 ## 3.0.0-canary.1
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.1
+  - @ai-toolkit/provider-utils@3.0.0-canary.1
 
 ## 3.0.0-canary.0
 
@@ -2282,22 +2282,22 @@
 ### Patch Changes
 
 - Updated dependencies [d5f588f]
-  - @ai-tools/provider-utils@3.0.0-canary.0
-  - @ai-tools/provider@2.0.0-canary.0
+  - @ai-toolkit/provider-utils@3.0.0-canary.0
+  - @ai-toolkit/provider@2.0.0-canary.0
 
 ## 2.2.4
 
 ### Patch Changes
 
 - Updated dependencies [28be004]
-  - @ai-tools/provider-utils@2.2.3
+  - @ai-toolkit/provider-utils@2.2.3
 
 ## 2.2.3
 
 ### Patch Changes
 
 - Updated dependencies [b01120e]
-  - @ai-tools/provider-utils@2.2.2
+  - @ai-toolkit/provider-utils@2.2.2
 
 ## 2.2.2
 
@@ -2310,7 +2310,7 @@
 ### Patch Changes
 
 - Updated dependencies [f10f0fa]
-  - @ai-tools/provider-utils@2.2.1
+  - @ai-toolkit/provider-utils@2.2.1
 
 ## 2.2.0
 
@@ -2321,23 +2321,23 @@
 ### Patch Changes
 
 - Updated dependencies [5bc638d]
-  - @ai-tools/provider@1.1.0
-  - @ai-tools/provider-utils@2.2.0
+  - @ai-toolkit/provider@1.1.0
+  - @ai-toolkit/provider-utils@2.2.0
 
 ## 2.1.6
 
 ### Patch Changes
 
 - Updated dependencies [d0c4659]
-  - @ai-tools/provider-utils@2.1.15
+  - @ai-toolkit/provider-utils@2.1.15
 
 ## 2.1.5
 
 ### Patch Changes
 
 - Updated dependencies [0bd5bc6]
-  - @ai-tools/provider@1.0.12
-  - @ai-tools/provider-utils@2.1.14
+  - @ai-toolkit/provider@1.0.12
+  - @ai-toolkit/provider-utils@2.1.14
 
 ## 2.1.4
 
@@ -2350,15 +2350,15 @@
 ### Patch Changes
 
 - Updated dependencies [2e1101a]
-  - @ai-tools/provider@1.0.11
-  - @ai-tools/provider-utils@2.1.13
+  - @ai-toolkit/provider@1.0.11
+  - @ai-toolkit/provider-utils@2.1.13
 
 ## 2.1.2
 
 ### Patch Changes
 
 - Updated dependencies [1531959]
-  - @ai-tools/provider-utils@2.1.12
+  - @ai-toolkit/provider-utils@2.1.12
 
 ## 2.1.1
 
@@ -2377,8 +2377,8 @@
 ### Patch Changes
 
 - Updated dependencies [e1d3d42]
-  - @ai-tools/provider@1.0.10
-  - @ai-tools/provider-utils@2.1.11
+  - @ai-toolkit/provider@1.0.10
+  - @ai-toolkit/provider-utils@2.1.11
 
 ## 2.0.5
 
@@ -2391,8 +2391,8 @@
 ### Patch Changes
 
 - Updated dependencies [ddf9740]
-  - @ai-tools/provider@1.0.9
-  - @ai-tools/provider-utils@2.1.10
+  - @ai-toolkit/provider@1.0.9
+  - @ai-toolkit/provider-utils@2.1.10
 
 ## 2.0.3
 
@@ -2405,15 +2405,15 @@
 ### Patch Changes
 
 - Updated dependencies [2761f06]
-  - @ai-tools/provider@1.0.8
-  - @ai-tools/provider-utils@2.1.9
+  - @ai-toolkit/provider@1.0.8
+  - @ai-toolkit/provider-utils@2.1.9
 
 ## 2.0.1
 
 ### Patch Changes
 
 - Updated dependencies [2e898b4]
-  - @ai-tools/provider-utils@2.1.8
+  - @ai-toolkit/provider-utils@2.1.8
 
 ## 2.0.0
 
@@ -2424,52 +2424,52 @@
 ### Patch Changes
 
 - Updated dependencies [3ff4ef8]
-  - @ai-tools/provider-utils@2.1.7
+  - @ai-toolkit/provider-utils@2.1.7
 
 ## 1.1.6
 
 ### Patch Changes
 
 - Updated dependencies [d89c3b9]
-  - @ai-tools/provider@1.0.7
-  - @ai-tools/provider-utils@2.1.6
+  - @ai-toolkit/provider@1.0.7
+  - @ai-toolkit/provider-utils@2.1.6
 
 ## 1.1.5
 
 ### Patch Changes
 
 - Updated dependencies [3a602ca]
-  - @ai-tools/provider-utils@2.1.5
+  - @ai-toolkit/provider-utils@2.1.5
 
 ## 1.1.4
 
 ### Patch Changes
 
 - Updated dependencies [066206e]
-  - @ai-tools/provider-utils@2.1.4
+  - @ai-toolkit/provider-utils@2.1.4
 
 ## 1.1.3
 
 ### Patch Changes
 
 - Updated dependencies [39e5c1f]
-  - @ai-tools/provider-utils@2.1.3
+  - @ai-toolkit/provider-utils@2.1.3
 
 ## 1.1.2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.1.2
-  - @ai-tools/provider@1.0.6
+  - @ai-toolkit/provider-utils@2.1.2
+  - @ai-toolkit/provider@1.0.6
 
 ## 1.1.1
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.1.1
-  - @ai-tools/provider@1.0.5
+  - @ai-toolkit/provider-utils@2.1.1
+  - @ai-toolkit/provider@1.0.5
 
 ## 1.1.0
 
@@ -2480,29 +2480,29 @@
 ### Patch Changes
 
 - Updated dependencies [62ba5ad]
-  - @ai-tools/provider-utils@2.1.0
+  - @ai-toolkit/provider-utils@2.1.0
 
 ## 1.0.9
 
 ### Patch Changes
 
 - Updated dependencies [00114c5]
-  - @ai-tools/provider-utils@2.0.8
+  - @ai-toolkit/provider-utils@2.0.8
 
 ## 1.0.8
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.7
+  - @ai-toolkit/provider-utils@2.0.7
 
 ## 1.0.7
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider@1.0.4
-  - @ai-tools/provider-utils@2.0.6
+  - @ai-toolkit/provider@1.0.4
+  - @ai-toolkit/provider-utils@2.0.6
 
 ## 1.0.6
 
@@ -2510,31 +2510,31 @@
 
 - 5ed5e45: chore (config): Use ts-library.json tsconfig for no-UI libs.
 - Updated dependencies [5ed5e45]
-  - @ai-tools/provider-utils@2.0.5
-  - @ai-tools/provider@1.0.3
+  - @ai-toolkit/provider-utils@2.0.5
+  - @ai-toolkit/provider@1.0.3
 
 ## 1.0.5
 
 ### Patch Changes
 
 - Updated dependencies [09a9cab]
-  - @ai-tools/provider@1.0.2
-  - @ai-tools/provider-utils@2.0.4
+  - @ai-toolkit/provider@1.0.2
+  - @ai-toolkit/provider-utils@2.0.4
 
 ## 1.0.4
 
 ### Patch Changes
 
 - Updated dependencies [0984f0b]
-  - @ai-tools/provider-utils@2.0.3
+  - @ai-toolkit/provider-utils@2.0.3
 
 ## 1.0.3
 
 ### Patch Changes
 
 - Updated dependencies [b446ae5]
-  - @ai-tools/provider@1.0.1
-  - @ai-tools/provider-utils@2.0.2
+  - @ai-toolkit/provider@1.0.1
+  - @ai-toolkit/provider-utils@2.0.2
 
 ## 1.0.2
 
@@ -2547,7 +2547,7 @@
 ### Patch Changes
 
 - Updated dependencies [c3ab5de]
-  - @ai-tools/provider-utils@2.0.1
+  - @ai-toolkit/provider-utils@2.0.1
 
 ## 1.0.0
 
@@ -2558,29 +2558,29 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.0
-  - @ai-tools/provider@1.0.0
+  - @ai-toolkit/provider-utils@2.0.0
+  - @ai-toolkit/provider@1.0.0
 
 ## 1.0.0-canary.3
 
 ### Patch Changes
 
 - Updated dependencies [8426f55]
-  - @ai-tools/provider-utils@2.0.0-canary.3
+  - @ai-toolkit/provider-utils@2.0.0-canary.3
 
 ## 1.0.0-canary.2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.0-canary.2
+  - @ai-toolkit/provider-utils@2.0.0-canary.2
 
 ## 1.0.0-canary.1
 
 ### Patch Changes
 
 - Updated dependencies [b1da952]
-  - @ai-tools/provider-utils@2.0.0-canary.1
+  - @ai-toolkit/provider-utils@2.0.0-canary.1
 
 ## 1.0.0-canary.0
 
@@ -2591,8 +2591,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@2.0.0-canary.0
-  - @ai-tools/provider@1.0.0-canary.0
+  - @ai-toolkit/provider-utils@2.0.0-canary.0
+  - @ai-toolkit/provider@1.0.0-canary.0
 
 ## 0.0.36
 
@@ -2624,16 +2624,16 @@
 
 - 3b1b69a: feat: provider-defined tools
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.22
-  - @ai-tools/provider@0.0.26
+  - @ai-toolkit/provider-utils@1.0.22
+  - @ai-toolkit/provider@0.0.26
 
 ## 0.0.31
 
 ### Patch Changes
 
 - Updated dependencies [b9b0d7b]
-  - @ai-tools/provider@0.0.25
-  - @ai-tools/provider-utils@1.0.21
+  - @ai-toolkit/provider@0.0.25
+  - @ai-toolkit/provider-utils@1.0.21
 
 ## 0.0.30
 
@@ -2652,8 +2652,8 @@
 ### Patch Changes
 
 - Updated dependencies [d595d0d]
-  - @ai-tools/provider@0.0.24
-  - @ai-tools/provider-utils@1.0.20
+  - @ai-toolkit/provider@0.0.24
+  - @ai-toolkit/provider-utils@1.0.20
 
 ## 0.0.27
 
@@ -2672,7 +2672,7 @@
 ### Patch Changes
 
 - Updated dependencies [273f696]
-  - @ai-tools/provider-utils@1.0.19
+  - @ai-toolkit/provider-utils@1.0.19
 
 ## 0.0.24
 
@@ -2685,8 +2685,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.18
-  - @ai-tools/provider@0.0.23
+  - @ai-toolkit/provider-utils@1.0.18
+  - @ai-toolkit/provider@0.0.23
 
 ## 0.0.22
 
@@ -2700,15 +2700,15 @@
 
 - 26515cb: feat (ai/provider): introduce ProviderV1 specification
 - Updated dependencies [26515cb]
-  - @ai-tools/provider@0.0.22
-  - @ai-tools/provider-utils@1.0.17
+  - @ai-toolkit/provider@0.0.22
+  - @ai-toolkit/provider-utils@1.0.17
 
 ## 0.0.20
 
 ### Patch Changes
 
 - Updated dependencies [09f895f]
-  - @ai-tools/provider-utils@1.0.16
+  - @ai-toolkit/provider-utils@1.0.16
 
 ## 0.0.19
 
@@ -2716,30 +2716,30 @@
 
 - d67fa9c: feat (provider/amazon-bedrock): add support for session tokens
 - Updated dependencies [d67fa9c]
-  - @ai-tools/provider-utils@1.0.15
+  - @ai-toolkit/provider-utils@1.0.15
 
 ## 0.0.18
 
 ### Patch Changes
 
 - Updated dependencies [f2c025e]
-  - @ai-tools/provider@0.0.21
-  - @ai-tools/provider-utils@1.0.14
+  - @ai-toolkit/provider@0.0.21
+  - @ai-toolkit/provider-utils@1.0.14
 
 ## 0.0.17
 
 ### Patch Changes
 
 - Updated dependencies [6ac355e]
-  - @ai-tools/provider@0.0.20
-  - @ai-tools/provider-utils@1.0.13
+  - @ai-toolkit/provider@0.0.20
+  - @ai-toolkit/provider-utils@1.0.13
 
 ## 0.0.16
 
 ### Patch Changes
 
 - Updated dependencies [dd712ac]
-  - @ai-tools/provider-utils@1.0.12
+  - @ai-toolkit/provider-utils@1.0.12
 
 ## 0.0.15
 
@@ -2747,47 +2747,47 @@
 
 - 89b18ca: fix (ai/provider): send finish reason 'unknown' by default
 - Updated dependencies [dd4a0f5]
-  - @ai-tools/provider@0.0.19
-  - @ai-tools/provider-utils@1.0.11
+  - @ai-toolkit/provider@0.0.19
+  - @ai-toolkit/provider-utils@1.0.11
 
 ## 0.0.14
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.10
-  - @ai-tools/provider@0.0.18
+  - @ai-toolkit/provider-utils@1.0.10
+  - @ai-toolkit/provider@0.0.18
 
 ## 0.0.13
 
 ### Patch Changes
 
 - Updated dependencies [029af4c]
-  - @ai-tools/provider@0.0.17
-  - @ai-tools/provider-utils@1.0.9
+  - @ai-toolkit/provider@0.0.17
+  - @ai-toolkit/provider-utils@1.0.9
 
 ## 0.0.12
 
 ### Patch Changes
 
 - Updated dependencies [d58517b]
-  - @ai-tools/provider@0.0.16
-  - @ai-tools/provider-utils@1.0.8
+  - @ai-toolkit/provider@0.0.16
+  - @ai-toolkit/provider-utils@1.0.8
 
 ## 0.0.11
 
 ### Patch Changes
 
 - Updated dependencies [96aed25]
-  - @ai-tools/provider@0.0.15
-  - @ai-tools/provider-utils@1.0.7
+  - @ai-toolkit/provider@0.0.15
+  - @ai-toolkit/provider-utils@1.0.7
 
 ## 0.0.10
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@1.0.6
+  - @ai-toolkit/provider-utils@1.0.6
 
 ## 0.0.9
 
@@ -2795,15 +2795,15 @@
 
 - a8d1c9e9: feat (ai/core): parallel image download
 - Updated dependencies [a8d1c9e9]
-  - @ai-tools/provider-utils@1.0.5
-  - @ai-tools/provider@0.0.14
+  - @ai-toolkit/provider-utils@1.0.5
+  - @ai-toolkit/provider@0.0.14
 
 ## 0.0.8
 
 ### Patch Changes
 
 - Updated dependencies [4f88248f]
-  - @ai-tools/provider-utils@1.0.4
+  - @ai-toolkit/provider-utils@1.0.4
 
 ## 0.0.7
 
@@ -2814,8 +2814,8 @@
 - 4aa8deb3: feat (provider): support responseFormat setting in provider api
 - 13b27ec6: chore (ai/core): remove grammar mode
 - Updated dependencies
-  - @ai-tools/provider@0.0.13
-  - @ai-tools/provider-utils@1.0.3
+  - @ai-toolkit/provider@0.0.13
+  - @ai-toolkit/provider-utils@1.0.3
 
 ## 0.0.6
 
@@ -2828,15 +2828,15 @@
 ### Patch Changes
 
 - Updated dependencies [b7290943]
-  - @ai-tools/provider@0.0.12
-  - @ai-tools/provider-utils@1.0.2
+  - @ai-toolkit/provider@0.0.12
+  - @ai-toolkit/provider-utils@1.0.2
 
 ## 0.0.4
 
 ### Patch Changes
 
 - Updated dependencies [d481729f]
-  - @ai-tools/provider-utils@1.0.1
+  - @ai-toolkit/provider-utils@1.0.1
 
 ## 0.0.3
 
@@ -2844,19 +2844,19 @@
 
 - 5edc6110: feat (ai/core): add custom request header support
 - Updated dependencies
-  - @ai-tools/provider@0.0.11
-  - @ai-tools/provider-utils@1.0.0
+  - @ai-toolkit/provider@0.0.11
+  - @ai-toolkit/provider-utils@1.0.0
 
 ## 0.0.2
 
 ### Patch Changes
 
-- 542a2b28: feat (@ai-tools/bedrock): support custom bedrock configuration
+- 542a2b28: feat (@ai-toolkit/bedrock): support custom bedrock configuration
 
 ## 0.0.1
 
 ### Patch Changes
 
-- 02f6a088: feat (@ai-tools/amazon-bedrock): add Amazon Bedrock provider
+- 02f6a088: feat (@ai-toolkit/amazon-bedrock): add Amazon Bedrock provider
 - Updated dependencies [02f6a088]
-  - @ai-tools/provider-utils@0.0.16
+  - @ai-toolkit/provider-utils@0.0.16

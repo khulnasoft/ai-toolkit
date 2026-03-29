@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from '@ai-tools/google';
+import { createGoogleGenerativeAI } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';

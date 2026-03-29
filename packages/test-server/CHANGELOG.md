@@ -1,4 +1,4 @@
-# @ai-tools/test-server
+# @ai-toolkit/test-server
 
 ## 2.0.0-beta.0
 

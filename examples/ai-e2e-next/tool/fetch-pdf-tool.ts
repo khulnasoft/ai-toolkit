@@ -1,4 +1,4 @@
-import { convertUint8ArrayToBase64 } from '@ai-tools/provider-utils';
+import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
 import { UIToolInvocation, tool } from 'ai';
 import { z } from 'zod';
 

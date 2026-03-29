@@ -88,7 +88,7 @@ const tools = createHindsightTools({
 import { HindsightClient } from '@vectorize-io/hindsight-client';
 import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
 import { generateText, stepCountIs } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const client = new HindsightClient({ baseUrl: process.env.HINDSIGHT_API_URL });
 const tools = createHindsightTools({ client, bankId: 'user-123' });
@@ -106,7 +106,7 @@ const { text } = await generateText({
 
 ```ts
 import { ToolLoopAgent, stepCountIs } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { HindsightClient } from '@vectorize-io/hindsight-client';
 import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
 
@@ -131,7 +131,7 @@ In multi-user applications, create tools inside your request handler so each req
 ```ts
 // app/api/chat/route.ts
 import { streamText, stepCountIs, convertToModelMessages } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { HindsightClient } from '@vectorize-io/hindsight-client';
 import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
 

@@ -1,7 +1,7 @@
 import {
   openai,
   type OpenaiResponsesTextProviderMetadata,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

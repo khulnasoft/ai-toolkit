@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/moonshotai",
+  "name": "@ai-toolkit/moonshotai",
   "version": "3.0.0-beta.10",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -36,12 +36,12 @@
     }
   },
   "dependencies": {
-    "@ai-tools/openai-compatible": "workspace:*",
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*"
+    "@ai-toolkit/openai-compatible": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",

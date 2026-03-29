@@ -1,4 +1,4 @@
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai';
 import { weatherTool } from '../../tools/weather-tool';
 import { run } from '../../lib/run';

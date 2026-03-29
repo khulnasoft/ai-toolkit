@@ -4,7 +4,7 @@ import {
   ImageModelV4,
   ImageModelV4ProviderMetadata,
   ImageModelV2ProviderMetadata,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 /**
  * Image model that is used by the AI SDK.

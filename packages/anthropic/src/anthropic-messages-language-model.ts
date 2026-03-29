@@ -14,7 +14,7 @@ import {
   LanguageModelV4ToolCall,
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
@@ -31,7 +31,7 @@ import {
   postJsonToApi,
   Resolvable,
   resolve,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { anthropicFailedResponseHandler } from './anthropic-error';
 import { AnthropicMessageMetadata } from './anthropic-message-metadata';
 import {

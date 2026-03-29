@@ -3,13 +3,13 @@ import type {
   Experimental_VideoModelV4CallOptions,
   Experimental_VideoModelV4File,
   SharedV4ProviderMetadata,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   type DataContent,
   type ProviderOptions,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { NoVideoGeneratedError } from '../error/no-video-generated-error';
 import {
   DefaultGeneratedFile,

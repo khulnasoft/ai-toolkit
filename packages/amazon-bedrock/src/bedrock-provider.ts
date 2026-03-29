@@ -1,11 +1,11 @@
-import { anthropicTools } from '@ai-tools/anthropic/internal';
+import { anthropicTools } from '@ai-toolkit/anthropic/internal';
 import {
   EmbeddingModelV4,
   ImageModelV4,
   LanguageModelV4,
   ProviderV4,
   RerankingModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
@@ -13,7 +13,7 @@ import {
   loadSetting,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { BedrockChatLanguageModel } from './bedrock-chat-language-model';
 import { BedrockChatModelId } from './bedrock-chat-options';
 import { BedrockEmbeddingModel } from './bedrock-embedding-model';
@@ -260,7 +260,10 @@ export function createAmazonBedrock(
 
   const getHeaders = () => {
     const baseHeaders = options.headers ?? {};
-    return withUserAgentSuffix(baseHeaders, `ai-sdk/amazon-bedrock/${VERSION}`);
+    return withUserAgentSuffix(
+      baseHeaders,
+      `ai-toolkit/amazon-bedrock/${VERSION}`,
+    );
   };
 
   const getBedrockRuntimeBaseUrl = (): string =>

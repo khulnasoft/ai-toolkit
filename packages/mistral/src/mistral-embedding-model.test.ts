@@ -1,5 +1,5 @@
-import { EmbeddingModelV4Embedding } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { EmbeddingModelV4Embedding } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { createMistral } from './mistral-provider';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -121,7 +121,7 @@ describe('doEmbed', () => {
       'custom-request-header': 'request-header-value',
     });
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/mistral/0.0.0-test`,
+      `ai-toolkit/mistral/0.0.0-test`,
     );
   });
 });

@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText, wrapLanguageModel } from 'ai';
 import { yourCacheMiddleware } from './your-cache-middleware';
 import { run } from '../lib/run';

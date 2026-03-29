@@ -1,9 +1,9 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import {
   convertReadableStreamToArray,
   isNodeVersion,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import fs from 'node:fs';
 import { createCohere } from './cohere-provider';
 import { beforeEach, describe, it, expect, vi } from 'vitest';

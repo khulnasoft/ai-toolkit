@@ -1,7 +1,7 @@
 import type {
   LanguageModelV4Content,
   LanguageModelV4StreamPart,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { LanguageModelMiddleware } from '../types/language-model-middleware';
 import { getPotentialStartIndex } from '../util/get-potential-start-index';
 

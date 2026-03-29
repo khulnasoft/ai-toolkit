@@ -1,4 +1,4 @@
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

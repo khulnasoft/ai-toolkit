@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { LMNTSpeechModel } from './lmnt-speech-model';
 import { createLMNT } from './lmnt-provider';
 import { describe, it, expect, vi } from 'vitest';
@@ -71,7 +71,7 @@ describe('doGenerate', () => {
       'custom-request-header': 'request-header-value',
     });
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/lmnt/0.0.0-test`,
+      `ai-toolkit/lmnt/0.0.0-test`,
     );
   });
 

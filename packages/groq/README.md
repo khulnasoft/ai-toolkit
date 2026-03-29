@@ -5,10 +5,10 @@ contains language model support for the Groq chat and completion APIs, transcrip
 
 ## Setup
 
-The Groq provider is available in the `@ai-tools/groq` module. You can install it with
+The Groq provider is available in the `@ai-toolkit/groq` module. You can install it with
 
 ```bash
-npm i @ai-tools/groq
+npm i @ai-toolkit/groq
 ```
 
 ## Skill for Coding Agents
@@ -21,10 +21,10 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `groq` from `@ai-tools/groq`:
+You can import the default provider instance `groq` from `@ai-toolkit/groq`:
 
 ```ts
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 ```
 
 ## Browser Search Tool
@@ -43,7 +43,7 @@ Browser search is only available for these models:
 ### Basic Usage
 
 ```ts
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -62,7 +62,7 @@ console.log(result.text);
 ### Streaming Example
 
 ```ts
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -118,7 +118,7 @@ const result = await generateText({
 ## Basic Text Generation
 
 ```ts
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

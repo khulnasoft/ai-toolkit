@@ -95,7 +95,7 @@ export default createTransformer((fileInfo, api, options, context) => {
         } else if (importedName === 'stepCountIs') {
           hasStepCountIsImport = true;
         }
-      } else if (source === '@ai-tools/react' && importedName === 'useChat') {
+      } else if (source === '@ai-toolkit/react' && importedName === 'useChat') {
         trackedFunctions.useChat = localName;
       }
     });

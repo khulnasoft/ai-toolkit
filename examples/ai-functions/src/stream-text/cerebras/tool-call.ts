@@ -1,4 +1,4 @@
-import { cerebras } from '@ai-tools/cerebras';
+import { cerebras } from '@ai-toolkit/cerebras';
 import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai';
 import { weatherTool } from '../../tools/weather-tool';
 import { run } from '../../lib/run';

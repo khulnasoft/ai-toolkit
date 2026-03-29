@@ -11,7 +11,7 @@ Generates speech audio from text.
 
 ```ts
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
   model: openai.speech('tts-1'),
@@ -28,7 +28,7 @@ console.log(audio);
 
 ```ts
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
   model: openai.speech('tts-1'),
@@ -41,7 +41,7 @@ const { audio } = await generateSpeech({
 
 ```ts
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 
 const { audio } = await generateSpeech({
   model: elevenlabs.speech('eleven_multilingual_v2'),

@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 
 /**
  * Error that is thrown when a model with an unsupported version is used.

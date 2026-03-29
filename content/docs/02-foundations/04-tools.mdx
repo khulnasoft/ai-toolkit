@@ -72,7 +72,7 @@ Provider-defined tools are tools where the provider specifies the tool's `inputS
 Examples include Anthropic's `bash` and `text_editor` tools. The model has been specifically trained to use these tools effectively, which can result in better performance for supported tasks.
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -98,7 +98,7 @@ Provider-executed tools are tools that run entirely on the provider's servers. Y
 Examples include OpenAI's web search and Anthropic's code execution. These provide out-of-the-box functionality without requiring you to set up infrastructure.
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -135,7 +135,7 @@ Schemas are used to define and validate the [tool input](/docs/ai-sdk-core/tools
 The AI SDK supports the following schemas:
 
 - [Zod](https://zod.dev/) v3 and v4 directly or via [`zodSchema()`](/docs/reference/ai-sdk-core/zod-schema)
-- [Valibot](https://valibot.dev/) via [`valibotSchema()`](/docs/reference/ai-sdk-core/valibot-schema) from `@ai-tools/valibot`
+- [Valibot](https://valibot.dev/) via [`valibotSchema()`](/docs/reference/ai-sdk-core/valibot-schema) from `@ai-toolkit/valibot`
 - [Standard JSON Schema](https://standardschema.dev/json-schema) compatible schemas
 - Raw JSON schemas via [`jsonSchema()`](/docs/reference/ai-sdk-core/json-schema)
 

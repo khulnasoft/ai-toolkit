@@ -282,7 +282,7 @@ console.log(text);`,
       bun: 'bun add bedrock-agentcore',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { awsCredentialsProvider } from '@vercel/oidc-aws-credentials-provider';
 import { CodeInterpreterTools } from 'bedrock-agentcore/code-interpreter/vercel-ai';
 import { BrowserTools } from 'bedrock-agentcore/browser/vercel-ai';
@@ -332,7 +332,7 @@ try {
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
 import { guard, redact, verify } from '@superagent-ai/ai-sdk';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
   model: openai('gpt-4o-mini'),

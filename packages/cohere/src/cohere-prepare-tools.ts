@@ -2,7 +2,7 @@ import {
   LanguageModelV4CallOptions,
   SharedV4Warning,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { CohereToolChoice } from './cohere-chat-prompt';
 
 export function prepareTools({

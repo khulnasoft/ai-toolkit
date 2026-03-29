@@ -15,7 +15,7 @@ function to generate videos based on a given prompt using a video model.
 
 ```tsx
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -39,7 +39,7 @@ Models only support a few aspect ratios, and the supported aspect ratios are dif
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -55,7 +55,7 @@ Models only support specific resolutions, and the supported resolutions are diff
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 
 const { video } = await generateVideo({
   model: google.video('veo-2.0-generate-001'),
@@ -70,7 +70,7 @@ Some video models support specifying the duration of the generated video in seco
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -85,7 +85,7 @@ Some video models allow you to specify the frames per second for the generated v
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -100,7 +100,7 @@ const { video } = await generateVideo({
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 
 const { videos } = await generateVideo({
   model: google.video('veo-2.0-generate-001'),
@@ -133,7 +133,7 @@ Some video models support generating videos from an input image. You can provide
 
 ```tsx highlight={"7-10"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('hunyuan-video'),
@@ -163,7 +163,7 @@ If supported by the model, the same seed will always produce the same video.
 
 ```tsx highlight={"7"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -181,7 +181,7 @@ become request body properties.
 
 ```tsx highlight={"8-10"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -200,7 +200,7 @@ type [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSigna
 that you can use to abort the video generation process or set a timeout.
 
 ```ts highlight={"7"}
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -223,7 +223,7 @@ You can configure the polling timeout using provider-specific options. Each prov
 
 ```tsx highlight={"10-12"}
 import { experimental_generateVideo as generateVideo } from 'ai';
-import { fal, type FalVideoModelOptions } from '@ai-tools/fal';
+import { fal, type FalVideoModelOptions } from '@ai-toolkit/fal';
 
 const { video } = await generateVideo({
   model: fal.video('luma-dream-machine/ray-2'),
@@ -249,7 +249,7 @@ const { video } = await generateVideo({
 that you can use to add custom headers to the video generation request.
 
 ```ts highlight={"7"}
-import { fal } from '@ai-tools/fal';
+import { fal } from '@ai-toolkit/fal';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({

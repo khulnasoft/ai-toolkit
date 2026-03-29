@@ -1,4 +1,4 @@
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { streamText } from 'ai';
 import { z } from 'zod';
 import { weatherTool } from '../../tools/weather-tool';

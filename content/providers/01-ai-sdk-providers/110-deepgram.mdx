@@ -9,36 +9,36 @@ The [Deepgram](https://deepgram.com/) provider contains language model support f
 
 ## Setup
 
-The Deepgram provider is available in the `@ai-tools/deepgram` module. You can install it with
+The Deepgram provider is available in the `@ai-toolkit/deepgram` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/deepgram" dark />
+    <Snippet text="pnpm add @ai-toolkit/deepgram" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/deepgram" dark />
+    <Snippet text="npm install @ai-toolkit/deepgram" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/deepgram" dark />
+    <Snippet text="yarn add @ai-toolkit/deepgram" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/deepgram" dark />
+    <Snippet text="bun add @ai-toolkit/deepgram" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `deepgram` from `@ai-tools/deepgram`:
+You can import the default provider instance `deepgram` from `@ai-toolkit/deepgram`:
 
 ```ts
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 ```
 
-If you need a customized setup, you can import `createDeepgram` from `@ai-tools/deepgram` and create a provider instance with your settings:
+If you need a customized setup, you can import `createDeepgram` from `@ai-toolkit/deepgram` and create a provider instance with your settings:
 
 ```ts
-import { createDeepgram } from '@ai-tools/deepgram';
+import { createDeepgram } from '@ai-toolkit/deepgram';
 
 const deepgram = createDeepgram({
   // custom settings, e.g.
@@ -79,7 +79,7 @@ You can use the model with the `generateSpeech` function:
 
 ```ts
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { deepgram } from '@ai-tools/deepgram';
+import { deepgram } from '@ai-toolkit/deepgram';
 
 const result = await generateSpeech({
   model: deepgram.speech('aura-2-helena-en'),
@@ -91,7 +91,7 @@ You can also pass additional provider-specific options using the `providerOption
 
 ```ts highlight="7-11"
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { deepgram, type DeepgramSpeechModelOptions } from '@ai-tools/deepgram';
+import { deepgram, type DeepgramSpeechModelOptions } from '@ai-toolkit/deepgram';
 
 const result = await generateSpeech({
   model: deepgram.speech('aura-2-helena-en'),
@@ -186,7 +186,7 @@ import { experimental_transcribe as transcribe } from 'ai';
 import {
   deepgram,
   type DeepgramTranscriptionModelOptions,
-} from '@ai-tools/deepgram';
+} from '@ai-toolkit/deepgram';
 import { readFile } from 'fs/promises';
 
 const result = await transcribe({

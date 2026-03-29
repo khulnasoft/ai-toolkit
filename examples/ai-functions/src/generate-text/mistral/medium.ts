@@ -1,4 +1,4 @@
-import { mistral } from '@ai-tools/mistral';
+import { mistral } from '@ai-toolkit/mistral';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

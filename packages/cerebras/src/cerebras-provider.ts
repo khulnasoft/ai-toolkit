@@ -1,18 +1,18 @@
-import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
+import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
 import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { CerebrasChatModelId } from './cerebras-chat-options';
 import { z } from 'zod/v4';
-import { ProviderErrorStructure } from '@ai-tools/openai-compatible';
+import { ProviderErrorStructure } from '@ai-toolkit/openai-compatible';
 import { VERSION } from './version';
 
 // Add error schema and structure
@@ -88,7 +88,7 @@ export function createCerebras(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/cerebras/${VERSION}`,
+      `ai-toolkit/cerebras/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: CerebrasChatModelId) => {

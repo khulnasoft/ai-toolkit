@@ -1,5 +1,5 @@
-import type { ImageModelV4, SharedV4Warning } from '@ai-tools/provider';
-import type { Resolvable } from '@ai-tools/provider-utils';
+import type { ImageModelV4, SharedV4Warning } from '@ai-toolkit/provider';
+import type { Resolvable } from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   convertImageModelFileToDataUri,
@@ -13,7 +13,7 @@ import {
   postJsonToApi,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { replicateFailedResponseHandler } from './replicate-error';
 import { ReplicateImageModelId } from './replicate-image-settings';

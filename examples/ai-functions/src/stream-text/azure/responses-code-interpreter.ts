@@ -2,7 +2,7 @@ import {
   azure,
   type AzureResponsesSourceDocumentProviderMetadata,
   type AzureResponsesTextProviderMetadata,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 import { downloadAzureContainerFile } from '../../lib/download-azure-container-file';

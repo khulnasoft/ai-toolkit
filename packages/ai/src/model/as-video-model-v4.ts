@@ -1,7 +1,7 @@
 import {
   Experimental_VideoModelV3,
   Experimental_VideoModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 export function asVideoModelV4(
   model: Experimental_VideoModelV3 | Experimental_VideoModelV4,

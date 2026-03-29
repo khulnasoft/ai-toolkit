@@ -5,7 +5,7 @@ description: Use OpenAI compatible providers with the AI SDK.
 
 # OpenAI Compatible Providers
 
-You can use the [OpenAI Compatible Provider](https://www.npmjs.com/package/@ai-tools/openai-compatible) package to use language model providers that implement the OpenAI API.
+You can use the [OpenAI Compatible Provider](https://www.npmjs.com/package/@ai-toolkit/openai-compatible) package to use language model providers that implement the OpenAI API.
 
 Below we focus on the general setup and provider instance creation. You can also [write a custom provider package leveraging the OpenAI Compatible package](/providers/openai-compatible-providers/custom-providers).
 
@@ -20,30 +20,30 @@ The general setup and provider instance creation is the same for all of these pr
 
 ## Setup
 
-The OpenAI Compatible provider is available via the `@ai-tools/openai-compatible` module. You can install it with:
+The OpenAI Compatible provider is available via the `@ai-toolkit/openai-compatible` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/openai-compatible" dark />
+    <Snippet text="pnpm add @ai-toolkit/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/openai-compatible" dark />
+    <Snippet text="npm install @ai-toolkit/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/openai-compatible" dark />
+    <Snippet text="yarn add @ai-toolkit/openai-compatible" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/openai-compatible" dark />
+    <Snippet text="bun add @ai-toolkit/openai-compatible" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-To use an OpenAI compatible provider, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-tools/openai-compatible`:
+To use an OpenAI compatible provider, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-toolkit/openai-compatible`:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 
 const provider = createOpenAICompatible({
   name: 'providerName',
@@ -131,7 +131,7 @@ Chat models created with this provider support the following capabilities:
 You can use provider language models to generate text with the `generateText` function:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateText } from 'ai';
 
 const provider = createOpenAICompatible({
@@ -149,7 +149,7 @@ const { text } = await generateText({
 ### Including model ids for auto-completion
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateText } from 'ai';
 
 type ExampleChatModelIds =
@@ -201,7 +201,7 @@ You can set these via the optional `queryParams` provider setting. These will be
 added to all requests made by the provider.
 
 ```ts highlight="7-9"
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 
 const provider = createOpenAICompatible({
   name: 'providerName',
@@ -227,7 +227,7 @@ const model = provider.imageModel('model-id');
 ### Basic Image Generation
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateImage } from 'ai';
 
 const provider = createOpenAICompatible({
@@ -250,7 +250,7 @@ The OpenAI Compatible provider supports image editing through the `/images/edits
 #### Basic Image Editing
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateImage } from 'ai';
 import fs from 'fs';
 
@@ -276,7 +276,7 @@ const { images } = await generateImage({
 Edit specific parts of an image using a mask:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateImage } from 'ai';
 import fs from 'fs';
 
@@ -316,7 +316,7 @@ const model = provider.embeddingModel('model-id');
 ### Example
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { embed } from 'ai';
 
 const provider = createOpenAICompatible({
@@ -369,7 +369,7 @@ const model = provider.completionModel('model-id');
 ### Example
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateText } from 'ai';
 
 const provider = createOpenAICompatible({
@@ -505,7 +505,7 @@ Metadata extractors work with both streaming and non-streaming chat completions 
 Here's an example metadata extractor that captures both standard and custom provider data:
 
 ```typescript
-import { MetadataExtractor } from '@ai-tools/openai-compatible';
+import { MetadataExtractor } from '@ai-toolkit/openai-compatible';
 
 const myMetadataExtractor: MetadataExtractor = {
   // Process complete, non-streaming responses

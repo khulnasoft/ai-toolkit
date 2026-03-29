@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useChat } from 'ai';
-import { useChat as useReactChat } from '@ai-tools/react';
+import { useChat as useReactChat } from '@ai-toolkit/react';
 
 // Test 1: Destructuring from useChat hook
 function ChatComponent1() {

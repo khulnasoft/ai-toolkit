@@ -412,7 +412,7 @@ The V4 specification emphasizes robust error handling:
 To implement a custom language model provider, you'll need to install the required packages:
 
 ```bash
-npm install @ai-tools/provider @ai-tools/provider-utils
+npm install @ai-toolkit/provider @ai-toolkit/provider-utils
 ```
 
 Implementing a custom language model provider involves several steps:
@@ -438,8 +438,8 @@ import {
   generateId,
   loadApiKey,
   withoutTrailingSlash,
-} from '@ai-tools/provider-utils';
-import { ProviderV4 } from '@ai-tools/provider';
+} from '@ai-toolkit/provider-utils';
+import { ProviderV4 } from '@ai-toolkit/provider';
 import { CustomChatLanguageModel } from './custom-chat-language-model';
 
 // Define your provider interface extending ProviderV4
@@ -516,8 +516,8 @@ const custom = createCustom();
 Create a `custom-chat-language-model.ts` file that implements `LanguageModelV4`:
 
 ```ts filename="custom-chat-language-model.ts"
-import { LanguageModelV4, LanguageModelV4CallOptions } from '@ai-tools/provider';
-import { postJsonToApi } from '@ai-tools/provider-utils';
+import { LanguageModelV4, LanguageModelV4CallOptions } from '@ai-toolkit/provider';
+import { postJsonToApi } from '@ai-toolkit/provider-utils';
 
 class CustomChatLanguageModel implements LanguageModelV4 {
   readonly specificationVersion = 'V4';
@@ -749,7 +749,7 @@ import {
   APICallError,
   InvalidResponseDataError,
   TooManyRequestsError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 private handleError(error: unknown): never {
   if (error instanceof Response) {
@@ -780,4 +780,4 @@ private handleError(error: unknown): never {
 - Check out the [Mistral provider](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/mistral) reference implementation
 - Check out [provider utilities](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider-utils) for helpful functions
 - Test your provider with the AI SDK's built-in examples
-- Explore the V4 types in detail at [`@ai-tools/provider`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4)
+- Explore the V4 types in detail at [`@ai-toolkit/provider`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4)

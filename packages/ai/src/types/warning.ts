@@ -1,4 +1,4 @@
-import { SharedV4Warning } from '@ai-tools/provider';
+import { SharedV4Warning } from '@ai-toolkit/provider';
 
 /**
  * Warning from the model provider for this call. The call will proceed, but e.g.

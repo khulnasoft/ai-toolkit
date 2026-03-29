@@ -1,4 +1,4 @@
-import { huggingface } from '@ai-tools/huggingface';
+import { huggingface } from '@ai-toolkit/huggingface';
 import { generateText, streamText, Output } from 'ai';
 import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v4';

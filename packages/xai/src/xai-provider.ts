@@ -4,14 +4,14 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { XaiChatLanguageModel } from './xai-chat-language-model';
 import { XaiChatModelId } from './xai-chat-options';
 import { XaiImageModel } from './xai-image-model';
@@ -109,7 +109,7 @@ export function createXai(options: XaiProviderSettings = {}): XaiProvider {
         })}`,
         ...options.headers,
       },
-      `ai-sdk/xai/${VERSION}`,
+      `ai-toolkit/xai/${VERSION}`,
     );
 
   const createChatLanguageModel = (modelId: XaiChatModelId) => {

@@ -1,5 +1,5 @@
-import { TooManyEmbeddingValuesForCallError } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { TooManyEmbeddingValuesForCallError } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import * as fs from 'node:fs';
 import { GoogleVertexEmbeddingModel } from './google-vertex-embedding-model';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -272,7 +272,7 @@ describe('GoogleVertexEmbeddingModel', () => {
       }
     `);
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/google-vertex/0.0.0-test`,
+      `ai-toolkit/google-vertex/0.0.0-test`,
     );
   });
 

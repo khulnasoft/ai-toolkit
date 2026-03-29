@@ -1,7 +1,7 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/test-server/with-vitest';
 import { z } from 'zod/v4';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { StructuredObject } from './structured-object.ng';

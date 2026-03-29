@@ -4,10 +4,10 @@ The **Kling AI provider** for the [AI SDK](https://ai-sdk.dev/docs) contains vid
 
 ## Setup
 
-The Kling AI provider is available in the `@ai-tools/klingai` module. You can install it with:
+The Kling AI provider is available in the `@ai-toolkit/klingai` module. You can install it with:
 
 ```bash
-npm i @ai-tools/klingai
+npm i @ai-toolkit/klingai
 ```
 
 ## Skill for Coding Agents
@@ -20,10 +20,10 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `klingai` from `@ai-tools/klingai`:
+You can import the default provider instance `klingai` from `@ai-toolkit/klingai`:
 
 ```ts
-import { klingai } from '@ai-tools/klingai';
+import { klingai } from '@ai-toolkit/klingai';
 ```
 
 ## Video Models
@@ -39,7 +39,7 @@ Generate video from a text prompt.
 Available models: `kling-v1-t2v`, `kling-v1.6-t2v`, `kling-v2-master-t2v`, `kling-v2.1-master-t2v`, `kling-v2.5-turbo-t2v`, `kling-v2.6-t2v`
 
 ```ts
-import { klingai } from '@ai-tools/klingai';
+import { klingai } from '@ai-toolkit/klingai';
 import { experimental_generateVideo } from 'ai';
 
 const { videos } = await experimental_generateVideo({
@@ -62,7 +62,7 @@ Generate video from a start frame image, with optional end frame control.
 Available models: `kling-v1-i2v`, `kling-v1.5-i2v`, `kling-v1.6-i2v`, `kling-v2-master-i2v`, `kling-v2.1-i2v`, `kling-v2.1-master-i2v`, `kling-v2.5-turbo-i2v`, `kling-v2.6-i2v`
 
 ```ts
-import { klingai } from '@ai-tools/klingai';
+import { klingai } from '@ai-toolkit/klingai';
 import { experimental_generateVideo } from 'ai';
 
 const { videos } = await experimental_generateVideo({
@@ -90,7 +90,7 @@ Generate video using a reference motion video.
 Available models: `kling-v2.6-motion-control`
 
 ```ts
-import { klingai } from '@ai-tools/klingai';
+import { klingai } from '@ai-toolkit/klingai';
 import { experimental_generateVideo } from 'ai';
 
 const { videos } = await experimental_generateVideo({
@@ -144,7 +144,7 @@ KLINGAI_SECRET_KEY=your-secret-key
 Or pass them directly:
 
 ```ts
-import { createKlingAI } from '@ai-tools/klingai';
+import { createKlingAI } from '@ai-toolkit/klingai';
 
 const klingai = createKlingAI({
   accessKey: 'your-access-key',

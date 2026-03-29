@@ -1,7 +1,7 @@
 import {
   azure,
   type AzureResponsesSourceDocumentProviderMetadata,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

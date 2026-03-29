@@ -1,4 +1,4 @@
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateText } from 'ai';
 import fs from 'node:fs';
 import { run } from '../../lib/run';

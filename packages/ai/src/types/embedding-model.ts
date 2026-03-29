@@ -3,7 +3,7 @@ import {
   EmbeddingModelV3,
   EmbeddingModelV4,
   EmbeddingModelV4Embedding,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 /**
  * Embedding model that is used by the AI SDK.

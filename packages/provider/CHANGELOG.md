@@ -1,4 +1,4 @@
-# @ai-tools/provider
+# @ai-toolkit/provider
 
 ## 4.0.0-beta.5
 
@@ -424,7 +424,7 @@
   Before
 
   ```ts
-  import { convertUint8ArrayToBase64 } from "@ai-tools/provider-utils";
+  import { convertUint8ArrayToBase64 } from "@ai-toolkit/provider-utils";
 
   // Had to manually convert binary data to base64
   const fileData = new Uint8Array([0, 1, 2, 3]);
@@ -957,13 +957,13 @@
 
 ### Patch Changes
 
-- 102ca22f: fix (@ai-tools/provider): fix TypeValidationError.isTypeValidationError
+- 102ca22f: fix (@ai-toolkit/provider): fix TypeValidationError.isTypeValidationError
 
 ## 0.0.9
 
 ### Patch Changes
 
-- 09295e2e: feat (@ai-tools/provider): add DownloadError
+- 09295e2e: feat (@ai-toolkit/provider): add DownloadError
 
 ## 0.0.8
 

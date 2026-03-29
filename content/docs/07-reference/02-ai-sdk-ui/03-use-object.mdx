@@ -16,7 +16,7 @@ You can use it together with [`streamText`](/docs/reference/ai-sdk-core/stream-t
 ```tsx
 'use client';
 
-import { experimental_useObject as useObject } from '@ai-tools/react';
+import { experimental_useObject as useObject } from '@ai-toolkit/react';
 
 export default function Page() {
   const { object, submit } = useObject({
@@ -38,21 +38,21 @@ export default function Page() {
 <Tabs items={['React', 'Svelte', 'Vue']}>
   <Tab>
     <Snippet
-      text="import { experimental_useObject as useObject } from '@ai-tools/react'"
+      text="import { experimental_useObject as useObject } from '@ai-toolkit/react'"
       dark
       prompt={false}
     />
   </Tab>
   <Tab>
     <Snippet
-      text="import { Experimental_StructuredObject } from '@ai-tools/svelte'"
+      text="import { Experimental_StructuredObject } from '@ai-toolkit/svelte'"
       dark
       prompt={false}
     />
   </Tab>
   <Tab>
     <Snippet
-      text="import { experimental_useObject } from '@ai-tools/vue'"
+      text="import { experimental_useObject } from '@ai-toolkit/vue'"
       dark
       prompt={false}
     />

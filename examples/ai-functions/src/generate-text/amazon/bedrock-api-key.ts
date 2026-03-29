@@ -1,4 +1,4 @@
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 
@@ -39,7 +39,7 @@ run(async () => {
 
   try {
     // Create provider with explicit API key
-    const { createAmazonBedrock } = await import('@ai-tools/amazon-bedrock');
+    const { createAmazonBedrock } = await import('@ai-toolkit/amazon-bedrock');
     const bedrockWithApiKey = createAmazonBedrock({
       apiKey: exampleApiKey,
       region: 'us-east-1', // Optional: specify region

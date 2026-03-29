@@ -1,9 +1,9 @@
 import {
   LanguageModelV4Prompt,
   LanguageModelV4ProviderTool,
-} from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import {
   GoogleGenerativeAILanguageModel,
   getGroundingMetadataSchema,
@@ -1038,7 +1038,7 @@ describe('doGenerate', () => {
       }
     `);
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/google/0.0.0-test`,
+      `ai-toolkit/google/0.0.0-test`,
     );
   });
 

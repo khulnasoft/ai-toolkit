@@ -1,4 +1,4 @@
-import { assemblyai } from '@ai-tools/assemblyai';
+import { assemblyai } from '@ai-toolkit/assemblyai';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 import { run } from '../../lib/run';

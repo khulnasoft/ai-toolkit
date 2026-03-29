@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createAlibaba } from './alibaba-provider';
-import { loadApiKey } from '@ai-tools/provider-utils';
+import { loadApiKey } from '@ai-toolkit/provider-utils';
 import { AlibabaLanguageModel } from './alibaba-chat-language-model';
 import { AlibabaVideoModel } from './alibaba-video-model';
 
@@ -37,8 +37,8 @@ vi.mock('./alibaba-video-model', () => {
   };
 });
 
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     loadApiKey: vi.fn().mockReturnValue('mock-api-key'),

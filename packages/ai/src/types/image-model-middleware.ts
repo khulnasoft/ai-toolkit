@@ -1,4 +1,4 @@
-import { ImageModelV4Middleware } from '@ai-tools/provider';
+import { ImageModelV4Middleware } from '@ai-toolkit/provider';
 
 /**
  * Middleware for image models.

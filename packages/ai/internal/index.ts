@@ -1,5 +1,5 @@
 // internal re-exports
-export { convertAsyncIteratorToReadableStream } from '@ai-tools/provider-utils';
+export { convertAsyncIteratorToReadableStream } from '@ai-toolkit/provider-utils';
 
 // internal
 export { convertToLanguageModelPrompt } from '../src/prompt/convert-to-language-model-prompt';

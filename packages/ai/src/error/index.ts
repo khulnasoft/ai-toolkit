@@ -12,7 +12,7 @@ export {
   TooManyEmbeddingValuesForCallError,
   TypeValidationError,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 export { InvalidArgumentError } from './invalid-argument-error';
 export { InvalidStreamPartError } from './invalid-stream-part-error';
@@ -33,5 +33,5 @@ export { UIMessageStreamError } from './ui-message-stream-error';
 export { InvalidDataContentError } from '../prompt/invalid-data-content-error';
 export { InvalidMessageRoleError } from '../prompt/invalid-message-role-error';
 export { MessageConversionError } from '../prompt/message-conversion-error';
-export { DownloadError } from '@ai-tools/provider-utils';
+export { DownloadError } from '@ai-toolkit/provider-utils';
 export { RetryError } from '../util/retry-error';

@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { ModelCallStreamPart } from '../generate-text/stream-model-call';
 
 const name = 'AI_InvalidStreamPartError';

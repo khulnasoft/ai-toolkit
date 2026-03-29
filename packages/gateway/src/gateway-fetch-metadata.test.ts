@@ -1,7 +1,7 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { GatewayFetchMetadata } from './gateway-fetch-metadata';
-import type { FetchFunction } from '@ai-tools/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
   GatewayAuthenticationError,
   GatewayInternalServerError,

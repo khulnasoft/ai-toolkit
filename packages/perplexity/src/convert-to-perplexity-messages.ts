@@ -1,12 +1,12 @@
 import {
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   PerplexityMessageContent,
   PerplexityPrompt,
 } from './perplexity-language-model-prompt';
-import { convertUint8ArrayToBase64 } from '@ai-tools/provider-utils';
+import { convertUint8ArrayToBase64 } from '@ai-toolkit/provider-utils';
 
 export function convertToPerplexityMessages(
   prompt: LanguageModelV4Prompt,

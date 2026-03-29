@@ -1,4 +1,4 @@
-import { ImageModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { ImageModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertImageModelFileToDataUri,
@@ -9,7 +9,7 @@ import {
   getFromApi,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { xaiFailedResponseHandler } from './xai-error';
 import { xaiImageModelOptions } from './xai-image-options';

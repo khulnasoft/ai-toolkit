@@ -35,8 +35,8 @@ You can also explicitly import and use the gateway provider:
 import { gateway } from 'ai';
 model: gateway('anthropic/claude-sonnet-4.5');
 
-// Option 2: Install and import from '@ai-tools/gateway' package
-import { gateway } from '@ai-tools/gateway';
+// Option 2: Install and import from '@ai-toolkit/gateway' package
+import { gateway } from '@ai-toolkit/gateway';
 model: gateway('anthropic/claude-sonnet-4.5');
 ```
 

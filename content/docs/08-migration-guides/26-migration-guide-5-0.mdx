@@ -47,9 +47,9 @@ For more information, see the [AI SDK 5 Migration MCP Server repository](https:/
 You need to update the following packages to the following versions in your `package.json` file(s):
 
 - `ai` package: `5.0.0`
-- `@ai-tools/provider` package: `2.0.0`
-- `@ai-tools/provider-utils` package: `3.0.0`
-- `@ai-tools/*` packages: `2.0.0` (other `@ai-sdk` packages)
+- `@ai-toolkit/provider` package: `2.0.0`
+- `@ai-toolkit/provider-utils` package: `3.0.0`
+- `@ai-toolkit/*` packages: `2.0.0` (other `@ai-sdk` packages)
 
 Additionally, you need to update the following peer dependencies:
 
@@ -58,7 +58,7 @@ Additionally, you need to update the following peer dependencies:
 An example upgrade command would be:
 
 ```
-npm install ai @ai-tools/react @ai-tools/openai zod@^4.1.8
+npm install ai @ai-toolkit/react @ai-toolkit/openai zod@^4.1.8
 ```
 
 <Note>
@@ -88,30 +88,30 @@ You can run all codemods provided as part of the 5.0 upgrade process by running
 the following command from the root of your project:
 
 ```sh
-npx @ai-tools/codemod upgrade
+npx @ai-toolkit/codemod upgrade
 ```
 
 To run only the v5 codemods (v4 → v5 migration):
 
 ```sh
-npx @ai-tools/codemod v5
+npx @ai-toolkit/codemod v5
 ```
 
 Individual codemods can be run by specifying the name of the codemod:
 
 ```sh
-npx @ai-tools/codemod <codemod-name> <path>
+npx @ai-toolkit/codemod <codemod-name> <path>
 ```
 
 For example, to run a specific v5 codemod:
 
 ```sh
-npx @ai-tools/codemod v5/rename-format-stream-part src/
+npx @ai-toolkit/codemod v5/rename-format-stream-part src/
 ```
 
 See also the [table of codemods](#codemod-table). In addition, the latest set of
 codemods can be found in the
-[`@ai-tools/codemod`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/codemod/src/codemods)
+[`@ai-toolkit/codemod`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/codemod/src/codemods)
 repository.
 
 ## AI SDK Core Changes
@@ -1228,34 +1228,34 @@ console.log(result.totalUsage);
 
 ### Package Structure Changes
 
-### `@ai-tools/rsc` Package Extraction
+### `@ai-toolkit/rsc` Package Extraction
 
-The `ai/rsc` export has been extracted to a separate package `@ai-tools/rsc`.
+The `ai/rsc` export has been extracted to a separate package `@ai-toolkit/rsc`.
 
 ```tsx filename="AI SDK 4.0"
 import { createStreamableValue } from 'ai/rsc';
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { createStreamableValue } from '@ai-tools/rsc';
+import { createStreamableValue } from '@ai-toolkit/rsc';
 ```
 
-<Note>Don't forget to install the new package: `npm install @ai-tools/rsc`</Note>
+<Note>Don't forget to install the new package: `npm install @ai-toolkit/rsc`</Note>
 
-### React UI Hooks Moved to `@ai-tools/react`
+### React UI Hooks Moved to `@ai-toolkit/react`
 
-The deprecated `ai/react` export has been removed in favor of `@ai-tools/react`.
+The deprecated `ai/react` export has been removed in favor of `@ai-toolkit/react`.
 
 ```tsx filename="AI SDK 4.0"
 import { useChat } from 'ai/react';
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 ```
 
 <Note>
-  Don't forget to install the new package: `npm install @ai-tools/react`
+  Don't forget to install the new package: `npm install @ai-toolkit/react`
 </Note>
 
 ### useChat Changes
@@ -1284,7 +1284,7 @@ const result = await streamText({
 });
 
 // Client-side: Configure automatic submission
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
@@ -1323,7 +1323,7 @@ For more details on the new tool submission approach, see the [Tool Result Submi
 The `initialMessages` option has been renamed to `messages`.
 
 ```tsx filename="AI SDK 4.0"
-import { useChat, type Message } from '@ai-tools/react';
+import { useChat, type Message } from '@ai-toolkit/react';
 
 function ChatComponent({ initialMessages }: { initialMessages: Message[] }) {
   const { messages } = useChat({
@@ -1336,7 +1336,7 @@ function ChatComponent({ initialMessages }: { initialMessages: Message[] }) {
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat, type UIMessage } from '@ai-tools/react';
+import { useChat, type UIMessage } from '@ai-toolkit/react';
 
 function ChatComponent({ initialMessages }: { initialMessages: UIMessage[] }) {
   const { messages } = useChat({
@@ -1393,7 +1393,7 @@ For a complete example of sharing chat state across components, see the [Share C
 Configuration is now handled through transport objects instead of direct API options.
 
 ```tsx filename="AI SDK 4.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 const { messages } = useChat({
   api: '/api/chat',
@@ -1403,7 +1403,7 @@ const { messages } = useChat({
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 const { messages } = useChat({
@@ -1420,7 +1420,7 @@ const { messages } = useChat({
 The `useChat` hook no longer manages input state internally. You must now manage input state manually.
 
 ```tsx filename="AI SDK 4.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 export default function Page() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
@@ -1437,7 +1437,7 @@ export default function Page() {
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 
@@ -1665,7 +1665,7 @@ const { messages, sendMessage, addToolResult } = useChat({
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
@@ -1824,7 +1824,7 @@ Then, on the client, you can access the message-level metadata.
 ```tsx filename="AI SDK 5.0 - Client"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import type { MyUIMessage } from './api/chat/route';
 import { DefaultChatTransport } from 'ai';
 
@@ -1862,7 +1862,7 @@ You can also access your metadata from the `onFinish` callback of `useChat`:
 ```tsx filename="AI SDK 5.0 - onFinish"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import type { MyUIMessage } from './api/chat/route';
 import { DefaultChatTransport } from 'ai';
 
@@ -1885,7 +1885,7 @@ export default function Chat() {
 The `experimental_prepareRequestBody` option has been replaced with `prepareSendMessagesRequest` in the transport configuration.
 
 ```tsx filename="AI SDK 4.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 const { messages } = useChat({
   api: '/api/chat',
@@ -1897,7 +1897,7 @@ const { messages } = useChat({
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 const { messages } = useChat({
@@ -1911,15 +1911,15 @@ const { messages } = useChat({
 });
 ```
 
-### `@ai-tools/vue` Changes
+### `@ai-toolkit/vue` Changes
 
 The Vue.js integration has been completely restructured, replacing the `useChat` composable with a `Chat` class.
 
 #### useChat Replaced with Chat Class
 
-```typescript filename="@ai-tools/vue v1"
+```typescript filename="@ai-toolkit/vue v1"
 <script setup>
-import { useChat } from '@ai-tools/vue';
+import { useChat } from '@ai-toolkit/vue';
 
 const { messages, input, handleSubmit } = useChat({
   api: '/api/chat',
@@ -1927,9 +1927,9 @@ const { messages, input, handleSubmit } = useChat({
 </script>
 ```
 
-```typescript filename="@ai-tools/vue v2"
+```typescript filename="@ai-toolkit/vue v2"
 <script setup>
-import { Chat } from '@ai-tools/vue';
+import { Chat } from '@ai-toolkit/vue';
 import { DefaultChatTransport } from 'ai';
 import { ref } from 'vue';
 
@@ -1950,7 +1950,7 @@ const handleSubmit = (e: Event) => {
 
 Messages now use a `parts` array instead of a `content` string.
 
-```typescript filename="@ai-tools/vue v1"
+```typescript filename="@ai-toolkit/vue v1"
 <template>
   <div v-for="message in messages" :key="message.id">
     <div>{{ message.role }}: {{ message.content }}</div>
@@ -1958,7 +1958,7 @@ Messages now use a `parts` array instead of a `content` string.
 </template>
 ```
 
-```typescript filename="@ai-tools/vue v2"
+```typescript filename="@ai-toolkit/vue v2"
 <template>
   <div v-for="message in chat.messages" :key="message.id">
     <div>{{ message.role }}:</div>
@@ -1969,22 +1969,22 @@ Messages now use a `parts` array instead of a `content` string.
 </template>
 ```
 
-### `@ai-tools/svelte` Changes
+### `@ai-toolkit/svelte` Changes
 
 The Svelte integration has also been updated with new constructor patterns and readonly properties.
 
 #### Constructor API Changes
 
-```js filename="@ai-tools/svelte v1"
-import { Chat } from '@ai-tools/svelte';
+```js filename="@ai-toolkit/svelte v1"
+import { Chat } from '@ai-toolkit/svelte';
 
 const chatInstance = Chat({
   api: '/api/chat',
 });
 ```
 
-```js filename="@ai-tools/svelte v2"
-import { Chat } from '@ai-tools/svelte';
+```js filename="@ai-toolkit/svelte v2"
+import { Chat } from '@ai-toolkit/svelte';
 import { DefaultChatTransport } from 'ai';
 
 const chatInstance = Chat(() => ({
@@ -1996,12 +1996,12 @@ const chatInstance = Chat(() => ({
 
 Properties are now readonly and must be updated using setter methods.
 
-```js filename="@ai-tools/svelte v1"
+```js filename="@ai-toolkit/svelte v1"
 // Direct property mutation was allowed
 chatInstance.messages = [...chatInstance.messages, newMessage];
 ```
 
-```js filename="@ai-tools/svelte v2"
+```js filename="@ai-toolkit/svelte v2"
 // Must use setter methods
 chatInstance.setMessages([...chatInstance.messages, newMessage]);
 ```
@@ -2010,12 +2010,12 @@ chatInstance.setMessages([...chatInstance.messages, newMessage]);
 
 Like React and Vue, input management has been removed from the Svelte integration.
 
-```js filename="@ai-tools/svelte v1"
+```js filename="@ai-toolkit/svelte v1"
 // Input was managed internally
 const { messages, input, handleSubmit } = chatInstance;
 ```
 
-```js filename="@ai-tools/svelte v2"
+```js filename="@ai-toolkit/svelte v2"
 // Must manage input state manually
 let input = '';
 const { messages, sendMessage } = chatInstance;
@@ -2026,12 +2026,12 @@ const handleSubmit = () => {
 };
 ```
 
-#### `@ai-tools/ui-utils` Package Removal
+#### `@ai-toolkit/ui-utils` Package Removal
 
-The `@ai-tools/ui-utils` package has been removed and its exports moved to the main `ai` package.
+The `@ai-toolkit/ui-utils` package has been removed and its exports moved to the main `ai` package.
 
 ```tsx filename="AI SDK 4.0"
-import { getTextFromDataUrl } from '@ai-tools/ui-utils';
+import { getTextFromDataUrl } from '@ai-toolkit/ui-utils';
 ```
 
 ```tsx filename="AI SDK 5.0"
@@ -2065,7 +2065,7 @@ const {
 The `useAssistant` hook has been removed.
 
 ```tsx filename="AI SDK 4.0"
-import { useAssistant } from '@ai-tools/react';
+import { useAssistant } from '@ai-toolkit/react';
 ```
 
 ```tsx filename="AI SDK 5.0"
@@ -2191,9 +2191,9 @@ const { embeddings, usage } = await embedMany({
 });
 ```
 
-#### LangChain Adapter Moved to `@ai-tools/langchain`
+#### LangChain Adapter Moved to `@ai-toolkit/langchain`
 
-The `LangChainAdapter` has been moved to `@ai-tools/langchain` and the API has been updated to use UI message streams.
+The `LangChainAdapter` has been moved to `@ai-toolkit/langchain` and the API has been updated to use UI message streams.
 
 ```tsx filename="AI SDK 4.0"
 import { LangChainAdapter } from 'ai';
@@ -2202,7 +2202,7 @@ const response = LangChainAdapter.toDataStreamResponse(stream);
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { toUIMessageStream } from '@ai-tools/langchain';
+import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 const response = createUIMessageStreamResponse({
@@ -2211,12 +2211,12 @@ const response = createUIMessageStreamResponse({
 ```
 
 <Note>
-  Don't forget to install the new package: `npm install @ai-tools/langchain`
+  Don't forget to install the new package: `npm install @ai-toolkit/langchain`
 </Note>
 
-#### LlamaIndex Adapter Moved to `@ai-tools/llamaindex`
+#### LlamaIndex Adapter Moved to `@ai-toolkit/llamaindex`
 
-The `LlamaIndexAdapter` has been extracted to a separate package `@ai-tools/llamaindex` and follows the same UI message stream pattern.
+The `LlamaIndexAdapter` has been extracted to a separate package `@ai-toolkit/llamaindex` and follows the same UI message stream pattern.
 
 ```tsx filename="AI SDK 4.0"
 import { LlamaIndexAdapter } from 'ai';
@@ -2225,7 +2225,7 @@ const response = LlamaIndexAdapter.toDataStreamResponse(stream);
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { toUIMessageStream } from '@ai-tools/llamaindex';
+import { toUIMessageStream } from '@ai-toolkit/llamaindex';
 import { createUIMessageStreamResponse } from 'ai';
 
 const response = createUIMessageStreamResponse({
@@ -2234,7 +2234,7 @@ const response = createUIMessageStreamResponse({
 ```
 
 <Note>
-  Don't forget to install the new package: `npm install @ai-tools/llamaindex`
+  Don't forget to install the new package: `npm install @ai-toolkit/llamaindex`
 </Note>
 
 ## Streaming Architecture
@@ -2665,14 +2665,14 @@ import { IdGenerator } from 'ai';
 
 #### Language Model V2 Import
 
-`LanguageModelV3` must now be imported from `@ai-tools/provider`.
+`LanguageModelV3` must now be imported from `@ai-toolkit/provider`.
 
 ```tsx filename="AI SDK 4.0"
 import { LanguageModelV3 } from 'ai';
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { LanguageModelV3 } from '@ai-tools/provider';
+import { LanguageModelV3 } from '@ai-toolkit/provider';
 ```
 
 #### Middleware Rename
@@ -2684,7 +2684,7 @@ import { LanguageModelV1Middleware } from 'ai';
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { LanguageModelV3Middleware } from '@ai-tools/provider';
+import { LanguageModelV3Middleware } from '@ai-toolkit/provider';
 ```
 
 #### Usage Token Properties
@@ -3067,13 +3067,13 @@ return createUIMessageStreamResponse({ stream });
 In AI SDK 5, the default OpenAI provider instance uses the Responses API, while AI SDK 4 used the Chat Completions API. The Chat Completions API remains fully supported and you can use it with `openai.chat(...)`.
 
 ```tsx filename="AI SDK 4.0"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const defaultModel = openai('gpt-4.1-mini'); // Chat Completions API
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const defaultModel = openai('gpt-4.1-mini'); // Responses API
 
@@ -3095,7 +3095,7 @@ In AI SDK 4.0, you could set the `strictSchemas` option on Responses models (whi
 ```tsx filename="AI SDK 4.0"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIResponsesProviderOptions } from '@ai-tools/openai';
+import { openai, type OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai.responses('gpt-4.1'),
@@ -3113,7 +3113,7 @@ const result = await generateObject({
 ```tsx filename="AI SDK 5.0"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIResponsesProviderOptions } from '@ai-tools/openai';
+import { openai, type OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai('gpt-4.1-2024'), // uses Responses API
@@ -3137,7 +3137,7 @@ The `structuredOutputs` option is now configured using provider options rather t
 ```tsx filename="AI SDK 4.0"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai('gpt-4.1', { structuredOutputs: true }), // use Chat Completions API
@@ -3148,7 +3148,7 @@ const result = await generateObject({
 ```tsx filename="AI SDK 5.0 (Chat Completions API)"
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { openai, type OpenAIChatLanguageModelOptions } from '@ai-tools/openai';
+import { openai, type OpenAIChatLanguageModelOptions } from '@ai-toolkit/openai';
 
 const result = await generateObject({
   model: openai.chat('gpt-4.1'), // use Chat Completions API
@@ -3234,7 +3234,7 @@ const { text, providerMetadata } = await generateText({
 ```
 
 ```tsx filename="AI SDK 5.0"
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-1.5-pro'),
   prompt:
@@ -3290,7 +3290,7 @@ import {
   CoreToolResultUnion,
   CoreToolCallUnion,
   CoreToolChoice,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 ```
 
 ```tsx filename="AI SDK 5.0"
@@ -3300,7 +3300,7 @@ import {
   TypedToolResult,
   TypedToolCall,
   ToolChoice,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 ```
 
 ## Troubleshooting

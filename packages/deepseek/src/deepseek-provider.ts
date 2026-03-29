@@ -2,13 +2,13 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { DeepSeekChatModelId } from './chat/deepseek-chat-options';
 import { DeepSeekChatLanguageModel } from './chat/deepseek-chat-language-model';
 import { VERSION } from './version';
@@ -75,7 +75,7 @@ export function createDeepSeek(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/deepseek/${VERSION}`,
+      `ai-toolkit/deepseek/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: DeepSeekChatModelId) => {

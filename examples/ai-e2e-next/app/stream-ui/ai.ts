@@ -1,4 +1,4 @@
-import { createAI } from '@ai-tools/rsc';
+import { createAI } from '@ai-toolkit/rsc';
 import { AIState, submitUserMessage, UIState } from './actions';
 import { generateId } from 'ai';
 

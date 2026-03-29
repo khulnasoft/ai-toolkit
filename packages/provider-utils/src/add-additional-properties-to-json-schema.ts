@@ -1,4 +1,4 @@
-import { JSONSchema7, JSONSchema7Definition } from '@ai-tools/provider';
+import { JSONSchema7, JSONSchema7Definition } from '@ai-toolkit/provider';
 
 /**
  * Recursively adds additionalProperties: false to the JSON schema. This is necessary because some providers (e.g. OpenAI) do not support additionalProperties: true.

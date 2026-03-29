@@ -1,4 +1,4 @@
-import { deepinfra } from '@ai-tools/deepinfra';
+import { deepinfra } from '@ai-toolkit/deepinfra';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 import { weatherTool } from '../../tools/weather-tool';

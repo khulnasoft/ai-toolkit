@@ -1,4 +1,4 @@
-# @ai-tools/langchain
+# @ai-toolkit/langchain
 
 ## 3.0.0-beta.45
 
@@ -2981,7 +2981,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @ai-tools/provider-utils@3.0.0-canary.15
+  - @ai-toolkit/provider-utils@3.0.0-canary.15
   - ai@5.0.0-canary.18
 
 ## 1.0.0-canary.5
@@ -2990,7 +2990,7 @@
 
 - Updated dependencies
   - ai@5.0.0-canary.17
-  - @ai-tools/provider-utils@3.0.0-canary.14
+  - @ai-toolkit/provider-utils@3.0.0-canary.14
 
 ## 1.0.0-canary.4
 
@@ -3005,7 +3005,7 @@
 
 - Updated dependencies
   - ai@5.0.0-canary.15
-  - @ai-tools/provider-utils@3.0.0-canary.13
+  - @ai-toolkit/provider-utils@3.0.0-canary.13
 
 ## 1.0.0-canary.2
 
@@ -3013,7 +3013,7 @@
 
 - Updated dependencies
   - ai@5.0.0-canary.14
-  - @ai-tools/provider-utils@3.0.0-canary.12
+  - @ai-toolkit/provider-utils@3.0.0-canary.12
 
 ## 1.0.0-canary.1
 
@@ -3022,4 +3022,4 @@
 - c9fbc57: chore(providers/langchain): extract to separate package
 - Updated dependencies
   - ai@5.0.0-canary.13
-  - @ai-tools/provider-utils@3.0.0-canary.11
+  - @ai-toolkit/provider-utils@3.0.0-canary.11

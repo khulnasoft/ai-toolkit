@@ -1,5 +1,5 @@
 import { ModelMessage, streamText } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {
   const { messages }: { messages: ModelMessage[] } = await req.json();

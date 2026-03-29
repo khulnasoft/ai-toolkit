@@ -1,5 +1,5 @@
-import { createJsonErrorResponseHandler } from '@ai-tools/provider-utils';
-import type { FetchFunction, Resolvable } from '@ai-tools/provider-utils';
+import { createJsonErrorResponseHandler } from '@ai-toolkit/provider-utils';
+import type { FetchFunction, Resolvable } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 
 export interface ProdiaModelConfig {

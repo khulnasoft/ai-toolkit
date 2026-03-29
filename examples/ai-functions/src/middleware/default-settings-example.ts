@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { defaultSettingsMiddleware, generateText, wrapLanguageModel } from 'ai';
 import { run } from '../lib/run';
 

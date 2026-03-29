@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 import * as path from 'node:path';
 import * as fs from 'node:fs/promises';

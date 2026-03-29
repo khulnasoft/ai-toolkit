@@ -1,10 +1,14 @@
-import { ImageModelV4, NoSuchModelError, ProviderV4 } from '@ai-tools/provider';
+import {
+  ImageModelV4,
+  NoSuchModelError,
+  ProviderV4,
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { LumaImageModel } from './luma-image-model';
 import { LumaImageModelId } from './luma-image-settings';
 import { VERSION } from './version';
@@ -61,7 +65,7 @@ export function createLuma(options: LumaProviderSettings = {}): LumaProvider {
         })}`,
         ...options.headers,
       },
-      `ai-sdk/luma/${VERSION}`,
+      `ai-toolkit/luma/${VERSION}`,
     );
 
   const createImageModel = (modelId: LumaImageModelId) =>

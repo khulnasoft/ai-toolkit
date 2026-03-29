@@ -1,4 +1,4 @@
-import { createBaseten } from '@ai-tools/baseten';
+import { createBaseten } from '@ai-toolkit/baseten';
 import { embedMany } from 'ai';
 import { run } from '../../lib/run';
 

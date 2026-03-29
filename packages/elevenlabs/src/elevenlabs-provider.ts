@@ -3,12 +3,12 @@ import {
   SpeechModelV4,
   ProviderV4,
   NoSuchModelError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ElevenLabsTranscriptionModel } from './elevenlabs-transcription-model';
 import { ElevenLabsTranscriptionModelId } from './elevenlabs-transcription-options';
 import { ElevenLabsSpeechModel } from './elevenlabs-speech-model';
@@ -73,7 +73,7 @@ export function createElevenLabs(
         }),
         ...options.headers,
       },
-      `ai-sdk/elevenlabs/${VERSION}`,
+      `ai-toolkit/elevenlabs/${VERSION}`,
     );
 
   const createTranscriptionModel = (modelId: ElevenLabsTranscriptionModelId) =>

@@ -3,7 +3,7 @@ import {
   appendStreamId,
   saveChat,
 } from '@/util/chat-store';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import {
   convertToModelMessages,
   createUIMessageStream,

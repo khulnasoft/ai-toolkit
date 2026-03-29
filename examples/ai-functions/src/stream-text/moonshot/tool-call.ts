@@ -1,4 +1,4 @@
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 import { weatherTool } from '../../tools/weather-tool';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';

@@ -1,4 +1,4 @@
-import type { SharedV4Warning } from '@ai-tools/provider';
+import type { SharedV4Warning } from '@ai-toolkit/provider';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Warning } from '../types/warning';
 import {

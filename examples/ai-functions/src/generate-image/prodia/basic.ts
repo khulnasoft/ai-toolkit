@@ -1,4 +1,4 @@
-import { ProdiaImageModelOptions, prodia } from '@ai-tools/prodia';
+import { ProdiaImageModelOptions, prodia } from '@ai-toolkit/prodia';
 import { generateImage } from 'ai';
 import { presentImages } from '../../lib/present-image';
 import { run } from '../../lib/run';

@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { Output, ToolLoopAgent } from 'ai';
 import { z } from 'zod';
 import { print } from '../../lib/print';

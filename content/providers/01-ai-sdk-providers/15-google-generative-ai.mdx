@@ -10,36 +10,36 @@ the [Google Generative AI](https://ai.google.dev/api/rest) APIs.
 
 ## Setup
 
-The Google provider is available in the `@ai-tools/google` module. You can install it with
+The Google provider is available in the `@ai-toolkit/google` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/google" dark />
+    <Snippet text="pnpm add @ai-toolkit/google" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/google" dark />
+    <Snippet text="npm install @ai-toolkit/google" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/google" dark />
+    <Snippet text="yarn add @ai-toolkit/google" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/google" dark />
+    <Snippet text="bun add @ai-toolkit/google" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `google` from `@ai-tools/google`:
+You can import the default provider instance `google` from `@ai-toolkit/google`:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 ```
 
-If you need a customized setup, you can import `createGoogleGenerativeAI` from `@ai-tools/google` and create a provider instance with your settings:
+If you need a customized setup, you can import `createGoogleGenerativeAI` from `@ai-toolkit/google` and create a provider instance with your settings:
 
 ```ts
-import { createGoogleGenerativeAI } from '@ai-tools/google';
+import { createGoogleGenerativeAI } from '@ai-toolkit/google';
 
 const google = createGoogleGenerativeAI({
   // custom settings
@@ -92,7 +92,7 @@ const model = google('gemini-2.5-flash');
 You can use Google Generative AI language models to generate text with the `generateText` function:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -109,7 +109,7 @@ Google Generative AI also supports some model specific settings that are not par
 You can pass them as an options argument:
 
 ```ts
-import { google, type GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, type GoogleLanguageModelOptions } from '@ai-toolkit/google';
 
 const model = google('gemini-2.5-flash');
 
@@ -259,7 +259,7 @@ The Gemini 2.5 and Gemini 3 series models use an internal "thinking process" tha
 For Gemini 3 models, use the `thinkingLevel` parameter to control the depth of reasoning:
 
 ```ts
-import { google, GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const model = google('gemini-3.1-pro-preview');
@@ -287,7 +287,7 @@ console.log(reasoning); // Reasoning summary
 For Gemini 2.5 models, use the `thinkingBudget` parameter to control the number of thinking tokens:
 
 ```ts
-import { google, GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const model = google('gemini-2.5-flash');
@@ -315,7 +315,7 @@ console.log(reasoning); // Reasoning summary
 The Google Generative AI provider supports file inputs, e.g. PDF files.
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -342,7 +342,7 @@ const result = await generateText({
 You can also use YouTube URLs directly:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -393,7 +393,7 @@ To maximize cache hits with implicit caching:
   - Gemini 2.5 Pro: 2048 tokens minimum
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 // Structure prompts with consistent content at the beginning
@@ -428,7 +428,7 @@ console.log('Cached tokens:', providerMetadata.google);
 ```
 
 <Note>
-  Usage metadata was added to `providerMetadata` in `@ai-tools/google@1.2.23`. If
+  Usage metadata was added to `providerMetadata` in `@ai-toolkit/google@1.2.23`. If
   you are using an older version, usage metadata is available in the raw HTTP
   `response` body returned as part of the return value from `generateText`.
 </Note>
@@ -438,7 +438,7 @@ console.log('Cached tokens:', providerMetadata.google);
 For guaranteed cost savings, you can still use explicit caching with Gemini 2.5 and 2.0 models. See the [models page](https://ai.google.dev/gemini-api/docs/models) to check if caching is supported for the used model:
 
 ```ts
-import { google, type GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, type GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { GoogleGenAI } from '@google/genai';
 import { generateText } from 'ai';
 
@@ -490,8 +490,8 @@ With [Code Execution](https://ai.google.dev/gemini-api/docs/code-execution), cer
 You can enable code execution by adding the `code_execution` tool to your request.
 
 ```ts
-import { google } from '@ai-tools/google';
-import { googleTools } from '@ai-tools/google/internal';
+import { google } from '@ai-toolkit/google';
+import { googleTools } from '@ai-toolkit/google/internal';
 import { generateText } from 'ai';
 
 const { text, toolCalls, toolResults } = await generateText({
@@ -509,8 +509,8 @@ With [Google Search grounding](https://ai.google.dev/gemini-api/docs/google-sear
 the model has access to the latest information using Google Search.
 
 ```ts highlight="8,17-20"
-import { google } from '@ai-tools/google';
-import { GoogleGenerativeAIProviderMetadata } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
+import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
@@ -613,13 +613,13 @@ the model has access to a compliance-focused web index designed for highly-regul
 
 <Note>
   Enterprise Web Search is only available on Vertex AI. You must use the Google
-  Vertex provider (`@ai-tools/google-vertex`) instead of the standard Google
-  provider (`@ai-tools/google`) to use this feature. Requires Gemini 2.0 or newer
+  Vertex provider (`@ai-toolkit/google-vertex`) instead of the standard Google
+  provider (`@ai-toolkit/google`) to use this feature. Requires Gemini 2.0 or newer
   models.
 </Note>
 
 ```ts
-import { createVertex } from '@ai-tools/google-vertex';
+import { createVertex } from '@ai-toolkit/google-vertex';
 import { generateText } from 'ai';
 
 const vertex = createVertex({
@@ -647,7 +647,7 @@ Enterprise Web Search provides the following benefits:
 The [File Search tool](https://ai.google.dev/gemini-api/docs/file-search) lets Gemini retrieve context from your own documents that you have indexed in File Search stores. Only Gemini 2.5 and Gemini 3 models support this feature.
 
 ```ts highlight="9-13"
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources } = await generateText({
@@ -674,7 +674,7 @@ Google provides a provider-defined URL context tool.
 The URL context tool allows you to provide specific URLs that you want the model to analyze directly in from the prompt.
 
 ```ts highlight="9,13-17"
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
@@ -732,7 +732,7 @@ With the URL context tool, you will also get the `groundingMetadata`.
             "segment": {
                 "startIndex": 67,
                 "endIndex": 157,
-                "text": "**Installation**: Install the `@ai-tools/google` module using your preferred package manager"
+                "text": "**Installation**: Install the `@ai-toolkit/google` module using your preferred package manager"
             },
             "groundingChunkIndices": [
                 0
@@ -755,7 +755,7 @@ With the URL context tool, you will also get the `groundingMetadata`.
 You can combine the URL context tool with search grounding to provide the model with the latest information from the web.
 
 ```ts highlight="9-10"
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
@@ -781,8 +781,8 @@ With [Google Maps grounding](https://ai.google.dev/gemini-api/docs/maps-groundin
 the model has access to Google Maps data for location-aware responses. This enables providing local data and geospatial context, such as finding nearby restaurants.
 
 ```ts highlight="7-16"
-import { google, type GoogleLanguageModelOptions } from '@ai-tools/google';
-import { GoogleGenerativeAIProviderMetadata } from '@ai-tools/google';
+import { google, type GoogleLanguageModelOptions } from '@ai-toolkit/google';
+import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
@@ -837,13 +837,13 @@ This enables the model to provide answers based on your specific data sources an
 
 <Note>
   RAG Engine Grounding is only supported with Vertex Gemini models. You must use
-  the Google Vertex provider (`@ai-tools/google-vertex`) instead of the standard
-  Google provider (`@ai-tools/google`) to use this feature.
+  the Google Vertex provider (`@ai-toolkit/google-vertex`) instead of the standard
+  Google provider (`@ai-toolkit/google`) to use this feature.
 </Note>
 
 ```ts highlight="8,17-20"
-import { createVertex } from '@ai-tools/google-vertex';
-import { GoogleGenerativeAIProviderMetadata } from '@ai-tools/google';
+import { createVertex } from '@ai-toolkit/google-vertex';
+import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const vertex = createVertex({
@@ -945,7 +945,7 @@ The `vertexRagStore` tool accepts the following configuration options:
 Gemini models with image generation capabilities (e.g. `gemini-2.5-flash-image`) support generating images as part of a multimodal response. Images are exposed as files in the response.
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -1090,7 +1090,7 @@ The following Gemma models are available:
 Gemma models don't natively support the `systemInstruction` parameter, but the provider automatically handles system instructions by prepending them to the first user message. This allows you to use system instructions with Gemma models seamlessly:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -1119,7 +1119,7 @@ The Google Generative AI provider sends API calls to the right endpoint based on
 Google Generative AI embedding models support additional settings. You can pass them as an options argument:
 
 ```ts
-import { google, type GoogleEmbeddingModelOptions } from '@ai-tools/google';
+import { google, type GoogleEmbeddingModelOptions } from '@ai-toolkit/google';
 import { embed } from 'ai';
 
 const model = google.embedding('gemini-embedding-001');
@@ -1140,7 +1140,7 @@ const { embedding } = await embed({
 When using `embedMany`, provide per-value multimodal content via the `content` option. Each entry corresponds to a value at the same index; use `null` for text-only entries:
 
 ```ts
-import { google, type GoogleEmbeddingModelOptions } from '@ai-tools/google';
+import { google, type GoogleEmbeddingModelOptions } from '@ai-toolkit/google';
 import { embedMany } from 'ai';
 
 const { embeddings } = await embedMany({
@@ -1203,7 +1203,7 @@ The Google provider supports two types of image models:
 [Imagen](https://ai.google.dev/gemini-api/docs/imagen) models are dedicated image generation models.
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -1216,8 +1216,8 @@ const { image } = await generateImage({
 Further configuration can be done using Google provider options. You can validate the provider options using the `GoogleImageModelOptions` type.
 
 ```ts
-import { google } from '@ai-tools/google';
-import { GoogleImageModelOptions } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
+import { GoogleImageModelOptions } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -1254,7 +1254,7 @@ The following provider options are available for Imagen models:
 [Gemini image models](https://ai.google.dev/gemini-api/docs/image-generation) (e.g. `gemini-2.5-flash-image`) are technically multimodal output language models, but they can be used with the `generateImage()` function for a simpler image generation experience. Internally, the provider calls the language model API with `responseModalities: ['IMAGE']`.
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -1267,7 +1267,7 @@ const { image } = await generateImage({
 Gemini image models also support image editing by providing input images:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 import fs from 'node:fs';
 
@@ -1285,7 +1285,7 @@ const { image } = await generateImage({
 You can also use URLs for input images:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({

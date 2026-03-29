@@ -2,14 +2,14 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { PerplexityLanguageModel } from './perplexity-language-model';
 import { PerplexityLanguageModelId } from './perplexity-language-model-options';
 import { VERSION } from './version';
@@ -67,7 +67,7 @@ export function createPerplexity(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/perplexity/${VERSION}`,
+      `ai-toolkit/perplexity/${VERSION}`,
     );
 
   const createLanguageModel = (modelId: PerplexityLanguageModelId) => {

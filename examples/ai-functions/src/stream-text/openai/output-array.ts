@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { Output, stepCountIs, streamText } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

@@ -3,8 +3,8 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-tools/test-server/with-vitest';
-import { mockId } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/test-server/with-vitest';
+import { mockId } from '@ai-toolkit/provider-utils/test';
 import { screen, waitFor, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {

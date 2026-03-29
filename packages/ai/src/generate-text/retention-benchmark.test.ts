@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { LanguageModelV4Usage } from '@ai-tools/provider';
+import { LanguageModelV4Usage } from '@ai-toolkit/provider';
 import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
 import { generateText } from './generate-text';
 import { streamText } from './stream-text';
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 
 const LARGE_BODY_SIZE = 1024 * 1024; // 1MB
 

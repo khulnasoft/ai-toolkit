@@ -2,7 +2,7 @@ import {
   AISDKError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertUint8ArrayToBase64,
@@ -15,7 +15,7 @@ import {
   type Resolvable,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { googleVertexFailedResponseHandler } from './google-vertex-error';
 import type { GoogleVertexVideoModelId } from './google-vertex-video-settings';

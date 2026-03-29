@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-tools/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import { extractResponseHeaders } from './extract-response-headers';
 import { FetchFunction } from './fetch-function';
 import { handleFetchError } from './handle-fetch-error';
@@ -31,7 +31,7 @@ export const getFromApi = async <T>({
       method: 'GET',
       headers: withUserAgentSuffix(
         headers,
-        `ai-sdk/provider-utils/${VERSION}`,
+        `ai-toolkit/provider-utils/${VERSION}`,
         getRuntimeEnvironmentUserAgent(),
       ),
       signal: abortSignal,

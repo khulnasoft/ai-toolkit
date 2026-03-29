@@ -1,5 +1,5 @@
-import { EmbeddingModelV4Embedding } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { EmbeddingModelV4Embedding } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { GoogleGenerativeAIEmbeddingModel } from './google-generative-ai-embedding-model';
 import { createGoogleGenerativeAI } from './google-provider';
 import { describe, it, expect, vi } from 'vitest';
@@ -244,7 +244,7 @@ describe('GoogleGenerativeAIEmbeddingModel', () => {
       }
     `);
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/google/0.0.0-test`,
+      `ai-toolkit/google/0.0.0-test`,
     );
   });
 

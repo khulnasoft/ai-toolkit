@@ -24,17 +24,17 @@ AI SDK 5 requires all provider packages to implement specification version "v2".
 
 ### Update provider packages to AI SDK 5 compatible versions
 
-Update all your `@ai-tools/*` provider packages to compatible version `2.0.0` or later. These versions implement the v2 specification required by AI SDK 5.
+Update all your `@ai-toolkit/*` provider packages to compatible version `2.0.0` or later. These versions implement the v2 specification required by AI SDK 5.
 
 ```bash
-pnpm install ai@latest @ai-tools/openai@latest @ai-tools/anthropic@latest
+pnpm install ai@latest @ai-toolkit/openai@latest @ai-toolkit/anthropic@latest
 ```
 
 For AI SDK 5 compatibility, you need:
 
 - `ai` package: `5.0.0` or later
-- `@ai-tools/*` packages: `2.0.0` or later (for example, `@ai-tools/openai`, `@ai-tools/anthropic`, `@ai-tools/google`)
-- `@ai-tools/provider` package: `2.0.0` or later
+- `@ai-toolkit/*` packages: `2.0.0` or later (for example, `@ai-toolkit/openai`, `@ai-toolkit/anthropic`, `@ai-toolkit/google`)
+- `@ai-toolkit/provider` package: `2.0.0` or later
 - `zod` package: `4.1.8` or later
 
 ### Check provider compatibility
@@ -43,7 +43,7 @@ If you're using a third-party or custom provider, verify that it has been update
 
 To check if a provider supports AI SDK 5:
 
-1. Check the provider's package.json for `@ai-tools/provider` peer dependency version `2.0.0` or later
+1. Check the provider's package.json for `@ai-toolkit/provider` peer dependency version `2.0.0` or later
 2. Review the provider's changelog or migration guide
 3. Check the provider's repository for AI SDK 5 support
 

@@ -2,13 +2,13 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withoutTrailingSlash,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { HuggingFaceResponsesLanguageModel } from './responses/huggingface-responses-language-model';
 import { HuggingFaceResponsesModelId } from './responses/huggingface-responses-settings';
 

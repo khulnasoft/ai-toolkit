@@ -1,4 +1,4 @@
-import { huggingface } from '@ai-tools/huggingface';
+import { huggingface } from '@ai-toolkit/huggingface';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod/v4';
 import { run } from '../../lib/run';

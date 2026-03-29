@@ -5,7 +5,7 @@
     "rootDir": "src",
     "outDir": "dist",
     "paths": {
-      "@ai-tools/test-server": ["../test-server/src"]
+      "@ai-toolkit/test-server": ["../test-server/src"]
     }
   },
   "exclude": ["dist", "build", "node_modules", "scripts", "tsup.config.ts"],

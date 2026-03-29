@@ -32,7 +32,7 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai` and `@ai-tools/react`, the AI package and AI SDK's React hooks. The AI SDK's [ Vercel AI Gateway provider ](/providers/ai-sdk-providers/ai-gateway) ships with the `ai` package. You'll also install `zod`, a schema validation library used for defining tool inputs.
+Install `ai` and `@ai-toolkit/react`, the AI package and AI SDK's React hooks. The AI SDK's [ Vercel AI Gateway provider ](/providers/ai-sdk-providers/ai-gateway) ships with the `ai` package. You'll also install `zod`, a schema validation library used for defining tool inputs.
 
 <Note>
   This guide uses the Vercel AI Gateway provider so you can access hundreds of
@@ -44,16 +44,16 @@ Install `ai` and `@ai-tools/react`, the AI package and AI SDK's React hooks. The
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add ai @ai-tools/react zod" dark />
+      <Snippet text="pnpm add ai @ai-toolkit/react zod" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install ai @ai-tools/react zod" dark />
+      <Snippet text="npm install ai @ai-toolkit/react zod" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add ai @ai-tools/react zod" dark />
+      <Snippet text="yarn add ai @ai-toolkit/react zod" dark />
     </Tab>
     <Tab>
-      <Snippet text="bun add ai @ai-tools/react zod" dark />
+      <Snippet text="bun add ai @ai-toolkit/react zod" dark />
     </Tab>
   </Tabs>
 </div>
@@ -128,8 +128,8 @@ You can also explicitly import and use the gateway provider in two other equival
 import { gateway } from 'ai';
 model: gateway('anthropic/claude-sonnet-4.5');
 
-// Option 2: Install and import from '@ai-tools/gateway' package
-import { gateway } from '@ai-tools/gateway';
+// Option 2: Install and import from '@ai-toolkit/gateway' package
+import { gateway } from '@ai-toolkit/gateway';
 model: gateway('anthropic/claude-sonnet-4.5');
 ```
 
@@ -140,24 +140,24 @@ To use a different provider, install its package and create a provider instance.
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add @ai-tools/openai" dark />
+      <Snippet text="pnpm add @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install @ai-tools/openai" dark />
+      <Snippet text="npm install @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add @ai-tools/openai" dark />
+      <Snippet text="yarn add @ai-toolkit/openai" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add @ai-tools/openai" dark />
+      <Snippet text="bun add @ai-toolkit/openai" dark />
     </Tab>
 
   </Tabs>
 </div>
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 model: openai('gpt-5.1');
 ```
@@ -176,7 +176,7 @@ Update your root page (`app/(tabs)/index.tsx`) with the following code to show a
 
 ```tsx filename="app/(tabs)/index.tsx"
 import { generateAPIUrl } from '@/utils';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch';
 import { useState } from 'react';
@@ -384,7 +384,7 @@ To display the weather tool invocation in your UI, update your `app/(tabs)/index
 
 ```tsx filename="app/(tabs)/index.tsx" highlight="31-35"
 import { generateAPIUrl } from '@/utils';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch';
 import { useState } from 'react';
@@ -599,7 +599,7 @@ To display the temperature conversion tool invocation in your UI, update your `a
 
 ```tsx filename="app/(tabs)/index.tsx" highlight="37-42"
 import { generateAPIUrl } from '@/utils';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch';
 import { useState } from 'react';

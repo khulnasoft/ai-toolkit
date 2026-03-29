@@ -4,10 +4,10 @@ The **[Fireworks provider](https://ai-sdk.dev/providers/ai-sdk-providers/firewor
 
 ## Setup
 
-The Fireworks provider is available in the `@ai-tools/fireworks` module. You can install it with
+The Fireworks provider is available in the `@ai-toolkit/fireworks` module. You can install it with
 
 ```bash
-npm i @ai-tools/fireworks
+npm i @ai-toolkit/fireworks
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `fireworks` from `@ai-tools/fireworks`:
+You can import the default provider instance `fireworks` from `@ai-toolkit/fireworks`:
 
 ```ts
-import { fireworks } from '@ai-tools/fireworks';
+import { fireworks } from '@ai-toolkit/fireworks';
 ```
 
 ## Language Model Example
 
 ```ts
-import { fireworks } from '@ai-tools/fireworks';
+import { fireworks } from '@ai-toolkit/fireworks';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -41,7 +41,7 @@ const { text } = await generateText({
 ## Image Model Examples
 
 ```ts
-import { fireworks } from '@ai-tools/fireworks';
+import { fireworks } from '@ai-toolkit/fireworks';
 import { generateImage } from 'ai';
 import fs from 'fs';
 

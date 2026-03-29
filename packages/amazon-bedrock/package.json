@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/amazon-bedrock",
+  "name": "@ai-toolkit/amazon-bedrock",
   "version": "5.0.0-beta.12",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -48,15 +48,15 @@
     }
   },
   "dependencies": {
-    "@ai-tools/anthropic": "workspace:*",
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*",
+    "@ai-toolkit/anthropic": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*",
     "@smithy/eventstream-codec": "^4.0.1",
     "@smithy/util-utf8": "^4.0.0",
     "aws4fetch": "^1.0.20"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8.3.0",

@@ -3,11 +3,11 @@ import {
   readResponseWithSizeLimit,
   DEFAULT_MAX_DOWNLOAD_SIZE,
   validateDownloadUrl,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   withUserAgentSuffix,
   getRuntimeEnvironmentUserAgent,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { VERSION } from '../../version';
 
 /**
@@ -35,7 +35,7 @@ export const download = async ({
     const response = await fetch(urlText, {
       headers: withUserAgentSuffix(
         {},
-        `ai-sdk/${VERSION}`,
+        `ai-toolkit/${VERSION}`,
         getRuntimeEnvironmentUserAgent(),
       ),
       signal: abortSignal,

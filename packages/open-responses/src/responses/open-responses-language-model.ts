@@ -8,7 +8,7 @@ import {
   LanguageModelV4StreamResult,
   LanguageModelV4Usage,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
@@ -19,7 +19,7 @@ import {
   mapReasoningToProviderEffort,
   ParseResult,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { convertToOpenResponsesInput } from './convert-to-open-responses-input';
 import {

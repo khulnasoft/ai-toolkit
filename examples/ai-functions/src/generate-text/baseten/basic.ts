@@ -1,4 +1,4 @@
-import { baseten } from '@ai-tools/baseten';
+import { baseten } from '@ai-toolkit/baseten';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

@@ -1,4 +1,4 @@
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

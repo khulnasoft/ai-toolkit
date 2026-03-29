@@ -2,7 +2,7 @@ import {
   azure,
   type AzureResponsesSourceDocumentProviderMetadata,
   type OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import {
   convertToModelMessages,
   InferUITools,

@@ -1,7 +1,7 @@
 'use client';
 
 import ChatInput from '@/components/chat-input';
-import { UIMessage, useChat } from '@ai-tools/react';
+import { UIMessage, useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { createIdGenerator } from 'ai';
 

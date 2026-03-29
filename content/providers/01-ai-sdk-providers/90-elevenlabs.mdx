@@ -9,36 +9,36 @@ The [ElevenLabs](https://elevenlabs.io/) provider contains language model suppor
 
 ## Setup
 
-The ElevenLabs provider is available in the `@ai-tools/elevenlabs` module. You can install it with
+The ElevenLabs provider is available in the `@ai-toolkit/elevenlabs` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/elevenlabs" dark />
+    <Snippet text="pnpm add @ai-toolkit/elevenlabs" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/elevenlabs" dark />
+    <Snippet text="npm install @ai-toolkit/elevenlabs" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/elevenlabs" dark />
+    <Snippet text="yarn add @ai-toolkit/elevenlabs" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/elevenlabs" dark />
+    <Snippet text="bun add @ai-toolkit/elevenlabs" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `elevenlabs` from `@ai-tools/elevenlabs`:
+You can import the default provider instance `elevenlabs` from `@ai-toolkit/elevenlabs`:
 
 ```ts
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 ```
 
-If you need a customized setup, you can import `createElevenLabs` from `@ai-tools/elevenlabs` and create a provider instance with your settings:
+If you need a customized setup, you can import `createElevenLabs` from `@ai-toolkit/elevenlabs` and create a provider instance with your settings:
 
 ```ts
-import { createElevenLabs } from '@ai-tools/elevenlabs';
+import { createElevenLabs } from '@ai-toolkit/elevenlabs';
 
 const elevenlabs = createElevenLabs({
   // custom settings, e.g.
@@ -80,7 +80,7 @@ You can find voice IDs by selecting a voice in the library and copying its ID.
 
 ```ts highlight="6"
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 
 const result = await generateSpeech({
   model: elevenlabs.speech('eleven_multilingual_v2'),
@@ -96,7 +96,7 @@ import { experimental_generateSpeech as generateSpeech } from 'ai';
 import {
   elevenlabs,
   type ElevenLabsSpeechModelOptions,
-} from '@ai-tools/elevenlabs';
+} from '@ai-toolkit/elevenlabs';
 
 const result = await generateSpeech({
   model: elevenlabs.speech('eleven_multilingual_v2'),
@@ -198,7 +198,7 @@ import { experimental_transcribe as transcribe } from 'ai';
 import {
   elevenlabs,
   type ElevenLabsTranscriptionModelOptions,
-} from '@ai-tools/elevenlabs';
+} from '@ai-toolkit/elevenlabs';
 
 const result = await transcribe({
   model: elevenlabs.transcription('scribe_v1'),

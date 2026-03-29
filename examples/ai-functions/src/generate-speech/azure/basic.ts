@@ -1,4 +1,4 @@
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 import { saveAudioFile } from '../../lib/save-audio';
 import { run } from '../../lib/run';

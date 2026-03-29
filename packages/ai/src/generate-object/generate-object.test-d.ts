@@ -1,7 +1,7 @@
 import { expectTypeOf } from 'vitest';
 import { generateObject } from './generate-object';
 import { z } from 'zod/v4';
-import { JSONValue } from '@ai-tools/provider';
+import { JSONValue } from '@ai-toolkit/provider';
 import { describe, it } from 'vitest';
 
 describe('generateObject', () => {

@@ -1,4 +1,4 @@
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

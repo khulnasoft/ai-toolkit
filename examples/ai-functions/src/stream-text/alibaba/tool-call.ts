@@ -1,4 +1,4 @@
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

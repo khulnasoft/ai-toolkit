@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 
 const name = 'AI_RetryError';
 const marker = `vercel.ai.error.${name}`;

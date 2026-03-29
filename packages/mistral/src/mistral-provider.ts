@@ -3,13 +3,13 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { MistralChatLanguageModel } from './mistral-chat-language-model';
 import { MistralChatModelId } from './mistral-chat-options';
 import { MistralEmbeddingModel } from './mistral-embedding-model';
@@ -96,7 +96,7 @@ export function createMistral(
         })}`,
         ...options.headers,
       },
-      `ai-sdk/mistral/${VERSION}`,
+      `ai-toolkit/mistral/${VERSION}`,
     );
 
   const createChatModel = (modelId: MistralChatModelId) =>

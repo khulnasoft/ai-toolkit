@@ -5,7 +5,7 @@ import {
   type CompletionRequestOptions,
   type UseCompletionOptions,
 } from 'ai';
-import { normalizeHeaders } from '@ai-tools/provider-utils';
+import { normalizeHeaders } from '@ai-toolkit/provider-utils';
 
 export type CompletionOptions = Readonly<UseCompletionOptions>;
 

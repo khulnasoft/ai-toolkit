@@ -1,4 +1,4 @@
-import { LanguageModelV4Usage } from '@ai-tools/provider';
+import { LanguageModelV4Usage } from '@ai-toolkit/provider';
 
 export type HuggingFaceResponsesUsage = {
   input_tokens: number;

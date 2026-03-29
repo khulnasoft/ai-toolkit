@@ -1,4 +1,4 @@
-import { Experimental_VideoModelV3 } from '@ai-tools/provider';
+import { Experimental_VideoModelV3 } from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockVideoModelV3 implements Experimental_VideoModelV3 {

@@ -2,7 +2,7 @@ import {
   LanguageModelV4,
   LanguageModelV4Content,
   LanguageModelV4ToolCall,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   createIdGenerator,
   getErrorMessage,
@@ -10,7 +10,7 @@ import {
   ProviderOptions,
   ToolApprovalResponse,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { NoOutputGeneratedError } from '../error';
 import { ToolCallNotFoundForApprovalError } from '../error/tool-call-not-found-for-approval-error';
 import { logWarnings } from '../logger/log-warnings';

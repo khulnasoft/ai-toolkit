@@ -2,7 +2,7 @@ import {
   loadOptionalSetting,
   withoutTrailingSlash,
   type FetchFunction,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { asGatewayError, GatewayAuthenticationError } from './errors';
 import {
   GATEWAY_AUTH_METHOD_HEADER,
@@ -39,8 +39,8 @@ import type {
   ImageModelV4,
   Experimental_VideoModelV4,
   ProviderV4,
-} from '@ai-tools/provider';
-import { withUserAgentSuffix } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { withUserAgentSuffix } from '@ai-toolkit/provider-utils';
 import { VERSION } from './version';
 
 export interface GatewayProvider extends ProviderV4 {
@@ -186,7 +186,7 @@ export function createGatewayProvider(
           [GATEWAY_AUTH_METHOD_HEADER]: auth.authMethod,
           ...options.headers,
         },
-        `ai-sdk/gateway/${VERSION}`,
+        `ai-toolkit/gateway/${VERSION}`,
       );
     } catch (error) {
       throw GatewayAuthenticationError.createContextualError({

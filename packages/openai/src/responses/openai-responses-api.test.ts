@@ -1,4 +1,4 @@
-import { InferSchema } from '@ai-tools/provider-utils';
+import { InferSchema } from '@ai-toolkit/provider-utils';
 import { describe, expectTypeOf, it } from 'vitest';
 import {
   openaiResponsesChunkSchema,

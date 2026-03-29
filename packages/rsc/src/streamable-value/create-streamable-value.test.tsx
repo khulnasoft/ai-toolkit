@@ -1,5 +1,5 @@
-import { delay } from '@ai-tools/provider-utils';
-import { convertArrayToReadableStream } from '@ai-tools/provider-utils/test';
+import { delay } from '@ai-toolkit/provider-utils';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { createStreamableValue } from './create-streamable-value';
 import { STREAMABLE_VALUE_TYPE, StreamableValue } from './streamable-value';
 import { it, expect } from 'vitest';

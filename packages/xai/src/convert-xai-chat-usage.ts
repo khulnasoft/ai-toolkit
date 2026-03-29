@@ -1,4 +1,4 @@
-import { LanguageModelV4Usage } from '@ai-tools/provider';
+import { LanguageModelV4Usage } from '@ai-toolkit/provider';
 import { XaiChatUsage } from './xai-chat-language-model';
 
 export function convertXaiChatUsage(usage: XaiChatUsage): LanguageModelV4Usage {

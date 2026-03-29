@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-tools/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import { describe, expect, it } from 'vitest';
 import { handleFetchError } from './handle-fetch-error';
 

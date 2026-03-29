@@ -1,6 +1,6 @@
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useSharedChatContext } from './chat-context';
 import ChatInput from './chat-input';
 

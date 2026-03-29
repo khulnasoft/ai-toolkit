@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { UIToolInvocation } from 'ai';
 
 export default function ImageGenerationView({

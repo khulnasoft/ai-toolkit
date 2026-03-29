@@ -24,7 +24,7 @@ At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which 
 
 ```ts
 import { generateText } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
   model: openai.responses('gpt-4o'),
@@ -38,7 +38,7 @@ While text generation can be useful, you might want to generate structured JSON 
 
 ```ts
 import { generateText, Output } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 const { output } = await generateText({
@@ -66,7 +66,7 @@ The Responses API supports tool calling out of the box, allowing it to interact 
 
 ```ts
 import { generateText, tool } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 const { text } = await generateText({
@@ -95,7 +95,7 @@ This example demonstrates how `stopWhen` transforms a single LLM call into an ag
 The Responses API introduces a built-in tool for grounding responses called `webSearch`. With this tool, the model can access the internet to find relevant information for its responses.
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -139,7 +139,7 @@ console.log(result.sources);
 The Responses API also supports connecting to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers. This allows models to call tools exposed by remote MCP servers or service connectors.
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -168,7 +168,7 @@ There are two options available to use persistence:
 ### With previousResponseId
 
 ```tsx filename="app/api/chat/route.ts"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result1 = await generateText({
@@ -194,7 +194,7 @@ You can use the [Conversation API](https://platform.openai.com/docs/api-referenc
 Once you have created a conversation, you can continue it:
 
 ```tsx filename="app/api/chat/route.ts"
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -215,7 +215,7 @@ Migrating from the OpenAI Completions API (via the AI SDK) to the new Responses 
 
 ```ts
 import { generateText } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 // Completions API
 const { text } = await generateText({
@@ -234,7 +234,7 @@ When using the Responses API, provider specific options that were previously spe
 
 ```ts
 import { generateText } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 // Completions API
 const { text } = await generateText({

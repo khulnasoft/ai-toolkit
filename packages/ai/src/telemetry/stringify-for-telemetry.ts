@@ -1,7 +1,7 @@
 import {
   LanguageModelV4Message,
   LanguageModelV4Prompt,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { convertDataContentToBase64String } from '../prompt/data-content';
 
 /**

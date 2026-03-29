@@ -5,8 +5,8 @@ import type {
   Experimental_VideoModelV4VideoData,
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
-import { APICallError } from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertUint8ArrayToBase64,
@@ -15,7 +15,7 @@ import {
   postJsonToApi,
   resolve,
   type Resolvable,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { GatewayConfig } from './gateway-config';
 import { asGatewayError } from './errors';

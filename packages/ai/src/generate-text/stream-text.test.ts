@@ -8,7 +8,7 @@ import {
   LanguageModelV4Usage,
   SharedV4ProviderMetadata,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   delay,
   DelayedPromise,
@@ -18,14 +18,14 @@ import {
   tool,
   Tool,
   ToolExecuteFunction,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   convertArrayToReadableStream,
   convertAsyncIterableToArray,
   convertReadableStreamToArray,
   convertResponseStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import assert from 'node:assert';
 import {
   afterEach,

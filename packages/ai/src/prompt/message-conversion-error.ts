@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { UIMessage } from '../ui/ui-messages';
 
 const name = 'AI_MessageConversionError';

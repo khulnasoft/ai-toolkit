@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import {
   createUIMessageStreamResponse,
   streamText,
@@ -6,7 +6,7 @@ import {
   convertToModelMessages,
   stepCountIs,
 } from 'ai';
-import { createMCPClient, ElicitationRequestSchema } from '@ai-tools/mcp';
+import { createMCPClient, ElicitationRequestSchema } from '@ai-toolkit/mcp';
 import { MCPElicitationUIMessage } from './types';
 import { createPendingElicitation } from './elicitation-store';
 

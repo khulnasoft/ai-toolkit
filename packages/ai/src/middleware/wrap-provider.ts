@@ -1,4 +1,4 @@
-import type { ProviderV2, ProviderV3, ProviderV4 } from '@ai-tools/provider';
+import type { ProviderV2, ProviderV3, ProviderV4 } from '@ai-toolkit/provider';
 import { ImageModelMiddleware } from '../types/image-model-middleware';
 import { LanguageModelMiddleware } from '../types/language-model-middleware';
 import { wrapImageModel } from './wrap-image-model';

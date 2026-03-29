@@ -1,4 +1,4 @@
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { experimental_transcribe as transcribe } from 'ai';
 import { readFile } from 'fs/promises';
 import { run } from '../../lib/run';

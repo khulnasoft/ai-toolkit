@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-tools/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 import { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
 
 const name = 'AI_NoImageGeneratedError';

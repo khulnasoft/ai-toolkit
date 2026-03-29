@@ -9,36 +9,36 @@ The [LMNT](https://lmnt.com/) provider contains speech model support for the LMN
 
 ## Setup
 
-The LMNT provider is available in the `@ai-tools/lmnt` module. You can install it with
+The LMNT provider is available in the `@ai-toolkit/lmnt` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/lmnt" dark />
+    <Snippet text="pnpm add @ai-toolkit/lmnt" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/lmnt" dark />
+    <Snippet text="npm install @ai-toolkit/lmnt" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/lmnt" dark />
+    <Snippet text="yarn add @ai-toolkit/lmnt" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/lmnt" dark />
+    <Snippet text="bun add @ai-toolkit/lmnt" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `lmnt` from `@ai-tools/lmnt`:
+You can import the default provider instance `lmnt` from `@ai-toolkit/lmnt`:
 
 ```ts
-import { lmnt } from '@ai-tools/lmnt';
+import { lmnt } from '@ai-toolkit/lmnt';
 ```
 
-If you need a customized setup, you can import `createLMNT` from `@ai-tools/lmnt` and create a provider instance with your settings:
+If you need a customized setup, you can import `createLMNT` from `@ai-toolkit/lmnt` and create a provider instance with your settings:
 
 ```ts
-import { createLMNT } from '@ai-tools/lmnt';
+import { createLMNT } from '@ai-toolkit/lmnt';
 
 const lmnt = createLMNT({
   // custom settings, e.g.
@@ -79,7 +79,7 @@ The `voice` parameter can be set to a voice ID from LMNT. You can find available
 
 ```ts highlight="7"
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { lmnt } from '@ai-tools/lmnt';
+import { lmnt } from '@ai-toolkit/lmnt';
 
 const result = await generateSpeech({
   model: lmnt.speech('aurora'),
@@ -93,8 +93,8 @@ You can also pass additional provider-specific options using the `providerOption
 
 ```ts highlight="10-14"
 import { experimental_generateSpeech as generateSpeech } from 'ai';
-import { lmnt } from '@ai-tools/lmnt';
-import { type LMNTSpeechModelOptions } from '@ai-tools/lmnt';
+import { lmnt } from '@ai-toolkit/lmnt';
+import { type LMNTSpeechModelOptions } from '@ai-toolkit/lmnt';
 
 const result = await generateSpeech({
   model: lmnt.speech('aurora'),

@@ -2,14 +2,14 @@ import {
   JSONValue,
   LanguageModelV4CallOptions,
   TypeValidationError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   asSchema,
   FlexibleSchema,
   resolve,
   safeParseJSON,
   safeValidateTypes,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import { FinishReason } from '../types/language-model';
 import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';

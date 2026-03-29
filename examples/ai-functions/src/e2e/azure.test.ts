@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { expect } from 'vitest';
-import { azure as provider } from '@ai-tools/azure';
+import { azure as provider } from '@ai-toolkit/azure';
 import { APICallError } from 'ai';
 import {
   createFeatureTestSuite,

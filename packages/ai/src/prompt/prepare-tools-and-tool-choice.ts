@@ -2,8 +2,8 @@ import {
   LanguageModelV4FunctionTool,
   LanguageModelV4ProviderTool,
   LanguageModelV4ToolChoice,
-} from '@ai-tools/provider';
-import { asSchema } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { asSchema } from '@ai-toolkit/provider-utils';
 import { isNonEmptyObject } from '../util/is-non-empty-object';
 import { ToolSet } from '../generate-text';
 import { ToolChoice } from '../types/language-model';

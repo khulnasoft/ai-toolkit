@@ -4,10 +4,10 @@ The **[Mistral provider](https://ai-sdk.dev/providers/ai-sdk-providers/mistral)*
 
 ## Setup
 
-The Mistral provider is available in the `@ai-tools/mistral` module. You can install it with
+The Mistral provider is available in the `@ai-toolkit/mistral` module. You can install it with
 
 ```bash
-npm i @ai-tools/mistral
+npm i @ai-toolkit/mistral
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `mistral` from `@ai-tools/mistral`:
+You can import the default provider instance `mistral` from `@ai-toolkit/mistral`:
 
 ```ts
-import { mistral } from '@ai-tools/mistral';
+import { mistral } from '@ai-toolkit/mistral';
 ```
 
 ## Example
 
 ```ts
-import { mistral } from '@ai-tools/mistral';
+import { mistral } from '@ai-toolkit/mistral';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

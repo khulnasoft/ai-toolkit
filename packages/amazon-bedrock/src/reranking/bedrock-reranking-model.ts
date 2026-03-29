@@ -1,4 +1,4 @@
-import { RerankingModelV4 } from '@ai-tools/provider';
+import { RerankingModelV4 } from '@ai-toolkit/provider';
 import {
   FetchFunction,
   Resolvable,
@@ -8,7 +8,7 @@ import {
   parseProviderOptions,
   postJsonToApi,
   resolve,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { BedrockErrorSchema } from '../bedrock-error';
 import {
   BedrockRerankingInput,

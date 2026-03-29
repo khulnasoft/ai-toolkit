@@ -1,4 +1,4 @@
-import { google, GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 import { run } from '../../lib/run';
 import { presentImages } from '../../lib/present-image';

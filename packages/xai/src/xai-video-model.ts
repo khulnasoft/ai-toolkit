@@ -2,7 +2,7 @@ import {
   AISDKError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertUint8ArrayToBase64,
@@ -12,7 +12,7 @@ import {
   getFromApi,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { xaiFailedResponseHandler } from './xai-error';
 import {

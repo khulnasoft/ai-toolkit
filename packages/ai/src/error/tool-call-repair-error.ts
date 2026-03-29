@@ -1,4 +1,4 @@
-import { AISDKError, getErrorMessage } from '@ai-tools/provider';
+import { AISDKError, getErrorMessage } from '@ai-toolkit/provider';
 import { InvalidToolInputError } from './invalid-tool-input-error';
 import { NoSuchToolError } from './no-such-tool-error';
 

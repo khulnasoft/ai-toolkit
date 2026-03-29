@@ -1,4 +1,4 @@
-import { createBedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { createBedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText } from 'ai';
 import 'dotenv/config';
 import { run } from '../../lib/run';

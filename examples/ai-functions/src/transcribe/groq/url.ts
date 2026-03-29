@@ -1,4 +1,4 @@
-import { groq } from '@ai-tools/groq';
+import { groq } from '@ai-toolkit/groq';
 import { experimental_transcribe as transcribe } from 'ai';
 import { run } from '../../lib/run';
 

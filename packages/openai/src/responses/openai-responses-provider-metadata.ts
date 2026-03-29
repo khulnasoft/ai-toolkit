@@ -2,7 +2,7 @@ import {
   openaiResponsesChunkSchema,
   OpenAIResponsesLogprobs,
 } from './openai-responses-api';
-import { InferSchema } from '@ai-tools/provider-utils';
+import { InferSchema } from '@ai-toolkit/provider-utils';
 
 type OpenaiResponsesChunk = InferSchema<typeof openaiResponsesChunkSchema>;
 

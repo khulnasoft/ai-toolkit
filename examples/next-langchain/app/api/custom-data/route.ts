@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { tool, type ToolRuntime } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import {
   StateGraph,
   MessagesAnnotation,

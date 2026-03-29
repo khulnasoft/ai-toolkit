@@ -1,9 +1,9 @@
 import type {
   Experimental_VideoModelV4,
   SharedV4Warning,
-} from '@ai-tools/provider';
-import type { InferSchema } from '@ai-tools/provider-utils';
-import type { FetchFunction } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import type { InferSchema } from '@ai-toolkit/provider-utils';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -14,7 +14,7 @@ import {
   postToApi,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import type { ProdiaModelConfig } from './prodia-api';
 import {

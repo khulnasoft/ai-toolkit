@@ -2,7 +2,7 @@ import {
   AISDKError,
   TranscriptionModelV4,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -12,7 +12,7 @@ import {
   getFromApi,
   parseProviderOptions,
   postFormDataToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { RevaiConfig } from './revai-config';
 import { revaiFailedResponseHandler } from './revai-error';

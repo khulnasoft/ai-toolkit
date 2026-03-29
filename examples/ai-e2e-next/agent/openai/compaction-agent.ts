@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { ModelMessage, ToolLoopAgent, InferAgentUIMessage } from 'ai';
 import { readFileSync } from 'fs';
 import { join } from 'path';

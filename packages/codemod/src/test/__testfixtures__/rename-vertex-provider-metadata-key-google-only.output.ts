@@ -1,6 +1,6 @@
 // @ts-nocheck
-// This file uses @ai-tools/google (NOT vertex) - should NOT be transformed
-import { google } from '@ai-tools/google';
+// This file uses @ai-toolkit/google (NOT vertex) - should NOT be transformed
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -13,7 +13,7 @@ const result = await generateText({
   prompt: 'Hello',
 });
 
-// These should stay as 'google' since we're using @ai-tools/google
+// These should stay as 'google' since we're using @ai-toolkit/google
 console.log(result.providerMetadata?.google?.safetyRatings);
 const { google: metadata } = result.providerMetadata ?? {};
 

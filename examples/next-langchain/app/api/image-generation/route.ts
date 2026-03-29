@@ -2,7 +2,7 @@ import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { NextResponse } from 'next/server';
 
 import { ChatOpenAI, tools } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 
 /**
  * Allow streaming responses up to 120 seconds for image generation

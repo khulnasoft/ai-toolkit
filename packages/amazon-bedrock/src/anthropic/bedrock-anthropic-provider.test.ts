@@ -1,12 +1,12 @@
 import { createBedrockAnthropic } from './bedrock-anthropic-provider';
-import { NoSuchModelError } from '@ai-tools/provider';
+import { NoSuchModelError } from '@ai-toolkit/provider';
 import {
   AnthropicMessagesLanguageModel,
   anthropicTools,
-} from '@ai-tools/anthropic/internal';
+} from '@ai-toolkit/anthropic/internal';
 import { vi, describe, beforeEach, it, expect } from 'vitest';
 
-vi.mock('@ai-tools/provider-utils', () => ({
+vi.mock('@ai-toolkit/provider-utils', () => ({
   loadOptionalSetting: vi.fn().mockImplementation(({ settingValue }) => {
     // Return undefined for API key to test SigV4 flow
     if (settingValue === undefined) return undefined;
@@ -36,8 +36,10 @@ vi.mock('@ai-tools/provider-utils', () => ({
   zodSchema: vi.fn(),
 }));
 
-vi.mock('@ai-tools/anthropic/internal', async () => {
-  const originalModule = await vi.importActual('@ai-tools/anthropic/internal');
+vi.mock('@ai-toolkit/anthropic/internal', async () => {
+  const originalModule = await vi.importActual(
+    '@ai-toolkit/anthropic/internal',
+  );
   return {
     ...originalModule,
     AnthropicMessagesLanguageModel: vi.fn(),
@@ -164,7 +166,9 @@ describe('bedrock-anthropic-provider', () => {
     expect(config.headers).toEqual(expect.any(Function));
     const resolvedHeaders = await (config.headers as Function)();
     expect(resolvedHeaders).toMatchObject(customHeaders);
-    expect(resolvedHeaders['user-agent']).toContain('ai-sdk/amazon-bedrock/');
+    expect(resolvedHeaders['user-agent']).toContain(
+      'ai-toolkit/amazon-bedrock/',
+    );
   });
 
   it('should build correct URL for non-streaming requests', () => {

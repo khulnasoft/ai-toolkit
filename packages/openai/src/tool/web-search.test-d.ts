@@ -1,4 +1,4 @@
-import { InferSchema, Tool } from '@ai-tools/provider-utils';
+import { InferSchema, Tool } from '@ai-toolkit/provider-utils';
 import { describe, expectTypeOf, it } from 'vitest';
 import { webSearch, webSearchOutputSchema } from './web-search';
 

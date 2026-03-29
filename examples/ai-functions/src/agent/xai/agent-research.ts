@@ -1,4 +1,4 @@
-import { xai } from '@ai-tools/xai';
+import { xai } from '@ai-toolkit/xai';
 import { ToolLoopAgent } from 'ai';
 import { run } from '../../lib/run';
 

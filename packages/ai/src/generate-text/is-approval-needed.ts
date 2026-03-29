@@ -1,4 +1,4 @@
-import { ModelMessage } from '@ai-tools/provider-utils';
+import { ModelMessage } from '@ai-toolkit/provider-utils';
 import { TypedToolCall } from './tool-call';
 import { ToolSet } from './tool-set';
 

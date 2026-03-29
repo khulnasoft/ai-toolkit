@@ -2,7 +2,7 @@ import {
   LanguageModelV2,
   LanguageModelV3,
   LanguageModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { asLanguageModelV3 } from './as-language-model-v3';
 
 export function asLanguageModelV4(

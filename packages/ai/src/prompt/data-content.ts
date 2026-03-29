@@ -1,9 +1,9 @@
-import { AISDKError, LanguageModelV4DataContent } from '@ai-tools/provider';
+import { AISDKError, LanguageModelV4DataContent } from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
   DataContent,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { InvalidDataContentError } from './invalid-data-content-error';
 import { splitDataUrl } from './split-data-url';

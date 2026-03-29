@@ -30,7 +30,7 @@ Create an MCP client using one of the following transport options:
 For production deployments, we recommend using the HTTP transport. You can configure it directly on the client:
 
 ```typescript
-import { createMCPClient } from '@ai-tools/mcp';
+import { createMCPClient } from '@ai-toolkit/mcp';
 
 const mcpClient = await createMCPClient({
   transport: {
@@ -52,7 +52,7 @@ const mcpClient = await createMCPClient({
 Alternatively, you can use `StreamableHTTPClientTransport` from MCP's official TypeScript SDK:
 
 ```typescript
-import { createMCPClient } from '@ai-tools/mcp';
+import { createMCPClient } from '@ai-toolkit/mcp';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 const url = new URL('https://your-server.com/mcp');
@@ -68,7 +68,7 @@ const mcpClient = await createMCPClient({
 SSE provides an alternative HTTP-based transport option. Configure it with a `type` and `url` property. You can also provide an `authProvider` for OAuth:
 
 ```typescript
-import { createMCPClient } from '@ai-tools/mcp';
+import { createMCPClient } from '@ai-toolkit/mcp';
 
 const mcpClient = await createMCPClient({
   transport: {
@@ -96,10 +96,10 @@ const mcpClient = await createMCPClient({
 The Stdio transport can be imported from either the MCP SDK or the AI SDK:
 
 ```typescript
-import { createMCPClient } from '@ai-tools/mcp';
+import { createMCPClient } from '@ai-toolkit/mcp';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 // Or use the AI SDK's stdio transport:
-// import { Experimental_StdioMCPTransport as StdioClientTransport } from '@ai-tools/mcp/mcp-stdio';
+// import { Experimental_StdioMCPTransport as StdioClientTransport } from '@ai-toolkit/mcp/mcp-stdio';
 
 const mcpClient = await createMCPClient({
   transport: new StdioClientTransport({
@@ -153,7 +153,7 @@ const result = await streamText({
 When generating responses without streaming, you can use try/finally or cleanup functions in your framework:
 
 ```typescript
-import { createMCPClient, type MCPClient } from '@ai-tools/mcp';
+import { createMCPClient, type MCPClient } from '@ai-toolkit/mcp';
 
 let mcpClient: MCPClient | undefined;
 
@@ -337,7 +337,7 @@ const mcpClient = await createMCPClient({
 Use the `onElicitationRequest` method to register a handler that will be called when the server requests input:
 
 ```typescript
-import { ElicitationRequestSchema } from '@ai-tools/mcp';
+import { ElicitationRequestSchema } from '@ai-toolkit/mcp';
 
 mcpClient.onElicitationRequest(ElicitationRequestSchema, async request => {
   // request.params.message: A message describing what input is needed

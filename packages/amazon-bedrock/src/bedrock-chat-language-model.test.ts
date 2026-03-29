@@ -1,18 +1,18 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
-import { convertReadableStreamToArray } from '@ai-tools/provider-utils/test';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
+import { convertReadableStreamToArray } from '@ai-toolkit/provider-utils/test';
 import { BedrockChatLanguageModel } from './bedrock-chat-language-model';
 import { beforeEach, describe, expect, vi, it } from 'vitest';
 import { injectFetchHeaders } from './inject-fetch-headers';
-import { anthropicTools, prepareTools } from '@ai-tools/anthropic/internal';
+import { anthropicTools, prepareTools } from '@ai-toolkit/anthropic/internal';
 import { z } from 'zod/v4';
 import fs from 'node:fs';
 
 const mockPrepareAnthropicTools = vi.mocked(prepareTools);
 
-vi.mock('@ai-tools/anthropic/internal', async importOriginal => {
+vi.mock('@ai-toolkit/anthropic/internal', async importOriginal => {
   const original =
-    await importOriginal<typeof import('@ai-tools/anthropic/internal')>();
+    await importOriginal<typeof import('@ai-toolkit/anthropic/internal')>();
   return {
     ...original,
     prepareTools: vi.fn(),

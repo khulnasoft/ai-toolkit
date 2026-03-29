@@ -57,7 +57,7 @@ The AI SDK abstracts away the differences between model providers, eliminates bo
 At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call DeepSeek V3.2 with the AI SDK:
 
 ```ts
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -78,12 +78,12 @@ Let's explore building an agent with [Next.js](https://nextjs.org), the AI SDK, 
 
 In a new Next.js application, first install the AI SDK and the DeepSeek provider:
 
-<Snippet text="pnpm install ai @ai-tools/deepseek @ai-tools/react" />
+<Snippet text="pnpm install ai @ai-toolkit/deepseek @ai-toolkit/react" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import { convertToModelMessages, streamText, UIMessage } from 'ai';
 
 export async function POST(req: Request) {
@@ -103,7 +103,7 @@ Finally, update the root page (`app/page.tsx`) to use the `useChat` hook:
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 
 export default function Page() {
@@ -155,7 +155,7 @@ One of the key strengths of DeepSeek V3.2 is its agentic capabilities. You can e
 Let's add a weather tool to your agent. Update your route handler at `app/api/chat/route.ts`:
 
 ```tsx filename="app/api/chat/route.ts"
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import {
   convertToModelMessages,
   stepCountIs,

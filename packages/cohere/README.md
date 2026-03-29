@@ -4,10 +4,10 @@ The **[Cohere provider](https://ai-sdk.dev/providers/ai-sdk-providers/cohere)** 
 
 ## Setup
 
-The Cohere provider is available in the `@ai-tools/cohere` module. You can install it with
+The Cohere provider is available in the `@ai-toolkit/cohere` module. You can install it with
 
 ```bash
-npm i @ai-tools/cohere
+npm i @ai-toolkit/cohere
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `cohere` from `@ai-tools/cohere`:
+You can import the default provider instance `cohere` from `@ai-toolkit/cohere`:
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 ```
 
 ## Example
 
 ```ts
-import { cohere } from '@ai-tools/cohere';
+import { cohere } from '@ai-toolkit/cohere';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

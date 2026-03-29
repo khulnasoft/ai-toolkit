@@ -1,4 +1,4 @@
-import { google, type GoogleImageModelOptions } from '@ai-tools/google';
+import { google, type GoogleImageModelOptions } from '@ai-toolkit/google';
 import { generateImage } from 'ai';
 import { presentImages } from '../../lib/present-image';
 import { run } from '../../lib/run';

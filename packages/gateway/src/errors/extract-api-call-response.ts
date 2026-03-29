@@ -1,4 +1,4 @@
-import type { APICallError } from '@ai-tools/provider';
+import type { APICallError } from '@ai-toolkit/provider';
 
 export function extractApiCallResponse(error: APICallError): unknown {
   if (error.data !== undefined) {

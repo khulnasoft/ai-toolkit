@@ -1,6 +1,6 @@
-import { type AnthropicLanguageModelOptions } from '@ai-tools/anthropic';
+import { type AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 import { run } from '../../lib/run';
-import { vertexAnthropic } from '@ai-tools/google-vertex/anthropic';
+import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
 import { generateText, stepCountIs } from 'ai';
 
 run(async () => {

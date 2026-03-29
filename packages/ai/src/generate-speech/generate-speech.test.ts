@@ -1,4 +1,4 @@
-import { JSONObject, SpeechModelV4 } from '@ai-tools/provider';
+import { JSONObject, SpeechModelV4 } from '@ai-toolkit/provider';
 import {
   afterEach,
   beforeEach,

@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { jsonSchema, Output, streamText } from 'ai';
 import { run } from '../../lib/run';
 

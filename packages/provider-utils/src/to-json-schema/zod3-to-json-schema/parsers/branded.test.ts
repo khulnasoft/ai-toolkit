@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v3';
 import { parseBrandedDef } from './branded';
 import { getRefs } from '../refs';
-import { JSONSchema7 } from '@ai-tools/provider';
+import { JSONSchema7 } from '@ai-toolkit/provider';
 
 describe('branded', () => {
   it('should be possible to use branded string', () => {

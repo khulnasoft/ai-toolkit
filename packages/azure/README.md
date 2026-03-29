@@ -4,10 +4,10 @@ The **[Azure provider](https://ai-sdk.dev/providers/ai-sdk-providers/azure)** fo
 
 ## Setup
 
-The Azure provider is available in the `@ai-tools/azure` module. You can install it with
+The Azure provider is available in the `@ai-toolkit/azure` module. You can install it with
 
 ```bash
-npm i @ai-tools/azure
+npm i @ai-toolkit/azure
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `azure` from `@ai-tools/azure`:
+You can import the default provider instance `azure` from `@ai-toolkit/azure`:
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 ```
 
 ## Example
 
 ```ts
-import { azure } from '@ai-tools/azure';
+import { azure } from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

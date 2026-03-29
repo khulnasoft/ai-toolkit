@@ -7,7 +7,7 @@ describe('rename-vertex-provider-metadata-key', () => {
     testTransform(transformer, 'rename-vertex-provider-metadata-key');
   });
 
-  it('does not transform files using @ai-tools/google', () => {
+  it('does not transform files using @ai-toolkit/google', () => {
     testTransform(
       transformer,
       'rename-vertex-provider-metadata-key-google-only',

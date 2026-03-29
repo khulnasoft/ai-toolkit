@@ -1,5 +1,5 @@
 import { generateText, Output } from 'ai';
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { z } from 'zod';
 import { run } from '../../lib/run';
 

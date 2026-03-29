@@ -1,4 +1,4 @@
-import { Tool } from '@ai-tools/provider-utils';
+import { Tool } from '@ai-toolkit/provider-utils';
 
 export type ToolSet = Record<
   string,

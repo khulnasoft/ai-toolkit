@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { DeepgramTranscriptionModel } from './deepgram-transcription-model';
 import { createDeepgram } from './deepgram-provider';
 import { readFile } from 'node:fs/promises';
@@ -67,7 +67,7 @@ describe('doGenerate', () => {
         'custom-request-header': 'request-header-value',
       });
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/deepgram/0.0.0-test`,
+        `ai-toolkit/deepgram/0.0.0-test`,
       );
     });
 

@@ -2,7 +2,7 @@ import {
   InvalidPromptError,
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 export function convertToOpenAICompatibleCompletionPrompt({
   prompt,

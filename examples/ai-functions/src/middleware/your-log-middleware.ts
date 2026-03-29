@@ -1,4 +1,4 @@
-import { LanguageModelV4StreamPart } from '@ai-tools/provider';
+import { LanguageModelV4StreamPart } from '@ai-toolkit/provider';
 import { LanguageModelMiddleware } from 'ai';
 
 export const yourLogMiddleware: LanguageModelMiddleware = {

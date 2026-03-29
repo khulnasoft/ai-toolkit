@@ -1,4 +1,4 @@
-import { APICallError } from '@ai-tools/provider';
+import { APICallError } from '@ai-toolkit/provider';
 import { extractApiCallResponse, GatewayError } from '.';
 import { createGatewayErrorFromResponse } from './create-gateway-error';
 import { GatewayTimeoutError } from './gateway-timeout-error';

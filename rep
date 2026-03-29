@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-OLD='@ai-sdk/'
-NEW='@ai-toolkit/'
+OLD='ai-toolkit/'
+NEW='ai-toolkit/'
 
 # detect sed flavor
 if sed --version >/dev/null 2>&1; then

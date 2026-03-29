@@ -148,8 +148,8 @@ You can also explicitly import and use the gateway provider in two other equival
 import { gateway } from 'ai';
 model: gateway('anthropic/claude-sonnet-4.5');
 
-// Option 2: Install and import from '@ai-tools/gateway' package
-import { gateway } from '@ai-tools/gateway';
+// Option 2: Install and import from '@ai-toolkit/gateway' package
+import { gateway } from '@ai-toolkit/gateway';
 model: gateway('anthropic/claude-sonnet-4.5');
 ```
 
@@ -160,24 +160,24 @@ To use a different provider, install its package and create a provider instance.
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add @ai-tools/openai" dark />
+      <Snippet text="pnpm add @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install @ai-tools/openai" dark />
+      <Snippet text="npm install @ai-toolkit/openai" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add @ai-tools/openai" dark />
+      <Snippet text="yarn add @ai-toolkit/openai" dark />
     </Tab>
 
     <Tab>
-      <Snippet text="bun add @ai-tools/openai" dark />
+      <Snippet text="bun add @ai-toolkit/openai" dark />
     </Tab>
 
   </Tabs>
 </div>
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 
 model: openai('gpt-5.1');
 ```

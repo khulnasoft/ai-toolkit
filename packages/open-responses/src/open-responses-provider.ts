@@ -2,13 +2,13 @@ import {
   LanguageModelV4,
   NoSuchModelError,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   generateId,
   loadApiKey,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { OpenResponsesLanguageModel } from './responses/open-responses-language-model';
 import { VERSION } from './version';
 
@@ -59,7 +59,7 @@ export function createOpenResponses(
           : {}),
         ...options.headers,
       },
-      `ai-sdk/open-responses/${VERSION}`,
+      `ai-toolkit/open-responses/${VERSION}`,
     );
 
   const createResponsesModel = (modelId: string) => {

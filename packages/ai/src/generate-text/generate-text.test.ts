@@ -5,15 +5,15 @@ import {
   LanguageModelV4Prompt,
   LanguageModelV4ProviderTool,
   LanguageModelV4Usage,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   dynamicTool,
   jsonSchema,
   ModelMessage,
   tool,
   ToolExecuteFunction,
-} from '@ai-tools/provider-utils';
-import { mockId } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils';
+import { mockId } from '@ai-toolkit/provider-utils/test';
 import {
   afterEach,
   assert,

@@ -1,9 +1,9 @@
-import { LanguageModelV4Prompt } from '@ai-tools/provider';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { LanguageModelV4Prompt } from '@ai-toolkit/provider';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import {
   convertReadableStreamToArray,
   isNodeVersion,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import fs from 'node:fs';
 import { createGroq } from './groq-provider';
 import { beforeEach, describe, it, expect, vi } from 'vitest';
@@ -542,7 +542,7 @@ describe('doGenerate', () => {
       }
     `);
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/groq/0.0.0-test`,
+      `ai-toolkit/groq/0.0.0-test`,
     );
   });
 

@@ -1,7 +1,7 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/test-server/with-vitest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { HttpMCPTransport } from './mcp-http-transport';
 import { LATEST_PROTOCOL_VERSION } from './types';
@@ -322,7 +322,7 @@ describe('HttpMCPTransport', () => {
       accept: 'text/event-stream',
       ...customHeaders,
     });
-    expect(server.calls[0].requestUserAgent).toContain('ai-sdk/');
+    expect(server.calls[0].requestUserAgent).toContain('ai-toolkit/');
 
     expect(server.calls[1].requestHeaders).toEqual({
       'content-type': 'application/json',
@@ -330,7 +330,7 @@ describe('HttpMCPTransport', () => {
       accept: 'application/json, text/event-stream',
       ...customHeaders,
     });
-    expect(server.calls[1].requestUserAgent).toContain('ai-sdk/');
+    expect(server.calls[1].requestUserAgent).toContain('ai-toolkit/');
   });
 
   describe('redirect option', () => {

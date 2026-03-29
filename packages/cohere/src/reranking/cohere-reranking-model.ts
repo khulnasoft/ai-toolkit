@@ -1,11 +1,11 @@
-import { RerankingModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { RerankingModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonResponseHandler,
   FetchFunction,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { cohereFailedResponseHandler } from '../cohere-error';
 import {
   CohereRerankingInput,

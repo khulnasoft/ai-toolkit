@@ -1,4 +1,4 @@
-import { resolve } from '@ai-tools/provider-utils';
+import { resolve } from '@ai-toolkit/provider-utils';
 import {
   generateAuthToken,
   GoogleCredentials,

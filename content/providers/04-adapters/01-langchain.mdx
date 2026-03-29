@@ -13,20 +13,20 @@ and other data sources for retrieval augmented generation (RAG).
 stateful, multi-actor applications. It enables you to define complex agent workflows as graphs,
 with support for cycles, persistence, and human-in-the-loop patterns.
 
-The `@ai-tools/langchain` adapter provides seamless integration between LangChain, LangGraph, and the AI SDK,
+The `@ai-toolkit/langchain` adapter provides seamless integration between LangChain, LangGraph, and the AI SDK,
 enabling you to use LangChain models and LangGraph agents with AI SDK UI components.
 
 ## Installation
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/langchain @langchain/core" dark />
+    <Snippet text="pnpm add @ai-toolkit/langchain @langchain/core" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/langchain @langchain/core" dark />
+    <Snippet text="npm install @ai-toolkit/langchain @langchain/core" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/langchain @langchain/core" dark />
+    <Snippet text="yarn add @ai-toolkit/langchain @langchain/core" dark />
   </Tab>
 </Tabs>
 
@@ -46,7 +46,7 @@ enabling you to use LangChain models and LangGraph agents with AI SDK UI compone
 Here is a basic example that uses both the AI SDK and LangChain together with the [Next.js](https://nextjs.org/docs) App Router.
 
 ```tsx filename="app/api/chat/route.ts"
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 
@@ -78,7 +78,7 @@ Then, use the AI SDK's [`useChat`](/docs/ai-sdk-ui/chatbot) hook in the page com
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 export default function Chat() {
   const { messages, sendMessage, status } = useChat();
@@ -120,7 +120,7 @@ Create agents with tools using LangChain's [`createAgent`](https://docs.langchai
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { createAgent } from 'langchain';
 import { ChatOpenAI, tools } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 
 export const maxDuration = 60;
 
@@ -164,7 +164,7 @@ export async function POST(req: Request) {
 Use the adapter with [LangGraph](https://docs.langchain.com/oss/javascript/langgraph/overview) to build agent workflows:
 
 ```tsx filename="app/api/langgraph/route.ts"
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { StateGraph, MessagesAnnotation } from '@langchain/langgraph';
@@ -212,7 +212,7 @@ export async function POST(req: Request) {
 LangChain's [`streamEvents()`](https://docs.langchain.com/oss/javascript/langchain/streaming) method provides granular, semantic events with metadata. This is useful for debugging, observability, and migrating existing LCEL applications:
 
 ```tsx filename="app/api/stream-events/route.ts"
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 
@@ -258,7 +258,7 @@ LangChain tools can emit custom data events using `config.writer()`. The adapter
 import { createUIMessageStreamResponse, UIMessage } from 'ai';
 import { createAgent, tool, type ToolRuntime } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { z } from 'zod';
 
 export const maxDuration = 60;
@@ -330,7 +330,7 @@ Handle custom data on the client with the `onData` callback or render persistent
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 export default function Chat() {
   const { messages, sendMessage } = useChat({
@@ -382,8 +382,8 @@ Connect directly to a LangGraph deployment from the browser using `LangSmithDepl
 ```tsx filename="app/langsmith/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
-import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
+import { useChat } from '@ai-toolkit/react';
+import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
 import { useMemo } from 'react';
 
 export default function LangSmithChat() {
@@ -443,7 +443,7 @@ The `LangSmithDeploymentTransport` constructor accepts the following options:
 Converts AI SDK `UIMessage` objects to LangChain `BaseMessage` objects.
 
 ```ts
-import { toBaseMessages } from '@ai-tools/langchain';
+import { toBaseMessages } from '@ai-toolkit/langchain';
 
 const langchainMessages = await toBaseMessages(uiMessages);
 ```
@@ -459,7 +459,7 @@ const langchainMessages = await toBaseMessages(uiMessages);
 Converts AI SDK `ModelMessage` objects to LangChain `BaseMessage` objects. Useful when you already have model messages from `convertToModelMessages`.
 
 ```ts
-import { convertModelMessages } from '@ai-tools/langchain';
+import { convertModelMessages } from '@ai-toolkit/langchain';
 
 const langchainMessages = convertModelMessages(modelMessages);
 ```
@@ -475,7 +475,7 @@ const langchainMessages = convertModelMessages(modelMessages);
 Converts a LangChain/LangGraph stream to an AI SDK `UIMessageStream`. Automatically detects the stream type and handles direct model streams, LangGraph streams, and `streamEvents()` output.
 
 ```ts
-import { toUIMessageStream } from '@ai-tools/langchain';
+import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { createUIMessageStreamResponse } from 'ai';
 
 // Works with direct model streams
@@ -511,8 +511,8 @@ return createUIMessageStreamResponse({
 A `ChatTransport` implementation for LangSmith/LangGraph deployments. Use this with the `useChat` hook's `transport` option.
 
 ```ts
-import { LangSmithDeploymentTransport } from '@ai-tools/langchain';
-import { useChat } from '@ai-tools/react';
+import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
+import { useChat } from '@ai-toolkit/react';
 import { useMemo } from 'react';
 
 const transport = useMemo(

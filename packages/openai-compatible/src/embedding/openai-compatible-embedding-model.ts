@@ -2,7 +2,7 @@ import {
   EmbeddingModelV4,
   SharedV4Warning,
   TooManyEmbeddingValuesForCallError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createJsonErrorResponseHandler,
@@ -10,7 +10,7 @@ import {
   FetchFunction,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import {
   OpenAICompatibleEmbeddingModelId,

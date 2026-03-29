@@ -1,8 +1,8 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import type {
   OpenAILanguageModelResponsesOptions,
   OpenaiResponsesSourceDocumentProviderMetadata,
-} from '@ai-tools/openai';
+} from '@ai-toolkit/openai';
 import {
   convertToModelMessages,
   InferUITools,

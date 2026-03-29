@@ -5,12 +5,12 @@ import {
   ProviderV4,
   SpeechModelV4,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
-import type { FetchFunction } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import type { FetchFunction } from '@ai-toolkit/provider-utils';
 import {
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { FalImageModel } from './fal-image-model';
 import { FalImageModelId } from './fal-image-settings';
 import { FalTranscriptionModelId } from './fal-transcription-options';
@@ -139,7 +139,7 @@ export function createFal(options: FalProviderSettings = {}): FalProvider {
         })}`,
         ...options.headers,
       },
-      `ai-sdk/fal/${VERSION}`,
+      `ai-toolkit/fal/${VERSION}`,
     );
 
   const createImageModel = (modelId: FalImageModelId) =>

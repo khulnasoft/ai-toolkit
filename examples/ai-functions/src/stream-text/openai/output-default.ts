@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { stepCountIs, streamText } from 'ai';
 import { print } from '../../lib/print';
 import { run } from '../../lib/run';

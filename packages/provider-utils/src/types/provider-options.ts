@@ -1,4 +1,4 @@
-import { SharedV4ProviderOptions } from '@ai-tools/provider';
+import { SharedV4ProviderOptions } from '@ai-toolkit/provider';
 
 /**
  * Additional provider-specific options.

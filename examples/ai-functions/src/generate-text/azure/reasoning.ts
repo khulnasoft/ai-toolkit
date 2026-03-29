@@ -2,7 +2,7 @@ import {
   azure,
   AzureResponsesReasoningProviderMetadata,
   OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

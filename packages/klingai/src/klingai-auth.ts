@@ -1,4 +1,4 @@
-import { loadSetting } from '@ai-tools/provider-utils';
+import { loadSetting } from '@ai-toolkit/provider-utils';
 
 /**
  * Encode a string to base64url format (URL-safe base64 without padding).

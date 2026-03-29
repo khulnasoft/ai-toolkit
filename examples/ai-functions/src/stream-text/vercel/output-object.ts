@@ -1,4 +1,4 @@
-import { vercel } from '@ai-tools/vercel';
+import { vercel } from '@ai-toolkit/vercel';
 import { Output, streamText } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

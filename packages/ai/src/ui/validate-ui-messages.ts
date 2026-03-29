@@ -1,4 +1,7 @@
-import { TypeValidationContext, TypeValidationError } from '@ai-tools/provider';
+import {
+  TypeValidationContext,
+  TypeValidationError,
+} from '@ai-toolkit/provider';
 import {
   FlexibleSchema,
   lazySchema,
@@ -6,7 +9,7 @@ import {
   Tool,
   validateTypes,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { InvalidArgumentError } from '../error';
 import { providerMetadataSchema } from '../types/provider-metadata';

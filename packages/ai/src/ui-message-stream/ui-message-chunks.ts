@@ -11,7 +11,7 @@ import {
   UIMessage,
 } from '../ui/ui-messages';
 import { ValueOf } from '../util/value-of';
-import { lazySchema, zodSchema } from '@ai-tools/provider-utils';
+import { lazySchema, zodSchema } from '@ai-toolkit/provider-utils';
 
 export const uiMessageChunkSchema = lazySchema(() =>
   zodSchema(

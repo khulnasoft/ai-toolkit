@@ -1,7 +1,7 @@
 import {
   togetherai,
   TogetherAIRerankingModelOptions,
-} from '@ai-tools/togetherai';
+} from '@ai-toolkit/togetherai';
 import { rerank } from 'ai';
 import { print } from '../lib/print';
 import { run } from '../lib/run';

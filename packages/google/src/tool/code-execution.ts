@@ -1,4 +1,4 @@
-import { createProviderToolFactoryWithOutputSchema } from '@ai-tools/provider-utils';
+import { createProviderToolFactoryWithOutputSchema } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 
 /**

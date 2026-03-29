@@ -4,10 +4,10 @@ The **ByteDance provider** for the [AI SDK](https://ai-sdk.dev/docs) contains vi
 
 ## Setup
 
-The ByteDance provider is available in the `@ai-tools/bytedance` module. You can install it with:
+The ByteDance provider is available in the `@ai-toolkit/bytedance` module. You can install it with:
 
 ```bash
-npm i @ai-tools/bytedance
+npm i @ai-toolkit/bytedance
 ```
 
 ## Skill for Coding Agents
@@ -20,10 +20,10 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `byteDance` from `@ai-tools/bytedance`:
+You can import the default provider instance `byteDance` from `@ai-toolkit/bytedance`:
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 ```
 
 ## Video Models
@@ -37,7 +37,7 @@ Generate video from a text prompt.
 Available models: `seedance-1-5-pro-251215`, `seedance-1-0-pro-250528`, `seedance-1-0-pro-fast-251015`, `seedance-1-0-lite-t2v-250428`
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -62,7 +62,7 @@ Generate video from a first-frame image with an optional text prompt.
 Available models: `seedance-1-5-pro-251215`, `seedance-1-0-pro-250528`, `seedance-1-0-pro-fast-251015`, `seedance-1-0-lite-i2v-250428`
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -85,7 +85,7 @@ const { video } = await generateVideo({
 Seedance 1.5 Pro supports generating synchronized audio alongside the video.
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -109,7 +109,7 @@ const { video } = await generateVideo({
 Generate smooth transitions between a starting and ending keyframe image.
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -136,7 +136,7 @@ Provide multiple reference images (1-4) that the model uses to faithfully reprod
 Available models: `seedance-1-0-lite-i2v-250428`
 
 ```ts
-import { byteDance } from '@ai-tools/bytedance';
+import { byteDance } from '@ai-toolkit/bytedance';
 import { experimental_generateVideo as generateVideo } from 'ai';
 
 const { video } = await generateVideo({
@@ -188,7 +188,7 @@ ARK_API_KEY=your-api-key
 Or pass it directly:
 
 ```ts
-import { createByteDance } from '@ai-tools/bytedance';
+import { createByteDance } from '@ai-toolkit/bytedance';
 
 const byteDance = createByteDance({
   apiKey: 'your-api-key',

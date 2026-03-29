@@ -4,10 +4,10 @@ The **[DeepSeek provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek
 
 ## Setup
 
-The DeepSeek provider is available in the `@ai-tools/deepseek` module. You can install it with
+The DeepSeek provider is available in the `@ai-toolkit/deepseek` module. You can install it with
 
 ```bash
-npm i @ai-tools/deepseek
+npm i @ai-toolkit/deepseek
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `deepseek` from `@ai-tools/deepseek`:
+You can import the default provider instance `deepseek` from `@ai-toolkit/deepseek`:
 
 ```ts
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 ```
 
 ## Example
 
 ```ts
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

@@ -5,10 +5,10 @@ contains language model support for [Open Responses](https://www.openresponses.o
 
 ## Setup
 
-The Open Responses provider is available in the `@ai-tools/open-responses` module. You can install it with
+The Open Responses provider is available in the `@ai-toolkit/open-responses` module. You can install it with
 
 ```bash
-npm i @ai-tools/open-responses
+npm i @ai-toolkit/open-responses
 ```
 
 ## Skill for Coding Agents
@@ -24,7 +24,7 @@ npx skills add khulnasoft/ai
 Create an Open Responses provider instance using `createOpenResponses`:
 
 ```ts
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 
 const openResponses = createOpenResponses({
   name: 'aProvider',
@@ -37,7 +37,7 @@ You can use this instance to access models served by any Open Responses compatib
 ## Example
 
 ```ts
-import { createOpenResponses } from '@ai-tools/open-responses';
+import { createOpenResponses } from '@ai-toolkit/open-responses';
 import { generateText } from 'ai';
 
 const openResponses = createOpenResponses({

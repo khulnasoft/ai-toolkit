@@ -8,7 +8,7 @@ import {
   LanguageModelV4GenerateResult,
   LanguageModelV4StreamPart,
   LanguageModelV4StreamResult,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createEventSourceResponseHandler,
@@ -23,7 +23,7 @@ import {
   ParseResult,
   postJsonToApi,
   ResponseHandler,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { convertToDeepSeekChatMessages } from './convert-to-deepseek-chat-messages';
 import { convertDeepSeekUsage } from './convert-to-deepseek-usage';
 import {

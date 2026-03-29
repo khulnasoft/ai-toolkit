@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/provider-utils",
+  "name": "@ai-toolkit/provider-utils",
   "version": "5.0.0-beta.7",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@ai-tools/provider": "workspace:*",
+    "@ai-toolkit/provider": "workspace:*",
     "@standard-schema/spec": "^1.1.0",
     "eventsource-parser": "^3.0.6"
   },

@@ -1,10 +1,10 @@
-import { SpeechModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { SpeechModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createBinaryResponseHandler,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { OpenAIConfig } from '../openai-config';
 import { openaiFailedResponseHandler } from '../openai-error';
 import { OpenAISpeechAPITypes } from './openai-speech-api';

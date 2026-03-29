@@ -4,10 +4,10 @@ The **[Alibaba provider](https://ai-sdk.dev/providers/ai-sdk-providers/alibaba)*
 
 ## Setup
 
-The Alibaba provider is available in the `@ai-tools/alibaba` module. You can install it with
+The Alibaba provider is available in the `@ai-toolkit/alibaba` module. You can install it with
 
 ```bash
-npm i @ai-tools/alibaba
+npm i @ai-toolkit/alibaba
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `alibaba` from `@ai-tools/alibaba`:
+You can import the default provider instance `alibaba` from `@ai-toolkit/alibaba`:
 
 ```ts
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 ```
 
 ## Language Model Example
 
 ```ts
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -43,7 +43,7 @@ const { text } = await generateText({
 Alibaba's Qwen models support thinking/reasoning mode for complex problem-solving:
 
 ```ts
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { generateText } from 'ai';
 
 const { text, reasoningText } = await generateText({
@@ -64,7 +64,7 @@ console.log('Answer:', text);
 ## Tool Calling Example
 
 ```ts
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 
@@ -93,7 +93,7 @@ Alibaba supports both implicit and explicit prompt caching to reduce costs for r
 **Implicit caching** works automatically - the provider caches appropriate content without any configuration. For more control, you can use **explicit caching** by marking specific messages with `cacheControl`:
 
 ```ts
-import { alibaba } from '@ai-tools/alibaba';
+import { alibaba } from '@ai-toolkit/alibaba';
 import { generateText } from 'ai';
 
 const longDocument = '... large document content ...';

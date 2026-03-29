@@ -54,7 +54,7 @@ All examples use the `run()` wrapper from `lib/run.ts` which:
 ### Basic Template
 
 ```typescript
-import { providerName } from '@ai-tools/provider-name';
+import { providerName } from '@ai-toolkit/provider-name';
 import { generateText } from 'ai';
 import { run } from '../lib/run';
 
@@ -73,7 +73,7 @@ run(async () => {
 ### Streaming Template
 
 ```typescript
-import { providerName } from '@ai-tools/provider-name';
+import { providerName } from '@ai-toolkit/provider-name';
 import { streamText } from 'ai';
 import { printFullStream } from '../lib/print-full-stream';
 import { run } from '../lib/run';
@@ -91,7 +91,7 @@ run(async () => {
 ### Tool Calling Template
 
 ```typescript
-import { providerName } from '@ai-tools/provider-name';
+import { providerName } from '@ai-toolkit/provider-name';
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../lib/run';
@@ -120,7 +120,7 @@ run(async () => {
 ### Structured Output Template
 
 ```typescript
-import { providerName } from '@ai-tools/provider-name';
+import { providerName } from '@ai-toolkit/provider-name';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 import { run } from '../lib/run';

@@ -1,4 +1,4 @@
-import { RerankingModelV4CallOptions } from '@ai-tools/provider';
+import { RerankingModelV4CallOptions } from '@ai-toolkit/provider';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MockRerankingModelV4 } from '../test/mock-reranking-model-v4';
 import { rerank } from './rerank';

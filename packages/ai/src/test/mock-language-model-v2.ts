@@ -1,4 +1,4 @@
-import { LanguageModelV2 } from '@ai-tools/provider';
+import { LanguageModelV2 } from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockLanguageModelV2 implements LanguageModelV2 {

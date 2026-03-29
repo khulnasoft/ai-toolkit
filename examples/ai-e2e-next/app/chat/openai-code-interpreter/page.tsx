@@ -4,7 +4,7 @@ import { OpenAICodeInterpreterMessage } from '@/agent/openai/code-interpreter-ag
 import ChatInput from '@/components/chat-input';
 import CodeInterpreterView from '@/components/tool/openai-code-interpreter-view';
 import { ResponsesText } from '@/components/tool/responses-text';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 
 export default function TestOpenAIWebSearch() {

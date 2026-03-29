@@ -6,8 +6,9 @@ import { GoogleGenerativeAIImageModel } from './google-generative-ai-image-model
 import { GoogleGenerativeAIVideoModel } from './google-generative-ai-video-model';
 
 // Mock the imported modules using a partial mock to preserve original exports
-vi.mock('@ai-tools/provider-utils', async importOriginal => {
-  const mod = await importOriginal<typeof import('@ai-tools/provider-utils')>();
+vi.mock('@ai-toolkit/provider-utils', async importOriginal => {
+  const mod =
+    await importOriginal<typeof import('@ai-toolkit/provider-utils')>();
   return {
     ...mod,
     loadApiKey: vi.fn().mockImplementation(({ apiKey }) => apiKey),
@@ -99,7 +100,7 @@ describe('google-provider', () => {
     expect(headers).toEqual({
       'x-goog-api-key': 'test-api-key',
       'custom-header': 'custom-value',
-      'user-agent': 'ai-sdk/google/0.0.0-test',
+      'user-agent': 'ai-toolkit/google/0.0.0-test',
     });
   });
 

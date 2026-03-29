@@ -2,7 +2,7 @@ import {
   google,
   GoogleGenerativeAIProviderMetadata,
   type GoogleLanguageModelOptions,
-} from '@ai-tools/google';
+} from '@ai-toolkit/google';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

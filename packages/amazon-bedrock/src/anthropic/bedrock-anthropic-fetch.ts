@@ -2,7 +2,7 @@ import {
   convertBase64ToUint8Array,
   FetchFunction,
   safeParseJSON,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { createBedrockEventStreamDecoder } from '../bedrock-event-stream-decoder';
 
 export function createBedrockAnthropicFetch(

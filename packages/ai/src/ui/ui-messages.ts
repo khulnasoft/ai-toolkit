@@ -3,7 +3,7 @@ import {
   InferToolOutput,
   Tool,
   ToolCall,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { ToolSet } from '../generate-text';
 import { ProviderMetadata } from '../types/provider-metadata';
 import { DeepPartial } from '../util/deep-partial';

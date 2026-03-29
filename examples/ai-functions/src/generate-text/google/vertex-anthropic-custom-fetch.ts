@@ -1,4 +1,4 @@
-import { createVertexAnthropic } from '@ai-tools/google-vertex/anthropic';
+import { createVertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

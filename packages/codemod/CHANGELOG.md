@@ -1,4 +1,4 @@
-# @ai-tools/codemod
+# @ai-toolkit/codemod
 
 ## 4.0.0-beta.0
 
@@ -134,14 +134,14 @@
 
   ```diff
   - import { LanguageModelV2 } from 'ai';
-  + import { LanguageModelV2 } from '@ai-tools/provider';
+  + import { LanguageModelV2 } from '@ai-toolkit/provider';
   ```
 
   After
 
   ```diff
   + import { LanguageModelV2 } from 'ai';
-  - import { LanguageModelV2 } from '@ai-tools/provider';
+  - import { LanguageModelV2 } from '@ai-toolkit/provider';
   ```
 
 - 7ae8e57: fix(codemod): avoid false positive in `v5/restructure-file-stream-parts`

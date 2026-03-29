@@ -1,4 +1,4 @@
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 import { useSharedChatContext } from './chat-context';
 

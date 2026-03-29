@@ -2,7 +2,7 @@ import {
   SharedV4Warning,
   LanguageModelV4Prompt,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 export async function convertToHuggingFaceResponsesMessages({
   prompt,

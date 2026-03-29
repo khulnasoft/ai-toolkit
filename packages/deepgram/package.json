@@ -1,5 +1,5 @@
 {
-  "name": "@ai-tools/deepgram",
+  "name": "@ai-toolkit/deepgram",
   "version": "3.0.0-beta.7",
   "license": "Apache-2.0",
   "sideEffects": false,
@@ -42,11 +42,11 @@
     }
   },
   "dependencies": {
-    "@ai-tools/provider": "workspace:*",
-    "@ai-tools/provider-utils": "workspace:*"
+    "@ai-toolkit/provider": "workspace:*",
+    "@ai-toolkit/provider-utils": "workspace:*"
   },
   "devDependencies": {
-    "@ai-tools/test-server": "workspace:*",
+    "@ai-toolkit/test-server": "workspace:*",
     "@types/node": "20.17.24",
     "@khulnasoft/ai-tsconfig": "workspace:*",
     "tsup": "^8",

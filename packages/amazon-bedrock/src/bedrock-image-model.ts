@@ -2,7 +2,7 @@ import {
   ImageModelV4,
   ImageModelV4File,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   Resolvable,
@@ -12,7 +12,7 @@ import {
   createJsonResponseHandler,
   postJsonToApi,
   resolve,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   BedrockImageModelId,
   modelMaxImagesPerCall,

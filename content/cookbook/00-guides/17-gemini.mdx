@@ -31,7 +31,7 @@ The AI SDK abstracts away the differences between model providers, eliminates bo
 At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Gemini 3 with the AI SDK:
 
 ```ts
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -46,7 +46,7 @@ console.log(text);
 Gemini 3 models can use enhanced reasoning through thinking mode, which improves their ability to solve complex problems. You can control the thinking level using the `thinkingLevel` provider option:
 
 ```ts
-import { google, GoogleLanguageModelOptions } from '@ai-tools/google';
+import { google, GoogleLanguageModelOptions } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -77,7 +77,7 @@ Gemini 3 excels at tool calling with improved reliability and consistency for mu
 ```ts
 import { z } from 'zod';
 import { generateText, tool, stepCountIs } from 'ai';
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 
 const result = await generateText({
   model: google('gemini-3-pro-preview'),
@@ -107,8 +107,8 @@ console.log(result.steps);
 With [search grounding](https://ai.google.dev/gemini-api/docs/google-search), Gemini can access the latest information using Google search. Here's an example of using Google Search with the AI SDK:
 
 ```ts
-import { google } from '@ai-tools/google';
-import { GoogleGenerativeAIProviderMetadata } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
+import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
 import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
@@ -144,12 +144,12 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI SDK,
 
 In a new Next.js application, first install the AI SDK and the Google Generative AI provider:
 
-<Snippet text="pnpm install ai @ai-tools/google" />
+<Snippet text="pnpm install ai @ai-toolkit/google" />
 
 Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
-import { google } from '@ai-tools/google';
+import { google } from '@ai-toolkit/google';
 import { streamText, UIMessage, convertToModelMessages } from 'ai';
 
 export async function POST(req: Request) {
@@ -169,7 +169,7 @@ Finally, update the root page (`app/page.tsx`) to use the `useChat` hook:
 ```tsx filename="app/page.tsx"
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 
 export default function Chat() {

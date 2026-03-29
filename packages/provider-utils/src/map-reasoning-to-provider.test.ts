@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { SharedV4Warning } from '@ai-tools/provider';
+import { SharedV4Warning } from '@ai-toolkit/provider';
 import {
   isCustomReasoning,
   mapReasoningToProviderBudget,

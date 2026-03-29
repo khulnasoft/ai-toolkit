@@ -1,4 +1,4 @@
-import { togetherai } from '@ai-tools/togetherai';
+import { togetherai } from '@ai-toolkit/togetherai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

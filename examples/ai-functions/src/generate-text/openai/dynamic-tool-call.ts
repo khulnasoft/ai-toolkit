@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { dynamicTool, generateText, stepCountIs, ToolSet } from 'ai';
 import { z } from 'zod';
 import { weatherTool } from '../../tools/weather-tool';

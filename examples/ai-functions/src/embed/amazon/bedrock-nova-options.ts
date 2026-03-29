@@ -1,5 +1,5 @@
-import { bedrock } from '@ai-tools/amazon-bedrock';
-import { type AmazonBedrockEmbeddingModelOptions } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { type AmazonBedrockEmbeddingModelOptions } from '@ai-toolkit/amazon-bedrock';
 import { embed } from 'ai';
 import { run } from '../../lib/run';
 

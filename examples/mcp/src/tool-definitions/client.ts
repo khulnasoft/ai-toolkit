@@ -1,5 +1,5 @@
-import { createMCPClient } from '@ai-tools/mcp';
-import { openai } from '@ai-tools/openai';
+import { createMCPClient } from '@ai-toolkit/mcp';
+import { openai } from '@ai-toolkit/openai';
 import { generateText, stepCountIs } from 'ai';
 import 'dotenv/config';
 

@@ -1,5 +1,5 @@
-import { type GoogleLanguageModelOptions } from '@ai-tools/google';
-import { vertex } from '@ai-tools/google-vertex';
+import { type GoogleLanguageModelOptions } from '@ai-toolkit/google';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 

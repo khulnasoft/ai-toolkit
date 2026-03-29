@@ -1,4 +1,4 @@
-import { resolve } from '@ai-tools/provider-utils';
+import { resolve } from '@ai-toolkit/provider-utils';
 import { GoogleAuthOptions } from 'google-auth-library';
 import { generateAuthToken } from '../google-vertex-auth-google-auth-library';
 import {

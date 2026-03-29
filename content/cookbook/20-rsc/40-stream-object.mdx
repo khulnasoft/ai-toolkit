@@ -51,7 +51,7 @@ Let's create a simple React component that will call the `getNotifications` func
 
 import { useState } from 'react';
 import { generate } from './actions';
-import { readStreamableValue } from '@ai-tools/rsc';
+import { readStreamableValue } from '@ai-toolkit/rsc';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -91,7 +91,7 @@ Now let's implement the `generate` function. We'll use the `streamText` function
 'use server';
 
 import { streamText, Output } from 'ai';
-import { createStreamableValue } from '@ai-tools/rsc';
+import { createStreamableValue } from '@ai-toolkit/rsc';
 import { z } from 'zod';
 
 export async function generate(input: string) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCompletion } from '@ai-tools/react';
+import { useCompletion } from '@ai-toolkit/react';
 
 export default function Page() {
   const { completion, complete } = useCompletion({

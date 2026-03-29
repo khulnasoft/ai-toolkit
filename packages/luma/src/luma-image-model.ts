@@ -3,7 +3,7 @@ import {
   ImageModelV4File,
   SharedV4Warning,
   InvalidResponseDataError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   combineHeaders,
@@ -18,7 +18,7 @@ import {
   lazySchema,
   parseProviderOptions,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { LumaImageSettings, LumaReferenceType } from './luma-image-settings';
 import { z } from 'zod/v4';
 

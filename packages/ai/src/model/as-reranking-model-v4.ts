@@ -1,4 +1,4 @@
-import { RerankingModelV3, RerankingModelV4 } from '@ai-tools/provider';
+import { RerankingModelV3, RerankingModelV4 } from '@ai-toolkit/provider';
 
 export function asRerankingModelV4(
   model: RerankingModelV3 | RerankingModelV4,

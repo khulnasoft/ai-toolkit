@@ -1,10 +1,10 @@
-import { SpeechModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { SpeechModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   createBinaryResponseHandler,
   parseProviderOptions,
   postJsonToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { HumeConfig } from './hume-config';
 import { humeFailedResponseHandler } from './hume-error';

@@ -1,4 +1,8 @@
-import { SpeechModelV2, SpeechModelV3, SpeechModelV4 } from '@ai-tools/provider';
+import {
+  SpeechModelV2,
+  SpeechModelV3,
+  SpeechModelV4,
+} from '@ai-toolkit/provider';
 import { asSpeechModelV3 } from './as-speech-model-v3';
 
 export function asSpeechModelV4(

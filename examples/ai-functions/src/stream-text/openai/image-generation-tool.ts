@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import { convertBase64ToUint8Array } from '../../lib/convert-base64';
 import { presentImages } from '../../lib/present-image';

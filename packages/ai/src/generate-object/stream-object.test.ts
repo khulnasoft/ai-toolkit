@@ -4,13 +4,13 @@ import {
   LanguageModelV4StreamPart,
   TypeValidationError,
   LanguageModelV4Usage,
-} from '@ai-tools/provider';
-import { jsonSchema } from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider';
+import { jsonSchema } from '@ai-toolkit/provider-utils';
 import {
   convertArrayToReadableStream,
   convertAsyncIterableToArray,
   convertReadableStreamToArray,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import assert, { fail } from 'node:assert';
 import { afterEach, beforeEach, describe, expect, it, vitest } from 'vitest';
 import { z } from 'zod/v4';

@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { describe, expect, it, vi } from 'vitest';
 import { createElevenLabs } from './elevenlabs-provider';
 
@@ -172,7 +172,7 @@ describe('ElevenLabsSpeechModel', () => {
       });
 
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/elevenlabs/0.0.0-test`,
+        `ai-toolkit/elevenlabs/0.0.0-test`,
       );
     });
   });

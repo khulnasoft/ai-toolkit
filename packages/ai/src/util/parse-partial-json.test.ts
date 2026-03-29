@@ -1,10 +1,10 @@
-import { safeParseJSON } from '@ai-tools/provider-utils';
+import { safeParseJSON } from '@ai-toolkit/provider-utils';
 import { fixJson } from './fix-json';
 import { parsePartialJson } from './parse-partial-json';
-import { JSONParseError } from '@ai-tools/provider';
+import { JSONParseError } from '@ai-toolkit/provider';
 import { describe, it, expect, vi } from 'vitest';
 
-vi.mock('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils');
 vi.mock('./fix-json');
 
 describe('parsePartialJson', () => {

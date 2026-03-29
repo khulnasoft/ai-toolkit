@@ -5,14 +5,14 @@ import {
   ProviderV4,
   SpeechModelV4,
   TranscriptionModelV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   loadApiKey,
   loadOptionalSetting,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { OpenAIChatLanguageModel } from './chat/openai-chat-language-model';
 import { OpenAIChatModelId } from './chat/openai-chat-options';
 import { OpenAICompletionLanguageModel } from './completion/openai-completion-language-model';
@@ -165,7 +165,7 @@ export function createOpenAI(
         'OpenAI-Project': options.project,
         ...options.headers,
       },
-      `ai-sdk/openai/${VERSION}`,
+      `ai-toolkit/openai/${VERSION}`,
     );
 
   const createChatModel = (modelId: OpenAIChatModelId) =>

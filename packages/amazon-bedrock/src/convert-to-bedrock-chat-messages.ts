@@ -4,12 +4,12 @@ import {
   LanguageModelV4Prompt,
   SharedV4ProviderMetadata,
   UnsupportedFunctionalityError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertToBase64,
   parseProviderOptions,
   stripFileExtension,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   BEDROCK_DOCUMENT_MIME_TYPES,
   BEDROCK_IMAGE_MIME_TYPES,

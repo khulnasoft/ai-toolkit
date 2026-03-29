@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
 
 export const anthropicWebFetchAgent = new ToolLoopAgent({

@@ -12,10 +12,10 @@ Key features include:
 
 ## Setup
 
-The Vercel provider is available in the `@ai-tools/vercel` module. You can install it with
+The Vercel provider is available in the `@ai-toolkit/vercel` module. You can install it with
 
 ```bash
-npm i @ai-tools/vercel
+npm i @ai-toolkit/vercel
 ```
 
 ## Skill for Coding Agents
@@ -28,16 +28,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `vercel` from `@ai-tools/vercel`:
+You can import the default provider instance `vercel` from `@ai-toolkit/vercel`:
 
 ```ts
-import { vercel } from '@ai-tools/vercel';
+import { vercel } from '@ai-toolkit/vercel';
 ```
 
 ## Example
 
 ```ts
-import { vercel } from '@ai-tools/vercel';
+import { vercel } from '@ai-toolkit/vercel';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

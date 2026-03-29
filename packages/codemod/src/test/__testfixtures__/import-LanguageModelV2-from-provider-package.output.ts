@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { LanguageModelV2 } from '@ai-tools/provider';
-import { LanguageModelV2 } from '@ai-tools/provider';
-import { LanguageModelV2Middleware } from '@ai-tools/provider';
-import { LanguageModelV2Middleware } from '@ai-tools/provider';
+import { LanguageModelV2 } from '@ai-toolkit/provider';
+import { LanguageModelV2 } from '@ai-toolkit/provider';
+import { LanguageModelV2Middleware } from '@ai-toolkit/provider';
+import { LanguageModelV2Middleware } from '@ai-toolkit/provider';
 import { someOtherFunction } from 'ai';
 
 // Multiple imports in one declaration
@@ -11,15 +11,15 @@ import {
   LanguageModelV2 as LMV2Multi,
   LanguageModelV2Middleware as LMV1MiddlewareMulti,
   LanguageModelV2Middleware as LMV2MiddlewareMulti,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 
 import { anotherFunction } from 'ai';
 
 // Import with alias
-import { LanguageModelV2 as LMV1 } from '@ai-tools/provider';
+import { LanguageModelV2 as LMV1 } from '@ai-toolkit/provider';
 
 // Mixed imports
-import { LanguageModelV2 as LMV1Mixed } from '@ai-tools/provider';
+import { LanguageModelV2 as LMV1Mixed } from '@ai-toolkit/provider';
 
 import { generateText } from 'ai';
 

@@ -1,7 +1,7 @@
 import {
   convertArrayToReadableStream,
   convertReadableStreamToArray,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import { describe, it, expect } from 'vitest';
 import { createStitchableStream } from './create-stitchable-stream';
 

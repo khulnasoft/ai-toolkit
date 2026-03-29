@@ -1,7 +1,7 @@
 import {
   EmbeddingModelV4,
   TooManyEmbeddingValuesForCallError,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   Resolvable,
@@ -11,7 +11,7 @@ import {
   parseProviderOptions,
   postJsonToApi,
   resolve,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   BedrockEmbeddingModelId,
   amazonBedrockEmbeddingModelOptionsSchema,

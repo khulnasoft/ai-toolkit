@@ -1,4 +1,4 @@
-import { createAnthropic } from '@ai-tools/anthropic';
+import { createAnthropic } from '@ai-toolkit/anthropic';
 import { stepCountIs, ModelMessage, streamText, tool } from 'ai';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';

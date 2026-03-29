@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { readUIMessageStream, stepCountIs, streamText, Tool, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

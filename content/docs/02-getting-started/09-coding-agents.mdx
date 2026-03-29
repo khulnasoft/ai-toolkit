@@ -73,16 +73,16 @@ Install the DevTools package:
 <div className="my-4">
   <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
     <Tab>
-      <Snippet text="pnpm add @ai-tools/devtools" dark />
+      <Snippet text="pnpm add @ai-toolkit/devtools" dark />
     </Tab>
     <Tab>
-      <Snippet text="npm install @ai-tools/devtools" dark />
+      <Snippet text="npm install @ai-toolkit/devtools" dark />
     </Tab>
     <Tab>
-      <Snippet text="yarn add @ai-tools/devtools" dark />
+      <Snippet text="yarn add @ai-toolkit/devtools" dark />
     </Tab>
     <Tab>
-      <Snippet text="bun add @ai-tools/devtools" dark />
+      <Snippet text="bun add @ai-toolkit/devtools" dark />
     </Tab>
   </Tabs>
 </div>
@@ -93,7 +93,7 @@ Wrap your language model with the DevTools middleware using [`wrapLanguageModel`
 
 ```ts
 import { wrapLanguageModel, gateway } from 'ai';
-import { devToolsMiddleware } from '@ai-tools/devtools';
+import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({
   model: gateway('anthropic/claude-sonnet-4.5'),
@@ -117,7 +117,7 @@ const result = await generateText({
 Start the DevTools viewer in a separate terminal:
 
 ```bash
-npx @ai-tools/devtools
+npx @ai-toolkit/devtools
 ```
 
 Open [http://localhost:4983](http://localhost:4983) to inspect your AI SDK interactions in real time.

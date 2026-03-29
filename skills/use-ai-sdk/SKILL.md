@@ -7,7 +7,7 @@ description: 'Answer questions about the AI SDK and help build AI-powered featur
 
 Before searching docs, check if `node_modules/ai/docs/` exists. If not, install **only** the `ai` package using the project's package manager (e.g., `pnpm add ai`).
 
-Do not install other packages at this stage. Provider packages (e.g., `@ai-tools/openai`) and client packages (e.g., `@ai-tools/react`) should be installed later when needed based on user requirements.
+Do not install other packages at this stage. Provider packages (e.g., `@ai-toolkit/openai`) and client packages (e.g., `@ai-toolkit/react`) should be installed later when needed based on user requirements.
 
 ## Critical: Do Not Trust Internal Knowledge
 
@@ -36,7 +36,7 @@ Search bundled docs and source in `node_modules/ai/`:
 - **Docs**: `grep "query" node_modules/ai/docs/`
 - **Source**: `grep "query" node_modules/ai/src/`
 
-Provider packages include docs at `node_modules/@ai-tools/<provider>/docs/`.
+Provider packages include docs at `node_modules/@ai-toolkit/<provider>/docs/`.
 
 ### Earlier versions
 

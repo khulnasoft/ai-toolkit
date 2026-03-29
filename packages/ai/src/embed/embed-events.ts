@@ -1,5 +1,5 @@
-import type { JSONValue } from '@ai-tools/provider';
-import type { ProviderOptions } from '@ai-tools/provider-utils';
+import type { JSONValue } from '@ai-toolkit/provider';
+import type { ProviderOptions } from '@ai-toolkit/provider-utils';
 import type { Embedding, ProviderMetadata } from '../types';
 import type { EmbeddingModelUsage } from '../types/usage';
 import type { Warning } from '../types/warning';

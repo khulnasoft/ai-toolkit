@@ -1,11 +1,11 @@
-import { OpenAICompatibleChatLanguageModel } from '@ai-tools/openai-compatible';
-import { OpenAICompatibleChatConfig } from '@ai-tools/openai-compatible/internal';
+import { OpenAICompatibleChatLanguageModel } from '@ai-toolkit/openai-compatible';
+import { OpenAICompatibleChatConfig } from '@ai-toolkit/openai-compatible/internal';
 import {
   LanguageModelV4CallOptions,
   LanguageModelV4GenerateResult,
   LanguageModelV4StreamPart,
   LanguageModelV4StreamResult,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import { convertMoonshotAIChatUsage } from './convert-moonshotai-chat-usage';
 import { MoonshotAIChatModelId } from './moonshotai-chat-options';
 

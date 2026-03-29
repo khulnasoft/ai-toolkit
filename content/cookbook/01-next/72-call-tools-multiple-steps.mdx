@@ -10,12 +10,12 @@ Some language models are great at calling tools in multiple steps to achieve a m
 
 ## Client
 
-Let's create a React component that imports the `useChat` hook from the `@ai-tools/react` module. The `useChat` hook will call the `/api/chat` endpoint when the user sends a message. The endpoint will generate the assistant's response based on the conversation history and stream it to the client. If the assistant responds with a tool call, the hook will automatically display them as well.
+Let's create a React component that imports the `useChat` hook from the `@ai-toolkit/react` module. The `useChat` hook will call the `/api/chat` endpoint when the user sends a message. The endpoint will generate the assistant's response based on the conversation history and stream it to the client. If the assistant responds with a tool call, the hook will automatically display them as well.
 
 ```tsx filename='app/page.tsx'
 'use client';
 
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 import type { ChatMessage } from './api/chat/route';

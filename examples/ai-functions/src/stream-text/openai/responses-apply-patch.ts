@@ -1,4 +1,4 @@
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';

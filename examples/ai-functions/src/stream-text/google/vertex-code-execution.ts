@@ -1,4 +1,4 @@
-import { vertex } from '@ai-tools/google-vertex';
+import { vertex } from '@ai-toolkit/google-vertex';
 import { ModelMessage, streamText, ToolCallPart, ToolResultPart } from 'ai';
 import * as process from 'process';
 import { run } from '../../lib/run';

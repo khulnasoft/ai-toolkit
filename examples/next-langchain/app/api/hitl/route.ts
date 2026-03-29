@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { createAgent, humanInTheLoopMiddleware } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { tool } from '@langchain/core/tools';
-import { toBaseMessages, toUIMessageStream } from '@ai-tools/langchain';
+import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { MemorySaver, Command } from '@langchain/langgraph';
 import { z } from 'zod';
 

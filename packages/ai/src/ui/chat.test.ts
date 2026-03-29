@@ -1,8 +1,8 @@
 import {
   createTestServer,
   TestResponseController,
-} from '@ai-tools/test-server/with-vitest';
-import { mockId } from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/test-server/with-vitest';
+import { mockId } from '@ai-toolkit/provider-utils/test';
 import { createResolvablePromise } from '../util/create-resolvable-promise';
 import { AbstractChat, ChatInit, ChatState, ChatStatus } from './chat';
 import { UIMessage } from './ui-messages';
@@ -10,7 +10,7 @@ import { UIMessageChunk } from '../ui-message-stream/ui-message-chunks';
 import { DefaultChatTransport } from './default-chat-transport';
 import { lastAssistantMessageIsCompleteWithToolCalls } from './last-assistant-message-is-complete-with-tool-calls';
 import { describe, it, expect, beforeEach } from 'vitest';
-import { delay } from '@ai-tools/provider-utils';
+import { delay } from '@ai-toolkit/provider-utils';
 import { lastAssistantMessageIsCompleteWithApprovalResponses } from './last-assistant-message-is-complete-with-approval-responses';
 
 class TestChatState<

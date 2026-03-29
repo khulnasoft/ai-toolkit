@@ -120,16 +120,16 @@ Where reasonable, replace references to the older or preview model with the new 
 ### Step 7: Run Tests
 
 ```bash
-pnpm --filter @ai-tools/<provider> test
-pnpm --filter @ai-tools/gateway test
+pnpm --filter @ai-toolkit/<provider> test
+pnpm --filter @ai-toolkit/gateway test
 ```
 
 Also run tests for any other affected packages:
 
 ```bash
-pnpm --filter @ai-tools/openai-compatible test  # if snapshots/tests were updated
-pnpm --filter @ai-tools/amazon-bedrock test     # if Bedrock options were updated
-pnpm --filter @ai-tools/google-vertex test      # if Vertex options were updated
+pnpm --filter @ai-toolkit/openai-compatible test  # if snapshots/tests were updated
+pnpm --filter @ai-toolkit/amazon-bedrock test     # if Bedrock options were updated
+pnpm --filter @ai-toolkit/google-vertex test      # if Vertex options were updated
 ```
 
 </adding-new-model>
@@ -185,7 +185,7 @@ Remove the `| 'model-id'` line from union types and entries from const arrays in
 ### Step 7: Run Tests
 
 ```bash
-pnpm --filter @ai-tools/<provider> test
+pnpm --filter @ai-toolkit/<provider> test
 ```
 
 Also run tests for any other affected packages (same as Workflow A Step 7).

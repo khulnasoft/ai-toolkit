@@ -16,10 +16,10 @@ contains language model support for Perplexity's Sonar API - a powerful answer e
 
 ## Setup
 
-The Perplexity provider is available in the `@ai-tools/perplexity` module. You can install it with:
+The Perplexity provider is available in the `@ai-toolkit/perplexity` module. You can install it with:
 
 ```bash
-npm i @ai-tools/perplexity
+npm i @ai-toolkit/perplexity
 ```
 
 ## Skill for Coding Agents
@@ -32,16 +32,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `perplexity` from `@ai-tools/perplexity`:
+You can import the default provider instance `perplexity` from `@ai-toolkit/perplexity`:
 
 ```ts
-import { perplexity } from '@ai-tools/perplexity';
+import { perplexity } from '@ai-toolkit/perplexity';
 ```
 
 ## Example
 
 ```ts
-import { perplexity } from '@ai-tools/perplexity';
+import { perplexity } from '@ai-toolkit/perplexity';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

@@ -22,7 +22,7 @@ DevTools is composed of two parts:
 Install the DevTools package:
 
 ```bash
-pnpm add @ai-tools/devtools
+pnpm add @ai-toolkit/devtools
 ```
 
 ## Requirements
@@ -38,7 +38,7 @@ Wrap your language model with the DevTools middleware using [`wrapLanguageModel`
 
 ```ts
 import { wrapLanguageModel, gateway } from 'ai';
-import { devToolsMiddleware } from '@ai-tools/devtools';
+import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({
   model: gateway('anthropic/claude-sonnet-4.5'),
@@ -62,7 +62,7 @@ const result = await generateText({
 Start the DevTools viewer:
 
 ```bash
-npx @ai-tools/devtools
+npx @ai-toolkit/devtools
 ```
 
 Open [http://localhost:4983](http://localhost:4983) to view your AI SDK interactions.

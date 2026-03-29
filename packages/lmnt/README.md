@@ -5,10 +5,10 @@ contains language model support for the LMNT API.
 
 ## Setup
 
-The LMNT provider is available in the `@ai-tools/lmnt` module. You can install it with
+The LMNT provider is available in the `@ai-toolkit/lmnt` module. You can install it with
 
 ```bash
-npm i @ai-tools/lmnt
+npm i @ai-toolkit/lmnt
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `lmnt` from `@ai-tools/lmnt`:
+You can import the default provider instance `lmnt` from `@ai-toolkit/lmnt`:
 
 ```ts
-import { lmnt } from '@ai-tools/lmnt';
+import { lmnt } from '@ai-toolkit/lmnt';
 ```
 
 ## Example
 
 ```ts
-import { lmnt } from '@ai-tools/lmnt';
+import { lmnt } from '@ai-toolkit/lmnt';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const result = await generateSpeech({

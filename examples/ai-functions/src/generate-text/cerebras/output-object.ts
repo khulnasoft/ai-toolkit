@@ -1,4 +1,4 @@
-import { cerebras } from '@ai-tools/cerebras';
+import { cerebras } from '@ai-toolkit/cerebras';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

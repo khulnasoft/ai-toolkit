@@ -1,4 +1,4 @@
-import { ProviderV2, ProviderV3, ProviderV4 } from '@ai-tools/provider';
+import { ProviderV2, ProviderV3, ProviderV4 } from '@ai-toolkit/provider';
 import { LogWarningsFunction } from './logger/log-warnings';
 import type { TelemetryIntegration } from './telemetry/telemetry-integration';
 

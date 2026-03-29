@@ -1,4 +1,4 @@
-import { createBedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { createBedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 import { z } from 'zod';

@@ -9,26 +9,26 @@ description: Use Clarifai OpenAI compatible API with the AI SDK.
 
 ## Setup
 
-The Clarifai provider is available via the `@ai-tools/openai-compatible` module as it is compatible with the OpenAI API. You can install it with:
+The Clarifai provider is available via the `@ai-toolkit/openai-compatible` module as it is compatible with the OpenAI API. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/openai-compatible" dark />
+    <Snippet text="pnpm add @ai-toolkit/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/openai-compatible" dark />
+    <Snippet text="npm install @ai-toolkit/openai-compatible" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/openai-compatible" dark />
+    <Snippet text="yarn add @ai-toolkit/openai-compatible" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-To use Clarifai, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-tools/openai-compatible`:
+To use Clarifai, you can create a custom provider instance with the `createOpenAICompatible` function from `@ai-toolkit/openai-compatible`:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 
 const clarifai = createOpenAICompatible({
   name: 'clarifai',
@@ -59,7 +59,7 @@ const model = clarifai.chatModel(
 You can use Clarifai language models to generate text with the `generateText` function:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { generateText } from 'ai';
 
 const clarifai = createOpenAICompatible({
@@ -87,7 +87,7 @@ console.log('Finish reason:', finishReason);
 You can also stream text responses from Clarifai models using the `streamText` function:
 
 ```ts
-import { createOpenAICompatible } from '@ai-tools/openai-compatible';
+import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
 import { streamText } from 'ai';
 
 const clarifai = createOpenAICompatible({

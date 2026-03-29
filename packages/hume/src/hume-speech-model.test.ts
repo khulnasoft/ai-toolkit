@@ -1,4 +1,4 @@
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import { HumeSpeechModel } from './hume-speech-model';
 import { createHume } from './hume-provider';
 import { describe, it, expect, vi } from 'vitest';
@@ -81,7 +81,7 @@ describe('doGenerate', () => {
       'custom-request-header': 'request-header-value',
     });
     expect(server.calls[0].requestUserAgent).toContain(
-      `ai-sdk/hume/0.0.0-test`,
+      `ai-toolkit/hume/0.0.0-test`,
     );
   });
 

@@ -1,5 +1,9 @@
-import { APICallError } from '@ai-tools/provider';
-import { delay, getErrorMessage, isAbortError } from '@ai-tools/provider-utils';
+import { APICallError } from '@ai-toolkit/provider';
+import {
+  delay,
+  getErrorMessage,
+  isAbortError,
+} from '@ai-toolkit/provider-utils';
 import { RetryError } from './retry-error';
 
 export type RetryFunction = <OUTPUT>(

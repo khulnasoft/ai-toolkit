@@ -3,15 +3,15 @@ import {
   LanguageModelV4,
   LanguageModelV4GenerateResult,
   LanguageModelV4Prompt,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   convertReadableStreamToArray,
   mockId,
-} from '@ai-tools/provider-utils/test';
-import { createTestServer } from '@ai-tools/test-server/with-vitest';
+} from '@ai-toolkit/provider-utils/test';
+import { createTestServer } from '@ai-toolkit/test-server/with-vitest';
 import fs from 'node:fs';
 import { beforeEach, describe, it, expect, vi } from 'vitest';
-import { OpenAIResponsesLanguageModel } from '@ai-tools/openai/internal';
+import { OpenAIResponsesLanguageModel } from '@ai-toolkit/openai/internal';
 import { createAzure } from './azure-openai-provider';
 
 vi.mock('./version', () => ({
@@ -183,7 +183,7 @@ describe('responses (default language model)', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
 
@@ -288,7 +288,7 @@ describe('chat', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
 
@@ -388,7 +388,7 @@ describe('completion', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
   });
@@ -541,7 +541,7 @@ describe('embedding', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
   });
@@ -646,7 +646,7 @@ describe('image', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
 
@@ -869,7 +869,7 @@ describe('responses', () => {
         }
       `);
       expect(server.calls[0].requestUserAgent).toContain(
-        `ai-sdk/azure/0.0.0-test`,
+        `ai-toolkit/azure/0.0.0-test`,
       );
     });
 

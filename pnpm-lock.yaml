@@ -65,58 +65,58 @@ importers:
 
   examples/ai-e2e-next:
     dependencies:
-      '@ai-tools/amazon-bedrock':
+      '@ai-toolkit/amazon-bedrock':
         specifier: 5.0.0-beta.12
         version: link:../../packages/amazon-bedrock
-      '@ai-tools/anthropic':
+      '@ai-toolkit/anthropic':
         specifier: 4.0.0-beta.12
         version: link:../../packages/anthropic
-      '@ai-tools/azure':
+      '@ai-toolkit/azure':
         specifier: 4.0.0-beta.16
         version: link:../../packages/azure
-      '@ai-tools/cohere':
+      '@ai-toolkit/cohere':
         specifier: 4.0.0-beta.8
         version: link:../../packages/cohere
-      '@ai-tools/deepseek':
+      '@ai-toolkit/deepseek':
         specifier: 3.0.0-beta.9
         version: link:../../packages/deepseek
-      '@ai-tools/fireworks':
+      '@ai-toolkit/fireworks':
         specifier: 3.0.0-beta.10
         version: link:../../packages/fireworks
-      '@ai-tools/google':
+      '@ai-toolkit/google':
         specifier: 4.0.0-beta.17
         version: link:../../packages/google
-      '@ai-tools/google-vertex':
+      '@ai-toolkit/google-vertex':
         specifier: 5.0.0-beta.23
         version: link:../../packages/google-vertex
-      '@ai-tools/groq':
+      '@ai-toolkit/groq':
         specifier: 4.0.0-beta.9
         version: link:../../packages/groq
-      '@ai-tools/mcp':
+      '@ai-toolkit/mcp':
         specifier: 2.0.0-beta.11
         version: link:../../packages/mcp
-      '@ai-tools/mistral':
+      '@ai-toolkit/mistral':
         specifier: 4.0.0-beta.9
         version: link:../../packages/mistral
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/perplexity':
+      '@ai-toolkit/perplexity':
         specifier: 4.0.0-beta.10
         version: link:../../packages/perplexity
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: 5.0.0-beta.7
         version: link:../../packages/provider-utils
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
-      '@ai-tools/rsc':
+      '@ai-toolkit/rsc':
         specifier: 3.0.0-beta.46
         version: link:../../packages/rsc
-      '@ai-tools/valibot':
+      '@ai-toolkit/valibot':
         specifier: 3.0.0-beta.7
         version: link:../../packages/valibot
-      '@ai-tools/xai':
+      '@ai-toolkit/xai':
         specifier: 4.0.0-beta.17
         version: link:../../packages/xai
       '@modelcontextprotocol/sdk':
@@ -207,127 +207,127 @@ importers:
 
   examples/ai-functions:
     dependencies:
-      '@ai-tools/alibaba':
+      '@ai-toolkit/alibaba':
         specifier: workspace:*
         version: link:../../packages/alibaba
-      '@ai-tools/amazon-bedrock':
+      '@ai-toolkit/amazon-bedrock':
         specifier: workspace:*
         version: link:../../packages/amazon-bedrock
-      '@ai-tools/anthropic':
+      '@ai-toolkit/anthropic':
         specifier: workspace:*
         version: link:../../packages/anthropic
-      '@ai-tools/assemblyai':
+      '@ai-toolkit/assemblyai':
         specifier: workspace:*
         version: link:../../packages/assemblyai
-      '@ai-tools/azure':
+      '@ai-toolkit/azure':
         specifier: workspace:*
         version: link:../../packages/azure
-      '@ai-tools/baseten':
+      '@ai-toolkit/baseten':
         specifier: workspace:*
         version: link:../../packages/baseten
-      '@ai-tools/black-forest-labs':
+      '@ai-toolkit/black-forest-labs':
         specifier: workspace:*
         version: link:../../packages/black-forest-labs
-      '@ai-tools/bytedance':
+      '@ai-toolkit/bytedance':
         specifier: workspace:*
         version: link:../../packages/bytedance
-      '@ai-tools/cerebras':
+      '@ai-toolkit/cerebras':
         specifier: workspace:*
         version: link:../../packages/cerebras
-      '@ai-tools/cohere':
+      '@ai-toolkit/cohere':
         specifier: workspace:*
         version: link:../../packages/cohere
-      '@ai-tools/deepgram':
+      '@ai-toolkit/deepgram':
         specifier: workspace:*
         version: link:../../packages/deepgram
-      '@ai-tools/deepinfra':
+      '@ai-toolkit/deepinfra':
         specifier: workspace:*
         version: link:../../packages/deepinfra
-      '@ai-tools/deepseek':
+      '@ai-toolkit/deepseek':
         specifier: workspace:*
         version: link:../../packages/deepseek
-      '@ai-tools/elevenlabs':
+      '@ai-toolkit/elevenlabs':
         specifier: workspace:*
         version: link:../../packages/elevenlabs
-      '@ai-tools/fal':
+      '@ai-toolkit/fal':
         specifier: workspace:*
         version: link:../../packages/fal
-      '@ai-tools/fireworks':
+      '@ai-toolkit/fireworks':
         specifier: workspace:*
         version: link:../../packages/fireworks
-      '@ai-tools/gateway':
+      '@ai-toolkit/gateway':
         specifier: workspace:*
         version: link:../../packages/gateway
-      '@ai-tools/gladia':
+      '@ai-toolkit/gladia':
         specifier: workspace:*
         version: link:../../packages/gladia
-      '@ai-tools/google':
+      '@ai-toolkit/google':
         specifier: workspace:*
         version: link:../../packages/google
-      '@ai-tools/google-vertex':
+      '@ai-toolkit/google-vertex':
         specifier: workspace:*
         version: link:../../packages/google-vertex
-      '@ai-tools/groq':
+      '@ai-toolkit/groq':
         specifier: workspace:*
         version: link:../../packages/groq
-      '@ai-tools/huggingface':
+      '@ai-toolkit/huggingface':
         specifier: workspace:*
         version: link:../../packages/huggingface
-      '@ai-tools/hume':
+      '@ai-toolkit/hume':
         specifier: workspace:*
         version: link:../../packages/hume
-      '@ai-tools/klingai':
+      '@ai-toolkit/klingai':
         specifier: workspace:*
         version: link:../../packages/klingai
-      '@ai-tools/lmnt':
+      '@ai-toolkit/lmnt':
         specifier: workspace:*
         version: link:../../packages/lmnt
-      '@ai-tools/luma':
+      '@ai-toolkit/luma':
         specifier: workspace:*
         version: link:../../packages/luma
-      '@ai-tools/mcp':
+      '@ai-toolkit/mcp':
         specifier: workspace:*
         version: link:../../packages/mcp
-      '@ai-tools/mistral':
+      '@ai-toolkit/mistral':
         specifier: workspace:*
         version: link:../../packages/mistral
-      '@ai-tools/moonshotai':
+      '@ai-toolkit/moonshotai':
         specifier: workspace:*
         version: link:../../packages/moonshotai
-      '@ai-tools/open-responses':
+      '@ai-toolkit/open-responses':
         specifier: workspace:*
         version: link:../../packages/open-responses
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: workspace:*
         version: link:../../packages/openai
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../../packages/openai-compatible
-      '@ai-tools/perplexity':
+      '@ai-toolkit/perplexity':
         specifier: workspace:*
         version: link:../../packages/perplexity
-      '@ai-tools/prodia':
+      '@ai-toolkit/prodia':
         specifier: workspace:*
         version: link:../../packages/prodia
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../../packages/provider
-      '@ai-tools/replicate':
+      '@ai-toolkit/replicate':
         specifier: workspace:*
         version: link:../../packages/replicate
-      '@ai-tools/revai':
+      '@ai-toolkit/revai':
         specifier: workspace:*
         version: link:../../packages/revai
-      '@ai-tools/togetherai':
+      '@ai-toolkit/togetherai':
         specifier: workspace:*
         version: link:../../packages/togetherai
-      '@ai-tools/valibot':
+      '@ai-toolkit/valibot':
         specifier: workspace:*
         version: link:../../packages/valibot
-      '@ai-tools/vercel':
+      '@ai-toolkit/vercel':
         specifier: workspace:*
         version: link:../../packages/vercel
-      '@ai-tools/xai':
+      '@ai-toolkit/xai':
         specifier: workspace:*
         version: link:../../packages/xai
       '@google/generative-ai':
@@ -400,10 +400,10 @@ importers:
 
   examples/angular:
     dependencies:
-      '@ai-tools/angular':
+      '@ai-toolkit/angular':
         specifier: 3.0.0-beta.45
         version: link:../../packages/angular
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       '@angular/common':
@@ -470,7 +470,7 @@ importers:
 
   examples/express:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       ai:
@@ -498,7 +498,7 @@ importers:
 
   examples/fastify:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       ai:
@@ -523,7 +523,7 @@ importers:
 
   examples/hono:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       '@hono/node-server':
@@ -551,7 +551,7 @@ importers:
 
   examples/mcp:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       '@modelcontextprotocol/sdk':
@@ -570,7 +570,7 @@ importers:
         specifier: 3.25.76
         version: 3.25.76
     devDependencies:
-      '@ai-tools/mcp':
+      '@ai-toolkit/mcp':
         specifier: workspace:*
         version: link:../../packages/mcp
       '@types/express':
@@ -588,7 +588,7 @@ importers:
 
   examples/nest:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       '@nestjs/common':
@@ -658,7 +658,7 @@ importers:
 
   examples/next:
     dependencies:
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@vercel/blob':
@@ -713,10 +713,10 @@ importers:
 
   examples/next-agent:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@vercel/blob':
@@ -768,7 +768,7 @@ importers:
 
   examples/next-fastapi:
     dependencies:
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       ai:
@@ -814,7 +814,7 @@ importers:
 
   examples/next-google-vertex:
     dependencies:
-      '@ai-tools/google-vertex':
+      '@ai-toolkit/google-vertex':
         specifier: 5.0.0-beta.23
         version: link:../../packages/google-vertex
       ai:
@@ -854,10 +854,10 @@ importers:
 
   examples/next-langchain:
     dependencies:
-      '@ai-tools/langchain':
+      '@ai-toolkit/langchain':
         specifier: 3.0.0-beta.45
         version: link:../../packages/langchain
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@langchain/core':
@@ -921,10 +921,10 @@ importers:
 
   examples/next-openai-kasada-bot-protection:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@vercel/functions':
@@ -970,10 +970,10 @@ importers:
 
   examples/next-openai-pages:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       ai:
@@ -1016,10 +1016,10 @@ importers:
 
   examples/next-openai-telemetry:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@opentelemetry/api-logs':
@@ -1074,10 +1074,10 @@ importers:
 
   examples/next-openai-telemetry-sentry:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@opentelemetry/api-logs':
@@ -1138,10 +1138,10 @@ importers:
 
   examples/next-openai-upstash-rate-limits:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/react':
+      '@ai-toolkit/react':
         specifier: 4.0.0-beta.45
         version: link:../../packages/react
       '@upstash/ratelimit':
@@ -1190,7 +1190,7 @@ importers:
 
   examples/node-http-server:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
       ai:
@@ -1215,10 +1215,10 @@ importers:
 
   examples/nuxt-openai:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/vue':
+      '@ai-toolkit/vue':
         specifier: 4.0.0-beta.45
         version: link:../../packages/vue
       ai:
@@ -1270,13 +1270,13 @@ importers:
 
   examples/sveltekit-openai:
     devDependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: 4.0.0-beta.16
         version: link:../../packages/openai
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: 5.0.0-beta.7
         version: link:../../packages/provider-utils
-      '@ai-tools/svelte':
+      '@ai-toolkit/svelte':
         specifier: 5.0.0-beta.45
         version: link:../../packages/svelte
       '@sveltejs/adapter-vercel':
@@ -1330,20 +1330,20 @@ importers:
 
   packages/ai:
     dependencies:
-      '@ai-tools/gateway':
+      '@ai-toolkit/gateway':
         specifier: workspace:*
         version: link:../gateway
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@opentelemetry/api':
         specifier: 1.9.0
         version: 1.9.0
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@edge-runtime/vm':
@@ -1376,17 +1376,17 @@ importers:
 
   packages/alibaba:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1407,13 +1407,13 @@ importers:
 
   packages/amazon-bedrock:
     dependencies:
-      '@ai-tools/anthropic':
+      '@ai-toolkit/anthropic':
         specifier: workspace:*
         version: link:../anthropic
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@smithy/eventstream-codec':
@@ -1426,7 +1426,7 @@ importers:
         specifier: ^1.0.20
         version: 1.0.20
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1447,7 +1447,7 @@ importers:
 
   packages/angular:
     dependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@angular/core':
@@ -1457,7 +1457,7 @@ importers:
         specifier: workspace:*
         version: link:../ai
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1484,14 +1484,14 @@ importers:
 
   packages/anthropic:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1512,14 +1512,14 @@ importers:
 
   packages/assemblyai:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1540,17 +1540,17 @@ importers:
 
   packages/azure:
     dependencies:
-      '@ai-tools/openai':
+      '@ai-toolkit/openai':
         specifier: workspace:*
         version: link:../openai
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1571,13 +1571,13 @@ importers:
 
   packages/baseten:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@basetenlabs/performance-client':
@@ -1602,14 +1602,14 @@ importers:
 
   packages/black-forest-labs:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1630,14 +1630,14 @@ importers:
 
   packages/bytedance:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1658,13 +1658,13 @@ importers:
 
   packages/cerebras:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
@@ -1738,14 +1738,14 @@ importers:
 
   packages/cohere:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1766,14 +1766,14 @@ importers:
 
   packages/deepgram:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1794,17 +1794,17 @@ importers:
 
   packages/deepinfra:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1825,14 +1825,14 @@ importers:
 
   packages/deepseek:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1853,7 +1853,7 @@ importers:
 
   packages/devtools:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
       '@hono/node-server':
@@ -1944,14 +1944,14 @@ importers:
 
   packages/elevenlabs:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -1972,14 +1972,14 @@ importers:
 
   packages/fal:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2000,17 +2000,17 @@ importers:
 
   packages/fireworks:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2031,17 +2031,17 @@ importers:
 
   packages/gateway:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@vercel/oidc':
         specifier: 3.2.0
         version: 3.2.0
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2065,14 +2065,14 @@ importers:
 
   packages/gladia:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2093,14 +2093,14 @@ importers:
 
   packages/google:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2121,23 +2121,23 @@ importers:
 
   packages/google-vertex:
     dependencies:
-      '@ai-tools/anthropic':
+      '@ai-toolkit/anthropic':
         specifier: workspace:*
         version: link:../anthropic
-      '@ai-tools/google':
+      '@ai-toolkit/google':
         specifier: workspace:*
         version: link:../google
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       google-auth-library:
         specifier: ^10.5.0
         version: 10.6.1
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2158,14 +2158,14 @@ importers:
 
   packages/groq:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2186,17 +2186,17 @@ importers:
 
   packages/huggingface:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2217,14 +2217,14 @@ importers:
 
   packages/hume:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2245,14 +2245,14 @@ importers:
 
   packages/klingai:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2277,7 +2277,7 @@ importers:
         specifier: workspace:*
         version: link:../ai
     devDependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       '@langchain/core':
@@ -2320,14 +2320,14 @@ importers:
 
   packages/lmnt:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2348,14 +2348,14 @@ importers:
 
   packages/luma:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2376,17 +2376,17 @@ importers:
 
   packages/mcp:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       pkce-challenge:
         specifier: ^5.0.0
         version: 5.0.1
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2410,14 +2410,14 @@ importers:
 
   packages/mistral:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2438,17 +2438,17 @@ importers:
 
   packages/moonshotai:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2469,14 +2469,14 @@ importers:
 
   packages/open-responses:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2497,14 +2497,14 @@ importers:
 
   packages/openai:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2525,14 +2525,14 @@ importers:
 
   packages/openai-compatible:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2553,14 +2553,14 @@ importers:
 
   packages/perplexity:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2581,14 +2581,14 @@ importers:
 
   packages/prodia:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2631,7 +2631,7 @@ importers:
 
   packages/provider-utils:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
       '@standard-schema/spec':
@@ -2662,7 +2662,7 @@ importers:
 
   packages/react:
     dependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       ai:
@@ -2678,7 +2678,7 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@testing-library/jest-dom':
@@ -2723,14 +2723,14 @@ importers:
 
   packages/replicate:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2751,14 +2751,14 @@ importers:
 
   packages/revai:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2779,10 +2779,10 @@ importers:
 
   packages/rsc:
     dependencies:
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       ai:
@@ -2858,14 +2858,14 @@ importers:
 
   packages/svelte:
     dependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       ai:
         specifier: workspace:*
         version: link:../ai
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@sveltejs/package':
@@ -2932,17 +2932,17 @@ importers:
 
   packages/togetherai:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':
@@ -2963,7 +2963,7 @@ importers:
 
   packages/valibot:
     dependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
@@ -2988,13 +2988,13 @@ importers:
 
   packages/vercel:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
@@ -3016,7 +3016,7 @@ importers:
 
   packages/vue:
     dependencies:
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
       ai:
@@ -3029,7 +3029,7 @@ importers:
         specifier: ^3.3.4
         version: 3.5.13(typescript@5.8.3)
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@testing-library/jest-dom':
@@ -3071,17 +3071,17 @@ importers:
 
   packages/xai:
     dependencies:
-      '@ai-tools/openai-compatible':
+      '@ai-toolkit/openai-compatible':
         specifier: workspace:*
         version: link:../openai-compatible
-      '@ai-tools/provider':
+      '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ai-tools/provider-utils':
+      '@ai-toolkit/provider-utils':
         specifier: workspace:*
         version: link:../provider-utils
     devDependencies:
-      '@ai-tools/test-server':
+      '@ai-toolkit/test-server':
         specifier: workspace:*
         version: link:../test-server
       '@types/node':

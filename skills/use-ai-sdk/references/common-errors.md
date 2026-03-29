@@ -195,7 +195,7 @@ The `useChat` hook no longer manages input state internally. You must now manage
 
 ```tsx
 // ❌ Deprecated
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 
 export default function Page() {
   const {
@@ -215,7 +215,7 @@ export default function Page() {
 }
 
 // ✅ Correct
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 

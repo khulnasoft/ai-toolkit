@@ -4,7 +4,7 @@ import {
   azure,
   AzureResponsesReasoningProviderMetadata,
   OpenAILanguageModelResponsesOptions,
-} from '@ai-tools/azure';
+} from '@ai-toolkit/azure';
 
 run(async () => {
   const result = await generateText({

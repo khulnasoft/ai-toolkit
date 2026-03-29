@@ -1,4 +1,4 @@
-import { deepinfra } from '@ai-tools/deepinfra';
+import { deepinfra } from '@ai-toolkit/deepinfra';
 import { generateImage } from 'ai';
 import { presentImages } from '../../lib/present-image';
 import { run } from '../../lib/run';

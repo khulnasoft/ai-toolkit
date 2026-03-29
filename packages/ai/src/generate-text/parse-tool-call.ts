@@ -1,11 +1,11 @@
-import { LanguageModelV4ToolCall } from '@ai-tools/provider';
+import { LanguageModelV4ToolCall } from '@ai-toolkit/provider';
 import {
   asSchema,
   ModelMessage,
   safeParseJSON,
   safeValidateTypes,
   SystemModelMessage,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { InvalidToolInputError } from '../error/invalid-tool-input-error';
 import { NoSuchToolError } from '../error/no-such-tool-error';
 import { ToolCallRepairError } from '../error/tool-call-repair-error';

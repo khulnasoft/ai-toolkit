@@ -1,4 +1,7 @@
-import { openai, OpenAILanguageModelResponsesOptions } from '@ai-tools/openai';
+import {
+  openai,
+  OpenAILanguageModelResponsesOptions,
+} from '@ai-toolkit/openai';
 import { LanguageModel, ToolLoopAgent } from 'ai';
 import { z } from 'zod';
 import { print } from '../../lib/print';

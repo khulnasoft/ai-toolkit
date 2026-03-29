@@ -2,7 +2,7 @@ import {
   ImageModelV4,
   LanguageModelV4Prompt,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertToBase64,
@@ -16,7 +16,7 @@ import {
   Resolvable,
   resolve,
   zodSchema,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { googleFailedResponseHandler } from './google-error';
 import {
@@ -93,14 +93,14 @@ export class GoogleGenerativeAIImageModel implements ImageModelV4 {
     if (files != null && files.length > 0) {
       throw new Error(
         'Google Generative AI does not support image editing with Imagen models. ' +
-          'Use Google Vertex AI (@ai-tools/google-vertex) for image editing capabilities.',
+          'Use Google Vertex AI (@ai-toolkit/google-vertex) for image editing capabilities.',
       );
     }
 
     if (mask != null) {
       throw new Error(
         'Google Generative AI does not support image editing with masks. ' +
-          'Use Google Vertex AI (@ai-tools/google-vertex) for image editing capabilities.',
+          'Use Google Vertex AI (@ai-toolkit/google-vertex) for image editing capabilities.',
       );
     }
 

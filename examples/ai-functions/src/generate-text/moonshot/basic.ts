@@ -1,4 +1,4 @@
-import { moonshotai } from '@ai-tools/moonshotai';
+import { moonshotai } from '@ai-toolkit/moonshotai';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

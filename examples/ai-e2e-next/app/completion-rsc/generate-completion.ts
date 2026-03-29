@@ -1,8 +1,8 @@
 'use server';
 
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
-import { createStreamableValue } from '@ai-tools/rsc';
+import { createStreamableValue } from '@ai-toolkit/rsc';
 
 export async function generateCompletion(prompt: string) {
   const result = streamText({

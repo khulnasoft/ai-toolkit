@@ -1,4 +1,4 @@
-import { JSONObject } from '@ai-tools/provider';
+import { JSONObject } from '@ai-toolkit/provider';
 
 export interface BedrockConverseInput {
   system?: BedrockSystemMessages;

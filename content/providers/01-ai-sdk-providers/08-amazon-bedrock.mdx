@@ -9,21 +9,21 @@ The Amazon Bedrock provider for the [AI SDK](/docs) contains language model supp
 
 ## Setup
 
-The Bedrock provider is available in the `@ai-tools/amazon-bedrock` module. You can install it with
+The Bedrock provider is available in the `@ai-toolkit/amazon-bedrock` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @ai-tools/amazon-bedrock" dark />
+    <Snippet text="pnpm add @ai-toolkit/amazon-bedrock" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @ai-tools/amazon-bedrock" dark />
+    <Snippet text="npm install @ai-toolkit/amazon-bedrock" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @ai-tools/amazon-bedrock" dark />
+    <Snippet text="yarn add @ai-toolkit/amazon-bedrock" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @ai-tools/amazon-bedrock" dark />
+    <Snippet text="bun add @ai-toolkit/amazon-bedrock" dark />
   </Tab>
 </Tabs>
 
@@ -102,7 +102,7 @@ _Usage:_
 </Tabs>
 
 ```ts
-import { createAmazonBedrock } from '@ai-tools/amazon-bedrock';
+import { createAmazonBedrock } from '@ai-toolkit/amazon-bedrock';
 import { fromNodeProviderChain } from '@aws-sdk/credential-providers';
 
 const bedrock = createAmazonBedrock({
@@ -113,16 +113,16 @@ const bedrock = createAmazonBedrock({
 
 ## Provider Instance
 
-You can import the default provider instance `bedrock` from `@ai-tools/amazon-bedrock`:
+You can import the default provider instance `bedrock` from `@ai-toolkit/amazon-bedrock`:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 ```
 
-If you need a customized setup, you can import `createAmazonBedrock` from `@ai-tools/amazon-bedrock` and create a provider instance with your settings:
+If you need a customized setup, you can import `createAmazonBedrock` from `@ai-toolkit/amazon-bedrock` and create a provider instance with your settings:
 
 ```ts
-import { createAmazonBedrock } from '@ai-tools/amazon-bedrock';
+import { createAmazonBedrock } from '@ai-toolkit/amazon-bedrock';
 
 const bedrock = createAmazonBedrock({
   region: 'us-east-1',
@@ -219,7 +219,7 @@ Documentation for additional settings based on the selected model can be found w
 You can use Amazon Bedrock language models to generate text with the `generateText` function:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -241,7 +241,7 @@ Amazon Bedrock language models can also be used in the `streamText` function
 The Amazon Bedrock provider supports file inputs, e.g. PDF files.
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -267,7 +267,7 @@ const result = await generateText({
 You can use the `bedrock` provider options to utilize [Amazon Bedrock Guardrails](https://aws.amazon.com/bedrock/guardrails/):
 
 ```ts
-import { type AmazonBedrockLanguageModelOptions } from '@ai-tools/amazon-bedrock';
+import { type AmazonBedrockLanguageModelOptions } from '@ai-toolkit/amazon-bedrock';
 
 const result = await generateText({
   model: bedrock('anthropic.claude-3-sonnet-20240229-v1:0'),
@@ -303,7 +303,7 @@ Amazon Bedrock supports citations for document-based inputs across compatible mo
 - Models can cite specific parts of documents you provide, making it easier to trace information back to its source (Not Supported Yet)
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import fs from 'fs';
@@ -377,7 +377,7 @@ Cache usage information is returned in the `providerMetadata` object. See exampl
 </Note>
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const cyberpunkAnalysis =
@@ -413,7 +413,7 @@ console.log(result.providerMetadata?.bedrock?.usage);
 Cache points also work with streaming responses:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { streamText } from 'ai';
 
 const cyberpunkAnalysis =
@@ -479,7 +479,7 @@ Amazon Bedrock supports model creator-specific reasoning features:
 import {
   bedrock,
   type AmazonBedrockLanguageModelOptions,
-} from '@ai-tools/amazon-bedrock';
+} from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 // Anthropic example
@@ -522,7 +522,7 @@ Claude Sonnet 4 models on Amazon Bedrock support an extended context window of u
 import {
   bedrock,
   type AmazonBedrockLanguageModelOptions,
-} from '@ai-tools/amazon-bedrock';
+} from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -786,8 +786,8 @@ Bedrock Titan embedding model amazon.titan-embed-text-v2:0 supports several addi
 You can pass them as an options argument:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
-import { type AmazonBedrockEmbeddingModelOptions } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { type AmazonBedrockEmbeddingModelOptions } from '@ai-toolkit/amazon-bedrock';
 import { embed } from 'ai';
 
 const model = bedrock.embedding('amazon.titan-embed-text-v2:0');
@@ -819,8 +819,8 @@ The following optional provider options are available for Bedrock Titan embeddin
 Amazon Nova embedding models support additional provider options:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
-import { type AmazonBedrockEmbeddingModelOptions } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { type AmazonBedrockEmbeddingModelOptions } from '@ai-toolkit/amazon-bedrock';
 import { embed } from 'ai';
 
 const { embedding } = await embed({
@@ -855,8 +855,8 @@ The following optional provider options are available for Nova embedding models:
 Cohere embedding models on Bedrock require an `inputType` and support truncation:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
-import { type AmazonBedrockEmbeddingModelOptions } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
+import { type AmazonBedrockEmbeddingModelOptions } from '@ai-toolkit/amazon-bedrock';
 import { embed } from 'ai';
 
 const { embedding } = await embed({
@@ -903,7 +903,7 @@ const model = bedrock.reranking('cohere.rerank-v3-5:0');
 You can use Amazon Bedrock reranking models to rerank documents with the `rerank` function:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { rerank } from 'ai';
 
 const documents = [
@@ -929,7 +929,7 @@ console.log(ranking);
 Amazon Bedrock reranking models support additional provider options that can be passed via `providerOptions.bedrock`:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { rerank } from 'ai';
 
 const { ranking } = await rerank({
@@ -981,7 +981,7 @@ const model = bedrock.image('amazon.nova-canvas-v1:0');
 You can then generate images with the `generateImage` function:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -995,7 +995,7 @@ const { image } = await generateImage({
 You can also pass the `providerOptions` object to the `generateImage` function to customize the generation behavior:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -1228,7 +1228,7 @@ The Amazon Bedrock provider will return the response headers associated with
 network requests made of the Bedrock servers.
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -1255,7 +1255,7 @@ be useful for correlating Bedrock API calls with requests made by the AI SDK:
 This information is also available with `streamText`:
 
 ```ts
-import { bedrock } from '@ai-tools/amazon-bedrock';
+import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -1288,16 +1288,16 @@ For more information on Claude models available on Amazon Bedrock, see [Claude o
 
 ### Provider Instance
 
-You can import the default provider instance `bedrockAnthropic` from `@ai-tools/amazon-bedrock/anthropic`:
+You can import the default provider instance `bedrockAnthropic` from `@ai-toolkit/amazon-bedrock/anthropic`:
 
 ```typescript
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 ```
 
-If you need a customized setup, you can import `createBedrockAnthropic` from `@ai-tools/amazon-bedrock/anthropic` and create a provider instance with your settings:
+If you need a customized setup, you can import `createBedrockAnthropic` from `@ai-toolkit/amazon-bedrock/anthropic` and create a provider instance with your settings:
 
 ```typescript
-import { createBedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { createBedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 
 const bedrockAnthropic = createBedrockAnthropic({
   region: 'us-east-1', // optional
@@ -1371,7 +1371,7 @@ const model = bedrockAnthropic('us.anthropic.claude-3-5-sonnet-20241022-v2:0');
 You can use Bedrock Anthropic language models to generate text with the `generateText` function:
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -1396,7 +1396,7 @@ In the messages and message parts, you can use the `providerOptions` property to
 You need to set the `anthropic` property in the `providerOptions` object to `{ cacheControl: { type: 'ephemeral' } }` to set a cache control breakpoint.
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText } from 'ai';
 
 const result = await generateText({
@@ -1442,7 +1442,7 @@ They are available via the `tools` property of the provider instance.
 #### Bash Tool
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText, stepCountIs } from 'ai';
 
 const result = await generateText({
@@ -1463,7 +1463,7 @@ const result = await generateText({
 #### Text Editor Tool
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText, stepCountIs } from 'ai';
 
 const result = await generateText({
@@ -1484,7 +1484,7 @@ const result = await generateText({
 #### Computer Tool
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText, stepCountIs } from 'ai';
 import fs from 'fs';
 
@@ -1539,7 +1539,7 @@ Anthropic has reasoning support for Claude 3.7 and Claude 4 models on Bedrock, i
 You can enable it using the `thinking` provider option and specifying a thinking budget in tokens.
 
 ```ts
-import { bedrockAnthropic } from '@ai-tools/amazon-bedrock/anthropic';
+import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { generateText } from 'ai';
 
 const { text, reasoningText, reasoning } = await generateText({
@@ -1579,7 +1579,7 @@ on how to integrate reasoning into your chatbot.
   Connector which are not supported on Bedrock.
 </Note>
 
-## Migrating to `@ai-tools/amazon-bedrock` 2.x
+## Migrating to `@ai-toolkit/amazon-bedrock` 2.x
 
 The Amazon Bedrock provider was rewritten in version 2.x to remove the
 dependency on the `@aws-sdk/client-bedrock-runtime` package.

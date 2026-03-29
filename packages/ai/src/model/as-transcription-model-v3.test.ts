@@ -1,4 +1,4 @@
-import { TranscriptionModelV2 } from '@ai-tools/provider';
+import { TranscriptionModelV2 } from '@ai-toolkit/provider';
 import { asTranscriptionModelV3 } from './as-transcription-model-v3';
 import { MockTranscriptionModelV2 } from '../test/mock-transcription-model-v2';
 import { MockTranscriptionModelV3 } from '../test/mock-transcription-model-v3';

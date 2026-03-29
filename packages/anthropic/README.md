@@ -4,10 +4,10 @@ The **[Anthropic provider](https://ai-sdk.dev/providers/ai-sdk-providers/anthrop
 
 ## Setup
 
-The Anthropic provider is available in the `@ai-tools/anthropic` module. You can install it with
+The Anthropic provider is available in the `@ai-toolkit/anthropic` module. You can install it with
 
 ```bash
-npm i @ai-tools/anthropic
+npm i @ai-toolkit/anthropic
 ```
 
 ## Skill for Coding Agents
@@ -20,16 +20,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `anthropic` from `@ai-tools/anthropic`:
+You can import the default provider instance `anthropic` from `@ai-toolkit/anthropic`:
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 ```
 
 ## Example
 
 ```ts
-import { anthropic } from '@ai-tools/anthropic';
+import { anthropic } from '@ai-toolkit/anthropic';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

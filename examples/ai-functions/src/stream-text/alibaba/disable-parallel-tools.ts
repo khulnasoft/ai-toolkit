@@ -1,4 +1,4 @@
-import { alibaba, type AlibabaLanguageModelOptions } from '@ai-tools/alibaba';
+import { alibaba, type AlibabaLanguageModelOptions } from '@ai-toolkit/alibaba';
 import { stepCountIs, streamText, tool } from 'ai';
 import { z } from 'zod';
 import { run } from '../../lib/run';

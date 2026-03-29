@@ -2,7 +2,7 @@
 
 import type { OpenAICompactionMessage } from '@/agent/openai/compaction-agent';
 import ChatInput from '@/components/chat-input';
-import { useChat } from '@ai-tools/react';
+import { useChat } from '@ai-toolkit/react';
 import { DefaultChatTransport } from 'ai';
 import { useMemo } from 'react';
 

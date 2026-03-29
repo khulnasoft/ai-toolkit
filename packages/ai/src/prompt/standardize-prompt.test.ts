@@ -1,4 +1,4 @@
-import { InvalidPromptError } from '@ai-tools/provider';
+import { InvalidPromptError } from '@ai-toolkit/provider';
 import { standardizePrompt } from './standardize-prompt';
 import { describe, it, expect } from 'vitest';
 

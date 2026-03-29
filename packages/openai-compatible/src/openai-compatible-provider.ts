@@ -3,12 +3,12 @@ import {
   ImageModelV4,
   LanguageModelV4,
   ProviderV4,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   FetchFunction,
   withoutTrailingSlash,
   withUserAgentSuffix,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   OpenAICompatibleChatConfig,
   OpenAICompatibleChatLanguageModel,
@@ -138,7 +138,7 @@ export function createOpenAICompatible<
   };
 
   const getHeaders = () =>
-    withUserAgentSuffix(headers, `ai-sdk/openai-compatible/${VERSION}`);
+    withUserAgentSuffix(headers, `ai-toolkit/openai-compatible/${VERSION}`);
 
   const getCommonModelConfig = (modelType: string): CommonModelConfig => ({
     provider: `${providerName}.${modelType}`,

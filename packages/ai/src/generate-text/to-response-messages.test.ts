@@ -1,4 +1,4 @@
-import { tool } from '@ai-tools/provider-utils';
+import { tool } from '@ai-toolkit/provider-utils';
 import z from 'zod/v4';
 import { DefaultGeneratedFile } from './generated-file';
 import { toResponseMessages } from './to-response-messages';

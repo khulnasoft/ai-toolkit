@@ -1,4 +1,4 @@
-import { type XaiVideoModelOptions, xai } from '@ai-tools/xai';
+import { type XaiVideoModelOptions, xai } from '@ai-toolkit/xai';
 import { experimental_generateVideo as generateVideo } from 'ai';
 import { run } from '../../lib/run';
 

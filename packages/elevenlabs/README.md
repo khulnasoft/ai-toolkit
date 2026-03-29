@@ -5,10 +5,10 @@ contains language model support for the ElevenLabs chat and completion APIs and 
 
 ## Setup
 
-The ElevenLabs provider is available in the `@ai-tools/elevenlabs` module. You can install it with
+The ElevenLabs provider is available in the `@ai-toolkit/elevenlabs` module. You can install it with
 
 ```bash
-npm i @ai-tools/elevenlabs
+npm i @ai-toolkit/elevenlabs
 ```
 
 ## Skill for Coding Agents
@@ -21,16 +21,16 @@ npx skills add khulnasoft/ai
 
 ## Provider Instance
 
-You can import the default provider instance `elevenlabs` from `@ai-tools/elevenlabs`:
+You can import the default provider instance `elevenlabs` from `@ai-toolkit/elevenlabs`:
 
 ```ts
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 ```
 
 ## Example
 
 ```ts
-import { elevenlabs } from '@ai-tools/elevenlabs';
+import { elevenlabs } from '@ai-toolkit/elevenlabs';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({

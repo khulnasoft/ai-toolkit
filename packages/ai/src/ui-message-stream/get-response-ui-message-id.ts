@@ -1,4 +1,4 @@
-import { IdGenerator } from '@ai-tools/provider-utils';
+import { IdGenerator } from '@ai-toolkit/provider-utils';
 import { UIMessage } from '../ui/ui-messages';
 
 /**

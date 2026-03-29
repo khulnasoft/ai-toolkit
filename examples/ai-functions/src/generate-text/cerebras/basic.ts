@@ -1,4 +1,4 @@
-import { cerebras as provider } from '@ai-tools/cerebras';
+import { cerebras as provider } from '@ai-toolkit/cerebras';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 

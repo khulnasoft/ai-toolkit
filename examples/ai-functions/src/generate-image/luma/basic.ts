@@ -1,4 +1,4 @@
-import { luma } from '@ai-tools/luma';
+import { luma } from '@ai-toolkit/luma';
 import { generateImage } from 'ai';
 import { presentImages } from '../../lib/present-image';
 import { run } from '../../lib/run';

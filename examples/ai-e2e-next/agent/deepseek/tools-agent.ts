@@ -1,5 +1,5 @@
 import { weatherTool } from '@/tool/weather-tool';
-import { deepseek } from '@ai-tools/deepseek';
+import { deepseek } from '@ai-toolkit/deepseek';
 import { InferAgentUIMessage, ToolLoopAgent } from 'ai';
 
 export const deepseekToolsAgent = new ToolLoopAgent({

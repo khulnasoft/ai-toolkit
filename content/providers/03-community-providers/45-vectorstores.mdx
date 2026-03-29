@@ -47,7 +47,7 @@ The `vercelEmbedding` function adapts any AI SDK embedding model for use with ve
 Here is an example of how to create an index using the `vercelEmbedding` function:
 
 ```ts
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { vercelEmbedding } from '@vectorstores/vercel';
 import { VectorStoreIndex } from '@vectorstores/core';
 
@@ -64,7 +64,7 @@ The `vercelTool` function wraps a vectorstores retriever as an AI SDK tool, enab
 
 ```ts
 import { generateText } from 'ai';
-import { openai } from '@ai-tools/openai';
+import { openai } from '@ai-toolkit/openai';
 import { vercelTool } from '@vectorstores/vercel';
 
 const { text } = await generateText({

@@ -10,8 +10,8 @@ vi.mock('./version', () => ({
 }));
 
 // Mock provider-utils to control runtime environment detection
-vi.mock('@ai-tools/provider-utils', async () => {
-  const actual = await vi.importActual('@ai-tools/provider-utils');
+vi.mock('@ai-toolkit/provider-utils', async () => {
+  const actual = await vi.importActual('@ai-toolkit/provider-utils');
   return {
     ...actual,
     getRuntimeEnvironmentUserAgent: vi.fn(() => 'runtime/testenv'),
@@ -63,7 +63,7 @@ describe('createSigV4FetchFunction', () => {
     expect(dummyFetch).toHaveBeenCalledWith('http://example.com', {
       method: 'GET',
       headers: {
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
     expect(response).toBe(dummyResponse);
@@ -78,7 +78,7 @@ describe('createSigV4FetchFunction', () => {
     expect(dummyFetch).toHaveBeenCalledWith('http://example.com', {
       method: 'POST',
       headers: {
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
     expect(response).toBe(dummyResponse);
@@ -124,7 +124,7 @@ describe('createSigV4FetchFunction', () => {
     );
     expect(headers['x-amz-security-token']).toEqual('test-session-token');
     expect(headers['user-agent']).toEqual(
-      'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+      'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
     );
     // Body is left unmodified for a string body.
     expect(calledInit.body).toEqual('{"test": "data"}');
@@ -188,7 +188,7 @@ describe('createSigV4FetchFunction', () => {
       'AWS4-HMAC-SHA256 Credential=test',
     );
     expect(headers['user-agent']).toEqual(
-      'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+      'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
     );
   });
 
@@ -309,7 +309,7 @@ describe('createSigV4FetchFunction', () => {
     const response = await fetchFn('http://example.com');
     expect(dummyFetch).toHaveBeenCalledWith('http://example.com', {
       headers: {
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
     expect(response).toBe(dummyResponse);
@@ -407,7 +407,7 @@ describe('createApiKeyFetchFunction', () => {
       headers: {
         'content-type': 'application/json',
         Authorization: 'Bearer test-api-key-123',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
     expect(response).toBe(dummyResponse);
@@ -438,7 +438,7 @@ describe('createApiKeyFetchFunction', () => {
         'custom-header': 'custom-value',
         'x-request-id': 'req-123',
         Authorization: 'Bearer test-api-key-456',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -467,7 +467,7 @@ describe('createApiKeyFetchFunction', () => {
         'content-type': 'application/json',
         'x-custom': 'value',
         Authorization: 'Bearer test-api-key-789',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -497,7 +497,7 @@ describe('createApiKeyFetchFunction', () => {
         'content-type': 'application/json',
         'x-array-header': 'array-value',
         Authorization: 'Bearer test-api-key-array',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -521,7 +521,7 @@ describe('createApiKeyFetchFunction', () => {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer test-api-key-get',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -543,7 +543,7 @@ describe('createApiKeyFetchFunction', () => {
       body: '{"test": "data"}',
       headers: {
         Authorization: 'Bearer test-api-key-no-headers',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -560,7 +560,7 @@ describe('createApiKeyFetchFunction', () => {
     expect(dummyFetch).toHaveBeenCalledWith('http://example.com', {
       headers: {
         Authorization: 'Bearer test-api-key-undefined',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -588,7 +588,7 @@ describe('createApiKeyFetchFunction', () => {
         'content-type': 'application/json',
         Authorization: 'Bearer test-api-key-override',
         authorization: 'Bearer old-token',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -612,7 +612,7 @@ describe('createApiKeyFetchFunction', () => {
         body: '{"test": "data"}',
         headers: {
           Authorization: 'Bearer test-api-key-default',
-          'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+          'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
         },
       });
     } finally {
@@ -637,7 +637,7 @@ describe('createApiKeyFetchFunction', () => {
       body: '{"test": "data"}',
       headers: {
         Authorization: 'Bearer ',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
     });
   });
@@ -666,7 +666,7 @@ describe('createApiKeyFetchFunction', () => {
       headers: {
         'content-type': 'application/json',
         Authorization: 'Bearer test-api-key-preserve',
-        'user-agent': 'ai-sdk/amazon-bedrock/0.0.0-test runtime/testenv',
+        'user-agent': 'ai-toolkit/amazon-bedrock/0.0.0-test runtime/testenv',
       },
       credentials: 'include',
       cache: 'no-cache',

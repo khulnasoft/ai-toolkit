@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '@ai-tools/provider';
+import { InvalidArgumentError } from '@ai-toolkit/provider';
 
 /**
  * Creates an ID generator.

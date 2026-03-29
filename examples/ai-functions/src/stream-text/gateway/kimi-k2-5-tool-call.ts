@@ -1,5 +1,5 @@
-import { type FireworksLanguageModelOptions } from '@ai-tools/fireworks';
-import { gateway } from '@ai-tools/gateway';
+import { type FireworksLanguageModelOptions } from '@ai-toolkit/fireworks';
+import { gateway } from '@ai-toolkit/gateway';
 import { stepCountIs, streamText } from 'ai';
 import { printFullStream } from '../../lib/print-full-stream';
 import { run } from '../../lib/run';

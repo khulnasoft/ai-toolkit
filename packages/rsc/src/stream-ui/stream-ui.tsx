@@ -3,12 +3,12 @@ import {
   LanguageModelV4StreamResult,
   LanguageModelV4Usage,
   SharedV4Warning,
-} from '@ai-tools/provider';
+} from '@ai-toolkit/provider';
 import {
   InferSchema,
   ProviderOptions,
   safeParseJSON,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import {
   CallSettings,
   CallWarning,

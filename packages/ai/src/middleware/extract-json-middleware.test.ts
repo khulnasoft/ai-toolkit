@@ -1,8 +1,8 @@
-import { LanguageModelV4Usage } from '@ai-tools/provider';
+import { LanguageModelV4Usage } from '@ai-toolkit/provider';
 import {
   convertArrayToReadableStream,
   convertAsyncIterableToArray,
-} from '@ai-tools/provider-utils/test';
+} from '@ai-toolkit/provider-utils/test';
 import { describe, expect, it } from 'vitest';
 import { generateText, streamText } from '../generate-text';
 import { wrapLanguageModel } from '../middleware/wrap-language-model';

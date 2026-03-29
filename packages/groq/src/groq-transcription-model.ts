@@ -1,4 +1,4 @@
-import { TranscriptionModelV4, SharedV4Warning } from '@ai-tools/provider';
+import { TranscriptionModelV4, SharedV4Warning } from '@ai-toolkit/provider';
 import {
   combineHeaders,
   convertBase64ToUint8Array,
@@ -6,7 +6,7 @@ import {
   mediaTypeToExtension,
   parseProviderOptions,
   postFormDataToApi,
-} from '@ai-tools/provider-utils';
+} from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
 import { GroqConfig } from './groq-config';
 import { groqFailedResponseHandler } from './groq-error';
