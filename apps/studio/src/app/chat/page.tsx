@@ -1,6 +1,6 @@
 'use client';
 
-import { useChat } from '@ai-sdk/react';
+import { useChat } from '@ai-toolkit/react';
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@ai-toolkit/design-system';
 import { ChatContainer, ModelSelector } from '@ai-toolkit/ai-elements';
