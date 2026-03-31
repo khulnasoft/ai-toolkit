@@ -41,7 +41,7 @@
 '@ai-sdk/prodia': major
 '@ai-sdk/provider': major
 '@ai-sdk/provider-utils': major
-'@ai-sdk/react': major
+'@ai-toolkit/react': major
 '@ai-sdk/replicate': major
 '@ai-sdk/revai': major
 '@ai-sdk/rsc': major
