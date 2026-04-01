@@ -2875,7 +2875,7 @@
 
 ### Patch Changes
 
-- d1aaeae: feat (provider/openai): support ai sdk image download
+- d1aaeae: feat (provider/openai): support ai toolkit image download
 
 ## 0.0.56
 

@@ -17,16 +17,16 @@ describe('logWarnings', () => {
     mockConsoleWarn.mockClear();
     mockConsoleInfo.mockClear();
     resetLogWarningsState();
-    delete globalThis.AI_SDK_LOG_WARNINGS;
+    delete globalThis.AI_TOOLKIT_LOG_WARNINGS;
   });
 
   afterEach(() => {
-    delete globalThis.AI_SDK_LOG_WARNINGS;
+    delete globalThis.AI_TOOLKIT_LOG_WARNINGS;
   });
 
-  describe('when AI_SDK_LOG_WARNINGS is false', () => {
+  describe('when AI_TOOLKIT_LOG_WARNINGS is false', () => {
     beforeEach(() => {
-      globalThis.AI_SDK_LOG_WARNINGS = false;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = false;
     });
 
     it('should not log any warnings (single)', () => {
@@ -78,10 +78,10 @@ describe('logWarnings', () => {
     });
   });
 
-  describe('when AI_SDK_LOG_WARNINGS is a custom function', () => {
+  describe('when AI_TOOLKIT_LOG_WARNINGS is a custom function', () => {
     it('should call the custom function with warning options', () => {
       const customLogger = vi.fn();
-      globalThis.AI_SDK_LOG_WARNINGS = customLogger;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = customLogger;
 
       const warnings: Warning[] = [
         {
@@ -101,7 +101,7 @@ describe('logWarnings', () => {
 
     it('should call the custom function with multiple warnings', () => {
       const customLogger = vi.fn();
-      globalThis.AI_SDK_LOG_WARNINGS = customLogger;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = customLogger;
 
       const warnings: Warning[] = [
         {
@@ -126,7 +126,7 @@ describe('logWarnings', () => {
 
     it('should not call the custom function with empty warnings array', () => {
       const customLogger = vi.fn();
-      globalThis.AI_SDK_LOG_WARNINGS = customLogger;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = customLogger;
 
       const warnings: Warning[] = [];
 
@@ -138,7 +138,7 @@ describe('logWarnings', () => {
     });
   });
 
-  describe('when AI_SDK_LOG_WARNINGS is unset/undefined (default behavior)', () => {
+  describe('when AI_TOOLKIT_LOG_WARNINGS is unset/undefined (default behavior)', () => {
     it('should show console.info once for first warning(s), then log to console.warn for each warning', () => {
       const warning: SharedV4Warning = {
         type: 'other',
@@ -260,9 +260,9 @@ describe('logWarnings', () => {
     });
   });
 
-  describe('when AI_SDK_LOG_WARNINGS is undefined (explicitly set)', () => {
+  describe('when AI_TOOLKIT_LOG_WARNINGS is undefined (explicitly set)', () => {
     beforeEach(() => {
-      globalThis.AI_SDK_LOG_WARNINGS = undefined;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = undefined;
     });
 
     it('should use default behavior and log to console.warn', () => {
@@ -318,7 +318,7 @@ describe('logWarnings', () => {
 
     it('should not display information note when using custom logger', () => {
       const customLogger = vi.fn();
-      globalThis.AI_SDK_LOG_WARNINGS = customLogger;
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = customLogger;
 
       logWarnings({
         warnings: [{ type: 'other', message: 'Message' } as SharedV4Warning],
@@ -330,8 +330,8 @@ describe('logWarnings', () => {
       expect(customLogger).toHaveBeenCalledOnce();
     });
 
-    it('should not display information note when AI_SDK_LOG_WARNINGS is false', () => {
-      globalThis.AI_SDK_LOG_WARNINGS = false;
+    it('should not display information note when AI_TOOLKIT_LOG_WARNINGS is false', () => {
+      globalThis.AI_TOOLKIT_LOG_WARNINGS = false;
 
       logWarnings({
         warnings: [

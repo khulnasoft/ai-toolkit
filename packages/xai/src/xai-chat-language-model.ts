@@ -106,7 +106,7 @@ export class XaiChatLanguageModel implements LanguageModelV4 {
       warnings.push({ type: 'unsupported', feature: 'stopSequences' });
     }
 
-    // convert ai sdk messages to xai format
+    // convert ai toolkit messages to xai format
     const { messages, warnings: messageWarnings } =
       convertToXaiChatMessages(prompt);
     warnings.push(...messageWarnings);

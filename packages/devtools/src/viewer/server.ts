@@ -41,11 +41,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // We rely exclusively on an explicit env flag to avoid false positives in
 // monorepos where /dist paths are common.
 //
-//   AI_SDK_DEVTOOLS_DEV=true  → use dev mode (Vite proxy)
-//   AI_SDK_DEVTOOLS_DEV=false → use production mode (serve built client)
+//   AI_TOOLKIT_DEVTOOLS_DEV=true  → use dev mode (Vite proxy)
+//   AI_TOOLKIT_DEVTOOLS_DEV=false → use production mode (serve built client)
 //
 // If the flag is unset, default to production mode.
-const devEnv = process.env.AI_SDK_DEVTOOLS_DEV;
+const devEnv = process.env.AI_TOOLKIT_DEVTOOLS_DEV;
 const isDevMode = devEnv !== undefined && devEnv !== 'false' && devEnv !== '0';
 // __dirname points at packages/devtools/src/viewer, so ../.. is the package root.
 const projectRoot = path.resolve(__dirname, '../..');
@@ -268,8 +268,12 @@ export const startViewer = (port = 4983) => {
         `\n   This likely means AI TOOLKIT DevTools is already running.`,
       );
       console.error(`   Open http://localhost:${port} in your browser.\n`);
-      console.error(`   To use a different port, set AI_SDK_DEVTOOLS_PORT:\n`);
-      console.error(`   AI_SDK_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`);
+      console.error(
+        `   To use a different port, set AI_TOOLKIT_DEVTOOLS_PORT:\n`,
+      );
+      console.error(
+        `   AI_TOOLKIT_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`,
+      );
       process.exit(1);
     }
     throw err;
@@ -284,8 +288,8 @@ const isDirectRun =
   process.argv[1]?.endsWith('/server.js');
 
 if (isDirectRun) {
-  const port = process.env.AI_SDK_DEVTOOLS_PORT
-    ? parseInt(process.env.AI_SDK_DEVTOOLS_PORT)
+  const port = process.env.AI_TOOLKIT_DEVTOOLS_PORT
+    ? parseInt(process.env.AI_TOOLKIT_DEVTOOLS_PORT)
     : 4983;
   startViewer(port);
 }

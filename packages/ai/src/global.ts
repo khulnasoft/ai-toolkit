@@ -12,7 +12,11 @@ declare global {
    *
    * @see https://ai-toolkit.dev/docs/ai-toolkit-core/provider-management#global-provider-configuration
    */
-  var AI_SDK_DEFAULT_PROVIDER: ProviderV4 | ProviderV3 | ProviderV2 | undefined;
+  var AI_TOOLKIT_DEFAULT_PROVIDER:
+    | ProviderV4
+    | ProviderV3
+    | ProviderV2
+    | undefined;
 
   /**
    * The warning logger to use for the AI TOOLKIT.
@@ -21,7 +25,7 @@ declare global {
    *
    * If set to false, no warnings are logged.
    */
-  var AI_SDK_LOG_WARNINGS: LogWarningsFunction | undefined | false;
+  var AI_TOOLKIT_LOG_WARNINGS: LogWarningsFunction | undefined | false;
 
   /**
    * Globally registered telemetry integrations for the AI TOOLKIT.
@@ -32,5 +36,5 @@ declare global {
    * Prefer using `registerTelemetryIntegration()` from `'ai'` instead of
    * assigning this directly.
    */
-  var AI_SDK_TELEMETRY_INTEGRATIONS: TelemetryIntegration[] | undefined;
+  var AI_TOOLKIT_TELEMETRY_INTEGRATIONS: TelemetryIntegration[] | undefined;
 }

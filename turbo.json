@@ -6,7 +6,7 @@
       "dependsOn": ["^build"],
       "env": [
         "AI_GATEWAY_API_KEY",
-        "AI_SDK_DEVTOOLS_PORT",
+        "AI_TOOLKIT_DEVTOOLS_PORT",
         "ALIBABA_API_KEY",
         "ANTHROPIC_API_KEY",
         "ANTHROPIC_BASE_URL",

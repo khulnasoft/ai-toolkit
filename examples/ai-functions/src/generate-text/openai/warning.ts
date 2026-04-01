@@ -2,9 +2,9 @@ import { openai } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
 import { run } from '../../lib/run';
 
-globalThis.AI_SDK_LOG_WARNINGS = false;
+globalThis.AI_TOOLKIT_LOG_WARNINGS = false;
 
-globalThis.AI_SDK_LOG_WARNINGS = ({ warnings, provider, model }) => {
+globalThis.AI_TOOLKIT_LOG_WARNINGS = ({ warnings, provider, model }) => {
   console.log('WARNINGS:', warnings, provider, model);
 };
 

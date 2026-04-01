@@ -3008,7 +3008,7 @@
 - 1f55c21: chore (ai): send reasoning to the client by default
 - e7dc6c7: chore (ai): remove onResponse callback
 - 8b86e99: chore (ai): replace `Message` with `UIMessage`
-- 04d5063: chore (ai): rename default provider global to AI_SDK_DEFAULT_PROVIDER
+- 04d5063: chore (ai): rename default provider global to AI_TOOLKIT_DEFAULT_PROVIDER
 - 319b989: chore (ai): remove content from ui messages
 - 14c9410: chore: refactor file towards source pattern (spec)
 - a34eb39: chore (ai): remove `data` and `allowEmptySubmit` from `ChatRequestOptions`
@@ -3176,7 +3176,7 @@
 - 9b0da33: fix (ai): do not send id with start unless specified
 - 28ad69e: fix(react-native): support experimental_attachments without FileList global
 - 0b78e17: chore(ai/generateObject): simplify function signature
-- 20398f2: feat: ai sdk cli documentation + adjusted default model
+- 20398f2: feat: ai toolkit cli documentation + adjusted default model
 - 66962ed: fix(packages): export node10 compatible types
 - b71fe8d: fix(ai): remove jsondiffpatch dependency
 - 7827a49: fix (ai/core): refactor `toResponseMessages` to filter out empty string/content
@@ -3434,7 +3434,7 @@
 - de2d2ab: feat(ai): add provider and provider registry middleware functionality
 - 6c42e56: feat (ai): validate ui stream data chunks
 - c93a8bc: chore(ai): export AsyncIterableStream type from async-iterable-stream module
-- 20398f2: feat: ai sdk cli documentation + adjusted default model
+- 20398f2: feat: ai toolkit cli documentation + adjusted default model
 - 86293e5: fix (ai): use correct generateMessageId in streamText toUIMessageStream
 - 205077b: fix: improve Zod compatibility
 - Updated dependencies [205077b]
@@ -3628,7 +3628,7 @@
 
 ### Major Changes
 
-- 04d5063: chore (ai): rename default provider global to AI_SDK_DEFAULT_PROVIDER
+- 04d5063: chore (ai): rename default provider global to AI_TOOLKIT_DEFAULT_PROVIDER
 - b4b4bb2: chore (ui): rename experimental_resume to resumeStream
 - d884051: feat (ai): simplify default provider setup
 - 954aa73: feat (ui): extended regenerate support

@@ -35,7 +35,7 @@ By default, warnings are shown in the console. You can control this behavior:
 Set a global variable to turn off warnings completely:
 
 ```ts
-globalThis.AI_SDK_LOG_WARNINGS = false;
+globalThis.AI_TOOLKIT_LOG_WARNINGS = false;
 ```
 
 #### Custom Warning Handler
@@ -44,7 +44,7 @@ You can also provide your own function to handle warnings.
 It receives provider id, model id, and a list of warnings.
 
 ```ts
-globalThis.AI_SDK_LOG_WARNINGS = ({ warnings, provider, model }) => {
+globalThis.AI_TOOLKIT_LOG_WARNINGS = ({ warnings, provider, model }) => {
   // Handle warnings your own way
 };
 ```

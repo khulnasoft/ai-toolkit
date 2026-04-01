@@ -1,6 +1,6 @@
 import { createTransformer } from '../../lib/create-transformer';
 import {
-  AI_SDK_CODEMOD_ERROR_PREFIX,
+  AI_TOOLKIT_CODEMOD_ERROR_PREFIX,
   insertCommentOnce,
 } from '../../lib/add-comment';
 import type { ASTPath, Identifier, MemberExpression } from 'jscodeshift';
@@ -186,7 +186,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     insertCommentOnce(
       targetNode,
       j,
-      `${AI_SDK_CODEMOD_ERROR_PREFIX}${message}`,
+      `${AI_TOOLKIT_CODEMOD_ERROR_PREFIX}${message}`,
     );
     context.hasChanges = true;
   }

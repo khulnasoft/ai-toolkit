@@ -3,11 +3,11 @@ import { Warning } from '../types';
 /**
  * A function for logging warnings.
  *
- * You can assign it to the `AI_SDK_LOG_WARNINGS` global variable to use it as the default warning logger.
+ * You can assign it to the `AI_TOOLKIT_LOG_WARNINGS` global variable to use it as the default warning logger.
  *
  * @example
  * ```ts
- * globalThis.AI_SDK_LOG_WARNINGS = (options) => {
+ * globalThis.AI_TOOLKIT_LOG_WARNINGS = (options) => {
  *   console.log('WARNINGS:', options.warnings, options.provider, options.model);
  * };
  * ```
@@ -78,14 +78,14 @@ function formatWarning({
 }
 
 export const FIRST_WARNING_INFO_MESSAGE =
-  'AI TOOLKIT Warning System: To turn off warning logging, set the AI_SDK_LOG_WARNINGS global to false.';
+  'AI TOOLKIT Warning System: To turn off warning logging, set the AI_TOOLKIT_LOG_WARNINGS global to false.';
 
 let hasLoggedBefore = false;
 
 /**
  * Logs warnings to the console or uses a custom logger if configured.
  *
- * The behavior can be customized via the `AI_SDK_LOG_WARNINGS` global variable:
+ * The behavior can be customized via the `AI_TOOLKIT_LOG_WARNINGS` global variable:
  * - If set to `false`, warnings are suppressed.
  * - If set to a function, that function is called with the warnings.
  * - Otherwise, warnings are logged to the console using `console.warn`.
@@ -101,7 +101,7 @@ export const logWarnings: LogWarningsFunction = options => {
     return;
   }
 
-  const logger = globalThis.AI_SDK_LOG_WARNINGS;
+  const logger = globalThis.AI_TOOLKIT_LOG_WARNINGS;
 
   // if the logger is set to false, do nothing
   if (logger === false) {

@@ -6,17 +6,19 @@ import type { TelemetryIntegration } from './telemetry-integration';
 export function registerTelemetryIntegration(
   integration: TelemetryIntegration,
 ): void {
-  if (!globalThis.AI_SDK_TELEMETRY_INTEGRATIONS) {
-    globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = [];
+  if (!globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS) {
+    globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = [];
   }
-  globalThis.AI_SDK_TELEMETRY_INTEGRATIONS.push(integration);
+  globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS.push(integration);
 }
 
 export function getGlobalTelemetryIntegrations(): TelemetryIntegration[] {
-  return globalThis.AI_SDK_TELEMETRY_INTEGRATIONS ?? [];
+  return globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS ?? [];
 }
 
 // TODO remove when OTel is moved to a separate package
 export function hasIntegration(integration: TelemetryIntegration): boolean {
-  return (globalThis.AI_SDK_TELEMETRY_INTEGRATIONS ?? []).includes(integration);
+  return (globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS ?? []).includes(
+    integration,
+  );
 }
