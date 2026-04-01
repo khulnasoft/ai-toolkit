@@ -14,7 +14,7 @@
     "@ai-toolkit/ai-elements": "workspace:*",
     "@monaco-editor/react": "^4.6.0",
     "ai": "workspace:*",
-    "next": "^15.0.7",
+    "next": "^15.5.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swr": "^2.3.0",
