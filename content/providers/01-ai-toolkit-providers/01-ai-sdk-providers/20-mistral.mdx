@@ -177,7 +177,7 @@ Mistral offers reasoning models that provide step-by-step thinking capabilities:
 - **magistral-small-2507**: Smaller reasoning model for efficient step-by-step thinking
 - **magistral-medium-2507**: More powerful reasoning model balancing performance and cost
 
-These models return structured reasoning content that the AI SDK extracts automatically. The reasoning is available via the `reasoningText` property in the result:
+These models return structured reasoning content that the AI TOOLKIT extracts automatically. The reasoning is available via the `reasoningText` property in the result:
 
 ```ts
 import { mistral } from '@ai-toolkit/mistral';
@@ -200,7 +200,7 @@ The SDK automatically parses Mistral's native reasoning format and provides sepa
 #### Configurable Reasoning
 
 Some Mistral models support configurable reasoning, which you can control via the `reasoning` parameter.
-You can use the AI SDK's top-level `reasoning` setting to control reasoning effort:
+You can use the AI TOOLKIT's top-level `reasoning` setting to control reasoning effort:
 
 ```ts
 import { mistral } from '@ai-toolkit/mistral';
@@ -234,7 +234,7 @@ const { text } = await generateText({
 
 Mistral language models can also be used in the `streamText` function
 and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 #### Structured Outputs
 

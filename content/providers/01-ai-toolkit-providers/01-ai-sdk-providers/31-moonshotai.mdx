@@ -1,6 +1,6 @@
 ---
 title: Moonshot AI
-description: Learn how to use Moonshot AI models with the AI SDK.
+description: Learn how to use Moonshot AI models with the AI TOOLKIT.
 ---
 
 # Moonshot AI Provider
@@ -89,11 +89,11 @@ const model = moonshotai.languageModel('kimi-k2.5');
 ```
 
 Moonshot AI language models can be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ### Reasoning Models
 
-Moonshot AI offers thinking models like `kimi-k2-thinking` that generate intermediate reasoning tokens before their final response. The reasoning output is streamed through the standard AI SDK reasoning parts.
+Moonshot AI offers thinking models like `kimi-k2-thinking` that generate intermediate reasoning tokens before their final response. The reasoning output is streamed through the standard AI TOOLKIT reasoning parts.
 
 ```ts
 import {
@@ -117,7 +117,7 @@ console.log(reasoningText);
 console.log(text);
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details on how to integrate reasoning into your chatbot.
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details on how to integrate reasoning into your chatbot.
 
 ### Provider Options
 

@@ -1,13 +1,13 @@
 ---
 title: Error Handling
-description: Learn how to handle errors in the AI SDK UI
+description: Learn how to handle errors in the AI TOOLKIT UI
 ---
 
 # Error Handling and warnings
 
 ## Warnings
 
-The AI SDK shows warnings when something might not work as expected.
+The AI TOOLKIT shows warnings when something might not work as expected.
 These warnings help you fix problems before they cause errors.
 
 ### When Warnings Appear
@@ -20,10 +20,10 @@ Warnings are shown in the browser console when:
 
 ### Warning Messages
 
-All warnings start with "AI SDK Warning:" so you can easily find them. For example:
+All warnings start with "AI TOOLKIT Warning:" so you can easily find them. For example:
 
 ```
-AI SDK Warning: The feature "temperature" is not supported by this model
+AI TOOLKIT Warning: The feature "temperature" is not supported by this model
 ```
 
 ### Turning Off Warnings
@@ -53,7 +53,7 @@ globalThis.AI_SDK_LOG_WARNINGS = ({ warnings, provider, model }) => {
 
 ### Error Helper Object
 
-Each AI SDK UI hook also returns an [error](/docs/reference/ai-toolkit-ui/use-chat#error) object that you can use to render the error in your UI.
+Each AI TOOLKIT UI hook also returns an [error](/docs/reference/ai-toolkit-ui/use-chat#error) object that you can use to render the error in your UI.
 You can use the error object to show an error message, disable the submit button, or show a retry button.
 
 <Note>

@@ -11,7 +11,7 @@ import { Weather } from '@/components/home/weather';
 # Streaming Values
 
 <Note type="warning">
-  AI SDK RSC is currently experimental. We recommend using [AI SDK
+  AI TOOLKIT RSC is currently experimental. We recommend using [AI TOOLKIT
   UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
   RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
@@ -19,7 +19,7 @@ import { Weather } from '@/components/home/weather';
 The RSC API provides several utility functions to allow you to stream values from the server to the client. This is useful when you need more granular control over what you are streaming and how you are streaming it.
 
 <Note>
-  These utilities can also be paired with [AI SDK Core](/docs/ai-toolkit-core)
+  These utilities can also be paired with [AI TOOLKIT Core](/docs/ai-toolkit-core)
   functions like [`streamText`](/docs/reference/ai-toolkit-core/stream-text) to
   easily stream LLM generations from the server to the client.
 </Note>
@@ -93,7 +93,7 @@ Learn how to stream a text generation (with `streamText`) using the Next.js App 
 
 ## `createStreamableUI`
 
-`createStreamableUI` creates a stream that holds a React component. Unlike AI SDK Core APIs, this function does not call a large language model. Instead, it provides a primitive that can be used to have granular control over streaming a React component.
+`createStreamableUI` creates a stream that holds a React component. Unlike AI TOOLKIT Core APIs, this function does not call a large language model. Instead, it provides a primitive that can be used to have granular control over streaming a React component.
 
 ## Using `createStreamableUI`
 

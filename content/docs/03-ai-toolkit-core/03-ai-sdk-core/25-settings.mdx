@@ -1,13 +1,13 @@
 ---
 title: Settings
-description: Learn how to configure the AI SDK.
+description: Learn how to configure the AI TOOLKIT.
 ---
 
 # Settings
 
 Large language models (LLMs) typically provide settings to augment their output.
 
-All AI SDK functions support the following common settings in addition to the model, the [prompt](./prompts), and additional provider-specific settings:
+All AI TOOLKIT functions support the following common settings in addition to the model, the [prompt](./prompts), and additional provider-specific settings:
 
 ```ts highlight="3-5"
 const result = await generateText({
@@ -39,7 +39,7 @@ For most providers, `0` means almost deterministic results, and higher values me
 
 It is recommended to set either `temperature` or `topP`, but not both.
 
-<Note>In AI SDK 5.0, temperature is no longer set to `0` by default.</Note>
+<Note>In AI TOOLKIT 5.0, temperature is no longer set to `0` by default.</Note>
 
 ### `topP`
 

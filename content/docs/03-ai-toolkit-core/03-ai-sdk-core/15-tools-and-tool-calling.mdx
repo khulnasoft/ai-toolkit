@@ -1,12 +1,12 @@
 ---
 title: Tool Calling
-description: Learn about tool calling and multi-step calls (using stopWhen) with AI SDK Core.
+description: Learn about tool calling and multi-step calls (using stopWhen) with AI TOOLKIT Core.
 ---
 
 # Tool Calling
 
 As covered under Foundations, [tools](/docs/foundations/tools) are objects that can be called by the model to perform a specific task.
-AI SDK Core tools contain several core elements:
+AI TOOLKIT Core tools contain several core elements:
 
 - **`description`**: An optional description of the tool that can influence when the tool is picked.
 - **`inputSchema`**: A [Zod schema](/docs/foundations/tools#schemas) or a [JSON schema](/docs/reference/ai-toolkit-core/json-schema) that defines the input parameters. The schema is consumed by the LLM, and also used to validate the LLM tool calls.
@@ -224,7 +224,7 @@ When using `useChat`, the approval flow is handled through UI state. See [Chatbo
 
 ## Multi-Step Calls (using stopWhen)
 
-With the `stopWhen` setting, you can enable multi-step calls in `generateText` and `streamText`. When `stopWhen` is set and the model generates a tool call, the AI SDK will trigger a new generation passing in the tool result until there are no further tool calls or the stopping condition is met.
+With the `stopWhen` setting, you can enable multi-step calls in `generateText` and `streamText`. When `stopWhen` is set and the model generates a tool call, the AI TOOLKIT will trigger a new generation passing in the tool result until there are no further tool calls or the stopping condition is met.
 
 <Note>
   The `stopWhen` conditions are only evaluated when the last step contains tool
@@ -451,7 +451,7 @@ messages.push(...response.messages); // streamText: ...((await response).message
 
 ## Dynamic Tools
 
-AI SDK Core supports dynamic tools for scenarios where tool schemas are not known at compile time. This is useful for:
+AI TOOLKIT Core supports dynamic tools for scenarios where tool schemas are not known at compile time. This is useful for:
 
 - MCP (Model Context Protocol) tools without schemas
 - User-defined functions at runtime
@@ -753,7 +753,7 @@ const result = streamText({
 ## Types
 
 Modularizing your code often requires defining types to ensure type safety and reusability.
-To enable this, the AI SDK provides several helper types for tools, tool calls, and tool results.
+To enable this, the AI TOOLKIT provides several helper types for tools, tool calls, and tool results.
 
 You can use them to strongly type your variables, function parameters, and return types
 in parts of the code that are not directly related to `streamText` or `generateText`.
@@ -803,13 +803,13 @@ async function generateSomething(prompt: string): Promise<{
 
 ## Handling Errors
 
-The AI SDK has three tool-call related errors:
+The AI TOOLKIT has three tool-call related errors:
 
 - [`NoSuchToolError`](/docs/reference/ai-toolkit-errors/ai-no-such-tool-error): the model tries to call a tool that is not defined in the tools object
 - [`InvalidToolInputError`](/docs/reference/ai-toolkit-errors/ai-invalid-tool-input-error): the model calls a tool with inputs that do not match the tool's input schema
 - [`ToolCallRepairError`](/docs/reference/ai-toolkit-errors/ai-tool-call-repair-error): an error that occurred during tool call repair
 
-When tool execution fails (errors thrown by your tool's `execute` function), the AI SDK adds them as `tool-error` content parts to enable automated LLM roundtrips in multi-step scenarios.
+When tool execution fails (errors thrown by your tool's `execute` function), the AI TOOLKIT adds them as `tool-error` content parts to enable automated LLM roundtrips in multi-step scenarios.
 
 ### `generateText`
 
@@ -1007,7 +1007,7 @@ const result = await generateText({
 
 Language models can only handle a limited number of tools at a time, depending on the model.
 To allow for static typing using a large number of tools and limiting the available tools to the model at the same time,
-the AI SDK provides the `activeTools` property.
+the AI TOOLKIT provides the `activeTools` property.
 
 It is an array of tool names that are currently active.
 By default, the value is `undefined` and all tools are active.
@@ -1038,7 +1038,7 @@ are not supported.
 In order to send multi-modal tool results, e.g. screenshots, back to the model,
 they need to be converted into a specific format.
 
-AI SDK Core tools have an optional `toModelOutput` function
+AI TOOLKIT Core tools have an optional `toModelOutput` function
 that converts the tool result into a content part.
 
 Here is an example for converting a screenshot into a content part:
@@ -1107,16 +1107,16 @@ export const weatherTool = tool({
 
 ## MCP Tools
 
-The AI SDK supports connecting to Model Context Protocol (MCP) servers to access their tools.
+The AI TOOLKIT supports connecting to Model Context Protocol (MCP) servers to access their tools.
 MCP enables your AI applications to discover and use tools across various services through a standardized interface.
 
 For detailed information about MCP tools, including initialization, transport options, and usage patterns, see the [MCP Tools documentation](/docs/ai-toolkit-core/mcp-tools).
 
-### AI SDK Tools vs MCP Tools
+### AI TOOLKIT Tools vs MCP Tools
 
-In most cases, you should define your own AI SDK tools for production applications. They provide full control, type safety, and optimal performance. MCP tools are best suited for rapid development iteration and scenarios where users bring their own tools.
+In most cases, you should define your own AI TOOLKIT tools for production applications. They provide full control, type safety, and optimal performance. MCP tools are best suited for rapid development iteration and scenarios where users bring their own tools.
 
-| Aspect                 | AI SDK Tools                                              | MCP Tools                                             |
+| Aspect                 | AI TOOLKIT Tools                                              | MCP Tools                                             |
 | ---------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
 | **Type Safety**        | Full static typing end-to-end                             | Dynamic discovery at runtime                          |
 | **Execution**          | Same process as your request (low latency)                | Separate server (network overhead)                    |

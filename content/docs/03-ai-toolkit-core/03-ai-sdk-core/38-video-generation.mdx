@@ -1,6 +1,6 @@
 ---
 title: Video Generation
-description: Learn how to generate videos with the AI SDK.
+description: Learn how to generate videos with the AI TOOLKIT.
 ---
 
 # Video Generation
@@ -10,7 +10,7 @@ description: Learn how to generate videos with the AI SDK.
   versions.
 </Note>
 
-The AI SDK provides the [`experimental_generateVideo`](/docs/reference/ai-toolkit-core/generate-video)
+The AI TOOLKIT provides the [`experimental_generateVideo`](/docs/reference/ai-toolkit-core/generate-video)
 function to generate videos based on a given prompt using a video model.
 
 ```tsx
@@ -114,7 +114,7 @@ const { videos } = await generateVideo({
   needed (in parallel) to generate the requested number of videos.
 </Note>
 
-Each video model has an internal limit on how many videos it can generate in a single API call. The AI SDK manages this automatically by batching requests appropriately when you request multiple videos using the `n` parameter. Most video models only support generating 1 video per call due to computational cost.
+Each video model has an internal limit on how many videos it can generate in a single API call. The AI TOOLKIT manages this automatically by batching requests appropriately when you request multiple videos using the `n` parameter. Most video models only support generating 1 video per call due to computational cost.
 
 If needed, you can override this behavior using the `maxVideosPerCall` setting:
 
@@ -363,4 +363,4 @@ try {
 | [Replicate](/providers/ai-toolkit-providers/replicate#video-models)         | `minimax/video-01`          | Text-to-video                          |
 | [xAI](/providers/ai-toolkit-providers/xai#video-models)                     | `grok-imagine-video`        | Text-to-video, image-to-video, editing |
 
-Above are a small subset of the video models supported by the AI SDK providers. For more, see the respective provider documentation.
+Above are a small subset of the video models supported by the AI TOOLKIT providers. For more, see the respective provider documentation.

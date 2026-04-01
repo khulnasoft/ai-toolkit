@@ -1,6 +1,6 @@
 ---
 title: AI Gateway
-description: Learn how to use the AI Gateway provider with the AI SDK.
+description: Learn how to use the AI Gateway provider with the AI TOOLKIT.
 ---
 
 # AI Gateway Provider
@@ -18,7 +18,7 @@ The [AI Gateway](https://vercel.com/docs/ai-gateway) provider connects you to mo
 
 ## Setup
 
-The Vercel AI Gateway provider is part of the AI SDK.
+The Vercel AI Gateway provider is part of the AI TOOLKIT.
 
 ## Basic Usage
 
@@ -44,7 +44,7 @@ const { text } = await generateText({
 });
 ```
 
-The AI SDK automatically uses the AI Gateway when you pass a model string in the `creator/model-name` format.
+The AI TOOLKIT automatically uses the AI Gateway when you pass a model string in the `creator/model-name` format.
 
 ## Provider Instance
 
@@ -174,7 +174,7 @@ const { text } = await generateText({
 });
 ```
 
-AI Gateway language models can also be used in the `streamText` function and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output) (see [AI SDK Core](/docs/ai-toolkit-core)).
+AI Gateway language models can also be used in the `streamText` function and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output) (see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ## Available Models
 
@@ -892,4 +892,4 @@ For a complete list of available providers and their slugs, see the [AI Gateway 
 Model capabilities depend on the specific provider and model you're using. For detailed capability information, see:
 
 - [AI Gateway provider options](https://vercel.com/docs/ai-gateway/provider-options#available-providers) for an overview of available providers
-- Individual [AI SDK provider pages](/providers/ai-toolkit-providers) for specific model capabilities and features
+- Individual [AI TOOLKIT provider pages](/providers/ai-toolkit-providers) for specific model capabilities and features

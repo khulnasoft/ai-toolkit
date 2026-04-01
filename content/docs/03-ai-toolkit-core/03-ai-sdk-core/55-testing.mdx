@@ -1,6 +1,6 @@
 ---
 title: Testing
-description: Learn how to use AI SDK Core mock providers for testing.
+description: Learn how to use AI TOOLKIT Core mock providers for testing.
 ---
 
 # Testing
@@ -8,7 +8,7 @@ description: Learn how to use AI SDK Core mock providers for testing.
 Testing language models can be challenging, because they are non-deterministic
 and calling them is slow and expensive.
 
-To enable you to unit test your code that uses the AI SDK, the AI SDK Core
+To enable you to unit test your code that uses the AI TOOLKIT, the AI TOOLKIT Core
 includes mock providers and test helpers. You can import the following helpers from `ai/test`:
 
 - `MockEmbeddingModelV4`: A mock embedding model using the [embedding model v4 specification](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/provider/src/embedding-model/v4/embedding-model-v4.ts).
@@ -18,7 +18,7 @@ includes mock providers and test helpers. You can import the following helpers f
 
 You can also import [`simulateReadableStream`](/docs/reference/ai-toolkit-core/simulate-readable-stream) from `ai` to simulate a readable stream with delays.
 
-With mock providers and test helpers, you can control the output of the AI SDK
+With mock providers and test helpers, you can control the output of the AI TOOLKIT
 and test your code in a repeatable and deterministic way without actually calling
 a language model provider.
 

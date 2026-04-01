@@ -5,7 +5,7 @@ description: Learn how to use the Amazon Bedrock provider.
 
 # Amazon Bedrock Provider
 
-The Amazon Bedrock provider for the [AI SDK](/docs) contains language model support for the [Amazon Bedrock](https://aws.amazon.com/bedrock) APIs.
+The Amazon Bedrock provider for the [AI TOOLKIT](/docs) contains language model support for the [Amazon Bedrock](https://aws.amazon.com/bedrock) APIs.
 
 ## Setup
 
@@ -79,7 +79,7 @@ Remember to replace `YOUR_ACCESS_KEY_ID`, `YOUR_SECRET_ACCESS_KEY`, and `YOUR_RE
 
 #### Using AWS SDK Credentials Chain (instance profiles, instance roles, ECS roles, EKS Service Accounts, etc.)
 
-When using AWS SDK, the SDK will automatically use the credentials chain to determine the credentials to use. This includes instance profiles, instance roles, ECS roles, EKS Service Accounts, etc. A similar behavior is possible using the AI SDK by not specifying the `accessKeyId` and `secretAccessKey`, `sessionToken` properties in the provider settings and instead passing a `credentialProvider` property.
+When using AWS SDK, the SDK will automatically use the credentials chain to determine the credentials to use. This includes instance profiles, instance roles, ECS roles, EKS Service Accounts, etc. A similar behavior is possible using the AI TOOLKIT by not specifying the `accessKeyId` and `secretAccessKey`, `sessionToken` properties in the provider settings and instead passing a `credentialProvider` property.
 
 _Usage:_
 
@@ -229,7 +229,7 @@ const { text } = await generateText({
 ```
 
 Amazon Bedrock language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 ### File Inputs
 
@@ -511,7 +511,7 @@ console.log(amazonResult.reasoningText); // reasoning text
 console.log(amazonResult.text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 ## Extended Context Window
@@ -1240,7 +1240,7 @@ console.log(result.response.headers);
 ```
 
 Below is sample output where you can see the `x-amzn-requestid` header. This can
-be useful for correlating Bedrock API calls with requests made by the AI SDK:
+be useful for correlating Bedrock API calls with requests made by the AI TOOLKIT:
 
 ```js highlight="6"
 {
@@ -1557,7 +1557,7 @@ console.log(reasoning); // reasoning details including redacted reasoning
 console.log(text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 ### Model Capabilities

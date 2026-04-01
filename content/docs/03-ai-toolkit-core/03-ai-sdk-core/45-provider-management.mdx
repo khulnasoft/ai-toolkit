@@ -8,7 +8,7 @@ description: Learn how to work with multiple providers and models
 When you work with multiple providers and models, it is often desirable to manage them in a central place
 and access the models through simple string ids.
 
-The AI SDK offers [custom providers](/docs/reference/ai-toolkit-core/custom-provider) and
+The AI TOOLKIT offers [custom providers](/docs/reference/ai-toolkit-core/custom-provider) and
 a [provider registry](/docs/reference/ai-toolkit-core/provider-registry) for this purpose:
 
 - With **custom providers**, you can pre-configure model settings, provide model name aliases,
@@ -312,7 +312,7 @@ const model = registry.languageModel('anthropic > reasoning');
 
 ## Global Provider Configuration
 
-The AI SDK 5 includes a global provider feature that allows you to specify a model using just a plain model ID string:
+The AI TOOLKIT 5 includes a global provider feature that allows you to specify a model using just a plain model ID string:
 
 ```ts
 import { streamText } from 'ai';
