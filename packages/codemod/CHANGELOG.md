@@ -225,14 +225,14 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
-- b0446d4: release AI SDK 5.0 codemods package
+- b0446d4: release AI TOOLKIT 5.0 codemods package
 - df983e6: feat(codemods): added v4→v5 migration codemods
 - 4726e71: fix(codemod): correct import-LanguageModelV2-from-provider-package direction and quote preservation
-- 4e01854: v5 - AI SDK 5.0 codemods package
+- 4e01854: v5 - AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-beta.4
 
@@ -250,31 +250,31 @@
 
 ### Patch Changes
 
-- 4e01854: v5 - AI SDK 5.0 codemods package
+- 4e01854: v5 - AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-beta.1
 
 ### Patch Changes
 
-- b0446d4: release AI SDK 5.0 codemods package
+- b0446d4: release AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-canary.0
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ## 1.2.0
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ## 1.1.0
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ## 1.0.3
 

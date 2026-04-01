@@ -369,7 +369,7 @@
 - 6f6bb89: chore (provider): cleanup request and rawRequest (language model v2)
 - d1a1aa1: chore (provider): merge rawRequest into request (language model v2)
 - 63f9e9b: chore (provider,ai): tools have input/output instead of args,result
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - b6b43c7: chore: move warnings into stream-start part (spec)
 - 411e483: chore (provider): refactor usage (language model v2)
 - abf9a79: chore: rename mimeType to mediaType
@@ -754,13 +754,13 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ## 1.1.0
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ## 1.0.12
 
@@ -840,14 +840,14 @@
 ### Major Changes
 
 - b469a7e: chore: remove isXXXError methods
-- c0ddc24: chore (ai): remove toJSON method from AI SDK errors
+- c0ddc24: chore (ai): remove toJSON method from AI TOOLKIT errors
 
 ## 1.0.0-canary.0
 
 ### Major Changes
 
 - b469a7e: chore: remove isXXXError methods
-- c0ddc24: chore (ai): remove toJSON method from AI SDK errors
+- c0ddc24: chore (ai): remove toJSON method from AI TOOLKIT errors
 
 ## 0.0.26
 

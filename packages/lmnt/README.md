@@ -1,6 +1,6 @@
-# AI SDK - LMNT Provider
+# AI TOOLKIT - LMNT Provider
 
-The **[LMNT provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/lmnt)** for the [AI SDK](https://ai-toolkit.dev/docs)
+The **[LMNT provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/lmnt)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for the LMNT API.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/lmnt
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

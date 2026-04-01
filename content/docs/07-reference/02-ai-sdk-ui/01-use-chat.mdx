@@ -8,7 +8,7 @@ description: API reference for the useChat hook.
 Allows you to easily create a conversational user interface for your chatbot application. It enables the streaming of chat messages from your AI provider, manages the chat state, and updates the UI automatically as new messages are received.
 
 <Note>
-  The `useChat` API has been significantly updated in AI SDK 5.0. It now uses a
+  The `useChat` API has been significantly updated in AI TOOLKIT 5.0. It now uses a
   transport-based architecture and no longer manages input state internally. See
   the [migration
   guide](/docs/migration-guides/migration-guide-5-0#usechat-changes) for
@@ -256,7 +256,7 @@ Allows you to easily create a conversational user interface for your chatbot app
       type: 'IdGenerator',
       isOptional: true,
       description:
-        'A function to generate unique IDs for messages and the chat. If not provided, the default AI SDK generateId is used.',
+        'A function to generate unique IDs for messages and the chat. If not provided, the default AI TOOLKIT generateId is used.',
     },
     {
       name: 'onToolCall',

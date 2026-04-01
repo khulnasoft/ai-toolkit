@@ -48,7 +48,7 @@ describe('MCPClient', () => {
     await client?.close();
   });
 
-  it('should return AI SDK compatible tool set', async () => {
+  it('should return AI TOOLKIT compatible tool set', async () => {
     client = await createMCPClient({
       transport: { type: 'sse', url: 'https://example.com/sse' },
     });
@@ -159,7 +159,7 @@ describe('MCPClient', () => {
     expect(tools['mock-tool'].execute).toBeDefined();
   });
 
-  it('should convert MCP image content to AI SDK format via toModelOutput', async () => {
+  it('should convert MCP image content to AI TOOLKIT format via toModelOutput', async () => {
     createMockTransport.mockImplementation(
       () =>
         new MockMCPTransport({
@@ -236,7 +236,7 @@ describe('MCPClient', () => {
     `);
   });
 
-  it('should convert MCP text content to AI SDK format via toModelOutput', async () => {
+  it('should convert MCP text content to AI TOOLKIT format via toModelOutput', async () => {
     createMockTransport.mockImplementation(
       () =>
         new MockMCPTransport({
@@ -304,7 +304,7 @@ describe('MCPClient', () => {
     `);
   });
 
-  it('should convert mixed MCP content to AI SDK format via toModelOutput', async () => {
+  it('should convert mixed MCP content to AI TOOLKIT format via toModelOutput', async () => {
     createMockTransport.mockImplementation(
       () =>
         new MockMCPTransport({
@@ -676,7 +676,7 @@ describe('MCPClient', () => {
     ).rejects.toThrow(MCPClientError);
   });
 
-  it('should return typed AI SDK compatible tool set when schemas are provided', async () => {
+  it('should return typed AI TOOLKIT compatible tool set when schemas are provided', async () => {
     const mockTransport = new MockMCPTransport({
       overrideTools: [
         {

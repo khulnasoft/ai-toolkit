@@ -2718,7 +2718,7 @@
 ### Major Changes
 
 - 0a710d8: feat (ui): typed tool parts in ui messages
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - 496bbc1: chore (ui): inline/remove ChatRequest type
 - 40acf9b: feat (ui): introduce ChatStore and ChatTransport
 - 98f25e5: chore (ui): remove managed chat inputs
@@ -3314,7 +3314,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - 9477ebb: chore (ui): remove useAssistant hook (**breaking change**)
 
 ### Patch Changes
@@ -3365,7 +3365,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 
@@ -3562,7 +3562,7 @@
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ### Patch Changes
 

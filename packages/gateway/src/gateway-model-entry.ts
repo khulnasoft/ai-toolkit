@@ -42,7 +42,7 @@ export interface GatewayLanguageModelEntry {
   } | null;
 
   /**
-   * Additional AI SDK language model specifications for the model.
+   * Additional AI TOOLKIT language model specifications for the model.
    */
   specification: GatewayLanguageModelSpecification;
 

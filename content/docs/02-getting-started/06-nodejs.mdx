@@ -1,11 +1,11 @@
 ---
 title: Node.js
-description: Learn how to build your first agent with the AI SDK and Node.js.
+description: Learn how to build your first agent with the AI TOOLKIT and Node.js.
 ---
 
 # Node.js Quickstart
 
-The AI SDK is a powerful TypeScript library designed to help developers build AI-powered applications.
+The AI TOOLKIT is a powerful TypeScript library designed to help developers build AI-powered applications.
 
 In this quickstart tutorial, you'll build a simple agent with a streaming chat user interface. Along the way, you'll learn key concepts and techniques that are fundamental to using the SDK in your own projects.
 
@@ -32,10 +32,10 @@ pnpm init
 
 ### Install Dependencies
 
-Install `ai`, the AI SDK, along with other necessary dependencies.
+Install `ai`, the AI TOOLKIT, along with other necessary dependencies.
 
 <Note>
-  The AI SDK is designed to be a unified interface to interact with any large
+  The AI TOOLKIT is designed to be a unified interface to interact with any large
   language model. This means that you can change model and providers with just
   one line of code! Learn more about [available providers](/providers) and
   [building custom providers](/providers/community-providers/custom-providers)
@@ -47,7 +47,7 @@ pnpm add ai zod dotenv
 pnpm add -D @types/node tsx typescript
 ```
 
-The `ai` package contains the AI SDK. You will use `zod` to define type-safe schemas that you will pass to the large language model (LLM). You will use `dotenv` to access environment variables (your Vercel AI Gateway key) within your application. There are also three development dependencies, installed with the `-D` flag, that are necessary to run your TypeScript code.
+The `ai` package contains the AI TOOLKIT. You will use `zod` to define type-safe schemas that you will pass to the large language model (LLM). You will use `dotenv` to access environment variables (your Vercel AI Gateway key) within your application. There are also three development dependencies, installed with the `-D` flag, that are necessary to run your TypeScript code.
 
 ### Configure Vercel AI Gateway API key
 
@@ -64,7 +64,7 @@ AI_GATEWAY_API_KEY=xxxxxxxxx
 Replace `xxxxxxxxx` with your actual Vercel AI Gateway API key.
 
 <Note className="mb-4">
-  The AI SDK will use the `AI_GATEWAY_API_KEY` environment variable to
+  The AI TOOLKIT will use the `AI_GATEWAY_API_KEY` environment variable to
   authenticate with Vercel AI Gateway.
 </Note>
 
@@ -129,11 +129,11 @@ With that, you have built everything you need for your agent! To start your appl
 
 <Snippet text="pnpm tsx index.ts" />
 
-You should see a prompt in your terminal. Test it out by entering a message and see the AI agent respond in real-time! The AI SDK makes it fast and easy to build AI chat interfaces with Node.js.
+You should see a prompt in your terminal. Test it out by entering a message and see the AI agent respond in real-time! The AI TOOLKIT makes it fast and easy to build AI chat interfaces with Node.js.
 
 ## Choosing a Provider
 
-The AI SDK supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
+The AI TOOLKIT supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
 
 This quickstart uses the [Vercel AI Gateway](https://vercel.com/ai-gateway) provider, which is the default [global provider](/docs/ai-toolkit-core/provider-management#global-provider-configuration). This means you can access models using a simple string in the model configuration:
 
@@ -505,8 +505,8 @@ This example demonstrates how tools can expand your agent's capabilities. You ca
 
 ## Where to Next?
 
-You've built an AI agent using the AI SDK! From here, you have several paths to explore:
+You've built an AI agent using the AI TOOLKIT! From here, you have several paths to explore:
 
-- To learn more about the AI SDK, read through the [documentation](/docs).
+- To learn more about the AI TOOLKIT, read through the [documentation](/docs).
 - If you're interested in diving deeper with guides, check out the [RAG (retrieval-augmented generation)](/cookbook/guides/rag-chatbot) and [multi-modal chatbot](/cookbook/guides/multi-modal-chatbot) guides.
 - To jumpstart your first AI project, explore available [templates](https://vercel.com/templates?type=ai).

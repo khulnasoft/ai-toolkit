@@ -97,7 +97,7 @@ export class OpenAIChatLanguageModel implements LanguageModelV4 {
 
     const modelCapabilities = getOpenAILanguageModelCapabilities(this.modelId);
 
-    // AI SDK reasoning values map directly to the OpenAI reasoning values.
+    // AI TOOLKIT reasoning values map directly to the OpenAI reasoning values.
     const resolvedReasoningEffort =
       openaiOptions.reasoningEffort ??
       (isCustomReasoning(reasoning) ? reasoning : undefined);
@@ -171,7 +171,7 @@ export class OpenAIChatLanguageModel implements LanguageModelV4 {
       verbosity: openaiOptions.textVerbosity,
 
       // openai specific settings:
-      // TODO AI SDK 6: remove, we auto-map maxOutputTokens now
+      // TODO AI TOOLKIT 6: remove, we auto-map maxOutputTokens now
       max_completion_tokens: openaiOptions.maxCompletionTokens,
       store: openaiOptions.store,
       metadata: openaiOptions.metadata,

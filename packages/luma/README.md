@@ -1,6 +1,6 @@
-# AI SDK - Luma Provider
+# AI TOOLKIT - Luma Provider
 
-The **Luma provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
+The **Luma provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
 
 ## About Luma Photon Models
 
@@ -24,7 +24,7 @@ npm i @ai-toolkit/luma
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

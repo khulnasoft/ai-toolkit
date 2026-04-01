@@ -1,6 +1,6 @@
-# AI SDK, Next.js, and OpenAI Chat Example with Telemetry
+# AI TOOLKIT, Next.js, and OpenAI Chat Example with Telemetry
 
-This example shows how to use the [AI SDK](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry).
+This example shows how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot with [OpenTelemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry).
 
 ## Deploy your own
 
@@ -34,10 +34,10 @@ To run the example locally you need to:
 
 ## Learn More
 
-To learn more about OpenAI, Next.js, and the AI SDK take a look at the following resources:
+To learn more about OpenAI, Next.js, and the AI TOOLKIT take a look at the following resources:
 
-- [AI SDK docs](https://ai-toolkit.dev/docs)
-- [AI SDK telemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry)
+- [AI TOOLKIT docs](https://ai-toolkit.dev/docs)
+- [AI TOOLKIT telemetry support](https://ai-toolkit.dev/docs/ai-toolkit-core/telemetry)
 - [Vercel AI Playground](https://ai-toolkit.dev/playground)
 - [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

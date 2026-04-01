@@ -123,7 +123,7 @@ export type Tool<
 
   /**
    * Additional provider-specific metadata. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: ProviderOptions;
@@ -248,7 +248,7 @@ export type Tool<
          * triggers a client-executed tool, and the server tool's result is deferred
          * until the client tool is resolved).
          *
-         * This flag allows the AI SDK to handle tool results that arrive without
+         * This flag allows the AI TOOLKIT to handle tool results that arrive without
          * a matching tool call in the current response.
          *
          * @default false

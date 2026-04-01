@@ -1,11 +1,11 @@
 ---
 title: Writing a Custom Provider
-description: Create a custom provider package for an OpenAI-compatible provider leveraging the AI SDK OpenAI Compatible package.
+description: Create a custom provider package for an OpenAI-compatible provider leveraging the AI TOOLKIT OpenAI Compatible package.
 ---
 
 # Writing a Custom Provider
 
-You can create your own provider package that leverages the AI SDK's [OpenAI Compatible package](https://www.npmjs.com/package/@ai-toolkit/openai-compatible). Publishing your provider package to [npm](https://www.npmjs.com/) can give users an easy way to use the provider's models and stay up to date with any changes you may have. Here's an example structure:
+You can create your own provider package that leverages the AI TOOLKIT's [OpenAI Compatible package](https://www.npmjs.com/package/@ai-toolkit/openai-compatible). Publishing your provider package to [npm](https://www.npmjs.com/) can give users an easy way to use the provider's models and stay up to date with any changes you may have. Here's an example structure:
 
 ### File Structure
 
@@ -254,7 +254,7 @@ const { text } = await generateText({
 });
 ```
 
-This structure provides a clean, type-safe implementation that leverages the OpenAI Compatible package while maintaining consistency with the usage of other AI SDK providers.
+This structure provides a clean, type-safe implementation that leverages the OpenAI Compatible package while maintaining consistency with the usage of other AI TOOLKIT providers.
 
 ### Internal API
 
@@ -264,4 +264,4 @@ As you work on your provider you may need to use some of the internal API of the
 import { convertToOpenAICompatibleChatMessages } from '@ai-toolkit/openai-compatible/internal';
 ```
 
-You can see the latest available exports in the AI SDK [GitHub repository](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/openai-compatible/src/internal/index.ts).
+You can see the latest available exports in the AI TOOLKIT [GitHub repository](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/openai-compatible/src/internal/index.ts).

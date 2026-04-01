@@ -1,6 +1,6 @@
-# AI SDK Codemods
+# AI TOOLKIT Codemods
 
-The AI SDK provides automated code transformations (codemods) to help upgrade your codebase when features are deprecated, removed, or changed between versions.
+The AI TOOLKIT provides automated code transformations (codemods) to help upgrade your codebase when features are deprecated, removed, or changed between versions.
 
 Codemods are transformations that run on your codebase programmatically, allowing you to easily apply many changes without manually editing every file.
 
@@ -200,7 +200,7 @@ npx @ai-toolkit/codemod@beta --print v4/replace-baseurl src/config.ts
 
 1. **Backup your code** - Commit all changes to version control
 2. **Review current deprecation warnings** - Fix any obvious issues first
-3. **Update dependencies** - Ensure you're on the target AI SDK version
+3. **Update dependencies** - Ensure you're on the target AI TOOLKIT version
 
 ### After Running Codemods
 
@@ -250,19 +250,19 @@ pnpm test:watch
 
 ## Support
 
-- **Documentation**: [AI SDK Migration Guides](https://ai-toolkit.dev/docs/migration-guides)
+- **Documentation**: [AI TOOLKIT Migration Guides](https://ai-toolkit.dev/docs/migration-guides)
 - **Issues**: [GitHub Issues](https://github.com/khulnasoft/ai-toolkit/issues)
 - **Community**: [Discord](https://discord.gg/vercel)
 
 ## Version Compatibility
 
-- **AI SDK 6.0**: All codemods in this package
-- **AI SDK 5.0**: Use v4 + v5 codemods
-- **AI SDK 4.x**: Use `@ai-toolkit/codemod@1.x`
-- **AI SDK 3.x**: Manual migration required
+- **AI TOOLKIT 6.0**: All codemods in this package
+- **AI TOOLKIT 5.0**: Use v4 + v5 codemods
+- **AI TOOLKIT 4.x**: Use `@ai-toolkit/codemod@1.x`
+- **AI TOOLKIT 3.x**: Manual migration required
 
 ---
 
 For more detailed migration information, see:
 
-- [AI SDK 6.0 Migration Guide](https://ai-toolkit.dev/docs/migration-guides/migration-guide-6-0)
+- [AI TOOLKIT 6.0 Migration Guide](https://ai-toolkit.dev/docs/migration-guides/migration-guide-6-0)

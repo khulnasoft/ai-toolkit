@@ -1,11 +1,11 @@
 ---
 title: Choosing a Provider
-description: Learn how to configure and authenticate with AI providers in the AI SDK.
+description: Learn how to configure and authenticate with AI providers in the AI TOOLKIT.
 ---
 
 # Choosing a Provider
 
-The AI SDK supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [community](/providers/community-providers) packages.
+The AI TOOLKIT supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [community](/providers/community-providers) packages.
 
 ```ts
 import { generateText } from 'ai';
@@ -19,7 +19,7 @@ const { text } = await generateText({
 
 ## AI Gateway
 
-The [Vercel AI Gateway](/providers/ai-toolkit-providers/ai-gateway) is the fastest way to get started with the AI SDK. Access models from OpenAI, Anthropic, Google, and other providers. Authenticate with [OIDC](https://ai-toolkit.dev/providers/ai-toolkit-providers/ai-gateway#oidc-authentication-vercel-deployments) or an AI Gateway API key
+The [Vercel AI Gateway](/providers/ai-toolkit-providers/ai-gateway) is the fastest way to get started with the AI TOOLKIT. Access models from OpenAI, Anthropic, Google, and other providers. Authenticate with [OIDC](https://ai-toolkit.dev/providers/ai-toolkit-providers/ai-gateway#oidc-authentication-vercel-deployments) or an AI Gateway API key
 
 <div className="max-w-[40%] mx-auto">
   <ButtonLink
@@ -95,7 +95,7 @@ See [available providers](/providers/ai-toolkit-providers) for setup instruction
 
 ## Custom Providers
 
-You can build your own provider to integrate any service with the AI SDK. The AI SDK provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v3) that ensures compatibility across providers.
+You can build your own provider to integrate any service with the AI TOOLKIT. The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v3) that ensures compatibility across providers.
 
 ```ts
 import { generateText } from 'ai';

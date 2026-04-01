@@ -5,11 +5,11 @@ description: Monitoring and tracing LLM applications with Braintrust
 
 # Braintrust Observability
 
-Braintrust is an end-to-end platform for building AI applications. When building with the AI SDK, you can integrate Braintrust to [log](https://www.braintrust.dev/docs/guides/logging), monitor, and take action on real-world interactions.
+Braintrust is an end-to-end platform for building AI applications. When building with the AI TOOLKIT, you can integrate Braintrust to [log](https://www.braintrust.dev/docs/guides/logging), monitor, and take action on real-world interactions.
 
 ## Setup
 
-Braintrust natively supports OpenTelemetry and works out of the box with the AI SDK, either via Next.js or Node.js.
+Braintrust natively supports OpenTelemetry and works out of the box with the AI TOOLKIT, either via Next.js or Node.js.
 
 ### Next.js
 
@@ -33,7 +33,7 @@ export function register() {
 
 Traced LLM calls will appear under the Braintrust project or experiment provided in the `parent` field.
 
-When you call the AI SDK, make sure to set `experimental_telemetry`:
+When you call the AI TOOLKIT, make sure to set `experimental_telemetry`:
 
 ```typescript
 const result = await generateText({

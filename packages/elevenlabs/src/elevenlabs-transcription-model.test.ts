@@ -82,7 +82,7 @@ describe('doGenerate', () => {
       });
 
       expect(result.text).toMatchInlineSnapshot(
-        `"Hello from the Vercel AI SDK."`,
+        `"Hello from the Vercel AI TOOLKIT."`,
       );
     });
 

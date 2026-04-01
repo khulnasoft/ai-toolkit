@@ -1,20 +1,20 @@
 ---
 title: DevTools
-description: Debug and inspect AI SDK applications with DevTools
+description: Debug and inspect AI TOOLKIT applications with DevTools
 ---
 
 # DevTools
 
 <Note type="warning">
-  AI SDK DevTools is experimental and intended for local development only. Do
+  AI TOOLKIT DevTools is experimental and intended for local development only. Do
   not use in production environments.
 </Note>
 
-AI SDK DevTools gives you full visibility over your AI SDK calls with [`generateText`](/docs/reference/ai-toolkit-core/generate-text), [`streamText`](/docs/reference/ai-toolkit-core/stream-text), and [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent). It helps you debug and inspect LLM requests, responses, tool calls, and multi-step interactions through a web-based UI.
+AI TOOLKIT DevTools gives you full visibility over your AI TOOLKIT calls with [`generateText`](/docs/reference/ai-toolkit-core/generate-text), [`streamText`](/docs/reference/ai-toolkit-core/stream-text), and [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent). It helps you debug and inspect LLM requests, responses, tool calls, and multi-step interactions through a web-based UI.
 
 DevTools is composed of two parts:
 
-1. **Middleware**: Captures runs and steps from your AI SDK calls
+1. **Middleware**: Captures runs and steps from your AI TOOLKIT calls
 2. **Viewer**: A web UI to inspect the captured data
 
 ## Installation
@@ -27,7 +27,7 @@ pnpm add @ai-toolkit/devtools
 
 ## Requirements
 
-- AI SDK v6 beta (`ai@^6.0.0-beta.0`)
+- AI TOOLKIT v6 beta (`ai@^6.0.0-beta.0`)
 - Node.js compatible runtime
 
 ## Using DevTools
@@ -46,7 +46,7 @@ const model = wrapLanguageModel({
 });
 ```
 
-The wrapped model can be used with any AI SDK Core function:
+The wrapped model can be used with any AI TOOLKIT Core function:
 
 ```ts highlight="4"
 import { generateText } from 'ai';
@@ -65,11 +65,11 @@ Start the DevTools viewer:
 npx @ai-toolkit/devtools
 ```
 
-Open [http://localhost:4983](http://localhost:4983) to view your AI SDK interactions.
+Open [http://localhost:4983](http://localhost:4983) to view your AI TOOLKIT interactions.
 
 ## Captured data
 
-The DevTools middleware captures the following information from your AI SDK calls:
+The DevTools middleware captures the following information from your AI TOOLKIT calls:
 
 - **Input parameters and prompts**: View the complete input sent to your LLM
 - **Output content and tool calls**: Inspect generated text and tool invocations

@@ -13,7 +13,7 @@ export class UnsupportedModelVersionError extends AITOOLKITError {
       name: 'AI_UnsupportedModelVersionError',
       message:
         `Unsupported model version ${options.version} for provider "${options.provider}" and model "${options.modelId}". ` +
-        `AI SDK 5 only supports models that implement specification version "v2".`,
+        `AI TOOLKIT 5 only supports models that implement specification version "v2".`,
     });
 
     this.version = options.version;

@@ -42,7 +42,7 @@ export class DefaultGeneratedAudioFile
     }
 
     if (!format) {
-      // TODO this should be an AI SDK error
+      // TODO this should be an AI TOOLKIT error
       throw new Error(
         'Audio format must be provided or determinable from media type',
       );

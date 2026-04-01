@@ -1,6 +1,6 @@
-# Angular AI SDK Example
+# Angular AI TOOLKIT Example
 
-A small Angular app that exercises the AI SDK UI package with chat, completion, and structured object generation.
+A small Angular app that exercises the AI TOOLKIT UI package with chat, completion, and structured object generation.
 
 ## Setup
 
@@ -24,7 +24,7 @@ This runs both the Angular frontend (localhost:4200) and Express backend (localh
 
 - Angular 20
 - Express.js backend
-- AI SDK (@ai-toolkit/angular, ai)
+- AI TOOLKIT (@ai-toolkit/angular, ai)
 - AI Gateway (default provider)
 
 ## Features

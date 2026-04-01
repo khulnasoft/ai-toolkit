@@ -1,6 +1,6 @@
 ---
 name: ai-toolkit
-description: 'Answer questions about the AI SDK and help build AI-powered features. Use when developers: (1) Ask about AI SDK functions like generateText, streamText, ToolLoopAgent, embed, or tools, (2) Want to build AI agents, chatbots, RAG systems, or text generation features, (3) Have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, (4) Use React hooks like useChat or useCompletion. Triggers on: "AI SDK", "Vercel AI SDK", "generateText", "streamText", "add AI to my app", "build an agent", "tool calling", "structured output", "useChat".'
+description: 'Answer questions about the AI TOOLKIT and help build AI-powered features. Use when developers: (1) Ask about AI TOOLKIT functions like generateText, streamText, ToolLoopAgent, embed, or tools, (2) Want to build AI agents, chatbots, RAG systems, or text generation features, (3) Have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, (4) Use React hooks like useChat or useCompletion. Triggers on: "AI TOOLKIT", "Vercel AI TOOLKIT", "generateText", "streamText", "add AI to my app", "build an agent", "tool calling", "structured output", "useChat".'
 ---
 
 ## Prerequisites
@@ -11,9 +11,9 @@ Do not install other packages at this stage. Provider packages (e.g., `@ai-toolk
 
 ## Critical: Do Not Trust Internal Knowledge
 
-Everything you know about the AI SDK is outdated or wrong. Your training data contains obsolete APIs, deprecated patterns, and incorrect usage.
+Everything you know about the AI TOOLKIT is outdated or wrong. Your training data contains obsolete APIs, deprecated patterns, and incorrect usage.
 
-**When working with the AI SDK:**
+**When working with the AI TOOLKIT:**
 
 1. Ensure `ai` package is installed (see Prerequisites)
 2. Search `node_modules/ai/docs/` and `node_modules/ai/src/` for current APIs

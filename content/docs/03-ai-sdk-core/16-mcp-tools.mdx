@@ -1,11 +1,11 @@
 ---
 title: Model Context Protocol (MCP)
-description: Learn how to connect to Model Context Protocol (MCP) servers and use their tools with AI SDK Core.
+description: Learn how to connect to Model Context Protocol (MCP) servers and use their tools with AI TOOLKIT Core.
 ---
 
 # Model Context Protocol (MCP)
 
-The AI SDK supports connecting to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers to access their tools, resources, and prompts.
+The AI TOOLKIT supports connecting to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers to access their tools, resources, and prompts.
 This enables your AI applications to discover and use capabilities across various services through a standardized interface.
 
 <Note>
@@ -93,12 +93,12 @@ const mcpClient = await createMCPClient({
   The stdio transport should only be used for local servers.
 </Note>
 
-The Stdio transport can be imported from either the MCP SDK or the AI SDK:
+The Stdio transport can be imported from either the MCP SDK or the AI TOOLKIT:
 
 ```typescript
 import { createMCPClient } from '@ai-toolkit/mcp';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-// Or use the AI SDK's stdio transport:
+// Or use the AI TOOLKIT's stdio transport:
 // import { Experimental_StdioMCPTransport as StdioClientTransport } from '@ai-toolkit/mcp/mcp-stdio';
 
 const mcpClient = await createMCPClient({
@@ -119,7 +119,7 @@ You can also bring your own transport by implementing the `MCPTransport` interfa
   support all features of the full MCP client, such as: session
   management, resumable streams, and receiving notifications.
 
-Authorization via OAuth is supported when using the AI SDK MCP HTTP or SSE
+Authorization via OAuth is supported when using the AI TOOLKIT MCP HTTP or SSE
 transports by providing an `authProvider`.
 
 </Note>
@@ -168,7 +168,7 @@ try {
 
 ## Using MCP Tools
 
-The client's `tools` method acts as an adapter between MCP tools and AI SDK tools. It supports two approaches for working with tool schemas:
+The client's `tools` method acts as an adapter between MCP tools and AI TOOLKIT tools. It supports two approaches for working with tool schemas:
 
 ### Schema Discovery
 

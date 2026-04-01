@@ -137,7 +137,7 @@ export function resolveVideoModel(
     // Use raw global provider because videoModel is experimental
     // and not part of the ProviderV4 interface
     const provider = globalThis.AI_SDK_DEFAULT_PROVIDER ?? gateway;
-    // TODO AI SDK v7
+    // TODO AI TOOLKIT v7
     // @ts-expect-error - videoModel support is experimental
     const videoModel = provider.videoModel;
 

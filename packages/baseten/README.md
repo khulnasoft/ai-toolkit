@@ -1,6 +1,6 @@
-# AI SDK - Baseten Provider
+# AI TOOLKIT - Baseten Provider
 
-The **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
+The **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/baseten
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

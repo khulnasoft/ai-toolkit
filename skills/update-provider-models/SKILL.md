@@ -1,13 +1,13 @@
 ---
 name: update-provider-models
-description: Add new or remove obsolete model IDs for existing AI SDK providers. Use when adding a model to a provider, removing an obsolete model, or processing a list of model changes from an issue. Triggers on "add model", "remove model", "new model ID", "obsolete model", "update model IDs".
+description: Add new or remove obsolete model IDs for existing AI TOOLKIT providers. Use when adding a model to a provider, removing an obsolete model, or processing a list of model changes from an issue. Triggers on "add model", "remove model", "new model ID", "obsolete model", "update model IDs".
 metadata:
   internal: true
 ---
 
 ## Update Provider Model IDs
 
-This skill covers adding new model IDs and removing obsolete ones across the AI SDK codebase. Each workflow uses search to discover all locations that need changes.
+This skill covers adding new model IDs and removing obsolete ones across the AI TOOLKIT codebase. Each workflow uses search to discover all locations that need changes.
 
 You may be asked to add or remove a single model ID, or to process a list of multiple model ID changes from an issue. For each model ID, follow the appropriate workflow:
 

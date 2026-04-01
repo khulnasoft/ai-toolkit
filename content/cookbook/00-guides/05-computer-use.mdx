@@ -1,6 +1,6 @@
 ---
 title: Get started with Computer Use
-description: Get started with Claude's Computer Use capabilities with the AI SDK
+description: Get started with Claude's Computer Use capabilities with the AI TOOLKIT
 tags: ['computer-use', 'tools']
 ---
 
@@ -8,7 +8,7 @@ tags: ['computer-use', 'tools']
 
 With the [release of Computer Use in Claude 3.5 Sonnet](https://www.anthropic.com/news/3-5-models-and-computer-use), you can now direct AI models to interact with computers like humans do - moving cursors, clicking buttons, and typing text. This capability enables automation of complex tasks while leveraging Claude's advanced reasoning abilities.
 
-The AI SDK is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like Anthropic's Claude alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more. In this guide, you will learn how to integrate Computer Use into your AI SDK applications.
+The AI TOOLKIT is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like Anthropic's Claude alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more. In this guide, you will learn how to integrate Computer Use into your AI TOOLKIT applications.
 
 <Note>
   Computer Use is currently in beta with some [ limitations
@@ -41,7 +41,7 @@ Computer Use enables the model to read and interact with on-screen content throu
 
 3. **Execute the action and return results**
 
-   The AI SDK processes Claude's request by running the selected tool. The results can then be sent back to Claude through a `tool_result` message.
+   The AI TOOLKIT processes Claude's request by running the selected tool. The results can then be sent back to Claude through a `tool_result` message.
 
 4. **Complete the task through iterations**
 
@@ -57,7 +57,7 @@ There are three main tools available in the Computer Use API:
 
 ### Implementation Considerations
 
-Computer Use tools in the AI SDK are predefined interfaces that require your own implementation of the execution layer. While the SDK provides the type definitions and structure for these tools, you need to:
+Computer Use tools in the AI TOOLKIT are predefined interfaces that require your own implementation of the execution layer. While the SDK provides the type definitions and structure for these tools, you need to:
 
 1. Set up a controlled environment for Computer Use execution
 2. Implement core functionality like mouse control and keyboard input
@@ -73,26 +73,26 @@ The recommended approach is to start with [ Anthropic's reference implementation
 
 This reference implementation serves as a foundation to understand the requirements before building your own custom solution.
 
-## Getting Started with the AI SDK
+## Getting Started with the AI TOOLKIT
 
 <Note>
-  If you have never used the AI SDK before, start by following the [Getting
+  If you have never used the AI TOOLKIT before, start by following the [Getting
   Started guide](/docs/getting-started).
 </Note>
 
 <Note>
   For a working example of Computer Use implementation with Next.js and the AI
-  SDK, check out our [AI SDK Computer Use
+  SDK, check out our [AI TOOLKIT Computer Use
   Template](https://github.com/vercel-labs/ai-toolkit-computer-use).
 </Note>
 
-First, ensure you have the AI SDK and [Anthropic AI SDK provider](/providers/ai-toolkit-providers/anthropic) installed:
+First, ensure you have the AI TOOLKIT and [Anthropic AI TOOLKIT provider](/providers/ai-toolkit-providers/anthropic) installed:
 
 <Snippet text="pnpm add ai @ai-toolkit/anthropic" />
 
-You can add Computer Use to your AI SDK applications using provider-defined-client tools. These tools accept various input parameters (like display height and width in the case of the computer tool) and then require that you define an execute function.
+You can add Computer Use to your AI TOOLKIT applications using provider-defined-client tools. These tools accept various input parameters (like display height and width in the case of the computer tool) and then require that you define an execute function.
 
-Here's how you could set up the Computer Tool with the AI SDK:
+Here's how you could set up the Computer Tool with the AI TOOLKIT:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
@@ -124,7 +124,7 @@ const computerTool = anthropic.tools.computer_20250124({
 
 The `computerTool` handles two main actions: taking screenshots via `getScreenshot()` and executing computer actions like mouse movements and clicks through `executeComputerAction()`. Remember, you have to implement this execution logic (eg. the `getScreenshot` and `executeComputerAction` functions) to handle the actual computer interactions. The `execute` function should handle all low-level interactions with the operating system.
 
-Finally, to send tool results back to the model, use the [`toModelOutput()`](/docs/foundations/prompts#multi-modal-tool-results) function to convert text and image responses into a format the model can process. The AI SDK includes experimental support for these multi-modal tool results when using Anthropic's models.
+Finally, to send tool results back to the model, use the [`toModelOutput()`](/docs/foundations/prompts#multi-modal-tool-results) function to convert text and image responses into a format the model can process. The AI TOOLKIT includes experimental support for these multi-modal tool results when using Anthropic's models.
 
 <Note>
   Computer Use requires appropriate safety measures like using virtual machines,
@@ -179,7 +179,7 @@ const stream = streamText({
 
 ### Combine Multiple Tools
 
-You can combine multiple tools in a single request to enable more complex workflows. The AI SDK supports all three of Claude's Computer Use tools:
+You can combine multiple tools in a single request to enable more complex workflows. The AI TOOLKIT supports all three of Claude's Computer Use tools:
 
 ```ts
 const computerTool = anthropic.tools.computer_20250124({

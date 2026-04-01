@@ -29,7 +29,7 @@ For non-Anthropic models, the function returns your messages unchanged. You can 
 
 ### Message-level vs block-level cache control
 
-You might notice this implementation adds `providerOptions` at the **message level**, while Anthropic's API expects `cache_control` at the **content block level**. The AI SDK handles this translation automatically.
+You might notice this implementation adds `providerOptions` at the **message level**, while Anthropic's API expects `cache_control` at the **content block level**. The AI TOOLKIT handles this translation automatically.
 
 When you set `providerOptions` on a message, the SDK applies it to the last content block when constructing the API request. For example:
 

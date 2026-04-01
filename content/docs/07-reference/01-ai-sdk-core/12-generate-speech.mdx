@@ -15,7 +15,7 @@ import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
   model: openai.speech('tts-1'),
-  text: 'Hello from the AI SDK!',
+  text: 'Hello from the AI TOOLKIT!',
   voice: 'alloy',
 });
 
@@ -32,7 +32,7 @@ import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
   model: openai.speech('tts-1'),
-  text: 'Hello from the AI SDK!',
+  text: 'Hello from the AI TOOLKIT!',
   voice: 'alloy',
 });
 ```
@@ -45,7 +45,7 @@ import { elevenlabs } from '@ai-toolkit/elevenlabs';
 
 const { audio } = await generateSpeech({
   model: elevenlabs.speech('eleven_multilingual_v2'),
-  text: 'Hello from the AI SDK!',
+  text: 'Hello from the AI TOOLKIT!',
   voice: 'your-voice-id', // Required: get this from your ElevenLabs account
 });
 ```

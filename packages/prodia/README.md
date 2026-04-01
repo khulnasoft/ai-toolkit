@@ -1,6 +1,6 @@
-# AI SDK - Prodia Provider
+# AI TOOLKIT - Prodia Provider
 
-The **[Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia)** for the [AI SDK](https://ai-toolkit.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
+The **[Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
 
 ## Setup
 
@@ -12,7 +12,7 @@ pnpm add @ai-toolkit/prodia
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

@@ -8,7 +8,7 @@ exports[`doGenerate > no additional formats > should work when no additional for
     "body": {
       "language_code": "eng",
       "language_probability": 0.8905608654022217,
-      "text": "Hello from the Vercel AI SDK.",
+      "text": "Hello from the Vercel AI TOOLKIT.",
       "transcription_id": "dRgXxwt3SzzliHA3nDAQ",
       "words": [
         {
@@ -165,7 +165,7 @@ exports[`doGenerate > no additional formats > should work when no additional for
       "text": "SDK.",
     },
   ],
-  "text": "Hello from the Vercel AI SDK.",
+  "text": "Hello from the Vercel AI TOOLKIT.",
   "warnings": [],
 }
 `;
@@ -175,7 +175,7 @@ exports[`doGenerate > response headers > should include response data with times
   "body": {
     "language_code": "eng",
     "language_probability": 0.8905608654022217,
-    "text": "Hello from the Vercel AI SDK.",
+    "text": "Hello from the Vercel AI TOOLKIT.",
     "transcription_id": "dRgXxwt3SzzliHA3nDAQ",
     "words": [
       {

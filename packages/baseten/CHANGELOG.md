@@ -397,7 +397,7 @@
 ### Major Changes
 
 - dee8b05: ai SDK 6 beta
-- 6cc9cd0: Added Baseten as a Provider for AI SDK
+- 6cc9cd0: Added Baseten as a Provider for AI TOOLKIT
 
 ### Patch Changes
 
@@ -983,4 +983,4 @@
 
 ### Major Changes
 
-- 6cc9cd0: Added Baseten as a Provider for AI SDK
+- 6cc9cd0: Added Baseten as a Provider for AI TOOLKIT

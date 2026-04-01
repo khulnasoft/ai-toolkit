@@ -1,6 +1,6 @@
 ---
 title: OpenAI Responses API
-description: Get started with the OpenAI Responses API using the AI SDK.
+description: Get started with the OpenAI Responses API using the AI TOOLKIT.
 tags: ['getting-started', 'agents']
 ---
 
@@ -8,19 +8,19 @@ tags: ['getting-started', 'agents']
 
 With the [release of OpenAI's responses API](https://openai.com/index/new-tools-for-building-agents/), there has never been a better time to start building AI applications, particularly those that require a deeper understanding of the world.
 
-The [AI SDK](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
+The [AI TOOLKIT](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
 
 ## OpenAI Responses API
 
-OpenAI recently released the Responses API, a brand new way to build applications on OpenAI's platform. The new API offers a way to persist chat history, a web search tool for grounding LLM responses, file search tool for finding relevant files, and a computer use tool for building agents that can interact with and operate computers. Let's explore how to use the Responses API with the AI SDK.
+OpenAI recently released the Responses API, a brand new way to build applications on OpenAI's platform. The new API offers a way to persist chat history, a web search tool for grounding LLM responses, file search tool for finding relevant files, and a computer use tool for building agents that can interact with and operate computers. Let's explore how to use the Responses API with the AI TOOLKIT.
 
-## Getting Started with the AI SDK
+## Getting Started with the AI TOOLKIT
 
-The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
+The AI TOOLKIT is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
 
-The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
+The AI TOOLKIT abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
 
-At the center of the AI SDK is [AI SDK Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call GPT-4o with the new Responses API using the AI SDK:
+At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call GPT-4o with the new Responses API using the AI TOOLKIT:
 
 ```ts
 import { generateText } from 'ai';
@@ -34,7 +34,7 @@ const { text } = await generateText({
 
 ### Generating Structured Data
 
-While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text) with `Output` to generate structured data, allowing you to constrain model outputs to a specific schema.
+While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text) with `Output` to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
 import { generateText, Output } from 'ai';
@@ -60,9 +60,9 @@ const { output } = await generateText({
 
 This code snippet will generate a type-safe recipe that conforms to the specified zod schema.
 
-### Using Tools with the AI SDK
+### Using Tools with the AI TOOLKIT
 
-The Responses API supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. Here's an example of using tool calling with the AI SDK:
+The Responses API supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. Here's an example of using tool calling with the AI TOOLKIT:
 
 ```ts
 import { generateText, tool } from 'ai';
@@ -211,7 +211,7 @@ const result = await generateText({
 
 ## Migrating from Completions API
 
-Migrating from the OpenAI Completions API (via the AI SDK) to the new Responses API is simple. To migrate, simply change your provider instance from `openai(modelId)` to `openai.responses(modelId)`:
+Migrating from the OpenAI Completions API (via the AI TOOLKIT) to the new Responses API is simple. To migrate, simply change your provider instance from `openai(modelId)` to `openai.responses(modelId)`:
 
 ```ts
 import { generateText } from 'ai';
@@ -263,7 +263,7 @@ const { text } = await generateText({
 
 Ready to get started? Here's how you can dive in:
 
-1. Explore the documentation at [ai-toolkit.dev/docs](/docs) to understand the full capabilities of the AI SDK.
+1. Explore the documentation at [ai-toolkit.dev/docs](/docs) to understand the full capabilities of the AI TOOLKIT.
 2. Check out practical examples at [ai-toolkit.dev/examples](/examples) to see the SDK in action and get inspired for your own projects.
 3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [ai-toolkit.dev/docs/guides](/cookbook/guides).
 4. Check out ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

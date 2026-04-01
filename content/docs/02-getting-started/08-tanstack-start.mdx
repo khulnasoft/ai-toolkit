@@ -1,13 +1,13 @@
 ---
 title: TanStack Start
-description: Learn how to build your first agent with the AI SDK and TanStack Start.
+description: Learn how to build your first agent with the AI TOOLKIT and TanStack Start.
 ---
 
 # TanStack Start Quickstart
 
-The AI SDK is a powerful TypeScript library designed to help developers build AI-powered applications.
+The AI TOOLKIT is a powerful TypeScript library designed to help developers build AI-powered applications.
 
-In this quickstart tutorial, you'll build a simple agent with a streaming chat user interface. Along the way, you'll learn key concepts and techniques that are fundamental to using the AI SDK in your own projects.
+In this quickstart tutorial, you'll build a simple agent with a streaming chat user interface. Along the way, you'll learn key concepts and techniques that are fundamental to using the AI TOOLKIT in your own projects.
 
 If you are unfamiliar with the concepts of [Prompt Engineering](/docs/advanced/prompt-engineering) and [HTTP Streaming](/docs/foundations/streaming), you can optionally read these documents first.
 
@@ -32,12 +32,12 @@ Navigate to the newly created directory:
 
 ### Install dependencies
 
-Install `ai` and `@ai-toolkit/react`, the AI package and AI SDK's React hooks. The AI SDK's [ Vercel AI Gateway provider ](/providers/ai-toolkit-providers/ai-gateway) ships with the `ai` package. You'll also install `zod`, a schema validation library used for defining tool inputs.
+Install `ai` and `@ai-toolkit/react`, the AI package and AI TOOLKIT's React hooks. The AI TOOLKIT's [ Vercel AI Gateway provider ](/providers/ai-toolkit-providers/ai-gateway) ships with the `ai` package. You'll also install `zod`, a schema validation library used for defining tool inputs.
 
 <Note>
   This guide uses the Vercel AI Gateway provider so you can access hundreds of
   models from different providers with one API key, but you can switch to any
-  provider or model by installing its package. Check out available [AI SDK
+  provider or model by installing its package. Check out available [AI TOOLKIT
   providers](/providers/ai-toolkit-providers) for more information.
 </Note>
 
@@ -75,7 +75,7 @@ AI_GATEWAY_API_KEY=xxxxxxxxx
 Replace `xxxxxxxxx` with your actual Vercel AI Gateway API key.
 
 <Note className="mb-4">
-  The AI SDK's Vercel AI Gateway Provider will default to using the
+  The AI TOOLKIT's Vercel AI Gateway Provider will default to using the
   `AI_GATEWAY_API_KEY` environment variable.
 </Note>
 
@@ -117,7 +117,7 @@ This Route Handler creates a POST request endpoint at `/api/chat`.
 
 ## Choosing a Provider
 
-The AI SDK supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
+The AI TOOLKIT supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
 
 This quickstart uses the [Vercel AI Gateway](https://vercel.com/ai-gateway) provider, which is the default [global provider](/docs/ai-toolkit-core/provider-management#global-provider-configuration). This means you can access models using a simple string in the model configuration:
 
@@ -174,7 +174,7 @@ Pick the approach that best matches how you want to manage providers across your
 
 ## Wire up the UI
 
-Now that you have a Route Handler that can query an LLM, it's time to setup your frontend. The AI SDK's [ UI ](/docs/ai-toolkit-ui) package abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
+Now that you have a Route Handler that can query an LLM, it's time to setup your frontend. The AI TOOLKIT's [ UI ](/docs/ai-toolkit-ui) package abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
 
 Update your index route (`src/routes/index.tsx`) with the following code to show a list of chat messages and provide a user message input:
 
@@ -238,7 +238,7 @@ With that, you have built everything you need for your chatbot! To start your ap
 
 <Snippet text="pnpm run dev" />
 
-Head to your browser and open http://localhost:3000. You should see an input field. Test it out by entering a message and see the AI chatbot respond in real-time! The AI SDK makes it fast and easy to build AI chat interfaces with TanStack Start.
+Head to your browser and open http://localhost:3000. You should see an input field. Test it out by entering a message and see the AI chatbot respond in real-time! The AI TOOLKIT makes it fast and easy to build AI chat interfaces with TanStack Start.
 
 ## Enhance Your Chatbot with Tools
 
@@ -576,8 +576,8 @@ This simple example demonstrates how tools can expand your model's capabilities.
 
 ## Where to Next?
 
-You've built an AI chatbot using the AI SDK! From here, you have several paths to explore:
+You've built an AI chatbot using the AI TOOLKIT! From here, you have several paths to explore:
 
-- To learn more about the AI SDK, read through the [documentation](/docs).
+- To learn more about the AI TOOLKIT, read through the [documentation](/docs).
 - If you're interested in diving deeper with guides, check out the [RAG (retrieval-augmented generation)](/cookbook/guides/rag-chatbot) and [multi-modal chatbot](/cookbook/guides/multi-modal-chatbot) guides.
 - To jumpstart your first AI project, explore available [templates](https://vercel.com/templates?type=ai).

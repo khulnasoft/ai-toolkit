@@ -1,6 +1,6 @@
-# AI SDK - Kling AI Provider
+# AI TOOLKIT - Kling AI Provider
 
-The **Kling AI provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains video model support for the [Kling AI API](https://app.klingai.com/global/dev/document-api/quickStart/productIntroduction/overview).
+The **Kling AI provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains video model support for the [Kling AI API](https://app.klingai.com/global/dev/document-api/quickStart/productIntroduction/overview).
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/klingai
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

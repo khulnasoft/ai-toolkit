@@ -1,6 +1,6 @@
 ---
 title: Anthropic
-description: Learn how to use the Anthropic provider for the AI SDK.
+description: Learn how to use the Anthropic provider for the AI TOOLKIT.
 ---
 
 # Anthropic Provider
@@ -105,7 +105,7 @@ const { text } = await generateText({
 
 Anthropic language models can also be used in the `streamText` function
 and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 The following optional provider options are available for Anthropic models:
 
@@ -291,7 +291,7 @@ console.log(reasoning); // reasoning details including redacted reasoning
 console.log(text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 ### Context Management
@@ -618,7 +618,7 @@ Shorter prompts cannot be cached, even if marked with `cacheControl`. Any reques
 For more on prompt caching with Anthropic, see [Anthropic's Cache Control documentation](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching).
 
 <Note type="warning">
-  Because the `UIMessage` type (used by AI SDK UI hooks like `useChat`) does not
+  Because the `UIMessage` type (used by AI TOOLKIT UI hooks like `useChat`) does not
   support the `providerOptions` property, you can use `convertToModelMessages`
   first before passing the messages to functions like `generateText` or
   `streamText`. For more details on `providerOptions` usage, see

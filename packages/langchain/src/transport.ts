@@ -29,7 +29,7 @@ export type LangSmithDeploymentTransportOptions = Omit<
 /**
  * A ChatTransport implementation for LangSmith/LangGraph deployments.
  *
- * This transport enables seamless integration between the AI SDK's useChat hook
+ * This transport enables seamless integration between the AI TOOLKIT's useChat hook
  * and LangSmith deployed LangGraph agents.
  *
  * @example

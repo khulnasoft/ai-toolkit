@@ -485,7 +485,7 @@ export async function POST(req: Request) {
 
 ## Handling client disconnects
 
-By default, the AI SDK `streamText` function uses backpressure to the language model provider to prevent
+By default, the AI TOOLKIT `streamText` function uses backpressure to the language model provider to prevent
 the consumption of tokens that are not yet requested.
 
 However, this means that when the client disconnects, e.g. by closing the browser tab or because of a network issue,

@@ -1,6 +1,6 @@
 ---
 title: Common Errors
-description: Reference for common AI SDK errors and how to resolve them.
+description: Reference for common AI TOOLKIT errors and how to resolve them.
 ---
 
 # Common Errors

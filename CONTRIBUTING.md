@@ -1,4 +1,4 @@
-# Contributing to the AI SDK
+# Contributing to the AI TOOLKIT
 
 We deeply appreciate your interest in contributing to our repository! Whether you're reporting bugs, suggesting enhancements, improving docs, or submitting pull requests, your contributions help improve the project for everyone.
 
@@ -32,7 +32,7 @@ We welcome your contributions to our code and documentation. Here's how you can 
 
 ### Environment Setup
 
-AI SDK development requires PNPM v9 (lockfile version) or higher and Node v22.
+AI TOOLKIT development requires PNPM v9 (lockfile version) or higher and Node v22.
 
 ### Setting Up the Repository Locally
 
@@ -47,8 +47,8 @@ To set up the repository on your local machine, follow these steps:
 
 ### Running the Examples
 
-1. `cd examples/ai-functions` (for AI SDK Core, or another example folder)
-1. AI SDK Core examples: run e.g. `pnpm tsx src/stream-text/openai.ts`
+1. `cd examples/ai-functions` (for AI TOOLKIT Core, or another example folder)
+1. AI TOOLKIT Core examples: run e.g. `pnpm tsx src/stream-text/openai.ts`
    - For most examples, you need to provide relevant API keys, e.g. environment variables like `OPENAI_API_KEY`
 1. Other framework examples: run `pnpm dev` and go to the browser url
 
@@ -92,7 +92,7 @@ We greatly appreciate your pull requests. Here are the steps to submit them:
 
 8. **Respond to Feedback**: Stay receptive to and address any feedback or alteration requests from the project maintainers.
 
-Thank you for contributing to the AI SDK! Your efforts help us improve the project for everyone.
+Thank you for contributing to the AI TOOLKIT! Your efforts help us improve the project for everyone.
 
 ## Learn More
 

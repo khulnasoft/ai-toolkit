@@ -1,6 +1,6 @@
 ---
 title: Tools
-description: Learn about tools with the AI SDK.
+description: Learn about tools with the AI TOOLKIT.
 ---
 
 # Tools
@@ -41,7 +41,7 @@ using [multi-step calls](/docs/ai-toolkit-core/tools-and-tool-calling#multi-step
 
 ## Types of Tools
 
-The AI SDK supports three types of tools, each with different trade-offs:
+The AI TOOLKIT supports three types of tools, each with different trade-offs:
 
 ### Custom Tools
 
@@ -132,7 +132,7 @@ const result = await generateText({
 
 Schemas are used to define and validate the [tool input](/docs/ai-toolkit-core/tools-and-tool-calling), tools outputs, and structured output generation.
 
-The AI SDK supports the following schemas:
+The AI TOOLKIT supports the following schemas:
 
 - [Zod](https://zod.dev/) v3 and v4 directly or via [`zodSchema()`](/docs/reference/ai-toolkit-core/zod-schema)
 - [Valibot](https://valibot.dev/) via [`valibotSchema()`](/docs/reference/ai-toolkit-core/valibot-schema) from `@ai-toolkit/valibot`
@@ -196,7 +196,7 @@ export const myTool = tool({
 
 Anyone can then install and use your tools by importing them.
 
-To get started, you can use the [AI SDK Tool Package Template](https://github.com/vercel-labs/ai-toolkit-tool-as-package-template) which provides a ready-to-use starting point for publishing your own tools.
+To get started, you can use the [AI TOOLKIT Tool Package Template](https://github.com/vercel-labs/ai-toolkit-tool-as-package-template) which provides a ready-to-use starting point for publishing your own tools.
 
 ## Toolsets
 
@@ -217,7 +217,7 @@ These packages provide pre-built tools you can install and use immediately:
 - **[@airweave/vercel-ai-toolkit](https://www.npmjs.com/package/@airweave/vercel-ai-toolkit)** - Unified semantic search across 35+ data sources (Notion, Slack, Google Drive, databases, and more) for AI agents.
 - **[Composio](https://docs.composio.dev/providers/vercel)** - 250+ tools like GitHub, Gmail, Salesforce and [more](https://composio.dev/tools).
 - **[JigsawStack](http://www.jigsawstack.com/docs/integration/vercel)** - Over 30+ small custom fine-tuned models available for specific uses.
-- **[AI Tools Registry](https://ai-tools-registry.vercel.app)** - A Shadcn-compatible tool definitions and components registry for the AI SDK.
+- **[AI Tools Registry](https://ai-tools-registry.vercel.app)** - A Shadcn-compatible tool definitions and components registry for the AI TOOLKIT.
 - **[Toolhouse](https://docs.toolhouse.ai/toolhouse/toolhouse-sdk/using-vercel-ai)** - AI function-calling in 3 lines of code for over 25 different actions.
 - **[bash-tool](https://www.npmjs.com/package/bash-tool)** - Provides `bash`, `readFile`, and `writeFile` tools for AI agents. Supports [@vercel/sandbox](https://vercel.com/docs/vercel-sandbox) for full VM isolation.
 
@@ -235,17 +235,17 @@ These tutorials and guides help you build your own tools that integrate with spe
 
 - **[browserbase](https://docs.browserbase.com/integrations/vercel/introduction#vercel-ai-integration)** - Tutorial for building browser tools that run a headless browser.
 - **[browserless](https://docs.browserless.io/ai-integrations/vercel-ai-toolkit)** - Guide for integrating browser automation (self-hosted or cloud-based).
-- **[AI Tool Maker](https://github.com/nihaocami/ai-tool-maker)** - A CLI utility to generate AI SDK tools from OpenAPI specs.
+- **[AI Tool Maker](https://github.com/nihaocami/ai-tool-maker)** - A CLI utility to generate AI TOOLKIT tools from OpenAPI specs.
 - **[Interlify](https://www.interlify.com/docs/integrate-with-vercel-ai)** - Guide for converting APIs into tools.
 - **[DeepAgent](https://deepagent.amardeep.space/docs/vercel-ai-toolkit)** - A suite of 50+ AI tools and integrations, seamlessly connecting with APIs like Tavily, E2B, Airtable and [more](https://deepagent.amardeep.space/docs).
 
 <Note>
   Do you have open source tools or tool libraries that are compatible with the
-  AI SDK? Please [file a pull request](https://github.com/khulnasoft/ai-toolkit/pulls) to
+  AI TOOLKIT? Please [file a pull request](https://github.com/khulnasoft/ai-toolkit/pulls) to
   add them to this list.
 </Note>
 
 ## Learn more
 
-The AI SDK Core [Tool Calling](/docs/ai-toolkit-core/tools-and-tool-calling)
+The AI TOOLKIT Core [Tool Calling](/docs/ai-toolkit-core/tools-and-tool-calling)
 and [Agents](/docs/agents) documentation has more information about tools and tool calling.

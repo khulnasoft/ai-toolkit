@@ -12,7 +12,7 @@ You can control both the execution flow and the settings at each step of the age
 - A tool call needs approval, or
 - A stop condition is met
 
-The AI SDK provides built-in loop control through two parameters: `stopWhen` for defining stopping conditions and `prepareStep` for modifying settings (model, tools, messages, and more) between steps.
+The AI TOOLKIT provides built-in loop control through two parameters: `stopWhen` for defining stopping conditions and `prepareStep` for modifying settings (model, tools, messages, and more) between steps.
 
 ## Stop Conditions
 
@@ -22,7 +22,7 @@ When you provide `stopWhen`, the agent continues executing after tool calls unti
 
 ### Use Built-in Conditions
 
-The AI SDK provides several built-in stopping conditions:
+The AI TOOLKIT provides several built-in stopping conditions:
 
 ```ts
 import { ToolLoopAgent, stepCountIs } from 'ai';
@@ -349,7 +349,7 @@ This pattern is useful when you want the agent to always use specific tools for 
 
 ## Manual Loop Control
 
-For scenarios requiring complete control over the agent loop, you can use AI SDK Core functions (`generateText` and `streamText`) to implement your own loop management instead of using `stopWhen` and `prepareStep`. This approach provides maximum flexibility for complex workflows.
+For scenarios requiring complete control over the agent loop, you can use AI TOOLKIT Core functions (`generateText` and `streamText`) to implement your own loop management instead of using `stopWhen` and `prepareStep`. This approach provides maximum flexibility for complex workflows.
 
 ### Implementing a Manual Loop
 

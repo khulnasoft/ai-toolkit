@@ -7,7 +7,7 @@ description: Trace and Evaluate your LLM applications using Confident AI
 
 [Confident AI](https://confident-ai.com/) is an LLM observability and evaluation platform for teams to build reliable AI applications in both development and production.
 
-The `deepeval-ts` package integrates with the AI SDK's `experimental_telemetry` API to provide tracing, online evaluations, and session analytics.
+The `deepeval-ts` package integrates with the AI TOOLKIT's `experimental_telemetry` API to provide tracing, online evaluations, and session analytics.
 
 ## Setup
 
@@ -39,9 +39,9 @@ const tracer = configureAiToolkitTracing();
 
 ## Tracing Your Application
 
-You can now pass the `tracer` object into the `experimental_telemetry` field of any AI SDK call to get your traces on the Confident AI platform.
+You can now pass the `tracer` object into the `experimental_telemetry` field of any AI TOOLKIT call to get your traces on the Confident AI platform.
 
-Here are some of the examples on how to trace various AI SDK functions using Confident AI's tracer:
+Here are some of the examples on how to trace various AI TOOLKIT functions using Confident AI's tracer:
 
 ### Generate text
 
@@ -170,7 +170,7 @@ import { openai } from '@ai-toolkit/openai';
 import { configureAiToolkitTracing } from 'deepeval-ts';
 
 const tracer = configureAiToolkitTracing({
-  name: 'AI SDK Confident AI Tracing',
+  name: 'AI TOOLKIT Confident AI Tracing',
   threadId: 'thread-123',
   userId: 'user-456',
   environment: 'production',
@@ -255,7 +255,7 @@ const { text } = await generateText({
 
 All incoming traces will now be evaluated automatically. Evaluation results are visible in the Confident AI Observatory alongside your traces.
 
-You can find a more comprehensive guide on AI SDK tracing with `deepeval-ts` in the [Confident AI docs here](https://www.confident-ai.com/docs/integrations/third-party/vercel-ai-toolkit).
+You can find a more comprehensive guide on AI TOOLKIT tracing with `deepeval-ts` in the [Confident AI docs here](https://www.confident-ai.com/docs/integrations/third-party/vercel-ai-toolkit).
 
 ## Learn More
 
@@ -264,4 +264,4 @@ You can find a more comprehensive guide on AI SDK tracing with `deepeval-ts` in 
 - [Online Evaluations](https://www.confident-ai.com/docs/llm-tracing/online-evals)
 - [Prompt Management](https://www.confident-ai.com/docs/llm-evaluation/prompt-management/version-prompts)
 - [DeepEval Discord](https://discord.gg/a3K9c8GRGt)
-- [AI SDK Telemetry documentation](/docs/ai-toolkit-core/telemetry)
+- [AI TOOLKIT Telemetry documentation](/docs/ai-toolkit-core/telemetry)

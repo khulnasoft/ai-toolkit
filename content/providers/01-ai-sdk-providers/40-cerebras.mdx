@@ -1,6 +1,6 @@
 ---
 title: Cerebras
-description: Learn how to use Cerebras's models with the AI SDK.
+description: Learn how to use Cerebras's models with the AI TOOLKIT.
 ---
 
 # Cerebras Provider
@@ -82,7 +82,7 @@ const { text } = await generateText({
 ```
 
 Cerebras language models can be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 You can create Cerebras language models using a provider instance. The first argument is the model ID, e.g. `llama-3.3-70b`:
 
@@ -99,7 +99,7 @@ const model = cerebras.chat('llama-3.3-70b');
 
 ### Reasoning Models
 
-Cerebras offers several reasoning models including `gpt-oss-120b`, `qwen-3-32b`, and `zai-glm-4.7` that generate intermediate thinking tokens before their final response. The reasoning output is streamed through the standard AI SDK reasoning parts.
+Cerebras offers several reasoning models including `gpt-oss-120b`, `qwen-3-32b`, and `zai-glm-4.7` that generate intermediate thinking tokens before their final response. The reasoning output is streamed through the standard AI TOOLKIT reasoning parts.
 
 For `gpt-oss-120b`, you can control the reasoning depth using the `reasoningEffort` provider option:
 
@@ -126,7 +126,7 @@ for await (const part of result.fullStream) {
 }
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details on how to integrate reasoning into your chatbot.
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details on how to integrate reasoning into your chatbot.
 
 ### Provider Options
 

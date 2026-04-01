@@ -113,7 +113,7 @@ export async function convertToBedrockChatMessages(
 
                   case 'file': {
                     if (part.data instanceof URL) {
-                      // The AI SDK automatically downloads files for user file parts with URLs
+                      // The AI TOOLKIT automatically downloads files for user file parts with URLs
                       throw new UnsupportedFunctionalityError({
                         functionality: 'File URL data',
                       });

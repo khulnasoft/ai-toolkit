@@ -1,6 +1,6 @@
-# AI SDK - Google Generative AI Provider
+# AI TOOLKIT - Google Generative AI Provider
 
-The **[Google Generative AI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Google Generative AI](https://ai.google/discover/generativeai/) APIs.
+The **[Google Generative AI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the [Google Generative AI](https://ai.google/discover/generativeai/) APIs.
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/google
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

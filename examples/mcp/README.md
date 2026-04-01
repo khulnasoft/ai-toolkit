@@ -1,6 +1,6 @@
-# MCP + AI SDK Example
+# MCP + AI TOOLKIT Example
 
-You can use the AI SDK with MCP to convert between MCP and AI SDK tool calls.
+You can use the AI TOOLKIT with MCP to convert between MCP and AI TOOLKIT tool calls.
 This example demonstrates tool conversion from both SSE and `stdio` MCP servers.
 
 ## Build
@@ -11,7 +11,7 @@ This example demonstrates tool conversion from both SSE and `stdio` MCP servers.
 OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 ```
 
-2. Run the following commands from the root directory of the AI SDK repo:
+2. Run the following commands from the root directory of the AI TOOLKIT repo:
 
 ```sh
 pnpm install

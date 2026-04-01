@@ -73,7 +73,7 @@
   "keywords": [
     "ai"
   ],
-  "description": "The **Cerebras provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.",
+  "description": "The **Cerebras provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for [Cerebras](https://cerebras.ai), offering high-speed AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems.",
   "author": "",
   "type": "commonjs"
 }

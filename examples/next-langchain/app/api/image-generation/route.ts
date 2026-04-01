@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     /**
-     * Convert AI SDK UIMessages to LangChain messages
+     * Convert AI TOOLKIT UIMessages to LangChain messages
      */
     const langchainMessages = await toBaseMessages(messages);
 

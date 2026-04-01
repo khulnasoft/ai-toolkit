@@ -170,7 +170,7 @@ export type StepResult<TOOLS extends ToolSet> = {
 
   /**
    * Additional provider-specific metadata. They are passed through
-   * from the provider to the AI SDK and enable provider-specific
+   * from the provider to the AI TOOLKIT and enable provider-specific
    * results that can be fully encapsulated in the provider.
    */
   readonly providerMetadata: ProviderMetadata | undefined;

@@ -20,7 +20,7 @@ const model = new ChatOpenAI({
  * streamEvents API Example
  *
  * This example demonstrates using LangChain's `streamEvents()` method with
- * the AI SDK adapter. `streamEvents()` provides granular, semantic events
+ * the AI TOOLKIT adapter. `streamEvents()` provides granular, semantic events
  * that are useful for:
  *
  * - **Filtering by event type**: Easily filter for specific events like
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
     } = await req.json();
 
     /**
-     * Convert AI SDK UIMessages to LangChain messages
+     * Convert AI TOOLKIT UIMessages to LangChain messages
      */
     const langchainMessages = await toBaseMessages(messages);
 

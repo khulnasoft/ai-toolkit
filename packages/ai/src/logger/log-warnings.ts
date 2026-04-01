@@ -30,7 +30,7 @@ export type LogWarningsFunction = (options: {
 }) => void;
 
 /**
- * Formats a warning object into a human-readable string with clear AI SDK branding.
+ * Formats a warning object into a human-readable string with clear AI TOOLKIT branding.
  *
  * @param options - The options for formatting the warning.
  * @param options.warning - The warning to format.
@@ -47,7 +47,7 @@ function formatWarning({
   provider: string;
   model: string;
 }): string {
-  const prefix = `AI SDK Warning (${provider} / ${model}):`;
+  const prefix = `AI TOOLKIT Warning (${provider} / ${model}):`;
 
   switch (warning.type) {
     case 'unsupported': {
@@ -78,7 +78,7 @@ function formatWarning({
 }
 
 export const FIRST_WARNING_INFO_MESSAGE =
-  'AI SDK Warning System: To turn off warning logging, set the AI_SDK_LOG_WARNINGS global to false.';
+  'AI TOOLKIT Warning System: To turn off warning logging, set the AI_SDK_LOG_WARNINGS global to false.';
 
 let hasLoggedBefore = false;
 

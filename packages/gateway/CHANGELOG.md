@@ -606,7 +606,7 @@
 
 ### Major Changes
 
-- 387980f: fix: major version bump for AI SDK v6
+- 387980f: fix: major version bump for AI TOOLKIT v6
 
 ## 2.0.0
 

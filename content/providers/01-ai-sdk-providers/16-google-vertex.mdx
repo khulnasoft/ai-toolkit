@@ -5,7 +5,7 @@ description: Learn how to use the Google Vertex AI provider.
 
 # Google Vertex Provider
 
-The Google Vertex provider for the [AI SDK](/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs. This includes support for [Google's Gemini models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) and [Anthropic's Claude partner models](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude).
+The Google Vertex provider for the [AI TOOLKIT](/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs. This includes support for [Google's Gemini models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) and [Anthropic's Claude partner models](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude).
 
 <Note>
   The Google Vertex provider is compatible with both Node.js and Edge runtimes.
@@ -65,7 +65,7 @@ Google Vertex supports multiple authentication methods depending on your runtime
 
 #### Node.js Runtime
 
-The Node.js runtime is the default runtime supported by the AI SDK. It supports all standard Google Cloud authentication options through the [`google-auth-library`](https://github.com/googleapis/google-auth-library-nodejs?tab=readme-ov-file#ways-to-authenticate). Typical use involves setting a path to a json credentials file in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable. The credentials file can be obtained from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+The Node.js runtime is the default runtime supported by the AI TOOLKIT. It supports all standard Google Cloud authentication options through the [`google-auth-library`](https://github.com/googleapis/google-auth-library-nodejs?tab=readme-ov-file#ways-to-authenticate). Typical use involves setting a path to a json credentials file in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable. The credentials file can be obtained from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 
 If you want to customize the Google authentication options you can pass them as options to the `createVertex` function, for example:
 
@@ -357,7 +357,7 @@ const { text } = await generateText({
 ```
 
 Google Vertex language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 #### Code Execution
 
@@ -455,7 +455,7 @@ The optional `retrievalConfig.latLng` provider option provides location context 
 
 #### Reasoning (Thinking Tokens)
 
-Google Vertex AI, through its support for Gemini models, can also emit "thinking" tokens, representing the model's reasoning process. The AI SDK exposes these as reasoning information.
+Google Vertex AI, through its support for Gemini models, can also emit "thinking" tokens, representing the model's reasoning process. The AI TOOLKIT exposes these as reasoning information.
 
 To enable thinking tokens for compatible Gemini models via Vertex, set `includeThoughts: true` in the `thinkingConfig` provider option. These options are passed through `providerOptions.vertex`:
 
@@ -546,7 +546,7 @@ const { text } = await generateText({
 ```
 
 <Note>
-  The AI SDK will automatically download URLs if you pass them as data, except
+  The AI TOOLKIT will automatically download URLs if you pass them as data, except
   for `gs://` URLs. You can use the Google Cloud Storage API to upload larger
   files to that location.
 </Note>
@@ -598,7 +598,7 @@ console.log('Cached tokens:', providerMetadata.vertex);
 
 You can use explicit caching with Gemini models. See the [Vertex AI context caching documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview) to check if caching is supported for your model.
 
-First, create a cache using the Google GenAI SDK with Vertex mode enabled:
+First, create a cache using the Google GenAI TOOLKIT with Vertex mode enabled:
 
 ```ts
 import { GoogleGenAI } from '@google/genai';
@@ -629,7 +629,7 @@ console.log('Cache created:', cache.name);
 // e.g. projects/my-project/locations/us-central1/cachedContents/abc123
 ```
 
-Then use the cache with the AI SDK:
+Then use the cache with the AI TOOLKIT:
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';
@@ -841,7 +841,7 @@ The following optional provider options are available for Google Vertex AI embed
 
 ### Image Models
 
-You can create image models using the `.image()` factory method. The Google Vertex provider supports both [Imagen](https://cloud.google.com/vertex-ai/generative-ai/docs/image/overview) and [Gemini image models](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash-image). For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
+You can create image models using the `.image()` factory method. The Google Vertex provider supports both [Imagen](https://cloud.google.com/vertex-ai/generative-ai/docs/image/overview) and [Gemini image models](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash-image). For more on image generation with the AI TOOLKIT see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 #### Imagen Models
 
@@ -1108,7 +1108,7 @@ const { image } = await generateImage({
 ### Video Models
 
 You can create [Veo](https://cloud.google.com/vertex-ai/generative-ai/docs/video/overview) video models that call the Vertex AI API
-using the `.video()` factory method. For more on video generation with the AI SDK see [generateVideo()](/docs/reference/ai-toolkit-core/generate-video).
+using the `.video()` factory method. For more on video generation with the AI TOOLKIT see [generateVideo()](/docs/reference/ai-toolkit-core/generate-video).
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';
@@ -1212,7 +1212,7 @@ The following provider options are available:
 
 ## Google Vertex Anthropic Provider Usage
 
-The Google Vertex Anthropic provider for the [AI SDK](/docs) offers support for Anthropic's Claude models through the Google Vertex AI APIs. This section provides details on how to set up and use the Google Vertex Anthropic provider.
+The Google Vertex Anthropic provider for the [AI TOOLKIT](/docs) offers support for Anthropic's Claude models through the Google Vertex AI APIs. This section provides details on how to set up and use the Google Vertex Anthropic provider.
 
 ### Provider Instance
 
@@ -1408,7 +1408,7 @@ const { text } = await generateText({
 
 Anthropic language models can also be used in the `streamText` function
 and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
-(see [AI SDK Core](/docs/ai-toolkit-core)).
+(see [AI TOOLKIT Core](/docs/ai-toolkit-core)).
 
 <Note>
   The Anthropic API returns streaming tool calls all at once after a delay. This
@@ -1461,7 +1461,7 @@ console.log(reasoning); // reasoning details including redacted reasoning
 console.log(text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
+See [AI TOOLKIT UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 #### Cache Control

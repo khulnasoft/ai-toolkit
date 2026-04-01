@@ -1,6 +1,6 @@
-# AI SDK - Google Vertex AI Provider
+# AI TOOLKIT - Google Vertex AI Provider
 
-The **[Google Vertex provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-vertex)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
+The **[Google Vertex provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-vertex)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs.
 
 This library includes a Google Vertex Anthropic provider. This provider closely follows the core Google Vertex library's usage patterns. See more in the [Google Vertex Anthropic Provider](#google-vertex-anthropic-provider) section below.
 
@@ -14,7 +14,7 @@ npm i @ai-toolkit/google-vertex
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -26,7 +26,7 @@ The Google Vertex provider has two different authentication implementations depe
 
 ### Node.js Runtime
 
-The Node.js runtime is the default runtime supported by the AI SDK. You can use the default provider instance to generate text with the `gemini-2.5-flash` model like this:
+The Node.js runtime is the default runtime supported by the AI TOOLKIT. You can use the default provider instance to generate text with the `gemini-2.5-flash` model like this:
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';

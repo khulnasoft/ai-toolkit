@@ -1,17 +1,17 @@
 ---
 name: develop-ai-functions-example
-description: Develop examples for AI SDK functions. Use when creating, running, or modifying examples under examples/ai-functions/src to validate provider support, demonstrate features, or create test fixtures.
+description: Develop examples for AI TOOLKIT functions. Use when creating, running, or modifying examples under examples/ai-functions/src to validate provider support, demonstrate features, or create test fixtures.
 metadata:
   internal: true
 ---
 
 ## AI Functions Examples
 
-The `examples/ai-functions/` directory contains scripts for validating, testing, and iterating on AI SDK functions across providers.
+The `examples/ai-functions/` directory contains scripts for validating, testing, and iterating on AI TOOLKIT functions across providers.
 
 ## Example Categories
 
-Examples are organized by AI SDK function in `examples/ai-functions/src/`:
+Examples are organized by AI TOOLKIT function in `examples/ai-functions/src/`:
 
 | Directory          | Purpose                                              |
 | ------------------ | ---------------------------------------------------- |

@@ -1,10 +1,10 @@
 # AGENTS.md
 
-This file provides context for AI coding assistants (Cursor, GitHub Copilot, Claude Code, etc.) working with the Vercel AI SDK repository.
+This file provides context for AI coding assistants (Cursor, GitHub Copilot, Claude Code, etc.) working with the Vercel AI TOOLKIT repository.
 
 ## Project Overview
 
-The **AI SDK** by Vercel is a TypeScript/JavaScript SDK for building AI-powered applications with Large Language Models (LLMs). It provides a unified interface for multiple AI providers and framework integrations.
+The **AI TOOLKIT** by Vercel is a TypeScript/JavaScript SDK for building AI-powered applications with Large Language Models (LLMs). It provides a unified interface for multiple AI providers and framework integrations.
 
 - **Repository**: https://github.com/khulnasoft/ai-toolkit
 - **Documentation**: https://ai-toolkit.dev/docs

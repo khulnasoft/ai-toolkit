@@ -504,7 +504,7 @@ describe('GatewayLanguageModel', () => {
           ferror: { message: 'Model not found', type: 'model_not_found' },
         };
 
-        // Mock the server to return malformed response that can't be parsed by AI SDK
+        // Mock the server to return malformed response that can't be parsed by AI TOOLKIT
         server.urls['https://api.test.com/language-model'].response = {
           type: 'error',
           status: 404,

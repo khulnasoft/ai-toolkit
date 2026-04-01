@@ -1,6 +1,6 @@
-# AI SDK - Together.ai Provider
+# AI TOOLKIT - Together.ai Provider
 
-The **[Together.ai provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/togetherai)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Together.ai](https://together.ai) platform.
+The **[Together.ai provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/togetherai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the [Together.ai](https://together.ai) platform.
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/togetherai
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

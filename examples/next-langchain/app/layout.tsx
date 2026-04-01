@@ -3,9 +3,9 @@ import { Sidebar } from '../components/sidebar';
 import { MobileNav } from '../components/mobile-nav';
 
 export const metadata = {
-  title: 'AI SDK + LangChain Examples',
+  title: 'AI TOOLKIT + LangChain Examples',
   description:
-    'Example applications showcasing AI SDK with LangChain integration',
+    'Example applications showcasing AI TOOLKIT with LangChain integration',
 };
 
 export default function RootLayout({

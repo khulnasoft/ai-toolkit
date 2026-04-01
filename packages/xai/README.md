@@ -1,6 +1,6 @@
-# AI SDK - xAI Grok Provider
+# AI TOOLKIT - xAI Grok Provider
 
-The **[xAI Grok provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/xai)** for the [AI SDK](https://ai-toolkit.dev/docs)
+The **[xAI Grok provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/xai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for the xAI chat and completion APIs.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/xai
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

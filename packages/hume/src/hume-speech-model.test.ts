@@ -38,13 +38,13 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(await server.calls[0].requestBodyJson).toMatchObject({
       utterances: [
         {
-          text: 'Hello from the AI SDK!',
+          text: 'Hello from the AI TOOLKIT!',
           voice: {
             id: 'd8ab67c6-953d-4bd8-9370-8fa53a0f1453',
             provider: 'HUME_AI',
@@ -68,7 +68,7 @@ describe('doGenerate', () => {
     });
 
     await provider.speech().doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       headers: {
         'Custom-Request-Header': 'request-header-value',
       },
@@ -89,7 +89,7 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       voice: 'test-voice',
       outputFormat: 'mp3',
       speed: 1.5,
@@ -98,7 +98,7 @@ describe('doGenerate', () => {
     expect(await server.calls[0].requestBodyJson).toMatchObject({
       utterances: [
         {
-          text: 'Hello from the AI SDK!',
+          text: 'Hello from the AI TOOLKIT!',
           voice: {
             id: 'test-voice',
             provider: 'HUME_AI',
@@ -123,7 +123,7 @@ describe('doGenerate', () => {
     });
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       outputFormat: 'mp3',
     });
 
@@ -149,7 +149,7 @@ describe('doGenerate', () => {
     });
 
     const result = await customModel.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(result.response).toMatchObject({
@@ -176,7 +176,7 @@ describe('doGenerate', () => {
     });
 
     const result = await customModel.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(result.response.timestamp.getTime()).toEqual(testDate.getTime());
@@ -190,7 +190,7 @@ describe('doGenerate', () => {
       const audio = prepareAudioResponse({ format });
 
       const result = await model.doGenerate({
-        text: 'Hello from the AI SDK!',
+        text: 'Hello from the AI TOOLKIT!',
         providerOptions: {
           lmnt: {
             format,
@@ -206,7 +206,7 @@ describe('doGenerate', () => {
     prepareAudioResponse();
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(result.warnings).toEqual([]);

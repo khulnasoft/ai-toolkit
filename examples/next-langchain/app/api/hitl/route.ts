@@ -214,7 +214,7 @@ export async function POST(req: Request) {
       );
     } else {
       /**
-       * Convert AI SDK UIMessages to LangChain messages and start new conversation
+       * Convert AI TOOLKIT UIMessages to LangChain messages and start new conversation
        */
       const langchainMessages = await toBaseMessages(messages);
       stream = await agent.stream({ messages: langchainMessages }, config);

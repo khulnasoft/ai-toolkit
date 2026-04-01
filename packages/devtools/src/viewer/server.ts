@@ -214,7 +214,7 @@ app.get('*', async c => {
       <html>
         <head>
           <meta charset="UTF-8">
-          <title>AI SDK DevTools</title>
+          <title>AI TOOLKIT DevTools</title>
           <style>
             body { font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #0a0a0a; color: #fafafa; }
             .container { text-align: center; }
@@ -251,10 +251,12 @@ export const startViewer = (port = 4983) => {
     },
     () => {
       if (isDevMode) {
-        console.log(`🔍 AI SDK DevTools API running on port ${port}`);
+        console.log(`🔍 AI TOOLKIT DevTools API running on port ${port}`);
         console.log(`   Open http://localhost:5173 for the dev UI`);
       } else {
-        console.log(`🔍 AI SDK DevTools running at http://localhost:${port}`);
+        console.log(
+          `🔍 AI TOOLKIT DevTools running at http://localhost:${port}`,
+        );
       }
     },
   );
@@ -263,7 +265,7 @@ export const startViewer = (port = 4983) => {
     if (err.code === 'EADDRINUSE') {
       console.error(`\n❌ Port ${port} is already in use.`);
       console.error(
-        `\n   This likely means AI SDK DevTools is already running.`,
+        `\n   This likely means AI TOOLKIT DevTools is already running.`,
       );
       console.error(`   Open http://localhost:${port} in your browser.\n`);
       console.error(`   To use a different port, set AI_SDK_DEVTOOLS_PORT:\n`);

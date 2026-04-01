@@ -1,6 +1,6 @@
-# AI SDK - Anthropic Provider
+# AI TOOLKIT - Anthropic Provider
 
-The **[Anthropic provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/anthropic)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Anthropic Messages API](https://docs.anthropic.com/claude/reference/messages_post).
+The **[Anthropic provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/anthropic)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model support for the [Anthropic Messages API](https://docs.anthropic.com/claude/reference/messages_post).
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/anthropic
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

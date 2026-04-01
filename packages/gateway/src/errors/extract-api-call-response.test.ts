@@ -4,7 +4,7 @@ import { extractApiCallResponse } from './extract-api-call-response';
 
 describe('extractResponseFromAPICallError', () => {
   describe('when error.data is available', () => {
-    it('should return error.data when successfully parsed by AI SDK', () => {
+    it('should return error.data when successfully parsed by AI TOOLKIT', () => {
       const parsedData = {
         error: { message: 'Parsed error', type: 'authentication_error' },
       };

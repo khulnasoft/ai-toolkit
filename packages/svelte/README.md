@@ -1,6 +1,6 @@
-# AI SDK: Svelte provider
+# AI TOOLKIT: Svelte provider
 
-[Svelte](https://svelte.dev/) UI components for the [AI SDK](https://ai-toolkit.dev/docs):
+[Svelte](https://svelte.dev/) UI components for the [AI TOOLKIT](https://ai-toolkit.dev/docs):
 
 - [`Chat`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-chat)
 - [`Completion`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-completion)

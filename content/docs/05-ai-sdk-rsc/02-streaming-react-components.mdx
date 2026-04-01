@@ -11,15 +11,15 @@ import { Weather } from '@/components/home/weather';
 # Streaming React Components
 
 <Note type="warning">
-  AI SDK RSC is currently experimental. We recommend using [AI SDK
+  AI TOOLKIT RSC is currently experimental. We recommend using [AI TOOLKIT
   UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
   RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 The RSC API allows you to stream React components from the server to the client with the [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function. This is useful when you want to go beyond raw text and stream components to the client in real-time.
 
-Similar to [ AI SDK Core ](/docs/ai-toolkit-core/overview) APIs (like [ `streamText` ](/docs/reference/ai-toolkit-core/stream-text)), `streamUI` provides a single function to call a model and allow it to respond with React Server Components.
-It supports the same model interfaces as AI SDK Core APIs.
+Similar to [ AI TOOLKIT Core ](/docs/ai-toolkit-core/overview) APIs (like [ `streamText` ](/docs/reference/ai-toolkit-core/stream-text)), `streamUI` provides a single function to call a model and allow it to respond with React Server Components.
+It supports the same model interfaces as AI TOOLKIT Core APIs.
 
 ### Concepts
 
@@ -32,7 +32,7 @@ To give the model the ability to respond to a user's prompt with a React compone
 
 With the `streamUI` function, **you provide tools that return React components**. With the ability to stream components, the model is akin to a dynamic router that is able to understand the user's intention and display relevant UI.
 
-At a high level, the `streamUI` works like other AI SDK Core functions: you can provide the model with a prompt or some conversation history and, optionally, some tools. If the model decides, based on the context of the conversation, to call a tool, it will generate a tool call. The `streamUI` function will then run the respective tool, returning a React component. If the model doesn't have a relevant tool to use, it will return a text generation, which will be passed to the `text` function, for you to handle (render and return as a React component).
+At a high level, the `streamUI` works like other AI TOOLKIT Core functions: you can provide the model with a prompt or some conversation history and, optionally, some tools. If the model decides, based on the context of the conversation, to call a tool, it will generate a tool call. The `streamUI` function will then run the respective tool, returning a React component. If the model doesn't have a relevant tool to use, it will return a text generation, which will be passed to the `text` function, for you to handle (render and return as a React component).
 
 <Note>Remember, the `streamUI` function must return a React component. </Note>
 

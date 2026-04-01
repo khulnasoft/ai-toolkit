@@ -6,7 +6,7 @@ description: Learn how to use tools with the useChat hook.
 # Chatbot Tool Usage
 
 With [`useChat`](/docs/reference/ai-toolkit-ui/use-chat) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text), you can use tools in your chatbot application.
-The AI SDK supports three types of tools in this context:
+The AI TOOLKIT supports three types of tools in this context:
 
 1. Automatically executed server-side tools
 2. Automatically executed client-side tools
@@ -517,7 +517,7 @@ Dynamic tools are useful when integrating with:
 
 ## Tool call streaming
 
-Tool call streaming is **enabled by default** in AI SDK 5.0, allowing you to stream tool calls while they are being generated. This provides a better user experience by showing tool inputs as they are generated in real-time.
+Tool call streaming is **enabled by default** in AI TOOLKIT 5.0, allowing you to stream tool calls while they are being generated. This provides a better user experience by showing tool inputs as they are generated in real-time.
 
 ```tsx filename='app/api/chat/route.ts'
 export async function POST(req: Request) {
@@ -572,7 +572,7 @@ export default function Chat() {
 
 ## Step start parts
 
-When you are using multi-step tool calls, the AI SDK will add step start parts to the assistant messages.
+When you are using multi-step tool calls, the AI TOOLKIT will add step start parts to the assistant messages.
 If you want to display boundaries between tool calls, you can use the `step-start` parts as follows:
 
 ```tsx filename='app/page.tsx'

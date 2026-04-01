@@ -9,16 +9,16 @@ The [ai-toolkit-provider-opencode-sdk](https://github.com/ben-vargas/ai-toolkit-
 
 ## Version Compatibility
 
-| Provider Version | AI SDK Version | NPM Tag     | Status      |
+| Provider Version | AI TOOLKIT Version | NPM Tag     | Status      |
 | ---------------- | -------------- | ----------- | ----------- |
 | 1.x              | v6             | `latest`    | Stable      |
 | 0.x              | v5             | `ai-toolkit-v5` | Maintenance |
 
 ```bash
-# AI SDK v6 (default)
+# AI TOOLKIT v6 (default)
 npm install ai-toolkit-provider-opencode-sdk ai
 
-# AI SDK v5
+# AI TOOLKIT v5
 npm install ai-toolkit-provider-opencode-sdk@ai-toolkit-v5 ai@^5.0.0
 ```
 
@@ -138,7 +138,7 @@ const model = opencode('anthropic/claude-opus-4-5-20251101', {
 
 <Note>
   Tool Usage and Tool Streaming show ❌ because this provider does not support
-  AI SDK custom tools (Zod schemas passed to `generateText`/`streamText`).
+  AI TOOLKIT custom tools (Zod schemas passed to `generateText`/`streamText`).
   Custom tool definitions are explicitly ignored. OpenCode executes tools
   server-side, which can be observed via streaming events. Image input supports
   data URLs and base64 only. Object generation uses prompt-based JSON mode.

@@ -194,7 +194,7 @@ export interface ChatInit<UI_MESSAGE extends UIMessage> {
 
   /**
    * A way to provide a function that is going to be used for ids for messages and the chat.
-   * If not provided the default AI SDK `generateId` is used.
+   * If not provided the default AI TOOLKIT `generateId` is used.
    */
   generateId?: IdGenerator;
 

@@ -1,11 +1,11 @@
 ---
 title: Vue.js (Nuxt)
-description: Learn how to build your first agent with the AI SDK and Vue.js (Nuxt).
+description: Learn how to build your first agent with the AI TOOLKIT and Vue.js (Nuxt).
 ---
 
 # Vue.js (Nuxt) Quickstart
 
-The AI SDK is a powerful TypeScript library designed to help developers build AI-powered applications.
+The AI TOOLKIT is a powerful TypeScript library designed to help developers build AI-powered applications.
 
 In this quickstart tutorial, you'll build a simple agent with a streaming chat user interface. Along the way, you'll learn key concepts and techniques that are fundamental to using the SDK in your own projects.
 
@@ -35,7 +35,7 @@ Navigate to the newly created directory:
 Install `ai` and `@ai-toolkit/vue`. The Vercel AI Gateway provider ships with the `ai` package.
 
 <Note>
-  The AI SDK is designed to be a unified interface to interact with any large
+  The AI TOOLKIT is designed to be a unified interface to interact with any large
   language model. This means that you can change model and providers with just
   one line of code! Learn more about [available providers](/providers) and
   [building custom providers](/providers/community-providers/custom-providers)
@@ -133,7 +133,7 @@ Let's take a look at what is happening in this code:
 
 ## Choosing a Provider
 
-The AI SDK supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
+The AI TOOLKIT supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
 
 This quickstart uses the [Vercel AI Gateway](https://vercel.com/ai-gateway) provider, which is the default [global provider](/docs/ai-toolkit-core/provider-management#global-provider-configuration). This means you can access models using a simple string in the model configuration:
 
@@ -184,7 +184,7 @@ model: openai('gpt-5.1');
 
 ## Wire up the UI
 
-Now that you have an API route that can query an LLM, it's time to setup your frontend. The AI SDK's [ UI ](/docs/ai-toolkit-ui/overview) package abstract the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
+Now that you have an API route that can query an LLM, it's time to setup your frontend. The AI TOOLKIT's [ UI ](/docs/ai-toolkit-ui/overview) package abstract the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
 
 Update your root page (`pages/index.vue`) with the following code to show a list of chat messages and provide a user message input:
 
@@ -242,7 +242,7 @@ With that, you have built everything you need for your chatbot! To start your ap
 
 <Snippet text="pnpm run dev" />
 
-Head to your browser and open http://localhost:3000. You should see an input field. Test it out by entering a message and see the AI chatbot respond in real-time! The AI SDK makes it fast and easy to build AI chat interfaces with Nuxt.
+Head to your browser and open http://localhost:3000. You should see an input field. Test it out by entering a message and see the AI chatbot respond in real-time! The AI TOOLKIT makes it fast and easy to build AI chat interfaces with Nuxt.
 
 ## Enhance Your Chatbot with Tools
 
@@ -559,8 +559,8 @@ This simple example demonstrates how tools can expand your model's capabilities.
 
 ## Where to Next?
 
-You've built an AI chatbot using the AI SDK! From here, you have several paths to explore:
+You've built an AI chatbot using the AI TOOLKIT! From here, you have several paths to explore:
 
-- To learn more about the AI SDK, read through the [documentation](/docs).
+- To learn more about the AI TOOLKIT, read through the [documentation](/docs).
 - If you're interested in diving deeper with guides, check out the [RAG (retrieval-augmented generation)](/cookbook/guides/rag-chatbot) and [multi-modal chatbot](/cookbook/guides/multi-modal-chatbot) guides.
 - To jumpstart your first AI project, explore available [templates](https://vercel.com/templates?type=ai).

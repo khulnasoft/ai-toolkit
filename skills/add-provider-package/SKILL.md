@@ -1,13 +1,13 @@
 ---
 name: add-provider-package
-description: Guide for adding new AI provider packages to the AI SDK. Use when creating a new @ai-toolkit/<provider> package to integrate an AI service into the SDK.
+description: Guide for adding new AI provider packages to the AI TOOLKIT. Use when creating a new @ai-toolkit/<provider> package to integrate an AI service into the SDK.
 metadata:
   internal: true
 ---
 
 ## Adding a New Provider Package
 
-This guide covers the process of creating a new `@ai-toolkit/<provider>` package to integrate an AI service into the AI SDK.
+This guide covers the process of creating a new `@ai-toolkit/<provider>` package to integrate an AI service into the AI TOOLKIT.
 
 ## First-Party vs Third-Party Providers
 
@@ -20,7 +20,7 @@ See https://github.com/khulnasoft/ai-toolkit/pull/8136/files for a complete exam
 
 ## Provider Architecture
 
-The AI SDK uses a layered provider architecture following the adapter pattern:
+The AI TOOLKIT uses a layered provider architecture following the adapter pattern:
 
 1. **Specifications** (`@ai-toolkit/provider`): Defines interfaces like `LanguageModelV4`, `EmbeddingModelV4`, etc.
 2. **Utilities** (`@ai-toolkit/provider-utils`): Shared code for implementing providers

@@ -1,6 +1,6 @@
-# AI SDK - Open Responses Provider
+# AI TOOLKIT - Open Responses Provider
 
-The **[Open Responses provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/open-responses)** for the [AI SDK](https://ai-toolkit.dev/docs)
+The **[Open Responses provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/open-responses)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for [Open Responses](https://www.openresponses.org/) compatible APIs.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/open-responses
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

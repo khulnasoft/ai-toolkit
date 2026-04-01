@@ -1,11 +1,11 @@
 ---
 title: Stream Protocols
-description: Learn more about the supported stream protocols in the AI SDK.
+description: Learn more about the supported stream protocols in the AI TOOLKIT.
 ---
 
 # Stream Protocols
 
-AI SDK UI functions such as `useChat` and `useCompletion` support both text streams and data streams.
+AI TOOLKIT UI functions such as `useChat` and `useCompletion` support both text streams and data streams.
 The stream protocol defines how the data is streamed to the frontend on top of the HTTP protocol.
 
 This page describes both protocols and how to use them in the backend and frontend.
@@ -104,7 +104,7 @@ export async function POST(req: Request) {
 
 ## Data Stream Protocol
 
-A data stream follows a special protocol that the AI SDK provides to send information to the frontend.
+A data stream follows a special protocol that the AI TOOLKIT provides to send information to the frontend.
 
 The data stream protocol uses Server-Sent Events (SSE) format for improved standardization, keep-alive through ping, reconnect capabilities, and better cache handling.
 

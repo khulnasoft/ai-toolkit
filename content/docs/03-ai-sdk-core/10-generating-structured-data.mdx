@@ -1,6 +1,6 @@
 ---
 title: Generating Structured Data
-description: Learn how to generate structured data with the AI SDK.
+description: Learn how to generate structured data with the AI TOOLKIT.
 ---
 
 # Generating Structured Data
@@ -11,7 +11,7 @@ For example, you might want to extract information from text, classify data, or 
 Many language models are capable of generating structured data, often defined as using "JSON modes" or "tools".
 However, you need to manually provide schemas and then validate the generated data as LLMs can produce incorrect or incomplete structured data.
 
-The AI SDK standardises structured object generation across model providers
+The AI TOOLKIT standardises structured object generation across model providers
 using the `output` property on [`generateText`](/docs/reference/ai-toolkit-core/generate-text)
 and [`streamText`](/docs/reference/ai-toolkit-core/stream-text).
 You can use [Zod schemas](/docs/reference/ai-toolkit-core/zod-schema), [Valibot](/docs/reference/ai-toolkit-core/valibot-schema), or [JSON schemas](/docs/reference/ai-toolkit-core/json-schema) to specify the shape of the data that you want,
@@ -50,7 +50,7 @@ const { output } = await generateText({
 ```
 
 <Note>
-  Structured output generation counts as a step in the AI SDK's multi-turn
+  Structured output generation counts as a step in the AI TOOLKIT's multi-turn
   execution model (where each model call or tool execution is one step). When
   combining with tools, account for this in your `stopWhen` configuration.
 </Note>
@@ -130,7 +130,7 @@ For non-streaming error handling with `generateText`, see the [Error Handling](#
 
 ## Output Types
 
-The AI SDK supports multiple ways of specifying the expected structure of generated data via the `Output` object. You can select from various strategies for structured/text generation and validation.
+The AI TOOLKIT supports multiple ways of specifying the expected structure of generated data via the `Output` object. You can select from various strategies for structured/text generation and validation.
 
 ### `Output.text()`
 
@@ -247,7 +247,7 @@ const { output } = await generateText({
 // output will be one of: 'sunny', 'rainy', or 'snowy'
 ```
 
-You can provide any set of string options, and the output will always be a single string value that matches one of the specified options. The AI SDK validates that the result matches one of your options, and will throw if the model returns something invalid.
+You can provide any set of string options, and the output will always be a single string value that matches one of the specified options. The AI TOOLKIT validates that the result matches one of your options, and will throw if the model returns something invalid.
 
 This is especially useful for making classification-style generations or forcing valid values for API compatibility.
 
@@ -272,7 +272,7 @@ const { output } = await generateText({
 // }
 ```
 
-With `Output.json`, the AI SDK only checks that the response is valid JSON; it doesn't validate the structure or types of the values. If you need schema validation, use the `.object` or `.array` outputs instead.
+With `Output.json`, the AI TOOLKIT only checks that the response is valid JSON; it doesn't validate the structure or types of the values. If you need schema validation, use the `.object` or `.array` outputs instead.
 
 For more advanced validation or different structures, see [the Output API reference](/docs/reference/ai-toolkit-core/output).
 
@@ -465,12 +465,12 @@ You can see structured output generation in action using various frameworks in t
     },
     {
       title:
-        'Learn to generate structured data in Next.js with Route Handlers (AI SDK UI)',
+        'Learn to generate structured data in Next.js with Route Handlers (AI TOOLKIT UI)',
       link: '/examples/next-pages/basics/generating-object',
     },
     {
       title:
-        'Learn to generate structured data in Next.js with Server Actions (AI SDK RSC)',
+        'Learn to generate structured data in Next.js with Server Actions (AI TOOLKIT RSC)',
       link: '/examples/next-app/basics/generating-object',
     },
   ]}
@@ -486,12 +486,12 @@ You can see structured output generation in action using various frameworks in t
     },
     {
       title:
-        'Learn to stream structured data in Next.js with Route Handlers (AI SDK UI)',
+        'Learn to stream structured data in Next.js with Route Handlers (AI TOOLKIT UI)',
       link: '/examples/next-pages/basics/streaming-object-generation',
     },
     {
       title:
-        'Learn to stream structured data in Next.js with Server Actions (AI SDK RSC)',
+        'Learn to stream structured data in Next.js with Server Actions (AI TOOLKIT RSC)',
       link: '/examples/next-app/basics/streaming-object-generation',
     },
   ]}

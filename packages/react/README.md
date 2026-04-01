@@ -1,6 +1,6 @@
-# AI SDK: React provider
+# AI TOOLKIT: React provider
 
-[React](https://react.dev/) UI components for the [AI SDK](https://ai-toolkit.dev/docs):
+[React](https://react.dev/) UI components for the [AI TOOLKIT](https://ai-toolkit.dev/docs):
 
 - [`useChat`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-chat) hook
 - [`useCompletion`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-completion) hook

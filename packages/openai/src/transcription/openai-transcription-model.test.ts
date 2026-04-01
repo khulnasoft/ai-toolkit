@@ -238,7 +238,7 @@ describe('doGenerate', () => {
       type: 'json-value',
       body: {
         task: 'transcribe',
-        text: 'Hello from the Vercel AI SDK!',
+        text: 'Hello from the Vercel AI TOOLKIT!',
         _request_id: 'req_1234',
       },
     };
@@ -266,7 +266,7 @@ describe('doGenerate', () => {
           "body": {
             "_request_id": "req_1234",
             "task": "transcribe",
-            "text": "Hello from the Vercel AI SDK!",
+            "text": "Hello from the Vercel AI TOOLKIT!",
           },
           "headers": {
             "content-length": "85",
@@ -276,7 +276,7 @@ describe('doGenerate', () => {
           "timestamp": 1970-01-01T00:00:00.000Z,
         },
         "segments": [],
-        "text": "Hello from the Vercel AI SDK!",
+        "text": "Hello from the Vercel AI TOOLKIT!",
         "warnings": [],
       }
     `);

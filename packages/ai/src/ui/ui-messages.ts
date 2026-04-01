@@ -37,7 +37,7 @@ export type InferUITools<TOOLS extends ToolSet> = {
 export type UITools = Record<string, UITool>;
 
 /**
- * AI SDK UI Messages. They are used in the client and to communicate between the frontend and the API routes.
+ * AI TOOLKIT UI Messages. They are used in the client and to communicate between the frontend and the API routes.
  */
 export interface UIMessage<
   METADATA = unknown,
@@ -327,9 +327,9 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
       };
     }
   | {
-      state: 'output-error'; // TODO AI SDK 6: change to 'error' state
+      state: 'output-error'; // TODO AI TOOLKIT 6: change to 'error' state
       input: asUITool<TOOL>['input'] | undefined;
-      rawInput?: unknown; // TODO AI SDK 6: remove this field, input should be unknown
+      rawInput?: unknown; // TODO AI TOOLKIT 6: remove this field, input should be unknown
       output?: never;
       errorText: string;
       callProviderMetadata?: ProviderMetadata;
@@ -434,7 +434,7 @@ export type DynamicToolUIPart = {
       };
     }
   | {
-      state: 'output-error'; // TODO AI SDK 6: change to 'error' state
+      state: 'output-error'; // TODO AI TOOLKIT 6: change to 'error' state
       input: unknown;
       output?: never;
       errorText: string;

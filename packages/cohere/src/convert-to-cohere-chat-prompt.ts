@@ -57,7 +57,7 @@ export function convertToCohereChatPrompt(prompt: LanguageModelV4Prompt): {
                     throw new UnsupportedFunctionalityError({
                       functionality: 'File URL data',
                       message:
-                        'URLs should be downloaded by the AI SDK and not reach this point. This indicates a configuration issue.',
+                        'URLs should be downloaded by the AI TOOLKIT and not reach this point. This indicates a configuration issue.',
                     });
                   }
 

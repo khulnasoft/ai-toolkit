@@ -5,9 +5,9 @@ description: Evaluate & Observe LLM applications with Maxim
 
 # Maxim Observability
 
-[Maxim AI](https://getmaxim.ai) streamlines AI application development and deployment by applying traditional software best practices to non-deterministic AI workflows. Our evaluation and observability tools help teams maintain quality, reliability, and speed throughout the AI application lifecycle. Maxim integrates with the AI SDK to provide:
+[Maxim AI](https://getmaxim.ai) streamlines AI application development and deployment by applying traditional software best practices to non-deterministic AI workflows. Our evaluation and observability tools help teams maintain quality, reliability, and speed throughout the AI application lifecycle. Maxim integrates with the AI TOOLKIT to provide:
 
-- Automatic Observability – Adds tracing, logging, and metadata to AI SDK calls with a simple wrapper.
+- Automatic Observability – Adds tracing, logging, and metadata to AI TOOLKIT calls with a simple wrapper.
 
 - Unified Model Wrapping – Supports OpenAI, Anthropic, and Google etc. models uniformly.
 
@@ -15,7 +15,7 @@ description: Evaluate & Observe LLM applications with Maxim
 
 - Streaming & Structured Output Support – Handles streaming responses and structured outputs seamlessly.
 
-# Setting up Maxim with the AI SDK
+# Setting up Maxim with the AI TOOLKIT
 
 ## Requirements
 
@@ -62,7 +62,7 @@ async function initializeMaxim() {
 }
 ```
 
-## Wrap AI SDK Models with Maxim
+## Wrap AI TOOLKIT Models with Maxim
 
 ```javascript
 import { openai } from '@ai-toolkit/openai';
@@ -91,9 +91,9 @@ const response = await generateText({
 console.log('Response:', response.text);
 ```
 
-## Working with Different AI SDK Functions
+## Working with Different AI TOOLKIT Functions
 
-The wrapped model works seamlessly with all Vercel AI SDK functions:
+The wrapped model works seamlessly with all Vercel AI TOOLKIT functions:
 
 ### **Structured Output**
 
@@ -303,10 +303,10 @@ export default function Chat() {
 
 ## Learn more
 
-- After setting up Maxim tracing for the Vercel AI SDK, you can explore other Maxim platform capabilities:
+- After setting up Maxim tracing for the Vercel AI TOOLKIT, you can explore other Maxim platform capabilities:
 
   - Prompt Management: Version, manage, and dynamically apply prompts across environments and agents.
   - Evaluations: Run automated and manual evaluations on traces, generations, and full agent trajectories.
   - Simulations: Test agents in real-world scenarios with simulated multi-turn interactions and workflows.
 
-For further details, checkout Vercel AI SDK's [Maxim integration documentation](https://www.getmaxim.ai/docs/sdk/typescript/integrations/vercel/vercel).
+For further details, checkout Vercel AI TOOLKIT's [Maxim integration documentation](https://www.getmaxim.ai/docs/sdk/typescript/integrations/vercel/vercel).

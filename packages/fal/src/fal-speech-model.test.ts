@@ -46,11 +46,11 @@ describe('FalSpeechModel.doGenerate', () => {
     prepareResponses();
 
     await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(await server.calls[0].requestBodyJson).toMatchObject({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       output_format: 'url',
     });
   });
@@ -66,7 +66,7 @@ describe('FalSpeechModel.doGenerate', () => {
     });
 
     await provider.speech('fal-ai/minimax/speech-02-hd').doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       headers: {
         'Custom-Request-Header': 'request-header-value',
       },
@@ -84,7 +84,7 @@ describe('FalSpeechModel.doGenerate', () => {
     const audio = prepareResponses();
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(result.audio).toStrictEqual(audio);
@@ -102,7 +102,7 @@ describe('FalSpeechModel.doGenerate', () => {
     });
 
     const result = await customModel.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
     });
 
     expect(result.response).toMatchObject({
@@ -116,7 +116,7 @@ describe('FalSpeechModel.doGenerate', () => {
     prepareResponses();
 
     const result = await model.doGenerate({
-      text: 'Hello from the AI SDK!',
+      text: 'Hello from the AI TOOLKIT!',
       language: 'en',
       // invalid outputFormat triggers a warning and defaults to url
       // (we still return audio via URL)

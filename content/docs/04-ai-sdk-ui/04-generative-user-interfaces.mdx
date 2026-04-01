@@ -1,6 +1,6 @@
 ---
 title: Generative User Interfaces
-description: Learn how to build Generative UI with AI SDK UI.
+description: Learn how to build Generative UI with AI TOOLKIT UI.
 ---
 
 # Generative User Interfaces
@@ -177,7 +177,7 @@ This component will display the weather information for a given location. It tak
 
 Now that you have your tool and corresponding React component, let's integrate them into your chat interface. You'll render the Weather component when the model calls the weather tool.
 
-To check if the model has called a tool, you can check the `parts` array of the UIMessage object for tool-specific parts. In AI SDK 5.0, tool parts use typed naming: `tool-${toolName}` instead of generic types.
+To check if the model has called a tool, you can check the `parts` array of the UIMessage object for tool-specific parts. In AI TOOLKIT 5.0, tool parts use typed naming: `tool-${toolName}` instead of generic types.
 
 Update your `page.tsx` file:
 

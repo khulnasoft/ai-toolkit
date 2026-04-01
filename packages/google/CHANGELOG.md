@@ -1300,7 +1300,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1320,7 +1320,7 @@
 
   Eg: Google has a limit of 150 RPM for batch requests, and 1500 RPM for single requests.
 
-  Before, AI SDK would always use the batch endpoint, even for embed() calls, which led to ratelimits.
+  Before, AI TOOLKIT would always use the batch endpoint, even for embed() calls, which led to ratelimits.
 
   This does not have any breaking functionality and is fully tested :)
   if (values.length > 1) {
@@ -1433,7 +1433,7 @@
 
   Eg: Google has a limit of 150 RPM for batch requests, and 1500 RPM for single requests.
 
-  Before, AI SDK would always use the batch endpoint, even for embed() calls, which led to ratelimits.
+  Before, AI TOOLKIT would always use the batch endpoint, even for embed() calls, which led to ratelimits.
 
   This does not have any breaking functionality and is fully tested :)
   if (values.length > 1) {
@@ -1799,7 +1799,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1844,7 +1844,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 
@@ -2044,7 +2044,7 @@
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ### Patch Changes
 

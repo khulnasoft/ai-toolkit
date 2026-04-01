@@ -89,7 +89,7 @@ class InMemoryOAuthClientProvider {
 
   get clientMetadata(): OAuthClientMetadata {
     return {
-      client_name: 'AI SDK MCP OAuth Example (Next.js)',
+      client_name: 'AI TOOLKIT MCP OAuth Example (Next.js)',
       redirect_uris: [String(this._redirectUrl)],
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],

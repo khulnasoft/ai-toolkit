@@ -152,7 +152,7 @@ describe('logWarnings', () => {
       expect(mockConsoleInfo).toHaveBeenCalledWith(FIRST_WARNING_INFO_MESSAGE);
       expect(mockConsoleWarn).toHaveBeenCalledTimes(1);
       expect(mockConsoleWarn).toHaveBeenCalledWith(
-        'AI SDK Warning (myProvider / myModel): Test warning message',
+        'AI TOOLKIT Warning (myProvider / myModel): Test warning message',
       );
     });
 
@@ -173,11 +173,11 @@ describe('logWarnings', () => {
       expect(mockConsoleWarn).toHaveBeenCalledTimes(2);
       expect(mockConsoleWarn).toHaveBeenNthCalledWith(
         1,
-        'AI SDK Warning (a / b): 1',
+        'AI TOOLKIT Warning (a / b): 1',
       );
       expect(mockConsoleWarn).toHaveBeenNthCalledWith(
         2,
-        'AI SDK Warning (a / b): 2',
+        'AI TOOLKIT Warning (a / b): 2',
       );
     });
 
@@ -232,17 +232,17 @@ describe('logWarnings', () => {
       expect(mockConsoleWarn).toHaveBeenCalledTimes(3);
       expect(mockConsoleWarn).toHaveBeenNthCalledWith(
         1,
-        'AI SDK Warning (zzz / MMM): ' +
+        'AI TOOLKIT Warning (zzz / MMM): ' +
           'The feature "mediaType" is not supported. detail',
       );
       expect(mockConsoleWarn).toHaveBeenNthCalledWith(
         2,
-        'AI SDK Warning (zzz / MMM): ' +
+        'AI TOOLKIT Warning (zzz / MMM): ' +
           'The feature "voice" is not supported. detail2',
       );
       expect(mockConsoleWarn).toHaveBeenNthCalledWith(
         3,
-        'AI SDK Warning (zzz / MMM): other msg',
+        'AI TOOLKIT Warning (zzz / MMM): other msg',
       );
     });
 
@@ -255,7 +255,7 @@ describe('logWarnings', () => {
 
       expect(mockConsoleInfo).toHaveBeenCalledTimes(1);
       expect(mockConsoleWarn).toHaveBeenCalledWith(
-        'AI SDK Warning (unknown provider / unknown model): messx',
+        'AI TOOLKIT Warning (unknown provider / unknown model): messx',
       );
     });
   });
@@ -278,7 +278,7 @@ describe('logWarnings', () => {
       expect(mockConsoleInfo).toHaveBeenCalledWith(FIRST_WARNING_INFO_MESSAGE);
       expect(mockConsoleWarn).toHaveBeenCalledOnce();
       expect(mockConsoleWarn).toHaveBeenCalledWith(
-        'AI SDK Warning (p1 / m1): Test warning with undefined logger',
+        'AI TOOLKIT Warning (p1 / m1): Test warning with undefined logger',
       );
     });
   });

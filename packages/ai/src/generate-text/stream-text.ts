@@ -373,7 +373,7 @@ export function streamText<
 
     /**
      * Additional provider-specific options. They are passed through
-     * to the provider from the AI SDK and enable provider-specific
+     * to the provider from the AI TOOLKIT and enable provider-specific
      * functionality that can be fully encapsulated in the provider.
      */
     providerOptions?: ProviderOptions;
@@ -438,7 +438,7 @@ export function streamText<
     /**
      * Whether to include raw chunks from the provider in the stream.
      * When enabled, you will receive raw chunks with type 'raw' that contain the unprocessed data from the provider.
-     * This allows access to cutting-edge provider features not yet wrapped by the AI SDK.
+     * This allows access to cutting-edge provider features not yet wrapped by the AI TOOLKIT.
      * Defaults to false.
      */
     includeRawChunks?: boolean;

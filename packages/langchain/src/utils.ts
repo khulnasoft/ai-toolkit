@@ -427,7 +427,7 @@ export function processModelChunk(
       state.emittedImages.add(imageOutput.id);
 
       /**
-       * Emit as a file part using proper AI SDK multimodal format
+       * Emit as a file part using proper AI TOOLKIT multimodal format
        */
       const mediaType = `image/${imageOutput.output_format || 'png'}`;
       controller.enqueue({
@@ -1076,7 +1076,7 @@ export function processLangGraphEvent(
             emittedImages.add(imageOutput.id);
 
             /**
-             * Emit as a file part using proper AI SDK multimodal format
+             * Emit as a file part using proper AI TOOLKIT multimodal format
              */
             const mediaType = `image/${imageOutput.output_format || 'png'}`;
             controller.enqueue({

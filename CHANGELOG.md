@@ -1,6 +1,6 @@
 You can find the changelogs for the individual packages in their respective `CHANGELOG.md` files:
 
-### Main AI SDK package
+### Main AI TOOLKIT package
 
 - [ai](./packages/ai/CHANGELOG.md)
 

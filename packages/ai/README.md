@@ -1,10 +1,10 @@
 ![hero illustration](./assets/hero.gif)
 
-# AI SDK
+# AI TOOLKIT
 
-The [AI SDK](https://ai-toolkit.dev/docs) is a provider-agnostic TypeScript toolkit designed to help you build AI-powered applications and agents using popular UI frameworks like Next.js, React, Svelte, Vue, Angular, and runtimes like Node.js.
+The [AI TOOLKIT](https://ai-toolkit.dev/docs) is a provider-agnostic TypeScript toolkit designed to help you build AI-powered applications and agents using popular UI frameworks like Next.js, React, Svelte, Vue, Angular, and runtimes like Node.js.
 
-To learn more about how to use the AI SDK, check out our [API Reference](https://ai-toolkit.dev/docs/reference) and [Documentation](https://ai-toolkit.dev/docs).
+To learn more about how to use the AI TOOLKIT, check out our [API Reference](https://ai-toolkit.dev/docs/reference) and [Documentation](https://ai-toolkit.dev/docs).
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm install ai
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -24,9 +24,9 @@ npx skills add khulnasoft/ai
 
 ## Unified Provider Architecture
 
-The AI SDK provides a [unified API](https://ai-toolkit.dev/docs/foundations/providers-and-models) to interact with model providers like [OpenAI](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai), [Anthropic](https://ai-toolkit.dev/providers/ai-toolkit-providers/anthropic), [Google](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai), and [more](https://ai-toolkit.dev/providers/ai-toolkit-providers).
+The AI TOOLKIT provides a [unified API](https://ai-toolkit.dev/docs/foundations/providers-and-models) to interact with model providers like [OpenAI](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai), [Anthropic](https://ai-toolkit.dev/providers/ai-toolkit-providers/anthropic), [Google](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai), and [more](https://ai-toolkit.dev/providers/ai-toolkit-providers).
 
-By default, the AI SDK uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to give you access to all major providers out of the box. Just pass a model string for any supported model:
+By default, the AI TOOLKIT uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to give you access to all major providers out of the box. Just pass a model string for any supported model:
 
 ```ts
 const result = await generateText({
@@ -109,7 +109,7 @@ const sandboxAgent = new ToolLoopAgent({
 
 ### UI Integration
 
-The [AI SDK UI](https://ai-toolkit.dev/docs/ai-toolkit-ui/overview) module provides a set of hooks that help you build chatbots and generative user interfaces. These hooks are framework agnostic, so they can be used in Next.js, React, Svelte, and Vue.
+The [AI TOOLKIT UI](https://ai-toolkit.dev/docs/ai-toolkit-ui/overview) module provides a set of hooks that help you build chatbots and generative user interfaces. These hooks are framework agnostic, so they can be used in Next.js, React, Svelte, and Vue.
 
 You need to install the package for your framework, e.g.:
 
@@ -223,15 +223,15 @@ export default function Page() {
 
 ## Templates
 
-We've built [templates](https://ai-toolkit.dev/docs/introduction#templates) that include AI SDK integrations for different use cases, providers, and frameworks. You can use these templates to get started with your AI-powered application.
+We've built [templates](https://ai-toolkit.dev/docs/introduction#templates) that include AI TOOLKIT integrations for different use cases, providers, and frameworks. You can use these templates to get started with your AI-powered application.
 
 ## Community
 
-The AI SDK community can be found on [the Vercel Community](https://community.vercel.com/c/ai-toolkit/62) where you can ask questions, voice ideas, and share your projects with other people.
+The AI TOOLKIT community can be found on [the Vercel Community](https://community.vercel.com/c/ai-toolkit/62) where you can ask questions, voice ideas, and share your projects with other people.
 
 ## Contributing
 
-Contributions to the AI SDK are welcome and highly appreciated. However, before you jump right into it, we would like you to review our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md) to make sure you have smooth experience contributing to AI SDK.
+Contributions to the AI TOOLKIT are welcome and highly appreciated. However, before you jump right into it, we would like you to review our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md) to make sure you have smooth experience contributing to AI TOOLKIT.
 
 ## Authors
 

@@ -1,6 +1,6 @@
-# AI SDK - ByteDance Provider
+# AI TOOLKIT - ByteDance Provider
 
-The **ByteDance provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains video model support for ByteDance's Seedance family of video generation models through the [BytePlus ModelArk](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API) platform.
+The **ByteDance provider** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains video model support for ByteDance's Seedance family of video generation models through the [BytePlus ModelArk](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API) platform.
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/bytedance
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

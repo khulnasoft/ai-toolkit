@@ -1,11 +1,11 @@
 ---
 title: Vercel AI Gateway
-description: Reference for using Vercel AI Gateway with the AI SDK.
+description: Reference for using Vercel AI Gateway with the AI TOOLKIT.
 ---
 
 # Vercel AI Gateway
 
-The Vercel AI Gateway is the fastest way to get started with the AI SDK. It provides access to models from OpenAI, Anthropic, Google, and other providers through a single API.
+The Vercel AI Gateway is the fastest way to get started with the AI TOOLKIT. It provides access to models from OpenAI, Anthropic, Google, and other providers through a single API.
 
 ## Authentication
 

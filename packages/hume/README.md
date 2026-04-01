@@ -1,6 +1,6 @@
-# AI SDK - Hume Provider
+# AI TOOLKIT - Hume Provider
 
-The **[Hume provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/hume)** for the [AI SDK](https://ai-toolkit.dev/docs)
+The **[Hume provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/hume)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains support for the Hume API.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/hume
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai

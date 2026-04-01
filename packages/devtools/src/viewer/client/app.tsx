@@ -1849,7 +1849,7 @@ function RawDataSection({
                           : 'text-muted-foreground hover:text-foreground'
                       }`}
                     >
-                      AI SDK
+                      AI TOOLKIT
                     </button>
                     <button
                       onClick={() => setResponseView('raw')}

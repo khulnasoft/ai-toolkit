@@ -686,7 +686,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1000,7 +1000,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1078,7 +1078,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 

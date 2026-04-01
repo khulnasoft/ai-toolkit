@@ -5,7 +5,7 @@ import { run } from '../../lib/run';
 run(async () => {
   const result = await generateText({
     model: anthropic('claude-sonnet-4-5'),
-    prompt: 'Search for recent information about AI SDK development',
+    prompt: 'Search for recent information about AI TOOLKIT development',
     tools: {
       useWebSearch: anthropic.tools.webSearch_20250305({
         maxUses: 3,

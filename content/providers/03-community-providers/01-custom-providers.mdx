@@ -1,15 +1,15 @@
 ---
 title: Writing a Custom Provider
-description: Learn how to write a custom provider for the AI SDK
+description: Learn how to write a custom provider for the AI TOOLKIT
 ---
 
 # Writing a Custom Provider
 
-The AI SDK provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4) that enables you to create custom providers compatible with the AI SDK. This specification ensures consistency across different providers.
+The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4) that enables you to create custom providers compatible with the AI TOOLKIT. This specification ensures consistency across different providers.
 
 ## Publishing Your Provider
 
-Please publish your custom provider in your own GitHub repository and as an NPM package. You are responsible for hosting and maintaining your provider. Once published, you can submit a PR to the AI SDK repository to add your provider to the [Community Providers](/providers/community-providers) documentation section. Use the [OpenRouter provider documentation](https://github.com/khulnasoft/ai-toolkit/blob/main/content/providers/03-community-providers/13-openrouter.mdx) as a template for your documentation.
+Please publish your custom provider in your own GitHub repository and as an NPM package. You are responsible for hosting and maintaining your provider. Once published, you can submit a PR to the AI TOOLKIT repository to add your provider to the [Community Providers](/providers/community-providers) documentation section. Use the [OpenRouter provider documentation](https://github.com/khulnasoft/ai-toolkit/blob/main/content/providers/03-community-providers/13-openrouter.mdx) as a template for your documentation.
 
 ## Why the Language Model Specification?
 
@@ -366,7 +366,7 @@ supportedUrls: {
 }
 ```
 
-The AI SDK checks these patterns before downloading any URL-based content.
+The AI TOOLKIT checks these patterns before downloading any URL-based content.
 
 ### Provider Options
 
@@ -534,7 +534,7 @@ class CustomChatLanguageModel implements LanguageModelV4 {
     // Initialize with settings and config
   }
 
-  // Convert AI SDK prompt to provider format
+  // Convert AI TOOLKIT prompt to provider format
   private getArgs(options: LanguageModelV4CallOptions) {
     const warnings: SharedV4Warning[] = [];
 
@@ -571,7 +571,7 @@ class CustomChatLanguageModel implements LanguageModelV4 {
       abortSignal: options.abortSignal,
     });
 
-    // Convert provider response to AI SDK format
+    // Convert provider response to AI TOOLKIT format
     const content: LanguageModelV4Content[] = [];
 
     // Extract text content
@@ -623,7 +623,7 @@ class CustomChatLanguageModel implements LanguageModelV4 {
       signal: options.abortSignal,
     });
 
-    // Transform stream to AI SDK format
+    // Transform stream to AI TOOLKIT format
     const stream = response
       .body!.pipeThrough(new TextDecoderStream())
       .pipeThrough(this.createParser())
@@ -643,7 +643,7 @@ class CustomChatLanguageModel implements LanguageModelV4 {
 
 ### Step 3: Implement Message Conversion
 
-Map AI SDK messages to your provider's format:
+Map AI TOOLKIT messages to your provider's format:
 
 ```ts filename="custom-chat-language-model.ts#L50-100"
 private convertToProviderMessages(prompt: LanguageModelV4Prompt) {
@@ -689,7 +689,7 @@ private convertToProviderMessages(prompt: LanguageModelV4Prompt) {
 
 ### Step 4: Implement Streaming
 
-Create a streaming transformer that converts provider chunks to AI SDK stream parts:
+Create a streaming transformer that converts provider chunks to AI TOOLKIT stream parts:
 
 ```ts filename="custom-chat-language-model.ts#L150-200"
 private createTransformer(warnings: SharedV4Warning[]) {
@@ -742,7 +742,7 @@ private createTransformer(warnings: SharedV4Warning[]) {
 
 ### Step 5: Handle Errors
 
-Use standardized AI SDK errors for consistent error handling:
+Use standardized AI TOOLKIT errors for consistent error handling:
 
 ```ts filename="custom-chat-language-model.ts#L250-280"
 import {
@@ -779,5 +779,5 @@ private handleError(error: unknown): never {
 - Dig into the [Language Model Specification V4](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4)
 - Check out the [Mistral provider](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/mistral) reference implementation
 - Check out [provider utilities](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider-utils) for helpful functions
-- Test your provider with the AI SDK's built-in examples
+- Test your provider with the AI TOOLKIT's built-in examples
 - Explore the V4 types in detail at [`@ai-toolkit/provider`](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v4)

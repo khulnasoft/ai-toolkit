@@ -4,7 +4,7 @@
 
 - **Unified provider interface (adapter pattern).** Keep a layered architecture (Specifications → Utilities → Providers → Core) that enables a single, consistent API across many AI providers.
 
-  - This is our central architecture backbone and the heart of what the AI SDK is.
+  - This is our central architecture backbone and the heart of what the AI TOOLKIT is.
   - It also enables community providers to be developed independently in 3rd party packages.
 
 - **Keep the building blocks separated.** Building blocks beyond the provider abstraction layer must be cleanly architected and not entangled with it.
@@ -12,20 +12,20 @@
   - Critical for tree shaking and agentic development.
   - Enforcing architectural boundaries reduces complexity and the potential for side effects.
 
-- **Lean, focused mission.** Keep the AI SDK centered on its core mission: the provider abstraction layer, plus directly associated building blocks on top (e.g. the UI chatbot protocol).
+- **Lean, focused mission.** Keep the AI TOOLKIT centered on its core mission: the provider abstraction layer, plus directly associated building blocks on top (e.g. the UI chatbot protocol).
   - Be conservative about adding entirely new building blocks. Any such feature needs to be carefully evaluated with the team.
-  - The better solution often is to create a separate project built on top of the AI SDK.
+  - The better solution often is to create a separate project built on top of the AI TOOLKIT.
 
 ## API Design
 
-- **Stability and backward compatibility first.** Changes must remain backward compatible — never change the signature of existing public functions. The only exception is a new AI SDK major release.
+- **Stability and backward compatibility first.** Changes must remain backward compatible — never change the signature of existing public functions. The only exception is a new AI TOOLKIT major release.
 
   - Even in a major version, breaking changes should have a good justification.
   - If keeping a public API unchanged would result in inferior or painful DX, making the breaking change is absolutely right — it just must happen as part of a new major release.
 
 - **Be extremely cautious with `@ai-toolkit/provider`.** This package contains the spec. Treat any spec changes as potentially breaking.
 
-  - Ideally, `@ai-toolkit/provider` changes are only made in alignment with a new AI SDK major release.
+  - Ideally, `@ai-toolkit/provider` changes are only made in alignment with a new AI TOOLKIT major release.
 
 - **Conservative API surface.** Keep provider option schemas as restrictive as possible to preserve flexibility for future changes.
 
@@ -53,7 +53,7 @@
 
 - **Build with developers _and_ agents in mind.** Consistent APIs, development patterns, and naming conventions are key.
 
-  - Monitor common agent hallucinations encountered when using agents to write AI SDK code.
+  - Monitor common agent hallucinations encountered when using agents to write AI TOOLKIT code.
   - Agent hallucinations can be worth considering as a suggestion to make the API work the way the agent expected it in the first place.
 
 - **DX through consistency.** Consistent naming conventions and development patterns improve developer experience.

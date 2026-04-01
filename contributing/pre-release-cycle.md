@@ -1,10 +1,10 @@
 # Pre-Release Cycle
 
-This guide explains how to start and end a pre-release (beta) cycle for a new major version of the AI SDK.
+This guide explains how to start and end a pre-release (beta) cycle for a new major version of the AI TOOLKIT.
 
 ## Overview
 
-Every major release of the AI SDK introduces a new provider specification version (e.g. V3 to V4). Evolving the spec is the reason we do major releases — it lets us make breaking changes to the provider interface while giving provider authors a clear migration target.
+Every major release of the AI TOOLKIT introduces a new provider specification version (e.g. V3 to V4). Evolving the spec is the reason we do major releases — it lets us make breaking changes to the provider interface while giving provider authors a clear migration target.
 
 A pre-release cycle lets us develop the next major version on `main` while keeping the current stable version available for patches. During the cycle:
 
