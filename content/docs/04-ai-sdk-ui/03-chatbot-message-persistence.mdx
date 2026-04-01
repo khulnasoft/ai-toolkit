@@ -338,7 +338,7 @@ When implementing persistence, you have two options for generating server-side I
 
 #### Option 1: Using `generateMessageId` in `toUIMessageStreamResponse`
 
-You can control the ID format by providing ID generators using [`createIdGenerator()`](/docs/reference/ai-sdk-core/create-id-generator):
+You can control the ID format by providing ID generators using [`createIdGenerator()`](/docs/reference/ai-toolkit-core/create-id-generator):
 
 ```tsx filename="app/api/chat/route.ts" highlight="7-11"
 import { createIdGenerator, streamText } from 'ai';
@@ -531,4 +531,4 @@ When the client reloads the page after a disconnect, the chat will be restored f
   streaming is not yet complete.
 </Note>
 
-For more robust handling of disconnects, you may want to add resumability on disconnects. Check out the [Chatbot Resume Streams](/docs/ai-sdk-ui/chatbot-resume-streams) documentation to learn more.
+For more robust handling of disconnects, you may want to add resumability on disconnects. Check out the [Chatbot Resume Streams](/docs/ai-toolkit-ui/chatbot-resume-streams) documentation to learn more.

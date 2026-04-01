@@ -131,7 +131,7 @@ Update the following files to accept `V2 | V3 | V4` models at their public bound
 
 Run `pnpm test` in `packages/ai` and `pnpm type-check:full` from the workspace root to verify.
 
-### 8. Set up the documentation site (ai-sdk.dev)
+### 8. Set up the documentation site (ai-toolkit.dev)
 
 The documentation site lives in the `ai-studio` repository and uses a Git submodule pointing at this repository. During the pre-release cycle the site needs versioned branches and Vercel deployments for both stable and beta docs.
 
@@ -143,7 +143,7 @@ In the `khulnasoft/ai` repository:
 In the `ai-studio` repository:
 
 3. Create a `sdk/v7` branch (the default branch stays `sdk/v6` for now so the production site continues serving stable docs).
-4. In Vercel, create a v7 preview deployment connected to the `sdk/v7` branch (e.g. `v7.ai-sdk.dev`).
+4. In Vercel, create a v7 preview deployment connected to the `sdk/v7` branch (e.g. `v7.ai-toolkit.dev`).
 
 ### 9. Merge to `main`
 

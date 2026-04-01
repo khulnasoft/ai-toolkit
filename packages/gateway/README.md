@@ -1,6 +1,6 @@
 # AI SDK - Gateway Provider
 
-The Gateway provider for the [AI SDK](https://ai-sdk.dev/docs) allows the use of a wide variety of AI models and providers.
+The Gateway provider for the [AI SDK](https://ai-toolkit.dev/docs) allows the use of a wide variety of AI models and providers.
 
 ## Setup
 
@@ -41,4 +41,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the [AI SDK documentation](https://ai-sdk.dev/docs) for more information.
+Please check out the [AI SDK documentation](https://ai-toolkit.dev/docs) for more information.

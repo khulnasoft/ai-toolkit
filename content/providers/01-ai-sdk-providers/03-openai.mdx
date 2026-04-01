@@ -124,8 +124,8 @@ const { text } = await generateText({
 ```
 
 OpenAI language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 ### Responses Models
 
@@ -352,22 +352,22 @@ OpenAI's [WebSocket API](https://developers.openai.com/api/docs/guides/websocket
 reduce Time-to-First-Byte (TTFB) in agentic workflows with many tool calls.
 After the initial connection, subsequent requests skip TCP/TLS/HTTP negotiation entirely.
 
-The [`ai-sdk-openai-websocket-fetch`](https://www.npmjs.com/package/ai-sdk-openai-websocket-fetch)
+The [`ai-toolkit-openai-websocket-fetch`](https://www.npmjs.com/package/ai-toolkit-openai-websocket-fetch)
 package provides a drop-in `fetch` replacement that routes streaming requests
 through a persistent WebSocket connection.
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add ai-sdk-openai-websocket-fetch" dark />
+    <Snippet text="pnpm add ai-toolkit-openai-websocket-fetch" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install ai-sdk-openai-websocket-fetch" dark />
+    <Snippet text="npm install ai-toolkit-openai-websocket-fetch" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add ai-sdk-openai-websocket-fetch" dark />
+    <Snippet text="yarn add ai-toolkit-openai-websocket-fetch" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add ai-sdk-openai-websocket-fetch" dark />
+    <Snippet text="bun add ai-toolkit-openai-websocket-fetch" dark />
   </Tab>
 </Tabs>
 
@@ -375,7 +375,7 @@ Pass the WebSocket fetch to `createOpenAI` via the `fetch` option:
 
 ```ts highlight="2,6-7,15"
 import { createOpenAI } from '@ai-toolkit/openai';
-import { createWebSocketFetch } from 'ai-sdk-openai-websocket-fetch';
+import { createWebSocketFetch } from 'ai-toolkit-openai-websocket-fetch';
 import { streamText } from 'ai';
 
 // Create a WebSocket-backed fetch instance
@@ -405,7 +405,7 @@ per step.
 </Note>
 
 You can see a live side-by-side comparison of HTTP vs WebSocket streaming performance
-in the [demo app](https://github.com/vercel-labs/ai-sdk-openai-websocket).
+in the [demo app](https://github.com/vercel-labs/ai-toolkit-openai-websocket).
 
 #### Verbosity Control
 
@@ -743,7 +743,7 @@ The MCP tool can be configured with:
 
 <Note>
   The OpenAI MCP tool is different from the general MCP client approach
-  documented in [MCP Tools](/docs/ai-sdk-core/mcp-tools). The OpenAI MCP tool is
+  documented in [MCP Tools](/docs/ai-toolkit-core/mcp-tools). The OpenAI MCP tool is
   a built-in provider-defined tool that allows OpenAI models to directly connect
   to MCP servers, while the general MCP client requires you to convert MCP tools
   to AI SDK tools first.
@@ -1280,7 +1280,7 @@ and the `mediaType` should be set to `'application/pdf'`.
 
 #### Structured Outputs
 
-The OpenAI Responses API supports structured outputs. You can use `generateText` or `streamText` with [`Output`](/docs/reference/ai-sdk-core/output) to enforce structured outputs.
+The OpenAI Responses API supports structured outputs. You can use `generateText` or `streamText` with [`Output`](/docs/reference/ai-toolkit-core/output) to enforce structured outputs.
 
 ```ts
 const result = await generateText({
@@ -1645,7 +1645,7 @@ The OpenAI chat models support tool calls and some have multi-modal capabilities
 const model = openai.chat('gpt-5');
 ```
 
-OpenAI chat models support also some model specific provider options that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+OpenAI chat models support also some model specific provider options that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them in the `providerOptions` argument:
 
 ```ts
@@ -2234,7 +2234,7 @@ Currently only `gpt-3.5-turbo-instruct` is supported.
 const model = openai.completion('gpt-3.5-turbo-instruct');
 ```
 
-OpenAI completion models support also some model specific settings that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+OpenAI completion models support also some model specific settings that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them as an options argument:
 
 ```ts
@@ -2501,7 +2501,7 @@ const { image, providerMetadata } = await generateImage({
 });
 ```
 
-For more on `generateImage()` see [Image Generation](/docs/ai-sdk-core/image-generation).
+For more on `generateImage()` see [Image Generation](/docs/ai-toolkit-core/image-generation).
 
 OpenAI's image models return additional metadata in the response that can be
 accessed via `providerMetadata.openai`. The following OpenAI-specific metadata

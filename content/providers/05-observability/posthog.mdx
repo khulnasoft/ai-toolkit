@@ -13,7 +13,7 @@ description: Monitor and analyze LLM usage with PostHog
 
 ## Setup
 
-PostHog supports [AI SDK telemetry data](/docs/ai-sdk-core/telemetry) through [OpenTelemetry](https://opentelemetry.io/docs/). The `PostHogTraceExporter` from the `@posthog/ai` package sends `gen_ai.*` spans to PostHog's OTLP ingestion endpoint, where they are automatically converted into `$ai_generation` events.
+PostHog supports [AI SDK telemetry data](/docs/ai-toolkit-core/telemetry) through [OpenTelemetry](https://opentelemetry.io/docs/). The `PostHogTraceExporter` from the `@posthog/ai` package sends `gen_ai.*` spans to PostHog's OTLP ingestion endpoint, where they are automatically converted into `$ai_generation` events.
 
 <Tabs items={["Next.js", "Node.js"]}>
 <Tab>

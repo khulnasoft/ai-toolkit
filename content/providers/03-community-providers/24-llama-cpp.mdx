@@ -5,7 +5,7 @@ description: Learn how to use the llama.cpp provider.
 
 # llama.cpp Provider
 
-[lgrammel/ai-sdk-llama-cpp](https://github.com/lgrammel/ai-sdk-llama-cpp) is a community provider that enables local LLM inference using [llama.cpp](https://github.com/ggerganov/llama.cpp) directly within Node.js via native C++ bindings.
+[lgrammel/ai-toolkit-llama-cpp](https://github.com/lgrammel/ai-toolkit-llama-cpp) is a community provider that enables local LLM inference using [llama.cpp](https://github.com/ggerganov/llama.cpp) directly within Node.js via native C++ bindings.
 
 This provider loads llama.cpp directly into Node.js memory, eliminating the need for an external server while providing native performance and GPU acceleration.
 
@@ -43,20 +43,20 @@ brew install cmake
 
 ## Setup
 
-The llama.cpp provider is available in the `ai-sdk-llama-cpp` module. You can install it with:
+The llama.cpp provider is available in the `ai-toolkit-llama-cpp` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add ai-sdk-llama-cpp" dark />
+    <Snippet text="pnpm add ai-toolkit-llama-cpp" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install ai-sdk-llama-cpp" dark />
+    <Snippet text="npm install ai-toolkit-llama-cpp" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add ai-sdk-llama-cpp" dark />
+    <Snippet text="yarn add ai-toolkit-llama-cpp" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add ai-sdk-llama-cpp" dark />
+    <Snippet text="bun add ai-toolkit-llama-cpp" dark />
   </Tab>
 </Tabs>
 
@@ -64,10 +64,10 @@ The installation will automatically compile llama.cpp as a static library with M
 
 ## Provider Instance
 
-You can import `llamaCpp` from `ai-sdk-llama-cpp` and create a model instance:
+You can import `llamaCpp` from `ai-toolkit-llama-cpp` and create a model instance:
 
 ```ts
-import { llamaCpp } from 'ai-sdk-llama-cpp';
+import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
   modelPath: './models/llama-3.2-1b-instruct.Q4_K_M.gguf',
@@ -120,7 +120,7 @@ You can use llama.cpp models to generate text with the `generateText` function:
 
 ```ts
 import { generateText } from 'ai';
-import { llamaCpp } from 'ai-sdk-llama-cpp';
+import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
   modelPath: './models/llama-3.2-1b-instruct.Q4_K_M.gguf',
@@ -144,7 +144,7 @@ The provider fully supports streaming with `streamText`:
 
 ```ts
 import { streamText } from 'ai';
-import { llamaCpp } from 'ai-sdk-llama-cpp';
+import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
   modelPath: './models/llama-3.2-1b-instruct.Q4_K_M.gguf',
@@ -166,12 +166,12 @@ try {
 
 ### Structured Output
 
-Generate type-safe JSON objects that conform to a schema using [`Output`](/docs/reference/ai-sdk-core/output):
+Generate type-safe JSON objects that conform to a schema using [`Output`](/docs/reference/ai-toolkit-core/output):
 
 ```ts
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
-import { llamaCpp } from 'ai-sdk-llama-cpp';
+import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
   modelPath: './models/your-model.gguf',
@@ -225,7 +225,7 @@ You can create embedding models using the `llamaCpp.embedding()` factory method:
 
 ```ts
 import { embed, embedMany } from 'ai';
-import { llamaCpp } from 'ai-sdk-llama-cpp';
+import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp.embedding({
   modelPath: './models/nomic-embed-text-v1.5.Q4_K_M.gguf',
@@ -291,6 +291,6 @@ try {
 
 ## Additional Resources
 
-- [GitHub Repository](https://github.com/lgrammel/ai-sdk-llama-cpp)
-- [npm Package](https://www.npmjs.com/package/ai-sdk-llama-cpp)
+- [GitHub Repository](https://github.com/lgrammel/ai-toolkit-llama-cpp)
+- [npm Package](https://www.npmjs.com/package/ai-toolkit-llama-cpp)
 - [llama.cpp](https://github.com/ggerganov/llama.cpp) - The underlying inference engine

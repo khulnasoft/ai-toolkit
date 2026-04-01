@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/openai': patch
+'@ai-toolkit/openai': patch
 ---
 
 fix(openai): preserve raw finish reason for failed responses stream events

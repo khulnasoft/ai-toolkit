@@ -98,7 +98,7 @@ export interface MCPClientConfig {
   transport: MCPTransportConfig | MCPTransport;
   /** Optional callback for uncaught errors */
   onUncaughtError?: (error: unknown) => void;
-  /** Optional client name, defaults to 'ai-sdk-mcp-client' */
+  /** Optional client name, defaults to 'ai-toolkit-mcp-client' */
   name?: string;
   /** Optional client version, defaults to '1.0.0' */
   version?: string;
@@ -208,7 +208,7 @@ class DefaultMCPClient implements MCPClient {
 
   constructor({
     transport: transportConfig,
-    name = 'ai-sdk-mcp-client',
+    name = 'ai-toolkit-mcp-client',
     version = CLIENT_VERSION,
     onUncaughtError,
     capabilities,

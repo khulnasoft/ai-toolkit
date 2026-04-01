@@ -1,6 +1,6 @@
 # AI SDK - xAI Grok Provider
 
-The **[xAI Grok provider](https://ai-sdk.dev/providers/ai-sdk-providers/xai)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[xAI Grok provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/xai)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains language model support for the xAI chat and completion APIs.
 
 ## Setup
@@ -41,4 +41,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[xAI Grok provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/xai)** for more information.
+Please check out the **[xAI Grok provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/xai)** for more information.

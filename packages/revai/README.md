@@ -1,6 +1,6 @@
 # AI SDK - Rev.ai Provider
 
-The **[Rev.ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[Rev.ai provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/revai)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains language model support for the Rev.ai transcription API.
 
 ## Setup
@@ -43,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[Rev.ai provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/revai)** for more information.
+Please check out the **[Rev.ai provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/revai)** for more information.

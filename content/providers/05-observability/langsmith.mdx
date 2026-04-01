@@ -12,7 +12,7 @@ Use of LangChain's open-source frameworks is not necessary.
 
 <Note>
   A version of this guide is also available in the [LangSmith
-  documentation](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk).
+  documentation](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit).
   If you are using AI SDK v4 an older version of the `langsmith` client, see the
   legacy guide linked from that page.
 </Note>
@@ -21,8 +21,8 @@ Use of LangChain's open-source frameworks is not necessary.
 
 <Note>The steps in this guide assume you are using `langsmith>=0.3.63.`.</Note>
 
-Install an [AI SDK model provider](/providers/ai-sdk-providers) and the [LangSmith client SDK](https://npmjs.com/package/langsmith).
-The code snippets below will use the [AI SDK's OpenAI provider](/providers/ai-sdk-providers/openai), but you can use any [other supported provider](/providers/ai-sdk-providers) as well.
+Install an [AI SDK model provider](/providers/ai-toolkit-providers) and the [LangSmith client SDK](https://npmjs.com/package/langsmith).
+The code snippets below will use the [AI SDK's OpenAI provider](/providers/ai-toolkit-providers/openai), but you can use any [other supported provider](/providers/ai-toolkit-providers) as well.
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
@@ -50,15 +50,15 @@ export OPENAI_API_KEY=<your-openai-api-key> # The examples use OpenAI (replace w
 
 ## Trace Logging
 
-To start tracing, you will need to import and call the `wrapAISDK` method at the start of your code:
+To start tracing, you will need to import and call the `wrapAITOOLKIT` method at the start of your code:
 
 ```ts highlight="6-7"
 import { openai } from '@ai-toolkit/openai';
 import * as ai from 'ai';
 
-import { wrapAISDK } from 'langsmith/experimental/vercel';
+import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText } = wrapAISDK(ai);
+const { generateText, streamText } = wrapAITOOLKIT(ai);
 
 await generateText({
   model: openai('gpt-5-nano'),
@@ -76,9 +76,9 @@ import { tool, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
-import { wrapAISDK } from 'langsmith/experimental/vercel';
+import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText } = wrapAISDK(ai);
+const { generateText, streamText } = wrapAITOOLKIT(ai);
 
 await generateText({
   model: openai('gpt-5-nano'),
@@ -122,9 +122,9 @@ import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
 import { traceable } from 'langsmith/traceable';
-import { wrapAISDK } from 'langsmith/experimental/vercel';
+import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
 
-const { generateText, streamText } = wrapAISDK(ai);
+const { generateText, streamText } = wrapAITOOLKIT(ai);
 
 const wrapper = traceable(
   async (input: string) => {
@@ -167,14 +167,14 @@ The resulting trace will look [like this](https://smith.langchain.com/public/ff2
 ## Tracing in serverless environments
 
 When tracing in serverless environments, you must wait for all runs to flush before your environment
-shuts down. See [this section](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk#tracing-in-serverless-environments) of the LangSmith docs for examples.
+shuts down. See [this section](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit#tracing-in-serverless-environments) of the LangSmith docs for examples.
 
 ## Further reading
 
 For more examples and instructions for setting up tracing in specific environments, see the links below:
 
 - [LangSmith docs](https://docs.langchain.com/langsmith/)
-- [LangSmith guide on tracing with the AI SDK](https://docs.langchain.com/langsmith/trace-with-vercel-ai-sdk)
+- [LangSmith guide on tracing with the AI SDK](https://docs.langchain.com/langsmith/trace-with-vercel-ai-toolkit)
 
 And once you've set up LangSmith tracing for your project, try gathering a dataset and evaluating it:
 

@@ -5,7 +5,7 @@ description: API Reference for the pipeAgentUIStreamToResponse utility.
 
 # `pipeAgentUIStreamToResponse`
 
-The `pipeAgentUIStreamToResponse` function runs an [Agent](/docs/reference/ai-sdk-core/agent) and streams the resulting UI message output directly to a Node.js [`ServerResponse`](https://nodejs.org/api/http.html#class-httpserverresponse) object. This is ideal for building real-time streaming API endpoints (for chat, tool use, etc.) in Node.js-based frameworks like Express, Hono, or custom Node servers.
+The `pipeAgentUIStreamToResponse` function runs an [Agent](/docs/reference/ai-toolkit-core/agent) and streams the resulting UI message output directly to a Node.js [`ServerResponse`](https://nodejs.org/api/http.html#class-httpserverresponse) object. This is ideal for building real-time streaming API endpoints (for chat, tool use, etc.) in Node.js-based frameworks like Express, Hono, or custom Node servers.
 
 ## Import
 
@@ -145,6 +145,6 @@ app.post('/chat', async (req, res) => {
 
 ## See Also
 
-- [`createAgentUIStreamResponse`](/docs/reference/ai-sdk-core/create-agent-ui-stream-response)
-- [`Agent`](/docs/reference/ai-sdk-core/agent)
-- [`UIMessage`](/docs/reference/ai-sdk-core/ui-message)
+- [`createAgentUIStreamResponse`](/docs/reference/ai-toolkit-core/create-agent-ui-stream-response)
+- [`Agent`](/docs/reference/ai-toolkit-core/agent)
+- [`UIMessage`](/docs/reference/ai-toolkit-core/ui-message)

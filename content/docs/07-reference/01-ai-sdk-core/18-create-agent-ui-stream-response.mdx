@@ -5,7 +5,7 @@ description: API Reference for the createAgentUIStreamResponse utility.
 
 # `createAgentUIStreamResponse`
 
-The `createAgentUIStreamResponse` function executes an [Agent](/docs/reference/ai-sdk-core/agent), runs its streaming output as a UI message stream, and returns an HTTP [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object whose body is the live, streaming UI message output. This is designed for API routes that deliver real-time agent results, such as chat endpoints or streaming tool-use operations.
+The `createAgentUIStreamResponse` function executes an [Agent](/docs/reference/ai-toolkit-core/agent), runs its streaming output as a UI message stream, and returns an HTTP [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object whose body is the live, streaming UI message output. This is designed for API routes that deliver real-time agent results, such as chat endpoints or streaming tool-use operations.
 
 ## Import
 
@@ -167,7 +167,7 @@ export async function POST(request: Request) {
 
 ## See Also
 
-- [`Agent`](/docs/reference/ai-sdk-core/agent)
-- [`ToolLoopAgent`](/docs/reference/ai-sdk-core/tool-loop-agent)
-- [`UIMessage`](/docs/reference/ai-sdk-core/ui-message)
-- [`createAgentUIStream`](/docs/reference/ai-sdk-core/create-agent-ui-stream)
+- [`Agent`](/docs/reference/ai-toolkit-core/agent)
+- [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent)
+- [`UIMessage`](/docs/reference/ai-toolkit-core/ui-message)
+- [`createAgentUIStream`](/docs/reference/ai-toolkit-core/create-agent-ui-stream)

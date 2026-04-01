@@ -5,7 +5,7 @@ description: API Reference for the createAgentUIStream utility.
 
 # `createAgentUIStream`
 
-The `createAgentUIStream` function executes an [Agent](/docs/reference/ai-sdk-core/agent), consumes an array of UI messages, and streams the agent's output as UI message chunks via an async iterable. This enables real-time, incremental rendering of AI assistant output with full access to tool use, intermediate reasoning, and interactive UI features in your own runtime—perfect for building chat APIs, dashboards, or bots powered by agents.
+The `createAgentUIStream` function executes an [Agent](/docs/reference/ai-toolkit-core/agent), consumes an array of UI messages, and streams the agent's output as UI message chunks via an async iterable. This enables real-time, incremental rendering of AI assistant output with full access to tool use, intermediate reasoning, and interactive UI features in your own runtime—perfect for building chat APIs, dashboards, or bots powered by agents.
 
 ## Import
 
@@ -105,7 +105,7 @@ export async function* streamAgent(
 
 ## Returns
 
-A `Promise<AsyncIterableStream<UIMessageChunk>>`, where each yielded chunk is a UI message output from the agent (see [`UIMessage`](/docs/reference/ai-sdk-core/ui-message)). This can be consumed with any async iterator loop, or piped to a streaming HTTP response, socket, or any other sink.
+A `Promise<AsyncIterableStream<UIMessageChunk>>`, where each yielded chunk is a UI message output from the agent (see [`UIMessage`](/docs/reference/ai-toolkit-core/ui-message)). This can be consumed with any async iterator loop, or piped to a streaming HTTP response, socket, or any other sink.
 
 ## Example
 
@@ -140,15 +140,15 @@ for await (const chunk of stream) {
 ## Notes
 
 - The agent **must** implement the `.stream({ prompt, ... })` method and define its supported `tools` property.
-- This utility returns an async iterable for maximal streaming flexibility. For HTTP responses, see [`createAgentUIStreamResponse`](/docs/reference/ai-sdk-core/create-agent-ui-stream-response) (Web) or [`pipeAgentUIStreamToResponse`](/docs/reference/ai-sdk-core/pipe-agent-ui-stream-to-response) (Node.js).
+- This utility returns an async iterable for maximal streaming flexibility. For HTTP responses, see [`createAgentUIStreamResponse`](/docs/reference/ai-toolkit-core/create-agent-ui-stream-response) (Web) or [`pipeAgentUIStreamToResponse`](/docs/reference/ai-toolkit-core/pipe-agent-ui-stream-to-response) (Node.js).
 - The `uiMessages` parameter is named `uiMessages`, **not** just `messages`.
 - You can provide advanced options via `UIMessageStreamOptions` (for example, to include sources or usage).
 - To cancel the stream, pass an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) via the `abortSignal` parameter.
 
 ## See Also
 
-- [`Agent`](/docs/reference/ai-sdk-core/agent)
-- [`ToolLoopAgent`](/docs/reference/ai-sdk-core/tool-loop-agent)
-- [`UIMessage`](/docs/reference/ai-sdk-core/ui-message)
-- [`createAgentUIStreamResponse`](/docs/reference/ai-sdk-core/create-agent-ui-stream-response)
-- [`pipeAgentUIStreamToResponse`](/docs/reference/ai-sdk-core/pipe-agent-ui-stream-to-response)
+- [`Agent`](/docs/reference/ai-toolkit-core/agent)
+- [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent)
+- [`UIMessage`](/docs/reference/ai-toolkit-core/ui-message)
+- [`createAgentUIStreamResponse`](/docs/reference/ai-toolkit-core/create-agent-ui-stream-response)
+- [`pipeAgentUIStreamToResponse`](/docs/reference/ai-toolkit-core/pipe-agent-ui-stream-to-response)

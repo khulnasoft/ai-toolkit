@@ -22,7 +22,7 @@ body:
         Examples:
         - ai: 4.1.2
         - @ai-toolkit/react: 2.1.0
-        - @ai-sdk/openai: 0.5.2
+        - @ai-toolkit/openai: 0.5.2
     validations:
       required: false
   - type: checkboxes

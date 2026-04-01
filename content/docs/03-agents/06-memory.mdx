@@ -62,11 +62,11 @@ Another approach is to use a provider that has memory built in. These providers 
 [Letta](https://letta.com) provides agents with persistent long-term memory. You create an agent on Letta's platform (cloud or self-hosted), configure its memory there, and use the AI SDK provider to interact with it. Letta's agent runtime handles memory management (core memory, archival memory, recall).
 
 ```bash
-pnpm add @letta-ai/vercel-ai-sdk-provider
+pnpm add @letta-ai/vercel-ai-toolkit-provider
 ```
 
 ```ts
-import { lettaCloud } from '@letta-ai/vercel-ai-sdk-provider';
+import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -86,7 +86,7 @@ const result = await agent.generate({
 You can also use Letta's built-in memory tools alongside custom tools:
 
 ```ts
-import { lettaCloud } from '@letta-ai/vercel-ai-sdk-provider';
+import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -158,7 +158,7 @@ pnpm add @supermemory/tools
 
 ```ts
 __PROVIDER_IMPORT__;
-import { supermemoryTools } from '@supermemory/tools/ai-sdk';
+import { supermemoryTools } from '@supermemory/tools/ai-toolkit';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -180,13 +180,13 @@ See the [Supermemory provider documentation](/providers/community-providers/supe
 [Hindsight](/providers/community-providers/hindsight) provides agents with persistent memory through five tools: `retain`, `recall`, `reflect`, `getMentalModel`, and `getDocument`. It can be self-hosted with Docker or used as a cloud service.
 
 ```bash
-pnpm add @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client
+pnpm add @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client
 ```
 
 ```ts
 __PROVIDER_IMPORT__;
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 import { ToolLoopAgent, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 

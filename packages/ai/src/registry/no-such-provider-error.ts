@@ -1,4 +1,4 @@
-import { AISDKError, NoSuchModelError } from '@ai-toolkit/provider';
+import { AITOOLKITError, NoSuchModelError } from '@ai-toolkit/provider';
 
 const name = 'AI_NoSuchProviderError';
 const marker = `vercel.ai.error.${name}`;
@@ -36,6 +36,6 @@ export class NoSuchProviderError extends NoSuchModelError {
   }
 
   static isInstance(error: unknown): error is NoSuchProviderError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

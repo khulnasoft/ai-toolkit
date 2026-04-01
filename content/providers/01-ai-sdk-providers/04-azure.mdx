@@ -143,8 +143,8 @@ const { text } = await generateText({
 ```
 
 OpenAI language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 <Note>
   Azure OpenAI sends larger chunks than OpenAI. This can lead to the perception
@@ -154,7 +154,7 @@ and support structured data generation with [`Output`](/docs/reference/ai-sdk-co
 
 ### Provider Options
 
-When using OpenAI language models on Azure, you can configure provider-specific options using `providerOptions.openai`. More information on available configuration options are on [the OpenAI provider page](/providers/ai-sdk-providers/openai#language-models).
+When using OpenAI language models on Azure, you can configure provider-specific options using `providerOptions.openai`. More information on available configuration options are on [the OpenAI provider page](/providers/ai-toolkit-providers/openai#language-models).
 
 ```ts highlight="12-14,24-26"
 import { azure, type OpenAILanguageModelResponsesOptions } from '@ai-toolkit/azure';
@@ -201,7 +201,7 @@ You can create models that call the Azure OpenAI chat completions API using the 
 const model = azure.chat('your-deployment-name');
 ```
 
-Azure OpenAI chat models support also some model specific settings that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+Azure OpenAI chat models support also some model specific settings that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them as an options argument:
 
 ```ts
@@ -794,7 +794,7 @@ Currently only `gpt-35-turbo-instruct` is supported.
 const model = azure.completion('your-gpt-35-turbo-instruct-deployment');
 ```
 
-OpenAI completion models support also some model specific settings that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+OpenAI completion models support also some model specific settings that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them as an options argument:
 
 ```ts

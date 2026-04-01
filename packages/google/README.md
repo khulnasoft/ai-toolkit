@@ -1,6 +1,6 @@
 # AI SDK - Google Generative AI Provider
 
-The **[Google Generative AI provider](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the [Google Generative AI](https://ai.google/discover/generativeai/) APIs.
+The **[Google Generative AI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Google Generative AI](https://ai.google/discover/generativeai/) APIs.
 
 ## Setup
 
@@ -40,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Google Generative AI provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai)** for more information.
+Please check out the **[Google Generative AI provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai)** for more information.

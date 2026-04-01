@@ -127,11 +127,11 @@ const modelMessages = await convertToModelMessages(messages, {
 });
 ```
 
-This filters out tool calls that don't have corresponding results. Learn more in the [convertToModelMessages](/docs/reference/ai-sdk-ui/convert-to-model-messages) reference.
+This filters out tool calls that don't have corresponding results. Learn more in the [convertToModelMessages](/docs/reference/ai-toolkit-ui/convert-to-model-messages) reference.
 
 ## Streaming Subagent Progress
 
-When you want to show incremental progress as the subagent works, use [**preliminary tool results**](/docs/ai-sdk-core/tools-and-tool-calling#preliminary-tool-results). This pattern uses a generator function that yields partial updates to the UI.
+When you want to show incremental progress as the subagent works, use [**preliminary tool results**](/docs/ai-toolkit-core/tools-and-tool-calling#preliminary-tool-results). This pattern uses a generator function that yields partial updates to the UI.
 
 ### How Preliminary Tool Results Work
 

@@ -13,9 +13,9 @@ jobs:
     name: Enable Auto-merge for Release PRs
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    # Only run if PR is created by vercel-ai-sdk[bot] and branch starts with changeset-release/
+    # Only run if PR is created by vercel-ai-toolkit[bot] and branch starts with changeset-release/
     if: |
-      github.event.pull_request.user.login == 'vercel-ai-sdk[bot]' &&
+      github.event.pull_request.user.login == 'vercel-ai-toolkit[bot]' &&
       startsWith(github.event.pull_request.head.ref, 'changeset-release/')
 
     steps:
@@ -25,6 +25,6 @@ jobs:
           gh pr review ${{ github.event.pull_request.number }} --approve
         env:
           # this should really be an app token. But for that we would need to register a secondary app,
-          # since the vercel=ai-sdk app already creates the pull request and it cannot approve its own pull requests.
+          # since the vercel=ai-toolkit app already creates the pull request and it cannot approve its own pull requests.
           GH_TOKEN: ${{ secrets.GR2M_PR_REVIEW_TOKEN }}
           GH_REPO: ${{ github.repository }}

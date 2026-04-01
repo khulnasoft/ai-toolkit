@@ -68,7 +68,7 @@ export async function POST(req: Request) {
 
 ### Returns
 
-An array of [`ModelMessage`](/docs/reference/ai-sdk-core/model-message) objects, pruned according to the provided options.
+An array of [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) objects, pruned according to the provided options.
 
 <PropertiesTable
   content={[
@@ -105,4 +105,4 @@ const pruned = pruneMessages({
 
 > **Tip**: `pruneMessages` is typically used prior to sending a context window to an LLM to reduce message/token count, especially after a series of tool-calls and approvals.
 
-For advanced usage and the full list of possible message parts, see [`ModelMessage`](/docs/reference/ai-sdk-core/model-message) and [`pruneMessages` implementation](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/ai/src/generate-text/prune-messages.ts).
+For advanced usage and the full list of possible message parts, see [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) and [`pruneMessages` implementation](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/ai/src/generate-text/prune-messages.ts).

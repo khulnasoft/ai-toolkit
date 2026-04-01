@@ -11,7 +11,7 @@ often producing more accurate relevance scores.
 
 ## Reranking Documents
 
-The AI SDK provides the [`rerank`](/docs/reference/ai-sdk-core/rerank) function to rerank documents based on their relevance to a query.
+The AI SDK provides the [`rerank`](/docs/reference/ai-toolkit-core/rerank) function to rerank documents based on their relevance to a query.
 You can use it with reranking models, e.g. `cohere.reranking('rerank-v3.5')` or `bedrock.reranking('cohere.rerank-v3-5:0')`.
 
 ```tsx
@@ -209,10 +209,10 @@ Several providers offer reranking models:
 
 | Provider                                                                      | Model                                 |
 | ----------------------------------------------------------------------------- | ------------------------------------- |
-| [Cohere](/providers/ai-sdk-providers/cohere#reranking-models)                 | `rerank-v3.5`                         |
-| [Cohere](/providers/ai-sdk-providers/cohere#reranking-models)                 | `rerank-english-v3.0`                 |
-| [Cohere](/providers/ai-sdk-providers/cohere#reranking-models)                 | `rerank-multilingual-v3.0`            |
-| [Amazon Bedrock](/providers/ai-sdk-providers/amazon-bedrock#reranking-models) | `amazon.rerank-v1:0`                  |
-| [Amazon Bedrock](/providers/ai-sdk-providers/amazon-bedrock#reranking-models) | `cohere.rerank-v3-5:0`                |
-| [Together.ai](/providers/ai-sdk-providers/togetherai#reranking-models)        | `Salesforce/Llama-Rank-v1`            |
-| [Together.ai](/providers/ai-sdk-providers/togetherai#reranking-models)        | `mixedbread-ai/Mxbai-Rerank-Large-V2` |
+| [Cohere](/providers/ai-toolkit-providers/cohere#reranking-models)                 | `rerank-v3.5`                         |
+| [Cohere](/providers/ai-toolkit-providers/cohere#reranking-models)                 | `rerank-english-v3.0`                 |
+| [Cohere](/providers/ai-toolkit-providers/cohere#reranking-models)                 | `rerank-multilingual-v3.0`            |
+| [Amazon Bedrock](/providers/ai-toolkit-providers/amazon-bedrock#reranking-models) | `amazon.rerank-v1:0`                  |
+| [Amazon Bedrock](/providers/ai-toolkit-providers/amazon-bedrock#reranking-models) | `cohere.rerank-v3-5:0`                |
+| [Together.ai](/providers/ai-toolkit-providers/togetherai#reranking-models)        | `Salesforce/Llama-Rank-v1`            |
+| [Together.ai](/providers/ai-toolkit-providers/togetherai#reranking-models)        | `mixedbread-ai/Mxbai-Rerank-Large-V2` |

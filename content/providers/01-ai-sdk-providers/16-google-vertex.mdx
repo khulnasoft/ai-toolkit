@@ -264,7 +264,7 @@ const model = vertex('gemini-2.5-pro');
 </Note>
 
 Google Vertex models support also some model specific settings that are not part
-of the [standard call settings](/docs/ai-sdk-core/settings). You can pass them as
+of the [standard call settings](/docs/ai-toolkit-core/settings). You can pass them as
 an options argument:
 
 ```ts
@@ -357,7 +357,7 @@ const { text } = await generateText({
 ```
 
 Google Vertex language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-sdk-core)).
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 #### Code Execution
 
@@ -841,7 +841,7 @@ The following optional provider options are available for Google Vertex AI embed
 
 ### Image Models
 
-You can create image models using the `.image()` factory method. The Google Vertex provider supports both [Imagen](https://cloud.google.com/vertex-ai/generative-ai/docs/image/overview) and [Gemini image models](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash-image). For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-sdk-core/generate-image).
+You can create image models using the `.image()` factory method. The Google Vertex provider supports both [Imagen](https://cloud.google.com/vertex-ai/generative-ai/docs/image/overview) and [Gemini image models](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash-image). For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 #### Imagen Models
 
@@ -1108,7 +1108,7 @@ const { image } = await generateImage({
 ### Video Models
 
 You can create [Veo](https://cloud.google.com/vertex-ai/generative-ai/docs/video/overview) video models that call the Vertex AI API
-using the `.video()` factory method. For more on video generation with the AI SDK see [generateVideo()](/docs/reference/ai-sdk-core/generate-video).
+using the `.video()` factory method. For more on video generation with the AI SDK see [generateVideo()](/docs/reference/ai-toolkit-core/generate-video).
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';
@@ -1407,8 +1407,8 @@ const { text } = await generateText({
 ```
 
 Anthropic language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 <Note>
   The Anthropic API returns streaming tool calls all at once after a delay. This
@@ -1461,7 +1461,7 @@ console.log(reasoning); // reasoning details including redacted reasoning
 console.log(text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-sdk-ui/chatbot#reasoning) for more details
+See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 #### Cache Control

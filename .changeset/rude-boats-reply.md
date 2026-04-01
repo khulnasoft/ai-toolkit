@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/mcp': patch
+'@ai-toolkit/mcp': patch
 ---
 
 feat(mcp): add `redirect` option to `MCPTransportConfig` for controlling HTTP redirect behavior

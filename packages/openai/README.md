@@ -1,6 +1,6 @@
 # AI SDK - OpenAI Provider
 
-The **[OpenAI provider](https://ai-sdk.dev/providers/ai-sdk-providers/openai)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[OpenAI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains language model support for the OpenAI chat and completion APIs and embedding model support for the OpenAI embeddings API.
 
 ## Setup
@@ -41,4 +41,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[OpenAI provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/openai)** for more information.
+Please check out the **[OpenAI provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai)** for more information.

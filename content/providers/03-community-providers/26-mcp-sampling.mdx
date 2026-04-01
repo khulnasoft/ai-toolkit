@@ -12,7 +12,7 @@ The provider implements `LanguageModelV4` by forwarding requests through MCP's [
 - **Server-Side AI Integration**: Enable MCP servers to call language models directly through AI SDK's standard interface
 - **No Direct Model Management**: Forward AI requests to MCP clients, eliminating the need for multiple API keys
 - **Model Flexibility**: Let MCP clients decide which model to use based on preferences (cost, speed, intelligence)
-- **Seamless AI SDK Compatibility**: Support for `generateText`, `streamText`, structured output with [`Output`](/docs/reference/ai-sdk-core/output), and experimental tool calling
+- **Seamless AI SDK Compatibility**: Support for `generateText`, `streamText`, structured output with [`Output`](/docs/reference/ai-toolkit-core/output), and experimental tool calling
 - **Client Sampling Support**: Add sampling capability to any MCP client with built-in helpers
 - **Agentic Tools**: Transform simple MCP tools into intelligent agents that can reason and make decisions
 
@@ -404,7 +404,7 @@ If your MCP client doesn't support sampling natively, you can add sampling capab
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import {
-  convertAISDKFinishReasonToMCP,
+  convertAITOOLKITFinishReasonToMCP,
   selectModelFromPreferences,
   setupClientSampling,
 } from '@mcpc-tech/mcp-sampling-ai-provider';
@@ -438,7 +438,7 @@ setupClientSampling(client, {
       model: modelId,
       role: 'assistant',
       content: { type: 'text', text: result.text },
-      stopReason: convertAISDKFinishReasonToMCP(result.finishReason),
+      stopReason: convertAITOOLKITFinishReasonToMCP(result.finishReason),
     };
   },
 });

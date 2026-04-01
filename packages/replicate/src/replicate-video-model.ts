@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -224,7 +224,7 @@ export class ReplicateVideoModel implements Experimental_VideoModelV4 {
         finalPrediction.status === 'processing'
       ) {
         if (Date.now() - startTime > pollTimeoutMs) {
-          throw new AISDKError({
+          throw new AITOOLKITError({
             name: 'REPLICATE_VIDEO_GENERATION_TIMEOUT',
             message: `Video generation timed out after ${pollTimeoutMs}ms`,
           });
@@ -233,7 +233,7 @@ export class ReplicateVideoModel implements Experimental_VideoModelV4 {
         await delay(pollIntervalMs);
 
         if (options.abortSignal?.aborted) {
-          throw new AISDKError({
+          throw new AITOOLKITError({
             name: 'REPLICATE_VIDEO_GENERATION_ABORTED',
             message: 'Video generation request was aborted',
           });
@@ -255,14 +255,14 @@ export class ReplicateVideoModel implements Experimental_VideoModelV4 {
     }
 
     if (finalPrediction.status === 'failed') {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'REPLICATE_VIDEO_GENERATION_FAILED',
         message: `Video generation failed: ${finalPrediction.error ?? 'Unknown error'}`,
       });
     }
 
     if (finalPrediction.status === 'canceled') {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'REPLICATE_VIDEO_GENERATION_CANCELED',
         message: 'Video generation was canceled',
       });
@@ -270,7 +270,7 @@ export class ReplicateVideoModel implements Experimental_VideoModelV4 {
 
     const videoUrl = finalPrediction.output;
     if (!videoUrl) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'REPLICATE_VIDEO_GENERATION_ERROR',
         message: 'No video URL in response',
       });

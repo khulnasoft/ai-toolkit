@@ -2,9 +2,9 @@
 
 # AI SDK
 
-The [AI SDK](https://ai-sdk.dev/docs) is a provider-agnostic TypeScript toolkit designed to help you build AI-powered applications and agents using popular UI frameworks like Next.js, React, Svelte, Vue, Angular, and runtimes like Node.js.
+The [AI SDK](https://ai-toolkit.dev/docs) is a provider-agnostic TypeScript toolkit designed to help you build AI-powered applications and agents using popular UI frameworks like Next.js, React, Svelte, Vue, Angular, and runtimes like Node.js.
 
-To learn more about how to use the AI SDK, check out our [API Reference](https://ai-sdk.dev/docs/reference) and [Documentation](https://ai-sdk.dev/docs).
+To learn more about how to use the AI SDK, check out our [API Reference](https://ai-toolkit.dev/docs/reference) and [Documentation](https://ai-toolkit.dev/docs).
 
 ## Installation
 
@@ -24,7 +24,7 @@ npx skills add khulnasoft/ai
 
 ## Unified Provider Architecture
 
-The AI SDK provides a [unified API](https://ai-sdk.dev/docs/foundations/providers-and-models) to interact with model providers like [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai), [Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai), and [more](https://ai-sdk.dev/providers/ai-sdk-providers).
+The AI SDK provides a [unified API](https://ai-toolkit.dev/docs/foundations/providers-and-models) to interact with model providers like [OpenAI](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai), [Anthropic](https://ai-toolkit.dev/providers/ai-toolkit-providers/anthropic), [Google](https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai), and [more](https://ai-toolkit.dev/providers/ai-toolkit-providers).
 
 By default, the AI SDK uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to give you access to all major providers out of the box. Just pass a model string for any supported model:
 
@@ -109,7 +109,7 @@ const sandboxAgent = new ToolLoopAgent({
 
 ### UI Integration
 
-The [AI SDK UI](https://ai-sdk.dev/docs/ai-sdk-ui/overview) module provides a set of hooks that help you build chatbots and generative user interfaces. These hooks are framework agnostic, so they can be used in Next.js, React, Svelte, and Vue.
+The [AI SDK UI](https://ai-toolkit.dev/docs/ai-toolkit-ui/overview) module provides a set of hooks that help you build chatbots and generative user interfaces. These hooks are framework agnostic, so they can be used in Next.js, React, Svelte, and Vue.
 
 You need to install the package for your framework, e.g.:
 
@@ -223,7 +223,7 @@ export default function Page() {
 
 ## Templates
 
-We've built [templates](https://ai-sdk.dev/docs/introduction#templates) that include AI SDK integrations for different use cases, providers, and frameworks. You can use these templates to get started with your AI-powered application.
+We've built [templates](https://ai-toolkit.dev/docs/introduction#templates) that include AI SDK integrations for different use cases, providers, and frameworks. You can use these templates to get started with your AI-powered application.
 
 ## Community
 

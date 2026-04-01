@@ -110,7 +110,7 @@ const { text } = await generateText({
 ```
 
 Together.ai language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-sdk-core)).
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 The Together.ai provider also supports [completion models](https://docs.together.ai/docs/serverless-models#language-models) via (following the above example code) `togetherai.completionModel()` and [embedding models](https://docs.together.ai/docs/serverless-models#embedding-models) via `togetherai.embeddingModel()`.
 
@@ -137,7 +137,7 @@ The Together.ai provider also supports [completion models](https://docs.together
 ## Image Models
 
 You can create Together.ai image models using the `.image()` factory method.
-For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-sdk-core/generate-image).
+For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
@@ -285,7 +285,7 @@ Together.ai image models support various image dimensions that vary by model. Co
 ## Embedding Models
 
 You can create Together.ai embedding models using the `.embeddingModel()` factory method.
-For more on embedding models with the AI SDK see [embed()](/docs/reference/ai-sdk-core/embed).
+For more on embedding models with the AI SDK see [embed()](/docs/reference/ai-toolkit-core/embed).
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
@@ -313,7 +313,7 @@ const { embedding } = await embed({
 ## Reranking Models
 
 You can create Together.ai reranking models using the `.reranking()` factory method.
-For more on reranking with the AI SDK see [rerank()](/docs/reference/ai-sdk-core/rerank).
+For more on reranking with the AI SDK see [rerank()](/docs/reference/ai-toolkit-core/rerank).
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';

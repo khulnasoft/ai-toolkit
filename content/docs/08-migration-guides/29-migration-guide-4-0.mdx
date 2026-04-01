@@ -7,7 +7,7 @@ description: Learn how to upgrade AI SDK 3.4 to 4.0.
 
 <Note>
   Check out the [AI SDK 4.0 release blog
-  post](https://vercel.com/blog/ai-sdk-4-0) for more information about the
+  post](https://vercel.com/blog/ai-toolkit-4-0) for more information about the
   release.
 </Note>
 
@@ -27,8 +27,8 @@ description: Learn how to upgrade AI SDK 3.4 to 4.0.
 You need to update the following packages to the following versions in your `package.json` file(s):
 
 - `ai` package: `4.0.*`
-- `ai-sdk@provider-utils` package: `2.0.*`
-- `ai-toolkit/*` packages: `1.0.*` (other `@ai-sdk` packages)
+- `ai-toolkit@provider-utils` package: `2.0.*`
+- `ai-toolkit/*` packages: `1.0.*` (other `@ai-toolkit` packages)
 
 ## Codemods
 
@@ -323,7 +323,7 @@ const { text, steps } = await generateText({
 
 ### Removed `nanoid` export
 
-The `nanoid` export has been removed. Please use [`generateId`](/docs/reference/ai-sdk-core/generate-id) instead.
+The `nanoid` export has been removed. Please use [`generateId`](/docs/reference/ai-toolkit-core/generate-id) instead.
 
 ```ts filename="AI SDK 3.4"
 import { nanoid } from 'ai';
@@ -340,7 +340,7 @@ import { generateId } from 'ai';
   code manually.
 </Note>
 
-The [`generateId`](/docs/reference/ai-sdk-core/generate-id) function now
+The [`generateId`](/docs/reference/ai-toolkit-core/generate-id) function now
 generates 16-character IDs. The previous default was 7 characters.
 
 This might e.g. require updating your database schema if you limit the length of
@@ -515,7 +515,7 @@ import { Provider } from 'ai';
 
 <Note>
   The model registry is not available any more. Please [register
-  providers](/docs/reference/ai-sdk-core/provider-registry#setup) instead.
+  providers](/docs/reference/ai-toolkit-core/provider-registry#setup) instead.
 </Note>
 
 #### Removed `experimental_​createModelRegistry` function
@@ -533,7 +533,7 @@ import { experimental_createProviderRegistry } from 'ai';
 
 <Note>
   The model registry is not available any more. Please [register
-  providers](/docs/reference/ai-sdk-core/provider-registry#setup) instead.
+  providers](/docs/reference/ai-toolkit-core/provider-registry#setup) instead.
 </Note>
 
 ### Removed `rawResponse` from results
@@ -740,7 +740,7 @@ const stream = simulateReadableStream({
 ### Removed `render` function
 
 The AI SDK RSC 3.0 `render` function has been removed.
-Please use the `streamUI` function instead or [switch to AI SDK UI](/docs/ai-sdk-rsc/migrating-to-ui).
+Please use the `streamUI` function instead or [switch to AI SDK UI](/docs/ai-toolkit-rsc/migrating-to-ui).
 
 ```ts filename="AI SDK 3.0"
 import { render } from '@ai-toolkit/rsc';
@@ -817,7 +817,7 @@ The following options have been removed from the `useChat` hook:
 - `maxAutomaticRoundtrips`
 - `maxToolRoundtrips`
 
-Please use the [`maxSteps`](/docs/ai-sdk-core/tools-and-tool-calling#multi-step-calls) option instead.
+Please use the [`maxSteps`](/docs/ai-toolkit-core/tools-and-tool-calling#multi-step-calls) option instead.
 The value of `maxSteps` is equal to roundtrips + 1.
 
 ```ts filename="AI SDK 3.4"
@@ -1048,7 +1048,7 @@ Legacy providers from AI SDK 2.x have been removed. Please use the new [AI SDK p
 
 The legacy `function_call` and `tools` options have been removed from `useChat` and `Message`.
 The `name` property from the `Message` type has been removed.
-Please use the [AI SDK Core tool calling](/docs/ai-sdk-core/tools-and-tool-calling) instead.
+Please use the [AI SDK Core tool calling](/docs/ai-toolkit-core/tools-and-tool-calling) instead.
 
 ### Removed 2.x prompt helpers
 
@@ -1057,17 +1057,17 @@ Prompt helpers for constructing message prompts are no longer needed with the AI
 ### Removed 2.x `AIStream`
 
 The `AIStream` function and related exports have been removed.
-Please use the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function and its `toDataStream()` method instead.
+Please use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function and its `toDataStream()` method instead.
 
 ### Removed 2.x `StreamingTextResponse`
 
 The `StreamingTextResponse` function has been removed.
-Please use the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function and its `toDataStreamResponse()` method instead.
+Please use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function and its `toDataStreamResponse()` method instead.
 
 ### Removed 2.x `streamToResponse`
 
 The `streamToResponse` function has been removed.
-Please use the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function and its `pipeDataStreamToResponse()` method instead.
+Please use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function and its `pipeDataStreamToResponse()` method instead.
 
 ### Removed 2.x RSC `Tokens` streaming
 

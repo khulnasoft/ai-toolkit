@@ -1241,7 +1241,7 @@
 - 0c4822d: feat: `EmbeddingModelV3`
 - e062079: chore(agent): move Agent.respond into createAgentStreamResponse function
 - 2b49dae: feat(agent): support UIMessageStreamOptions in createAgentStreamResponse
-- ee651d7: `https://v6.ai-sdk.dev` -> `https://ai-sdk.dev`
+- ee651d7: `https://v6.ai-toolkit.dev` -> `https://ai-toolkit.dev`
 - 5a4e732: Export `parseJsonEventStream` and `uiMessageChunkSchema` from "ai" package
 - f733285: fix(ai): only parse experimental_output in generateText when finishReason is stop
 - 9b83947: feat(ai): add convertDataPart option to convertToModelMessages
@@ -1304,7 +1304,7 @@
 - c98373a: chore(agent): rename createAgentStreamResponse to createAgentUIStreamResponse
 - 846e80e: fix(ai): bind functions for v2 -> v3 adapter
 - bbdcb81: Add experimental_context parameter to prepareStep callback
-- 67a407c: chore(ai): add warning when using v2 models with AISDK v6
+- 67a407c: chore(ai): add warning when using v2 models with AITOOLKIT v6
 - 9524761: chore(ai): rename relevanceScore to score
 - ca13d26: feat(ai): add output to StreamTextResult
 - 4616b86: chore: update zod peer depenedency version
@@ -1352,7 +1352,7 @@
 
 ### Patch Changes
 
-- ee651d7: `https://v6.ai-sdk.dev` -> `https://ai-sdk.dev`
+- ee651d7: `https://v6.ai-toolkit.dev` -> `https://ai-toolkit.dev`
 
 ## 6.0.0-beta.168
 
@@ -1661,7 +1661,7 @@
 
 ### Patch Changes
 
-- 67a407c: chore(ai): add warning when using v2 models with AISDK v6
+- 67a407c: chore(ai): add warning when using v2 models with AITOOLKIT v6
 
 ## 6.0.0-beta.128
 

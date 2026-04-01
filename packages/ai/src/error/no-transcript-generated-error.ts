@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
 
 const name = 'AI_NoTranscriptGeneratedError';
@@ -8,7 +8,7 @@ const symbol = Symbol.for(marker);
 /**
  * Error that is thrown when no transcript was generated.
  */
-export class NoTranscriptGeneratedError extends AISDKError {
+export class NoTranscriptGeneratedError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly responses: Array<TranscriptionModelResponseMetadata>;
@@ -25,6 +25,6 @@ export class NoTranscriptGeneratedError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is NoTranscriptGeneratedError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

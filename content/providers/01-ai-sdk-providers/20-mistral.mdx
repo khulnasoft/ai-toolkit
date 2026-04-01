@@ -79,7 +79,7 @@ Some Mistral chat models support tool calls.
 const model = mistral('mistral-large-latest');
 ```
 
-Mistral chat models also support additional model settings that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+Mistral chat models also support additional model settings that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them as an options argument and utilize `MistralLanguageModelOptions` for typing:
 
 ```ts
@@ -233,12 +233,12 @@ const { text } = await generateText({
 ```
 
 Mistral language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 #### Structured Outputs
 
-Mistral chat models support structured outputs using JSON Schema. You can use `generateText` or `streamText` with [`Output`](/docs/reference/ai-sdk-core/output)
+Mistral chat models support structured outputs using JSON Schema. You can use `generateText` or `streamText` with [`Output`](/docs/reference/ai-toolkit-core/output)
 and Zod, Valibot, or raw JSON Schema. The SDK sends your schema via Mistral's `response_format: { type: 'json_schema' }`.
 
 ```ts

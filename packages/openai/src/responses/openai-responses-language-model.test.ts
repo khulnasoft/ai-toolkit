@@ -3871,7 +3871,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -3881,7 +3881,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04f6b17429cf2b02006949a6712b1081968b3c7a72dec695d8',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],
@@ -3918,7 +3918,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -3928,7 +3928,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04f6b17429cf2b02006949a6712b1081968b3c7a72dec695d8',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],
@@ -3970,7 +3970,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -3980,7 +3980,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04f6b17429cf2b02006949a68bf5808196b6f2008a315c9aa4',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],
@@ -6985,7 +6985,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -6995,7 +6995,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04a97b4fce127879006949a83ac9308195a7f7b69ea82e91fe',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],
@@ -7025,7 +7025,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -7035,7 +7035,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04a97b4fce127879006949a83ac9308195a7f7b69ea82e91fe',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],
@@ -7070,7 +7070,7 @@ describe('OpenAIResponsesLanguageModel', () => {
           prompt: [
             {
               role: 'user',
-              content: [{ type: 'text', text: 'shorten ai-sdk.dev' }],
+              content: [{ type: 'text', text: 'shorten ai-toolkit.dev' }],
             },
             {
               role: 'assistant',
@@ -7080,7 +7080,7 @@ describe('OpenAIResponsesLanguageModel', () => {
                   toolCallId:
                     'mcpr_04a97b4fce127879006949a8672ac081959f95aa8ceedb7cd9',
                   toolName: 'mcp.create_short_url',
-                  input: { url: 'https://ai-sdk.dev/' },
+                  input: { url: 'https://ai-toolkit.dev/' },
                   providerExecuted: true,
                 },
               ],

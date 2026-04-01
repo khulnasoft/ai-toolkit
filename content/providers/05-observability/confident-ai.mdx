@@ -11,7 +11,7 @@ The `deepeval-ts` package integrates with the AI SDK's `experimental_telemetry` 
 
 ## Setup
 
-To enable tracing, install `deepeval-ts`, configure your API key, and initialize a tracer using `configureAiSdkTracing`.
+To enable tracing, install `deepeval-ts`, configure your API key, and initialize a tracer using `configureAiToolkitTracing`.
 
 ### 1. Install deepeval-ts
 
@@ -29,12 +29,12 @@ CONFIDENT_API_KEY="YOUR-PROJECT-API-KEY"
 
 ### 3. Configure Tracing
 
-Import and call `configureAiSdkTracing` to create a `tracer`:
+Import and call `configureAiToolkitTracing` to create a `tracer`:
 
 ```typescript
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 
-const tracer = configureAiSdkTracing();
+const tracer = configureAiToolkitTracing();
 ```
 
 ## Tracing Your Application
@@ -48,9 +48,9 @@ Here are some of the examples on how to trace various AI SDK functions using Con
 ```typescript highlight="3,5,12"
 import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 
-const tracer = configureAiSdkTracing();
+const tracer = configureAiToolkitTracing();
 
 const { text } = await generateText({
   model: openai('gpt-4o'),
@@ -67,9 +67,9 @@ const { text } = await generateText({
 ```typescript highlight="3,5,12"
 import { streamText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 
-const tracer = configureAiSdkTracing();
+const tracer = configureAiToolkitTracing();
 
 const result = streamText({
   model: openai('gpt-4o'),
@@ -90,10 +90,10 @@ for await (const textPart of result.textStream) {
 ```typescript highlight="3,6,26"
 import { generateText, tool, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 import { z } from 'zod';
 
-const tracer = configureAiSdkTracing();
+const tracer = configureAiToolkitTracing();
 
 const result = await generateText({
   model: openai('gpt-4o'),
@@ -123,10 +123,10 @@ const result = await generateText({
 ```typescript highlight="3,6,20"
 import { generateObject } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 import { z } from 'zod';
 
-const tracer = configureAiSdkTracing();
+const tracer = configureAiToolkitTracing();
 
 const { object } = await generateObject({
   model: openai('gpt-4o'),
@@ -154,7 +154,7 @@ The following examples show traces generated from the snippets above:
 
 ## Configuration
 
-You can customize trace grouping and evaluation behavior by passing options to `configureAiSdkTracing`. This allows you to:
+You can customize trace grouping and evaluation behavior by passing options to `configureAiToolkitTracing`. This allows you to:
 
 - Group related traces (for example, chat sessions)
 - Associate prompt versions with traces
@@ -167,9 +167,9 @@ You can pass attributes like `name`, `threadId`, `userId` and `environment` to m
 ```typescript
 import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 
-const tracer = configureAiSdkTracing({
+const tracer = configureAiToolkitTracing({
   name: 'AI SDK Confident AI Tracing',
   threadId: 'thread-123',
   userId: 'user-456',
@@ -188,17 +188,17 @@ const { text } = await generateText({
 
 ### Log Managed Prompts
 
-If you use Confident AI Prompt Management, you can associate traces with a specific prompt version. Pass a `Prompt` object to `configureAiSdkTracing` to associate your traces with the prompt version used at runtime.
+If you use Confident AI Prompt Management, you can associate traces with a specific prompt version. Pass a `Prompt` object to `configureAiToolkitTracing` to associate your traces with the prompt version used at runtime.
 
 ```typescript
 import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing, Prompt } from 'deepeval-ts';
+import { configureAiToolkitTracing, Prompt } from 'deepeval-ts';
 
 const prompt = new Prompt({ alias: 'my-prompt-alias' });
 await prompt.pull();
 
-const tracer = configureAiSdkTracing({
+const tracer = configureAiToolkitTracing({
   confidentPrompt: prompt,
 });
 
@@ -218,7 +218,7 @@ Logging prompts allows you to monitor what prompts are running in production and
 
 <Note>
   Make sure to **`pull` the prompt** before passing it to
-  `configureAiSdkTracing`. Without pulling first, the prompt version will not be
+  `configureAiToolkitTracing`. Without pulling first, the prompt version will not be
   visible on Confident AI.
 </Note>
 
@@ -227,7 +227,7 @@ Logging prompts allows you to monitor what prompts are running in production and
 Confident AI supports automatic online evaluation of your traces by passing a metric collection defined in your project. To enable online evaluations:
 
 1. [Create a metric collection](https://www.confident-ai.com/docs/metrics/metric-collections) in the Confident AI platform
-2. Pass your metric collection name in the `configureAiSdkTracing` options
+2. Pass your metric collection name in the `configureAiToolkitTracing` options
 3. You can pass different metric collections for trace, LLM span and tool span levels
 
 Here's an example of how to attach metric collections to your traces:
@@ -235,9 +235,9 @@ Here's an example of how to attach metric collections to your traces:
 ```typescript
 import { generateText } from 'ai';
 import { openai } from '@ai-toolkit/openai';
-import { configureAiSdkTracing } from 'deepeval-ts';
+import { configureAiToolkitTracing } from 'deepeval-ts';
 
-const tracer = configureAiSdkTracing({
+const tracer = configureAiToolkitTracing({
   metricCollection: 'my-trace-metrics',
   llmMetricCollection: 'my-llm-metrics',
   toolMetricCollection: 'my-tool-metrics',
@@ -255,7 +255,7 @@ const { text } = await generateText({
 
 All incoming traces will now be evaluated automatically. Evaluation results are visible in the Confident AI Observatory alongside your traces.
 
-You can find a more comprehensive guide on AI SDK tracing with `deepeval-ts` in the [Confident AI docs here](https://www.confident-ai.com/docs/integrations/third-party/vercel-ai-sdk).
+You can find a more comprehensive guide on AI SDK tracing with `deepeval-ts` in the [Confident AI docs here](https://www.confident-ai.com/docs/integrations/third-party/vercel-ai-toolkit).
 
 ## Learn More
 
@@ -264,4 +264,4 @@ You can find a more comprehensive guide on AI SDK tracing with `deepeval-ts` in 
 - [Online Evaluations](https://www.confident-ai.com/docs/llm-tracing/online-evals)
 - [Prompt Management](https://www.confident-ai.com/docs/llm-evaluation/prompt-management/version-prompts)
 - [DeepEval Discord](https://discord.gg/a3K9c8GRGt)
-- [AI SDK Telemetry documentation](/docs/ai-sdk-core/telemetry)
+- [AI SDK Telemetry documentation](/docs/ai-toolkit-core/telemetry)

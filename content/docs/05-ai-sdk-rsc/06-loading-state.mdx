@@ -7,8 +7,8 @@ description: Overview of handling loading state with AI SDK RSC
 
 <Note type="warning">
   AI SDK RSC is currently experimental. We recommend using [AI SDK
-  UI](/docs/ai-sdk-ui/overview) for production. For guidance on migrating from
-  RSC to UI, see our [migration guide](/docs/ai-sdk-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 Given that responses from language models can often take a while to complete, it's crucial to be able to show loading state to users. This provides visual feedback that the system is working on their request and helps maintain a positive user experience.
@@ -202,7 +202,7 @@ This allows you to provide more detailed feedback about the generation process t
 
 ## Streaming Loading Components with `streamUI`
 
-If you are using the [ `streamUI` ](/docs/reference/ai-sdk-rsc/stream-ui) function, you can stream the loading state to the client in the form of a React component. `streamUI` supports the usage of [ JavaScript generator functions ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*), which allow you to yield some value (in this case a React component) while some other blocking work completes.
+If you are using the [ `streamUI` ](/docs/reference/ai-toolkit-rsc/stream-ui) function, you can stream the loading state to the client in the form of a React component. `streamUI` supports the usage of [ JavaScript generator functions ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*), which allow you to yield some value (in this case a React component) while some other blocking work completes.
 
 ## Server
 

@@ -98,7 +98,7 @@ const { messages, sendMessage } = useChat({
 
 ## Direct Agent Transport
 
-For scenarios where you want to communicate directly with an [Agent](/docs/reference/ai-sdk-core/agent) without going through HTTP, you can use `DirectChatTransport`. This transport invokes the agent's `stream()` method directly in-process.
+For scenarios where you want to communicate directly with an [Agent](/docs/reference/ai-toolkit-core/agent) without going through HTTP, you can use `DirectChatTransport`. This transport invokes the agent's `stream()` method directly in-process.
 
 This is useful for:
 
@@ -154,7 +154,7 @@ const transport = new DirectChatTransport({
   `null`.
 </Note>
 
-For complete API details, see the [DirectChatTransport reference](/docs/reference/ai-sdk-ui/direct-chat-transport).
+For complete API details, see the [DirectChatTransport reference](/docs/reference/ai-toolkit-ui/direct-chat-transport).
 
 ## Building Custom Transports
 

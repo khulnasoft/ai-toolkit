@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/mcp': patch
+'@ai-toolkit/mcp': patch
 ---
 
 changeset for #13384

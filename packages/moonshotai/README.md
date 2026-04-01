@@ -1,6 +1,6 @@
 # AI SDK - Moonshot AI Provider
 
-The **[Moonshot AI provider](https://ai-sdk.dev/providers/ai-sdk-providers/moonshotai)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the [Moonshot AI](https://platform.moonshot.cn) platform, including the Kimi model series.
+The **[Moonshot AI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/moonshotai)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the [Moonshot AI](https://platform.moonshot.cn) platform, including the Kimi model series.
 
 ## Setup
 
@@ -59,4 +59,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Moonshot AI provider](https://ai-sdk.dev/providers/ai-sdk-providers/moonshotai)** for more information.
+Please check out the **[Moonshot AI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/moonshotai)** for more information.

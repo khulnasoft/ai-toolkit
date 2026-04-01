@@ -1,6 +1,6 @@
 /**
  * Symbol used for identifying AI SDK Error instances.
- * Enables checking if an error is an instance of AISDKError across package versions.
+ * Enables checking if an error is an instance of AITOOLKITError across package versions.
  */
 const marker = 'vercel.ai.error';
 const symbol = Symbol.for(marker);
@@ -9,7 +9,7 @@ const symbol = Symbol.for(marker);
  * Custom error class for AI SDK related errors.
  * @extends Error
  */
-export class AISDKError extends Error {
+export class AITOOLKITError extends Error {
   private readonly [symbol] = true; // used in isInstance
 
   /**
@@ -45,8 +45,8 @@ export class AISDKError extends Error {
    * @param {unknown} error - The error to check.
    * @returns {boolean} True if the error is an AI SDK Error, false otherwise.
    */
-  static isInstance(error: unknown): error is AISDKError {
-    return AISDKError.hasMarker(error, marker);
+  static isInstance(error: unknown): error is AITOOLKITError {
+    return AITOOLKITError.hasMarker(error, marker);
   }
 
   protected static hasMarker(error: unknown, marker: string): boolean {

@@ -93,7 +93,7 @@ npx @ai-toolkit/codemod v5/rename-format-stream-part .
 | `v5/move-langchain-adapter` | Transforms v5/move langchain adapter |
 | `v5/move-maxsteps-to-stopwhen` | Transforms v5/move maxsteps to stopwhen |
 | `v5/move-provider-options` | Transforms v5/move provider options |
-| `v5/move-react-to-ai-sdk` | Transforms v5/move react to ai sdk |
+| `v5/move-react-to-ai-toolkit` | Transforms v5/move react to ai sdk |
 | `v5/move-ui-utils-to-ai` | Transforms v5/move ui utils to ai |
 | `v5/remove-experimental-wrap-language-model` | Transforms v5/remove experimental wrap language model |
 | `v5/remove-get-ui-text` | Transforms v5/remove get ui text |
@@ -250,7 +250,7 @@ pnpm test:watch
 
 ## Support
 
-- **Documentation**: [AI SDK Migration Guides](https://ai-sdk.dev/docs/migration-guides)
+- **Documentation**: [AI SDK Migration Guides](https://ai-toolkit.dev/docs/migration-guides)
 - **Issues**: [GitHub Issues](https://github.com/khulnasoft/ai-toolkit/issues)
 - **Community**: [Discord](https://discord.gg/vercel)
 
@@ -265,4 +265,4 @@ pnpm test:watch
 
 For more detailed migration information, see:
 
-- [AI SDK 6.0 Migration Guide](https://ai-sdk.dev/docs/migration-guides/migration-guide-6-0)
+- [AI SDK 6.0 Migration Guide](https://ai-toolkit.dev/docs/migration-guides/migration-guide-6-0)

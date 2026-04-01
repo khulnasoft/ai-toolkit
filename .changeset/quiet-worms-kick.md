@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/alibaba': patch
+'@ai-toolkit/alibaba': patch
 ---
 
 chore(alibaba): update v3 specs to v4

@@ -12,7 +12,7 @@ Multi-modal refers to the ability of the agent to understand and generate respon
 
 <Note>
   For a complete list of providers and their multi-modal capabilities, visit the
-  [providers documentation](/providers/ai-sdk-providers).
+  [providers documentation](/providers/ai-toolkit-providers).
 </Note>
 
 We'll build this agent using OpenAI's GPT-4o, but the same code works seamlessly with other providers - you can switch between them by changing just one line of code.
@@ -92,7 +92,7 @@ Replace `your_api_key_here` with your actual Vercel AI Gateway API key.
   The AI SDK's Vercel AI Gateway Provider is the default global provider, so you
   can access models using a simple string in the model configuration. If you
   prefer to use a specific provider like OpenAI directly, see the [provider
-  management](/docs/ai-sdk-core/provider-management) documentation.
+  management](/docs/ai-toolkit-core/provider-management) documentation.
 </Note>
 
 ## Implementation Plan
@@ -129,15 +129,15 @@ Let's take a look at what is happening in this code:
 
 1. Define an asynchronous `POST` request handler and extract `messages` from the body of the request. The `messages` variable contains a history of the conversation between you and the agent and provides the agent with the necessary context to make the next generation.
 2. Convert the UI messages to model messages using `convertToModelMessages`, which transforms the UI-focused message format to the format expected by the language model.
-3. Call [`streamText`](/docs/reference/ai-sdk-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider and `messages` (converted in step 2). You can pass additional [settings](/docs/ai-sdk-core/settings) to further customize the model's behavior.
-4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-sdk-core/stream-text#result-object). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-sdk-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
+3. Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider and `messages` (converted in step 2). You can pass additional [settings](/docs/ai-toolkit-core/settings) to further customize the model's behavior.
+4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-toolkit-core/stream-text#result-object). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-toolkit-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
 5. Finally, return the result to the client to stream the response.
 
 This Route Handler creates a POST request endpoint at `/api/chat`.
 
 ## Wire up the UI
 
-Now that you have a Route Handler that can query a large language model (LLM), it's time to setup your frontend. [ AI SDK UI ](/docs/ai-sdk-ui) abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-sdk-ui/use-chat).
+Now that you have a Route Handler that can query a large language model (LLM), it's time to setup your frontend. [ AI SDK UI ](/docs/ai-toolkit-ui) abstracts the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
 
 Update your root page (`app/page.tsx`) with the following code to show a list of chat messages and provide a user message input:
 
@@ -380,9 +380,9 @@ Install the provider package (`@ai-toolkit/anthropic` or `@ai-toolkit/google`) a
 <Note>
   Different providers may have varying file size limits and performance
   characteristics. Check the [provider
-  documentation](/providers/ai-sdk-providers) for specific details.
+  documentation](/providers/ai-toolkit-providers) for specific details.
 </Note>
 
 ## Where to Next?
 
-You've built a multi-modal AI agent using the AI SDK! Experiment and extend the functionality of this application further by exploring [tool calling](/docs/ai-sdk-core/tools-and-tool-calling).
+You've built a multi-modal AI agent using the AI SDK! Experiment and extend the functionality of this application further by exploring [tool calling](/docs/ai-toolkit-core/tools-and-tool-calling).

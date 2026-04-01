@@ -1,6 +1,6 @@
 # AI SDK - Open Responses Provider
 
-The **[Open Responses provider](https://ai-sdk.dev/providers/ai-sdk-providers/open-responses)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[Open Responses provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/open-responses)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains language model support for [Open Responses](https://www.openresponses.org/) compatible APIs.
 
 ## Setup
@@ -54,4 +54,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Open Responses provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/open-responses)** for more information.
+Please check out the **[Open Responses provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/open-responses)** for more information.

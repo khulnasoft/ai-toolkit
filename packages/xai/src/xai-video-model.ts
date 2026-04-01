@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -199,7 +199,7 @@ export class XaiVideoModel implements Experimental_VideoModelV4 {
 
     const requestId = createResponse.request_id;
     if (!requestId) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'XAI_VIDEO_GENERATION_ERROR',
         message: `No request_id returned from xAI API. Response: ${JSON.stringify(createResponse)}`,
       });
@@ -215,7 +215,7 @@ export class XaiVideoModel implements Experimental_VideoModelV4 {
       await delay(pollIntervalMs, { abortSignal: options.abortSignal });
 
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'XAI_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation timed out after ${pollTimeoutMs}ms`,
         });
@@ -240,7 +240,7 @@ export class XaiVideoModel implements Experimental_VideoModelV4 {
         (statusResponse.status == null && statusResponse.video?.url)
       ) {
         if (statusResponse.video?.respect_moderation === false) {
-          throw new AISDKError({
+          throw new AITOOLKITError({
             name: 'XAI_VIDEO_MODERATION_ERROR',
             message:
               'Video generation was blocked due to a content policy violation.',
@@ -248,7 +248,7 @@ export class XaiVideoModel implements Experimental_VideoModelV4 {
         }
 
         if (!statusResponse.video?.url) {
-          throw new AISDKError({
+          throw new AITOOLKITError({
             name: 'XAI_VIDEO_GENERATION_ERROR',
             message:
               'Video generation completed but no video URL was returned.',
@@ -285,7 +285,7 @@ export class XaiVideoModel implements Experimental_VideoModelV4 {
       }
 
       if (statusResponse.status === 'expired') {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'XAI_VIDEO_GENERATION_EXPIRED',
           message: 'Video generation request expired.',
         });

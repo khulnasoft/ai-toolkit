@@ -1,6 +1,6 @@
 # AI SDK - AssemblyAI Provider
 
-The **[AssemblyAI provider](https://ai-sdk.dev/providers/ai-sdk-providers/assemblyai)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[AssemblyAI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/assemblyai)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains transcription model support for the AssemblyAI transcription API.
 
 ## Setup
@@ -43,4 +43,4 @@ const { text } = await transcribe({
 
 ## Documentation
 
-Please check out the **[AssemblyAI provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/assemblyai)** for more information.
+Please check out the **[AssemblyAI provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/assemblyai)** for more information.

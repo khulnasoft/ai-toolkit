@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/anthropic': patch
+'@ai-toolkit/anthropic': patch
 'ai': patch
 ---
 

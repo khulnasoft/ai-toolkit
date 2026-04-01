@@ -5,28 +5,28 @@ description: Learn how to use the Flowise provider for the AI SDK.
 
 # Flowise Provider
 
-The **[Flowise provider](https://github.com/ahmedrowaihi/flowise-ai-sdk-provider)** allows you to easily integrate [Flowise](https://flowiseai.com/) chatflows with your applications using the AI SDK.
+The **[Flowise provider](https://github.com/ahmedrowaihi/flowise-ai-toolkit-provider)** allows you to easily integrate [Flowise](https://flowiseai.com/) chatflows with your applications using the AI SDK.
 
 ## Setup
 
-The Flowise provider is available in the `@ahmedrowaihi/flowise-vercel-ai-sdk-provider` module. You can install it with:
+The Flowise provider is available in the `@ahmedrowaihi/flowise-vercel-ai-toolkit-provider` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
     <Snippet
-      text="pnpm add @ahmedrowaihi/flowise-vercel-ai-sdk-provider"
+      text="pnpm add @ahmedrowaihi/flowise-vercel-ai-toolkit-provider"
       dark
     />
   </Tab>
   <Tab>
     <Snippet
-      text="npm install @ahmedrowaihi/flowise-vercel-ai-sdk-provider"
+      text="npm install @ahmedrowaihi/flowise-vercel-ai-toolkit-provider"
       dark
     />
   </Tab>
   <Tab>
     <Snippet
-      text="yarn add @ahmedrowaihi/flowise-vercel-ai-sdk-provider"
+      text="yarn add @ahmedrowaihi/flowise-vercel-ai-toolkit-provider"
       dark
     />
   </Tab>
@@ -34,10 +34,10 @@ The Flowise provider is available in the `@ahmedrowaihi/flowise-vercel-ai-sdk-pr
 
 ## Provider Instance
 
-You can import the provider factory from `@ahmedrowaihi/flowise-vercel-ai-sdk-provider`:
+You can import the provider factory from `@ahmedrowaihi/flowise-vercel-ai-toolkit-provider`:
 
 ```ts
-import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-sdk-provider';
+import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-toolkit-provider';
 ```
 
 ## Quick Start
@@ -52,7 +52,7 @@ FLOWISE_API_KEY=your_api_key_optional
 ```
 
 ```ts
-import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-sdk-provider';
+import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const flowise = createFlowiseProvider({
@@ -69,7 +69,7 @@ const { text } = await generateText({
 ### Using a One-shot Model
 
 ```ts
-import { createFlowiseModel } from '@ahmedrowaihi/flowise-vercel-ai-sdk-provider';
+import { createFlowiseModel } from '@ahmedrowaihi/flowise-vercel-ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -86,7 +86,7 @@ const { text } = await generateText({
 
 ```ts
 import { streamText } from 'ai';
-import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-sdk-provider';
+import { createFlowiseProvider } from '@ahmedrowaihi/flowise-vercel-ai-toolkit-provider';
 
 const flowise = createFlowiseProvider({
   baseUrl: process.env.FLOWISE_BASE_URL!,
@@ -103,4 +103,4 @@ return result.toDataStreamResponse();
 
 ## More Information
 
-For more information and advanced usage, see the [Flowise provider documentation](https://github.com/ahmedrowaihi/flowise-ai-sdk-provider#readme).
+For more information and advanced usage, see the [Flowise provider documentation](https://github.com/ahmedrowaihi/flowise-ai-toolkit-provider#readme).

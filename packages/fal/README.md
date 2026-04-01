@@ -1,6 +1,6 @@
 # AI SDK - fal Provider
 
-The **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for the [AI SDK](https://ai-sdk.dev/docs) contains image model support for the [fal.ai API](https://fal.ai/).
+The **[fal provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fal)** for the [AI SDK](https://ai-toolkit.dev/docs) contains image model support for the [fal.ai API](https://fal.ai/).
 
 ## Setup
 
@@ -61,4 +61,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for more information.
+Please check out the **[fal provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fal)** for more information.

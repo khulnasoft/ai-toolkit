@@ -102,10 +102,10 @@ const { text } = await generateText({
 ```
 
 Google Generative AI language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
-Google Generative AI also supports some model specific settings that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+Google Generative AI also supports some model specific settings that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them as an options argument:
 
 ```ts
@@ -708,7 +708,7 @@ Example response:
 {
   "urlMetadata": [
     {
-      "retrievedUrl": "https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai",
+      "retrievedUrl": "https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai",
       "urlRetrievalStatus": "URL_RETRIEVAL_STATUS_SUCCESS"
     }
   ]
@@ -722,7 +722,7 @@ With the URL context tool, you will also get the `groundingMetadata`.
     "groundingChunks": [
         {
             "web": {
-                "uri": "https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai",
+                "uri": "https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai",
                 "title": "Google Generative AI - AI SDK Providers"
             }
         }
@@ -760,7 +760,7 @@ import { generateText } from 'ai';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
-  prompt: `Based on this context: https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai, tell me how to use Gemini with AI SDK.
+  prompt: `Based on this context: https://ai-toolkit.dev/providers/ai-toolkit-providers/google-generative-ai, tell me how to use Gemini with AI SDK.
     Also, provide the latest news about AI SDK V5.`,
   tools: {
     google_search: google.tools.googleSearch({}),
@@ -1191,7 +1191,7 @@ The following optional provider options are available for Google Generative AI e
 ## Image Models
 
 You can create image models that call the Google Generative AI API using the `.image()` factory method.
-For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-sdk-core/generate-image).
+For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 The Google provider supports two types of image models:
 

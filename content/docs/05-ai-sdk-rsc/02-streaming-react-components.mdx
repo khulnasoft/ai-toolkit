@@ -12,18 +12,18 @@ import { Weather } from '@/components/home/weather';
 
 <Note type="warning">
   AI SDK RSC is currently experimental. We recommend using [AI SDK
-  UI](/docs/ai-sdk-ui/overview) for production. For guidance on migrating from
-  RSC to UI, see our [migration guide](/docs/ai-sdk-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
-The RSC API allows you to stream React components from the server to the client with the [`streamUI`](/docs/reference/ai-sdk-rsc/stream-ui) function. This is useful when you want to go beyond raw text and stream components to the client in real-time.
+The RSC API allows you to stream React components from the server to the client with the [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function. This is useful when you want to go beyond raw text and stream components to the client in real-time.
 
-Similar to [ AI SDK Core ](/docs/ai-sdk-core/overview) APIs (like [ `streamText` ](/docs/reference/ai-sdk-core/stream-text)), `streamUI` provides a single function to call a model and allow it to respond with React Server Components.
+Similar to [ AI SDK Core ](/docs/ai-toolkit-core/overview) APIs (like [ `streamText` ](/docs/reference/ai-toolkit-core/stream-text)), `streamUI` provides a single function to call a model and allow it to respond with React Server Components.
 It supports the same model interfaces as AI SDK Core APIs.
 
 ### Concepts
 
-To give the model the ability to respond to a user's prompt with a React component, you can leverage [tools](/docs/ai-sdk-core/tools-and-tool-calling).
+To give the model the ability to respond to a user's prompt with a React component, you can leverage [tools](/docs/ai-toolkit-core/tools-and-tool-calling).
 
 <Note>
   Remember, tools are like programs you can give to the model, and the model can

@@ -1,4 +1,4 @@
-export const AISDKLogo = () => {
+export const AITOOLKITLogo = () => {
   return (
     <svg
       width="55.28888888888889"

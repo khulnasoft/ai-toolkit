@@ -1,6 +1,6 @@
 # AI SDK - Alibaba Provider
 
-The **[Alibaba provider](https://ai-sdk.dev/providers/ai-sdk-providers/alibaba)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for [Alibaba Cloud Model Studio](https://modelstudio.console.alibabacloud.com/), including the Qwen model series with advanced reasoning capabilities.
+The **[Alibaba provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/alibaba)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for [Alibaba Cloud Model Studio](https://modelstudio.console.alibabacloud.com/), including the Qwen model series with advanced reasoning capabilities.
 
 ## Setup
 
@@ -127,4 +127,4 @@ const { text, usage } = await generateText({
 
 ## Documentation
 
-Please check out the **[Alibaba provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/alibaba)** for more information.
+Please check out the **[Alibaba provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/alibaba)** for more information.

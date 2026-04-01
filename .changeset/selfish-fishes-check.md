@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/openai': patch
+'@ai-toolkit/openai': patch
 ---
 
 feat(provider/openai): add `gpt-5.3-chat-latest`

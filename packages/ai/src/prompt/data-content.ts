@@ -1,4 +1,7 @@
-import { AISDKError, LanguageModelV4DataContent } from '@ai-toolkit/provider';
+import {
+  AITOOLKITError,
+  LanguageModelV4DataContent,
+} from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
@@ -56,7 +59,7 @@ export function convertToLanguageModelV4DataContent(
     );
 
     if (dataUrlMediaType == null || base64Content == null) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'InvalidDataContentError',
         message: `Invalid data URL format in content ${content.toString()}`,
       });

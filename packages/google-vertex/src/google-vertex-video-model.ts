@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -199,7 +199,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
 
     const operationName = operation.name;
     if (!operationName) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'VERTEX_VIDEO_GENERATION_ERROR',
         message: 'No operation name returned from API',
       });
@@ -214,7 +214,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
 
     while (!finalOperation.done) {
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'VERTEX_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation timed out after ${pollTimeoutMs}ms`,
         });
@@ -223,7 +223,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
       await delay(pollIntervalMs);
 
       if (options.abortSignal?.aborted) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'VERTEX_VIDEO_GENERATION_ABORTED',
           message: 'Video generation request was aborted',
         });
@@ -252,7 +252,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
     }
 
     if (finalOperation.error) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'VERTEX_VIDEO_GENERATION_FAILED',
         message: `Video generation failed: ${finalOperation.error.message}`,
       });
@@ -260,7 +260,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
 
     const response = finalOperation.response;
     if (!response?.videos || response.videos.length === 0) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'VERTEX_VIDEO_GENERATION_ERROR',
         message: `No videos in response. Response: ${JSON.stringify(finalOperation)}`,
       });
@@ -300,7 +300,7 @@ export class GoogleVertexVideoModel implements Experimental_VideoModelV4 {
     }
 
     if (videos.length === 0) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'VERTEX_VIDEO_GENERATION_ERROR',
         message: 'No valid videos in response',
       });

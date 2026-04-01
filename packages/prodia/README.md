@@ -1,6 +1,6 @@
 # AI SDK - Prodia Provider
 
-The **[Prodia provider](https://ai-sdk.dev/providers/ai-sdk-providers/prodia)** for the [AI SDK](https://ai-sdk.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
+The **[Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia)** for the [AI SDK](https://ai-toolkit.dev/docs) adds image model support for the [Prodia API](https://docs.prodia.com/).
 
 ## Setup
 
@@ -79,4 +79,4 @@ const prodia = createProdia({
 
 ## Documentation
 
-See the [Prodia provider](https://ai-sdk.dev/providers/ai-sdk-providers/prodia) for more information.
+See the [Prodia provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/prodia) for more information.

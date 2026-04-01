@@ -24,7 +24,7 @@
     "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm clean && tsup --watch",
     "clean": "rm -rf dist docs *.tsbuildinfo",
-    "prepack": "mkdir -p docs && cp ../../content/providers/01-ai-sdk-providers/170-huggingface.mdx ./docs/",
+    "prepack": "mkdir -p docs && cp ../../content/providers/01-ai-toolkit-providers/170-huggingface.mdx ./docs/",
     "postpack": "del-cli docs",
     "type-check": "tsc --build",
     "test": "pnpm test:node && pnpm test:edge",
@@ -63,7 +63,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://ai-sdk.dev/docs",
+  "homepage": "https://ai-toolkit.dev/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"

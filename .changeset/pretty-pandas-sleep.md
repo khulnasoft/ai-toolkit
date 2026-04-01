@@ -1,9 +1,9 @@
 ---
-'@ai-sdk/openai-compatible': patch
-'@ai-sdk/deepseek': patch
-'@ai-sdk/alibaba': patch
-'@ai-sdk/openai': patch
-'@ai-sdk/groq': patch
+'@ai-toolkit/openai-compatible': patch
+'@ai-toolkit/deepseek': patch
+'@ai-toolkit/alibaba': patch
+'@ai-toolkit/openai': patch
+'@ai-toolkit/groq': patch
 ---
 
 revert incorrect fix https://github.com/khulnasoft/ai/pull/13172

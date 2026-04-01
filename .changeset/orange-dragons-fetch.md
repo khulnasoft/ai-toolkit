@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/openai': patch
+'@ai-toolkit/openai': patch
 ---
 
 feat(openai): add new tool search tool

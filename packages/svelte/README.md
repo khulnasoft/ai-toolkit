@@ -1,9 +1,9 @@
 # AI SDK: Svelte provider
 
-[Svelte](https://svelte.dev/) UI components for the [AI SDK](https://ai-sdk.dev/docs):
+[Svelte](https://svelte.dev/) UI components for the [AI SDK](https://ai-toolkit.dev/docs):
 
-- [`Chat`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat)
-- [`Completion`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-completion)
-- [`StructuredObject`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-object)
+- [`Chat`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-chat)
+- [`Completion`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-completion)
+- [`StructuredObject`](https://ai-toolkit.dev/docs/reference/ai-toolkit-ui/use-object)
 
-For information on the few ways the Svelte APIs differ from the React ones, see [the docs](https://ai-sdk.dev/docs/getting-started/svelte#how-does-ai-sdksvelte-differ-from-ai-sdkreact)
+For information on the few ways the Svelte APIs differ from the React ones, see [the docs](https://ai-toolkit.dev/docs/getting-started/svelte#how-does-ai-toolkitsvelte-differ-from-ai-toolkitreact)

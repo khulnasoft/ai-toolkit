@@ -1,7 +1,7 @@
 ---
-'@ai-sdk/provider-utils': major
-'@ai-sdk/provider': major
-'@ai-sdk/xai': major
+'@ai-toolkit/provider-utils': major
+'@ai-toolkit/provider': major
+'@ai-toolkit/xai': major
 'ai': major
 ---
 

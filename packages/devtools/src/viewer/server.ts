@@ -267,7 +267,7 @@ export const startViewer = (port = 4983) => {
       );
       console.error(`   Open http://localhost:${port} in your browser.\n`);
       console.error(`   To use a different port, set AI_SDK_DEVTOOLS_PORT:\n`);
-      console.error(`   AI_SDK_DEVTOOLS_PORT=4984 npx ai-sdk-devtools\n`);
+      console.error(`   AI_SDK_DEVTOOLS_PORT=4984 npx ai-toolkit-devtools\n`);
       process.exit(1);
     }
     throw err;

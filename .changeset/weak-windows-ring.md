@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/assemblyai': patch
+'@ai-toolkit/assemblyai': patch
 ---
 
 chore(assembly-ai): update v3 specs to v4

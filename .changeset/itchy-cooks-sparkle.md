@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/provider': patch
+'@ai-toolkit/provider': patch
 ---
 
 fix(provider): fix v4 spec to not use shared v3 types

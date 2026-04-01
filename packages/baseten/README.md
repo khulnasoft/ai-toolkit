@@ -1,6 +1,6 @@
 # AI SDK - Baseten Provider
 
-The **[Baseten provider](https://ai-sdk.dev/providers/ai-sdk-providers/baseten)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
+The **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model and embedding model support for the [Baseten](https://baseten.co) platform.
 
 ## Setup
 
@@ -40,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Baseten provider](https://ai-sdk.dev/providers/ai-sdk-providers/baseten)** for more information.
+Please check out the **[Baseten provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/baseten)** for more information.

@@ -41,7 +41,7 @@ The AI SDK is the TypeScript toolkit designed to help developers build AI-powere
 
 The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
 
-At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Llama 3.1 (using [DeepInfra](https://deepinfra.com)) with the AI SDK:
+At the center of the AI SDK is [AI SDK Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Llama 3.1 (using [DeepInfra](https://deepinfra.com)) with the AI SDK:
 
 ```ts
 import { deepinfra } from '@ai-toolkit/deepinfra';
@@ -55,13 +55,13 @@ const { text } = await generateText({
 
 <Note>
   Llama 3.1 is available to use with many AI SDK providers including
-  [DeepInfra](/providers/ai-sdk-providers/deepinfra), [Amazon
-  Bedrock](/providers/ai-sdk-providers/amazon-bedrock),
-  [Baseten](/providers/ai-sdk-providers/baseten)
-  [Fireworks](/providers/ai-sdk-providers/fireworks), and more.
+  [DeepInfra](/providers/ai-toolkit-providers/deepinfra), [Amazon
+  Bedrock](/providers/ai-toolkit-providers/amazon-bedrock),
+  [Baseten](/providers/ai-toolkit-providers/baseten)
+  [Fireworks](/providers/ai-toolkit-providers/fireworks), and more.
 </Note>
 
-AI SDK Core abstracts away the differences between model providers, allowing you to focus on building great applications. Prefer to use [Amazon Bedrock](/providers/ai-sdk-providers/amazon-bedrock)? The unified interface also means that you can easily switch between models by changing just two lines of code.
+AI SDK Core abstracts away the differences between model providers, allowing you to focus on building great applications. Prefer to use [Amazon Bedrock](/providers/ai-toolkit-providers/amazon-bedrock)? The unified interface also means that you can easily switch between models by changing just two lines of code.
 
 ```tsx highlight="2,5"
 import { generateText } from 'ai';
@@ -75,7 +75,7 @@ const { text } = await generateText({
 
 ### Streaming the Response
 
-To stream the model's response as it's being generated, update your code snippet to use the [`streamText`](/docs/reference/ai-sdk-core/stream-text) function.
+To stream the model's response as it's being generated, update your code snippet to use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function.
 
 ```tsx
 import { streamText } from 'ai';
@@ -89,7 +89,7 @@ const { textStream } = streamText({
 
 ### Generating Structured Data
 
-While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamText`](/docs/reference/ai-sdk-core/stream-text) with `Output` to generate structured data, allowing you to constrain model outputs to a specific schema.
+While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text) with `Output` to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
 import { generateText, Output } from 'ai';
@@ -121,7 +121,7 @@ While LLMs have incredible generation capabilities, they struggle with discrete 
 
 ### Using Tools with the AI SDK
 
-The AI SDK supports tool usage across several of its functions, including [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamUI`](/docs/reference/ai-sdk-rsc/stream-ui). By passing one or more tools to the `tools` parameter, you can extend the capabilities of LLMs, allowing them to perform discrete tasks and interact with external systems.
+The AI SDK supports tool usage across several of its functions, including [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui). By passing one or more tools to the `tools` parameter, you can extend the capabilities of LLMs, allowing them to perform discrete tasks and interact with external systems.
 
 Here's an example of how you can use a tool with the AI SDK and Llama 3.1:
 
@@ -191,11 +191,11 @@ In this example, the agent can use the calculator tool multiple times if needed,
 
 ### Building Interactive Interfaces
 
-AI SDK Core can be paired with [AI SDK UI](/docs/ai-sdk-ui/overview), another powerful component of the AI SDK, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
+AI SDK Core can be paired with [AI SDK UI](/docs/ai-toolkit-ui/overview), another powerful component of the AI SDK, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
 
 AI SDK UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
 
-With four main hooks — [`useChat`](/docs/reference/ai-sdk-ui/use-chat), [`useCompletion`](/docs/reference/ai-sdk-ui/use-completion), and [`useObject`](/docs/reference/ai-sdk-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
+With four main hooks — [`useChat`](/docs/reference/ai-toolkit-ui/use-chat), [`useCompletion`](/docs/reference/ai-toolkit-ui/use-completion), and [`useObject`](/docs/reference/ai-toolkit-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
 
 Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI SDK, and Llama 3.1 (via [DeepInfra](https://deepinfra.com)):
 
@@ -268,9 +268,9 @@ This enables a seamless chat experience where the user can see the AI response a
 
 ### Going Beyond Text
 
-The AI SDK's React Server Components (RSC) API enables you to create rich, interactive interfaces that go beyond simple text generation. With the [`streamUI`](/docs/reference/ai-sdk-rsc/stream-ui) function, you can dynamically stream React components from the server to the client.
+The AI SDK's React Server Components (RSC) API enables you to create rich, interactive interfaces that go beyond simple text generation. With the [`streamUI`](/docs/reference/ai-toolkit-rsc/stream-ui) function, you can dynamically stream React components from the server to the client.
 
-Let's dive into how you can leverage tools with [AI SDK RSC](/docs/ai-sdk-rsc/overview) to build a generative user interface with Next.js (App Router).
+Let's dive into how you can leverage tools with [AI SDK RSC](/docs/ai-toolkit-rsc/overview) to build a generative user interface with Next.js (App Router).
 
 First, create a Server Action.
 
@@ -409,7 +409,7 @@ The AI SDK ensures that your application remains clean and modular, accelerating
 
 Ready to get started? Here's how you can dive in:
 
-1. Explore the documentation at [ai-sdk.dev/docs](/docs) to understand the full capabilities of the AI SDK.
-2. Check out practical examples at [ai-sdk.dev/examples](/examples) to see the SDK in action and get inspired for your own projects.
-3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [ai-sdk.dev/docs/guides](/cookbook/guides).
+1. Explore the documentation at [ai-toolkit.dev/docs](/docs) to understand the full capabilities of the AI SDK.
+2. Check out practical examples at [ai-toolkit.dev/examples](/examples) to see the SDK in action and get inspired for your own projects.
+3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) and multi-modal chat at [ai-toolkit.dev/docs/guides](/cookbook/guides).
 4. Check out ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

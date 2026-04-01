@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/xai': patch
+'@ai-toolkit/xai': patch
 ---
 
 add reasoningSummary to responses API provider options

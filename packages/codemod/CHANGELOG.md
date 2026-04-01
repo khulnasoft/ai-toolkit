@@ -128,7 +128,7 @@
 
 - 5dc1c62: fix(codemod): Language Model V2 Import
 
-  Migration: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#language-model-v2-import
+  Migration: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#language-model-v2-import
 
   Codemod behavior before the fix
 
@@ -325,7 +325,7 @@
 - b1d9efb: fix (packages/codemod): Only rename nanoid on import from 'ai'.
 - 29556ed: feat (packages/codemod): Add script to scaffold new codemod.
 - 575e7da: feat (packages/codemod): Add codemod to remove ExperimentalTool.
-- 94c51ae: fix (packages/codemod): Only replace ai-sdk provider ctors.
+- 94c51ae: fix (packages/codemod): Only replace ai-toolkit provider ctors.
 - 1931f4f: feat (providers/codemod): Add codemod to remove deprecated prov reg exports.
 - b183ed0: feat (packages/codemod): Improve error handling and logging.
 - 2523330: feat (package/codemod): Add codemod to replace roundtrips.
@@ -372,7 +372,7 @@
 ### Patch Changes
 
 - bffedb0: feat (packages/codemod): Improve codemod CLI logging.
-- 94c51ae: fix (packages/codemod): Only replace ai-sdk provider ctors.
+- 94c51ae: fix (packages/codemod): Only replace ai-toolkit provider ctors.
 
 ## 0.0.1-canary.3
 

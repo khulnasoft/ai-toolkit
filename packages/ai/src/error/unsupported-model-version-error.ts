@@ -1,9 +1,9 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 /**
  * Error that is thrown when a model with an unsupported version is used.
  */
-export class UnsupportedModelVersionError extends AISDKError {
+export class UnsupportedModelVersionError extends AITOOLKITError {
   readonly version: string;
   readonly provider: string;
   readonly modelId: string;

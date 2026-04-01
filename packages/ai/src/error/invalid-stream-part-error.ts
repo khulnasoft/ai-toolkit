@@ -1,11 +1,11 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import { ModelCallStreamPart } from '../generate-text/stream-model-call';
 
 const name = 'AI_InvalidStreamPartError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class InvalidStreamPartError extends AISDKError {
+export class InvalidStreamPartError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly chunk: ModelCallStreamPart<any>;
@@ -23,6 +23,6 @@ export class InvalidStreamPartError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is InvalidStreamPartError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

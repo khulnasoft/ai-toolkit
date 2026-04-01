@@ -1,6 +1,6 @@
 ---
-'@ai-sdk/google-vertex': patch
-'@ai-sdk/google': patch
+'@ai-toolkit/google-vertex': patch
+'@ai-toolkit/google': patch
 ---
 
 chore(google): update v3 specs to v4

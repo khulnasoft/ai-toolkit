@@ -1,4 +1,4 @@
-export { AISDKError } from './ai-sdk-error';
+export { AITOOLKITError } from './ai-toolkit-error';
 export { APICallError } from './api-call-error';
 export { EmptyResponseBodyError } from './empty-response-body-error';
 export { getErrorMessage } from './get-error-message';

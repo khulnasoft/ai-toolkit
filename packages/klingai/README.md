@@ -1,6 +1,6 @@
 # AI SDK - Kling AI Provider
 
-The **Kling AI provider** for the [AI SDK](https://ai-sdk.dev/docs) contains video model support for the [Kling AI API](https://app.klingai.com/global/dev/document-api/quickStart/productIntroduction/overview).
+The **Kling AI provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains video model support for the [Kling AI API](https://app.klingai.com/global/dev/document-api/quickStart/productIntroduction/overview).
 
 ## Setup
 

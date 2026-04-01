@@ -96,8 +96,8 @@ const { text } = await generateText({
 ```
 
 xAI language models can also be used in the `streamText` function
-and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output)
-(see [AI SDK Core](/docs/ai-sdk-core)).
+and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output)
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 ## Responses API (Agentic Tools)
 
@@ -467,7 +467,7 @@ The following provider options are available:
 
 ## Image Models
 
-You can create xAI image models using the `.image()` factory method. For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-sdk-core/generate-image).
+You can create xAI image models using the `.image()` factory method. For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
@@ -582,7 +582,7 @@ const { images } = await generateImage({
 ## Video Models
 
 You can create xAI video models using the `.video()` factory method.
-For more on video generation with the AI SDK see [generateVideo()](/docs/reference/ai-sdk-core/generate-video).
+For more on video generation with the AI SDK see [generateVideo()](/docs/reference/ai-toolkit-core/generate-video).
 
 This provider supports three video generation modes: text-to-video, image-to-video, and video editing.
 

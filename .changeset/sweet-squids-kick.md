@@ -1,5 +1,5 @@
 ---
-"@ai-sdk/rsc": patch
+"@ai-toolkit/rsc": patch
 "ai": patch
 ---
 

@@ -1,6 +1,6 @@
 # AI SDK Angular
 
-Angular UI components for the [AI SDK v6](https://ai-sdk.dev/docs).
+Angular UI components for the [AI SDK v6](https://ai-toolkit.dev/docs).
 
 ## Overview
 

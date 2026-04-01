@@ -22,14 +22,14 @@ prompt: |
   area labels:
   ai/core - core sdk apis such as generatetext, streamtext, generateobject, streamobject, tool calling, structured output, output, steps, and middleware.
   ai/ui - usechat, usecompletion, useassistant, uimessage, react ui hooks, and frontend streaming.
-  ai/rsc - @ai-sdk/rsc, createstreamableui, and createstreamablevalue.
-  ai/mcp - @ai-sdk/mcp and model context protocol integrations.
+  ai/rsc - @ai-toolkit/rsc, createstreamableui, and createstreamablevalue.
+  ai/mcp - @ai-toolkit/mcp and model context protocol integrations.
   ai/provider - provider packages, provider registry, provider utils, model specs, shared provider infrastructure, and provider-facing gateway work.
 
   provider labels:
   provider/openai, provider/anthropic, provider/google, provider/google-vertex, provider/azure, provider/amazon-bedrock, provider/xai, provider/mistral, provider/cohere, provider/groq, provider/deepseek, provider/fireworks, provider/togetherai, provider/perplexity, provider/replicate, provider/huggingface, provider/cerebras, provider/deepinfra, provider/baseten, provider/fal, provider/luma, provider/black-forest-labs, provider/gateway, provider/vercel, provider/assemblyai, provider/deepgram, provider/elevenlabs, provider/gladia, provider/hume, provider/lmnt, provider/revai, provider/openai-compatible, provider/community.
   use exactly the provider labels that match the issue or pr. if the issue is about the openai-compatible base rather than a specific provider, use provider/openai-compatible. if it is about a community-maintained provider, use provider/community.
-  use provider/openai for the official openai provider, the responses api, chat completions api, official openai docs, or @ai-sdk/openai.
+  use provider/openai for the official openai provider, the responses api, chat completions api, official openai docs, or @ai-toolkit/openai.
   use provider/openai-compatible only for the openai-compatible package, adapters built on that package, or third-party compatible backends such as litellm.
   if the report is about official openai behavior but references openai-compatible internals because that code path powers the implementation, still use provider/openai.
 
@@ -52,13 +52,13 @@ prompt: |
   if a report mentions a provider package name, provider option namespace, or provider model id like google-vertex:* or openai/*, add ai/provider plus the matching provider/* label even when the main area label is ai/core or ai/ui.
   gateway model ids like google/* inside ai gateway flows still need provider/gateway and the matching upstream provider label.
   issues about generatetext, streamtext, generateobject, output.object, tool loops, maxsteps, structured output, experimental_output, or tool calling should usually include ai/core unless the report is clearly about ai/ui or ai/rsc.
-  issues about @ai-sdk/gateway belong under ai/provider with provider/gateway.
+  issues about @ai-toolkit/gateway belong under ai/provider with provider/gateway.
   issues about generatetext, streamtext, tool calling, structured output, steps, or middleware usually belong to ai/core.
   issues about usechat, usecompletion, useassistant, or ui streaming usually belong to ai/ui.
-  issues about @ai-sdk/mcp or mcp tools belong to ai/mcp.
+  issues about @ai-toolkit/mcp or mcp tools belong to ai/mcp.
   issues about dynamictooluipart, mcp app rendering, tool ui parts, or frontend rendering of mcp tool results belong to ai/ui and ai/mcp together.
   mcp protocol mismatches, unsupported protocol version errors, and mcp connection failures are bug or support cases, not feature requests.
-  issues about @ai-sdk/rsc belong to ai/rsc.
+  issues about @ai-toolkit/rsc belong to ai/rsc.
   if the author is asking whether existing behavior is expected, asks "am i missing something", or asks "is there a reason" about current support, prefer support over feature.
   if a title sounds like a feature request but the body is mainly asking whether current support should already exist or whether behavior is expected, prefer support over feature.
   questions about accepted file types, supported inputs, current provider capabilities, or whether a provider should already support something are support unless the issue clearly asks to build a brand new capability.

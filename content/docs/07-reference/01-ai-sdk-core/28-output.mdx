@@ -5,7 +5,7 @@ description: API Reference for Output.
 
 # `Output`
 
-The `Output` object provides output specifications for structured data generation with [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamText`](/docs/reference/ai-sdk-core/stream-text). It allows you to specify the expected shape of the generated data and handles validation automatically.
+The `Output` object provides output specifications for structured data generation with [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text). It allows you to specify the expected shape of the generated data and handles validation automatically.
 
 ```ts
 import { generateText, Output } from 'ai';
@@ -311,7 +311,7 @@ An `Output<JSONValue, JSONValue>` specification that:
 
 ## Error Handling
 
-When `generateText` with structured output cannot generate a valid object, it throws a [`NoObjectGeneratedError`](/docs/reference/ai-sdk-errors/ai-no-object-generated-error).
+When `generateText` with structured output cannot generate a valid object, it throws a [`NoObjectGeneratedError`](/docs/reference/ai-toolkit-errors/ai-no-object-generated-error).
 
 ```ts
 import { generateText, Output, NoObjectGeneratedError } from 'ai';
@@ -335,8 +335,8 @@ try {
 
 ## See also
 
-- [Generating Structured Data](/docs/ai-sdk-core/generating-structured-data)
-- [`generateText()`](/docs/reference/ai-sdk-core/generate-text)
-- [`streamText()`](/docs/reference/ai-sdk-core/stream-text)
-- [`zod-schema`](/docs/reference/ai-sdk-core/zod-schema)
-- [`json-schema`](/docs/reference/ai-sdk-core/json-schema)
+- [Generating Structured Data](/docs/ai-toolkit-core/generating-structured-data)
+- [`generateText()`](/docs/reference/ai-toolkit-core/generate-text)
+- [`streamText()`](/docs/reference/ai-toolkit-core/stream-text)
+- [`zod-schema`](/docs/reference/ai-toolkit-core/zod-schema)
+- [`json-schema`](/docs/reference/ai-toolkit-core/json-schema)

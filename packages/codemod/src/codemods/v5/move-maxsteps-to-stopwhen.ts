@@ -70,7 +70,7 @@ export default createTransformer((fileInfo, api, options, context) => {
 
   function addUseChatComment(property: any) {
     const message =
-      'The maxSteps parameter has been removed from useChat. You should now use server-side `stopWhen` conditions for multi-step tool execution control. https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#maxsteps-removal';
+      'The maxSteps parameter has been removed from useChat. You should now use server-side `stopWhen` conditions for multi-step tool execution control. https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#maxsteps-removal';
     context.messages.push(`Not Implemented ${fileInfo.path}: ${message}`);
 
     insertCommentOnce(property, j, `${AI_SDK_CODEMOD_ERROR_PREFIX}${message}`);

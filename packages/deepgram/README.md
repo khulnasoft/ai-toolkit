@@ -1,6 +1,6 @@
 # AI SDK - Deepgram Provider
 
-The **[Deepgram provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[Deepgram provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains transcription model support for the Deepgram transcription API and speech model support for the Deepgram text-to-speech API.
 
 ## Setup
@@ -76,4 +76,4 @@ const { audio } = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Deepgram provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for more information.
+Please check out the **[Deepgram provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for more information.

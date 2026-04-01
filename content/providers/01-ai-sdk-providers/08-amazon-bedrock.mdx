@@ -198,7 +198,7 @@ The first argument is the model id, e.g. `meta.llama3-70b-instruct-v1:0`.
 const model = bedrock('meta.llama3-70b-instruct-v1:0');
 ```
 
-Amazon Bedrock models also support some model specific provider options that are not part of the [standard call settings](/docs/ai-sdk-core/settings).
+Amazon Bedrock models also support some model specific provider options that are not part of the [standard call settings](/docs/ai-toolkit-core/settings).
 You can pass them in the `providerOptions` argument:
 
 ```ts
@@ -229,7 +229,7 @@ const { text } = await generateText({
 ```
 
 Amazon Bedrock language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-sdk-core)).
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 ### File Inputs
 
@@ -511,7 +511,7 @@ console.log(amazonResult.reasoningText); // reasoning text
 console.log(amazonResult.text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-sdk-ui/chatbot#reasoning) for more details
+See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 ## Extended Context Window
@@ -1557,7 +1557,7 @@ console.log(reasoning); // reasoning details including redacted reasoning
 console.log(text); // text response
 ```
 
-See [AI SDK UI: Chatbot](/docs/ai-sdk-ui/chatbot#reasoning) for more details
+See [AI SDK UI: Chatbot](/docs/ai-toolkit-ui/chatbot#reasoning) for more details
 on how to integrate reasoning into your chatbot.
 
 ### Model Capabilities

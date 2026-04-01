@@ -200,9 +200,9 @@ class MyEchoAgent implements Agent {
 
 ## Usage: Interacting with Agents
 
-All SDK utilities that accept an agent—including [`createAgentUIStream`](/docs/reference/ai-sdk-core/create-agent-ui-stream), [`createAgentUIStreamResponse`](/docs/reference/ai-sdk-core/create-agent-ui-stream-response), and [`pipeAgentUIStreamToResponse`](/docs/reference/ai-sdk-core/pipe-agent-ui-stream-to-response)—expect an object adhering to the `Agent` interface.
+All SDK utilities that accept an agent—including [`createAgentUIStream`](/docs/reference/ai-toolkit-core/create-agent-ui-stream), [`createAgentUIStreamResponse`](/docs/reference/ai-toolkit-core/create-agent-ui-stream-response), and [`pipeAgentUIStreamToResponse`](/docs/reference/ai-toolkit-core/pipe-agent-ui-stream-to-response)—expect an object adhering to the `Agent` interface.
 
-You can use the official [`ToolLoopAgent`](/docs/reference/ai-sdk-core/tool-loop-agent) (recommended for multi-step AI workflows with tool use), or supply your own implementation:
+You can use the official [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent) (recommended for multi-step AI workflows with tool use), or supply your own implementation:
 
 ```ts
 import { ToolLoopAgent, createAgentUIStream } from "ai";
@@ -221,10 +221,10 @@ for await (const chunk of stream) {
 
 ## See Also
 
-- [`ToolLoopAgent`](/docs/reference/ai-sdk-core/tool-loop-agent) &mdash; Official multi-step agent implementation
-- [`createAgentUIStream`](/docs/reference/ai-sdk-core/create-agent-ui-stream)
-- [`GenerateTextResult`](/docs/reference/ai-sdk-core/generate-text)
-- [`StreamTextResult`](/docs/reference/ai-sdk-core/stream-text)
+- [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent) &mdash; Official multi-step agent implementation
+- [`createAgentUIStream`](/docs/reference/ai-toolkit-core/create-agent-ui-stream)
+- [`GenerateTextResult`](/docs/reference/ai-toolkit-core/generate-text)
+- [`StreamTextResult`](/docs/reference/ai-toolkit-core/stream-text)
 
 ## Notes
 

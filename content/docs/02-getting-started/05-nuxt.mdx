@@ -127,15 +127,15 @@ Let's take a look at what is happening in this code:
 
 1. Create a gateway provider instance with the `createGateway` function from the `ai` package.
 2. Define an Event Handler and extract `messages` from the body of the request. The `messages` variable contains a history of the conversation between you and the chatbot and provides the chatbot with the necessary context to make the next generation. The `messages` are of UIMessage type, which are designed for use in application UI - they contain the entire message history and associated metadata like timestamps.
-3. Call [`streamText`](/docs/reference/ai-sdk-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider (defined in step 1) and `messages` (defined in step 2). You can pass additional [settings](/docs/ai-sdk-core/settings) to further customize the model's behavior. The `messages` key expects a `ModelMessage[]` array. This type is different from `UIMessage` in that it does not include metadata, such as timestamps or sender information. To convert between these types, we use the `convertToModelMessages` function, which strips the UI-specific metadata and transforms the `UIMessage[]` array into the `ModelMessage[]` format that the model expects.
-4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-sdk-core/stream-text#result). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-sdk-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
+3. Call [`streamText`](/docs/reference/ai-toolkit-core/stream-text), which is imported from the `ai` package. This function accepts a configuration object that contains a `model` provider (defined in step 1) and `messages` (defined in step 2). You can pass additional [settings](/docs/ai-toolkit-core/settings) to further customize the model's behavior. The `messages` key expects a `ModelMessage[]` array. This type is different from `UIMessage` in that it does not include metadata, such as timestamps or sender information. To convert between these types, we use the `convertToModelMessages` function, which strips the UI-specific metadata and transforms the `UIMessage[]` array into the `ModelMessage[]` format that the model expects.
+4. The `streamText` function returns a [`StreamTextResult`](/docs/reference/ai-toolkit-core/stream-text#result). This result object contains the [ `toUIMessageStreamResponse` ](/docs/reference/ai-toolkit-core/stream-text#to-ui-message-stream-response) function which converts the result to a streamed response object.
 5. Return the result to the client to stream the response.
 
 ## Choosing a Provider
 
-The AI SDK supports dozens of model providers through [first-party](/providers/ai-sdk-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
+The AI SDK supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [ community ](/providers/community-providers) packages.
 
-This quickstart uses the [Vercel AI Gateway](https://vercel.com/ai-gateway) provider, which is the default [global provider](/docs/ai-sdk-core/provider-management#global-provider-configuration). This means you can access models using a simple string in the model configuration:
+This quickstart uses the [Vercel AI Gateway](https://vercel.com/ai-gateway) provider, which is the default [global provider](/docs/ai-toolkit-core/provider-management#global-provider-configuration). This means you can access models using a simple string in the model configuration:
 
 ```ts
 model: __MODEL__;
@@ -184,7 +184,7 @@ model: openai('gpt-5.1');
 
 ## Wire up the UI
 
-Now that you have an API route that can query an LLM, it's time to setup your frontend. The AI SDK's [ UI ](/docs/ai-sdk-ui/overview) package abstract the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-sdk-ui/use-chat).
+Now that you have an API route that can query an LLM, it's time to setup your frontend. The AI SDK's [ UI ](/docs/ai-toolkit-ui/overview) package abstract the complexity of a chat interface into one hook, [`useChat`](/docs/reference/ai-toolkit-ui/use-chat).
 
 Update your root page (`pages/index.vue`) with the following code to show a list of chat messages and provide a user message input:
 
@@ -246,7 +246,7 @@ Head to your browser and open http://localhost:3000. You should see an input fie
 
 ## Enhance Your Chatbot with Tools
 
-While large language models (LLMs) have incredible generation capabilities, they struggle with discrete tasks (e.g. mathematics) and interacting with the outside world (e.g. getting the weather). This is where [tools](/docs/ai-sdk-core/tools-and-tool-calling) come in.
+While large language models (LLMs) have incredible generation capabilities, they struggle with discrete tasks (e.g. mathematics) and interacting with the outside world (e.g. getting the weather). This is where [tools](/docs/ai-toolkit-core/tools-and-tool-calling) come in.
 
 Tools are actions that an LLM can invoke. The results of these actions can be reported back to the LLM to be considered in the next response.
 

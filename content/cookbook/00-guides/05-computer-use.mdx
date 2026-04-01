@@ -83,10 +83,10 @@ This reference implementation serves as a foundation to understand the requireme
 <Note>
   For a working example of Computer Use implementation with Next.js and the AI
   SDK, check out our [AI SDK Computer Use
-  Template](https://github.com/vercel-labs/ai-sdk-computer-use).
+  Template](https://github.com/vercel-labs/ai-toolkit-computer-use).
 </Note>
 
-First, ensure you have the AI SDK and [Anthropic AI SDK provider](/providers/ai-sdk-providers/anthropic) installed:
+First, ensure you have the AI SDK and [Anthropic AI SDK provider](/providers/ai-toolkit-providers/anthropic) installed:
 
 <Snippet text="pnpm add ai @ai-toolkit/anthropic" />
 
@@ -134,7 +134,7 @@ Finally, to send tool results back to the model, use the [`toModelOutput()`](/do
 
 ### Using Computer Tools with Text Generation
 
-Once your tool is defined, you can use it with both the [`generateText`](/docs/reference/ai-sdk-core/generate-text) and [`streamText`](/docs/reference/ai-sdk-core/stream-text) functions.
+Once your tool is defined, you can use it with both the [`generateText`](/docs/reference/ai-toolkit-core/generate-text) and [`streamText`](/docs/reference/ai-toolkit-core/stream-text) functions.
 
 For one-shot text generation, use `generateText`:
 

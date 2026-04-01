@@ -107,12 +107,12 @@ const { text } = await generateText({
 ```
 
 Fireworks language models can also be used in the `streamText` function
-(see [AI SDK Core](/docs/ai-sdk-core)).
+(see [AI SDK Core](/docs/ai-toolkit-core)).
 
 ### Provider Options
 
 Fireworks chat models support additional provider options that are not part of
-the [standard call settings](/docs/ai-sdk-core/settings). You can pass them in the `providerOptions` argument:
+the [standard call settings](/docs/ai-toolkit-core/settings). You can pass them in the `providerOptions` argument:
 
 ```ts
 import {
@@ -230,7 +230,7 @@ const { embedding } = await embed({
 ## Image Models
 
 You can create Fireworks image models using the `.image()` factory method.
-For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-sdk-core/generate-image).
+For more on image generation with the AI SDK see [generateImage()](/docs/reference/ai-toolkit-core/generate-image).
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';

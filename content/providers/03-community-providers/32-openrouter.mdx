@@ -18,21 +18,21 @@ Learn more about OpenRouter's capabilities in the [OpenRouter Documentation](htt
 
 ## Setup
 
-The OpenRouter provider is available in the `@openrouter/ai-sdk-provider` module. You can install it with:
+The OpenRouter provider is available in the `@openrouter/ai-toolkit-provider` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @openrouter/ai-sdk-provider" dark />
+    <Snippet text="pnpm add @openrouter/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @openrouter/ai-sdk-provider" dark />
+    <Snippet text="npm install @openrouter/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @openrouter/ai-sdk-provider" dark />
+    <Snippet text="yarn add @openrouter/ai-toolkit-provider" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @openrouter/ai-sdk-provider" dark />
+    <Snippet text="bun add @openrouter/ai-toolkit-provider" dark />
   </Tab>
 </Tabs>
 
@@ -41,7 +41,7 @@ The OpenRouter provider is available in the `@openrouter/ai-sdk-provider` module
 To create an OpenRouter provider instance, use the `createOpenRouter` function:
 
 ```typescript
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { createOpenRouter } from '@openrouter/ai-toolkit-provider';
 
 const openrouter = createOpenRouter({
   apiKey: 'YOUR_OPENROUTER_API_KEY',
@@ -73,7 +73,7 @@ Here are examples of using OpenRouter with the AI SDK:
 ### `generateText`
 
 ```javascript
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { createOpenRouter } from '@openrouter/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const openrouter = createOpenRouter({
@@ -91,7 +91,7 @@ console.log(text);
 ### `streamText`
 
 ```javascript
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { createOpenRouter } from '@openrouter/ai-toolkit-provider';
 import { streamText } from 'ai';
 
 const openrouter = createOpenRouter({
@@ -126,7 +126,7 @@ For more information about these features and advanced configuration options, vi
 
 ## Additional Resources
 
-- [OpenRouter Provider Repository](https://github.com/OpenRouterTeam/ai-sdk-provider)
+- [OpenRouter Provider Repository](https://github.com/OpenRouterTeam/ai-toolkit-provider)
 - [OpenRouter Documentation](https://openrouter.ai/docs)
 - [OpenRouter Dashboard](https://openrouter.ai/dashboard)
 - [OpenRouter Discord Community](https://discord.gg/openrouter)

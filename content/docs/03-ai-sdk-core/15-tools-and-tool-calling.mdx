@@ -9,12 +9,12 @@ As covered under Foundations, [tools](/docs/foundations/tools) are objects that 
 AI SDK Core tools contain several core elements:
 
 - **`description`**: An optional description of the tool that can influence when the tool is picked.
-- **`inputSchema`**: A [Zod schema](/docs/foundations/tools#schemas) or a [JSON schema](/docs/reference/ai-sdk-core/json-schema) that defines the input parameters. The schema is consumed by the LLM, and also used to validate the LLM tool calls.
+- **`inputSchema`**: A [Zod schema](/docs/foundations/tools#schemas) or a [JSON schema](/docs/reference/ai-toolkit-core/json-schema) that defines the input parameters. The schema is consumed by the LLM, and also used to validate the LLM tool calls.
 - **`execute`**: An optional async function that is called with the inputs from the tool call. It produces a value of type `RESULT` (generic type). It is optional because you might want to forward tool calls to the client or to a queue instead of executing them in the same process.
 - **`strict`**: _(optional, boolean)_ Enables strict tool calling when supported by the provider
 
 <Note className="mb-2">
-  You can use the [`tool`](/docs/reference/ai-sdk-core/tool) helper function to
+  You can use the [`tool`](/docs/reference/ai-toolkit-core/tool) helper function to
   infer the types of the `execute` parameters.
 </Note>
 
@@ -220,7 +220,7 @@ In this example, only transactions over $1000 require approval. Smaller transact
 
 ### Tool Execution Approval with useChat
 
-When using `useChat`, the approval flow is handled through UI state. See [Chatbot Tool Usage](/docs/ai-sdk-ui/chatbot-tool-usage#tool-execution-approval) for details on handling approvals in your UI with `addToolApprovalResponse`.
+When using `useChat`, the approval flow is handled through UI state. See [Chatbot Tool Usage](/docs/ai-toolkit-ui/chatbot-tool-usage#tool-execution-approval) for details on handling approvals in your UI with `addToolApprovalResponse`.
 
 ## Multi-Step Calls (using stopWhen)
 
@@ -805,9 +805,9 @@ async function generateSomething(prompt: string): Promise<{
 
 The AI SDK has three tool-call related errors:
 
-- [`NoSuchToolError`](/docs/reference/ai-sdk-errors/ai-no-such-tool-error): the model tries to call a tool that is not defined in the tools object
-- [`InvalidToolInputError`](/docs/reference/ai-sdk-errors/ai-invalid-tool-input-error): the model calls a tool with inputs that do not match the tool's input schema
-- [`ToolCallRepairError`](/docs/reference/ai-sdk-errors/ai-tool-call-repair-error): an error that occurred during tool call repair
+- [`NoSuchToolError`](/docs/reference/ai-toolkit-errors/ai-no-such-tool-error): the model tries to call a tool that is not defined in the tools object
+- [`InvalidToolInputError`](/docs/reference/ai-toolkit-errors/ai-invalid-tool-input-error): the model calls a tool with inputs that do not match the tool's input schema
+- [`ToolCallRepairError`](/docs/reference/ai-toolkit-errors/ai-tool-call-repair-error): an error that occurred during tool call repair
 
 When tool execution fails (errors thrown by your tool's `execute` function), the AI SDK adds them as `tool-error` content parts to enable automated LLM roundtrips in multi-step scenarios.
 
@@ -1110,7 +1110,7 @@ export const weatherTool = tool({
 The AI SDK supports connecting to Model Context Protocol (MCP) servers to access their tools.
 MCP enables your AI applications to discover and use tools across various services through a standardized interface.
 
-For detailed information about MCP tools, including initialization, transport options, and usage patterns, see the [MCP Tools documentation](/docs/ai-sdk-core/mcp-tools).
+For detailed information about MCP tools, including initialization, transport options, and usage patterns, see the [MCP Tools documentation](/docs/ai-toolkit-core/mcp-tools).
 
 ### AI SDK Tools vs MCP Tools
 

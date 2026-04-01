@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -169,7 +169,7 @@ export class FalVideoModel implements Experimental_VideoModelV4 {
 
     const responseUrl = queueResponse.response_url;
     if (!responseUrl) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'FAL_VIDEO_GENERATION_ERROR',
         message: 'No response URL returned from queue endpoint',
       });
@@ -232,7 +232,7 @@ export class FalVideoModel implements Experimental_VideoModelV4 {
       }
 
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'FAL_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation request timed out after ${pollTimeoutMs}ms`,
         });
@@ -241,7 +241,7 @@ export class FalVideoModel implements Experimental_VideoModelV4 {
       await delay(pollIntervalMs);
 
       if (options.abortSignal?.aborted) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'FAL_VIDEO_GENERATION_ABORTED',
           message: 'Video generation request was aborted',
         });
@@ -251,7 +251,7 @@ export class FalVideoModel implements Experimental_VideoModelV4 {
     const videoUrl = response.video?.url;
 
     if (!videoUrl || !response.video) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'FAL_VIDEO_GENERATION_ERROR',
         message: 'No video URL in response',
       });

@@ -5,7 +5,7 @@ description: Learn how to use the Codex CLI App Server provider for mid-executio
 
 # Codex CLI (App Server) Provider
 
-The [ai-sdk-provider-codex-app-server](https://github.com/pablof7z/ai-sdk-provider-codex-app-server) community provider enables using OpenAI's GPT-5 series models through the [Codex CLI](https://github.com/openai/codex) app-server mode. Unlike the standard Codex CLI provider, it supports **mid-execution message injection** and **persistent threads**.
+The [ai-toolkit-provider-codex-app-server](https://github.com/pablof7z/ai-toolkit-provider-codex-app-server) community provider enables using OpenAI's GPT-5 series models through the [Codex CLI](https://github.com/openai/codex) app-server mode. Unlike the standard Codex CLI provider, it supports **mid-execution message injection** and **persistent threads**.
 
 ## Key Features
 
@@ -24,16 +24,16 @@ The [ai-sdk-provider-codex-app-server](https://github.com/pablof7z/ai-sdk-provid
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add ai-sdk-provider-codex-app-server" dark />
+    <Snippet text="pnpm add ai-toolkit-provider-codex-app-server" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install ai-sdk-provider-codex-app-server" dark />
+    <Snippet text="npm install ai-toolkit-provider-codex-app-server" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add ai-sdk-provider-codex-app-server" dark />
+    <Snippet text="yarn add ai-toolkit-provider-codex-app-server" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add ai-sdk-provider-codex-app-server" dark />
+    <Snippet text="bun add ai-toolkit-provider-codex-app-server" dark />
   </Tab>
 </Tabs>
 
@@ -45,7 +45,7 @@ Import the default provider instance:
 import {
   createCodexAppServer,
   type Session,
-} from 'ai-sdk-provider-codex-app-server';
+} from 'ai-toolkit-provider-codex-app-server';
 
 let session: Session;
 
@@ -66,7 +66,7 @@ The killer feature of this provider is the ability to inject messages while the 
 import {
   createCodexAppServer,
   type Session,
-} from 'ai-sdk-provider-codex-app-server';
+} from 'ai-toolkit-provider-codex-app-server';
 import { streamText } from 'ai';
 
 let session: Session;
@@ -121,7 +121,7 @@ interface Session {
 Discover available models and their capabilities:
 
 ```ts
-import { listModels } from 'ai-sdk-provider-codex-app-server';
+import { listModels } from 'ai-toolkit-provider-codex-app-server';
 
 const { models, defaultModel } = await listModels();
 
@@ -207,4 +207,4 @@ Use the **Codex CLI provider** for simple one-shot tasks. Use the **Codex App Se
 - Codex CLI installed globally (v0.60.0+ recommended)
 - ChatGPT Plus/Pro subscription or OpenAI API key
 
-For more details, see the [provider documentation](https://github.com/pablof7z/ai-sdk-provider-codex-app-server).
+For more details, see the [provider documentation](https://github.com/pablof7z/ai-toolkit-provider-codex-app-server).

@@ -7,8 +7,8 @@ description: Overview of the AI and UI states
 
 <Note type="warning">
   AI SDK RSC is currently experimental. We recommend using [AI SDK
-  UI](/docs/ai-sdk-ui/overview) for production. For guidance on migrating from
-  RSC to UI, see our [migration guide](/docs/ai-sdk-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 State is an essential part of any application. State is particularly important in AI applications as it is passed to large language models (LLMs) on each request to ensure they have the necessary context to produce a great generation. Traditional chatbots are text-based and have a structure that mirrors that of any chat application.
@@ -54,9 +54,9 @@ UI State refers to the state of your application that is rendered on the client.
 
 AI SDK RSC simplifies managing AI and UI state across your application by providing several hooks. These hooks are powered by [ React context ](https://react.dev/reference/react/hooks#context-hooks) under the hood.
 
-Notably, this means you do not have to pass the message history to the server explicitly for each request. You also can access and update your application state in any child component of the context provider. As you begin building [multistep generative interfaces](/docs/ai-sdk-rsc/multistep-interfaces), this will be particularly helpful.
+Notably, this means you do not have to pass the message history to the server explicitly for each request. You also can access and update your application state in any child component of the context provider. As you begin building [multistep generative interfaces](/docs/ai-toolkit-rsc/multistep-interfaces), this will be particularly helpful.
 
-To use `@ai-toolkit/rsc` to manage AI and UI State in your application, you can create a React context using [`createAI`](/docs/reference/ai-sdk-rsc/create-ai):
+To use `@ai-toolkit/rsc` to manage AI and UI State in your application, you can create a React context using [`createAI`](/docs/reference/ai-toolkit-rsc/create-ai):
 
 ```tsx filename='app/actions.tsx'
 // Define the AI state and UI state types
@@ -119,7 +119,7 @@ export default function RootLayout({
 
 ## Reading UI State in Client
 
-The UI state can be accessed in Client Components using the [`useUIState`](/docs/reference/ai-sdk-rsc/use-ui-state) hook provided by the RSC API. The hook returns the current UI state and a function to update the UI state like React's `useState`.
+The UI state can be accessed in Client Components using the [`useUIState`](/docs/reference/ai-toolkit-rsc/use-ui-state) hook provided by the RSC API. The hook returns the current UI state and a function to update the UI state like React's `useState`.
 
 ```tsx filename='app/page.tsx'
 'use client';
@@ -141,7 +141,7 @@ export default function Page() {
 
 ## Reading AI State in Client
 
-The AI state can be accessed in Client Components using the [`useAIState`](/docs/reference/ai-sdk-rsc/use-ai-state) hook provided by the RSC API. The hook returns the current AI state.
+The AI state can be accessed in Client Components using the [`useAIState`](/docs/reference/ai-toolkit-rsc/use-ai-state) hook provided by the RSC API. The hook returns the current AI state.
 
 ```tsx filename='app/page.tsx'
 'use client';
@@ -163,7 +163,7 @@ export default function Page() {
 
 ## Reading AI State on Server
 
-The AI State can be accessed within any Server Action provided to the `createAI` context using the [`getAIState`](/docs/reference/ai-sdk-rsc/get-ai-state) function. It returns the current AI state as a read-only value:
+The AI State can be accessed within any Server Action provided to the `createAI` context using the [`getAIState`](/docs/reference/ai-toolkit-rsc/get-ai-state) function. It returns the current AI state as a read-only value:
 
 ```tsx filename='app/actions.ts'
 import { getAIState } from '@ai-toolkit/rsc';
@@ -189,7 +189,7 @@ export async function sendMessage(message: string) {
 
 ## Updating AI State on Server
 
-The AI State can also be updated from within your Server Action with the [`getMutableAIState`](/docs/reference/ai-sdk-rsc/get-mutable-ai-state) function. This function is similar to `getAIState`, but it returns the state with methods to read and update it:
+The AI State can also be updated from within your Server Action with the [`getMutableAIState`](/docs/reference/ai-toolkit-rsc/get-mutable-ai-state) function. This function is similar to `getAIState`, but it returns the state with methods to read and update it:
 
 ```tsx filename='app/actions.ts'
 import { getMutableAIState } from '@ai-toolkit/rsc';
@@ -221,7 +221,7 @@ export async function sendMessage(message: string) {
 
 ## Calling Server Actions from the Client
 
-To call the `sendMessage` action from the client, you can use the [`useActions`](/docs/reference/ai-sdk-rsc/use-actions) hook. The hook returns all the available Actions that were provided to `createAI`:
+To call the `sendMessage` action from the client, you can use the [`useActions`](/docs/reference/ai-toolkit-rsc/use-actions) hook. The hook returns all the available Actions that were provided to `createAI`:
 
 ```tsx filename='app/page.tsx'
 'use client';

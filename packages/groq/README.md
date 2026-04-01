@@ -1,6 +1,6 @@
 # AI SDK - Groq Provider
 
-The **[Groq provider](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[Groq provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/groq)** for the [AI SDK](https://ai-toolkit.dev/docs)
 contains language model support for the Groq chat and completion APIs, transcription support, and browser search tool.
 
 ## Setup
@@ -129,6 +129,6 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Groq provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/groq)** for more information.
+Please check out the **[Groq provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/groq)** for more information.
 
 For browser search details, see the **[Groq Browser Search Documentation](https://console.groq.com/docs/browser-search)**.

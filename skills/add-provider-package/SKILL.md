@@ -233,7 +233,7 @@ Add feature-specific examples as needed (e.g., `<provider>-tool-call.ts`, `<prov
 
 ### 11. Add Documentation
 
-Create documentation in `content/providers/01-ai-sdk-providers/<last number + 10>-<provider>.mdx`
+Create documentation in `content/providers/01-ai-toolkit-providers/<last number + 10>-<provider>.mdx`
 
 Include:
 
@@ -303,16 +303,16 @@ pnpm tsx src/stream-text/<provider>.ts
 
 ## Error Handling
 
-Errors should extend `AISDKError` from `@ai-toolkit/provider` and use a marker pattern:
+Errors should extend `AITOOLKITError` from `@ai-toolkit/provider` and use a marker pattern:
 
 ```typescript
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_ProviderError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class ProviderError extends AISDKError {
+export class ProviderError extends AITOOLKITError {
   private readonly [symbol] = true;
 
   constructor({ message, cause }: { message: string; cause?: unknown }) {
@@ -320,7 +320,7 @@ export class ProviderError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is ProviderError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }
 ```
@@ -341,7 +341,7 @@ If `main` is set up to publish `beta` releases, no further action is necessary. 
 - [ ] Unit tests written and passing
 - [ ] API response test fixtures captured
 - [ ] Examples created in `examples/ai-functions/src/`
-- [ ] Documentation added in `content/providers/01-ai-sdk-providers/`
+- [ ] Documentation added in `content/providers/01-ai-toolkit-providers/`
 - [ ] README.md written
 - [ ] Major changeset created
 - [ ] `pnpm update-references` run

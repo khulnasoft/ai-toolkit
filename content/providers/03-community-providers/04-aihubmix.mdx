@@ -9,17 +9,17 @@ The [Aihubmix](https://aihubmix.com/) provider contains unified access to multip
 
 ## Setup
 
-The Aihubmix provider is available in the `@aihubmix/ai-sdk-provider` module. You can install it with
+The Aihubmix provider is available in the `@aihubmix/ai-toolkit-provider` module. You can install it with
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @aihubmix/ai-sdk-provider" dark />
+    <Snippet text="pnpm add @aihubmix/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @aihubmix/ai-sdk-provider" dark />
+    <Snippet text="npm install @aihubmix/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @aihubmix/ai-sdk-provider" dark />
+    <Snippet text="yarn add @aihubmix/ai-toolkit-provider" dark />
   </Tab>
 </Tabs>
 
@@ -30,7 +30,7 @@ The Aihubmix provider is available in the `@aihubmix/ai-sdk-provider` module. Yo
 To create an Aihubmix provider instance, use the `createAihubmix` function:
 
 ```typescript
-import { createAihubmix } from '@aihubmix/ai-sdk-provider';
+import { createAihubmix } from '@aihubmix/ai-toolkit-provider';
 
 const aihubmix = createAihubmix({
   apiKey: 'AIHUBMIX_API_KEY',
@@ -51,7 +51,7 @@ AIHUBMIX_API_KEY=your_api_key_here
 Then import and use the pre-configured instance:
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ import { aihubmix } from '@aihubmix/ai-sdk-provider';
 ### Chat Completion
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -71,7 +71,7 @@ const { text } = await generateText({
 ### Claude Model
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -83,7 +83,7 @@ const { text } = await generateText({
 ### Gemini Model
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -95,7 +95,7 @@ const { text } = await generateText({
 ### Image Generation
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateImage } from 'ai';
 
 const { image } = await generateImage({
@@ -107,7 +107,7 @@ const { image } = await generateImage({
 ### Embeddings
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { embed } from 'ai';
 
 const { embedding } = await embed({
@@ -119,7 +119,7 @@ const { embedding } = await embed({
 ### Transcription
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { experimental_transcribe as transcribe } from 'ai';
 
 const { text } = await transcribe({
@@ -131,7 +131,7 @@ const { text } = await transcribe({
 ### Stream Text
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -155,7 +155,7 @@ console.log('Finish reason:', await result.finishReason);
 ### Structured Output
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 
@@ -186,7 +186,7 @@ console.log('Finish reason:', result.finishReason);
 ### Streaming Structured Output
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { streamText, Output } from 'ai';
 import { z } from 'zod';
 
@@ -220,7 +220,7 @@ console.log('Final object:', await result.output);
 ### Embed Many
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { embedMany } from 'ai';
 
 const { embeddings, usage } = await embedMany({
@@ -239,7 +239,7 @@ console.log('Usage:', usage);
 ### Speech Synthesis
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { experimental_generateSpeech as generateSpeech } from 'ai';
 
 const { audio } = await generateSpeech({
@@ -253,7 +253,7 @@ const { audio } = await generateSpeech({
 The Aihubmix provider supports various tools including web search:
 
 ```ts
-import { aihubmix } from '@aihubmix/ai-sdk-provider';
+import { aihubmix } from '@aihubmix/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({

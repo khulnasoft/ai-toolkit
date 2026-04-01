@@ -1,6 +1,6 @@
 # AI SDK - ByteDance Provider
 
-The **ByteDance provider** for the [AI SDK](https://ai-sdk.dev/docs) contains video model support for ByteDance's Seedance family of video generation models through the [BytePlus ModelArk](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API) platform.
+The **ByteDance provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains video model support for ByteDance's Seedance family of video generation models through the [BytePlus ModelArk](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API) platform.
 
 ## Setup
 
@@ -199,4 +199,4 @@ You can [obtain an API key](https://console.byteplus.com/ark/apiKey) from the By
 
 ## Documentation
 
-Please check out the **[ByteDance provider](https://ai-sdk.dev/providers/ai-sdk-providers/bytedance)** for more information.
+Please check out the **[ByteDance provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/bytedance)** for more information.

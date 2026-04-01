@@ -10,7 +10,7 @@ description: Learn how to use the useObject hook.
   and Vue.
 </Note>
 
-The [`useObject`](/docs/reference/ai-sdk-ui/use-object) hook allows you to create interfaces that represent a structured JSON object that is being streamed.
+The [`useObject`](/docs/reference/ai-toolkit-ui/use-object) hook allows you to create interfaces that represent a structured JSON object that is being streamed.
 
 In this guide, you will learn how to use the `useObject` hook in your application to generate UIs for structured data on the fly.
 
@@ -38,7 +38,7 @@ export const notificationSchema = z.object({
 
 ### Client
 
-The client uses [`useObject`](/docs/reference/ai-sdk-ui/use-object) to stream the object generation process.
+The client uses [`useObject`](/docs/reference/ai-toolkit-ui/use-object) to stream the object generation process.
 
 The results are partial and are displayed as they are received.
 Please note the code for handling `undefined` values in the JSX.
@@ -74,7 +74,7 @@ export default function Page() {
 
 ### Server
 
-On the server, we use [`streamText`](/docs/reference/ai-sdk-core/stream-text) with [`Output.object()`](/docs/reference/ai-sdk-core/output#output-object) to stream the object generation process.
+On the server, we use [`streamText`](/docs/reference/ai-toolkit-core/stream-text) with [`Output.object()`](/docs/reference/ai-toolkit-core/output#output-object) to stream the object generation process.
 
 ```typescript filename='app/api/notifications/route.ts'
 import { streamText, Output } from 'ai';

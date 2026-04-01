@@ -141,7 +141,7 @@ If you prefer a ready-to-use web search tool without building one from scratch, 
 First, install the Exa `webSearch` tool:
 
 ```bash
-pnpm install @exalabs/ai-sdk
+pnpm install @exalabs/ai-toolkit
 ```
 
 Then, you can import and pass it into `generateText`, `streamText`, or your agent:
@@ -149,7 +149,7 @@ Then, you can import and pass it into `generateText`, `streamText`, or your agen
 ```ts
 import { generateText, stepCountIs } from 'ai';
 __PROVIDER_IMPORT__;
-import { webSearch } from '@exalabs/ai-sdk';
+import { webSearch } from '@exalabs/ai-toolkit';
 
 const { text } = await generateText({
   model: __MODEL__,
@@ -172,7 +172,7 @@ For more configuration options and customization, see the [Exa AI SDK documentat
 First, install the Parallel Web AI SDK tools:
 
 ```bash
-pnpm install @parallel-web/ai-sdk-tools
+pnpm install @parallel-web/ai-toolkit-tools
 ```
 
 Then, you can import and pass the tools into `generateText`, `streamText`, or your agent. Parallel Web provides two tools: `searchTool` for web search and `extractTool` for extracting web page content:
@@ -180,7 +180,7 @@ Then, you can import and pass the tools into `generateText`, `streamText`, or yo
 ```ts
 import { generateText, stepCountIs } from 'ai';
 __PROVIDER_IMPORT__;
-import { searchTool, extractTool } from '@parallel-web/ai-sdk-tools';
+import { searchTool, extractTool } from '@parallel-web/ai-toolkit-tools';
 
 const { text } = await generateText({
   model: __MODEL__,
@@ -205,7 +205,7 @@ console.log(text);
 First, install the Perplexity Search tool:
 
 ```bash
-pnpm install @perplexity-ai/ai-sdk
+pnpm install @perplexity-ai/ai-toolkit
 ```
 
 Then, you can import and pass it into `generateText`, `streamText`, or your agent. Perplexity Search provides real-time web search with advanced filtering options including domain, language, date range, and recency filters:
@@ -213,7 +213,7 @@ Then, you can import and pass it into `generateText`, `streamText`, or your agen
 ```ts
 import { generateText, stepCountIs } from 'ai';
 __PROVIDER_IMPORT__;
-import { perplexitySearch } from '@perplexity-ai/ai-sdk';
+import { perplexitySearch } from '@perplexity-ai/ai-toolkit';
 
 const { text } = await generateText({
   model: __MODEL__,
@@ -239,7 +239,7 @@ For more configuration options and customization, see the [Perplexity Search API
 First, install the `tavilySearch` tool:
 
 ```bash
-pnpm install @tavily/ai-sdk
+pnpm install @tavily/ai-toolkit
 ```
 
 Then, you can import and pass it into `generateText`, `streamText`, or your agent:
@@ -247,7 +247,7 @@ Then, you can import and pass it into `generateText`, `streamText`, or your agen
 ```ts
 import { generateText, stepCountIs } from 'ai';
 __PROVIDER_IMPORT__;
-import { tavilySearch, tavilyExtract } from '@tavily/ai-sdk';
+import { tavilySearch, tavilyExtract } from '@tavily/ai-toolkit';
 
 const { text } = await generateText({
   model: __MODEL__,

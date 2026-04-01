@@ -8,18 +8,18 @@ description: Learn how to work with multiple providers and models
 When you work with multiple providers and models, it is often desirable to manage them in a central place
 and access the models through simple string ids.
 
-The AI SDK offers [custom providers](/docs/reference/ai-sdk-core/custom-provider) and
-a [provider registry](/docs/reference/ai-sdk-core/provider-registry) for this purpose:
+The AI SDK offers [custom providers](/docs/reference/ai-toolkit-core/custom-provider) and
+a [provider registry](/docs/reference/ai-toolkit-core/provider-registry) for this purpose:
 
 - With **custom providers**, you can pre-configure model settings, provide model name aliases,
   and limit the available models.
 - The **provider registry** lets you mix multiple providers and access them through simple string ids.
 
-You can mix and match custom providers, the provider registry, and [middleware](/docs/ai-sdk-core/middleware) in your application.
+You can mix and match custom providers, the provider registry, and [middleware](/docs/ai-toolkit-core/middleware) in your application.
 
 ## Custom Providers
 
-You can create a [custom provider](/docs/reference/ai-sdk-core/custom-provider) using `customProvider`.
+You can create a [custom provider](/docs/reference/ai-toolkit-core/custom-provider) using `customProvider`.
 
 ### Example: custom model settings
 
@@ -136,7 +136,7 @@ export const myProvider = customProvider({
 
 ## Provider Registry
 
-You can create a [provider registry](/docs/reference/ai-sdk-core/provider-registry) with multiple providers and models using `createProviderRegistry`.
+You can create a [provider registry](/docs/reference/ai-toolkit-core/provider-registry) with multiple providers and models using `createProviderRegistry`.
 
 ### Setup
 

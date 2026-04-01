@@ -58,7 +58,7 @@ jobs:
                    locked
                  }
                }
-               addDiscussionComment(input: {discussionId: $discussionId, body: "This discussion was automatically locked because it has not been updated in over 30 days. If you still have questions about this topic, please ask us at [community.vercel.com/ai-sdk](https://community.vercel.com/ai-sdk)"}) {
+               addDiscussionComment(input: {discussionId: $discussionId, body: "This discussion was automatically locked because it has not been updated in over 30 days. If you still have questions about this topic, please ask us at [community.vercel.com/ai-toolkit](https://community.vercel.com/ai-toolkit)"}) {
                  comment {
                    body
                  }

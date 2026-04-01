@@ -5,7 +5,7 @@ description: Learn how to use provider-specific options to control reasoning, ca
 
 # Provider Options
 
-Provider options let you pass provider-specific configuration that goes beyond the [standard settings](/docs/ai-sdk-core/settings) shared by all providers. They are set via the `providerOptions` property on functions like `generateText` and `streamText`.
+Provider options let you pass provider-specific configuration that goes beyond the [standard settings](/docs/ai-toolkit-core/settings) shared by all providers. They are set via the `providerOptions` property on functions like `generateText` and `streamText`.
 
 ```ts
 const result = await generateText({
@@ -23,7 +23,7 @@ Provider options are namespaced by the provider name (e.g. `openai`, `anthropic`
 
 <Note>
   For controlling reasoning effort, consider using the top-level [`reasoning`
-  parameter](/docs/ai-sdk-core/reasoning) instead of provider-specific options.
+  parameter](/docs/ai-toolkit-core/reasoning) instead of provider-specific options.
   It provides a portable setting that works across all providers that support
   reasoning. Use provider-specific options only when you need features like
   exact token budgets.
@@ -33,8 +33,8 @@ Provider options are namespaced by the provider name (e.g. `openai`, `anthropic`
 
 The sections below cover the most frequently used provider options, focusing on reasoning and output control for OpenAI and Anthropic. For a complete reference, see the individual provider pages:
 
-- [OpenAI provider options](/providers/ai-sdk-providers/openai)
-- [Anthropic provider options](/providers/ai-sdk-providers/anthropic)
+- [OpenAI provider options](/providers/ai-toolkit-providers/openai)
+- [Anthropic provider options](/providers/ai-toolkit-providers/anthropic)
 
 ---
 
@@ -287,7 +287,7 @@ const result = await generateText({
 
 ## Using Provider Options with the AI Gateway
 
-Provider options work the same way when using the [Vercel AI Gateway](/providers/ai-sdk-providers/ai-gateway). Use the underlying provider name (e.g. `openai`, `anthropic`) as the key — not `gateway`. The AI Gateway forwards these options to the target provider automatically.
+Provider options work the same way when using the [Vercel AI Gateway](/providers/ai-toolkit-providers/ai-gateway). Use the underlying provider name (e.g. `openai`, `anthropic`) as the key — not `gateway`. The AI Gateway forwards these options to the target provider automatically.
 
 ```ts
 import type { OpenAILanguageModelResponsesOptions } from '@ai-toolkit/openai';
@@ -328,7 +328,7 @@ const result = await generateText({
 });
 ```
 
-For more on gateway routing, fallbacks, and other gateway-specific options, see the [AI Gateway provider documentation](/providers/ai-sdk-providers/ai-gateway#provider-options).
+For more on gateway routing, fallbacks, and other gateway-specific options, see the [AI Gateway provider documentation](/providers/ai-toolkit-providers/ai-gateway#provider-options).
 
 ## Type Safety
 
@@ -341,5 +341,5 @@ import { type AnthropicLanguageModelOptions } from '@ai-toolkit/anthropic';
 
 For a full list of available options, see the provider-specific documentation:
 
-- [OpenAI Provider](/providers/ai-sdk-providers/openai)
-- [Anthropic Provider](/providers/ai-sdk-providers/anthropic)
+- [OpenAI Provider](/providers/ai-toolkit-providers/openai)
+- [Anthropic Provider](/providers/ai-toolkit-providers/anthropic)

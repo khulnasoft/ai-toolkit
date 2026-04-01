@@ -1,4 +1,4 @@
-import { AISDKError } from './ai-sdk-error';
+import { AITOOLKITError } from './ai-toolkit-error';
 import { getErrorMessage } from './get-error-message';
 
 const name = 'AI_TypeValidationError';
@@ -22,7 +22,7 @@ export interface TypeValidationContext {
   entityId?: string;
 }
 
-export class TypeValidationError extends AISDKError {
+export class TypeValidationError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly value: unknown;
@@ -70,7 +70,7 @@ export class TypeValidationError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is TypeValidationError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 
   /**

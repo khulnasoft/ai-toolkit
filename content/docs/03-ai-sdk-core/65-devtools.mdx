@@ -10,7 +10,7 @@ description: Debug and inspect AI SDK applications with DevTools
   not use in production environments.
 </Note>
 
-AI SDK DevTools gives you full visibility over your AI SDK calls with [`generateText`](/docs/reference/ai-sdk-core/generate-text), [`streamText`](/docs/reference/ai-sdk-core/stream-text), and [`ToolLoopAgent`](/docs/reference/ai-sdk-core/tool-loop-agent). It helps you debug and inspect LLM requests, responses, tool calls, and multi-step interactions through a web-based UI.
+AI SDK DevTools gives you full visibility over your AI SDK calls with [`generateText`](/docs/reference/ai-toolkit-core/generate-text), [`streamText`](/docs/reference/ai-toolkit-core/stream-text), and [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent). It helps you debug and inspect LLM requests, responses, tool calls, and multi-step interactions through a web-based UI.
 
 DevTools is composed of two parts:
 
@@ -34,7 +34,7 @@ pnpm add @ai-toolkit/devtools
 
 ### Add the middleware
 
-Wrap your language model with the DevTools middleware using [`wrapLanguageModel`](/docs/ai-sdk-core/middleware):
+Wrap your language model with the DevTools middleware using [`wrapLanguageModel`](/docs/ai-toolkit-core/middleware):
 
 ```ts
 import { wrapLanguageModel, gateway } from 'ai';
@@ -87,7 +87,7 @@ Multi-step interactions, such as those created by tool calling or agent loops, a
 
 ## How it works
 
-The DevTools middleware intercepts all `generateText` and `streamText` calls through the [language model middleware](/docs/ai-sdk-core/middleware) system. Captured data is stored locally in a JSON file (`.devtools/generations.json`) and served through a web UI built with Hono and React.
+The DevTools middleware intercepts all `generateText` and `streamText` calls through the [language model middleware](/docs/ai-toolkit-core/middleware) system. Captured data is stored locally in a JSON file (`.devtools/generations.json`) and served through a web UI built with Hono and React.
 
 <Note type="warning">
   The middleware automatically adds `.devtools` to your `.gitignore` file.

@@ -1,7 +1,7 @@
 {
   "name": "@ai-toolkit/angular",
   "version": "3.0.0-beta.45",
-  "description": "Angular implementation of ai-sdk.",
+  "description": "Angular implementation of ai-toolkit.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

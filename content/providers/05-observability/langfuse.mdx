@@ -16,7 +16,7 @@ description: Monitor, evaluate and debug your AI SDK application with Langfuse
 ## Setup
 
 The AI SDK supports tracing via OpenTelemetry. With the `LangfuseSpanProcessor` you can collect these traces in Langfuse.
-While telemetry is experimental ([docs](/docs/ai-sdk-core/telemetry#enabling-telemetry)), you can enable it by setting `experimental_telemetry` on each request that you want to trace.
+While telemetry is experimental ([docs](/docs/ai-toolkit-core/telemetry#enabling-telemetry)), you can enable it by setting `experimental_telemetry` on each request that you want to trace.
 
 ```ts highlight="4"
 const result = await generateText({
@@ -262,4 +262,4 @@ const result = await generateText({
   - [Prompt Management](https://langfuse.com/docs/prompts): Collaboratively manage and iterate on prompts, use them with low-latency in production.
   - [Evaluations](https://langfuse.com/docs/scores): Test the application holistically in development and production using user feedback, LLM-as-a-judge evaluators, manual reviews, or custom evaluation pipelines.
   - [Experiments](https://langfuse.com/docs/datasets): Iterate on prompts, models, and application design in a structured manner with datasets and evaluations.
-- For more information, see the [telemetry documentation](/docs/ai-sdk-core/telemetry) of the AI SDK.
+- For more information, see the [telemetry documentation](/docs/ai-toolkit-core/telemetry) of the AI SDK.

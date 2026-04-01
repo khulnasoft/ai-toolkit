@@ -1,6 +1,6 @@
 # AI SDK - Cohere Provider
 
-The **[Cohere provider](https://ai-sdk.dev/providers/ai-sdk-providers/cohere)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model support for the Cohere API.
+The **[Cohere provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/cohere)** for the [AI SDK](https://ai-toolkit.dev/docs) contains language model support for the Cohere API.
 
 ## Setup
 
@@ -40,4 +40,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[Cohere provider](https://ai-sdk.dev/providers/ai-sdk-providers/cohere)** for more information.
+Please check out the **[Cohere provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/cohere)** for more information.

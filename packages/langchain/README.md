@@ -1,6 +1,6 @@
 # AI SDK - LangChain Adapter
 
-The **[AI SDK](https://ai-sdk.dev)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI SDK, enabling you to use LangChain agents and graphs with AI SDK UI components.
+The **[AI SDK](https://ai-toolkit.dev)** LangChain adapter provides seamless integration between [LangChain](https://langchain.com/) and the AI SDK, enabling you to use LangChain agents and graphs with AI SDK UI components.
 
 ## Installation
 
@@ -270,4 +270,4 @@ A `ChatTransport` implementation for LangSmith/LangGraph deployments.
 
 ## Documentation
 
-Please check out the [AI SDK documentation](https://ai-sdk.dev) for more information.
+Please check out the [AI SDK documentation](https://ai-toolkit.dev) for more information.

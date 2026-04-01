@@ -1,14 +1,14 @@
 import { GatewayAuthenticationError } from '@ai-toolkit/gateway';
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 export function wrapGatewayError(error: unknown): unknown {
   if (!GatewayAuthenticationError.isInstance(error)) return error;
 
   const isProductionEnv = process?.env.NODE_ENV === 'production';
-  const moreInfoURL = 'https://ai-sdk.dev/unauthenticated-ai-gateway';
+  const moreInfoURL = 'https://ai-toolkit.dev/unauthenticated-ai-gateway';
 
   if (isProductionEnv) {
-    return new AISDKError({
+    return new AITOOLKITError({
       name: 'GatewayError',
       message: `Unauthenticated. Configure AI_GATEWAY_API_KEY or use a provider module. Learn more: ${moreInfoURL}`,
     });

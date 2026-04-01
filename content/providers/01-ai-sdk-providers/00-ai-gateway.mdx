@@ -62,8 +62,8 @@ import { gateway } from 'ai';
 You may want to create a custom provider instance when you need to:
 
 - Set custom configuration options (API key, base URL, headers)
-- Use the provider in a [provider registry](/docs/ai-sdk-core/provider-management)
-- Wrap the provider with [middleware](/docs/ai-sdk-core/middleware)
+- Use the provider in a [provider registry](/docs/ai-toolkit-core/provider-management)
+- Wrap the provider with [middleware](/docs/ai-toolkit-core/middleware)
 - Use different settings for different parts of your application
 
 To create a custom provider instance, import `createGateway` from `ai`:
@@ -174,7 +174,7 @@ const { text } = await generateText({
 });
 ```
 
-AI Gateway language models can also be used in the `streamText` function and support structured data generation with [`Output`](/docs/reference/ai-sdk-core/output) (see [AI SDK Core](/docs/ai-sdk-core)).
+AI Gateway language models can also be used in the `streamText` function and support structured data generation with [`Output`](/docs/reference/ai-toolkit-core/output) (see [AI SDK Core](/docs/ai-toolkit-core)).
 
 ## Available Models
 
@@ -374,7 +374,7 @@ const { text } = await generateText({
 
 ### Provider-Executed Tools
 
-Some providers offer tools that are executed by the provider itself, such as [OpenAI's web search tool](/providers/ai-sdk-providers/openai#web-search-tool). To use these tools through AI Gateway, import the provider to access the tool definitions:
+Some providers offer tools that are executed by the provider itself, such as [OpenAI's web search tool](/providers/ai-toolkit-providers/openai#web-search-tool). To use these tools through AI Gateway, import the provider to access the tool definitions:
 
 ```ts
 import { generateText, stepCountIs } from 'ai';
@@ -879,7 +879,7 @@ const { text } = await generateText({
 });
 ```
 
-This works with any provider supported by AI Gateway. Each provider has its own set of options - see the individual [provider documentation pages](/providers/ai-sdk-providers) for details on provider-specific options.
+This works with any provider supported by AI Gateway. Each provider has its own set of options - see the individual [provider documentation pages](/providers/ai-toolkit-providers) for details on provider-specific options.
 
 ### Available Providers
 
@@ -892,4 +892,4 @@ For a complete list of available providers and their slugs, see the [AI Gateway 
 Model capabilities depend on the specific provider and model you're using. For detailed capability information, see:
 
 - [AI Gateway provider options](https://vercel.com/docs/ai-gateway/provider-options#available-providers) for an overview of available providers
-- Individual [AI SDK provider pages](/providers/ai-sdk-providers) for specific model capabilities and features
+- Individual [AI SDK provider pages](/providers/ai-toolkit-providers) for specific model capabilities and features

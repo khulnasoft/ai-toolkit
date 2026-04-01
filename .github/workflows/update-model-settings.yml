@@ -103,7 +103,7 @@ jobs:
 
           cat > "$CHANGESET_FILE" << EOF
           ---
-          '@ai-sdk/gateway': patch
+          '@ai-toolkit/gateway': patch
           ---
 
           $CHANGESET_TITLE

@@ -1,6 +1,6 @@
 # AI SDK, Next.js, LangChain, OpenAI Examples
 
-This example demonstrates how to use the [AI SDK](https://ai-sdk.dev/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
+This example demonstrates how to use the [AI SDK](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org/), [LangChain](https://js.langchain.com), [LangGraph](https://langchain-ai.github.io/langgraph/), and [OpenAI](https://openai.com) to create AI-powered streaming applications.
 
 ## Examples Included
 
@@ -131,7 +131,7 @@ Connect directly to a LangGraph app from the browser using `LangSmithDeploymentT
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-sdk-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-toolkit-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-langchain&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=ai-chat-langchain&repository-name=next-ai-chat-langchain)
 
@@ -347,8 +347,8 @@ For most LangGraph applications, `graph.stream()` with appropriate `streamMode` 
 
 To learn more about LangChain, LangGraph, OpenAI, Next.js, and the AI SDK take a look at the following resources:
 
-- [AI SDK docs](https://ai-sdk.dev/docs) - learn more about the AI SDK
-- [Vercel AI Playground](https://ai-sdk.dev/playground) - compare and tune 20+ AI models side-by-side
+- [AI SDK docs](https://ai-toolkit.dev/docs) - learn more about the AI SDK
+- [Vercel AI Playground](https://ai-toolkit.dev/playground) - compare and tune 20+ AI models side-by-side
 - [LangChain Documentation](https://js.langchain.com/docs) - learn about LangChain
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) - learn about LangGraph
 - [LangSmith Documentation](https://docs.smith.langchain.com/) - learn about LangSmith deployments

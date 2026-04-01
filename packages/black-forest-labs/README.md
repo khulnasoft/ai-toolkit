@@ -1,6 +1,6 @@
 # AI SDK - Black Forest Labs Provider
 
-The **[Black Forest Labs provider](https://ai-sdk.dev/providers/ai-sdk-providers/black-forest-labs)** for the [AI SDK](https://ai-sdk.dev/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
+The **[Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs)** for the [AI SDK](https://ai-toolkit.dev/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
 
 ## Setup
 
@@ -114,4 +114,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-See the [Black Forest Labs provider](https://ai-sdk.dev/providers/ai-sdk-providers/black-forest-labs) for more information.
+See the [Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs) for more information.

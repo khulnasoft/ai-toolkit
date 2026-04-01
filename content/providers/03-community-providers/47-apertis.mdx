@@ -19,13 +19,13 @@ description: Apertis AI Provider for the AI SDK
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>
-    <Snippet text="pnpm add @apertis/ai-sdk-provider" dark />
+    <Snippet text="pnpm add @apertis/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @apertis/ai-sdk-provider" dark />
+    <Snippet text="npm install @apertis/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @apertis/ai-sdk-provider" dark />
+    <Snippet text="yarn add @apertis/ai-toolkit-provider" dark />
   </Tab>
 </Tabs>
 
@@ -34,13 +34,13 @@ description: Apertis AI Provider for the AI SDK
 You can import the default `apertis` provider instance or create a custom one:
 
 ```ts
-import { apertis } from '@apertis/ai-sdk-provider';
+import { apertis } from '@apertis/ai-toolkit-provider';
 ```
 
 Or create a custom instance with your API key:
 
 ```ts
-import { createApertis } from '@apertis/ai-sdk-provider';
+import { createApertis } from '@apertis/ai-toolkit-provider';
 
 const apertis = createApertis({
   apiKey: process.env.APERTIS_API_KEY,
@@ -85,7 +85,7 @@ const embeddingModel = apertis.textEmbeddingModel('text-embedding-3-small');
 ### Generate Text
 
 ```ts
-import { apertis } from '@apertis/ai-sdk-provider';
+import { apertis } from '@apertis/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -97,7 +97,7 @@ const { text } = await generateText({
 ### Stream Text
 
 ```ts
-import { apertis } from '@apertis/ai-sdk-provider';
+import { apertis } from '@apertis/ai-toolkit-provider';
 import { streamText } from 'ai';
 
 const { textStream } = await streamText({
@@ -113,7 +113,7 @@ for await (const chunk of textStream) {
 ### Generate Embeddings
 
 ```ts
-import { apertis } from '@apertis/ai-sdk-provider';
+import { apertis } from '@apertis/ai-toolkit-provider';
 import { embed } from 'ai';
 
 const { embedding } = await embed({

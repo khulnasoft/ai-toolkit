@@ -11,19 +11,19 @@ jobs:
     steps:
       - name: debug
         run: cat $GITHUB_EVENT_PATH
-      - name: Check if ai-sdk team was requested
+      - name: Check if ai-toolkit team was requested
         id: check_team
         run: |
           echo "Checking requested teams..."
           teams='${{ toJson(github.event.pull_request.requested_teams) }}'
 
-          # Check if ai-sdk team is in the requested teams
-          if echo "$teams" | jq -e '.[] | select(.slug == "ai-sdk")' > /dev/null; then
+          # Check if ai-toolkit team is in the requested teams
+          if echo "$teams" | jq -e '.[] | select(.slug == "ai-toolkit")' > /dev/null; then
             echo "ai_sdk_requested=true" >> $GITHUB_OUTPUT
-            echo "✅ ai-sdk team was requested for review"
+            echo "✅ ai-toolkit team was requested for review"
           else
             echo "ai_sdk_requested=false" >> $GITHUB_OUTPUT
-            echo "❌ ai-sdk team was not requested for review"
+            echo "❌ ai-toolkit team was not requested for review"
           fi
 
       - name: Send Slack notification

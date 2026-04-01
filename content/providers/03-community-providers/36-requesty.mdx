@@ -19,21 +19,21 @@ Learn more about Requesty's capabilities in the [Requesty Documentation](https:/
 
 ## Setup
 
-The Requesty provider is available in the `@requesty/ai-sdk` module. You can install it with:
+The Requesty provider is available in the `@requesty/ai-toolkit` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @requesty/ai-sdk" dark />
+    <Snippet text="pnpm add @requesty/ai-toolkit" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @requesty/ai-sdk" dark />
+    <Snippet text="npm install @requesty/ai-toolkit" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @requesty/ai-sdk" dark />
+    <Snippet text="yarn add @requesty/ai-toolkit" dark />
   </Tab>
 
   <Tab>
-    <Snippet text="bun add @requesty/ai-sdk" dark />
+    <Snippet text="bun add @requesty/ai-toolkit" dark />
   </Tab>
 </Tabs>
 
@@ -56,16 +56,16 @@ You can obtain your Requesty API key from the [Requesty Dashboard](https://app.r
 
 ## Provider Instance
 
-You can import the default provider instance `requesty` from `@requesty/ai-sdk`:
+You can import the default provider instance `requesty` from `@requesty/ai-toolkit`:
 
 ```typescript
-import { requesty } from '@requesty/ai-sdk';
+import { requesty } from '@requesty/ai-toolkit';
 ```
 
 Alternatively, you can create a custom provider instance using `createRequesty`:
 
 ```typescript
-import { createRequesty } from '@requesty/ai-sdk';
+import { createRequesty } from '@requesty/ai-toolkit';
 
 const customRequesty = createRequesty({
   apiKey: 'YOUR_REQUESTY_API_KEY',
@@ -93,7 +93,7 @@ Here are examples of using Requesty with the AI SDK:
 ### `generateText`
 
 ```javascript
-import { requesty } from '@requesty/ai-sdk';
+import { requesty } from '@requesty/ai-toolkit';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -107,7 +107,7 @@ console.log(text);
 ### `streamText`
 
 ```javascript
-import { requesty } from '@requesty/ai-sdk';
+import { requesty } from '@requesty/ai-toolkit';
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -123,7 +123,7 @@ for await (const chunk of result.textStream) {
 ### Structured Output
 
 ```javascript
-import { requesty } from '@requesty/ai-sdk';
+import { requesty } from '@requesty/ai-toolkit';
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 
@@ -151,7 +151,7 @@ console.log(output.recipe);
 Requesty provides advanced reasoning capabilities with configurable effort levels for supported models:
 
 ```javascript
-import { createRequesty } from '@requesty/ai-sdk';
+import { createRequesty } from '@requesty/ai-toolkit';
 import { generateText } from 'ai';
 
 const requesty = createRequesty({ apiKey: process.env.REQUESTY_API_KEY });
@@ -187,7 +187,7 @@ console.log('Reasoning:', reasoning);
 Configure Requesty with custom settings:
 
 ```javascript
-import { createRequesty } from '@requesty/ai-sdk';
+import { createRequesty } from '@requesty/ai-toolkit';
 
 const requesty = createRequesty({
   apiKey: process.env.REQUESTY_API_KEY,
@@ -270,7 +270,7 @@ Requesty offers several enterprise-grade features:
 
 ## Additional Resources
 
-- [Requesty Provider Repository](https://github.com/requestyai/ai-sdk-requesty)
+- [Requesty Provider Repository](https://github.com/requestyai/ai-toolkit-requesty)
 - [Requesty Documentation](https://docs.requesty.ai/)
 - [Requesty Dashboard](https://app.requesty.ai/analytics)
 - [Requesty Discord Community](https://discord.com/invite/Td3rwAHgt4)

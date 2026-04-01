@@ -9,7 +9,7 @@ This guide helps you migrate from AI SDK RSC to AI SDK UI.
 
 ## Background
 
-The AI SDK has two packages that help you build the frontend for your applications – [AI SDK UI](/docs/ai-sdk-ui) and [AI SDK RSC](/docs/ai-sdk-rsc).
+The AI SDK has two packages that help you build the frontend for your applications – [AI SDK UI](/docs/ai-toolkit-ui) and [AI SDK RSC](/docs/ai-toolkit-rsc).
 
 We introduced support for using [React Server Components](https://react.dev/reference/rsc/server-components) (RSC) within the AI SDK to simplify building generative user interfaces for frameworks that support RSC.
 
@@ -25,7 +25,7 @@ Due to these limitations, AI SDK RSC is marked as experimental, and we do not re
 
 As a result, we strongly recommend migrating to AI SDK UI, which has undergone extensive development to provide a more stable and production grade experience.
 
-In building [v0](https://v0.dev), we have invested considerable time exploring how to create the best chat experience on the web. AI SDK UI ships with many of these best practices and commonly used patterns like [language model middleware](/docs/ai-sdk-core/middleware), [multi-step tool calls](/docs/ai-sdk-core/tools-and-tool-calling#multi-step-calls), [attachments](/docs/ai-sdk-ui/chatbot#attachments-experimental), [telemetry](/docs/ai-sdk-core/telemetry), [provider registry](/docs/ai-sdk-core/provider-management#provider-registry), and many more. These features have been considerately designed into a neat abstraction that you can use to reliably integrate AI into your applications.
+In building [v0](https://v0.dev), we have invested considerable time exploring how to create the best chat experience on the web. AI SDK UI ships with many of these best practices and commonly used patterns like [language model middleware](/docs/ai-toolkit-core/middleware), [multi-step tool calls](/docs/ai-toolkit-core/tools-and-tool-calling#multi-step-calls), [attachments](/docs/ai-toolkit-ui/chatbot#attachments-experimental), [telemetry](/docs/ai-toolkit-core/telemetry), [provider registry](/docs/ai-toolkit-core/provider-management#provider-registry), and many more. These features have been considerately designed into a neat abstraction that you can use to reliably integrate AI into your applications.
 
 ## Streaming Chat Completions
 

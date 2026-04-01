@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_UIMessageStreamError';
 const marker = `vercel.ai.error.${name}`;
@@ -12,9 +12,9 @@ const symbol = Symbol.for(marker);
  * - An end chunk is received without a corresponding start chunk
  * - A tool invocation is not found for the given toolCallId
  *
- * @see https://ai-sdk.dev/docs/reference/ai-sdk-errors/ai-ui-message-stream-error
+ * @see https://ai-toolkit.dev/docs/reference/ai-toolkit-errors/ai-ui-message-stream-error
  */
-export class UIMessageStreamError extends AISDKError {
+export class UIMessageStreamError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   /**
@@ -43,6 +43,6 @@ export class UIMessageStreamError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is UIMessageStreamError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

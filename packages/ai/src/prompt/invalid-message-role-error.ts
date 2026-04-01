@@ -1,10 +1,10 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_InvalidMessageRoleError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class InvalidMessageRoleError extends AISDKError {
+export class InvalidMessageRoleError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly role: string;
@@ -22,6 +22,6 @@ export class InvalidMessageRoleError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is InvalidMessageRoleError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

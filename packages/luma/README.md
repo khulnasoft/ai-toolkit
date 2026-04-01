@@ -1,6 +1,6 @@
 # AI SDK - Luma Provider
 
-The **Luma provider** for the [AI SDK](https://ai-sdk.dev/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
+The **Luma provider** for the [AI SDK](https://ai-toolkit.dev/docs) contains support for Luma AI's state-of-the-art image generation models - Photon and Photon Flash.
 
 ## About Luma Photon Models
 
@@ -57,4 +57,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Luma provider](https://ai-sdk.dev/providers/ai-sdk-providers/luma)** for more information.
+Please check out the **[Luma provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/luma)** for more information.

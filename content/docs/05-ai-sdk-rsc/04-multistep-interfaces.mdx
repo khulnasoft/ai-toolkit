@@ -7,8 +7,8 @@ description: Overview of Building Multistep Interfaces with AI SDK RSC
 
 <Note type="warning">
   AI SDK RSC is currently experimental. We recommend using [AI SDK
-  UI](/docs/ai-sdk-ui/overview) for production. For guidance on migrating from
-  RSC to UI, see our [migration guide](/docs/ai-sdk-rsc/migrating-to-ui).
+  UI](/docs/ai-toolkit-ui/overview) for production. For guidance on migrating from
+  RSC to UI, see our [migration guide](/docs/ai-toolkit-rsc/migrating-to-ui).
 </Note>
 
 Multistep interfaces refer to user interfaces that require multiple independent steps to be executed in order to complete a specific task.
@@ -21,7 +21,7 @@ For example, if you wanted to build a Generative UI chatbot capable of booking f
 
 To build this kind of application you will leverage two concepts, **tool composition** and **application context**.
 
-**Tool composition** is the process of combining multiple [tools](/docs/ai-sdk-core/tools-and-tool-calling) to create a new tool. This is a powerful concept that allows you to break down complex tasks into smaller, more manageable steps. In the example above, _"search all flights"_, _"pick flight"_, and _"check availability"_ come together to create a holistic _"book flight"_ tool.
+**Tool composition** is the process of combining multiple [tools](/docs/ai-toolkit-core/tools-and-tool-calling) to create a new tool. This is a powerful concept that allows you to break down complex tasks into smaller, more manageable steps. In the example above, _"search all flights"_, _"pick flight"_, and _"check availability"_ come together to create a holistic _"book flight"_ tool.
 
 **Application context** refers to the state of the application at any given point in time. This includes the user's input, the output of the language model, and any other relevant information. In the example above, the flight selected in _"pick flight"_ would be used as context necessary to complete the _"check availability"_ task.
 
