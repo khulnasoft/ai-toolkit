@@ -1108,7 +1108,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -2131,7 +2131,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 
