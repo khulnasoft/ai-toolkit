@@ -1,13 +1,13 @@
 # AGENTS.md
 
-This file provides context for AI coding assistants (Cursor, GitHub Copilot, Claude Code, etc.) working with the Vercel AI SDK repository.
+This file provides context for AI coding assistants (Cursor, GitHub Copilot, Claude Code, etc.) working with the Vercel AI TOOLKIT repository.
 
 ## Project Overview
 
-The **AI SDK** by Vercel is a TypeScript/JavaScript SDK for building AI-powered applications with Large Language Models (LLMs). It provides a unified interface for multiple AI providers and framework integrations.
+The **AI TOOLKIT** by Vercel is a TypeScript/JavaScript SDK for building AI-powered applications with Large Language Models (LLMs). It provides a unified interface for multiple AI providers and framework integrations.
 
 - **Repository**: https://github.com/khulnasoft/ai-toolkit
-- **Documentation**: https://ai-sdk.dev/docs
+- **Documentation**: https://ai-toolkit.dev/docs
 - **License**: Apache-2.0
 
 ## Repository Structure
@@ -171,16 +171,16 @@ This ensures your changes don't introduce type errors across the codebase, inclu
 
 ## Error Pattern
 
-Errors extend `AISDKError` from `@ai-toolkit/provider` and use a marker pattern for `instanceof` checks:
+Errors extend `AITOOLKITError` from `@ai-toolkit/provider` and use a marker pattern for `instanceof` checks:
 
 ```typescript
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_MyError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class MyError extends AISDKError {
+export class MyError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   constructor({ message, cause }: { message: string; cause?: unknown }) {
@@ -188,7 +188,7 @@ export class MyError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is MyError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }
 ```

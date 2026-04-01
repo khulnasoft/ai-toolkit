@@ -1,6 +1,6 @@
-# AI SDK Angular
+# AI TOOLKIT Angular
 
-Angular UI components for the [AI SDK v6](https://ai-sdk.dev/docs).
+Angular UI components for the [AI TOOLKIT v6](https://ai-toolkit.dev/docs).
 
 ## Overview
 
@@ -487,7 +487,7 @@ structuredObject.stop();
 
 ## Server Implementation
 
-When you pass a string model ID (for example `openai/gpt-5.4`), the AI SDK uses
+When you pass a string model ID (for example `openai/gpt-5.4`), the AI TOOLKIT uses
 AI Gateway as the default provider, so no provider import is required.
 
 ### Express.js Chat Endpoint

@@ -6,7 +6,7 @@ import { run } from '../../lib/run';
 run(async () => {
   const result = await generateSpeech({
     model: lmnt.speech('aurora'),
-    text: 'Hola desde el AI SDK!',
+    text: 'Hola desde el AI TOOLKIT!',
     language: 'es', // Spanish using standardized parameter
   });
 

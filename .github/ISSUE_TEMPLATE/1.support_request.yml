@@ -1,5 +1,5 @@
 name: Support Request
-description: Report a bug, feature request or other issue with the AI SDK.
+description: Report a bug, feature request or other issue with the AI TOOLKIT.
 labels: ['support']
 body:
   - type: markdown
@@ -16,13 +16,13 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: AI SDK Version
-      description: Which version of the AI SDK are you using?
+      label: AI TOOLKIT Version
+      description: Which version of the AI TOOLKIT are you using?
       placeholder: |
         Examples:
         - ai: 4.1.2
         - @ai-toolkit/react: 2.1.0
-        - @ai-sdk/openai: 0.5.2
+        - @ai-toolkit/openai: 0.5.2
     validations:
       required: false
   - type: checkboxes

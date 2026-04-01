@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/revai': patch
+'@ai-toolkit/revai': patch
 ---
 
 chore(provider/revai): update provider to use v4 types

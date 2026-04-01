@@ -1,6 +1,6 @@
-# AI SDK - Valibot Schema Support
+# AI TOOLKIT - Valibot Schema Support
 
-Allows you to use [Valibot](https://valibot.dev/) schemas with AI SDK.
+Allows you to use [Valibot](https://valibot.dev/) schemas with AI TOOLKIT.
 
 The `valibotSchema` function supports both validation and JSON schema conversion
 for Valibot schemas.

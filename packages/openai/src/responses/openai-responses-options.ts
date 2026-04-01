@@ -133,7 +133,7 @@ export type OpenAIResponsesModelId =
   | 'o4-mini-2025-04-16'
   | (string & {});
 
-// TODO AI SDK 6: use optional here instead of nullish
+// TODO AI TOOLKIT 6: use optional here instead of nullish
 export const openaiLanguageModelResponsesOptionsSchema = lazySchema(() =>
   zodSchema(
     z.object({

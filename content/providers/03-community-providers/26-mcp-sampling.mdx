@@ -5,14 +5,14 @@ description: Learn how to use the MCP Sampling AI Provider.
 
 # MCP Sampling AI Provider
 
-The [MCP Sampling AI Provider](https://github.com/mcpc-tech/mcpc/tree/main/packages/mcp-sampling-ai-provider) allows MCP servers to use AI models through the AI SDK by leveraging your existing client subscriptions (like VS Code Copilot). This transforms your MCP server into an agentic tool that can reason and make decisions, without requiring separate API keys or subscriptions.
+The [MCP Sampling AI Provider](https://github.com/mcpc-tech/mcpc/tree/main/packages/mcp-sampling-ai-provider) allows MCP servers to use AI models through the AI TOOLKIT by leveraging your existing client subscriptions (like VS Code Copilot). This transforms your MCP server into an agentic tool that can reason and make decisions, without requiring separate API keys or subscriptions.
 
 The provider implements `LanguageModelV4` by forwarding requests through MCP's [sampling feature](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling) to the MCP client, offering unique advantages:
 
-- **Server-Side AI Integration**: Enable MCP servers to call language models directly through AI SDK's standard interface
+- **Server-Side AI Integration**: Enable MCP servers to call language models directly through AI TOOLKIT's standard interface
 - **No Direct Model Management**: Forward AI requests to MCP clients, eliminating the need for multiple API keys
 - **Model Flexibility**: Let MCP clients decide which model to use based on preferences (cost, speed, intelligence)
-- **Seamless AI SDK Compatibility**: Support for `generateText`, `streamText`, structured output with [`Output`](/docs/reference/ai-sdk-core/output), and experimental tool calling
+- **Seamless AI TOOLKIT Compatibility**: Support for `generateText`, `streamText`, structured output with [`Output`](/docs/reference/ai-toolkit-core/output), and experimental tool calling
 - **Client Sampling Support**: Add sampling capability to any MCP client with built-in helpers
 - **Agentic Tools**: Transform simple MCP tools into intelligent agents that can reason and make decisions
 
@@ -22,7 +22,7 @@ Learn more about MCP Sampling in the [MCP Specification](https://modelcontextpro
 
 **Warning:** This provider has specific requirements:
 
-1. **Must run inside an MCP Server** - This is not a standalone AI SDK provider. It works by forwarding requests to the MCP client.
+1. **Must run inside an MCP Server** - This is not a standalone AI TOOLKIT provider. It works by forwarding requests to the MCP client.
 2. **Client must support MCP Sampling** - The connected MCP client must implement the sampling capability, or you can implement it yourself (see [Client Sampling](#client-sampling-for-clients-without-native-support) below).
 
 ### Clients with Sampling Support
@@ -173,7 +173,7 @@ server.setRequestHandler(CallToolRequestSchema, async request => {
     // Create provider from the server
     const provider = createMCPSamplingProvider({ server });
 
-    // Use AI SDK to translate text
+    // Use AI TOOLKIT to translate text
     const { text } = await generateText({
       model: provider.languageModel({
         modelPreferences: { hints: [{ name: 'gpt-5-mini' }] },
@@ -404,7 +404,7 @@ If your MCP client doesn't support sampling natively, you can add sampling capab
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import {
-  convertAISDKFinishReasonToMCP,
+  convertAITOOLKITFinishReasonToMCP,
   selectModelFromPreferences,
   setupClientSampling,
 } from '@mcpc-tech/mcp-sampling-ai-provider';
@@ -438,7 +438,7 @@ setupClientSampling(client, {
       model: modelId,
       role: 'assistant',
       content: { type: 'text', text: result.text },
-      stopReason: convertAISDKFinishReasonToMCP(result.finishReason),
+      stopReason: convertAITOOLKITFinishReasonToMCP(result.finishReason),
     };
   },
 });
@@ -457,10 +457,10 @@ See the [complete example](https://github.com/mcpc-tech/mcpc/blob/main/packages/
 
 The request flow is straightforward:
 
-1. AI SDK calls the language model
+1. AI TOOLKIT calls the language model
 2. Provider converts to MCP `sampling/createMessage` format
 3. MCP client handles the sampling request
-4. Provider converts response back to AI SDK format
+4. Provider converts response back to AI TOOLKIT format
 
 The MCP client (e.g., VS Code, Claude Desktop) decides which actual model to use based on the provided `modelPreferences`.
 

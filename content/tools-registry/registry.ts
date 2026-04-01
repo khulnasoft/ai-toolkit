@@ -27,17 +27,17 @@ export const tools: Tool[] = [
     name: 'Code Execution',
     description:
       'Execute Python code in a sandboxed environment using Vercel Sandbox. Run calculations, data processing, and other computational tasks safely in an isolated environment with Python 3.13.',
-    packageName: 'ai-sdk-tool-code-execution',
+    packageName: 'ai-toolkit-tool-code-execution',
     tags: ['code-execution', 'sandbox'],
     apiKeyEnvName: 'VERCEL_OIDC_TOKEN',
     installCommand: {
-      pnpm: 'pnpm add ai-sdk-tool-code-execution',
-      npm: 'npm install ai-sdk-tool-code-execution',
-      yarn: 'yarn add ai-sdk-tool-code-execution',
-      bun: 'bun add ai-sdk-tool-code-execution',
+      pnpm: 'pnpm add ai-toolkit-tool-code-execution',
+      npm: 'npm install ai-toolkit-tool-code-execution',
+      yarn: 'yarn add ai-toolkit-tool-code-execution',
+      bun: 'bun add ai-toolkit-tool-code-execution',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { executeCode } from 'ai-sdk-tool-code-execution';
+import { executeCode } from 'ai-toolkit-tool-code-execution';
 
 const { text } = await generateText({
   model: 'openai/gpt-5.1-codex',
@@ -52,24 +52,24 @@ console.log(text);`,
     docsUrl: 'https://vercel.com/docs/vercel-sandbox',
     apiKeyUrl: 'https://vercel.com/docs/vercel-sandbox#authentication',
     websiteUrl: 'https://vercel.com/docs/vercel-sandbox',
-    npmUrl: 'https://www.npmjs.com/package/ai-sdk-tool-code-execution',
+    npmUrl: 'https://www.npmjs.com/package/ai-toolkit-tool-code-execution',
   },
   {
     slug: 'exa',
     name: 'Exa',
     description:
       'Exa is a web search API that adds web search capabilities to your LLMs. Exa can search the web for code docs, current information, news, articles, and a lot more. Exa performs real-time web searches and can get page content from specific URLs. Add Exa web search tool to your LLMs in just a few lines of code.',
-    packageName: '@exalabs/ai-sdk',
+    packageName: '@exalabs/ai-toolkit',
     tags: ['search', 'web', 'extraction'],
     apiKeyEnvName: 'EXA_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @exalabs/ai-sdk',
-      npm: 'npm install @exalabs/ai-sdk',
-      yarn: 'yarn add @exalabs/ai-sdk',
-      bun: 'bun add @exalabs/ai-sdk',
+      pnpm: 'pnpm add @exalabs/ai-toolkit',
+      npm: 'npm install @exalabs/ai-toolkit',
+      yarn: 'yarn add @exalabs/ai-toolkit',
+      bun: 'bun add @exalabs/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { webSearch } from '@exalabs/ai-sdk';
+import { webSearch } from '@exalabs/ai-toolkit';
 
 const { text } = await generateText({
   model: 'google/gemini-3-pro-preview',
@@ -84,24 +84,24 @@ console.log(text);`,
     docsUrl: 'https://docs.exa.ai/reference/vercel',
     apiKeyUrl: 'https://dashboard.exa.ai/api-keys',
     websiteUrl: 'https://exa.ai',
-    npmUrl: 'https://www.npmjs.com/package/@exalabs/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@exalabs/ai-toolkit',
   },
   {
     slug: 'parallel',
     name: 'Parallel',
     description:
       'Parallel gives AI agents best-in-class tools to search and extract context from the web. Web results returned by Parallel are compressed for optimal token efficiency at inference time.',
-    packageName: '@parallel-web/ai-sdk-tools',
+    packageName: '@parallel-web/ai-toolkit-tools',
     tags: ['search', 'web', 'extraction'],
     apiKeyEnvName: 'PARALLEL_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @parallel-web/ai-sdk-tools',
-      npm: 'npm install @parallel-web/ai-sdk-tools',
-      yarn: 'yarn add @parallel-web/ai-sdk-tools',
-      bun: 'bun add @parallel-web/ai-sdk-tools',
+      pnpm: 'pnpm add @parallel-web/ai-toolkit-tools',
+      npm: 'npm install @parallel-web/ai-toolkit-tools',
+      yarn: 'yarn add @parallel-web/ai-toolkit-tools',
+      bun: 'bun add @parallel-web/ai-toolkit-tools',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { searchTool, extractTool } from '@parallel-web/ai-sdk-tools';
+import { searchTool, extractTool } from '@parallel-web/ai-toolkit-tools';
 
 const { text } = await generateText({
   model: 'google/gemini-3-pro-preview',
@@ -116,13 +116,13 @@ const { text } = await generateText({
 console.log(text);`,
     apiKeyUrl: 'https://platform.parallel.ai',
     websiteUrl: 'https://parallel.ai',
-    npmUrl: 'https://www.npmjs.com/package/@parallel-web/ai-sdk-tools',
+    npmUrl: 'https://www.npmjs.com/package/@parallel-web/ai-toolkit-tools',
   },
   {
     slug: 'ctx-zip',
     name: 'ctx-zip',
     description:
-      'Transform MCP tools and AI SDK tools into code, write it to a Vercel sandbox file system and have the agent import the tools, write code, and execute it.',
+      'Transform MCP tools and AI TOOLKIT tools into code, write it to a Vercel sandbox file system and have the agent import the tools, write code, and execute it.',
     packageName: 'ctx-zip',
     tags: ['code-execution', 'sandbox', 'mcp', 'code-mode'],
     apiKeyEnvName: 'VERCEL_OIDC_TOKEN',
@@ -176,17 +176,17 @@ console.log(text);
     name: 'Perplexity Search',
     description:
       "Search the web with real-time results and advanced filtering powered by Perplexity's Search API. Provides ranked search results with domain, language, date range, and recency filters. Supports multi-query searches and regional search results.",
-    packageName: '@perplexity-ai/ai-sdk',
+    packageName: '@perplexity-ai/ai-toolkit',
     tags: ['search', 'web'],
     apiKeyEnvName: 'PERPLEXITY_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @perplexity-ai/ai-sdk',
-      npm: 'npm install @perplexity-ai/ai-sdk',
-      yarn: 'yarn add @perplexity-ai/ai-sdk',
-      bun: 'bun add @perplexity-ai/ai-sdk',
+      pnpm: 'pnpm add @perplexity-ai/ai-toolkit',
+      npm: 'npm install @perplexity-ai/ai-toolkit',
+      yarn: 'yarn add @perplexity-ai/ai-toolkit',
+      bun: 'bun add @perplexity-ai/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { perplexitySearch } from '@perplexity-ai/ai-sdk';
+import { perplexitySearch } from '@perplexity-ai/ai-toolkit';
 
 const { text } = await generateText({
   model: 'openai/gpt-5.2',
@@ -201,24 +201,24 @@ console.log(text);`,
     docsUrl: 'https://docs.perplexity.ai/guides/search-quickstart',
     apiKeyUrl: 'https://www.perplexity.ai/account/api/keys',
     websiteUrl: 'https://www.perplexity.ai',
-    npmUrl: 'https://www.npmjs.com/package/@perplexity-ai/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@perplexity-ai/ai-toolkit',
   },
   {
     slug: 'tavily',
     name: 'Tavily',
     description:
       'Tavily is a web intelligence platform offering real-time web search optimized for AI applications. Tavily provides comprehensive web research capabilities including search, content extraction, website crawling, and site mapping to power AI agents with current information.',
-    packageName: '@tavily/ai-sdk',
+    packageName: '@tavily/ai-toolkit',
     tags: ['search', 'extract', 'crawl'],
     apiKeyEnvName: 'TAVILY_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @tavily/ai-sdk',
-      npm: 'npm install @tavily/ai-sdk',
-      yarn: 'yarn add @tavily/ai-sdk',
-      bun: 'bun add @tavily/ai-sdk',
+      pnpm: 'pnpm add @tavily/ai-toolkit',
+      npm: 'npm install @tavily/ai-toolkit',
+      yarn: 'yarn add @tavily/ai-toolkit',
+      bun: 'bun add @tavily/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { tavilySearch } from '@tavily/ai-sdk';
+import { tavilySearch } from '@tavily/ai-toolkit';
 
 const { text } = await generateText({
   model: 'google/gemini-3-pro-preview',
@@ -233,24 +233,24 @@ console.log(text);`,
     docsUrl: 'https://docs.tavily.com/documentation/integrations/vercel',
     apiKeyUrl: 'https://app.tavily.com/home',
     websiteUrl: 'https://tavily.com',
-    npmUrl: 'https://www.npmjs.com/package/@tavily/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@tavily/ai-toolkit',
   },
   {
     slug: 'firecrawl',
     name: 'Firecrawl',
     description:
-      'Firecrawl tools for the AI SDK. Web scraping, search, crawling, and data extraction for AI applications. Scrape any website into clean markdown, search the web, crawl entire sites, and extract structured data.',
-    packageName: 'firecrawl-aisdk',
+      'Firecrawl tools for the AI TOOLKIT. Web scraping, search, crawling, and data extraction for AI applications. Scrape any website into clean markdown, search the web, crawl entire sites, and extract structured data.',
+    packageName: 'firecrawl-aitoolkit',
     tags: ['scraping', 'search', 'crawling', 'extraction', 'web'],
     apiKeyEnvName: 'FIRECRAWL_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add firecrawl-aisdk',
-      npm: 'npm install firecrawl-aisdk',
-      yarn: 'yarn add firecrawl-aisdk',
-      bun: 'bun add firecrawl-aisdk',
+      pnpm: 'pnpm add firecrawl-aitoolkit',
+      npm: 'npm install firecrawl-aitoolkit',
+      yarn: 'yarn add firecrawl-aitoolkit',
+      bun: 'bun add firecrawl-aitoolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { scrapeTool } from 'firecrawl-aisdk';
+import { scrapeTool } from 'firecrawl-aitoolkit';
 
 const { text } = await generateText({
   model: 'openai/gpt-5-mini',
@@ -262,10 +262,10 @@ const { text } = await generateText({
 });
 
 console.log(text);`,
-    docsUrl: 'https://docs.firecrawl.dev/integrations/ai-sdk',
+    docsUrl: 'https://docs.firecrawl.dev/integrations/ai-toolkit',
     apiKeyUrl: 'https://firecrawl.dev/app/api-keys',
     websiteUrl: 'https://firecrawl.dev',
-    npmUrl: 'https://www.npmjs.com/package/firecrawl-aisdk',
+    npmUrl: 'https://www.npmjs.com/package/firecrawl-aitoolkit',
   },
   {
     slug: 'bedrock-agentcore',
@@ -321,17 +321,17 @@ try {
     name: 'Superagent',
     description:
       'AI security guardrails for your LLMs. Protect your AI apps from prompt injection, redact PII/PHI (SSNs, emails, phone numbers), and verify claims against source materials. Add security tools to your LLMs in just a few lines of code.',
-    packageName: '@superagent-ai/ai-sdk',
+    packageName: '@superagent-ai/ai-toolkit',
     tags: ['security', 'guardrails', 'pii', 'prompt-injection', 'verification'],
     apiKeyEnvName: 'SUPERAGENT_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @superagent-ai/ai-sdk',
-      npm: 'npm install @superagent-ai/ai-sdk',
-      yarn: 'yarn add @superagent-ai/ai-sdk',
-      bun: 'bun add @superagent-ai/ai-sdk',
+      pnpm: 'pnpm add @superagent-ai/ai-toolkit',
+      npm: 'npm install @superagent-ai/ai-toolkit',
+      yarn: 'yarn add @superagent-ai/ai-toolkit',
+      bun: 'bun add @superagent-ai/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { guard, redact, verify } from '@superagent-ai/ai-sdk';
+import { guard, redact, verify } from '@superagent-ai/ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -349,21 +349,21 @@ console.log(text);`,
     docsUrl: 'https://docs.superagent.sh',
     apiKeyUrl: 'https://dashboard.superagent.sh',
     websiteUrl: 'https://superagent.sh',
-    npmUrl: 'https://www.npmjs.com/package/@superagent-ai/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@superagent-ai/ai-toolkit',
   },
   {
     slug: 'tako-search',
     name: 'Tako Search',
     description:
       "Search Tako's knowledge base for data visualizations, insights, and well-sourced information with charts and analytics.",
-    packageName: '@takoviz/ai-sdk',
+    packageName: '@takoviz/ai-toolkit',
     installCommand: {
-      pnpm: 'pnpm install @takoviz/ai-sdk',
-      npm: 'npm install @takoviz/ai-sdk',
-      yarn: 'yarn add @takoviz/ai-sdk',
-      bun: 'bun add @takoviz/ai-sdk',
+      pnpm: 'pnpm install @takoviz/ai-toolkit',
+      npm: 'npm install @takoviz/ai-toolkit',
+      yarn: 'yarn add @takoviz/ai-toolkit',
+      bun: 'bun add @takoviz/ai-toolkit',
     },
-    codeExample: `import { takoSearch } from '@takoviz/ai-sdk';
+    codeExample: `import { takoSearch } from '@takoviz/ai-toolkit';
 import { generateText, stepCountIs } from 'ai';
 
 const { text } = await generateText({
@@ -376,8 +376,8 @@ const { text } = await generateText({
 });
 
 console.log(text);`,
-    docsUrl: 'https://github.com/TakoData/ai-sdk#readme',
-    npmUrl: 'https://www.npmjs.com/package/@takoviz/ai-sdk',
+    docsUrl: 'https://github.com/TakoData/ai-toolkit#readme',
+    npmUrl: 'https://www.npmjs.com/package/@takoviz/ai-toolkit',
     websiteUrl: 'https://tako.com',
     apiKeyEnvName: 'TAKO_API_KEY',
     apiKeyUrl: 'https://tako.com',
@@ -388,17 +388,17 @@ console.log(text);`,
     name: 'Valyu',
     description:
       'Valyu provides powerful search tools for AI agents. Web search for real-time information, plus specialized domain-specific searchtools: financeSearch (stock prices, earnings, income statements, cash flows, etc), paperSearch (full-text PubMed, arXiv, bioRxiv, medRxiv), bioSearch (clinical trials, FDA drug labels, PubMed, medRxiv, bioRxiv), patentSearch (USPTO patents), secSearch (10-k/10-Q/8-k), economicsSearch (BLS, FRED, World Bank data), and companyResearch (comprehensive company research reports).',
-    packageName: '@valyu/ai-sdk',
+    packageName: '@valyu/ai-toolkit',
     tags: ['search', 'web', 'domain-search'],
     apiKeyEnvName: 'VALYU_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @valyu/ai-sdk',
-      npm: 'npm install @valyu/ai-sdk',
-      yarn: 'yarn add @valyu/ai-sdk',
-      bun: 'bun add @valyu/ai-sdk',
+      pnpm: 'pnpm add @valyu/ai-toolkit',
+      npm: 'npm install @valyu/ai-toolkit',
+      yarn: 'yarn add @valyu/ai-toolkit',
+      bun: 'bun add @valyu/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { webSearch } from '@valyu/ai-sdk';
+import { webSearch } from '@valyu/ai-toolkit';
 // Available specialised search tools: financeSearch, paperSearch,
 // bioSearch, patentSearch, secSearch, economicsSearch, companyResearch
 
@@ -412,27 +412,27 @@ const { text } = await generateText({
 });
 
 console.log(text);`,
-    docsUrl: 'https://docs.valyu.ai/integrations/vercel-ai-sdk',
+    docsUrl: 'https://docs.valyu.ai/integrations/vercel-ai-toolkit',
     apiKeyUrl: 'https://platform.valyu.ai',
     websiteUrl: 'https://valyu.ai',
-    npmUrl: 'https://www.npmjs.com/package/@valyu/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@valyu/ai-toolkit',
   },
   {
     slug: 'airweave',
     name: 'Airweave',
     description:
       'Airweave is an open-source platform that makes any app searchable for your agent. Sync and search across 35+ data sources (Notion, Slack, Google Drive, databases, and more) with semantic search. Add unified search across all your connected data to your AI applications in just a few lines of code.',
-    packageName: '@airweave/vercel-ai-sdk',
+    packageName: '@airweave/vercel-ai-toolkit',
     tags: ['search', 'rag', 'data-sources', 'semantic-search'],
     apiKeyEnvName: 'AIRWEAVE_API_KEY',
     installCommand: {
-      pnpm: 'pnpm install @airweave/vercel-ai-sdk',
-      npm: 'npm install @airweave/vercel-ai-sdk',
-      yarn: 'yarn add @airweave/vercel-ai-sdk',
-      bun: 'bun add @airweave/vercel-ai-sdk',
+      pnpm: 'pnpm install @airweave/vercel-ai-toolkit',
+      npm: 'npm install @airweave/vercel-ai-toolkit',
+      yarn: 'yarn add @airweave/vercel-ai-toolkit',
+      bun: 'bun add @airweave/vercel-ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { airweaveSearch } from '@airweave/vercel-ai-sdk';
+import { airweaveSearch } from '@airweave/vercel-ai-toolkit';
 
 const { text } = await generateText({
   model: 'anthropic/claude-sonnet-4.5',
@@ -449,7 +449,7 @@ console.log(text);`,
     docsUrl: 'https://docs.airweave.ai',
     apiKeyUrl: 'https://app.airweave.ai/settings/api-keys',
     websiteUrl: 'https://airweave.ai',
-    npmUrl: 'https://www.npmjs.com/package/@airweave/vercel-ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@airweave/vercel-ai-toolkit',
   },
   {
     slug: 'bash-tool',
@@ -488,17 +488,17 @@ console.log(text);`,
     name: 'Browserbase',
     description:
       'Browserbase provides browser automation tools for AI agents powered by Stagehand. Navigate websites, take screenshots, click buttons, fill forms, extract structured data, and execute multi-step browser tasks in cloud-hosted sessions with built-in CAPTCHA solving and anti-bot stealth mode.',
-    packageName: '@browserbasehq/ai-sdk',
+    packageName: '@browserbasehq/ai-toolkit',
     tags: ['browser', 'browser-automation', 'web', 'extraction'],
     apiKeyEnvName: 'BROWSERBASE_API_KEY',
     installCommand: {
-      pnpm: 'pnpm add @browserbasehq/ai-sdk',
-      npm: 'npm install @browserbasehq/ai-sdk',
-      yarn: 'yarn add @browserbasehq/ai-sdk',
-      bun: 'bun add @browserbasehq/ai-sdk',
+      pnpm: 'pnpm add @browserbasehq/ai-toolkit',
+      npm: 'npm install @browserbasehq/ai-toolkit',
+      yarn: 'yarn add @browserbasehq/ai-toolkit',
+      bun: 'bun add @browserbasehq/ai-toolkit',
     },
     codeExample: `import { generateText, stepCountIs } from 'ai';
-import { createBrowserbaseTools } from '@browserbasehq/ai-sdk';
+import { createBrowserbaseTools } from '@browserbasehq/ai-toolkit';
 
 const browserbase = createBrowserbaseTools();
 
@@ -514,6 +514,6 @@ await browserbase.closeSession();`,
     docsUrl: 'https://docs.browserbase.com',
     apiKeyUrl: 'https://www.browserbase.com/settings',
     websiteUrl: 'https://www.browserbase.com',
-    npmUrl: 'https://www.npmjs.com/package/@browserbasehq/ai-sdk',
+    npmUrl: 'https://www.npmjs.com/package/@browserbasehq/ai-toolkit',
   },
 ];

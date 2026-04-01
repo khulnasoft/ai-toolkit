@@ -2,7 +2,7 @@ import { openai } from '@ai-toolkit/openai';
 import { streamText } from 'ai';
 import { run } from '../../lib/run';
 
-globalThis.AI_SDK_DEFAULT_PROVIDER = openai;
+globalThis.AI_TOOLKIT_DEFAULT_PROVIDER = openai;
 
 run(async () => {
   const result = streamText({

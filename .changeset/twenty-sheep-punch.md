@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/google': patch
+'@ai-toolkit/google': patch
 ---
 
 feat(google): add new finishMessage field in providerMetadata

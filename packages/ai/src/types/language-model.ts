@@ -53,7 +53,7 @@ export type GlobalProviderModelId = [keyof RegisteredProviderModels] extends [
       | RegisteredProviderModels[keyof RegisteredProviderModels];
 
 /**
- * Language model that is used by the AI SDK.
+ * Language model that is used by the AI TOOLKIT.
  */
 export type LanguageModel =
   | GlobalProviderModelId

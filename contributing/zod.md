@@ -1,8 +1,8 @@
-# Zod and AI SDK
+# Zod and AI TOOLKIT
 
 ## Background
 
-The AI SDK allows users to use Zod 3, Zod 4, and Zod 4 mini schemas directly.
+The AI TOOLKIT allows users to use Zod 3, Zod 4, and Zod 4 mini schemas directly.
 
 Incorrect internal implementations can lead to infinite recursion and OOM issues such as [#7351](https://github.com/khulnasoft/ai-toolkit/issues/7351).
 

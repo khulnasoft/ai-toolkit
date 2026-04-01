@@ -1,6 +1,6 @@
-# AI SDK - Deepgram Provider
+# AI TOOLKIT - Deepgram Provider
 
-The **[Deepgram provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[Deepgram provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains transcription model support for the Deepgram transcription API and speech model support for the Deepgram text-to-speech API.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/deepgram
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -76,4 +76,4 @@ const { audio } = await generateSpeech({
 
 ## Documentation
 
-Please check out the **[Deepgram provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/deepgram)** for more information.
+Please check out the **[Deepgram provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepgram)** for more information.

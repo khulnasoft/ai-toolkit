@@ -1,9 +1,9 @@
 {
-  "text": "Hello from the Versal AISDK.",
+  "text": "Hello from the Versal AITOOLKIT.",
   "chunks": [
     {
       "timestamp": [0, 2.508],
-      "text": "Hello from the Versal AISDK."
+      "text": "Hello from the Versal AITOOLKIT."
     }
   ],
   "languages": ["en"]

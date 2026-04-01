@@ -321,7 +321,7 @@ export async function generateText<
 
     /**
      * Additional provider-specific options. They are passed through
-     * to the provider from the AI SDK and enable provider-specific
+     * to the provider from the AI TOOLKIT and enable provider-specific
      * functionality that can be fully encapsulated in the provider.
      */
     providerOptions?: ProviderOptions;
@@ -839,7 +839,7 @@ export async function generateText<
         }
 
         // insert error tool outputs for invalid tool calls:
-        // TODO AI SDK 6: invalid inputs should not require output parts
+        // TODO AI TOOLKIT 6: invalid inputs should not require output parts
         const invalidToolCalls = stepToolCalls.filter(
           toolCall => toolCall.invalid && toolCall.dynamic,
         );

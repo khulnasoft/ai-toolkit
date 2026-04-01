@@ -1,10 +1,10 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_ToolCallNotFoundForApprovalError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class ToolCallNotFoundForApprovalError extends AISDKError {
+export class ToolCallNotFoundForApprovalError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly toolCallId: string;
@@ -27,6 +27,6 @@ export class ToolCallNotFoundForApprovalError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is ToolCallNotFoundForApprovalError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

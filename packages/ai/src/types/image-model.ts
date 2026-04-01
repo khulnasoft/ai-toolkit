@@ -7,7 +7,7 @@ import {
 } from '@ai-toolkit/provider';
 
 /**
- * Image model that is used by the AI SDK.
+ * Image model that is used by the AI TOOLKIT.
  */
 export type ImageModel = string | ImageModelV4 | ImageModelV3 | ImageModelV2;
 

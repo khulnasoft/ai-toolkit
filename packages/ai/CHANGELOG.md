@@ -1170,7 +1170,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -1241,7 +1241,7 @@
 - 0c4822d: feat: `EmbeddingModelV3`
 - e062079: chore(agent): move Agent.respond into createAgentStreamResponse function
 - 2b49dae: feat(agent): support UIMessageStreamOptions in createAgentStreamResponse
-- ee651d7: `https://v6.ai-sdk.dev` -> `https://ai-sdk.dev`
+- ee651d7: `https://v6.ai-toolkit.dev` -> `https://ai-toolkit.dev`
 - 5a4e732: Export `parseJsonEventStream` and `uiMessageChunkSchema` from "ai" package
 - f733285: fix(ai): only parse experimental_output in generateText when finishReason is stop
 - 9b83947: feat(ai): add convertDataPart option to convertToModelMessages
@@ -1304,7 +1304,7 @@
 - c98373a: chore(agent): rename createAgentStreamResponse to createAgentUIStreamResponse
 - 846e80e: fix(ai): bind functions for v2 -> v3 adapter
 - bbdcb81: Add experimental_context parameter to prepareStep callback
-- 67a407c: chore(ai): add warning when using v2 models with AISDK v6
+- 67a407c: chore(ai): add warning when using v2 models with AITOOLKIT v6
 - 9524761: chore(ai): rename relevanceScore to score
 - ca13d26: feat(ai): add output to StreamTextResult
 - 4616b86: chore: update zod peer depenedency version
@@ -1352,7 +1352,7 @@
 
 ### Patch Changes
 
-- ee651d7: `https://v6.ai-sdk.dev` -> `https://ai-sdk.dev`
+- ee651d7: `https://v6.ai-toolkit.dev` -> `https://ai-toolkit.dev`
 
 ## 6.0.0-beta.168
 
@@ -1661,7 +1661,7 @@
 
 ### Patch Changes
 
-- 67a407c: chore(ai): add warning when using v2 models with AISDK v6
+- 67a407c: chore(ai): add warning when using v2 models with AITOOLKIT v6
 
 ## 6.0.0-beta.128
 
@@ -2407,7 +2407,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 
@@ -2992,7 +2992,7 @@
 - 9ad0484: feat (ai): automatic tool execution error handling
 - 63f9e9b: chore (provider,ai): tools have input/output instead of args,result
 - ab7ccef: chore (ai): change source ui message parts to source-url
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - ec78cdc: chore (ai): remove "data" UIMessage role
 - 6a83f7d: refactoring (ai): restructure message metadata transfer
 - db345da: chore (ai): remove exports of internal ui functions
@@ -3008,7 +3008,7 @@
 - 1f55c21: chore (ai): send reasoning to the client by default
 - e7dc6c7: chore (ai): remove onResponse callback
 - 8b86e99: chore (ai): replace `Message` with `UIMessage`
-- 04d5063: chore (ai): rename default provider global to AI_SDK_DEFAULT_PROVIDER
+- 04d5063: chore (ai): rename default provider global to AI_TOOLKIT_DEFAULT_PROVIDER
 - 319b989: chore (ai): remove content from ui messages
 - 14c9410: chore: refactor file towards source pattern (spec)
 - a34eb39: chore (ai): remove `data` and `allowEmptySubmit` from `ChatRequestOptions`
@@ -3176,7 +3176,7 @@
 - 9b0da33: fix (ai): do not send id with start unless specified
 - 28ad69e: fix(react-native): support experimental_attachments without FileList global
 - 0b78e17: chore(ai/generateObject): simplify function signature
-- 20398f2: feat: ai sdk cli documentation + adjusted default model
+- 20398f2: feat: ai toolkit cli documentation + adjusted default model
 - 66962ed: fix(packages): export node10 compatible types
 - b71fe8d: fix(ai): remove jsondiffpatch dependency
 - 7827a49: fix (ai/core): refactor `toResponseMessages` to filter out empty string/content
@@ -3434,7 +3434,7 @@
 - de2d2ab: feat(ai): add provider and provider registry middleware functionality
 - 6c42e56: feat (ai): validate ui stream data chunks
 - c93a8bc: chore(ai): export AsyncIterableStream type from async-iterable-stream module
-- 20398f2: feat: ai sdk cli documentation + adjusted default model
+- 20398f2: feat: ai toolkit cli documentation + adjusted default model
 - 86293e5: fix (ai): use correct generateMessageId in streamText toUIMessageStream
 - 205077b: fix: improve Zod compatibility
 - Updated dependencies [205077b]
@@ -3628,7 +3628,7 @@
 
 ### Major Changes
 
-- 04d5063: chore (ai): rename default provider global to AI_SDK_DEFAULT_PROVIDER
+- 04d5063: chore (ai): rename default provider global to AI_TOOLKIT_DEFAULT_PROVIDER
 - b4b4bb2: chore (ui): rename experimental_resume to resumeStream
 - d884051: feat (ai): simplify default provider setup
 - 954aa73: feat (ui): extended regenerate support
@@ -4239,7 +4239,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - 9477ebb: chore (ui): remove useAssistant hook (**breaking change**)
 
 ### Patch Changes
@@ -4332,7 +4332,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 
@@ -4834,7 +4834,7 @@
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ### Patch Changes
 
@@ -5173,7 +5173,7 @@
 - 1c58337: chore (ai): remove 2.x prompt helpers
 - a40a93d: chore (ai/ui): remove vue, svelte, solid re-export and dependency
 - a7ad35a: chore: remove legacy providers & rsc render
-- c0ddc24: chore (ai): remove toJSON method from AI SDK errors
+- c0ddc24: chore (ai): remove toJSON method from AI TOOLKIT errors
 - 007cb81: chore (ai): change `streamText` warnings result to Promise
 - effbce3: chore (ai): remove responseMessage from streamText onFinish callback
 - 545d133: chore (ai): remove deprecated roundtrip settings from streamText / generateText
@@ -5328,7 +5328,7 @@
 ### Major Changes
 
 - b469a7e: chore: remove isXXXError methods
-- c0ddc24: chore (ai): remove toJSON method from AI SDK errors
+- c0ddc24: chore (ai): remove toJSON method from AI TOOLKIT errors
 
 ### Patch Changes
 
@@ -6060,7 +6060,7 @@
 
 ### Minor Changes
 
-- dbc3afb7: chore (ai): release AI SDK 3.3
+- dbc3afb7: chore (ai): release AI TOOLKIT 3.3
 
 ### Patch Changes
 
@@ -6526,7 +6526,7 @@
 
 ### Minor Changes
 
-- 85ef6d18: chore (ai): AI SDK 3.2 release
+- 85ef6d18: chore (ai): AI TOOLKIT 3.2 release
 
 ### Patch Changes
 
@@ -6590,7 +6590,7 @@
 ### Patch Changes
 
 - 85f209a4: chore: extracted ui library support into separate modules
-- 85f209a4: removed (streams): experimental_StreamingReactResponse was removed. Please use AI SDK RSC instead.
+- 85f209a4: removed (streams): experimental_StreamingReactResponse was removed. Please use AI TOOLKIT RSC instead.
 - Updated dependencies [85f209a4]
   - @ai-toolkit/ui-utils@0.0.1
   - @ai-toolkit/svelte@0.0.1
@@ -6771,7 +6771,7 @@
 
 ### Patch Changes
 
-- 2e78acb: Deprecate StreamingReactResponse (use AI SDK RSC instead).
+- 2e78acb: Deprecate StreamingReactResponse (use AI TOOLKIT RSC instead).
 - 8439884: ai/rsc: make RSC streamable utils chainable
 - 325ca55: feat (ai/core): improve image content part error message
 - Updated dependencies [325ca55]
@@ -6788,7 +6788,7 @@
 
 ### Patch Changes
 
-- ceb44bc: feat (ai/ui): add stop() helper to useAssistant (important: AssistantResponse now requires OpenAI SDK 4.42+)
+- ceb44bc: feat (ai/ui): add stop() helper to useAssistant (important: AssistantResponse now requires OpenAI TOOLKIT 4.42+)
 - 37c9d4c: feat (ai/streams): add LangChainAdapter.toAIStream()
 
 ## 3.1.3
@@ -6996,7 +6996,7 @@
 ### Patch Changes
 
 - ce009e2: Added OpenAI assistants streaming.
-- 3f9bf3e: Updates types to OpenAI SDK 4.29.0
+- 3f9bf3e: Updates types to OpenAI TOOLKIT 4.29.0
 
 ## 3.0.10
 
@@ -7131,7 +7131,7 @@
 
 ### Patch Changes
 
-- 5a9ae2e: ai/prompt: add `experimental_buildOpenAIMessages` to validate and cast AI SDK messages to OpenAI messages
+- 5a9ae2e: ai/prompt: add `experimental_buildOpenAIMessages` to validate and cast AI TOOLKIT messages to OpenAI messages
 
 ## 2.2.28
 
@@ -7341,13 +7341,13 @@
 
 ### Patch Changes
 
-- 04084a8: openai-stream: fix experimental_onFunctionCall types for OpenAI SDK v4
+- 04084a8: openai-stream: fix experimental_onFunctionCall types for OpenAI TOOLKIT v4
 
 ## 2.2.0
 
 ### Minor Changes
 
-- dca1ed9: Update packages and examples to use OpenAI SDK v4
+- dca1ed9: Update packages and examples to use OpenAI TOOLKIT v4
 
 ## 2.1.34
 

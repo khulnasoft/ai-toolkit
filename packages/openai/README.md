@@ -1,6 +1,6 @@
-# AI SDK - OpenAI Provider
+# AI TOOLKIT - OpenAI Provider
 
-The **[OpenAI provider](https://ai-sdk.dev/providers/ai-sdk-providers/openai)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[OpenAI provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for the OpenAI chat and completion APIs and embedding model support for the OpenAI embeddings API.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/openai
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -41,4 +41,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[OpenAI provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/openai)** for more information.
+Please check out the **[OpenAI provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/openai)** for more information.

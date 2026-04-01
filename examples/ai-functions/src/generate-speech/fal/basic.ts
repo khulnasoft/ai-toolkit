@@ -6,7 +6,7 @@ import { run } from '../../lib/run';
 run(async () => {
   const result = await generateSpeech({
     model: fal.speech('fal-ai/minimax/speech-02-hd'),
-    text: 'Hello from the AI SDK via fal speech!',
+    text: 'Hello from the AI TOOLKIT via fal speech!',
     outputFormat: 'hex',
   });
 

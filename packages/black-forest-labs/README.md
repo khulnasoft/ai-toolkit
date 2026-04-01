@@ -1,6 +1,6 @@
-# AI SDK - Black Forest Labs Provider
+# AI TOOLKIT - Black Forest Labs Provider
 
-The **[Black Forest Labs provider](https://ai-sdk.dev/providers/ai-sdk-providers/black-forest-labs)** for the [AI SDK](https://ai-sdk.dev/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
+The **[Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) adds image model support for the [Black Forest Labs API](https://docs.bfl.ai/).
 
 ## Setup
 
@@ -12,7 +12,7 @@ pnpm add @ai-toolkit/black-forest-labs
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -114,4 +114,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-See the [Black Forest Labs provider](https://ai-sdk.dev/providers/ai-sdk-providers/black-forest-labs) for more information.
+See the [Black Forest Labs provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/black-forest-labs) for more information.

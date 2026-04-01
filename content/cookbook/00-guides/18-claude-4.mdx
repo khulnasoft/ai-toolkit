@@ -1,6 +1,6 @@
 ---
 title: Get started with Claude 4
-description: Get started with Claude 4 using the AI SDK.
+description: Get started with Claude 4 using the AI TOOLKIT.
 tags: ['getting-started']
 ---
 
@@ -8,7 +8,7 @@ tags: ['getting-started']
 
 With the release of Claude 4, there has never been a better time to start building AI applications, particularly those that require complex reasoning capabilities and advanced intelligence.
 
-The [AI SDK](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like Claude 4 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
+The [AI TOOLKIT](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like Claude 4 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
 
 ## Claude 4
 
@@ -24,13 +24,13 @@ Claude 4 models respond well to clear, explicit instructions. The following best
 2. **Include context and motivation**: Explain why a task is being performed to help the model better understand the underlying goals.
 3. **Avoid negative examples**: When providing examples, only demonstrate the behavior you want to see, not what you want to avoid.
 
-## Getting Started with the AI SDK
+## Getting Started with the AI TOOLKIT
 
-The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
+The AI TOOLKIT is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
 
-The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
+The AI TOOLKIT abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
 
-At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Claude 4 Sonnet with the AI SDK:
+At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call Claude 4 Sonnet with the AI TOOLKIT:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
@@ -71,15 +71,15 @@ console.log(reasoning); // reasoning details including redacted reasoning
 
 ### Building Interactive Interfaces
 
-AI SDK Core can be paired with [AI SDK UI](/docs/ai-sdk-ui/overview), another powerful component of the AI SDK, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, SvelteKit, and SolidStart.
+AI TOOLKIT Core can be paired with [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview), another powerful component of the AI TOOLKIT, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, SvelteKit, and SolidStart.
 
-AI SDK UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
+AI TOOLKIT UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
 
-With three main hooks — [`useChat`](/docs/reference/ai-sdk-ui/use-chat), [`useCompletion`](/docs/reference/ai-sdk-ui/use-completion), and [`useObject`](/docs/reference/ai-sdk-ui/use-object) — you can incorporate real-time chat capabilities, text completions, and streamed JSON into your app.
+With three main hooks — [`useChat`](/docs/reference/ai-toolkit-ui/use-chat), [`useCompletion`](/docs/reference/ai-toolkit-ui/use-completion), and [`useObject`](/docs/reference/ai-toolkit-ui/use-object) — you can incorporate real-time chat capabilities, text completions, and streamed JSON into your app.
 
-Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI SDK, and Claude Sonnet 4:
+Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOLKIT, and Claude Sonnet 4:
 
-In a new Next.js application, first install the AI SDK and the Anthropic provider:
+In a new Next.js application, first install the AI TOOLKIT and the Anthropic provider:
 
 <Snippet text="pnpm install ai @ai-toolkit/anthropic" />
 
@@ -218,7 +218,7 @@ Claude 4 is available in two variants, each optimized for different use cases:
 
 Ready to dive in? Here's how you can begin:
 
-1. Explore the documentation at [ai-sdk.dev/docs](/docs) to understand the capabilities of the AI SDK.
-2. Check out practical examples at [ai-sdk.dev/examples](/examples) to see the SDK in action.
-3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [ai-sdk.dev/docs/guides](/cookbook/guides).
+1. Explore the documentation at [ai-toolkit.dev/docs](/docs) to understand the capabilities of the AI TOOLKIT.
+2. Check out practical examples at [ai-toolkit.dev/examples](/examples) to see the SDK in action.
+3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [ai-toolkit.dev/docs/guides](/cookbook/guides).
 4. Use ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

@@ -1,6 +1,6 @@
 ---
 title: Helicone
-description: Helicone Provider for the AI SDK
+description: Helicone Provider for the AI TOOLKIT
 ---
 
 # Helicone
@@ -17,20 +17,20 @@ Learn more about Helicone's capabilities in the [Helicone Documentation](https:/
 
 ## Setup
 
-The Helicone provider is available in the `@helicone/ai-sdk-provider` package. You can install it with:
+The Helicone provider is available in the `@helicone/ai-toolkit-provider` package. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @helicone/ai-sdk-provider" dark />
+    <Snippet text="pnpm add @helicone/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @helicone/ai-sdk-provider" dark />
+    <Snippet text="npm install @helicone/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @helicone/ai-sdk-provider" dark />
+    <Snippet text="yarn add @helicone/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @helicone/ai-sdk-provider" dark />
+    <Snippet text="bun add @helicone/ai-toolkit-provider" dark />
   </Tab>
 </Tabs>
 
@@ -39,7 +39,7 @@ The Helicone provider is available in the `@helicone/ai-sdk-provider` package. Y
 To get started with Helicone, use the `createHelicone` function to create a provider instance. Then query any model you like.
 
 ```typescript
-import { createHelicone } from '@helicone/ai-sdk-provider';
+import { createHelicone } from '@helicone/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({
@@ -58,12 +58,12 @@ You can obtain your Helicone API key from the [Helicone Dashboard](https://us.he
 
 ## Examples
 
-Here are examples of using Helicone with the AI SDK.
+Here are examples of using Helicone with the AI TOOLKIT.
 
 ### `generateText`
 
 ```javascript
-import { createHelicone } from '@helicone/ai-sdk-provider';
+import { createHelicone } from '@helicone/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const helicone = createHelicone({

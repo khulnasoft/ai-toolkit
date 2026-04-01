@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/prodia': patch
+'@ai-toolkit/prodia': patch
 ---
 
 feat(provider/prodia): Add LanguageModel and VideoModel support to the Prodia provider.

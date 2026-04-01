@@ -1,6 +1,6 @@
-# AI SDK - Fireworks Provider
+# AI TOOLKIT - Fireworks Provider
 
-The **[Fireworks provider](https://ai-sdk.dev/providers/ai-sdk-providers/fireworks)** for the [AI SDK](https://ai-sdk.dev/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
+The **[Fireworks provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fireworks)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains language model and image model support for the [Fireworks](https://fireworks.ai) platform.
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/fireworks
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -56,4 +56,4 @@ console.log(`Image saved to ${filename}`);
 
 ## Documentation
 
-Please check out the **[Fireworks provider](https://ai-sdk.dev/providers/ai-sdk-providers/fireworks)** for more information.
+Please check out the **[Fireworks provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fireworks)** for more information.

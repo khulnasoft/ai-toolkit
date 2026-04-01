@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -295,7 +295,7 @@ export class AlibabaVideoModel implements Experimental_VideoModelV4 {
 
     const taskId = createResponse.output?.task_id;
     if (!taskId) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'ALIBABA_VIDEO_GENERATION_ERROR',
         message: `No task_id returned from Alibaba API. Response: ${JSON.stringify(createResponse)}`,
       });
@@ -312,7 +312,7 @@ export class AlibabaVideoModel implements Experimental_VideoModelV4 {
       await delay(pollIntervalMs, { abortSignal: options.abortSignal });
 
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'ALIBABA_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation timed out after ${pollTimeoutMs}ms`,
         });
@@ -342,7 +342,7 @@ export class AlibabaVideoModel implements Experimental_VideoModelV4 {
       }
 
       if (taskStatus === 'FAILED' || taskStatus === 'CANCELED') {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'ALIBABA_VIDEO_GENERATION_FAILED',
           message: `Video generation ${taskStatus.toLowerCase()}. Task ID: ${taskId}. ${statusResponse.output?.message ?? ''}`,
         });
@@ -353,7 +353,7 @@ export class AlibabaVideoModel implements Experimental_VideoModelV4 {
 
     const videoUrl = finalResponse?.output?.video_url;
     if (!videoUrl) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'ALIBABA_VIDEO_GENERATION_ERROR',
         message: `No video URL in response. Task ID: ${taskId}`,
       });

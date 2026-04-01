@@ -4,7 +4,7 @@ import { SharedV2ProviderOptions } from '../../shared';
 /**
  * A tool has a name, a description, and a set of parameters.
  *
- * Note: this is **not** the user-facing tool definition. The AI SDK methods will
+ * Note: this is **not** the user-facing tool definition. The AI TOOLKIT methods will
  * map the user-facing tool definitions to this format.
  */
 export type LanguageModelV2FunctionTool = {

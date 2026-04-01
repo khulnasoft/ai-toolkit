@@ -75,7 +75,7 @@ run(async () => {
   // Write to GitHub Actions output if running in CI
   if (process.env.GITHUB_OUTPUT) {
     // remove "@ai-toolkit/" prefix if present
-    const outputKey = moduleName.replace(/^@ai-sdk\//, '');
+    const outputKey = moduleName.replace(/^@ai-toolkit\//, '');
     const outputValue = median.toFixed(1);
 
     try {

@@ -1,18 +1,18 @@
 ---
 title: Human-in-the-Loop with Next.js
-description: Add a human approval step to your agentic system with Next.js and the AI SDK
+description: Add a human approval step to your agentic system with Next.js and the AI TOOLKIT
 tags: ['next', 'agents', 'tool use']
 ---
 
 # Human-in-the-Loop with Next.js
 
-When building agentic systems, it's important to add human-in-the-loop (HITL) functionality to ensure that users can approve actions before the system executes them. The AI SDK provides built-in support for tool execution approval through the `needsApproval` property on tools.
+When building agentic systems, it's important to add human-in-the-loop (HITL) functionality to ensure that users can approve actions before the system executes them. The AI TOOLKIT provides built-in support for tool execution approval through the `needsApproval` property on tools.
 
-This recipe shows how to add a human approval step to a Next.js chatbot using the AI SDK's native tool execution approval feature.
+This recipe shows how to add a human approval step to a Next.js chatbot using the AI TOOLKIT's native tool execution approval feature.
 
 ## Background
 
-To understand how to implement this functionality, let's look at how tool calling works in a Next.js chatbot application with the AI SDK.
+To understand how to implement this functionality, let's look at how tool calling works in a Next.js chatbot application with the AI TOOLKIT.
 
 On the frontend, use the `useChat` hook to manage the message state and user interaction.
 
@@ -99,7 +99,7 @@ export async function POST(req: Request) {
 }
 ```
 
-When a user asks the LLM for the weather in New York, the model generates a tool call with the city parameter. The AI SDK then runs the `execute` function automatically and returns the result.
+When a user asks the LLM for the weather in New York, the model generates a tool call with the city parameter. The AI TOOLKIT then runs the `execute` function automatically and returns the result.
 
 To add a HITL step, you add an approval gate between the tool call and the tool execution using `needsApproval`.
 
@@ -327,6 +327,6 @@ const result = streamText({
 
 ## Full Example
 
-To see this code in action, check out the [`next-openai` example](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai) in the AI SDK repository. Navigate to the `/test-tool-approval` page and associated route handler.
+To see this code in action, check out the [`next-openai` example](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-openai) in the AI TOOLKIT repository. Navigate to the `/test-tool-approval` page and associated route handler.
 
-For more details on tool execution approval, see the [Tool Execution Approval](/docs/ai-sdk-core/tools-and-tool-calling#tool-execution-approval) and [Chatbot Tool Usage](/docs/ai-sdk-ui/chatbot-tool-usage#tool-execution-approval) documentation.
+For more details on tool execution approval, see the [Tool Execution Approval](/docs/ai-toolkit-core/tools-and-tool-calling#tool-execution-approval) and [Chatbot Tool Usage](/docs/ai-toolkit-ui/chatbot-tool-usage#tool-execution-approval) documentation.

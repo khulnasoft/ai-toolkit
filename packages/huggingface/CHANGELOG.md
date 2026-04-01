@@ -388,7 +388,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 - ec640c6: feat(huggingface): add responses api support
 
 ### Patch Changes
@@ -876,7 +876,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 

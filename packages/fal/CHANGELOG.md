@@ -251,7 +251,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -688,7 +688,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 
@@ -875,7 +875,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - 516be5b: ### Move Image Model Settings into generate options
 
   Image Models no longer have settings. Instead, `maxImagesPerCall` can be passed directly to `generateImage()`. All other image settings can be passed to `providerOptions[provider]`.
@@ -1308,7 +1308,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1347,7 +1347,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 

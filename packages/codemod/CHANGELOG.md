@@ -28,7 +28,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -87,7 +87,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ## 2.1.0-beta.1
 
@@ -128,7 +128,7 @@
 
 - 5dc1c62: fix(codemod): Language Model V2 Import
 
-  Migration: https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#language-model-v2-import
+  Migration: https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#language-model-v2-import
 
   Codemod behavior before the fix
 
@@ -225,14 +225,14 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
-- b0446d4: release AI SDK 5.0 codemods package
+- b0446d4: release AI TOOLKIT 5.0 codemods package
 - df983e6: feat(codemods): added v4→v5 migration codemods
 - 4726e71: fix(codemod): correct import-LanguageModelV2-from-provider-package direction and quote preservation
-- 4e01854: v5 - AI SDK 5.0 codemods package
+- 4e01854: v5 - AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-beta.4
 
@@ -250,31 +250,31 @@
 
 ### Patch Changes
 
-- 4e01854: v5 - AI SDK 5.0 codemods package
+- 4e01854: v5 - AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-beta.1
 
 ### Patch Changes
 
-- b0446d4: release AI SDK 5.0 codemods package
+- b0446d4: release AI TOOLKIT 5.0 codemods package
 
 ## 2.0.0-canary.0
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ## 1.2.0
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ## 1.1.0
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ## 1.0.3
 
@@ -325,7 +325,7 @@
 - b1d9efb: fix (packages/codemod): Only rename nanoid on import from 'ai'.
 - 29556ed: feat (packages/codemod): Add script to scaffold new codemod.
 - 575e7da: feat (packages/codemod): Add codemod to remove ExperimentalTool.
-- 94c51ae: fix (packages/codemod): Only replace ai-sdk provider ctors.
+- 94c51ae: fix (packages/codemod): Only replace ai-toolkit provider ctors.
 - 1931f4f: feat (providers/codemod): Add codemod to remove deprecated prov reg exports.
 - b183ed0: feat (packages/codemod): Improve error handling and logging.
 - 2523330: feat (package/codemod): Add codemod to replace roundtrips.
@@ -372,7 +372,7 @@
 ### Patch Changes
 
 - bffedb0: feat (packages/codemod): Improve codemod CLI logging.
-- 94c51ae: fix (packages/codemod): Only replace ai-sdk provider ctors.
+- 94c51ae: fix (packages/codemod): Only replace ai-toolkit provider ctors.
 
 ## 0.0.1-canary.3
 

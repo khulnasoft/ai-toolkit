@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   type SharedV4Warning,
 } from '@ai-toolkit/provider';
@@ -273,7 +273,7 @@ export class ByteDanceVideoModel implements Experimental_VideoModelV4 {
     const taskId = createResponse.id;
 
     if (!taskId) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'BYTEDANCE_VIDEO_GENERATION_ERROR',
         message: 'No task ID returned from API',
       });
@@ -311,14 +311,14 @@ export class ByteDanceVideoModel implements Experimental_VideoModelV4 {
       }
 
       if (statusResponse.status === 'failed') {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'BYTEDANCE_VIDEO_GENERATION_FAILED',
           message: `Video generation failed: ${JSON.stringify(statusResponse)}`,
         });
       }
 
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'BYTEDANCE_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation timed out after ${pollTimeoutMs}ms`,
         });
@@ -329,7 +329,7 @@ export class ByteDanceVideoModel implements Experimental_VideoModelV4 {
 
     const videoUrl = response.content?.video_url;
     if (!videoUrl) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'BYTEDANCE_VIDEO_GENERATION_ERROR',
         message: 'No video URL in response',
       });

@@ -8,7 +8,7 @@ import { LanguageModelV4DataContent } from './language-model-v4-data-content';
  * Note: Not all models and prompt formats support multi-modal inputs and
  * tool calls. The validation happens at runtime.
  *
- * Note: This is not a user-facing prompt. The AI SDK methods will map the
+ * Note: This is not a user-facing prompt. The AI TOOLKIT methods will map the
  * user-facing prompt types such as chat or instruction prompts to this format.
  */
 export type LanguageModelV4Prompt = Array<LanguageModelV4Message>;
@@ -48,7 +48,7 @@ export type LanguageModelV4Message =
   ) & {
     /**
      * Additional provider-specific options. They are passed through
-     * to the provider from the AI SDK and enable provider-specific
+     * to the provider from the AI TOOLKIT and enable provider-specific
      * functionality that can be fully encapsulated in the provider.
      */
     providerOptions?: SharedV4ProviderOptions;
@@ -67,7 +67,7 @@ export interface LanguageModelV4TextPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -86,7 +86,7 @@ export interface LanguageModelV4ReasoningPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -112,7 +112,7 @@ export interface LanguageModelV4ReasoningFilePart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -132,7 +132,7 @@ export interface LanguageModelV4CustomPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -165,7 +165,7 @@ export interface LanguageModelV4FilePart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -200,7 +200,7 @@ export interface LanguageModelV4ToolCallPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -229,7 +229,7 @@ export interface LanguageModelV4ToolResultPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;
@@ -259,7 +259,7 @@ export interface LanguageModelV4ToolApprovalResponsePart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;

@@ -35,7 +35,7 @@ run(async () => {
     },
     {
       name: 'XLSX (Excel)',
-      file: 'aisdk.xlsx',
+      file: 'aitoolkit.xlsx',
       mediaType:
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     },

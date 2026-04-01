@@ -1,11 +1,11 @@
 ---
 title: Hindsight
-description: Learn how to use Hindsight persistent memory with the AI SDK.
+description: Learn how to use Hindsight persistent memory with the AI TOOLKIT.
 ---
 
 # Hindsight
 
-[Hindsight](https://hindsight.vectorize.io) is a persistent memory service for AI agents. The [`@vectorize-io/hindsight-ai-sdk`](https://www.npmjs.com/package/@vectorize-io/hindsight-ai-sdk) package provides five AI SDK-compatible tools that give your agents long-term memory across conversations.
+[Hindsight](https://hindsight.vectorize.io) is a persistent memory service for AI agents. The [`@vectorize-io/hindsight-ai-toolkit`](https://www.npmjs.com/package/@vectorize-io/hindsight-ai-toolkit) package provides five AI TOOLKIT-compatible tools that give your agents long-term memory across conversations.
 
 Features include:
 
@@ -40,25 +40,25 @@ Sign up and get your API URL from the [Hindsight dashboard](https://ui.hindsight
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
     <Snippet
-      text="pnpm add @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client"
+      text="pnpm add @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client"
       dark
     />
   </Tab>
   <Tab>
     <Snippet
-      text="npm install @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client"
+      text="npm install @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client"
       dark
     />
   </Tab>
   <Tab>
     <Snippet
-      text="yarn add @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client"
+      text="yarn add @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client"
       dark
     />
   </Tab>
   <Tab>
     <Snippet
-      text="bun add @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client"
+      text="bun add @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client"
       dark
     />
   </Tab>
@@ -70,7 +70,7 @@ Initialize a `HindsightClient` and pass it to `createHindsightTools` along with 
 
 ```ts
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 
 const client = new HindsightClient({ baseUrl: process.env.HINDSIGHT_API_URL });
 
@@ -86,7 +86,7 @@ const tools = createHindsightTools({
 
 ```ts
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 import { generateText, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
@@ -108,7 +108,7 @@ const { text } = await generateText({
 import { ToolLoopAgent, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 
 const client = new HindsightClient({ baseUrl: process.env.HINDSIGHT_API_URL });
 
@@ -133,7 +133,7 @@ In multi-user applications, create tools inside your request handler so each req
 import { streamText, stepCountIs, convertToModelMessages } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 
 const hindsightClient = new HindsightClient({
   baseUrl: process.env.HINDSIGHT_API_URL,
@@ -224,4 +224,4 @@ const tools = createHindsightTools({
 
 ## More Information
 
-For full API documentation and configuration options, see the [Hindsight documentation](https://hindsight.vectorize.io/sdks/integrations/ai-sdk).
+For full API documentation and configuration options, see the [Hindsight documentation](https://hindsight.vectorize.io/sdks/integrations/ai-toolkit).

@@ -9,7 +9,7 @@ import { registerTelemetryIntegration } from './telemetry-integration-registry';
 const dummyEvent = {} as any;
 
 beforeEach(() => {
-  globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = undefined;
+  globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = undefined;
 });
 
 describe('getGlobalTelemetryIntegration', () => {

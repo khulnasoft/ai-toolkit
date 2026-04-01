@@ -1,6 +1,6 @@
 ---
 title: Get started with DeepSeek V3.2
-description: Get started with DeepSeek V3.2 using the AI SDK.
+description: Get started with DeepSeek V3.2 using the AI TOOLKIT.
 tags: ['getting-started', 'agents']
 ---
 
@@ -8,7 +8,7 @@ tags: ['getting-started', 'agents']
 
 With the [release of DeepSeek V3.2](https://api-docs.deepseek.com/news/news251201), there has never been a better time to start building AI applications that require advanced reasoning and agentic capabilities.
 
-The [AI SDK](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like DeepSeek V3.2 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
+The [AI TOOLKIT](/) is a powerful TypeScript toolkit for building AI applications with large language models (LLMs) like DeepSeek V3.2 alongside popular frameworks like React, Next.js, Vue, Svelte, Node.js, and more.
 
 ## DeepSeek V3.2
 
@@ -41,20 +41,20 @@ DeepSeek V3.2 models excel in both reasoning and agentic tasks, delivering compe
 
 ### Model Options
 
-When using DeepSeek V3.2 with the AI SDK, you have two model options:
+When using DeepSeek V3.2 with the AI TOOLKIT, you have two model options:
 
 | Model Alias         | Model Version                     | Description                                    |
 | ------------------- | --------------------------------- | ---------------------------------------------- |
 | `deepseek-chat`     | DeepSeek-V3.2 (Non-thinking Mode) | Standard chat model                            |
 | `deepseek-reasoner` | DeepSeek-V3.2 (Thinking Mode)     | Enhanced reasoning for complex problem-solving |
 
-## Getting Started with the AI SDK
+## Getting Started with the AI TOOLKIT
 
-The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
+The AI TOOLKIT is the TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js, and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
 
-The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building agents, and allows you to go beyond text output to generate rich, interactive components.
+The AI TOOLKIT abstracts away the differences between model providers, eliminates boilerplate code for building agents, and allows you to go beyond text output to generate rich, interactive components.
 
-At the center of the AI SDK is [AI SDK Core](/docs/ai-sdk-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call DeepSeek V3.2 with the AI SDK:
+At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call DeepSeek V3.2 with the AI TOOLKIT:
 
 ```ts
 import { deepseek } from '@ai-toolkit/deepseek';
@@ -68,15 +68,15 @@ const { text } = await generateText({
 
 ### Building Interactive Interfaces
 
-AI SDK Core can be paired with [AI SDK UI](/docs/ai-sdk-ui/overview), another powerful component of the AI SDK, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
+AI TOOLKIT Core can be paired with [AI TOOLKIT UI](/docs/ai-toolkit-ui/overview), another powerful component of the AI TOOLKIT, to streamline the process of building chat, completion, and assistant interfaces with popular frameworks like Next.js, Nuxt, and SvelteKit.
 
-AI SDK UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
+AI TOOLKIT UI provides robust abstractions that simplify the complex tasks of managing chat streams and UI updates on the frontend, enabling you to develop dynamic AI-driven interfaces more efficiently.
 
-With three main hooks — [`useChat`](/docs/reference/ai-sdk-ui/use-chat), [`useCompletion`](/docs/reference/ai-sdk-ui/use-completion), and [`useObject`](/docs/reference/ai-sdk-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
+With three main hooks — [`useChat`](/docs/reference/ai-toolkit-ui/use-chat), [`useCompletion`](/docs/reference/ai-toolkit-ui/use-completion), and [`useObject`](/docs/reference/ai-toolkit-ui/use-object) — you can incorporate real-time chat capabilities, text completions, streamed JSON, and interactive assistant features into your app.
 
-Let's explore building an agent with [Next.js](https://nextjs.org), the AI SDK, and DeepSeek V3.2:
+Let's explore building an agent with [Next.js](https://nextjs.org), the AI TOOLKIT, and DeepSeek V3.2:
 
-In a new Next.js application, first install the AI SDK and the DeepSeek provider:
+In a new Next.js application, first install the AI TOOLKIT and the DeepSeek provider:
 
 <Snippet text="pnpm install ai @ai-toolkit/deepseek @ai-toolkit/react" />
 
@@ -197,7 +197,7 @@ This adds a weather tool that the model can call when needed. The `stopWhen: ste
 
 Ready to dive in? Here's how you can begin:
 
-1. Explore the documentation at [ai-sdk.dev/docs](/docs) to understand the capabilities of the AI SDK.
-2. Check out practical examples at [ai-sdk.dev/examples](/examples) to see the SDK in action.
-3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [ai-sdk.dev/docs/guides](/cookbook/guides).
+1. Explore the documentation at [ai-toolkit.dev/docs](/docs) to understand the capabilities of the AI TOOLKIT.
+2. Check out practical examples at [ai-toolkit.dev/examples](/examples) to see the SDK in action.
+3. Dive deeper with advanced guides on topics like Retrieval-Augmented Generation (RAG) at [ai-toolkit.dev/docs/guides](/cookbook/guides).
 4. Use ready-to-deploy AI templates at [vercel.com/templates?type=ai](https://vercel.com/templates?type=ai).

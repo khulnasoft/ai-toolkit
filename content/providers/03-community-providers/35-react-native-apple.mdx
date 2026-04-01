@@ -5,7 +5,7 @@ description: Learn how to use the Apple provider for on-device AI.
 
 # React Native Apple Provider
 
-[@react-native-ai/apple](https://github.com/callstackincubator/ai/tree/main/packages/apple-llm) is a community provider that brings Apple's on-device AI capabilities to React Native and Expo applications. It allows you to run the AI SDK entirely on-device, leveraging Apple Intelligence foundation models available from iOS 26+ to provide text generation, embeddings, transcription, and speech synthesis through Apple's native AI frameworks.
+[@react-native-ai/apple](https://github.com/callstackincubator/ai/tree/main/packages/apple-llm) is a community provider that brings Apple's on-device AI capabilities to React Native and Expo applications. It allows you to run the AI TOOLKIT entirely on-device, leveraging Apple Intelligence foundation models available from iOS 26+ to provide text generation, embeddings, transcription, and speech synthesis through Apple's native AI frameworks.
 
 ## Setup
 
@@ -126,7 +126,7 @@ const { text } = await generateText({
 
 ### Tool Calling
 
-The Apple provider supports tool calling, where tools are executed by Apple Intelligence rather than the AI SDK. Tools must be pre-registered with the provider using `createAppleProvider` before they can be used in generation calls.
+The Apple provider supports tool calling, where tools are executed by Apple Intelligence rather than the AI TOOLKIT. Tools must be pre-registered with the provider using `createAppleProvider` before they can be used in generation calls.
 
 ```ts
 import { createAppleProvider } from '@react-native-ai/apple';
@@ -159,7 +159,7 @@ const result = await generateText({
 ```
 
 <Note>
-  Since tools are executed by Apple Intelligence rather than the AI SDK,
+  Since tools are executed by Apple Intelligence rather than the AI TOOLKIT,
   multi-step features like `maxSteps`, `onStepStart`, and `onStepFinish` are not
   supported.
 </Note>

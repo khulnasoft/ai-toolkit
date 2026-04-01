@@ -73,8 +73,8 @@ export class CohereEmbeddingModel implements EmbeddingModelV4 {
       headers: combineHeaders(this.config.headers(), headers),
       body: {
         model: this.modelId,
-        // The AI SDK only supports 'float' embeddings. Note that the Cohere API
-        // supports other embedding types, but they are not currently supported by the AI SDK.
+        // The AI TOOLKIT only supports 'float' embeddings. Note that the Cohere API
+        // supports other embedding types, but they are not currently supported by the AI TOOLKIT.
         // https://docs.cohere.com/v2/reference/embed#request.body.embedding_types
         embedding_types: ['float'],
         texts: values,

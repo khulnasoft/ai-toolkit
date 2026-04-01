@@ -16,7 +16,7 @@ https://github.com/khulnasoft/ai-toolkit/pull/8136/files
 2. Set version in `packages/<provider>/package.json` to `0.0.0`
 3. Create changeset for new package with `major`
 4. Add examples to `examples/ai-functions/src/*/<provider>.ts` depending on what model types the provider supports
-5. Add documentation in `content/providers/01-ai-sdk-providers/<last number + 10>-<provider>.mdx`
+5. Add documentation in `content/providers/01-ai-toolkit-providers/<last number + 10>-<provider>.mdx`
 
 See also [providers.md](providers.md)
 

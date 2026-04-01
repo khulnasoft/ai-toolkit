@@ -8,7 +8,7 @@ import { LanguageModelV2DataContent } from './language-model-v2-data-content';
  * Note: Not all models and prompt formats support multi-modal inputs and
  * tool calls. The validation happens at runtime.
  *
- * Note: This is not a user-facing prompt. The AI SDK methods will map the
+ * Note: This is not a user-facing prompt. The AI TOOLKIT methods will map the
  * user-facing prompt types such as chat or instruction prompts to this format.
  */
 export type LanguageModelV2Prompt = Array<LanguageModelV2Message>;
@@ -43,7 +43,7 @@ export type LanguageModelV2Message =
   ) & {
     /**
      * Additional provider-specific options. They are passed through
-     * to the provider from the AI SDK and enable provider-specific
+     * to the provider from the AI TOOLKIT and enable provider-specific
      * functionality that can be fully encapsulated in the provider.
      */
     providerOptions?: SharedV2ProviderOptions;
@@ -62,7 +62,7 @@ export interface LanguageModelV2TextPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV2ProviderOptions;
@@ -81,7 +81,7 @@ export interface LanguageModelV2ReasoningPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV2ProviderOptions;
@@ -114,7 +114,7 @@ export interface LanguageModelV2FilePart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV2ProviderOptions;
@@ -149,7 +149,7 @@ export interface LanguageModelV2ToolCallPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV2ProviderOptions;
@@ -178,7 +178,7 @@ export interface LanguageModelV2ToolResultPart {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV2ProviderOptions;

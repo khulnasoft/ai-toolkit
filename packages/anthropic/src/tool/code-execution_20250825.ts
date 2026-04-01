@@ -70,7 +70,7 @@ export const codeExecution_20250825OutputSchema = lazySchema(() =>
 export const codeExecution_20250825InputSchema = lazySchema(() =>
   zodSchema(
     z.discriminatedUnion('type', [
-      // Programmatic tool calling format (mapped from { code } by AI SDK)
+      // Programmatic tool calling format (mapped from { code } by AI TOOLKIT)
       z.object({
         type: z.literal('programmatic-tool-call'),
         code: z.string(),

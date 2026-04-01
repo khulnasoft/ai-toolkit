@@ -1,6 +1,6 @@
 import { createTransformer } from '../../lib/create-transformer';
 import {
-  AI_SDK_CODEMOD_ERROR_PREFIX,
+  AI_TOOLKIT_CODEMOD_ERROR_PREFIX,
   insertCommentOnce,
 } from '../../lib/add-comment';
 import type { ASTPath, Identifier, MemberExpression } from 'jscodeshift';
@@ -13,35 +13,35 @@ const patterns: {
   {
     keyword: 'appendResponseMessages',
     message:
-      'The `appendResponseMessages` option has been removed. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
+      'The `appendResponseMessages` option has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
     importedFrom: 'ai',
   },
   {
     keyword: 'appendClientMessage',
     message:
-      'The `appendClientMessage` option has been removed. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
+      'The `appendClientMessage` option has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
     importedFrom: 'ai',
   },
   {
     keyword: 'StreamData',
     message:
-      'The `StreamData` type has been removed. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#stream-data-removal',
+      'The `StreamData` type has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#stream-data-removal',
     importedFrom: 'ai',
   },
   {
     keyword: 'experimental_attachments',
     message:
-      'The `experimental_attachments` property has been replaced with the parts array. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#attachments--file-parts',
+      'The `experimental_attachments` property has been replaced with the parts array. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#attachments--file-parts',
   },
   {
     keyword: 'part.toolInvocation.toolName',
     message:
-      'The `part.toolInvocation.toolName` property has been removed. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage',
+      'The `part.toolInvocation.toolName` property has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage',
   },
   {
     keyword: 'part.toolInvocation.state',
     message:
-      'The `part.toolInvocation.state` property has been removed. Please manually migrate following https://ai-sdk.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage',
+      'The `part.toolInvocation.state` property has been removed. Please manually migrate following https://ai-toolkit.dev/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage',
   },
 ];
 
@@ -186,7 +186,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     insertCommentOnce(
       targetNode,
       j,
-      `${AI_SDK_CODEMOD_ERROR_PREFIX}${message}`,
+      `${AI_TOOLKIT_CODEMOD_ERROR_PREFIX}${message}`,
     );
     context.hasChanges = true;
   }

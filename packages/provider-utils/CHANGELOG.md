@@ -270,7 +270,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -649,7 +649,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 
@@ -789,7 +789,7 @@
 ### Major Changes
 
 - 5d142ab: remove deprecated `CoreToolCall` and `CoreToolResult` types
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - e025824: refactoring (ai): restructure provider-defined tools
 - 40acf9b: feat (ui): introduce ChatStore and ChatTransport
 - 957b739: chore (provider-utils): rename TestServerCall.requestBody to requestBodyJson
@@ -1170,7 +1170,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -1199,7 +1199,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 
@@ -1310,7 +1310,7 @@
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ## 2.0.8
 

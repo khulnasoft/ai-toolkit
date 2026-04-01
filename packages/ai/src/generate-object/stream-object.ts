@@ -103,7 +103,7 @@ export type StreamObjectOnFinishCallback<RESULT> = (event: {
 
   /**
    * Additional provider-specific metadata. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerMetadata: ProviderMetadata | undefined;
@@ -163,7 +163,7 @@ export type StreamObjectOnFinishCallback<RESULT> = (event: {
  * @param experimental_telemetry - Optional telemetry configuration (experimental).
  *
  * @param providerOptions - Additional provider-specific options. They are passed through
- * to the provider from the AI SDK and enable provider-specific
+ * to the provider from the AI TOOLKIT and enable provider-specific
  * functionality that can be fully encapsulated in the provider.
  *
  * @returns
@@ -239,7 +239,7 @@ export function streamObject<
 
       /**
        * Additional provider-specific options. They are passed through
-       * to the provider from the AI SDK and enable provider-specific
+       * to the provider from the AI TOOLKIT and enable provider-specific
        * functionality that can be fully encapsulated in the provider.
        */
       providerOptions?: ProviderOptions;

@@ -1,13 +1,13 @@
 ---
 title: Axiom
-description: Measure, observe, and improve your AI SDK application with Axiom
+description: Measure, observe, and improve your AI TOOLKIT application with Axiom
 ---
 
 # Axiom Observability
 
 **Axiom** is a data platform with specialized features for **AI engineering workflows**, helping you build sophisticated AI systems with confidence.
 
-Axiom’s integration with the AI SDK uses a model wrapper to automatically capture detailed traces for every LLM call, giving you immediate visibility into your application's performance, cost, and behavior.
+Axiom’s integration with the AI TOOLKIT uses a model wrapper to automatically capture detailed traces for every LLM call, giving you immediate visibility into your application's performance, cost, and behavior.
 
 ## Setup
 
@@ -128,12 +128,12 @@ initAxiomAI({ tracer, redactionPolicy: RedactionPolicy.AxiomDefault });
 
 ### 5. Wrap and Use the AI Model
 
-In your application code, import `wrapAISDKModel` from Axiom and use it to wrap your existing AI SDK model client.
+In your application code, import `wrapAITOOLKITModel` from Axiom and use it to wrap your existing AI TOOLKIT model client.
 
 ```typescript
 import { createOpenAI } from '@ai-toolkit/openai';
 import { generateText } from 'ai';
-import { wrapAISDKModel } from 'axiom/ai';
+import { wrapAITOOLKITModel } from 'axiom/ai';
 
 // 1. Create your standard AI model provider
 const openaiProvider = createOpenAI({
@@ -141,7 +141,7 @@ const openaiProvider = createOpenAI({
 });
 
 // 2. Wrap the model to enable automatic tracing
-const tracedGpt4o = wrapAISDKModel(openaiProvider('gpt-4o'));
+const tracedGpt4o = wrapAITOOLKITModel(openaiProvider('gpt-4o'));
 
 // 3. Use the wrapped model as you normally would
 const { text } = await generateText({
@@ -164,15 +164,15 @@ Once integrated, your Axiom dataset will include:
 
 ## Advanced Usage
 
-Axiom’s AI SDK offers more advanced instrumentation for deeper visibility:
+Axiom’s AI TOOLKIT offers more advanced instrumentation for deeper visibility:
 
 - **Business Context:** Use the `withSpan` function to group LLM calls under a specific business capability (e.g., `customer_support_agent`).
 - **Tool Tracing:** Use the `wrapTool` helper to automatically trace the execution of tools your AI model calls.
 
-To learn more about these features, see the [Axiom AI SDK Instrumentation guide](https://axiom.co/docs/ai-engineering/observe/axiom-ai-sdk-instrumentation).
+To learn more about these features, see the [Axiom AI TOOLKIT Instrumentation guide](https://axiom.co/docs/ai-engineering/observe/axiom-ai-toolkit-instrumentation).
 
 ## Additional Resources
 
 - [Axiom AI Engineering Documentation](https://axiom.co/docs/ai-engineering/overview)
-- [Axiom AI SDK on GitHub](https://github.com/axiomhq/ai)
+- [Axiom AI TOOLKIT on GitHub](https://github.com/axiomhq/ai)
 - [Full Quickstart Guide](https://axiom.co/docs/ai-engineering/quickstart)

@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/xai': patch
+'@ai-toolkit/xai': patch
 ---
 
 chore(provider/xai): update provider to use v4 types

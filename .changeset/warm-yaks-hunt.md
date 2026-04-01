@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/google': patch
+'@ai-toolkit/google': patch
 ---
 
 feat(provider/google): Add multimodal tool-result support for Google function responses.

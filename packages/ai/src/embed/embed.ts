@@ -33,7 +33,7 @@ const originalGenerateCallId = createIdGenerator({
  * @param experimental_telemetry - Optional telemetry configuration (experimental).
  *
  * @param providerOptions - Additional provider-specific options. They are passed through
- * to the provider from the AI SDK and enable provider-specific
+ * to the provider from the AI TOOLKIT and enable provider-specific
  * functionality that can be fully encapsulated in the provider.
  *
  * @returns A result object that contains the embedding, the value, and additional information.
@@ -80,7 +80,7 @@ export async function embed({
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: ProviderOptions;

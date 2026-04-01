@@ -23431,7 +23431,7 @@ describe('streamText', () => {
 
   describe('telemetry integrations', () => {
     afterEach(() => {
-      globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = undefined;
+      globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = undefined;
     });
 
     it('should call per-call integration listeners for all lifecycle events', async () => {
@@ -23508,7 +23508,7 @@ describe('streamText', () => {
     it('should call globally registered integration listeners', async () => {
       const events: string[] = [];
 
-      globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = [
+      globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = [
         {
           onStart: async () => {
             events.push('global-onStart');
@@ -23540,7 +23540,7 @@ describe('streamText', () => {
     it('should call global integrations before per-call integrations', async () => {
       const events: string[] = [];
 
-      globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = [
+      globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = [
         {
           onStart: async () => {
             events.push('global');

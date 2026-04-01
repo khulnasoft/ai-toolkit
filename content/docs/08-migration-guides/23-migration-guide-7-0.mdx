@@ -1,14 +1,14 @@
 ---
-title: Migrate AI SDK 6.x to 7.0
-description: Learn how to upgrade AI SDK 6.x to 7.0.
+title: Migrate AI TOOLKIT 6.x to 7.0
+description: Learn how to upgrade AI TOOLKIT 6.x to 7.0.
 ---
 
-# Migrate AI SDK 6.x to 7.0
+# Migrate AI TOOLKIT 6.x to 7.0
 
 ## Recommended Migration Process
 
 1. Backup your project. If you use a versioning control system, make sure all previous versions are committed.
-1. Upgrade to AI SDK 7.0.
+1. Upgrade to AI TOOLKIT 7.0.
 1. Follow the breaking changes guide below.
 1. Verify your project is working as expected.
 1. Commit your changes.
@@ -19,7 +19,7 @@ An example upgrade command would be:
 pnpm install ai@latest @ai-toolkit/react@latest @ai-toolkit/openai@latest
 ```
 
-## AI SDK Core
+## AI TOOLKIT Core
 
 ### Telemetry: `tracer` in `experimental_telemetry` Replaced by `OpenTelemetryIntegration`
 
@@ -27,7 +27,7 @@ The `tracer` property on `experimental_telemetry` settings is no longer used. Cu
 
 Previously, you could pass a custom OpenTelemetry `Tracer` directly to `experimental_telemetry`:
 
-```tsx filename="AI SDK 6"
+```tsx filename="AI TOOLKIT 6"
 import { generateText } from 'ai';
 import { trace } from '@opentelemetry/api';
 
@@ -45,7 +45,7 @@ const result = await generateText({
 
 Now, wrap your custom tracer in an `OpenTelemetryIntegration` instance and pass it via the `integrations` property:
 
-```tsx filename="AI SDK 7"
+```tsx filename="AI TOOLKIT 7"
 import { generateText, OpenTelemetryIntegration } from 'ai';
 import { trace } from '@opentelemetry/api';
 
@@ -61,7 +61,7 @@ const result = await generateText({
 });
 ```
 
-This applies to all AI SDK functions that accept `experimental_telemetry`, including `streamText`, `generateObject`, `streamObject`, `embed`, and `embedMany`.
+This applies to all AI TOOLKIT functions that accept `experimental_telemetry`, including `streamText`, `generateObject`, `streamObject`, `embed`, and `embedMany`.
 
 If you were not passing a custom `tracer` (relying on the default global tracer), no changes are needed — the `OpenTelemetryIntegration` is registered globally by default and uses `trace.getTracer('ai')` when no custom tracer is provided.
 
@@ -73,7 +73,7 @@ The `redirect` option on `MCPTransportConfig` (used by both HTTP and SSE transpo
 
 If your MCP server relies on HTTP redirects, explicitly set `redirect: 'follow'` in your transport configuration:
 
-```tsx filename="AI SDK 6"
+```tsx filename="AI TOOLKIT 6"
 const mcpClient = await createMCPClient({
   transport: {
     type: 'http',
@@ -82,7 +82,7 @@ const mcpClient = await createMCPClient({
 });
 ```
 
-```tsx filename="AI SDK 7"
+```tsx filename="AI TOOLKIT 7"
 const mcpClient = await createMCPClient({
   transport: {
     type: 'http',

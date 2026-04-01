@@ -3,8 +3,8 @@ import fs from 'node:fs';
 
 const DB_DIR = path.join(process.cwd(), '.devtools');
 const DB_PATH = path.join(DB_DIR, 'generations.json');
-const DEVTOOLS_PORT = process.env.AI_SDK_DEVTOOLS_PORT
-  ? parseInt(process.env.AI_SDK_DEVTOOLS_PORT)
+const DEVTOOLS_PORT = process.env.AI_TOOLKIT_DEVTOOLS_PORT
+  ? parseInt(process.env.AI_TOOLKIT_DEVTOOLS_PORT)
   : 4983;
 
 /**

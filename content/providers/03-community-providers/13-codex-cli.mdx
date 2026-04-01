@@ -5,52 +5,52 @@ description: Learn how to use the Codex CLI provider to access OpenAI GPT-5 mode
 
 # Codex CLI Provider
 
-The [ai-sdk-provider-codex-cli](https://github.com/ben-vargas/ai-sdk-provider-codex-cli) community provider enables using OpenAI's GPT-5 series models through the [Codex CLI](https://github.com/openai/codex). It's useful for developers who want to use their ChatGPT Plus/Pro subscription or API key authentication.
+The [ai-toolkit-provider-codex-cli](https://github.com/ben-vargas/ai-toolkit-provider-codex-cli) community provider enables using OpenAI's GPT-5 series models through the [Codex CLI](https://github.com/openai/codex). It's useful for developers who want to use their ChatGPT Plus/Pro subscription or API key authentication.
 
 ## Version Compatibility
 
-| Provider Version | AI SDK Version | NPM Tag     | Status      |
+| Provider Version | AI TOOLKIT Version | NPM Tag     | Status      |
 | ---------------- | -------------- | ----------- | ----------- |
 | 1.x              | v6             | `latest`    | Stable      |
-| 0.x              | v5             | `ai-sdk-v5` | Maintenance |
+| 0.x              | v5             | `ai-toolkit-v5` | Maintenance |
 
 ```bash
-# AI SDK v6 (default)
-npm install ai-sdk-provider-codex-cli ai
+# AI TOOLKIT v6 (default)
+npm install ai-toolkit-provider-codex-cli ai
 
-# AI SDK v5
-npm install ai-sdk-provider-codex-cli@ai-sdk-v5 ai@^5.0.0
+# AI TOOLKIT v5
+npm install ai-toolkit-provider-codex-cli@ai-toolkit-v5 ai@^5.0.0
 ```
 
 ## Setup
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add ai-sdk-provider-codex-cli" dark />
+    <Snippet text="pnpm add ai-toolkit-provider-codex-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install ai-sdk-provider-codex-cli" dark />
+    <Snippet text="npm install ai-toolkit-provider-codex-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add ai-sdk-provider-codex-cli" dark />
+    <Snippet text="yarn add ai-toolkit-provider-codex-cli" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add ai-sdk-provider-codex-cli" dark />
+    <Snippet text="bun add ai-toolkit-provider-codex-cli" dark />
   </Tab>
 </Tabs>
 
 ## Provider Instance
 
-You can import the default provider instance `codexCli` from `ai-sdk-provider-codex-cli`:
+You can import the default provider instance `codexCli` from `ai-toolkit-provider-codex-cli`:
 
 ```ts
-import { codexCli } from 'ai-sdk-provider-codex-cli';
+import { codexCli } from 'ai-toolkit-provider-codex-cli';
 ```
 
 If you need a customized setup, you can import `createCodexCli` and provide default settings that apply to every model:
 
 ```ts
-import { createCodexCli } from 'ai-sdk-provider-codex-cli';
+import { createCodexCli } from 'ai-toolkit-provider-codex-cli';
 
 const codexCli = createCodexCli({
   defaultSettings: {
@@ -107,7 +107,7 @@ const model = codexCli('gpt-5.2-codex');
 ### Example
 
 ```ts
-import { codexCli } from 'ai-sdk-provider-codex-cli';
+import { codexCli } from 'ai-toolkit-provider-codex-cli';
 import { generateText } from 'ai';
 
 const { text } = await generateText({
@@ -145,7 +145,7 @@ const model = codexCli('gpt-5.1-codex-max', {
 
 <Note>
   Tool Usage and Tool Streaming show ❌ because this provider does not support
-  AI SDK custom tools (Zod schemas passed to `generateText`/`streamText`).
+  AI TOOLKIT custom tools (Zod schemas passed to `generateText`/`streamText`).
   Instead, the Codex CLI executes its own tools autonomously, which can be
   observed via streaming events. Object generation uses native JSON Schema
   support via `--output-schema` for guaranteed schema compliance.
@@ -168,4 +168,4 @@ Alternatively, you can use an OpenAI API key by setting the `OPENAI_API_KEY` env
 - Codex CLI installed globally (v0.42.0+ for JSON support, v0.60.0+ recommended for latest models)
 - ChatGPT Plus/Pro subscription or OpenAI API key
 
-For more details, see the [provider documentation](https://github.com/ben-vargas/ai-sdk-provider-codex-cli).
+For more details, see the [provider documentation](https://github.com/ben-vargas/ai-toolkit-provider-codex-cli).

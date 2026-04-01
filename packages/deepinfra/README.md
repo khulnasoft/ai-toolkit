@@ -1,6 +1,6 @@
-# AI SDK - DeepInfra Provider
+# AI TOOLKIT - DeepInfra Provider
 
-The **[DeepInfra provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepinfra)** for the [AI SDK](https://ai-sdk.dev/docs)
+The **[DeepInfra provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepinfra)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs)
 contains language model support for the DeepInfra API, giving you access to models like Llama 3, Mixtral, and other state-of-the-art LLMs.
 
 ## Setup
@@ -13,7 +13,7 @@ npm i @ai-toolkit/deepinfra
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -41,4 +41,4 @@ const { text } = await generateText({
 
 ## Documentation
 
-Please check out the **[DeepInfra provider documentation](https://ai-sdk.dev/providers/ai-sdk-providers/deepinfra)** for more information.
+Please check out the **[DeepInfra provider documentation](https://ai-toolkit.dev/providers/ai-toolkit-providers/deepinfra)** for more information.

@@ -22,7 +22,7 @@ export function MobileNav() {
           </div>
           <div>
             <h1 className="font-semibold text-sm text-[var(--foreground)]">
-              {currentPage?.label || 'AI SDK + LangChain'}
+              {currentPage?.label || 'AI TOOLKIT + LangChain'}
             </h1>
           </div>
         </div>

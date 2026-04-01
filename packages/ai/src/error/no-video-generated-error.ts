@@ -1,11 +1,11 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import { VideoModelResponseMetadata } from '../types/video-model-response-metadata';
 
 const name = 'AI_NoVideoGeneratedError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class NoVideoGeneratedError extends AISDKError {
+export class NoVideoGeneratedError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly responses: Array<VideoModelResponseMetadata>;
@@ -25,7 +25,7 @@ export class NoVideoGeneratedError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is NoVideoGeneratedError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 
   /**

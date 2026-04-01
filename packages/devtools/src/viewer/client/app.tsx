@@ -15,7 +15,7 @@ import {
   Loader2,
   BarChart3,
 } from 'lucide-react';
-import { AISDKLogo } from '@/components/icons';
+import { AITOOLKITLogo } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -482,7 +482,7 @@ function App() {
     <div className="flex flex-col h-screen bg-background">
       <header className="flex justify-between items-center px-5 py-3 border-b border-border bg-card">
         <div className="flex items-center gap-2">
-          <AISDKLogo />
+          <AITOOLKITLogo />
           <span className="text-base font-medium text-muted-foreground">
             DevTools
           </span>
@@ -1849,7 +1849,7 @@ function RawDataSection({
                           : 'text-muted-foreground hover:text-foreground'
                       }`}
                     >
-                      AI SDK
+                      AI TOOLKIT
                     </button>
                     <button
                       onClick={() => setResponseView('raw')}

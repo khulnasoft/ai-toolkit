@@ -1,9 +1,9 @@
 ---
-'@ai-sdk/provider-utils': major
-'@ai-sdk/openai': major
+'@ai-toolkit/provider-utils': major
+'@ai-toolkit/openai': major
 ---
 
-### `@ai-sdk/openai`: remove redundant `name` argument from `openai.tools.customTool()`
+### `@ai-toolkit/openai`: remove redundant `name` argument from `openai.tools.customTool()`
 
 `openai.tools.customTool()` no longer accepts a `name` field. the tool name is now derived from the sdk tool key (the object key in the `tools` object).
 
@@ -30,7 +30,7 @@ tools: {
 }
 ```
 
-### `@ai-sdk/provider-utils`: `createToolNameMapping()` no longer accepts the `resolveProviderToolName` parameter
+### `@ai-toolkit/provider-utils`: `createToolNameMapping()` no longer accepts the `resolveProviderToolName` parameter
 
 before: tool name can be set dynamically
 

@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import { ImageModelResponseMetadata } from '../types/image-model-response-metadata';
 
 const name = 'AI_NoImageGeneratedError';
@@ -11,7 +11,7 @@ const symbol = Symbol.for(marker);
  * - The model failed to generate a response.
  * - The model generated a response that could not be parsed.
  */
-export class NoImageGeneratedError extends AISDKError {
+export class NoImageGeneratedError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   /**
@@ -34,6 +34,6 @@ export class NoImageGeneratedError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is NoImageGeneratedError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

@@ -1,5 +1,5 @@
 ---
-"@ai-sdk/mistral": patch
+"@ai-toolkit/mistral": patch
 ---
 
 feat(provider/mistral): add support for reasoning configuration (mistral-small-latest)

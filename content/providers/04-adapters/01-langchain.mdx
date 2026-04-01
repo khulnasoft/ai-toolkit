@@ -1,6 +1,6 @@
 ---
 title: LangChain
-description: Learn how to use LangChain with the AI SDK.
+description: Learn how to use LangChain with the AI TOOLKIT.
 ---
 
 # LangChain
@@ -13,8 +13,8 @@ and other data sources for retrieval augmented generation (RAG).
 stateful, multi-actor applications. It enables you to define complex agent workflows as graphs,
 with support for cycles, persistence, and human-in-the-loop patterns.
 
-The `@ai-toolkit/langchain` adapter provides seamless integration between LangChain, LangGraph, and the AI SDK,
-enabling you to use LangChain models and LangGraph agents with AI SDK UI components.
+The `@ai-toolkit/langchain` adapter provides seamless integration between LangChain, LangGraph, and the AI TOOLKIT,
+enabling you to use LangChain models and LangGraph agents with AI TOOLKIT UI components.
 
 ## Installation
 
@@ -34,8 +34,8 @@ enabling you to use LangChain models and LangGraph agents with AI SDK UI compone
 
 ## Features
 
-- Convert AI SDK `UIMessage` to LangChain `BaseMessage` format using `toBaseMessages`
-- Transform LangChain/LangGraph streams to AI SDK `UIMessageStream` using `toUIMessageStream`
+- Convert AI TOOLKIT `UIMessage` to LangChain `BaseMessage` format using `toBaseMessages`
+- Transform LangChain/LangGraph streams to AI TOOLKIT `UIMessageStream` using `toUIMessageStream`
 - Support for `streamEvents()` output for granular event streaming and observability
 - `LangSmithDeploymentTransport` for connecting directly to a deployed LangGraph graph
 - Full support for text, tool calls, tool results, and multimodal content
@@ -43,7 +43,7 @@ enabling you to use LangChain models and LangGraph agents with AI SDK UI compone
 
 ## Example: Basic Chat
 
-Here is a basic example that uses both the AI SDK and LangChain together with the [Next.js](https://nextjs.org/docs) App Router.
+Here is a basic example that uses both the AI TOOLKIT and LangChain together with the [Next.js](https://nextjs.org/docs) App Router.
 
 ```tsx filename="app/api/chat/route.ts"
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     temperature: 0,
   });
 
-  // Convert AI SDK UIMessages to LangChain messages
+  // Convert AI TOOLKIT UIMessages to LangChain messages
   const langchainMessages = await toBaseMessages(messages);
 
   // Stream the response from the model
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
 }
 ```
 
-Then, use the AI SDK's [`useChat`](/docs/ai-sdk-ui/chatbot) hook in the page component:
+Then, use the AI TOOLKIT's [`useChat`](/docs/ai-toolkit-ui/chatbot) hook in the page component:
 
 ```tsx filename="app/page.tsx"
 'use client';
@@ -191,7 +191,7 @@ export async function POST(req: Request) {
     .addEdge('agent', '__end__')
     .compile();
 
-  // Convert AI SDK UIMessages to LangChain messages
+  // Convert AI TOOLKIT UIMessages to LangChain messages
   const langchainMessages = await toBaseMessages(messages);
 
   // Stream from the graph using LangGraph's streaming format
@@ -440,7 +440,7 @@ The `LangSmithDeploymentTransport` constructor accepts the following options:
 
 ### `toBaseMessages(messages)`
 
-Converts AI SDK `UIMessage` objects to LangChain `BaseMessage` objects.
+Converts AI TOOLKIT `UIMessage` objects to LangChain `BaseMessage` objects.
 
 ```ts
 import { toBaseMessages } from '@ai-toolkit/langchain';
@@ -450,13 +450,13 @@ const langchainMessages = await toBaseMessages(uiMessages);
 
 **Parameters:**
 
-- `messages`: `UIMessage[]` - Array of AI SDK UI messages
+- `messages`: `UIMessage[]` - Array of AI TOOLKIT UI messages
 
 **Returns:** `Promise<BaseMessage[]>`
 
 ### `convertModelMessages(modelMessages)`
 
-Converts AI SDK `ModelMessage` objects to LangChain `BaseMessage` objects. Useful when you already have model messages from `convertToModelMessages`.
+Converts AI TOOLKIT `ModelMessage` objects to LangChain `BaseMessage` objects. Useful when you already have model messages from `convertToModelMessages`.
 
 ```ts
 import { convertModelMessages } from '@ai-toolkit/langchain';
@@ -472,7 +472,7 @@ const langchainMessages = convertModelMessages(modelMessages);
 
 ### `toUIMessageStream(stream)`
 
-Converts a LangChain/LangGraph stream to an AI SDK `UIMessageStream`. Automatically detects the stream type and handles direct model streams, LangGraph streams, and `streamEvents()` output.
+Converts a LangChain/LangGraph stream to an AI TOOLKIT `UIMessageStream`. Automatically detects the stream type and handles direct model streams, LangGraph streams, and `streamEvents()` output.
 
 ```ts
 import { toUIMessageStream } from '@ai-toolkit/langchain';
@@ -540,4 +540,4 @@ const { messages, sendMessage } = useChat({
 
 ## More Examples
 
-You can find additional examples in the AI SDK [examples/next-langchain](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-langchain) folder.
+You can find additional examples in the AI TOOLKIT [examples/next-langchain](https://github.com/khulnasoft/ai-toolkit/tree/main/examples/next-langchain) folder.

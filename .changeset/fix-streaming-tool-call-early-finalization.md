@@ -1,9 +1,9 @@
 ---
-'@ai-sdk/openai': patch
-'@ai-sdk/openai-compatible': patch
-'@ai-sdk/groq': patch
-'@ai-sdk/deepseek': patch
-'@ai-sdk/alibaba': patch
+'@ai-toolkit/openai': patch
+'@ai-toolkit/openai-compatible': patch
+'@ai-toolkit/groq': patch
+'@ai-toolkit/deepseek': patch
+'@ai-toolkit/alibaba': patch
 ---
 
 fix(security): prevent streaming tool calls from finalizing on parsable partial JSON

@@ -1,6 +1,6 @@
 ---
-'@ai-sdk/gateway': patch
-'@ai-sdk/xai': patch
+'@ai-toolkit/gateway': patch
+'@ai-toolkit/xai': patch
 ---
 
 chore(provider/xai): remove obsolete Grok 2 models now that they are shut down in their API

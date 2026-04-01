@@ -1,6 +1,6 @@
 # Provider Abstraction Architecture
 
-This document explains how AI functions, model specifications, and provider implementations connect in the AI SDK.
+This document explains how AI functions, model specifications, and provider implementations connect in the AI TOOLKIT.
 It starts with an abstract high-level view and then details each V4 model type, including the AI functions that use it and small UML diagrams.
 
 ## High-Level Architecture

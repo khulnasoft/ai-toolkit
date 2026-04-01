@@ -9,7 +9,7 @@ Memory lets your agent save information and recall it later. Without memory, eve
 
 ## Three Approaches
 
-You can add memory to your agent with the AI SDK in three ways, each with different tradeoffs:
+You can add memory to your agent with the AI TOOLKIT in three ways, each with different tradeoffs:
 
 | Approach                                          | Effort | Flexibility | Provider Lock-in           |
 | ------------------------------------------------- | ------ | ----------- | -------------------------- |
@@ -55,18 +55,18 @@ The tool receives structured commands (`view`, `create`, `str_replace`, `insert`
 
 ## Memory Providers
 
-Another approach is to use a provider that has memory built in. These providers wrap an external memory service and expose it through the AI SDK's standard interface. Memory storage, retrieval, and injection happen transparently, and you do not define any tools yourself.
+Another approach is to use a provider that has memory built in. These providers wrap an external memory service and expose it through the AI TOOLKIT's standard interface. Memory storage, retrieval, and injection happen transparently, and you do not define any tools yourself.
 
 ### Letta
 
-[Letta](https://letta.com) provides agents with persistent long-term memory. You create an agent on Letta's platform (cloud or self-hosted), configure its memory there, and use the AI SDK provider to interact with it. Letta's agent runtime handles memory management (core memory, archival memory, recall).
+[Letta](https://letta.com) provides agents with persistent long-term memory. You create an agent on Letta's platform (cloud or self-hosted), configure its memory there, and use the AI TOOLKIT provider to interact with it. Letta's agent runtime handles memory management (core memory, archival memory, recall).
 
 ```bash
-pnpm add @letta-ai/vercel-ai-sdk-provider
+pnpm add @letta-ai/vercel-ai-toolkit-provider
 ```
 
 ```ts
-import { lettaCloud } from '@letta-ai/vercel-ai-sdk-provider';
+import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -86,7 +86,7 @@ const result = await agent.generate({
 You can also use Letta's built-in memory tools alongside custom tools:
 
 ```ts
-import { lettaCloud } from '@letta-ai/vercel-ai-sdk-provider';
+import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -158,7 +158,7 @@ pnpm add @supermemory/tools
 
 ```ts
 __PROVIDER_IMPORT__;
-import { supermemoryTools } from '@supermemory/tools/ai-sdk';
+import { supermemoryTools } from '@supermemory/tools/ai-toolkit';
 import { ToolLoopAgent } from 'ai';
 
 const agent = new ToolLoopAgent({
@@ -171,7 +171,7 @@ const result = await agent.generate({
 });
 ```
 
-Supermemory works with any AI SDK provider. The tools give the model `addMemory` and `searchMemories` operations that handle storage and retrieval.
+Supermemory works with any AI TOOLKIT provider. The tools give the model `addMemory` and `searchMemories` operations that handle storage and retrieval.
 
 See the [Supermemory provider documentation](/providers/community-providers/supermemory) for full setup and configuration.
 
@@ -180,13 +180,13 @@ See the [Supermemory provider documentation](/providers/community-providers/supe
 [Hindsight](/providers/community-providers/hindsight) provides agents with persistent memory through five tools: `retain`, `recall`, `reflect`, `getMentalModel`, and `getDocument`. It can be self-hosted with Docker or used as a cloud service.
 
 ```bash
-pnpm add @vectorize-io/hindsight-ai-sdk @vectorize-io/hindsight-client
+pnpm add @vectorize-io/hindsight-ai-toolkit @vectorize-io/hindsight-client
 ```
 
 ```ts
 __PROVIDER_IMPORT__;
 import { HindsightClient } from '@vectorize-io/hindsight-client';
-import { createHindsightTools } from '@vectorize-io/hindsight-ai-sdk';
+import { createHindsightTools } from '@vectorize-io/hindsight-ai-toolkit';
 import { ToolLoopAgent, stepCountIs } from 'ai';
 import { openai } from '@ai-toolkit/openai';
 
@@ -204,7 +204,7 @@ const result = await agent.generate({
 });
 ```
 
-The `bankId` identifies the memory store and is typically a user ID. In multi-user apps, call `createHindsightTools` inside your request handler so each request gets the right bank. Hindsight works with any AI SDK provider.
+The `bankId` identifies the memory store and is typically a user ID. In multi-user apps, call `createHindsightTools` inside your request handler so each request gets the right bank. Hindsight works with any AI TOOLKIT provider.
 
 See the [Hindsight provider documentation](/providers/community-providers/hindsight) for full setup and configuration.
 

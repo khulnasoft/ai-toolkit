@@ -1,7 +1,7 @@
 ---
-"@ai-sdk/provider-utils": patch
-"@ai-sdk/provider": patch
-"@ai-sdk/openai": patch
+"@ai-toolkit/provider-utils": patch
+"@ai-toolkit/provider": patch
+"@ai-toolkit/openai": patch
 "ai": patch
 ---
 

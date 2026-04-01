@@ -40,7 +40,7 @@ async function main() {
     'ollama-ai-provider',
     '@portkey-ai/vercel-provider',
     'workers-ai-provider',
-    '@openrouter/ai-sdk-provider',
+    '@openrouter/ai-toolkit-provider',
   ];
   const results: Array<{
     package: string;

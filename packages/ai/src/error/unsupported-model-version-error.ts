@@ -1,9 +1,9 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 /**
  * Error that is thrown when a model with an unsupported version is used.
  */
-export class UnsupportedModelVersionError extends AISDKError {
+export class UnsupportedModelVersionError extends AITOOLKITError {
   readonly version: string;
   readonly provider: string;
   readonly modelId: string;
@@ -13,7 +13,7 @@ export class UnsupportedModelVersionError extends AISDKError {
       name: 'AI_UnsupportedModelVersionError',
       message:
         `Unsupported model version ${options.version} for provider "${options.provider}" and model "${options.modelId}". ` +
-        `AI SDK 5 only supports models that implement specification version "v2".`,
+        `AI TOOLKIT 5 only supports models that implement specification version "v2".`,
     });
 
     this.version = options.version;

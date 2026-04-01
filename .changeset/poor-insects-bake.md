@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/xai': patch
+'@ai-toolkit/xai': patch
 ---
 
 feat(provider/xai): add moderation error, and costInUsdTicks to video model

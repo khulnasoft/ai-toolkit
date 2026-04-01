@@ -26,7 +26,7 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
 
     if (tool.toModelOutput) {
-      console.log('\ntoModelOutput() result (AI SDK format):');
+      console.log('\ntoModelOutput() result (AI TOOLKIT format):');
       const modelOutput = (tool.toModelOutput as Function)({
         toolCallId: '1',
         input: {},

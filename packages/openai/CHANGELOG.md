@@ -514,7 +514,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Minor Changes
 
@@ -1320,7 +1320,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 
@@ -1706,7 +1706,7 @@
 
 ### Patch Changes
 
-- c9e0f52: Files from the OpenAI Files API are now supported, mirroring functionality of OpenAI Chat and Responses API, respectively. Also, the AI SDK supports URLs for PDFs in the responses API the same way it did for completions.
+- c9e0f52: Files from the OpenAI Files API are now supported, mirroring functionality of OpenAI Chat and Responses API, respectively. Also, the AI TOOLKIT supports URLs for PDFs in the responses API the same way it did for completions.
 
 ## 2.0.3
 
@@ -1731,7 +1731,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 - cc62234: chore (provider/openai): switch default to openai responses api
 - 516be5b: ### Move Image Model Settings into generate options
 
@@ -2336,7 +2336,7 @@
 
 ### Major Changes
 
-- d5f588f: AI SDK 5
+- d5f588f: AI TOOLKIT 5
 
 ### Patch Changes
 
@@ -2388,7 +2388,7 @@
 
 ### Minor Changes
 
-- 5bc638d: AI SDK 4.2
+- 5bc638d: AI TOOLKIT 4.2
 
 ### Patch Changes
 
@@ -2572,7 +2572,7 @@
 
 ### Minor Changes
 
-- 62ba5ad: release: AI SDK 4.1
+- 62ba5ad: release: AI TOOLKIT 4.1
 
 ### Patch Changes
 
@@ -2875,7 +2875,7 @@
 
 ### Patch Changes
 
-- d1aaeae: feat (provider/openai): support ai sdk image download
+- d1aaeae: feat (provider/openai): support ai toolkit image download
 
 ## 0.0.56
 

@@ -85,7 +85,7 @@ describe('doGenerate', () => {
       });
 
       expect(result.text).toMatchInlineSnapshot(
-        `"Hello from the Versal AISDK."`,
+        `"Hello from the Versal AITOOLKIT."`,
       );
     });
   });

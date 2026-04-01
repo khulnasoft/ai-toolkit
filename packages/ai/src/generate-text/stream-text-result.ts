@@ -267,7 +267,7 @@ export interface StreamTextResult<
 
   /**
    * Additional provider-specific metadata from the last step.
-   * Metadata is passed through from the provider to the AI SDK and
+   * Metadata is passed through from the provider to the AI TOOLKIT and
    * enables provider-specific results that can be fully encapsulated in the provider.
    */
   readonly providerMetadata: PromiseLike<ProviderMetadata | undefined>;

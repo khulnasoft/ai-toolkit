@@ -20,7 +20,7 @@ const model = new ChatOpenAI({
 /**
  * The API route for multimodal chat with image input support
  * This demonstrates sending images TO the model for analysis using the
- * AI SDK's multimodal content format converted to LangChain messages.
+ * AI TOOLKIT's multimodal content format converted to LangChain messages.
  *
  * @param req - The request object containing messages with potential image parts
  * @returns The streaming response from the vision model
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     /**
-     * Convert AI SDK UIMessages to LangChain messages
+     * Convert AI TOOLKIT UIMessages to LangChain messages
      * This now properly handles multimodal content (images, files) thanks to
      * the updated convertUserContent function in @ai-toolkit/langchain
      */

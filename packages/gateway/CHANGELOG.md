@@ -606,13 +606,13 @@
 
 ### Major Changes
 
-- 387980f: fix: major version bump for AI SDK v6
+- 387980f: fix: major version bump for AI TOOLKIT v6
 
 ## 2.0.0
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 - 2f8b0c8: fix(gateway): bump `@vercel/oidc` to latest
 
 ### Minor Changes
@@ -1232,7 +1232,7 @@
 
 ### Major Changes
 
-- dee8b05: ai SDK 6 beta
+- dee8b05: ai TOOLKIT 6 beta
 
 ### Patch Changes
 

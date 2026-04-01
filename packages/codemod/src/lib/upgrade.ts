@@ -35,7 +35,7 @@ const bundle = [
   'v5/move-langchain-adapter',
   'v5/move-maxsteps-to-stopwhen',
   'v5/move-provider-options',
-  'v5/move-react-to-ai-sdk',
+  'v5/move-react-to-ai-toolkit',
   'v5/move-ui-utils-to-ai',
   'v5/remove-experimental-wrap-language-model',
   'v5/remove-get-ui-text',
@@ -139,7 +139,7 @@ function runCodemods(
 
   if (notImplementedAvailable) {
     log(
-      `Some ${versionLabel} codemods require manual changes. Please search your codebase for \`FIXME(@ai-sdk-upgrade-v5): \` comments and follow the instructions to complete the upgrade.`,
+      `Some ${versionLabel} codemods require manual changes. Please search your codebase for \`FIXME(@ai-toolkit-upgrade-v5): \` comments and follow the instructions to complete the upgrade.`,
     );
   }
 
@@ -193,7 +193,7 @@ export function upgrade(options: TransformOptions) {
 
   if (notImplementedAvailable) {
     log(
-      'Some codemods require manual changes. Please search your codebase for `FIXME(@ai-sdk-upgrade-v5): ` comments and follow the instructions to complete the upgrade.',
+      'Some codemods require manual changes. Please search your codebase for `FIXME(@ai-toolkit-upgrade-v5): ` comments and follow the instructions to complete the upgrade.',
     );
   }
 

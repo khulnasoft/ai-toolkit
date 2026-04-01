@@ -1,13 +1,13 @@
 ---
 name: add-provider-package
-description: Guide for adding new AI provider packages to the AI SDK. Use when creating a new @ai-toolkit/<provider> package to integrate an AI service into the SDK.
+description: Guide for adding new AI provider packages to the AI TOOLKIT. Use when creating a new @ai-toolkit/<provider> package to integrate an AI service into the SDK.
 metadata:
   internal: true
 ---
 
 ## Adding a New Provider Package
 
-This guide covers the process of creating a new `@ai-toolkit/<provider>` package to integrate an AI service into the AI SDK.
+This guide covers the process of creating a new `@ai-toolkit/<provider>` package to integrate an AI service into the AI TOOLKIT.
 
 ## First-Party vs Third-Party Providers
 
@@ -20,7 +20,7 @@ See https://github.com/khulnasoft/ai-toolkit/pull/8136/files for a complete exam
 
 ## Provider Architecture
 
-The AI SDK uses a layered provider architecture following the adapter pattern:
+The AI TOOLKIT uses a layered provider architecture following the adapter pattern:
 
 1. **Specifications** (`@ai-toolkit/provider`): Defines interfaces like `LanguageModelV4`, `EmbeddingModelV4`, etc.
 2. **Utilities** (`@ai-toolkit/provider-utils`): Shared code for implementing providers
@@ -233,7 +233,7 @@ Add feature-specific examples as needed (e.g., `<provider>-tool-call.ts`, `<prov
 
 ### 11. Add Documentation
 
-Create documentation in `content/providers/01-ai-sdk-providers/<last number + 10>-<provider>.mdx`
+Create documentation in `content/providers/01-ai-toolkit-providers/<last number + 10>-<provider>.mdx`
 
 Include:
 
@@ -303,16 +303,16 @@ pnpm tsx src/stream-text/<provider>.ts
 
 ## Error Handling
 
-Errors should extend `AISDKError` from `@ai-toolkit/provider` and use a marker pattern:
+Errors should extend `AITOOLKITError` from `@ai-toolkit/provider` and use a marker pattern:
 
 ```typescript
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_ProviderError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class ProviderError extends AISDKError {
+export class ProviderError extends AITOOLKITError {
   private readonly [symbol] = true;
 
   constructor({ message, cause }: { message: string; cause?: unknown }) {
@@ -320,7 +320,7 @@ export class ProviderError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is ProviderError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }
 ```
@@ -341,7 +341,7 @@ If `main` is set up to publish `beta` releases, no further action is necessary. 
 - [ ] Unit tests written and passing
 - [ ] API response test fixtures captured
 - [ ] Examples created in `examples/ai-functions/src/`
-- [ ] Documentation added in `content/providers/01-ai-sdk-providers/`
+- [ ] Documentation added in `content/providers/01-ai-toolkit-providers/`
 - [ ] README.md written
 - [ ] Major changeset created
 - [ ] `pnpm update-references` run

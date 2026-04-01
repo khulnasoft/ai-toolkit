@@ -6,7 +6,7 @@ import {
 } from './telemetry-integration-registry';
 
 beforeEach(() => {
-  globalThis.AI_SDK_TELEMETRY_INTEGRATIONS = undefined;
+  globalThis.AI_TOOLKIT_TELEMETRY_INTEGRATIONS = undefined;
 });
 
 describe('registerTelemetryIntegration', () => {

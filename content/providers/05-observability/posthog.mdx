@@ -13,7 +13,7 @@ description: Monitor and analyze LLM usage with PostHog
 
 ## Setup
 
-PostHog supports [AI SDK telemetry data](/docs/ai-sdk-core/telemetry) through [OpenTelemetry](https://opentelemetry.io/docs/). The `PostHogTraceExporter` from the `@posthog/ai` package sends `gen_ai.*` spans to PostHog's OTLP ingestion endpoint, where they are automatically converted into `$ai_generation` events.
+PostHog supports [AI TOOLKIT telemetry data](/docs/ai-toolkit-core/telemetry) through [OpenTelemetry](https://opentelemetry.io/docs/). The `PostHogTraceExporter` from the `@posthog/ai` package sends `gen_ai.*` spans to PostHog's OTLP ingestion endpoint, where they are automatically converted into `$ai_generation` events.
 
 <Tabs items={["Next.js", "Node.js"]}>
 <Tab>
@@ -47,7 +47,7 @@ export function register() {
 }
 ```
 
-**Step 3.** Use the AI SDK with telemetry enabled in your route handlers or server actions
+**Step 3.** Use the AI TOOLKIT with telemetry enabled in your route handlers or server actions
 
 ```ts highlight="6-13"
 import { generateText } from 'ai';
@@ -94,7 +94,7 @@ const sdk = new NodeSDK({
 sdk.start();
 ```
 
-**Step 3.** Use the AI SDK with telemetry enabled
+**Step 3.** Use the AI TOOLKIT with telemetry enabled
 
 ```ts highlight="6-13"
 import { generateText } from 'ai';
@@ -162,5 +162,5 @@ const result = await generateText({
 ## Resources
 
 - [PostHog LLM analytics docs](https://posthog.com/docs/llm-analytics/start-here)
-- [PostHog AI SDK package](https://www.npmjs.com/package/@posthog/ai)
+- [PostHog AI TOOLKIT package](https://www.npmjs.com/package/@posthog/ai)
 - [PostHog](https://posthog.com/)

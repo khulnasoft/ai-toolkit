@@ -9,7 +9,7 @@ export type LanguageModelV4CallOptions = {
   /**
    * A language mode prompt is a standardized prompt type.
    *
-   * Note: This is **not** the user-facing prompt. The AI SDK methods will map the
+   * Note: This is **not** the user-facing prompt. The AI TOOLKIT methods will map the
    * user-facing prompt types such as chat or instruction prompts to this format.
    * That approach allows us to evolve the user  facing prompts without breaking
    * the language model interface.
@@ -131,7 +131,7 @@ export type LanguageModelV4CallOptions = {
 
   /**
    * Additional provider-specific options. They are passed through
-   * to the provider from the AI SDK and enable provider-specific
+   * to the provider from the AI TOOLKIT and enable provider-specific
    * functionality that can be fully encapsulated in the provider.
    */
   providerOptions?: SharedV4ProviderOptions;

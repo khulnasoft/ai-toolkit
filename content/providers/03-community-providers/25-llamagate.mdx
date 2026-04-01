@@ -1,6 +1,6 @@
 ---
 title: LlamaGate
-description: LlamaGate Provider for the AI SDK
+description: LlamaGate Provider for the AI TOOLKIT
 ---
 
 # LlamaGate
@@ -19,20 +19,20 @@ Learn more about LlamaGate's capabilities in the [LlamaGate Documentation](https
 
 ## Setup
 
-The LlamaGate provider is available in the `@llamagate/ai-sdk-provider` module. You can install it with:
+The LlamaGate provider is available in the `@llamagate/ai-toolkit-provider` module. You can install it with:
 
 <Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
   <Tab>
-    <Snippet text="pnpm add @llamagate/ai-sdk-provider" dark />
+    <Snippet text="pnpm add @llamagate/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="npm install @llamagate/ai-sdk-provider" dark />
+    <Snippet text="npm install @llamagate/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="yarn add @llamagate/ai-sdk-provider" dark />
+    <Snippet text="yarn add @llamagate/ai-toolkit-provider" dark />
   </Tab>
   <Tab>
-    <Snippet text="bun add @llamagate/ai-sdk-provider" dark />
+    <Snippet text="bun add @llamagate/ai-toolkit-provider" dark />
   </Tab>
 </Tabs>
 
@@ -41,7 +41,7 @@ The LlamaGate provider is available in the `@llamagate/ai-sdk-provider` module. 
 To create a LlamaGate provider instance, use the `createLlamaGate` function:
 
 ```typescript
-import { createLlamaGate } from '@llamagate/ai-sdk-provider';
+import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 
 const llamagate = createLlamaGate({
   apiKey: 'YOUR_LLAMAGATE_API_KEY',
@@ -53,7 +53,7 @@ You can obtain your LlamaGate API key from the [LlamaGate Dashboard](https://lla
 Alternatively, you can use the default instance which reads from the `LLAMAGATE_API_KEY` environment variable:
 
 ```typescript
-import { llamagate } from '@llamagate/ai-sdk-provider';
+import { llamagate } from '@llamagate/ai-toolkit-provider';
 ```
 
 ## Language Models
@@ -106,12 +106,12 @@ const embeddingModel = llamagate.textEmbeddingModel('nomic-embed-text');
 
 ## Examples
 
-Here are examples of using LlamaGate with the AI SDK:
+Here are examples of using LlamaGate with the AI TOOLKIT:
 
 ### `generateText`
 
 ```typescript
-import { createLlamaGate } from '@llamagate/ai-sdk-provider';
+import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const llamagate = createLlamaGate({
@@ -129,7 +129,7 @@ console.log(text);
 ### `streamText`
 
 ```typescript
-import { createLlamaGate } from '@llamagate/ai-sdk-provider';
+import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 import { streamText } from 'ai';
 
 const llamagate = createLlamaGate({
@@ -149,7 +149,7 @@ for await (const chunk of result) {
 ### `embed`
 
 ```typescript
-import { createLlamaGate } from '@llamagate/ai-sdk-provider';
+import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 import { embed } from 'ai';
 
 const llamagate = createLlamaGate({
@@ -167,7 +167,7 @@ console.log(embedding);
 ### Vision
 
 ```typescript
-import { createLlamaGate } from '@llamagate/ai-sdk-provider';
+import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 import { generateText } from 'ai';
 
 const llamagate = createLlamaGate({

@@ -1,8 +1,8 @@
 ---
-'@ai-sdk/provider-utils': patch
-'@ai-sdk/provider': patch
-'@ai-sdk/google': patch
-'@ai-sdk/xai': patch
+'@ai-toolkit/provider-utils': patch
+'@ai-toolkit/provider': patch
+'@ai-toolkit/google': patch
+'@ai-toolkit/xai': patch
 ---
 
 feat(provider): add support for `reasoning-file` type for files that are part of reasoning

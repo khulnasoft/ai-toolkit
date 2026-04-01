@@ -5,7 +5,7 @@ exports[`doGenerate > response headers > should include response data with times
   "body": {
     "chunks": [
       {
-        "text": "Hello from the Versal AISDK.",
+        "text": "Hello from the Versal AITOOLKIT.",
         "timestamp": [
           0,
           2.508,
@@ -15,7 +15,7 @@ exports[`doGenerate > response headers > should include response data with times
     "languages": [
       "en",
     ],
-    "text": "Hello from the Versal AISDK.",
+    "text": "Hello from the Versal AITOOLKIT.",
   },
   "headers": {
     "content-length": "131",

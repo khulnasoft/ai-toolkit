@@ -68,7 +68,7 @@ export function readStreamableValue<T = unknown>(
               if (row.diff[0] === 0) {
                 if (typeof value !== 'string') {
                   throw new Error(
-                    'Invalid patch: can only append to string types. This is a bug in the AI SDK.',
+                    'Invalid patch: can only append to string types. This is a bug in the AI TOOLKIT.',
                   );
                 }
 

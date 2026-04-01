@@ -1,6 +1,6 @@
 ---
 title: LangWatch
-description: Track, monitor, guardrail and evaluate your AI SDK applications with LangWatch.
+description: Track, monitor, guardrail and evaluate your AI TOOLKIT applications with LangWatch.
 ---
 
 # LangWatch Observability
@@ -65,7 +65,7 @@ const langwatch = new LangWatch({
 
 ## Configuration
 
-The AI SDK supports tracing via Next.js OpenTelemetry integration. By using the `LangWatchExporter`, you can automatically collect those traces to LangWatch.
+The AI TOOLKIT supports tracing via Next.js OpenTelemetry integration. By using the `LangWatchExporter`, you can automatically collect those traces to LangWatch.
 
 First, you need to install the necessary dependencies:
 
@@ -73,7 +73,7 @@ First, you need to install the necessary dependencies:
 npm install @vercel/otel langwatch @opentelemetry/api-logs @opentelemetry/instrumentation @opentelemetry/sdk-logs
 ```
 
-Then, set up the OpenTelemetry for your application, follow one of the tabs below depending whether you are using AI SDK with Next.js or on Node.js:
+Then, set up the OpenTelemetry for your application, follow one of the tabs below depending whether you are using AI TOOLKIT with Next.js or on Node.js:
 
 <Tabs items={['Next.js', 'Node.js']}>
 <Tab title="Next.js">
@@ -107,7 +107,7 @@ export function register() {
 
 (Read more about Next.js OpenTelemetry configuration [on the official guide](https://nextjs.org/docs/app/building-your-application/optimizing/open-telemetry#manual-opentelemetry-configuration))
 
-Finally, enable `experimental_telemetry` tracking on the AI SDK calls you want to trace:
+Finally, enable `experimental_telemetry` tracking on the AI TOOLKIT calls you want to trace:
 
 ```typescript
 const result = await generateText({
@@ -149,15 +149,15 @@ const sdk = new NodeSDK({
 
 That's it! Your messages will now be visible on LangWatch:
 
-![AI SDK](https://mintlify.s3.us-west-1.amazonaws.com/langwatch/images/integration/vercel-ai-sdk.png)
+![AI TOOLKIT](https://mintlify.s3.us-west-1.amazonaws.com/langwatch/images/integration/vercel-ai-toolkit.png)
 
 ### Example Project
 
-You can find a full example project with a more complex pipeline and AI SDK and LangWatch integration [on our GitHub](https://github.com/langwatch/langwatch/blob/main/typescript-sdk/example/lib/chat/vercel-ai.tsx).
+You can find a full example project with a more complex pipeline and AI TOOLKIT and LangWatch integration [on our GitHub](https://github.com/langwatch/langwatch/blob/main/typescript-sdk/example/lib/chat/vercel-ai.tsx).
 
 ### Manual Integration
 
-The docs from here below are for manual integration, in case you are not using the AI SDK OpenTelemetry integration,
+The docs from here below are for manual integration, in case you are not using the AI TOOLKIT OpenTelemetry integration,
 you can manually start a trace to capture your messages:
 
 ```typescript

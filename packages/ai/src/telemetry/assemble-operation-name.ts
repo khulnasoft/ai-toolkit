@@ -14,7 +14,7 @@ export function assembleOperationName({
     }`,
     'resource.name': telemetry?.functionId,
 
-    // detailed, AI SDK specific data:
+    // detailed, AI TOOLKIT specific data:
     'ai.operationId': operationId,
     'ai.telemetry.functionId': telemetry?.functionId,
   };

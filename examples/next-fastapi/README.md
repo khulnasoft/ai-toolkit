@@ -1,6 +1,6 @@
-# AI SDK, Next.js, and FastAPI Examples
+# AI TOOLKIT, Next.js, and FastAPI Examples
 
-These examples show you how to use the [AI SDK](https://ai-sdk.dev/docs) with [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com).
+These examples show you how to use the [AI TOOLKIT](https://ai-toolkit.dev/docs) with [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com).
 
 ## How to use
 
@@ -33,9 +33,9 @@ To run the example locally you need to:
 
 ## Learn More
 
-To learn more about the AI SDK, Next.js, and FastAPI take a look at the following resources:
+To learn more about the AI TOOLKIT, Next.js, and FastAPI take a look at the following resources:
 
-- [AI SDK Docs](https://ai-sdk.dev/docs) - view documentation and reference for the AI SDK.
-- [Vercel AI Playground](https://ai-sdk.dev/playground) - try different models and choose the best one for your use case.
+- [AI TOOLKIT Docs](https://ai-toolkit.dev/docs) - view documentation and reference for the AI TOOLKIT.
+- [Vercel AI Playground](https://ai-toolkit.dev/playground) - try different models and choose the best one for your use case.
 - [Next.js Docs](https://nextjs.org/docs) - learn about Next.js features and API.
 - [FastAPI Docs](https://fastapi.tiangolo.com) - learn about FastAPI features and API.

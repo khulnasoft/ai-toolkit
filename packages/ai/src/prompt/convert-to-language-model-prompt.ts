@@ -528,7 +528,7 @@ function mapToolResultOutput(
         return item;
       }
 
-      // AI SDK 5 tool backwards compatibility:
+      // AI TOOLKIT 5 tool backwards compatibility:
       // map media type to image-data or file-data
       if (item.mediaType.startsWith('image/')) {
         return {

@@ -68,7 +68,7 @@ export class AlibabaLanguageModel implements LanguageModelV4 {
 
   /**
    * Builds request arguments for Alibaba API call.
-   * Converts AI SDK options to Alibaba API format.
+   * Converts AI TOOLKIT options to Alibaba API format.
    */
   private async getArgs({
     prompt,

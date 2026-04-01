@@ -1,6 +1,6 @@
-# AI SDK - fal Provider
+# AI TOOLKIT - fal Provider
 
-The **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for the [AI SDK](https://ai-sdk.dev/docs) contains image model support for the [fal.ai API](https://fal.ai/).
+The **[fal provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fal)** for the [AI TOOLKIT](https://ai-toolkit.dev/docs) contains image model support for the [fal.ai API](https://fal.ai/).
 
 ## Setup
 
@@ -12,7 +12,7 @@ npm i @ai-toolkit/fal
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -61,4 +61,4 @@ const { image } = await generateImage({
 
 ## Documentation
 
-Please check out the **[fal provider](https://ai-sdk.dev/providers/ai-sdk-providers/fal)** for more information.
+Please check out the **[fal provider](https://ai-toolkit.dev/providers/ai-toolkit-providers/fal)** for more information.

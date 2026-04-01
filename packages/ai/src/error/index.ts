@@ -1,5 +1,5 @@
 export {
-  AISDKError,
+  AITOOLKITError,
   APICallError,
   EmptyResponseBodyError,
   InvalidPromptError,

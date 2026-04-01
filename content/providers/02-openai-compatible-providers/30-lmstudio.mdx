@@ -1,13 +1,13 @@
 ---
 title: LM Studio
-description: Use the LM Studio OpenAI compatible API with the AI SDK.
+description: Use the LM Studio OpenAI compatible API with the AI TOOLKIT.
 ---
 
 # LM Studio Provider
 
 [LM Studio](https://lmstudio.ai/) is a user interface for running local models.
 
-It contains an OpenAI compatible API server that you can use with the AI SDK.
+It contains an OpenAI compatible API server that you can use with the AI TOOLKIT.
 You can start the local server under the [Local Server tab](https://lmstudio.ai/docs/basics/server) in the LM Studio UI ("Start Server" button).
 
 ## Setup
@@ -114,7 +114,7 @@ const { embedding } = await embed({
 When loading data, e.g. when preparing a data store for retrieval-augmented generation (RAG),
 it is often useful to embed many values at once (batch embedding).
 
-The AI SDK provides the [`embedMany`](/docs/reference/ai-sdk-core/embed-many) function for this purpose.
+The AI TOOLKIT provides the [`embedMany`](/docs/reference/ai-toolkit-core/embed-many) function for this purpose.
 Similar to `embed`, you can use it with embeddings models,
 e.g. `lmstudio.embeddingModel('text-embedding-nomic-embed-text-v1.5')` or `lmstudio.embeddingModel('text-embedding-bge-small-en-v1.5')`.
 

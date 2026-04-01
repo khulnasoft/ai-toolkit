@@ -98,7 +98,7 @@ export interface MCPClientConfig {
   transport: MCPTransportConfig | MCPTransport;
   /** Optional callback for uncaught errors */
   onUncaughtError?: (error: unknown) => void;
-  /** Optional client name, defaults to 'ai-sdk-mcp-client' */
+  /** Optional client name, defaults to 'ai-toolkit-mcp-client' */
   name?: string;
   /** Optional client version, defaults to '1.0.0' */
   version?: string;
@@ -132,7 +132,7 @@ export interface MCPClient {
   }): Promise<ListToolsResult>;
 
   /**
-   * Creates AI SDK tools from tool definitions.
+   * Creates AI TOOLKIT tools from tool definitions.
    */
   toolsFromDefinitions<TOOL_SCHEMAS extends ToolSchemas = 'automatic'>(
     definitions: ListToolsResult,
@@ -177,7 +177,7 @@ export interface MCPClient {
 /**
  * A lightweight MCP Client implementation
  *
- * The primary purpose of this client is tool conversion between MCP<>AI SDK
+ * The primary purpose of this client is tool conversion between MCP<>AI TOOLKIT
  * but can later be extended to support other MCP features
  *
  * Tool parameters are automatically inferred from the server's JSON schema
@@ -208,7 +208,7 @@ class DefaultMCPClient implements MCPClient {
 
   constructor({
     transport: transportConfig,
-    name = 'ai-sdk-mcp-client',
+    name = 'ai-toolkit-mcp-client',
     version = CLIENT_VERSION,
     onUncaughtError,
     capabilities,
@@ -534,7 +534,7 @@ class DefaultMCPClient implements MCPClient {
   }
 
   /**
-   * Returns a set of AI SDK tools from the MCP server.
+   * Returns a set of AI TOOLKIT tools from the MCP server.
    * This fetches tool definitions and wraps them with execute functions.
    * @returns A record of tool names to their implementations
    */
@@ -550,7 +550,7 @@ class DefaultMCPClient implements MCPClient {
   }
 
   /**
-   * Creates AI SDK tools from tool definitions without fetching from the server.
+   * Creates AI TOOLKIT tools from tool definitions without fetching from the server.
    */
   toolsFromDefinitions<TOOL_SCHEMAS extends ToolSchemas = 'automatic'>(
     definitions: ListToolsResult,

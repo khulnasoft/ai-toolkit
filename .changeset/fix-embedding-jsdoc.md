@@ -1,5 +1,5 @@
 ---
-'@ai-sdk/google': patch
+'@ai-toolkit/google': patch
 ---
 
 fix(provider/google): correct JSDoc for multimodal embedding content option

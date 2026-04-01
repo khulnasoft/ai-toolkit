@@ -1,5 +1,5 @@
 ---
-"@ai-sdk/anthropic": patch
+"@ai-toolkit/anthropic": patch
 ---
 
 feat (provider/anthropic): support passing metadata.user_id

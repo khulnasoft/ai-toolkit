@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_MCPClientError';
 const marker = `vercel.ai.error.${name}`;
@@ -7,7 +7,7 @@ const symbol = Symbol.for(marker);
 /**
  * An error occurred with the MCP client.
  */
-export class MCPClientError extends AISDKError {
+export class MCPClientError extends AITOOLKITError {
   private readonly [symbol] = true;
   readonly data?: unknown;
   readonly code?: number;
@@ -31,6 +31,6 @@ export class MCPClientError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is MCPClientError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

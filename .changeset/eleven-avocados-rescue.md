@@ -1,7 +1,7 @@
 ---
-'@ai-sdk/openai': patch
-'@ai-sdk/azure': patch
-'@ai-sdk/rsc': patch
+'@ai-toolkit/openai': patch
+'@ai-toolkit/azure': patch
+'@ai-toolkit/rsc': patch
 ---
 
 feat(openai): upgrade v3 specs to v4

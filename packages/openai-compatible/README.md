@@ -1,4 +1,4 @@
-# AI SDK - OpenAI Compatible Provider
+# AI TOOLKIT - OpenAI Compatible Provider
 
 This package provides a foundation for implementing providers that expose an OpenAI-compatible API.
 
@@ -14,7 +14,7 @@ npm i @ai-toolkit/openai-compatible
 
 ## Skill for Coding Agents
 
-If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI SDK skill to your repository:
+If you use coding agents such as Claude Code or Cursor, we highly recommend adding the AI TOOLKIT skill to your repository:
 
 ```shell
 npx skills add khulnasoft/ai
@@ -105,4 +105,4 @@ const { text } = await generateText({
 });
 ```
 
-For more examples, see the [OpenAI Compatible Providers](https://ai-sdk.dev/providers/openai-compatible-providers) documentation.
+For more examples, see the [OpenAI Compatible Providers](https://ai-toolkit.dev/providers/openai-compatible-providers) documentation.

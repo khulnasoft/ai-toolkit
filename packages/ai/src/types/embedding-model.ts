@@ -6,7 +6,7 @@ import {
 } from '@ai-toolkit/provider';
 
 /**
- * Embedding model that is used by the AI SDK.
+ * Embedding model that is used by the AI TOOLKIT.
  */
 export type EmbeddingModel =
   | string

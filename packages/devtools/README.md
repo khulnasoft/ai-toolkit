@@ -1,6 +1,6 @@
-# AI SDK DevTools
+# AI TOOLKIT DevTools
 
-A local development tool for debugging and inspecting AI SDK applications. View LLM requests, responses, tool calls, and multi-step interactions in a web-based UI.
+A local development tool for debugging and inspecting AI TOOLKIT applications. View LLM requests, responses, tool calls, and multi-step interactions in a web-based UI.
 
 > **Note**: This package is experimental and intended for local development only. Do not use in production environments.
 
@@ -14,7 +14,7 @@ pnpm add @ai-toolkit/devtools
 
 ## Requirements
 
-- AI SDK v6 beta (`ai@^6.0.0-beta.0`)
+- AI TOOLKIT v6 beta (`ai@^6.0.0-beta.0`)
 - Node.js compatible runtime
 
 ## Usage
@@ -37,7 +37,7 @@ const model = wrapLanguageModel({
 npx @ai-toolkit/devtools
 ```
 
-Open http://localhost:4983 to view your AI SDK interactions.
+Open http://localhost:4983 to view your AI TOOLKIT interactions.
 
 ## How it works
 
@@ -53,7 +53,7 @@ Data is stored locally in a JSON file (`.devtools/generations.json`) and served 
 ### Data flow
 
 ```
-AI SDK call → devToolsMiddleware → JSON file → Hono API → React UI
+AI TOOLKIT call → devToolsMiddleware → JSON file → Hono API → React UI
 ```
 
 ### Key concepts

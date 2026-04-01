@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type Experimental_VideoModelV4,
   NoSuchModelError,
   type SharedV4Warning,
@@ -465,7 +465,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
 
     const taskId = createResponse.data?.task_id;
     if (!taskId) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'KLINGAI_VIDEO_GENERATION_ERROR',
         message: `No task_id returned from KlingAI API. Response: ${JSON.stringify(createResponse)}`,
       });
@@ -482,7 +482,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
       await delay(pollIntervalMs, { abortSignal: options.abortSignal });
 
       if (Date.now() - startTime > pollTimeoutMs) {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'KLINGAI_VIDEO_GENERATION_TIMEOUT',
           message: `Video generation timed out after ${pollTimeoutMs}ms`,
         });
@@ -512,7 +512,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
       }
 
       if (taskStatus === 'failed') {
-        throw new AISDKError({
+        throw new AITOOLKITError({
           name: 'KLINGAI_VIDEO_GENERATION_FAILED',
           message: `Video generation failed: ${statusResponse.data?.task_status_msg ?? 'Unknown error'}`,
         });
@@ -522,7 +522,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
     }
 
     if (!finalResponse?.data?.task_result?.videos?.length) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'KLINGAI_VIDEO_GENERATION_ERROR',
         message: `No videos in response. Response: ${JSON.stringify(finalResponse)}`,
       });
@@ -553,7 +553,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
     }
 
     if (videos.length === 0) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'KLINGAI_VIDEO_GENERATION_ERROR',
         message: 'No valid video URLs in response',
       });
@@ -774,7 +774,7 @@ export class KlingAIVideoModel implements Experimental_VideoModelV4 {
       !klingaiOptions?.characterOrientation ||
       !klingaiOptions?.mode
     ) {
-      throw new AISDKError({
+      throw new AITOOLKITError({
         name: 'KLINGAI_VIDEO_MISSING_OPTIONS',
         message:
           'KlingAI Motion Control requires providerOptions.klingai with videoUrl, characterOrientation, and mode.',

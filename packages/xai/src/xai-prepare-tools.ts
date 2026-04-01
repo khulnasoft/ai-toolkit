@@ -35,7 +35,7 @@ export function prepareTools({
     return { tools: undefined, toolChoice: undefined, toolWarnings };
   }
 
-  // convert ai sdk tools to xai format
+  // convert ai toolkit tools to xai format
   const xaiTools: Array<{
     type: 'function';
     function: {

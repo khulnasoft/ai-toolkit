@@ -1,17 +1,17 @@
 ---
 title: Coding Agents
-description: Learn how to set up the AI SDK for use with coding agents, including installing skills, accessing bundled docs, and using DevTools.
+description: Learn how to set up the AI TOOLKIT for use with coding agents, including installing skills, accessing bundled docs, and using DevTools.
 ---
 
 # Getting Started with Coding Agents
 
-This page explains how to get the most out of the AI SDK when working inside a coding agent (such as Claude Code, Codex, OpenCode, Cursor, or any other AI-assisted development environment).
+This page explains how to get the most out of the AI TOOLKIT when working inside a coding agent (such as Claude Code, Codex, OpenCode, Cursor, or any other AI-assisted development environment).
 
-## Install the AI SDK Skill
+## Install the AI TOOLKIT Skill
 
-The fastest way to give your coding agent deep knowledge of the AI SDK is to install the official AI SDK skill. Skills are lightweight markdown files that load specialized instructions into your agent's context on demand — so your agent knows exactly how to use the SDK without you needing to explain it.
+The fastest way to give your coding agent deep knowledge of the AI TOOLKIT is to install the official AI TOOLKIT skill. Skills are lightweight markdown files that load specialized instructions into your agent's context on demand — so your agent knows exactly how to use the SDK without you needing to explain it.
 
-Install the AI SDK skill using `npx skills add`:
+Install the AI TOOLKIT skill using `npx skills add`:
 
 ```bash
 npx skills add khulnasoft/ai
@@ -19,7 +19,7 @@ npx skills add khulnasoft/ai
 
 This installs the skill into your agent's specific skills directory (e.g., `.claude/skills`, `.codex/skills`). If you select more than one agent, the CLI creates symlinks so each agent can discover the skill. Use `-a` to specify agents directly — for example, `-a amp` installs into the universal `.agents/skills` directory. Use `-y` for non-interactive installation.
 
-Once installed, any agent that supports the [Agent Skills](https://agentskills.io) format will automatically discover and load the skill when working on AI SDK tasks.
+Once installed, any agent that supports the [Agent Skills](https://agentskills.io) format will automatically discover and load the skill when working on AI TOOLKIT tasks.
 
 <Note>
   Agent Skills use **progressive disclosure**: your agent loads only the skill's
@@ -29,7 +29,7 @@ Once installed, any agent that supports the [Agent Skills](https://agentskills.i
 
 ## Docs and Source Code in `node_modules`
 
-Once you've installed the `ai` package, you already have the full AI SDK documentation and source code available locally inside `node_modules`. Your coding agent can read these directly — no internet access required.
+Once you've installed the `ai` package, you already have the full AI TOOLKIT documentation and source code available locally inside `node_modules`. Your coding agent can read these directly — no internet access required.
 
 Install the `ai` package if you haven't already:
 
@@ -61,10 +61,10 @@ This means your agent can look up accurate API signatures, implementations, and 
 
 ## Install DevTools
 
-AI SDK DevTools gives you full visibility into your AI SDK calls during development. It captures LLM requests, responses, tool calls, token usage, and multi-step interactions, and displays them in a local web UI.
+AI TOOLKIT DevTools gives you full visibility into your AI TOOLKIT calls during development. It captures LLM requests, responses, tool calls, token usage, and multi-step interactions, and displays them in a local web UI.
 
 <Note type="warning">
-  AI SDK DevTools is experimental and intended for local development only. Do
+  AI TOOLKIT DevTools is experimental and intended for local development only. Do
   not use in production environments.
 </Note>
 
@@ -89,7 +89,7 @@ Install the DevTools package:
 
 ### Add the middleware
 
-Wrap your language model with the DevTools middleware using [`wrapLanguageModel`](/docs/ai-sdk-core/middleware):
+Wrap your language model with the DevTools middleware using [`wrapLanguageModel`](/docs/ai-toolkit-core/middleware):
 
 ```ts
 import { wrapLanguageModel, gateway } from 'ai';
@@ -101,7 +101,7 @@ const model = wrapLanguageModel({
 });
 ```
 
-Use the wrapped model with any AI SDK Core function:
+Use the wrapped model with any AI TOOLKIT Core function:
 
 ```ts
 import { generateText } from 'ai';
@@ -120,7 +120,7 @@ Start the DevTools viewer in a separate terminal:
 npx @ai-toolkit/devtools
 ```
 
-Open [http://localhost:4983](http://localhost:4983) to inspect your AI SDK interactions in real time.
+Open [http://localhost:4983](http://localhost:4983) to inspect your AI TOOLKIT interactions in real time.
 
 ## Inspecting Tool Calls and Outputs
 
@@ -174,6 +174,6 @@ The `onStepFinish` callback fires after each LLM step and prints any tool result
 ## Where to Next?
 
 - Learn about [Agent Skills](https://agentskills.io/specification) to understand the full skill format.
-- Read the [DevTools reference](/docs/ai-sdk-core/devtools) for a complete list of captured data and configuration options.
-- Explore [Tools and Tool Calling](/docs/ai-sdk-core/tools-and-tool-calling) to build agents that can take real-world actions.
+- Read the [DevTools reference](/docs/ai-toolkit-core/devtools) for a complete list of captured data and configuration options.
+- Explore [Tools and Tool Calling](/docs/ai-toolkit-core/tools-and-tool-calling) to build agents that can take real-world actions.
 - Check out the [Add Skills to Your Agent](/cookbook/guides/agent-skills) cookbook guide for a step-by-step integration walkthrough.
