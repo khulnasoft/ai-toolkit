@@ -1,6 +1,24 @@
 {
   "references": [
     {
+      "path": "packages/core"
+    },
+    {
+      "path": "packages/providers"
+    },
+    {
+      "path": "packages/adapters"
+    },
+    {
+      "path": "packages/special"
+    },
+    {
+      "path": "packages/validation"
+    },
+    {
+      "path": "packages/infrastructure"
+    },
+    {
       "path": "packages/ai"
     },
     {

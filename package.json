@@ -5,6 +5,9 @@
     "build": "turbo build",
     "build:examples": "turbo --filter \"./examples/**\" build",
     "build:packages": "turbo --filter \"./packages/**\" build",
+    "build:core": "turbo build:core",
+    "build:providers": "turbo build:providers",
+    "build:adapters": "turbo build:adapters",
     "changeset": "changeset",
     "clean": "turbo clean",
     "dev": "turbo dev --no-cache --concurrency 16 --continue",
@@ -20,6 +23,9 @@
     "prettier-fix": "prettier --write \"**/*.{js,ts,tsx,md,mdx,svelte}\"",
     "publint": "turbo publint",
     "test": "turbo --filter './packages/**' --filter './examples/**' --filter './tools/**' test",
+    "test:core": "turbo test:core",
+    "test:providers": "turbo test:providers",
+    "test:adapters": "turbo test:adapters",
     "types:check": "turbo type-check && tsc --build",
     "types:full": "tsc --build tsconfig.with-examples.json",
     "types:check:raw": "pnpm run -r --parallel type-check",
@@ -27,7 +33,11 @@
     "test:update": "turbo test:update --filter=!@example/*",
     "ci:release": "turbo clean && turbo build && changeset publish",
     "ci:version": "changeset version && node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
-    "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile"
+    "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
+    "health-check": "node tools/scripts/health-check.mjs",
+    "generate": "node tools/scripts/generate.mjs",
+    "validate-structure": "node tools/scripts/validate-structure.mjs",
+    "find-package": "node tools/scripts/find-package.mjs"
   },
   "lint-staged": {
     "*": [

@@ -97,6 +97,27 @@
     "prettier-check": {},
     "integration-test": {
       "dependsOn": ["^build", "build"]
+    },
+    "build:core": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "build:providers": {
+      "dependsOn": ["^build:core"],
+      "outputs": ["dist/**"]
+    },
+    "build:adapters": {
+      "dependsOn": ["^build:core"],
+      "outputs": ["dist/**"]
+    },
+    "test:core": {
+      "dependsOn": ["build:core"]
+    },
+    "test:providers": {
+      "dependsOn": ["build:providers"]
+    },
+    "test:adapters": {
+      "dependsOn": ["build:adapters"]
     }
   }
 }
