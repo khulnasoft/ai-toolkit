@@ -81,18 +81,21 @@ infra/            ← Deployment & CI/CD
 ### Finding Code
 
 **Looking for a provider?**
+
 ```bash
 ls packages/providers/openai/  # @ai-sdk/openai
 ls packages/providers/anthropic/  # @ai-sdk/anthropic
 ```
 
 **Looking for a framework?**
+
 ```bash
 ls packages/adapters/react/  # React hooks
 ls packages/adapters/rsc/    # Next.js RSC
 ```
 
 **Looking for an example?**
+
 ```bash
 find examples -type d -name "*openai*"  # All OpenAI examples
 ls examples/02-framework-integration/  # All framework examples
@@ -260,6 +263,7 @@ git checkout -b docs/improve-readme
 ```
 
 **Naming convention:**
+
 - `feature/` — New features
 - `fix/` — Bug fixes
 - `docs/` — Documentation
@@ -310,6 +314,7 @@ git push origin feature/my-feature
 Then create a PR on GitHub. The template will guide you through the details.
 
 **PR Checklist:**
+
 - [ ] Tests pass locally (`pnpm test`)
 - [ ] Types check (`pnpm types:check`)
 - [ ] Code is formatted (`pnpm format`)
@@ -329,21 +334,25 @@ Then create a PR on GitHub. The template will guide you through the details.
 ### The Four Layers
 
 **Core Layer** (`packages/core/`)
+
 - Foundation: generateText, streamText, generateObject
 - Used by everyone else
 - Most stable, best tested
 
 **Provider Layer** (`packages/providers/`)
+
 - Integrations with LLM APIs
 - OpenAI, Anthropic, Google, etc.
 - Each is independent
 
 **Adapter Layer** (`packages/adapters/`)
+
 - Framework-specific implementations
 - React hooks, Next.js server actions, Vue composables
 - Hide core complexity behind familiar APIs
 
 **Tool Layer** (`packages/special/` + `tools/`)
+
 - Developer utilities
 - Gateway, codemod, devtools
 - Internal infrastructure
@@ -501,21 +510,25 @@ pnpm build -- --verbose
 ### Stuck? Here's Where to Get Help
 
 **For questions:**
+
 - GitHub Discussions: https://github.com/vercel/ai-toolkit/discussions
 - Discord: [invite link]
 - Twitter: @vercel, @ai_toolkit
 
 **For bugs:**
+
 - GitHub Issues: https://github.com/vercel/ai-toolkit/issues
 - Include: reproduction steps, error message, environment
 
 **For guidance:**
+
 - ARCHITECTURE.md — Understand the overall structure
 - CONTRIBUTING.md — Contribution guidelines
 - Code comments — Existing implementations
 - Examples — How to use APIs
 
 **For community:**
+
 - GitHub Discussions
 - Discord community
 - Office hours (listed in README)

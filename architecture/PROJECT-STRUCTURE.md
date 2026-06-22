@@ -151,23 +151,23 @@ create-ai my-app --no-install
 
 ### Available Templates
 
-| Template | Description |
-|----------|-------------|
+| Template     | Description     |
+| ------------ | --------------- |
 | `next-react` | Next.js + React |
-| `next-rsc` | Next.js + RSC |
-| `vite-react` | Vite + React |
-| `vue` | Vue 3 |
-| `svelte` | SvelteKit |
-| `node` | Node.js API |
+| `next-rsc`   | Next.js + RSC   |
+| `vite-react` | Vite + React    |
+| `vue`        | Vue 3           |
+| `svelte`     | SvelteKit       |
+| `node`       | Node.js API     |
 
 ### Available Providers
 
-| Provider | Package |
-|----------|--------|
-| OpenAI | `@ai-toolkit/openai` |
-| Anthropic | `@ai-toolkit/anthropic` |
-| Google | `@ai-toolkit/google` |
-| Azure | `@ai-toolkit/azure` |
+| Provider    | Package                      |
+| ----------- | ---------------------------- |
+| OpenAI      | `@ai-toolkit/openai`         |
+| Anthropic   | `@ai-toolkit/anthropic`      |
+| Google      | `@ai-toolkit/google`         |
+| Azure       | `@ai-toolkit/azure`          |
 | AWS Bedrock | `@ai-toolkit/amazon-bedrock` |
 
 ## Benefits

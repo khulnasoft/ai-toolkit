@@ -10,6 +10,7 @@
 ## Context
 
 Describe the issue, constraint, or problem that motivates this decision. Include:
+
 - Why the decision is needed
 - Background context for those unfamiliar with the topic
 - Constraints and requirements
@@ -25,6 +26,7 @@ State the decision clearly and concisely.
 ## Rationale
 
 Explain why this decision was chosen over alternatives:
+
 - Why this is the best option
 - Benefits and trade-offs
 - Alignment with architecture principles
@@ -32,20 +34,24 @@ Explain why this decision was chosen over alternatives:
 ## Alternatives Considered
 
 List and briefly describe alternatives that were rejected:
+
 - Alternative A: [Brief description, why rejected]
 - Alternative B: [Brief description, why rejected]
 
 ## Consequences
 
 ### Positive
+
 - [Benefit 1]
 - [Benefit 2]
 
 ### Negative / Trade-offs
+
 - [Trade-off 1]
 - [Trade-off 2]
 
 ### Impact on Teams
+
 - Team A: [Impact]
 - Team B: [Impact]
 
@@ -57,7 +63,9 @@ List and briefly describe alternatives that were rejected:
 - **Risk**: [Low | Medium | High]
 
 ### Migration Plan
+
 If this replaces existing behavior:
+
 1. [Phase 1]
 2. [Phase 2]
 3. [Cleanup]

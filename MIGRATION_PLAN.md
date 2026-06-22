@@ -21,12 +21,14 @@ Week 19-20:  Release & Communication
 ## Phase 1: Planning & Documentation (Weeks 1-2)
 
 ### Goals
+
 - Finalize all architecture decisions
 - Get stakeholder buy-in
 - Create detailed implementation checklist
 - Communicate plan to team
 
 ### Deliverables
+
 - [x] ARCHITECTURE_REDESIGN.md (main document)
 - [x] ADR template and initial ADRs
 - [x] CONTRIBUTOR_ONBOARDING.md
@@ -37,6 +39,7 @@ Week 19-20:  Release & Communication
 ### Tasks
 
 - [ ] **ADR Review** (1 day)
+
   - ADR-001: Monorepo organization & domain-driven design
   - ADR-002: Package naming & public API boundaries
   - ADR-003: Version management & release strategy
@@ -45,6 +48,7 @@ Week 19-20:  Release & Communication
   - ADR-006: CODEOWNERS governance model
 
 - [ ] **Stakeholder Approval** (2 days)
+
   - Get buy-in from:
     - @vercel/ai-sdk-maintainers
     - @vercel/ai-sdk-core
@@ -55,6 +59,7 @@ Week 19-20:  Release & Communication
   - Lock in timeline
 
 - [ ] **Create Detailed Checklist** (1 day)
+
   - Break down each directory move
   - Create task cards (Jira/GitHub Projects)
   - Assign owners
@@ -67,6 +72,7 @@ Week 19-20:  Release & Communication
   - Update README with migration notice
 
 ### Metrics
+
 - [ ] All ADRs approved
 - [ ] 100% of stakeholders signed off
 - [ ] Team understands plan
@@ -77,12 +83,14 @@ Week 19-20:  Release & Communication
 ## Phase 2: Infrastructure Setup (Weeks 3-6)
 
 ### Goals
+
 - Update Turbo & TypeScript configs
 - Create CODEOWNERS
 - Set up generation tools
 - Verify new structure works
 
 ### Deliverables
+
 - [ ] Updated turbo.json with new pipeline
 - [ ] Updated tsconfig.base.json with path mappings
 - [ ] CODEOWNERS file with all teams
@@ -95,6 +103,7 @@ Week 19-20:  Release & Communication
 #### Week 3: Core Configuration
 
 - [ ] **Update turbo.json** (1 day)
+
   ```json
   {
     "pipeline": {
@@ -115,6 +124,7 @@ Week 19-20:  Release & Communication
   ```
 
 - [ ] **Update TypeScript Paths** (1 day)
+
   ```json
   {
     "compilerOptions": {
@@ -147,12 +157,14 @@ Week 19-20:  Release & Communication
 #### Week 4: Ownership & Governance
 
 - [ ] **Create CODEOWNERS** (1 day)
+
   - Map all directories
   - Add team handles
   - Set approval requirements
   - Test automated assignment
 
 - [ ] **Create Contributing Guide** (1 day)
+
   - Update CONTRIBUTING.md
   - Add workflow diagrams
   - Create PR template
@@ -167,12 +179,14 @@ Week 19-20:  Release & Communication
 #### Week 5: Tools & Automation
 
 - [ ] **Create Package Generator** (2 days)
+
   - `pnpm generate provider`
   - `pnpm generate adapter`
   - `pnpm generate example`
   - Test generators
 
 - [ ] **Create Example Registry** (1 day)
+
   - Build `examples/registry.json`
   - Create discovery CLI
   - `pnpm search-examples`
@@ -186,12 +200,14 @@ Week 19-20:  Release & Communication
 #### Week 6: Testing & Validation
 
 - [ ] **Verify Build System** (1 day)
+
   - Run full build
   - Check output
   - Fix issues
   - Document problems
 
 - [ ] **Test CI/CD** (1 day)
+
   - Run GitHub Actions workflow
   - Check test execution
   - Verify artifacts
@@ -204,6 +220,7 @@ Week 19-20:  Release & Communication
   - Integration tests
 
 ### Metrics
+
 - [ ] All configuration files updated
 - [ ] CODEOWNERS covers 100% of repo
 - [ ] Generators work end-to-end
@@ -239,6 +256,7 @@ packages/
 **Tasks:**
 
 - [ ] **Organize core packages** (3 days)
+
   - [ ] Create `packages/core/` directory
   - [ ] Move `packages/ai/` → `packages/core/ai/`
   - [ ] Create `packages/core/shared/` from utilities
@@ -247,6 +265,7 @@ packages/
   - [ ] Run tests
 
 - [ ] **Update references** (2 days)
+
   - [ ] Update package.json files
   - [ ] Update import paths across repo
   - [ ] Update docs links
@@ -285,16 +304,19 @@ packages/
 **Tasks:**
 
 - [ ] **Create providers directory structure** (1 day)
+
   - [ ] Create `packages/providers/` directory
   - [ ] Create `packages/providers/_shared/` for utilities
 
 - [ ] **Move providers** (4 days)
+
   - [ ] Group by provider type if needed
   - [ ] Move each provider package
   - [ ] Update imports within provider
   - [ ] Update package dependencies
 
   **Implementation per provider:**
+
   ```bash
   # For each provider:
   mv packages/{provider}/ packages/providers/{provider}/
@@ -304,7 +326,8 @@ packages/
   pnpm test --filter=@ai-sdk/{provider}
   ```
 
-- [ ] **Create _shared utilities** (2 days)
+- [ ] **Create \_shared utilities** (2 days)
+
   - [ ] Extract common provider code
   - [ ] Create `packages/providers/_shared/`
   - [ ] Update all providers to use shared code
@@ -343,11 +366,13 @@ packages/
 **Tasks:**
 
 - [ ] **Organize adapters** (2 days)
+
   - [ ] Create `packages/adapters/` directory
   - [ ] Move each adapter package
   - [ ] Update imports
 
 - [ ] **Update dependencies** (1 day)
+
   - [ ] Update package.json references
   - [ ] Update import statements
   - [ ] Verify peer dependencies
@@ -394,16 +419,19 @@ packages/
 **Tasks:**
 
 - [ ] **Organize special packages** (2 days)
+
   - [ ] Create directories
   - [ ] Move packages
   - [ ] Update imports
 
 - [ ] **Organize MCP** (1 day)
+
   - [ ] Create `packages/mcp/` structure
   - [ ] Move MCP packages
   - [ ] Update references
 
 - [ ] **Organize validation & infra** (1 day)
+
   - [ ] Create `packages/validation/`
   - [ ] Create `packages/infrastructure/`
   - [ ] Move packages
@@ -435,7 +463,7 @@ examples/
 ├── 02-framework-integration/
 │   ├── 01-react-hooks/
 │   ├── 02-next-js/
-│   └── ... 
+│   └── ...
 ├── 03-integrations/
 │   ├── openai/
 │   ├── anthropic/
@@ -446,11 +474,13 @@ examples/
 **Tasks:**
 
 - [ ] **Create example categories** (1 day)
+
   - [ ] Create 6 main categories
   - [ ] Create subcategories
   - [ ] Create directory structure
 
 - [ ] **Migrate examples** (2 days)
+
   - [ ] Move each example to new location
   - [ ] Update imports
   - [ ] Create example.json for each
@@ -466,12 +496,14 @@ examples/
 ## Phase 4: Release & Communication (Weeks 19-20)
 
 ### Goals
+
 - Create clean release
 - Communicate changes to users
 - Migrate external packages
 - Establish new workflow
 
 ### Deliverables
+
 - [ ] v4.0 release with new structure
 - [ ] Migration guide for users
 - [ ] Updated onboarding docs
@@ -483,12 +515,14 @@ examples/
 #### Week 19: Pre-Release
 
 - [ ] **Create Migration Guide** (2 days)
+
   - Write: "Migrating from v3 to v4"
   - Document breaking changes
   - Provide upgrade path
   - Create codemods for common changes
 
 - [ ] **Test Full Release** (1 day)
+
   - [ ] Verify all packages build
   - [ ] Run complete test suite
   - [ ] Check published types
@@ -503,6 +537,7 @@ examples/
 #### Week 20: Release
 
 - [ ] **Release v4.0** (1 day)
+
   - [ ] Bump versions
   - [ ] Create changelog
   - [ ] Run CI/CD
@@ -510,12 +545,14 @@ examples/
   - [ ] GitHub release
 
 - [ ] **Community Communication** (2 days)
+
   - [ ] Publish blog post
   - [ ] Post announcement on socials
   - [ ] Send email to users
   - [ ] Post on Discord
 
 - [ ] **Host Migration Workshop** (1 day)
+
   - [ ] Live walkthrough
   - [ ] Q&A session
   - [ ] Record for archive
@@ -534,6 +571,7 @@ examples/
 **Risk**: Users have code that breaks with new structure
 
 **Mitigation**:
+
 - Extensive testing before release
 - Create codemods for automatic migration
 - Provide clear upgrade guide
@@ -545,6 +583,7 @@ examples/
 **Risk**: We miss import updates, causing runtime errors
 
 **Mitigation**:
+
 - Create automated validator
 - Run comprehensive test suite
 - Manual spot-checks by team
@@ -555,6 +594,7 @@ examples/
 **Risk**: Build times increase with new structure
 
 **Mitigation**:
+
 - Monitor build times during migration
 - Optimize Turbo pipeline as needed
 - Cache build artifacts
@@ -565,6 +605,7 @@ examples/
 **Risk**: Developers get confused with new structure
 
 **Mitigation**:
+
 - Extensive documentation
 - Clear CODEOWNERS
 - Generation tools to scaffold new packages
@@ -645,16 +686,19 @@ Infrastructure Lead (0.5)
 If critical issues arise, we have a rollback path:
 
 ### Partial Rollback (< 20% impact)
+
 - Revert affected package migrations
 - Keep successful migrations
 - Release patch with limited structure change
 
 ### Full Rollback (critical)
+
 - Revert all changes
 - Stay on v3.x
 - Plan for v5.0 different approach
 
 ### Decision Criteria
+
 - More than 5 critical bugs
 - Performance regression > 50%
 - Loss of test coverage
@@ -724,4 +768,3 @@ After release, continue with:
 **Status**: Planning Phase (Weeks 1-2)  
 **Next Review**: End of Week 2  
 **Approval Required**: All stakeholders sign off
-

@@ -9,6 +9,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ### For Everyone
 
 **Start here to understand what's changing:**
+
 - **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** (5 min read)
   - What was delivered
   - Key changes & improvements
@@ -18,6 +19,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ### For Stakeholders & Decision Makers
 
 **Approve or request changes:**
+
 1. **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** — Quick overview (5 min)
 2. **[ARCHITECTURE_REDESIGN.md](ARCHITECTURE_REDESIGN.md#executive-summary)** — Executive summary (10 min)
 3. **[MIGRATION_PLAN.md](MIGRATION_PLAN.md#phase-overview)** — Timeline & phases (10 min)
@@ -27,6 +29,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ### For Architects & Tech Leads
 
 **Deep dive into design:**
+
 1. **[ARCHITECTURE_REDESIGN.md](ARCHITECTURE_REDESIGN.md)** — Complete blueprint
    - Read sections: 1-5 (architecture), 7-10 (details)
    - Reference: Appendices A-C for templates
@@ -38,6 +41,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ### For Engineering Teams
 
 **Implement the redesign:**
+
 1. **[MIGRATION_PLAN.md](MIGRATION_PLAN.md)** — Phases & tasks
    - Find your wave/phase
    - Execute detailed tasks
@@ -48,6 +52,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ### For New Contributors
 
 **Get up to speed fast:**
+
 1. **[CONTRIBUTOR_ONBOARDING.md](CONTRIBUTOR_ONBOARDING.md)** — 30-minute onboarding
 2. **[ARCHITECTURE_QUICK_REFERENCE.md](ARCHITECTURE_QUICK_REFERENCE.md)** — Daily reference
 3. **[ARCHITECTURE_REDESIGN.md](ARCHITECTURE_REDESIGN.md#public-api-vs-internal-api-strategy)** — API boundaries
@@ -57,11 +62,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ## 📖 Document Descriptions
 
 ### ARCHITECTURE_REDESIGN.md
+
 **Type**: Complete Architecture Proposal  
 **Length**: ~1,260 lines, 25-minute read  
 **Audience**: Architects, tech leads, stakeholders
 
 **What it contains**:
+
 - Current state analysis & problems
 - Enterprise architecture principles
 - New directory structure (detailed tree)
@@ -75,12 +82,14 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Appendices with mapping & templates
 
 **When to read**:
+
 - Need complete understanding of new architecture
 - Making architectural decisions
 - Planning implementation details
 - Reviewing proposal
 
 **Key sections**:
+
 - [Executive Summary](ARCHITECTURE_REDESIGN.md#executive-summary)
 - [Architecture Principles](ARCHITECTURE_REDESIGN.md#enterprise-architecture-principles)
 - [Proposed Repository Structure](ARCHITECTURE_REDESIGN.md#proposed-repository-structure)
@@ -89,11 +98,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ---
 
 ### CONTRIBUTOR_ONBOARDING.md
+
 **Type**: Contributor Quick Start Guide  
 **Length**: ~540 lines, 15-minute read  
 **Audience**: All contributors, new team members
 
 **What it contains**:
+
 - 5-minute quick start (clone, install, verify)
 - Repository structure explanation
 - Finding your first contribution
@@ -105,12 +116,14 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Support resources
 
 **When to read**:
+
 - First time setting up repository
 - Making your first contribution
 - Understanding how code is organized
 - Onboarding new team members
 
 **Key sections**:
+
 - [Quick Start](CONTRIBUTOR_ONBOARDING.md#quick-start-5-minutes)
 - [Finding Your First Contribution](CONTRIBUTOR_ONBOARDING.md#finding-your-first-contribution)
 - [Development Workflow](CONTRIBUTOR_ONBOARDING.md#development-workflow)
@@ -119,11 +132,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ---
 
 ### MIGRATION_PLAN.md
+
 **Type**: Implementation Roadmap  
 **Length**: ~730 lines, 20-minute read  
 **Audience**: Engineering teams, project managers, stakeholders
 
 **What it contains**:
+
 - 6 phases over 20 weeks
 - Week-by-week task breakdown
 - Detailed wave execution (core, providers, adapters, etc.)
@@ -135,6 +150,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Task breakdown for Jira/GitHub
 
 **When to read**:
+
 - Planning implementation
 - Understanding timeline
 - Assigning work
@@ -142,6 +158,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Progress tracking
 
 **Key sections**:
+
 - [Phase Overview](MIGRATION_PLAN.md#phase-overview)
 - [Phase 2: Infrastructure Setup](MIGRATION_PLAN.md#phase-2-infrastructure-setup-weeks-3-6)
 - [Phase 3: Package Migration](MIGRATION_PLAN.md#phase-3-package-migration-weeks-7-18)
@@ -151,11 +168,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ---
 
 ### ARCHITECTURE_QUICK_REFERENCE.md
+
 **Type**: Daily Reference Cheat Sheet  
 **Length**: ~450 lines, reference material  
 **Audience**: All developers, especially those in implementation phase
 
 **What it contains**:
+
 - Directory quick map
 - Finding code fast (commands)
 - Common commands
@@ -169,6 +188,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Problem-solving guide
 
 **When to use**:
+
 - Quick lookup while working
 - Finding file locations
 - Remembering commands
@@ -176,6 +196,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Debugging issues
 
 **Key sections**:
+
 - [Directory Quick Map](ARCHITECTURE_QUICK_REFERENCE.md#directory-quick-map)
 - [Finding Code](ARCHITECTURE_QUICK_REFERENCE.md#finding-code)
 - [Common Commands](ARCHITECTURE_QUICK_REFERENCE.md#common-commands)
@@ -184,11 +205,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ---
 
 ### IMPLEMENTATION_SUMMARY.md
+
 **Type**: Executive Overview & Roadmap  
 **Length**: ~560 lines, 10-minute read  
 **Audience**: Everyone (different sections for different roles)
 
 **What it contains**:
+
 - What was delivered (document list)
 - Key architectural changes (before/after)
 - Core principles
@@ -202,6 +225,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - FAQ
 
 **When to read**:
+
 - First introduction to proposal
 - Need quick overview
 - Share with team/stakeholders
@@ -209,6 +233,7 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Role-specific next steps
 
 **Key sections**:
+
 - [What Was Delivered](IMPLEMENTATION_SUMMARY.md#what-was-delivered)
 - [What Gets Better](IMPLEMENTATION_SUMMARY.md#what-gets-better)
 - [The Four Documents at a Glance](IMPLEMENTATION_SUMMARY.md#the-four-documents-at-a-glance)
@@ -217,11 +242,13 @@ Complete guide to navigating the enterprise architecture redesign documents.
 ---
 
 ### ADR/template.md
+
 **Type**: Decision Record Template  
 **Length**: ~85 lines, reference material  
 **Audience**: Architects, tech leads
 
 **What it contains**:
+
 - Standardized ADR format
 - Sections for context, decision, rationale
 - Alternatives considered
@@ -230,12 +257,14 @@ Complete guide to navigating the enterprise architecture redesign documents.
 - Sign-off section
 
 **When to use**:
+
 - Document major architectural decisions
 - Create ADR-001, ADR-002, etc.
 - Standardize decision format
 - Future reference on why decisions were made
 
 **Usage**:
+
 ```bash
 cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
 # Edit with your decision
@@ -246,7 +275,9 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
 ## 🗺️ Reading Paths by Role
 
 ### Path 1: I'm a Stakeholder (approving this)
+
 ⏱️ **Time**: 30 minutes
+
 1. **IMPLEMENTATION_SUMMARY.md** (10 min)
    - Understand what's changing
    - See key numbers & improvements
@@ -261,7 +292,9 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
 4. **Decision**: Approve/request changes
 
 ### Path 2: I'm Implementing This
+
 ⏱️ **Time**: 2-3 hours
+
 1. **MIGRATION_PLAN.md** (1 hour)
    - Understand all 6 phases
    - Find your phase/wave
@@ -278,7 +311,9 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
    - Set deadlines
 
 ### Path 3: I'm a Contributor (new or existing)
+
 ⏱️ **Time**: 1 hour
+
 1. **CONTRIBUTOR_ONBOARDING.md** (30 min)
    - Follow 5-minute setup
    - Understand repository structure
@@ -291,7 +326,9 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
    - Follow workflow in CONTRIBUTOR_ONBOARDING.md
 
 ### Path 4: I'm a Tech Lead (architecture decisions)
+
 ⏱️ **Time**: 4-5 hours
+
 1. **ARCHITECTURE_REDESIGN.md** (2 hours)
    - Read completely
    - Deep understand of design
@@ -304,7 +341,9 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
    - Keep as reference
 
 ### Path 5: I'm Reviewing/Auditing
+
 ⏱️ **Time**: 2 hours
+
 1. **IMPLEMENTATION_SUMMARY.md** (15 min)
    - Overview & goals
 2. **ARCHITECTURE_REDESIGN.md** (1 hour)
@@ -319,43 +358,51 @@ cp ADR/template.md ADR/ADR-001-monorepo-strategy.md
 ## 🔍 Finding Information
 
 ### Q: Where do I find the new directory structure?
+
 → **ARCHITECTURE_REDESIGN.md** → [Proposed Repository Structure](ARCHITECTURE_REDESIGN.md#proposed-repository-structure)
 
 ### Q: How do I contribute?
+
 → **CONTRIBUTOR_ONBOARDING.md** → [Development Workflow](CONTRIBUTOR_ONBOARDING.md#development-workflow)
 
 ### Q: What's the timeline?
+
 → **MIGRATION_PLAN.md** → [Phase Overview](MIGRATION_PLAN.md#phase-overview)
 
 ### Q: Who owns what?
+
 → **ARCHITECTURE_REDESIGN.md** → [Directory Ownership](ARCHITECTURE_REDESIGN.md#directory-ownership--responsibilities)
 → Or search **CODEOWNERS** file
 
 ### Q: What changes are breaking?
+
 → **ARCHITECTURE_REDESIGN.md** → [Public API vs Internal API](ARCHITECTURE_REDESIGN.md#public-api-vs-internal-api-strategy)
 
 ### Q: When should I use this?
+
 → **IMPLEMENTATION_SUMMARY.md** → [FAQ](IMPLEMENTATION_SUMMARY.md#faq)
 
 ### Q: What's the quick command reference?
+
 → **ARCHITECTURE_QUICK_REFERENCE.md** → [Common Commands](ARCHITECTURE_QUICK_REFERENCE.md#common-commands)
 
 ### Q: How do I set up locally?
+
 → **CONTRIBUTOR_ONBOARDING.md** → [Quick Start](CONTRIBUTOR_ONBOARDING.md#quick-start-5-minutes)
 
 ---
 
 ## 📊 Document Statistics
 
-| Document | Lines | Read Time | Best For |
-|----------|-------|-----------|----------|
-| ARCHITECTURE_REDESIGN.md | 1,261 | 25 min | Complete understanding |
-| CONTRIBUTOR_ONBOARDING.md | 544 | 15 min | Getting started |
-| MIGRATION_PLAN.md | 728 | 20 min | Implementation |
-| ARCHITECTURE_QUICK_REFERENCE.md | 456 | Reference | Daily use |
-| IMPLEMENTATION_SUMMARY.md | 558 | 10 min | Overview |
-| ADR/template.md | 86 | Reference | Decision docs |
-| **TOTAL** | **3,633** | **70 min** | |
+| Document                        | Lines     | Read Time  | Best For               |
+| ------------------------------- | --------- | ---------- | ---------------------- |
+| ARCHITECTURE_REDESIGN.md        | 1,261     | 25 min     | Complete understanding |
+| CONTRIBUTOR_ONBOARDING.md       | 544       | 15 min     | Getting started        |
+| MIGRATION_PLAN.md               | 728       | 20 min     | Implementation         |
+| ARCHITECTURE_QUICK_REFERENCE.md | 456       | Reference  | Daily use              |
+| IMPLEMENTATION_SUMMARY.md       | 558       | 10 min     | Overview               |
+| ADR/template.md                 | 86        | Reference  | Decision docs          |
+| **TOTAL**                       | **3,633** | **70 min** |                        |
 
 ---
 
@@ -376,12 +423,14 @@ Use this to verify you have everything:
 ## 🚀 Getting Started
 
 ### For Approval
+
 1. Read IMPLEMENTATION_SUMMARY.md
 2. Review ARCHITECTURE_REDESIGN.md sections 1-4
 3. Check MIGRATION_PLAN.md timeline
 4. Make decision
 
 ### For Implementation
+
 1. Read MIGRATION_PLAN.md (complete)
 2. Review ARCHITECTURE_REDESIGN.md (reference)
 3. Create task board using MIGRATION_PLAN.md tasks
@@ -389,6 +438,7 @@ Use this to verify you have everything:
 5. Begin Phase 1
 
 ### For Contributing
+
 1. Follow CONTRIBUTOR_ONBOARDING.md
 2. Bookmark ARCHITECTURE_QUICK_REFERENCE.md
 3. Find first contribution

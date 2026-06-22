@@ -29,7 +29,7 @@ jobs:
       github.event.pull_request.base.ref == 'main'
     outputs:
       release-branch: ${{ steps.find-latest-release.outputs.release-branch }}
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
@@ -41,18 +41,18 @@ jobs:
         run: |
           # Fetch all remote branches
           git fetch --all
-          
+
           # Find all release branches matching the pattern release-vX.Y
           RELEASE_BRANCHES=$(git branch -r | grep -E 'origin/release-v[0-9]+\.[0-9]+$' | sed 's/.*origin\///' | sort -V)
-          
+
           if [ -z "$RELEASE_BRANCHES" ]; then
             echo "::error::No release branches found matching pattern release-vX.Y"
             exit 1
           fi
-          
+
           # Get the latest release branch (last in sorted order)
           LATEST_RELEASE=$(echo "$RELEASE_BRANCHES" | tail -n 1)
-          
+
           echo "Found release branches: $RELEASE_BRANCHES"
           echo "Latest release branch: $LATEST_RELEASE"
           echo "release-branch=$LATEST_RELEASE" >> "$GITHUB_OUTPUT"
@@ -68,7 +68,7 @@ jobs:
       github.event.pull_request.merged == true &&
       contains(github.event.pull_request.labels.*.name, 'backport') &&
       github.event.pull_request.base.ref == 'main'
-    
+
     steps:
       - name: Create access token for GitHub App
         uses: actions/create-github-app-token@v2
@@ -105,7 +105,7 @@ jobs:
         run: |
           # Get the merge commit hash
           MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
-          
+
           # Cherry-pick the merge commit and capture output
           CHERRY_PICK_OUTPUT=$(git cherry-pick -m 1 "$MERGE_COMMIT" 2>&1) || CHERRY_PICK_EXIT_CODE=$?
           echo "$CHERRY_PICK_OUTPUT"
@@ -156,15 +156,15 @@ jobs:
           echo "Created backport PR $PR_URL"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          PR_TITLE: "Backport: ${{ github.event.pull_request.title }}"
-          PR_BODY_NO_CONFLICTS: "This is an automated backport of #${{ github.event.pull_request.number }} to the ${{ needs.find-branch.outputs.release-branch }} branch. FYI @${{ github.event.pull_request.user.login }}"
+          PR_TITLE: 'Backport: ${{ github.event.pull_request.title }}'
+          PR_BODY_NO_CONFLICTS: 'This is an automated backport of #${{ github.event.pull_request.number }} to the ${{ needs.find-branch.outputs.release-branch }} branch. FYI @${{ github.event.pull_request.user.login }}'
           PR_BODY_CONFLICTS: |
-          
+
             This is an automated backport of #${{ github.event.pull_request.number }} to the ${{ needs.find-branch.outputs.release-branch }} branch. FYI @${{ github.event.pull_request.user.login }}
             This backport has conflicts that need to be resolved manually.
 
             ### `git cherry-pick` output
-            
+
             ```
             ${{ steps.cherry-pick.outputs.git-output }}
             ```

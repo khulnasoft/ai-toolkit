@@ -18,6 +18,7 @@ This document proposes a **domain-driven, layered architecture** that transforms
 - **Growth**: Built for 100+ packages and 1000+ examples
 
 **Key Changes:**
+
 - Move from flat `packages/` to domain-organized structure
 - Separate AI providers, MCPs, framework adapters, and tools
 - Establish clear internal vs. public APIs
@@ -72,11 +73,13 @@ This document proposes a **domain-driven, layered architecture** that transforms
 ## Enterprise Architecture Principles
 
 ### 1. Domain-Driven Design
+
 - Group related packages by business capability
 - Each domain has clear responsibility
 - Domains can be understood independently
 
 ### 2. Layered Architecture
+
 - **Core Layer**: Foundation packages (ai, react, rsc)
 - **Provider Layer**: AI provider integrations
 - **Adapter Layer**: Framework-specific implementations
@@ -84,17 +87,20 @@ This document proposes a **domain-driven, layered architecture** that transforms
 - **Example Layer**: Reference implementations
 
 ### 3. Explicit Boundaries
+
 - **Public APIs**: Versioned, stable, change-controlled
 - **Internal APIs**: Subject to change, documented
 - **Example APIs**: For reference only, not for production
 - **Tool APIs**: Internal developer infrastructure
 
 ### 4. Clear Ownership
+
 - CODEOWNERS enforces review requirements
 - Domain leads have decision authority
 - Automated governance prevents accidental changes
 
 ### 5. Enterprise Developer Experience
+
 - Automated setup (monorepo setup guides)
 - One-command onboarding
 - Clear contribution workflows
@@ -427,13 +433,14 @@ ai-toolkit/
 **Public API**: ✅ Versioned (semver)  
 **Stability**: STABLE
 
-| Package | Purpose | Dependencies | Exports |
-|---------|---------|--------------|---------|
-| `ai` | Main SDK entry point | shared, telemetry | `generateText`, `streamText`, `generateObject`, `tool` |
-| `shared` | Shared types & utilities | none | Types, error classes, utilities |
-| `telemetry` | Analytics & telemetry | none | `recordTelemetry`, `getTelemetryData` |
+| Package     | Purpose                  | Dependencies      | Exports                                                |
+| ----------- | ------------------------ | ----------------- | ------------------------------------------------------ |
+| `ai`        | Main SDK entry point     | shared, telemetry | `generateText`, `streamText`, `generateObject`, `tool` |
+| `shared`    | Shared types & utilities | none              | Types, error classes, utilities                        |
+| `telemetry` | Analytics & telemetry    | none              | `recordTelemetry`, `getTelemetryData`                  |
 
 **Ownership Rules**:
+
 - Changes require @vercel/ai-sdk-core approval
 - Breaking changes require RFC process
 - Quarterly compatibility audits
@@ -447,6 +454,7 @@ ai-toolkit/
 **Stability**: STABLE
 
 **Provider Organization**:
+
 - Each provider is independent & maintainable
 - Follows `@ai-sdk/{provider}` naming convention
 - Shared utilities in `packages/providers/_shared/`
@@ -462,6 +470,7 @@ ai-toolkit/
 | `mistral/` | @mistral-team | Mistral | Community |
 
 **Rules**:
+
 - Providers can have custom CI/CD
 - Owners have final say on breaking changes
 - Monthly compatibility audits
@@ -475,13 +484,13 @@ ai-toolkit/
 **Public API**: ✅ Versioned (semver)  
 **Stability**: STABLE
 
-| Adapter | Framework | Purpose | Owners |
-|---------|-----------|---------|--------|
-| `react/` | React 18+ | Hooks, components | @vercel/ai-react-team |
-| `rsc/` | Next.js 13+ | Server actions, RSC | @vercel/ai-nextjs-team |
-| `angular/` | Angular 15+ | Directives, services | @angular-community |
-| `svelte/` | Svelte 3+ | Stores, components | @svelte-community |
-| `vue/` | Vue 3+ | Composables | @vue-community |
+| Adapter    | Framework   | Purpose              | Owners                 |
+| ---------- | ----------- | -------------------- | ---------------------- |
+| `react/`   | React 18+   | Hooks, components    | @vercel/ai-react-team  |
+| `rsc/`     | Next.js 13+ | Server actions, RSC  | @vercel/ai-nextjs-team |
+| `angular/` | Angular 15+ | Directives, services | @angular-community     |
+| `svelte/`  | Svelte 3+   | Stores, components   | @svelte-community      |
+| `vue/`     | Vue 3+      | Composables          | @vue-community         |
 
 ---
 
@@ -492,6 +501,7 @@ ai-toolkit/
 **Stability**: BETA
 
 Implements Model Context Protocol specification. Focus on:
+
 - Server implementations
 - Tool standardization
 - Resource management
@@ -501,12 +511,14 @@ Implements Model Context Protocol specification. Focus on:
 ### Special Purpose Packages
 
 **Gateway** (`packages/special/gateway/`)
+
 - Owner: @vercel/vercel-ai-gateway
 - Public API: ✅ Versioned
 - Stability: STABLE
 - Provides unified interface to all providers
 
 **Developer Tools** (`packages/special/developer-tools/`)
+
 - Owner: @vercel/ai-developer-tools
 - Public API: ✅ Versioned
 - Tools: codemod, devtools, linters
@@ -540,11 +552,12 @@ examples/
 Each example follows: `{level}-{category}/{provider-or-framework}/`
 
 Example discovery:
+
 ```bash
 # Find all React examples
 ls examples/02-framework-integration/01-react-hooks/
 
-# Find all OpenAI examples  
+# Find all OpenAI examples
 find examples -type d -name "*openai*"
 
 # Find advanced patterns
@@ -554,6 +567,7 @@ ls examples/04-advanced-patterns/
 ### Example Metadata
 
 Each example includes `example.json`:
+
 ```json
 {
   "name": "React useChat Hook",
@@ -578,7 +592,7 @@ Each example includes `example.json`:
 // ✅ Public: Core AI SDK
 export { generateText, streamText, generateObject } from '@ai-sdk/core';
 
-// ✅ Public: Provider packages  
+// ✅ Public: Provider packages
 export { createOpenAI } from '@ai-sdk/openai';
 
 // ✅ Public: Framework adapters
@@ -586,6 +600,7 @@ export { useChat, useCompletion } from '@ai-sdk/react';
 ```
 
 **Guarantees**:
+
 - Semantic versioning
 - 6-month deprecation notices
 - Stable for production use
@@ -599,6 +614,7 @@ import { CoreTypes } from '@ai-sdk/shared/internal';
 ```
 
 **Usage Rules**:
+
 - Document in JSDoc
 - No stability guarantees
 - Can change between patches
@@ -706,19 +722,19 @@ pnpm test:coverage
       "outputs": ["dist"],
       "cache": false
     },
-    
+
     // Providers (parallel)
     "@ai-sdk/providers:*#build": {
       "outputs": ["dist"],
       "dependsOn": ["@ai-sdk/core#build"]
     },
-    
+
     // Adapters (parallel)
     "@ai-sdk/adapters:*#build": {
       "outputs": ["dist"],
       "dependsOn": ["@ai-sdk/core#build"]
     },
-    
+
     // Examples
     "@example/*#build": {
       "outputs": ["dist", "build"],
@@ -791,10 +807,10 @@ Providers:
 
 Adapters:
   - Required approvals: 1 (owner) + 1 (core team)
-  
+
 Examples:
   - Required approvals: 1
-  
+
 Documentation:
   - Required approvals: 1
 ```
@@ -967,6 +983,7 @@ createAnthropic()
 ### Semantic Versioning
 
 **Public packages**: `@ai-sdk/*`
+
 - `MAJOR`: Breaking API changes
 - `MINOR`: New features (backwards compatible)
 - `PATCH`: Bug fixes
@@ -985,6 +1002,7 @@ createAnthropic()
 ### Changesets Workflow
 
 Each PR includes changeset:
+
 ```bash
 pnpm changeset
 
@@ -999,12 +1017,14 @@ pnpm changeset
 ## Migration Plan (Phased Approach)
 
 ### Phase 1: Planning & Documentation (Week 1)
+
 - [x] Create this architecture document
 - [ ] Create ADRs for each major decision
 - [ ] Update CONTRIBUTING.md
 - [ ] Create migration checklist
 
 ### Phase 2: Infrastructure Setup (Weeks 2-4)
+
 - [ ] Reorganize directories
 - [ ] Update turbo.json
 - [ ] Create CODEOWNERS
@@ -1012,6 +1032,7 @@ pnpm changeset
 - [ ] Create generation templates
 
 ### Phase 3: Package Migration (Weeks 5-12)
+
 - [ ] Migrate core packages
 - [ ] Migrate provider packages
 - [ ] Migrate adapter packages
@@ -1019,18 +1040,21 @@ pnpm changeset
 - [ ] Update imports across repo
 
 ### Phase 4: Example Reorganization (Weeks 13-16)
+
 - [ ] Categorize examples
 - [ ] Add example.json metadata
 - [ ] Create example registry
 - [ ] Update documentation links
 
 ### Phase 5: Documentation & Tooling (Weeks 17-20)
+
 - [ ] Update all docs
 - [ ] Create generation CLI
 - [ ] Add contributor guides
 - [ ] Create architecture diagrams
 
 ### Phase 6: Release & Communication (Week 21+)
+
 - [ ] Release v4.0 with new structure
 - [ ] Announce to community
 - [ ] Migrate external packages
@@ -1041,18 +1065,21 @@ pnpm changeset
 ## Success Metrics
 
 ### Developer Experience
+
 - [ ] Onboarding time < 30 minutes
 - [ ] First contribution time < 2 hours
 - [ ] Package discovery time < 5 minutes
 - [ ] 90% contributor satisfaction
 
 ### Operational Excellence
+
 - [ ] CI/CD time < 15 minutes
 - [ ] Release time < 1 hour
 - [ ] 99.9% uptime
 - [ ] Zero unowned packages
 
 ### Scalability
+
 - [ ] Support 500+ contributors
 - [ ] 100+ packages maintainable
 - [ ] 1000+ examples discoverable
@@ -1075,21 +1102,21 @@ pnpm changeset
 
 ### packages/ → New Location
 
-| Current | New Location | Category |
-|---------|--------------|----------|
-| `ai` | `packages/core/ai` | Core |
-| `react` | `packages/adapters/react` | Adapter |
-| `rsc` | `packages/adapters/rsc` | Adapter |
-| `openai` | `packages/providers/openai` | Provider |
-| `anthropic` | `packages/providers/anthropic` | Provider |
-| ... (all providers) | `packages/providers/{provider}` | Provider |
-| `angular`, `svelte`, `vue` | `packages/adapters/{framework}` | Adapter |
-| `mcp` | `packages/mcp/core` | MCP |
-| `gateway` | `packages/special/gateway` | Special |
-| `valibot` | `packages/validation/valibot` | Validation |
-| `codemod` | `packages/special/developer-tools/codemod` | Tool |
-| `devtools` | `packages/special/developer-tools/devtools` | Tool |
-| `test-server` | `packages/infrastructure/test-server` | Infrastructure |
+| Current                    | New Location                                | Category       |
+| -------------------------- | ------------------------------------------- | -------------- |
+| `ai`                       | `packages/core/ai`                          | Core           |
+| `react`                    | `packages/adapters/react`                   | Adapter        |
+| `rsc`                      | `packages/adapters/rsc`                     | Adapter        |
+| `openai`                   | `packages/providers/openai`                 | Provider       |
+| `anthropic`                | `packages/providers/anthropic`              | Provider       |
+| ... (all providers)        | `packages/providers/{provider}`             | Provider       |
+| `angular`, `svelte`, `vue` | `packages/adapters/{framework}`             | Adapter        |
+| `mcp`                      | `packages/mcp/core`                         | MCP            |
+| `gateway`                  | `packages/special/gateway`                  | Special        |
+| `valibot`                  | `packages/validation/valibot`               | Validation     |
+| `codemod`                  | `packages/special/developer-tools/codemod`  | Tool           |
+| `devtools`                 | `packages/special/developer-tools/devtools` | Tool           |
+| `test-server`              | `packages/infrastructure/test-server`       | Infrastructure |
 
 ---
 

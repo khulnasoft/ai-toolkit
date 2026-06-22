@@ -7,6 +7,7 @@ A complete **production-grade, enterprise-ready monorepo architecture** designed
 ### Documents Created
 
 1. **ARCHITECTURE_REDESIGN.md** (1,261 lines)
+
    - Complete architecture proposal
    - New directory structure with detailed explanations
    - Package ownership & responsibilities
@@ -16,6 +17,7 @@ A complete **production-grade, enterprise-ready monorepo architecture** designed
    - Scaling guidelines
 
 2. **CONTRIBUTOR_ONBOARDING.md** (544 lines)
+
    - 5-minute quick start guide
    - Common workflows for contributors
    - Getting help resources
@@ -23,6 +25,7 @@ A complete **production-grade, enterprise-ready monorepo architecture** designed
    - First contribution paths
 
 3. **MIGRATION_PLAN.md** (728 lines)
+
    - 20-week phased implementation plan
    - Detailed tasks for each week
    - Risk assessment & mitigation
@@ -31,6 +34,7 @@ A complete **production-grade, enterprise-ready monorepo architecture** designed
    - Rollback procedures
 
 4. **ARCHITECTURE_QUICK_REFERENCE.md** (456 lines)
+
    - One-page cheat sheet
    - Command reference
    - Directory quick map
@@ -46,6 +50,7 @@ A complete **production-grade, enterprise-ready monorepo architecture** designed
 ## Key Architectural Changes
 
 ### From: Flat Organization
+
 ```
 packages/
 ├── ai/
@@ -58,6 +63,7 @@ packages/
 ```
 
 ### To: Domain-Driven Organization
+
 ```
 packages/
 ├── core/              ← Foundation (ai, shared, telemetry)
@@ -74,11 +80,13 @@ packages/
 ## Core Principles
 
 ### 1. Domain-Driven Design
+
 - Packages grouped by business capability
 - Clear responsibility per domain
 - Independent, understandable domains
 
 ### 2. Layered Architecture
+
 ```
 Core Layer (foundation)
     ↓
@@ -90,14 +98,17 @@ Tool Layer (utilities & infrastructure)
 ```
 
 ### 3. Explicit Boundaries
+
 - **Public APIs**: Versioned, stable, backwards compatible
 - **Internal APIs**: Subject to change, not for external use
 - **Example APIs**: Reference only, copy & adapt
 
 ### 4. Clear Ownership
+
 Every package has an assigned owner via CODEOWNERS.
 
 ### 5. Enterprise DX
+
 - Automated setup (5 minutes)
 - Clear contribution paths
 - Governance & review requirements
@@ -109,32 +120,32 @@ Every package has an assigned owner via CODEOWNERS.
 
 ### For Developers
 
-| Before | After |
-|--------|-------|
-| 50 packages in flat list | Organized into 7 domains |
-| Unclear what each package does | Clear ownership & purpose |
-| Hard to find related code | Logical grouping by domain |
-| Confusing import paths | Consistent naming convention |
-| 2 hours to find where to contribute | 30 minutes with guides |
+| Before                              | After                        |
+| ----------------------------------- | ---------------------------- |
+| 50 packages in flat list            | Organized into 7 domains     |
+| Unclear what each package does      | Clear ownership & purpose    |
+| Hard to find related code           | Logical grouping by domain   |
+| Confusing import paths              | Consistent naming convention |
+| 2 hours to find where to contribute | 30 minutes with guides       |
 
 ### For Maintainers
 
-| Before | After |
-|--------|-------|
-| No clear ownership | CODEOWNERS covers everything |
+| Before                     | After                                        |
+| -------------------------- | -------------------------------------------- |
+| No clear ownership         | CODEOWNERS covers everything                 |
 | Hard to manage 50 packages | Organized layers with clear responsibilities |
-| Scattered documentation | Centralized, hierarchical docs |
-| Manual processes | Automated tooling & generators |
-| No scaling strategy | Ready for 500+ contributors |
+| Scattered documentation    | Centralized, hierarchical docs               |
+| Manual processes           | Automated tooling & generators               |
+| No scaling strategy        | Ready for 500+ contributors                  |
 
 ### For Operations
 
-| Before | After |
-|--------|-------|
-| Complex Turbo pipeline | Organized by layer with clear dependencies |
-| Mixed concerns in CI/CD | Domain-specific workflows |
-| Unclear test organization | Tests organized by layer |
-| Manual release process | Automated via changesets |
+| Before                    | After                                      |
+| ------------------------- | ------------------------------------------ |
+| Complex Turbo pipeline    | Organized by layer with clear dependencies |
+| Mixed concerns in CI/CD   | Domain-specific workflows                  |
+| Unclear test organization | Tests organized by layer                   |
+| Manual release process    | Automated via changesets                   |
 
 ---
 
@@ -145,6 +156,7 @@ Every package has an assigned owner via CODEOWNERS.
 **Purpose**: Complete blueprint
 
 **Sections**:
+
 - Current state analysis (what's wrong today)
 - Enterprise principles (why we're changing)
 - Proposed structure (detailed directory tree)
@@ -162,6 +174,7 @@ Every package has an assigned owner via CODEOWNERS.
 **Purpose**: Get new contributors productive fast
 
 **Sections**:
+
 - 5-minute quick start
 - Repository structure overview
 - Finding your first contribution
@@ -179,6 +192,7 @@ Every package has an assigned owner via CODEOWNERS.
 **Purpose**: Step-by-step implementation guide
 
 **Sections**:
+
 - 6 phases over 20 weeks
 - Week-by-week tasks
 - Risk assessment & mitigation
@@ -194,6 +208,7 @@ Every package has an assigned owner via CODEOWNERS.
 **Purpose**: Daily reference cheat sheet
 
 **Sections**:
+
 - Directory quick map
 - Finding code fast
 - Common commands
@@ -211,18 +226,21 @@ Every package has an assigned owner via CODEOWNERS.
 ## Implementation Phases
 
 ### Phase 1: Planning & Documentation (Weeks 1-2)
+
 - ✅ Create architecture documents
 - ✅ Get stakeholder buy-in
 - ⏳ Create implementation checklist
 - ⏳ Team communication
 
 ### Phase 2: Infrastructure Setup (Weeks 3-6)
+
 - Update Turbo & TypeScript configs
 - Create CODEOWNERS
 - Build generation tools
 - Verify new structure works
 
 ### Phase 3: Package Migration (Weeks 7-18)
+
 - Wave 1: Core packages (Weeks 7-8)
 - Wave 2: Providers (Weeks 9-14)
 - Wave 3: Adapters (Weeks 15-16)
@@ -230,6 +248,7 @@ Every package has an assigned owner via CODEOWNERS.
 - Wave 5: Examples (Week 18)
 
 ### Phase 4: Release & Communication (Weeks 19-20)
+
 - Release v4.0
 - Migrate external packages
 - Community communication
@@ -239,6 +258,7 @@ Every package has an assigned owner via CODEOWNERS.
 ## Key Numbers
 
 ### Current State
+
 - **50+** packages in flat structure
 - **3** separate documentation locations
 - **20+** examples without clear organization
@@ -247,6 +267,7 @@ Every package has an assigned owner via CODEOWNERS.
 - **0** scaling strategy
 
 ### Target State
+
 - **50+** packages in 7 organized domains
 - **1** central documentation site
 - **1000+** examples possible with new structure
@@ -259,18 +280,21 @@ Every package has an assigned owner via CODEOWNERS.
 ## Success Metrics
 
 ### Developer Experience
+
 - ✅ Onboarding time < 30 minutes
 - ✅ First contribution time < 2 hours
 - ✅ Code discovery time < 5 minutes
 - ✅ 90%+ contributor satisfaction
 
 ### Operational Excellence
+
 - ✅ CODEOWNERS covers 100% of repo
 - ✅ Zero unowned packages
 - ✅ CI/CD time < 15 minutes
 - ✅ All tests passing
 
 ### Scalability
+
 - ✅ Support 500+ contributors
 - ✅ Maintain 100+ packages
 - ✅ Organize 1000+ examples
@@ -283,6 +307,7 @@ Every package has an assigned owner via CODEOWNERS.
 ### Domain Organization
 
 **Why 7 domains?**
+
 1. **Core**: Foundation dependencies (all packages need this)
 2. **Providers**: LLM integrations (independent, parallel)
 3. **Adapters**: Framework support (independent, parallel)
@@ -294,12 +319,14 @@ Every package has an assigned owner via CODEOWNERS.
 ### Naming Conventions
 
 **Why `@ai-sdk/{domain}/{package}`?**
+
 - Clear namespace
 - Easy to find all providers/adapters
 - Scales well with growth
 - Familiar pattern from npm ecosystem
 
 **Why CODEOWNERS for everything?**
+
 - Automated review assignment
 - Clear escalation paths
 - Prevents unowned code
@@ -312,11 +339,13 @@ Every package has an assigned owner via CODEOWNERS.
 ### Immediate (This Week)
 
 1. **Review Documents**
+
    - [ ] Read ARCHITECTURE_REDESIGN.md
    - [ ] Skim MIGRATION_PLAN.md
    - [ ] Bookmark ARCHITECTURE_QUICK_REFERENCE.md
 
 2. **Get Buy-In**
+
    - [ ] Share with stakeholders
    - [ ] Address concerns
    - [ ] Finalize decisions
@@ -331,11 +360,13 @@ Every package has an assigned owner via CODEOWNERS.
 ### Week 1-2 (Planning Phase)
 
 1. **Documentation Review**
+
    - Get architectural approval
    - Address questions
    - Gain consensus
 
 2. **Detailed Planning**
+
    - Create Jira/GitHub project
    - Break down tasks
    - Assign owners
@@ -350,11 +381,13 @@ Every package has an assigned owner via CODEOWNERS.
 ### Week 3+ (Implementation)
 
 1. **Infrastructure Setup**
+
    - Create directory structure
    - Update configuration files
    - Build generation tools
 
 2. **Migration Execution**
+
    - Follow wave-based approach
    - Test thoroughly
    - Keep main branch clean
@@ -370,12 +403,12 @@ Every package has an assigned owner via CODEOWNERS.
 
 ### Main Risks & Mitigations
 
-| Risk | Probability | Impact | Mitigation |
-|------|-------------|--------|-----------|
-| Breaking changes | Medium | High | Extensive testing, codemods |
-| Migration errors | Medium | Medium | Automated validator, code review |
-| Build time regression | Low | Medium | Performance monitoring, optimization |
-| Developer confusion | Low | Low | Documentation, tooling, guides |
+| Risk                  | Probability | Impact | Mitigation                           |
+| --------------------- | ----------- | ------ | ------------------------------------ |
+| Breaking changes      | Medium      | High   | Extensive testing, codemods          |
+| Migration errors      | Medium      | Medium | Automated validator, code review     |
+| Build time regression | Low         | Medium | Performance monitoring, optimization |
+| Developer confusion   | Low         | Low    | Documentation, tooling, guides       |
 
 ### Rollback Strategy
 
@@ -389,17 +422,20 @@ Every package has an assigned owner via CODEOWNERS.
 ### New Tools to Build
 
 1. **Package Generator**
+
    - `pnpm generate provider --name=x`
    - `pnpm generate adapter --framework=x`
    - `pnpm generate example --level=x --name=y`
 
 2. **Validator**
+
    - Verify structure compliance
    - Check import paths
    - Validate dependencies
    - Report issues
 
 3. **Discovery CLI**
+
    - `pnpm search-examples`
    - `pnpm find-provider`
    - `pnpm who-owns`
@@ -449,15 +485,18 @@ Week 20:     v4.0 Release & Communication
 ## Related Documents
 
 ### Architecture
+
 - `ARCHITECTURE_REDESIGN.md` — Complete blueprint
 - `ADR/` — Decision records
 
 ### Contributor Experience
+
 - `CONTRIBUTOR_ONBOARDING.md` — Getting started guide
 - `CONTRIBUTING.md` — How to contribute (to be updated)
 - `ARCHITECTURE_QUICK_REFERENCE.md` — Daily cheat sheet
 
 ### Implementation
+
 - `MIGRATION_PLAN.md` — Step-by-step guide
 - `CODEOWNERS` — Ownership map
 
@@ -466,21 +505,27 @@ Week 20:     v4.0 Release & Communication
 ## FAQ
 
 ### Q: Why reorganize now?
+
 A: Current flat structure doesn't scale beyond 50 packages. This prepares for 100+ packages and 500+ contributors.
 
 ### Q: Will this break my code?
+
 A: We're keeping public APIs stable. Only internal structure changes. Migration guide provided.
 
 ### Q: How long will it take?
+
 A: 20 weeks (5 months) for full migration. Phased approach minimizes disruption.
 
 ### Q: What about existing code?
+
 A: Works as-is during migration. After v4.0 release, migration guide helps update imports.
 
 ### Q: Can I contribute during migration?
+
 A: Yes! We maintain backwards compatibility and guide contributors to right locations.
 
 ### Q: Who should I talk to?
+
 A: See CODEOWNERS for domain owners. Questions? Open a discussion.
 
 ---
@@ -503,17 +548,20 @@ A: See CODEOWNERS for domain owners. Questions? Open a discussion.
 ## Getting Started
 
 ### If you're a stakeholder:
+
 1. Read: ARCHITECTURE_REDESIGN.md (sections 1-3)
 2. Review: MIGRATION_PLAN.md (phases overview)
 3. Decide: Approve/request changes
 
 ### If you're implementing:
+
 1. Read: MIGRATION_PLAN.md (complete guide)
 2. Reference: ARCHITECTURE_REDESIGN.md (details)
 3. Execute: Phase by phase
 4. Share: CONTRIBUTOR_ONBOARDING.md with team
 
 ### If you're a contributor:
+
 1. Read: CONTRIBUTOR_ONBOARDING.md
 2. Reference: ARCHITECTURE_QUICK_REFERENCE.md
 3. Contribute: Follow workflows outlined
@@ -522,13 +570,13 @@ A: See CODEOWNERS for domain owners. Questions? Open a discussion.
 
 ## Document Status
 
-| Document | Status | Version | Last Updated |
-|----------|--------|---------|--------------|
-| ARCHITECTURE_REDESIGN.md | ✅ Complete | 1.0 | June 2026 |
-| CONTRIBUTOR_ONBOARDING.md | ✅ Complete | 1.0 | June 2026 |
-| MIGRATION_PLAN.md | ✅ Complete | 1.0 | June 2026 |
-| ARCHITECTURE_QUICK_REFERENCE.md | ✅ Complete | 1.0 | June 2026 |
-| ADR/template.md | ✅ Complete | 1.0 | June 2026 |
+| Document                        | Status      | Version | Last Updated |
+| ------------------------------- | ----------- | ------- | ------------ |
+| ARCHITECTURE_REDESIGN.md        | ✅ Complete | 1.0     | June 2026    |
+| CONTRIBUTOR_ONBOARDING.md       | ✅ Complete | 1.0     | June 2026    |
+| MIGRATION_PLAN.md               | ✅ Complete | 1.0     | June 2026    |
+| ARCHITECTURE_QUICK_REFERENCE.md | ✅ Complete | 1.0     | June 2026    |
+| ADR/template.md                 | ✅ Complete | 1.0     | June 2026    |
 
 ---
 
@@ -543,6 +591,7 @@ A: See CODEOWNERS for domain owners. Questions? Open a discussion.
 ## Credits & Acknowledgments
 
 This architecture proposal was designed following best practices from:
+
 - **Vercel**: Monorepo patterns and governance
 - **OpenAI SDK**: Public API design and stability
 - **Anthropic SDK**: Provider integration patterns
@@ -554,4 +603,3 @@ This architecture proposal was designed following best practices from:
 
 **Status**: Complete ✅  
 **Ready for**: Stakeholder Review & Approval
-

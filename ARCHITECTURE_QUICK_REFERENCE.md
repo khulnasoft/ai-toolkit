@@ -33,14 +33,14 @@ A one-page cheat sheet for the AI Toolkit enterprise architecture.
 
 ## Finding Code
 
-| Goal | Command |
-|------|---------|
-| List all providers | `ls packages/providers/` |
-| List all adapters | `ls packages/adapters/` |
-| Find React code | `find packages/adapters/react -name "*.ts"` |
-| Find OpenAI code | `find packages/providers/openai -name "*.ts"` |
-| Find examples | `find examples -type d -maxdepth 2` |
-| Find who owns X | `grep "path/to/X" CODEOWNERS` |
+| Goal               | Command                                       |
+| ------------------ | --------------------------------------------- |
+| List all providers | `ls packages/providers/`                      |
+| List all adapters  | `ls packages/adapters/`                       |
+| Find React code    | `find packages/adapters/react -name "*.ts"`   |
+| Find OpenAI code   | `find packages/providers/openai -name "*.ts"` |
+| Find examples      | `find examples -type d -maxdepth 2`           |
+| Find who owns X    | `grep "path/to/X" CODEOWNERS`                 |
 
 ---
 
@@ -85,14 +85,14 @@ pnpm generate example --level=01-foundations --name=my-example
 
 ## Ownership & Review
 
-| Area | Owner | Review |
-|------|-------|--------|
-| `packages/core/` | @vercel/ai-sdk-core | 2 approvals |
-| `packages/providers/{provider}/` | Provider team | 1 approval + 1 core |
-| `packages/adapters/` | Framework teams | 1 approval |
-| `examples/` | @vercel/ai-sdk-developers | 1 approval |
-| `.github/` | @vercel/devops-team | 1 approval |
-| Root configs | @vercel/ai-sdk-maintainers | 1 approval |
+| Area                             | Owner                      | Review              |
+| -------------------------------- | -------------------------- | ------------------- |
+| `packages/core/`                 | @vercel/ai-sdk-core        | 2 approvals         |
+| `packages/providers/{provider}/` | Provider team              | 1 approval + 1 core |
+| `packages/adapters/`             | Framework teams            | 1 approval          |
+| `examples/`                      | @vercel/ai-sdk-developers  | 1 approval          |
+| `.github/`                       | @vercel/devops-team        | 1 approval          |
+| Root configs                     | @vercel/ai-sdk-maintainers | 1 approval          |
 
 **See**: `CODEOWNERS` file for complete mapping
 
@@ -101,12 +101,14 @@ pnpm generate example --level=01-foundations --name=my-example
 ## API Stability
 
 ### Public APIs ✅
+
 - Versioned (semver)
 - Backwards compatible
 - 6-month deprecation notice
 - Production-ready
 
 **Examples**:
+
 ```typescript
 import { generateText } from '@ai-sdk/core';
 import { useChat } from '@ai-sdk/react';
@@ -114,17 +116,20 @@ import { createOpenAI } from '@ai-sdk/openai';
 ```
 
 ### Internal APIs ⚠️
+
 - Not versioned
 - May change anytime
 - Documented but not stable
 - Don't use externally
 
 **Examples**:
+
 ```typescript
 import { CoreTypes } from '@ai-sdk/shared/internal';
 ```
 
 ### Example APIs ℹ️
+
 - Copy & adapt
 - Don't depend on them
 - For reference only
@@ -142,6 +147,7 @@ import { CoreTypes } from '@ai-sdk/shared/internal';
 ```
 
 **Examples**:
+
 - `@ai-sdk/core` — Main SDK
 - `@ai-sdk/openai` — OpenAI provider
 - `@ai-sdk/react` — React hooks
@@ -230,34 +236,38 @@ Once approved and CI passes, auto-merge happens
 
 ## Testing by Layer
 
-| Layer | Location | Command |
-|-------|----------|---------|
-| Core | `packages/core/*/tests/` | `pnpm test --filter="@ai-sdk/core*"` |
-| Providers | `packages/providers/*/tests/` | `pnpm test --filter="@ai-sdk/*"` |
-| Adapters | `packages/adapters/*/tests/` | `pnpm test --filter="@ai-sdk/react"` |
-| Examples | `examples/*/tests/` | `pnpm test --filter="@example/*"` |
-| Integration | `tests/integration/` | `pnpm test:integration` |
+| Layer       | Location                      | Command                              |
+| ----------- | ----------------------------- | ------------------------------------ |
+| Core        | `packages/core/*/tests/`      | `pnpm test --filter="@ai-sdk/core*"` |
+| Providers   | `packages/providers/*/tests/` | `pnpm test --filter="@ai-sdk/*"`     |
+| Adapters    | `packages/adapters/*/tests/`  | `pnpm test --filter="@ai-sdk/react"` |
+| Examples    | `examples/*/tests/`           | `pnpm test --filter="@example/*"`    |
+| Integration | `tests/integration/`          | `pnpm test:integration`              |
 
 ---
 
 ## Dependencies
 
 ### Core Layer Dependencies
+
 ```
 None (no external deps) → Shared → Telemetry
 ```
 
 ### Provider Layer Dependencies
+
 ```
 LLM API client → Provider → Core
 ```
 
 ### Adapter Layer Dependencies
+
 ```
 Framework library → Adapter → Core + Providers
 ```
 
 ### Example Dependencies
+
 ```
 Everything → Examples (test only)
 ```
@@ -353,16 +363,16 @@ cat CODEOWNERS
 
 ## Useful Files
 
-| File | Purpose |
-|------|---------|
-| `ARCHITECTURE_REDESIGN.md` | Full architecture document |
-| `CONTRIBUTOR_ONBOARDING.md` | New contributor guide |
-| `MIGRATION_PLAN.md` | Migration implementation guide |
-| `CODEOWNERS` | Package ownership & review requirements |
-| `ADR/` | Architecture decisions |
-| `turbo.json` | Monorepo task configuration |
-| `pnpm-workspace.yaml` | Workspace definition |
-| `tsconfig.base.json` | TypeScript base config |
+| File                        | Purpose                                 |
+| --------------------------- | --------------------------------------- |
+| `ARCHITECTURE_REDESIGN.md`  | Full architecture document              |
+| `CONTRIBUTOR_ONBOARDING.md` | New contributor guide                   |
+| `MIGRATION_PLAN.md`         | Migration implementation guide          |
+| `CODEOWNERS`                | Package ownership & review requirements |
+| `ADR/`                      | Architecture decisions                  |
+| `turbo.json`                | Monorepo task configuration             |
+| `pnpm-workspace.yaml`       | Workspace definition                    |
+| `tsconfig.base.json`        | TypeScript base config                  |
 
 ---
 
