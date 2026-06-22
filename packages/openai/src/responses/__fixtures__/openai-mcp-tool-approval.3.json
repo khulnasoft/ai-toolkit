@@ -49,9 +49,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "url"
-            ],
+            "required": ["url"],
             "type": "object"
           },
           "name": "create_short_url"
@@ -68,9 +66,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "short_code"
-            ],
+            "required": ["short_code"],
             "type": "object"
           },
           "name": "get_url_stats"
@@ -87,9 +83,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "url"
-            ],
+            "required": ["url"],
             "type": "object"
           },
           "name": "validate_url"

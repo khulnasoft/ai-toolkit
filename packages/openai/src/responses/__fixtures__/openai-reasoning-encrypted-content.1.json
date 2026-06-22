@@ -1,4 +1,3 @@
-
 {
   "id": "resp_0f35ed53160b395301693cc957829881909359e7f80cdd20b5",
   "object": "response",
@@ -78,21 +77,12 @@
           },
           "op": {
             "type": "string",
-            "enum": [
-              "add",
-              "subtract",
-              "multiply",
-              "divide"
-            ],
+            "enum": ["add", "subtract", "multiply", "divide"],
             "default": "add",
             "description": "Arithmetic operation to perform."
           }
         },
-        "required": [
-          "a",
-          "b",
-          "op"
-        ],
+        "required": ["a", "b", "op"],
         "additionalProperties": false
       },
       "strict": true

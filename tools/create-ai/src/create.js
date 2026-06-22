@@ -18,14 +18,14 @@ function createPrompt() {
 }
 
 function askQuestion(rl, question) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question(question, resolve);
   });
 }
 
 async function promptForChoice(rl, label, choices, defaultChoice) {
   ui.prompt(label);
-  choices.forEach((c) => {
+  choices.forEach(c => {
     const isDefault = c.name === defaultChoice;
     if (isDefault) {
       ui.promptSelected(`${c.description} (${c.name})`);
@@ -35,7 +35,10 @@ async function promptForChoice(rl, label, choices, defaultChoice) {
   });
 
   while (true) {
-    const answer = await askQuestion(rl, chalk.dim('│') + '  ' + 'Type a number or name to select: ');
+    const answer = await askQuestion(
+      rl,
+      chalk.dim('│') + '  ' + 'Type a number or name to select: ',
+    );
     const trimmed = answer.trim().toLowerCase();
 
     // Check by number
@@ -45,7 +48,7 @@ async function promptForChoice(rl, label, choices, defaultChoice) {
     }
 
     // Check by name
-    const match = choices.find((c) => c.name === trimmed);
+    const match = choices.find(c => c.name === trimmed);
     if (match) return match.name;
 
     // Default to defaultChoice on empty
@@ -57,7 +60,13 @@ async function promptForChoice(rl, label, choices, defaultChoice) {
 }
 
 export async function createAIProject(options) {
-  let { name, template, provider, install = true, interactive = true } = options;
+  let {
+    name,
+    template,
+    provider,
+    install = true,
+    interactive = true,
+  } = options;
 
   const targetDir = path.resolve(process.cwd(), name);
 
@@ -76,7 +85,7 @@ export async function createAIProject(options) {
           rl,
           'Select a template',
           templates,
-          'next-react'
+          'next-react',
         );
       }
       if (!provider) {
@@ -85,7 +94,7 @@ export async function createAIProject(options) {
           rl,
           'Select an AI provider',
           providers,
-          'openai'
+          'openai',
         );
       }
     } finally {
@@ -96,7 +105,9 @@ export async function createAIProject(options) {
   const templateConfig = getTemplate(template);
   const providerConfig = getProvider(provider);
 
-  ui.log(`Creating ${chalk.bold(templateConfig.description)} app: ${chalk.cyan(name)}`);
+  ui.log(
+    `Creating ${chalk.bold(templateConfig.description)} app: ${chalk.cyan(name)}`,
+  );
   ui.divider();
 
   fs.mkdirSync(targetDir, { recursive: true });
@@ -121,26 +132,26 @@ export async function createAIProject(options) {
 function createFromTemplate(dir, templateName, provider) {
   const packageJson = defaultFiles['package.json'].template(
     path.basename(dir),
-    provider
+    provider,
   );
 
   fs.writeFileSync(
     path.join(dir, 'package.json'),
-    JSON.stringify(packageJson, null, 2) + '\n'
+    JSON.stringify(packageJson, null, 2) + '\n',
   );
 
   fs.mkdirSync(path.join(dir, 'src', 'lib'), { recursive: true });
 
   fs.writeFileSync(
     path.join(dir, 'src', 'lib', 'ai.ts'),
-    defaultFiles['src/lib/ai.ts'].template(null, provider)
+    defaultFiles['src/lib/ai.ts'].template(null, provider),
   );
 
   if (templateName.startsWith('next')) {
     fs.mkdirSync(path.join(dir, 'src', 'app'), { recursive: true });
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'page.tsx'),
-      getNextPage(templateName)
+      getNextPage(templateName),
     );
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'layout.tsx'),
@@ -154,7 +165,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-`
+`,
     );
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'globals.css'),
@@ -164,16 +175,13 @@ export default function RootLayout({ children }) {
   margin: 0 auto;
   padding: 2rem;
 }
-`
+`,
     );
   }
 
   if (templateName === 'node') {
     fs.mkdirSync(path.join(dir, 'src'), { recursive: true });
-    fs.writeFileSync(
-      path.join(dir, 'src', 'index.ts'),
-      getNodeIndex()
-    );
+    fs.writeFileSync(path.join(dir, 'src', 'index.ts'), getNodeIndex());
   }
 }
 
@@ -249,7 +257,7 @@ async function installDependencies(dir) {
   const execAsync = promisify(exec);
 
   try {
-      await execAsync('pnpm install', { cwd: dir });
+    await execAsync('pnpm install', { cwd: dir });
   } catch {
     try {
       await execAsync('npm install', { cwd: dir });

@@ -27,7 +27,9 @@ export function parseArgs(argv) {
   }
 
   if (!options.name && !options.help) {
-    throw new Error('Project name is required. Run create-ai --help for usage.');
+    throw new Error(
+      'Project name is required. Run create-ai --help for usage.',
+    );
   }
 
   return options;
@@ -47,13 +49,13 @@ export function validateArgs(options) {
 
   if (options.template && !validTemplates.includes(options.template)) {
     throw new Error(
-      `Invalid template: ${options.template}. Valid: ${validTemplates.join(', ')}`
+      `Invalid template: ${options.template}. Valid: ${validTemplates.join(', ')}`,
     );
   }
 
   if (options.provider && !validProviders.includes(options.provider)) {
     throw new Error(
-      `Invalid provider: ${options.provider}. Valid: ${validProviders.join(', ')}`
+      `Invalid provider: ${options.provider}. Valid: ${validProviders.join(', ')}`,
     );
   }
 

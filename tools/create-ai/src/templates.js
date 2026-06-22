@@ -64,12 +64,7 @@ export const templates = {
   node: {
     name: 'node',
     description: 'Node.js API',
-    files: [
-      'package.json',
-      'tsconfig.json',
-      'src/index.ts',
-      'src/lib/ai.ts',
-    ],
+    files: ['package.json', 'tsconfig.json', 'src/index.ts', 'src/lib/ai.ts'],
   },
 };
 
