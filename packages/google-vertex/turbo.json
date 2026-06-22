@@ -4,7 +4,9 @@
     "build": {
       "dependsOn": [
         "@ai-toolkit/provider#build",
-        "@ai-toolkit/provider-utils#build"
+        "@ai-toolkit/provider-utils#build",
+        "@ai-toolkit/google#build",
+        "@ai-toolkit/anthropic#build"
       ],
       "outputs": ["**/dist/**"]
     }

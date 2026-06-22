@@ -22,6 +22,9 @@
       "path": "../google"
     },
     {
+      "path": "../openai-compatible"
+    },
+    {
       "path": "../provider"
     },
     {
