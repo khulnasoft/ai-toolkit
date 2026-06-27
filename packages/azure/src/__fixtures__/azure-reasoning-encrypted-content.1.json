@@ -75,21 +75,12 @@
           },
           "op": {
             "type": "string",
-            "enum": [
-              "add",
-              "subtract",
-              "multiply",
-              "divide"
-            ],
+            "enum": ["add", "subtract", "multiply", "divide"],
             "default": "add",
             "description": "Arithmetic operation to perform."
           }
         },
-        "required": [
-          "a",
-          "b",
-          "op"
-        ],
+        "required": ["a", "b", "op"],
         "additionalProperties": false
       },
       "strict": true

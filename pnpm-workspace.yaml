@@ -1,5 +1,15 @@
 packages:
+  # Domain-based organization (new architecture)
+  - 'packages/core/*'
+  - 'packages/providers/*'
+  - 'packages/adapters/*'
+  - 'packages/mcp/*'
+  - 'packages/special/*'
+  - 'packages/validation/*'
+  - 'packages/infrastructure/*'
+  # Legacy flat structure (during migration)
   - 'packages/*'
+  # Other workspaces
   - 'tools/*'
   - 'examples/*'
   - 'packages/rsc/tests/e2e/next-server'

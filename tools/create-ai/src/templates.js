@@ -64,12 +64,7 @@ export const templates = {
   node: {
     name: 'node',
     description: 'Node.js API',
-    files: [
-      'package.json',
-      'tsconfig.json',
-      'src/index.ts',
-      'src/lib/ai.ts',
-    ],
+    files: ['package.json', 'tsconfig.json', 'src/index.ts', 'src/lib/ai.ts'],
   },
 };
 
@@ -147,11 +142,11 @@ export async function generateCompletion(prompt: string) {
   },
 };
 
-export function getTemplate(name: string) {
+export function getTemplate(name) {
   return templates[name] || templates['next-react'];
 }
 
-export function getProvider(name: string) {
+export function getProvider(name) {
   return providers[name] || providers.openai;
 }
 

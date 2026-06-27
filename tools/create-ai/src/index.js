@@ -1,45 +1,42 @@
 #!/usr/bin/env node
 
-import { createAIProject } from './src/create.js';
-import { parseArgs } from './src/args.js';
-import { logger } from './src/logger.js';
+import { createAIProject } from './create.js';
+import { parseArgs } from './args.js';
+import { ui, logger, chalk } from './logger.js';
 
 const main = async () => {
   const args = parseArgs(process.argv);
 
   if (args.help) {
-    logger.info(`
-AI App Scaffolder
-
-Usage: create-ai <project-name> [options]
-
-Options:
-  --template <name>    Template to use (next-react, next-rsc, vite-react, vue, svelte, node)
-  --provider <name>   AI provider (openai, anthropic, google, azure, bedrock)
-  --no-install      Skip dependency installation
-  --yes, -y        Skip prompts and use defaults
-  --help           Show this help message
-
-Examples:
-  create-ai my-chat-app
-  create-ai my-app --template next-react --provider openai
-  create-ai my-app -y --no-install
-
-Templates:
-  • next-react    Next.js + React
-  • next-rsc    Next.js + React Server Components
-  • vite-react  Vite + React
-  • vue        Vue 3
-  • svelte    SvelteKit
-  • node      Node.js API
-
-Providers:
-  • openai    OpenAI (GPT-4, GPT-4o)
-  • anthropic Anthropic (Claude)
-  • google   Google (Gemini)
-  • azure   Azure OpenAI
-  • bedrock  AWS Bedrock
-`);
+    ui.boxStart('create-ai');
+    ui.log('');
+    ui.log(chalk.bold('Usage:'));
+    ui.log(
+      `  ${chalk.cyan('create-ai <project-name>')} ${chalk.dim('[options]')}`,
+    );
+    ui.divider();
+    ui.log(chalk.bold('Options:'));
+    ui.log(
+      `  ${chalk.cyan('--template <name>')}    Template (next-react, next-rsc, vite-react, vue, svelte, node)`,
+    );
+    ui.log(
+      `  ${chalk.cyan('--provider <name>')}     AI provider (openai, anthropic, google, azure, bedrock)`,
+    );
+    ui.log(
+      `  ${chalk.cyan('--no-install')}          Skip dependency installation`,
+    );
+    ui.log(
+      `  ${chalk.cyan('-y, --yes')}             Skip prompts and use defaults`,
+    );
+    ui.log(`  ${chalk.cyan('-h, --help')}            Show this help message`);
+    ui.divider();
+    ui.log(chalk.bold('Examples:'));
+    ui.log(`  ${chalk.dim('$')} create-ai my-chat-app`);
+    ui.log(
+      `  ${chalk.dim('$')} create-ai my-app --template next-react --provider openai`,
+    );
+    ui.log(`  ${chalk.dim('$')} create-ai my-app -y --no-install`);
+    ui.boxEnd();
     process.exit(0);
   }
 
@@ -54,7 +51,7 @@ Providers:
       interactive: !skipPrompts,
     });
   } catch (error) {
-    logger.error(`Failed to create project: ${error.message}`);
+    ui.error(`Failed to create project: ${error.message}`);
     process.exit(1);
   }
 };

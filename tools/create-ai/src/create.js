@@ -1,14 +1,72 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { getTemplate, getProvider, defaultFiles } from './templates.js';
-import { logger } from './logger.js';
+import readline from 'readline';
+import {
+  getTemplate,
+  getProvider,
+  getAllTemplates,
+  getAllProviders,
+  defaultFiles,
+} from './templates.js';
+import { ui, logger, chalk } from './logger.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '../..');
+function createPrompt() {
+  return readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+}
+
+function askQuestion(rl, question) {
+  return new Promise(resolve => {
+    rl.question(question, resolve);
+  });
+}
+
+async function promptForChoice(rl, label, choices, defaultChoice) {
+  ui.prompt(label);
+  choices.forEach(c => {
+    const isDefault = c.name === defaultChoice;
+    if (isDefault) {
+      ui.promptSelected(`${c.description} (${c.name})`);
+    } else {
+      ui.promptUnselected(`${c.description} (${c.name})`);
+    }
+  });
+
+  while (true) {
+    const answer = await askQuestion(
+      rl,
+      chalk.dim('│') + '  ' + 'Type a number or name to select: ',
+    );
+    const trimmed = answer.trim().toLowerCase();
+
+    // Check by number
+    const num = parseInt(trimmed, 10);
+    if (!isNaN(num) && num >= 1 && num <= choices.length) {
+      return choices[num - 1].name;
+    }
+
+    // Check by name
+    const match = choices.find(c => c.name === trimmed);
+    if (match) return match.name;
+
+    // Default to defaultChoice on empty
+    if (!trimmed) return defaultChoice;
+
+    // Re-prompt on invalid
+    ui.log(chalk.yellow('Invalid selection.'));
+  }
+}
 
 export async function createAIProject(options) {
-  const { name, template, provider, install = true, interactive = true } = options;
+  let {
+    name,
+    template,
+    provider,
+    install = true,
+    interactive = true,
+  } = options;
 
   const targetDir = path.resolve(process.cwd(), name);
 
@@ -16,52 +74,84 @@ export async function createAIProject(options) {
     throw new Error(`Directory "${name}" already exists`);
   }
 
+  ui.boxStart('create-ai');
+
+  if (interactive) {
+    const rl = createPrompt();
+    try {
+      if (!template) {
+        const templates = getAllTemplates();
+        template = await promptForChoice(
+          rl,
+          'Select a template',
+          templates,
+          'next-react',
+        );
+      }
+      if (!provider) {
+        const providers = getAllProviders();
+        provider = await promptForChoice(
+          rl,
+          'Select an AI provider',
+          providers,
+          'openai',
+        );
+      }
+    } finally {
+      rl.close();
+    }
+  }
+
   const templateConfig = getTemplate(template);
   const providerConfig = getProvider(provider);
 
-  logger.info(`Creating ${templateConfig.description} app: ${name}`);
+  ui.log(
+    `Creating ${chalk.bold(templateConfig.description)} app: ${chalk.cyan(name)}`,
+  );
+  ui.divider();
 
   fs.mkdirSync(targetDir, { recursive: true });
 
   createFromTemplate(targetDir, templateConfig.name, providerConfig);
 
   if (install) {
-    logger.info('Installing dependencies...');
+    ui.log('Installing dependencies...');
     await installDependencies(targetDir);
   }
 
-  logger.success(`\nDone! Created ${name}`);
-  logger.info(`
-Next steps:
-  cd ${name}
-  ${install ? '' : 'pnpm install'}
-  pnpm dev
-  `);
+  ui.boxEnd();
+  ui.log('');
+  ui.log('Next steps:');
+  ui.log(`  cd ${chalk.cyan(name)}`);
+  if (!install) {
+    ui.log(`  ${chalk.cyan('pnpm install')}`);
+  }
+  ui.log(`  ${chalk.cyan('pnpm dev')}`);
 }
 
 function createFromTemplate(dir, templateName, provider) {
   const packageJson = defaultFiles['package.json'].template(
     path.basename(dir),
-    provider
+    provider,
   );
 
   fs.writeFileSync(
     path.join(dir, 'package.json'),
-    JSON.stringify(packageJson, null, 2) + '\n'
+    JSON.stringify(packageJson, null, 2) + '\n',
   );
 
   fs.mkdirSync(path.join(dir, 'src', 'lib'), { recursive: true });
 
   fs.writeFileSync(
     path.join(dir, 'src', 'lib', 'ai.ts'),
-    defaultFiles['src/lib/ai.ts'].template(null, provider)
+    defaultFiles['src/lib/ai.ts'].template(null, provider),
   );
 
   if (templateName.startsWith('next')) {
     fs.mkdirSync(path.join(dir, 'src', 'app'), { recursive: true });
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'page.tsx'),
-      getNextPage(templateName)
+      getNextPage(templateName),
     );
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'layout.tsx'),
@@ -75,7 +165,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-`
+`,
     );
     fs.writeFileSync(
       path.join(dir, 'src', 'app', 'globals.css'),
@@ -85,16 +175,13 @@ export default function RootLayout({ children }) {
   margin: 0 auto;
   padding: 2rem;
 }
-`
+`,
     );
   }
 
   if (templateName === 'node') {
     fs.mkdirSync(path.join(dir, 'src'), { recursive: true });
-    fs.writeFileSync(
-      path.join(dir, 'src', 'index.ts'),
-      getNodeIndex()
-    );
+    fs.writeFileSync(path.join(dir, 'src', 'index.ts'), getNodeIndex());
   }
 }
 
@@ -170,10 +257,10 @@ async function installDependencies(dir) {
   const execAsync = promisify(exec);
 
   try {
-    await execAsync('pnpm install', { cwd: dir, stdio: 'ignore' });
+    await execAsync('pnpm install', { cwd: dir });
   } catch {
     try {
-      await execAsync('npm install', { cwd: dir, stdio: 'ignore' });
+      await execAsync('npm install', { cwd: dir });
     } catch {
       logger.warn('Could not install dependencies automatically');
     }

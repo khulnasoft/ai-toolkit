@@ -5,7 +5,7 @@ gives you access to the v0 API, designed for building modern web applications. T
 
 Key features include:
 
-- Framework aware completions: Optimized for modern stacks like Next.js and Vercel
+- Framework aware completions: Optimized for modern stacks like Next.js and KhulnaSoft
 - Auto-fix: Identifies and corrects common coding issues during generation
 - Quick edit: Streams inline edits as they're available
 - Multimodal: Supports both text and image inputs

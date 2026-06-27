@@ -1,77 +1,83 @@
-const colors = {
-  reset: '\x1b[0m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  dim: '\x1b[2m',
-};
+import chalk from 'chalk';
 
-const symbols = {
-  info: 'ℹ',
-  success: '✓',
-  warn: '⚠',
-  error: '✗',
-  arrow: '›',
-};
+export class UI {
+  boxStart(title, version) {
+    const label = version ? `${title}  ${chalk.dim(`v${version}`)}` : title;
+    console.log(chalk.dim('┌') + '  ' + label);
+    console.log(chalk.dim('│'));
+  }
+
+  boxEnd() {
+    console.log(chalk.dim('└') + '  Done');
+  }
+
+  log(message) {
+    console.log(chalk.dim('│') + '  ' + message);
+  }
+
+  success(message) {
+    console.log(chalk.dim('│') + chalk.green('  ✓') + ' ' + message);
+  }
+
+  warn(message) {
+    console.warn(chalk.dim('│') + chalk.yellow('  ▲') + ' ' + message);
+  }
+
+  error(message) {
+    console.error(chalk.dim('│') + chalk.red('  ✗') + ' ' + message);
+  }
+
+  divider() {
+    console.log(chalk.dim('│'));
+  }
+
+  prompt(question) {
+    console.log(chalk.dim('│') + chalk.cyan('  ◇') + '  ' + question);
+  }
+
+  promptSelected(answer) {
+    console.log(chalk.dim('│') + '    ' + chalk.green('●') + ' ' + answer);
+  }
+
+  promptUnselected(answer) {
+    console.log(chalk.dim('│') + '    ' + chalk.dim('○') + ' ' + answer);
+  }
+
+  option(answer) {
+    console.log(chalk.dim('│') + '  ' + answer);
+  }
+
+  highlight(message) {
+    console.log(chalk.dim('│') + chalk.cyan('  ◆') + '  ' + message);
+  }
+}
+
+export const ui = new UI();
 
 export const logger = {
   info(message) {
-    console.log(`${colors.blue}${symbols.info}${colors.reset} ${message}`);
+    console.log(chalk.dim('│') + '  ℹ' + ' ' + message);
   },
 
   success(message) {
-    console.log(`${colors.green}${symbols.success}${colors.reset} ${message}`);
+    console.log(chalk.dim('│') + chalk.green('  ✓') + ' ' + message);
   },
 
   warn(message) {
-    console.warn(`${colors.yellow}${symbols.warn}${colors.reset} ${message}`);
+    console.warn(chalk.dim('│') + chalk.yellow('  ▲') + ' ' + message);
   },
 
   error(message) {
-    console.error(`${colors.red}${symbols.error}${colors.reset} ${message}`);
+    console.error(chalk.dim('│') + chalk.red('  ✗') + ' ' + message);
   },
 
   header(message) {
-    console.log(`\n${colors.blue}${message}${colors.reset}`);
+    console.log(`\n${chalk.blue(message)}`);
   },
 
   subheader(message) {
-    console.log(`${colors.dim}${message}${colors.reset}`);
+    console.log(`${chalk.dim(message)}`);
   },
 };
 
-export const chalk = {
-  red(text) {
-    return `${colors.red}${text}${colors.reset}`;
-  },
-  green(text) {
-    return `${colors.green}${text}${colors.reset}`;
-  },
-  yellow(text) {
-    return `${colors.yellow}${text}${colors.reset}`;
-  },
-  blue(text) {
-    return `${colors.blue}${text}${colors.reset}`;
-  },
-  dim(text) {
-    return `${colors.dim}${text}${colors.reset}`;
-  },
-};
-
-export function formatList(items, indent = 2) {
-  const spaces = ' '.repeat(indent);
-  return items.map((item) => spaces + '• ' + item).join('\n');
-}
-
-export function formatGrid(items, cols = 2) {
-  const maxLen = Math.max(...items.map((i) => i.length));
-  return items.reduce((acc, item, i) => {
-    return (
-      acc +
-      item +
-      ' '.repeat(maxLen - item.length + 2) +
-      (i % cols === cols - 1 ? '\n' : '')
-    );
-  }, '');
-}
+export { chalk };

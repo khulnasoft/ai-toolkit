@@ -149,5 +149,5 @@ jobs:
           HAS_CHANGES: ${{ steps.check-changes.outputs.has-changes }}
           TITLE: ${{ steps.create-pr.outputs.pr-title }}
           URL: ${{ steps.create-pr.outputs.pr-url }}
-          CHANNEL_ID: "C099VQB75TP"
-          REVIEWER: "U0A54KMV02E"
+          CHANNEL_ID: 'C099VQB75TP'
+          REVIEWER: 'U0A54KMV02E'
