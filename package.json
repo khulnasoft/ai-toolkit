@@ -10,7 +10,7 @@
     "build:adapters": "turbo build:adapters",
     "changeset": "changeset",
     "clean": "turbo clean",
-    "dev": "turbo dev --no-cache --concurrency 16 --continue",
+    "dev": "turbo dev --no-cache --concurrency 21 --continue",
     "format:check": "pnpm prettier --check . && biome format",
     "format": "prettier --write . && biome format --write",
     "lint": "turbo lint",
