@@ -12,7 +12,7 @@ import {
   ArrowRight,
   Check,
   Server,
-  Cache,
+  Database,
   Activity,
   Lock,
   Eye,
@@ -55,7 +55,7 @@ const features = [
       'One dashboard to monitor usage, costs, and latency across every provider.',
   },
   {
-    icon: Cache,
+    icon: Database,
     title: 'Unified Caching',
     description: 'Reduce costs and latency with intelligent response caching.',
   },

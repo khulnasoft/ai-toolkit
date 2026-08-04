@@ -12,7 +12,7 @@ import {
   ArrowRight,
   Check,
   Layers,
-  Webhooks,
+  Webhook,
   Shield,
   Scale,
 } from 'lucide-react';
@@ -58,7 +58,7 @@ const features = [
       'Generate images, transcribe speech, and embed content seamlessly.',
   },
   {
-    icon: Webhooks,
+    icon: Webhook,
     title: 'Server Actions',
     description:
       'Integrate with Next.js Server Actions and React Server Components.',

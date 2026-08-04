@@ -389,15 +389,6 @@ export default function ModelsPage() {
           </div>
         </div>
       </nav>
-                </Button>
-              </Link>
-            </div>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero */}
       <section className="py-16 bg-gradient-to-b from-background to-muted/30">
