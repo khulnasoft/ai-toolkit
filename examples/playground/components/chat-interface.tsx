@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-toolkit/react';
+import { DefaultChatTransport } from 'ai';
 import { Button } from '@/components/ui/button';
 import { Send, Loader2, Bot, User } from 'lucide-react';
 
@@ -14,19 +15,17 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const {
-    messages,
-    input: currentInput,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-  } = useChat({
-    api: '/api/chat',
-    body: {
-      providerId,
-      modelId,
-    },
+  const { messages, status, sendMessage } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+      body: {
+        providerId,
+        modelId,
+      },
+    }),
   });
+
+  const isLoading = status === 'submitted' || status === 'streaming';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -38,8 +37,9 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (currentInput.trim() && !isLoading) {
-      handleSubmit(e);
+    if (input.trim() && !isLoading) {
+      sendMessage({ text: input });
+      setInput('');
     }
   };
 
@@ -76,7 +76,11 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
                     : 'bg-muted'
                 }`}
               >
-                <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                <p className="text-sm whitespace-pre-wrap">
+                  {message.parts
+                    .map(part => (part.type === 'text' ? part.text : ''))
+                    .join('')}
+                </p>
               </div>
 
               {message.role === 'user' && (
@@ -110,13 +114,13 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
         <div className="flex space-x-2">
           <input
             type="text"
-            value={currentInput}
-            onChange={handleInputChange}
+            value={input}
+            onChange={e => setInput(e.target.value)}
             placeholder="Type your message..."
             className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
             disabled={isLoading}
           />
-          <Button type="submit" disabled={isLoading || !currentInput.trim()}>
+          <Button type="submit" disabled={isLoading || !input.trim()}>
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
