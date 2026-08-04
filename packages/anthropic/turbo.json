@@ -2,10 +2,6 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "@ai-toolkit/provider#build",
-        "@ai-toolkit/provider-utils#build"
-      ],
       "outputs": ["**/dist/**"]
     }
   }
