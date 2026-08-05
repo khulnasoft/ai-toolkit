@@ -1913,6 +1913,24 @@ importers:
         specifier: 3.25.76
         version: 3.25.76
 
+  packages/core/runtime:
+    devDependencies:
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      del-cli:
+        specifier: ^5.1.0
+        version: 5.1.0
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.7.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+
   packages/deepgram:
     dependencies:
       '@ai-toolkit/provider':
@@ -3108,6 +3126,28 @@ importers:
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.8.3)
+
+  packages/validation/capabilities:
+    dependencies:
+      '@ai-toolkit/runtime':
+        specifier: workspace:*
+        version: link:../../core/runtime
+    devDependencies:
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      del-cli:
+        specifier: ^5.1.0
+        version: 5.1.0
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.7.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
 
   packages/vue:
     dependencies:
@@ -28201,7 +28241,7 @@ snapshots:
       '@sentry/bundler-plugin-core': 4.3.0(encoding@0.1.13)
       unplugin: 1.0.1
       uuid: 9.0.1
-      webpack: 5.101.2
+      webpack: 5.101.2(esbuild@0.25.9)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -29852,23 +29892,14 @@ snapshots:
       msw: 2.6.4(@types/node@20.17.24)(typescript@5.8.3)
       vite: 5.4.11(@types/node@20.17.24)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1)
 
-  '@vitest/mocker@2.1.4(msw@2.6.4(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))':
-    dependencies:
-      '@vitest/spy': 2.1.4
-      estree-walker: 3.0.3
-      magic-string: 0.30.21
-    optionalDependencies:
-      msw: 2.6.4(@types/node@20.17.24)(typescript@5.8.3)
-      vite: 5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1)
-
-  '@vitest/mocker@2.1.4(msw@2.7.0(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))':
+  '@vitest/mocker@2.1.4(msw@2.7.0(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@20.17.24)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))':
     dependencies:
       '@vitest/spy': 2.1.4
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
       msw: 2.7.0(@types/node@20.17.24)(typescript@5.8.3)
-      vite: 5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1)
+      vite: 5.4.11(@types/node@20.17.24)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1)
 
   '@vitest/mocker@2.1.4(msw@2.7.0(@types/node@22.19.19)(typescript@5.8.3))(vite@5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))':
     dependencies:
@@ -38569,7 +38600,7 @@ snapshots:
       neo-async: 2.6.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      webpack: 5.101.2
+      webpack: 5.101.2(esbuild@0.25.9)
 
   react-style-singleton@2.2.3(@types/react@18.3.3)(react@18.3.1):
     dependencies:
@@ -40201,15 +40232,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.9
 
-  terser-webpack-plugin@5.3.14(webpack@5.101.2):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.29
-      jest-worker: 27.5.1
-      schema-utils: 4.3.2
-      serialize-javascript: 6.0.2
-      terser: 5.43.1
-      webpack: 5.101.2
-
   terser@5.43.1:
     dependencies:
       '@jridgewell/source-map': 0.3.6
@@ -41488,7 +41510,7 @@ snapshots:
   vitest@2.1.4(@edge-runtime/vm@5.0.0)(@types/node@20.17.24)(jsdom@26.0.0)(less@4.4.0)(lightningcss@1.30.2)(msw@2.6.4(@types/node@20.17.24)(typescript@5.8.3))(sass@1.90.0)(terser@5.43.1):
     dependencies:
       '@vitest/expect': 2.1.4
-      '@vitest/mocker': 2.1.4(msw@2.6.4(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))
+      '@vitest/mocker': 2.1.4(msw@2.6.4(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@20.17.24)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))
       '@vitest/pretty-format': 2.1.4
       '@vitest/runner': 2.1.4
       '@vitest/snapshot': 2.1.4
@@ -41525,7 +41547,7 @@ snapshots:
   vitest@2.1.4(@edge-runtime/vm@5.0.0)(@types/node@20.17.24)(jsdom@26.0.0)(less@4.4.0)(lightningcss@1.30.2)(msw@2.7.0(@types/node@20.17.24)(typescript@5.8.3))(sass@1.90.0)(terser@5.43.1):
     dependencies:
       '@vitest/expect': 2.1.4
-      '@vitest/mocker': 2.1.4(msw@2.7.0(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@22.19.19)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))
+      '@vitest/mocker': 2.1.4(msw@2.7.0(@types/node@20.17.24)(typescript@5.8.3))(vite@5.4.11(@types/node@20.17.24)(less@4.4.0)(lightningcss@1.30.2)(sass@1.90.0)(terser@5.43.1))
       '@vitest/pretty-format': 2.1.4
       '@vitest/runner': 2.1.4
       '@vitest/snapshot': 2.1.4
@@ -41857,38 +41879,6 @@ snapshots:
   webpack-virtual-modules@0.5.0: {}
 
   webpack-virtual-modules@0.6.2: {}
-
-  webpack@5.101.2:
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.8
-      '@types/json-schema': 7.0.15
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.15.0
-      acorn-import-phases: 1.0.4(acorn@8.15.0)
-      browserslist: 4.25.1
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.3
-      es-module-lexer: 1.6.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 4.3.2
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.14(webpack@5.101.2)
-      watchpack: 2.4.4
-      webpack-sources: 3.3.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
 
   webpack@5.101.2(esbuild@0.25.9):
     dependencies:

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Validates the repository structure against the expected enterprise architecture.
+ * Validates package boundaries and the staged domain migration.
  */
 
 import fs from 'fs';
@@ -11,83 +11,171 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
 const PACKAGES = path.join(ROOT, 'packages');
+const EXPECTED_DOMAINS = [
+  'core',
+  'providers',
+  'adapters',
+  'mcp',
+  'special',
+  'validation',
+  'infrastructure',
+];
+const NODE_BUILTINS = new Set([
+  'assert',
+  'buffer',
+  'child_process',
+  'crypto',
+  'fs',
+  'http',
+  'https',
+  'net',
+  'node:assert',
+  'node:buffer',
+  'node:child_process',
+  'node:crypto',
+  'node:fs',
+  'node:http',
+  'node:https',
+  'node:net',
+  'node:path',
+  'node:stream',
+  'node:util',
+]);
+const errors = [];
+const warnings = [];
+const packages = [];
 
-const EXPECTED_DOMAINS = ['core', 'providers', 'adapters', 'mcp', 'special', 'validation', 'infrastructure'];
+const reportError = message => errors.push(message);
+const reportWarning = message => warnings.push(message);
 
-let errors = [];
-let warnings = [];
-
-function error(msg) { errors.push(msg); }
-function warn(msg) { warnings.push(msg); }
-
-for (const domain of EXPECTED_DOMAINS) {
-  const dir = path.join(PACKAGES, domain);
-  if (!fs.existsSync(dir)) {
-    error(`Missing domain directory: packages/${domain}`);
-  } else if (!fs.statSync(dir).isDirectory()) {
-    error(`Expected directory but found file: packages/${domain}`);
-  } else if (!fs.existsSync(path.join(dir, 'README.md'))) {
-    warn(`Missing README.md in packages/${domain}`);
+function readJson(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (error) {
+    reportError(
+      `Invalid JSON: ${path.relative(ROOT, file)} (${error.message})`,
+    );
+    return undefined;
   }
 }
 
-const entries = fs.readdirSync(PACKAGES);
-const domainSet = new Set(EXPECTED_DOMAINS);
-const unorganized = entries.filter(e =>
-  !domainSet.has(e) &&
-  fs.statSync(path.join(PACKAGES, e)).isDirectory() &&
-  !e.startsWith('.')
-);
-
-if (unorganized.length > 0) {
-  warn(`Packages not yet moved to domain directories: ${unorganized.join(', ')}`);
-  warn(`  → See ARCHITECTURE_REDESIGN.md Appendix A for target locations`);
+function collectPackages(dir, domain) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+    const packageDir = path.join(dir, entry.name);
+    if (
+      !entry.isDirectory() ||
+      !fs.existsSync(path.join(packageDir, 'package.json'))
+    )
+      continue;
+    const manifestPath = path.join(packageDir, 'package.json');
+    const manifest = readJson(manifestPath);
+    if (manifest)
+      packages.push({ dir: packageDir, domain, manifest, manifestPath });
+  }
 }
 
 for (const domain of EXPECTED_DOMAINS) {
   const domainDir = path.join(PACKAGES, domain);
-  if (!fs.existsSync(domainDir)) continue;
+  if (!fs.existsSync(domainDir))
+    reportError(`Missing domain directory: packages/${domain}`);
+  else if (!fs.statSync(domainDir).isDirectory())
+    reportError(`Expected directory but found file: packages/${domain}`);
+  else if (!fs.existsSync(path.join(domainDir, 'README.md')))
+    reportWarning(`Missing README.md in packages/${domain}`);
+  collectPackages(domainDir, domain);
+}
 
-  const packages = fs.readdirSync(domainDir).filter(e =>
-    fs.statSync(path.join(domainDir, e)).isDirectory() &&
-    !e.startsWith('.') &&
-    fs.existsSync(path.join(domainDir, e, 'package.json'))
-  );
+for (const entry of fs.readdirSync(PACKAGES, { withFileTypes: true })) {
+  if (entry.name.startsWith('.') || EXPECTED_DOMAINS.includes(entry.name))
+    continue;
+  if (
+    entry.isDirectory() &&
+    fs.existsSync(path.join(PACKAGES, entry.name, 'package.json'))
+  ) {
+    const packageDir = path.join(PACKAGES, entry.name);
+    const manifestPath = path.join(packageDir, 'package.json');
+    const manifest = readJson(manifestPath);
+    if (manifest)
+      packages.push({
+        dir: packageDir,
+        domain: 'legacy',
+        manifest,
+        manifestPath,
+      });
+  }
+}
 
-  for (const pkg of packages) {
-    const pkgJson = path.join(domainDir, pkg, 'package.json');
-    if (!fs.existsSync(pkgJson)) {
-      error(`Missing package.json in packages/${domain}/${pkg}`);
+const names = new Map();
+for (const pkg of packages) {
+  if (!pkg.manifest.name)
+    reportError(
+      `Package is missing a name: ${path.relative(ROOT, pkg.manifestPath)}`,
+    );
+  else if (names.has(pkg.manifest.name))
+    reportError(
+      `Duplicate package name \"${pkg.manifest.name}\": ${path.relative(ROOT, names.get(pkg.manifest.name))} and ${path.relative(ROOT, pkg.manifestPath)}`,
+    );
+  else names.set(pkg.manifest.name, pkg.manifestPath);
+
+  if (!pkg.manifest.exports)
+    reportWarning(
+      `Package has no exports map: ${path.relative(ROOT, pkg.dir)}`,
+    );
+  if (!pkg.manifest.source)
+    reportWarning(
+      `Package has no source entry: ${path.relative(ROOT, pkg.dir)}`,
+    );
+
+  const dependencies = {
+    ...pkg.manifest.dependencies,
+    ...pkg.manifest.optionalDependencies,
+  };
+  if (pkg.domain === 'core' || pkg.domain === 'validation') {
+    for (const dependency of Object.keys(dependencies)) {
+      if (NODE_BUILTINS.has(dependency))
+        reportError(
+          `Runtime-neutral package imports Node builtin \"${dependency}\": ${path.relative(ROOT, pkg.manifestPath)}`,
+        );
     }
   }
 }
 
-const configs = ['pnpm-workspace.yaml', 'turbo.json', 'tsconfig.json', 'CODEOWNERS'];
-for (const cfg of configs) {
-  if (!fs.existsSync(path.join(ROOT, cfg))) {
-    error(`Missing root config: ${cfg}`);
-  }
-}
+const configs = [
+  'pnpm-workspace.yaml',
+  'turbo.json',
+  'tsconfig.json',
+  'CODEOWNERS',
+];
+for (const config of configs)
+  if (!fs.existsSync(path.join(ROOT, config)))
+    reportError(`Missing root config: ${config}`);
 
-console.log('\n📋 Repository Structure Validation\n');
+const codeowners = fs.readFileSync(path.join(ROOT, 'CODEOWNERS'), 'utf8');
+for (const domain of EXPECTED_DOMAINS)
+  if (!codeowners.includes(`packages/${domain}/`))
+    reportWarning(`CODEOWNERS has no explicit rule for packages/${domain}/`);
 
-if (errors.length > 0) {
+console.log('\nRepository Structure Validation\n');
+console.log(`Packages discovered: ${packages.length}`);
+console.log(
+  `Domain packages: ${packages.filter(pkg => pkg.domain !== 'legacy').length}`,
+);
+console.log(
+  `Legacy packages remaining: ${packages.filter(pkg => pkg.domain === 'legacy').length}\n`,
+);
+
+if (errors.length) {
   console.log('Errors:');
-  errors.forEach(e => console.log(`  ❌ ${e}`));
-  console.log('');
+  errors.forEach(message => console.log(`  - ${message}`));
 }
-
-if (warnings.length > 0) {
+if (warnings.length) {
   console.log('Warnings:');
-  warnings.forEach(w => console.log(`  ⚠️  ${w}`));
-  console.log('');
+  warnings.forEach(message => console.log(`  - ${message}`));
 }
-
-if (errors.length === 0 && warnings.length === 0) {
-  console.log('✅ All structure checks passed!\n');
-} else if (errors.length === 0) {
-  console.log('✅ No errors (see warnings above)\n');
-} else {
-  console.log(`❌ ${errors.length} error(s) found. Fix before proceeding.\n`);
-  process.exit(1);
-}
+if (!errors.length && !warnings.length)
+  console.log('All structure checks passed.');
+else if (!errors.length)
+  console.log('No errors; warnings indicate migration work remaining.');
+else process.exit(1);
