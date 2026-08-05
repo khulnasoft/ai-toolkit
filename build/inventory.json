@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T12:56:24.571Z",
+  "generatedAt": "2026-08-05T13:20:01.028Z",
   "packages": [
     {
       "name": "ai",
@@ -973,12 +973,14 @@
       ],
       "conditions": [
         "./package.json",
+        "default",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
+        ".",
         ".",
         ".",
         "."
@@ -988,8 +990,10 @@
         "nodeBuiltins": [],
         "usesGlobalFetch": true
       },
-      "stability": null,
-      "owners": null,
+      "stability": "stable",
+      "owners": [
+        "@ai-toolkit/core"
+      ],
       "dependencyEdges": []
     },
     {
@@ -2565,8 +2569,10 @@
         ],
         "usesGlobalFetch": false
       },
-      "stability": null,
-      "owners": null,
+      "stability": "beta",
+      "owners": [
+        "@ai-toolkit/mcp"
+      ],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/provider",
@@ -3848,12 +3854,14 @@
       ],
       "conditions": [
         "./package.json",
+        "default",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
+        ".",
         ".",
         ".",
         "."
@@ -3869,8 +3877,10 @@
         "nodeBuiltins": [],
         "usesGlobalFetch": false
       },
-      "stability": null,
-      "owners": null,
+      "stability": "beta",
+      "owners": [
+        "@ai-toolkit/core"
+      ],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/runtime",

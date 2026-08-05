@@ -49,7 +49,10 @@ function readWorkspaceGlobs() {
   for (const line of block.split('\n')) {
     const trimmed = line.trim();
     if (trimmed.startsWith('- ')) {
-      const glob = trimmed.slice(2).trim().replace(/^['"]|['"]$/g, '');
+      const glob = trimmed
+        .slice(2)
+        .trim()
+        .replace(/^['"]|['"]$/g, '');
       if (glob && !glob.startsWith('#')) globs.push(glob);
     }
   }
@@ -86,7 +89,9 @@ function readJson(file) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
   } catch (error) {
-    console.error(`  ! invalid JSON: ${path.relative(ROOT, file)} (${error.message})`);
+    console.error(
+      `  ! invalid JSON: ${path.relative(ROOT, file)} (${error.message})`,
+    );
     return null;
   }
 }
@@ -107,7 +112,10 @@ function listExportLeaves(value, base, out = []) {
     return out;
   }
   for (const [key, sub] of Object.entries(value)) {
-    if (['types', 'import', 'require', 'default'].includes(key) && typeof sub === 'string') {
+    if (
+      ['types', 'import', 'require', 'default'].includes(key) &&
+      typeof sub === 'string'
+    ) {
       out.push(base || '.');
       continue;
     }
@@ -154,13 +162,18 @@ function analyzeRuntimeAssumptions(pkgDir) {
         } catch {
           continue;
         }
-        for (const m of content.matchAll(/from\s+['"]((?:node:)?[a-zA-Z0-9_@/-]+)['"]/g)) {
+        for (const m of content.matchAll(
+          /from\s+['"]((?:node:)?[a-zA-Z0-9_@/-]+)['"]/g,
+        )) {
           const spec = m[1];
           if (spec.startsWith('node:') || builtinModules.includes(spec)) {
-            assumptions.nodeBuiltins.add(spec.startsWith('node:') ? spec : `node:${spec}`);
+            assumptions.nodeBuiltins.add(
+              spec.startsWith('node:') ? spec : `node:${spec}`,
+            );
           }
         }
-        if (/globalThis\.fetch\b/.test(content)) assumptions.usesGlobalFetch = true;
+        if (/globalThis\.fetch\b/.test(content))
+          assumptions.usesGlobalFetch = true;
       }
     }
   };
@@ -181,7 +194,10 @@ function domainFor(relDir) {
 
 function main() {
   const workspaceGlobs = readWorkspaceGlobs();
-  const regexes = workspaceGlobs.map(glob => ({ glob, regex: globToRegex(glob) }));
+  const regexes = workspaceGlobs.map(glob => ({
+    glob,
+    regex: globToRegex(glob),
+  }));
 
   const candidateDirs = walk(path.join(ROOT, 'packages'))
     .concat(walk(path.join(ROOT, 'tools')))
@@ -248,12 +264,22 @@ function main() {
     ...pkg,
     dependencyEdges: pkg.dependencies.map(dep => ({
       ...dep,
-      direction: dep.kind === 'workspace' ? `to-${workspaceByName.get(dep.name)?.domain ?? 'unknown'}` : dep.kind,
+      direction:
+        dep.kind === 'workspace'
+          ? `to-${workspaceByName.get(dep.name)?.domain ?? 'unknown'}`
+          : dep.kind,
     })),
   }));
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.writeFileSync(OUT_FILE, JSON.stringify({ generatedAt: new Date().toISOString(), packages: enriched }, null, 2));
+  fs.writeFileSync(
+    OUT_FILE,
+    JSON.stringify(
+      { generatedAt: new Date().toISOString(), packages: enriched },
+      null,
+      2,
+    ),
+  );
 
   const byDomain = {};
   for (const pkg of enriched) {
@@ -268,11 +294,18 @@ function main() {
     console.log(`  ${domain}: ${names.length} (${names.join(', ')})`);
   }
   const withoutSource = enriched.filter(pkg => !pkg.source);
-  const nodeDeps = enriched.filter(pkg => pkg.dependencies.some(d => d.kind === 'node-builtin'));
-  const coreNodeImports = enriched.filter(pkg => pkg.domain === 'core' && pkg.runtimeAssumptions.nodeBuiltins.length > 0);
+  const nodeDeps = enriched.filter(pkg =>
+    pkg.dependencies.some(d => d.kind === 'node-builtin'),
+  );
+  const coreNodeImports = enriched.filter(
+    pkg =>
+      pkg.domain === 'core' && pkg.runtimeAssumptions.nodeBuiltins.length > 0,
+  );
   console.log(`\nPackages without source entry: ${withoutSource.length}`);
   console.log(`Packages depending on Node builtins: ${nodeDeps.length}`);
-  console.log(`Core packages importing Node builtins: ${coreNodeImports.length}`);
+  console.log(
+    `Core packages importing Node builtins: ${coreNodeImports.length}`,
+  );
   console.log(`\nWrote ${path.relative(ROOT, OUT_FILE)}`);
 }
 

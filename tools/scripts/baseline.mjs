@@ -23,7 +23,10 @@ const COMMANDS = [
   ['health-check', 'pnpm health-check'],
   ['validate-structure', 'pnpm validate-structure'],
   ['types:check', 'pnpm types:check'],
-  ['build:runtime', 'pnpm build --filter=@ai-toolkit/runtime --filter=@ai-toolkit/capabilities'],
+  [
+    'build:runtime',
+    'pnpm build --filter=@ai-toolkit/runtime --filter=@ai-toolkit/capabilities',
+  ],
   ['test:runtime', 'pnpm test --filter=@ai-toolkit/runtime'],
 ];
 
@@ -33,12 +36,19 @@ function run(label, command) {
   const started = Date.now();
   const log = path.join(OUT_DIR, `${label}.log`);
   try {
-    const output = execSync(command, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const output = execSync(command, {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
     fs.writeFileSync(log, output);
     results.push({ label, status: 'ok', durationMs: Date.now() - started });
     console.log(`  ✅ ${label} (${Date.now() - started}ms)`);
   } catch (error) {
-    fs.writeFileSync(log, String(error.stdout ?? '') + '\n' + String(error.stderr ?? error.message));
+    fs.writeFileSync(
+      log,
+      String(error.stdout ?? '') + '\n' + String(error.stderr ?? error.message),
+    );
     results.push({ label, status: 'failed', durationMs: Date.now() - started });
     console.log(`  ❌ ${label} (${Date.now() - started}ms)`);
   }
@@ -54,10 +64,16 @@ for (const [label, command] of COMMANDS) run(label, command);
 const failed = results.filter(r => r.status === 'failed').length;
 fs.writeFileSync(
   path.join(OUT_DIR, 'report.json'),
-  JSON.stringify({ generatedAt: new Date().toISOString(), summary: results }, null, 2),
+  JSON.stringify(
+    { generatedAt: new Date().toISOString(), summary: results },
+    null,
+    2,
+  ),
 );
 
-console.log(`\nBaseline: ${results.length - failed}/${results.length} checks passed`);
+console.log(
+  `\nBaseline: ${results.length - failed}/${results.length} checks passed`,
+);
 console.log(`Report written to ${path.relative(ROOT, OUT_DIR)}/report.json`);
 
 if (failed > 0) process.exit(1);
