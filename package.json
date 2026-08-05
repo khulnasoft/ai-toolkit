@@ -35,6 +35,8 @@
     "ci:version": "changeset version && node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
     "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
     "health-check": "node tools/scripts/health-check.mjs",
+    "inventory": "node tools/scripts/inventory.mjs",
+    "baseline": "node tools/scripts/baseline.mjs",
     "generate": "node tools/scripts/generate.mjs",
     "validate-structure": "node tools/scripts/validate-structure.mjs",
     "find-package": "node tools/scripts/find-package.mjs"
