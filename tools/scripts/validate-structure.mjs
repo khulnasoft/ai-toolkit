@@ -6,6 +6,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { builtinModules } from 'module';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -21,25 +22,8 @@ const EXPECTED_DOMAINS = [
   'infrastructure',
 ];
 const NODE_BUILTINS = new Set([
-  'assert',
-  'buffer',
-  'child_process',
-  'crypto',
-  'fs',
-  'http',
-  'https',
-  'net',
-  'node:assert',
-  'node:buffer',
-  'node:child_process',
-  'node:crypto',
-  'node:fs',
-  'node:http',
-  'node:https',
-  'node:net',
-  'node:path',
-  'node:stream',
-  'node:util',
+  ...builtinModules,
+  ...builtinModules.map(name => `node:${name}`),
 ]);
 const errors = [];
 const warnings = [];
@@ -87,23 +71,29 @@ for (const domain of EXPECTED_DOMAINS) {
   collectPackages(domainDir, domain);
 }
 
-for (const entry of fs.readdirSync(PACKAGES, { withFileTypes: true })) {
-  if (entry.name.startsWith('.') || EXPECTED_DOMAINS.includes(entry.name))
-    continue;
-  if (
-    entry.isDirectory() &&
-    fs.existsSync(path.join(PACKAGES, entry.name, 'package.json'))
-  ) {
-    const packageDir = path.join(PACKAGES, entry.name);
-    const manifestPath = path.join(packageDir, 'package.json');
-    const manifest = readJson(manifestPath);
-    if (manifest)
-      packages.push({
-        dir: packageDir,
-        domain: 'legacy',
-        manifest,
-        manifestPath,
-      });
+if (!fs.existsSync(PACKAGES))
+  reportError(`Missing packages root: packages/`);
+else if (!fs.statSync(PACKAGES).isDirectory())
+  reportError(`Expected directory but found file: packages/`);
+else {
+  for (const entry of fs.readdirSync(PACKAGES, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || EXPECTED_DOMAINS.includes(entry.name))
+      continue;
+    if (
+      entry.isDirectory() &&
+      fs.existsSync(path.join(PACKAGES, entry.name, 'package.json'))
+    ) {
+      const packageDir = path.join(PACKAGES, entry.name);
+      const manifestPath = path.join(packageDir, 'package.json');
+      const manifest = readJson(manifestPath);
+      if (manifest)
+        packages.push({
+          dir: packageDir,
+          domain: 'legacy',
+          manifest,
+          manifestPath,
+        });
+    }
   }
 }
 
@@ -152,10 +142,34 @@ for (const config of configs)
   if (!fs.existsSync(path.join(ROOT, config)))
     reportError(`Missing root config: ${config}`);
 
-const codeowners = fs.readFileSync(path.join(ROOT, 'CODEOWNERS'), 'utf8');
-for (const domain of EXPECTED_DOMAINS)
-  if (!codeowners.includes(`packages/${domain}/`))
-    reportWarning(`CODEOWNERS has no explicit rule for packages/${domain}/`);
+const codeownersPath = path.join(ROOT, 'CODEOWNERS');
+if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
+  const rules = fs
+    .readFileSync(codeownersPath, 'utf8')
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'))
+    .map(line => line.match(/^(\S+)/)?.[1])
+    .filter(Boolean);
+
+  const patternToRegex = pattern =>
+    new RegExp(
+      `^${pattern
+        .split('/')
+        .map(segment => (segment === '**' ? '.*' : `[^/]*`))
+        .join('/')
+        .replace(/\*\*/g, '.*')
+        .replace(/\*/g, '[^/]*')
+        .replace(/\?/g, '.')}/?$`,
+    );
+
+  const coveredByRules = (pattern, ruleSet) =>
+    ruleSet.some(rule => patternToRegex(rule.replace(/\/$/, '')).test(pattern));
+
+  for (const domain of EXPECTED_DOMAINS)
+    if (!coveredByRules(`packages/${domain}`, rules))
+      reportWarning(`CODEOWNERS has no explicit rule for packages/${domain}/`);
+}
 
 console.log('\nRepository Structure Validation\n');
 console.log(`Packages discovered: ${packages.length}`);

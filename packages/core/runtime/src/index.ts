@@ -19,6 +19,8 @@ export interface RuntimeCapabilities {
   readonly binaryData: boolean;
 }
 
+export type RuntimeCapabilityName = Exclude<keyof RuntimeCapabilities, 'target'>;
+
 export interface RuntimeContext {
   readonly fetch: typeof globalThis.fetch;
   readonly crypto?: Crypto;
@@ -36,9 +38,9 @@ export interface RuntimeAdapter {
 export class RuntimeCapabilityError extends Error {
   readonly code = 'RUNTIME_CAPABILITY_UNSUPPORTED';
   readonly target: RuntimeTarget;
-  readonly capability: keyof RuntimeCapabilities;
+  readonly capability: RuntimeCapabilityName;
 
-  constructor(target: RuntimeTarget, capability: keyof RuntimeCapabilities) {
+  constructor(target: RuntimeTarget, capability: RuntimeCapabilityName) {
     super(
       `Runtime \"${target}\" does not support capability \"${capability}\".`,
     );
@@ -50,9 +52,8 @@ export class RuntimeCapabilityError extends Error {
 
 export function assertRuntimeCapability(
   runtime: RuntimeCapabilities,
-  capability: keyof RuntimeCapabilities,
+  capability: RuntimeCapabilityName,
 ): void {
-  if (capability === 'target') return;
   if (!runtime[capability]) {
     throw new RuntimeCapabilityError(runtime.target, capability);
   }
@@ -64,7 +65,9 @@ export function createRuntimeContext(
 ): RuntimeContext {
   const capabilities: RuntimeCapabilities = {
     target,
-    fetch: typeof globalThis.fetch === 'function',
+    fetch: overrides.fetch
+      ? typeof overrides.fetch === 'function'
+      : typeof globalThis.fetch === 'function',
     streams: typeof globalThis.ReadableStream === 'function',
     abortSignal: typeof globalThis.AbortSignal === 'function',
     crypto: typeof globalThis.crypto !== 'undefined',
@@ -73,8 +76,14 @@ export function createRuntimeContext(
     binaryData: typeof globalThis.ArrayBuffer === 'function',
   };
 
+  const fetch = overrides.fetch ?? globalThis.fetch;
+  const boundFetch =
+    typeof fetch === 'function' ? fetch.bind(globalThis) : () => {
+      throw new Error('Runtime does not provide fetch.');
+    };
+
   return {
-    fetch: overrides.fetch ?? globalThis.fetch.bind(globalThis),
+    fetch: boundFetch,
     crypto: overrides.crypto ?? globalThis.crypto,
     setTimeout: overrides.setTimeout ?? globalThis.setTimeout,
     clearTimeout: overrides.clearTimeout ?? globalThis.clearTimeout,
