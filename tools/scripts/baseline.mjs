@@ -40,6 +40,8 @@ function run(label, command) {
       cwd: ROOT,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: 64 * 1024 * 1024,
+      timeout: 10 * 60 * 1000,
     });
     fs.writeFileSync(log, output);
     results.push({ label, status: 'ok', durationMs: Date.now() - started });
@@ -49,7 +51,12 @@ function run(label, command) {
       log,
       String(error.stdout ?? '') + '\n' + String(error.stderr ?? error.message),
     );
-    results.push({ label, status: 'failed', durationMs: Date.now() - started });
+    results.push({
+      label,
+      status: 'failed',
+      durationMs: Date.now() - started,
+      code: error.code ?? null,
+    });
     console.log(`  ❌ ${label} (${Date.now() - started}ms)`);
   }
 }

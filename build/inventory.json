@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T13:20:01.028Z",
+  "generatedAt": "2026-08-07T03:04:00.005Z",
   "packages": [
     {
       "name": "ai",
@@ -21,7 +21,6 @@
         "./test"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -30,15 +29,7 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
         "./internal",
-        "./internal",
-        "./internal/module",
-        "./internal",
-        "./test",
-        "./test",
-        "./test/module",
         "./test"
       ],
       "dependencies": [
@@ -132,7 +123,6 @@
         "./anthropic"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
@@ -140,10 +130,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./anthropic",
-        "./anthropic",
         "./anthropic"
       ],
       "dependencies": [
@@ -254,15 +240,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -328,7 +311,6 @@
         "./internal"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -337,11 +319,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./internal",
-        "./internal",
-        "./internal/module",
         "./internal"
       ],
       "dependencies": [
@@ -408,15 +385,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -484,15 +458,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -570,15 +541,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -665,15 +633,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -738,15 +703,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -897,15 +859,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -972,7 +931,6 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "default",
         "import",
         "require",
@@ -980,9 +938,6 @@
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [],
@@ -1014,15 +969,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1090,15 +1042,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1174,15 +1123,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1253,8 +1199,6 @@
         "types"
       ],
       "publicApi": [
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1323,15 +1267,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1399,15 +1340,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1475,15 +1413,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1559,15 +1494,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1647,15 +1579,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -1724,7 +1653,6 @@
         "./internal"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -1733,11 +1661,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./internal",
-        "./internal",
-        "./internal/module",
         "./internal"
       ],
       "dependencies": [
@@ -1807,7 +1730,6 @@
         "./anthropic/edge"
       ],
       "conditions": [
-        "./package.json",
         "default",
         "import",
         "types"
@@ -1815,16 +1737,8 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./edge",
-        "./edge",
         "./edge",
         "./anthropic",
-        "./anthropic",
-        "./anthropic",
-        "./anthropic/edge",
-        "./anthropic/edge",
         "./anthropic/edge"
       ],
       "dependencies": [
@@ -1933,15 +1847,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2009,15 +1920,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2093,15 +2001,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2166,15 +2071,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2250,15 +2152,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2323,15 +2222,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2374,15 +2270,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2447,15 +2340,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2505,7 +2395,7 @@
     {
       "name": "@ai-toolkit/mcp",
       "dir": "packages/mcp",
-      "domain": "mcp",
+      "domain": "legacy",
       "workspaceGlobs": [
         "packages/*"
       ],
@@ -2521,7 +2411,6 @@
         "./mcp-stdio"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -2530,11 +2419,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./mcp-stdio",
-        "./mcp-stdio",
-        "./mcp-stdio/module",
         "./mcp-stdio"
       ],
       "dependencies": [
@@ -2618,15 +2502,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2692,7 +2573,6 @@
         "./internal"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -2701,11 +2581,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./internal",
-        "./internal",
-        "./internal/module",
         "./internal"
       ],
       "dependencies": [
@@ -2775,7 +2650,6 @@
         "./internal"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -2784,11 +2658,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./internal",
-        "./internal",
-        "./internal/module",
         "./internal"
       ],
       "dependencies": [
@@ -2855,15 +2724,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -2928,15 +2794,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3001,15 +2864,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3053,7 +2913,6 @@
         "./test"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -3062,11 +2921,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./test",
-        "./test",
-        "./test/module",
         "./test"
       ],
       "dependencies": [
@@ -3142,15 +2996,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3237,15 +3088,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3310,15 +3158,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3386,7 +3231,6 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "react-server",
@@ -3394,9 +3238,6 @@
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        "./react-server",
-        "./module",
         "."
       ],
       "dependencies": [
@@ -3570,8 +3411,7 @@
         "types"
       ],
       "publicApi": [
-        ".",
-        "./svelte"
+        "."
       ],
       "dependencies": [
         {
@@ -3638,7 +3478,6 @@
         "./with-vitest"
       ],
       "conditions": [
-        "./package.json",
         "import",
         "module",
         "require",
@@ -3647,11 +3486,6 @@
       "publicApi": [
         "./package.json",
         ".",
-        ".",
-        ".",
-        "./with-vitest",
-        "./with-vitest",
-        "./with-vitest/module",
         "./with-vitest"
       ],
       "dependencies": [
@@ -3694,15 +3528,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3780,15 +3611,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3853,7 +3681,6 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "default",
         "import",
         "require",
@@ -3861,9 +3688,6 @@
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3908,15 +3732,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -3992,15 +3813,12 @@
         "."
       ],
       "conditions": [
-        "./package.json",
         "import",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        ".",
         "."
       ],
       "dependencies": [
@@ -4688,7 +4506,7 @@
           "name": "@ai-toolkit/mcp",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-mcp"
+          "direction": "to-legacy"
         },
         {
           "name": "@ai-toolkit/mistral",
@@ -6421,7 +6239,7 @@
           "name": "@ai-toolkit/mcp",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-mcp"
+          "direction": "to-legacy"
         },
         {
           "name": "@ai-toolkit/mistral",

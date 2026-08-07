@@ -108,18 +108,16 @@ function classifyDependency(name, packageNames, workspaceGlobs) {
 
 function listExportLeaves(value, base, out = []) {
   if (typeof value === 'string') {
-    out.push(base || '.');
+    const leaf = base || '.';
+    if (!out.includes(leaf)) out.push(leaf);
     return out;
   }
   for (const [key, sub] of Object.entries(value)) {
-    if (
-      ['types', 'import', 'require', 'default'].includes(key) &&
-      typeof sub === 'string'
-    ) {
-      out.push(base || '.');
-      continue;
+    if (key.startsWith('.')) {
+      listExportLeaves(sub, base ? `${base}/${key}` : key, out);
+    } else {
+      listExportLeaves(sub, base || '.', out);
     }
-    listExportLeaves(sub, base ? `${base}/${key}` : key, out);
   }
   return out;
 }
@@ -127,15 +125,15 @@ function listExportLeaves(value, base, out = []) {
 function collectConditions(exports, out = new Set()) {
   if (typeof exports === 'string') return out;
   for (const [key, value] of Object.entries(exports)) {
-    if (typeof value === 'string') {
-      if (key !== 'package.json') out.add(key);
-    } else if (key === 'package.json') {
-      continue;
-    } else if (key.startsWith('.')) {
-      collectConditions(value, out);
+    if (key.startsWith('.')) {
+      if (typeof value === 'object' && value !== null) {
+        collectConditions(value, out);
+      }
     } else {
       out.add(key);
-      collectConditions(value, out);
+      if (typeof value === 'object' && value !== null) {
+        collectConditions(value, out);
+      }
     }
   }
   return out;
@@ -187,6 +185,7 @@ function analyzeRuntimeAssumptions(pkgDir) {
 function domainFor(relDir) {
   const parts = relDir.split('/');
   if (parts[0] !== 'packages') return parts[0];
+  if (parts.length < 3) return 'legacy';
   const domain = parts[1];
   if (DOMAINS.includes(domain)) return domain;
   return 'legacy';
@@ -294,15 +293,15 @@ function main() {
     console.log(`  ${domain}: ${names.length} (${names.join(', ')})`);
   }
   const withoutSource = enriched.filter(pkg => !pkg.source);
-  const nodeDeps = enriched.filter(pkg =>
-    pkg.dependencies.some(d => d.kind === 'node-builtin'),
+  const nodeImporters = enriched.filter(
+    pkg => pkg.runtimeAssumptions.nodeBuiltins.length > 0,
   );
   const coreNodeImports = enriched.filter(
     pkg =>
       pkg.domain === 'core' && pkg.runtimeAssumptions.nodeBuiltins.length > 0,
   );
   console.log(`\nPackages without source entry: ${withoutSource.length}`);
-  console.log(`Packages depending on Node builtins: ${nodeDeps.length}`);
+  console.log(`Packages importing Node builtins: ${nodeImporters.length}`);
   console.log(
     `Core packages importing Node builtins: ${coreNodeImports.length}`,
   );

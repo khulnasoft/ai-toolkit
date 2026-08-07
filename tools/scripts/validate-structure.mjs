@@ -294,11 +294,10 @@ if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
   const patternToRegex = pattern =>
     new RegExp(
       `^${pattern
-        .split('/')
-        .map(segment => (segment === '**' ? '.*' : `[^/]*`))
-        .join('/')
-        .replace(/\*\*/g, '.*')
-        .replace(/\*/g, '[^/]*')
+        .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+        .replace(/\*(\*?)/g, (match, double) =>
+          double ? '.*' : '[^/]*',
+        )
         .replace(/\?/g, '.')}/?$`,
     );
 
