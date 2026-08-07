@@ -19,7 +19,10 @@ export interface RuntimeCapabilities {
   readonly binaryData: boolean;
 }
 
-export type RuntimeCapabilityName = Exclude<keyof RuntimeCapabilities, 'target'>;
+export type RuntimeCapabilityName = Exclude<
+  keyof RuntimeCapabilities,
+  'target'
+>;
 
 export interface RuntimeContext {
   readonly fetch: typeof globalThis.fetch;
@@ -78,9 +81,11 @@ export function createRuntimeContext(
 
   const fetch = overrides.fetch ?? globalThis.fetch;
   const boundFetch =
-    typeof fetch === 'function' ? fetch.bind(globalThis) : () => {
-      throw new Error('Runtime does not provide fetch.');
-    };
+    typeof fetch === 'function'
+      ? fetch.bind(globalThis)
+      : () => {
+          throw new Error('Runtime does not provide fetch.');
+        };
 
   return {
     fetch: boundFetch,

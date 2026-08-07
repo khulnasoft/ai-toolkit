@@ -5,14 +5,14 @@
 
 ## Summary
 
-| Check | Status | Duration |
-| --- | --- | --- |
-| inventory | ok | 131ms |
-| health-check | ok | 1118ms |
-| validate-structure | ok | 366ms |
-| types:check | failed (task killed) | ~19s |
-| build runtime + capabilities | ok | ~5s |
-| test runtime | failed (task killed) | ~28s |
+| Check                        | Status               | Duration |
+| ---------------------------- | -------------------- | -------- |
+| inventory                    | ok                   | 131ms    |
+| health-check                 | ok                   | 1118ms   |
+| validate-structure           | ok                   | 366ms    |
+| types:check                  | failed (task killed) | ~19s     |
+| build runtime + capabilities | ok                   | ~5s      |
+| test runtime                 | failed (task killed) | ~28s     |
 
 ## Findings
 

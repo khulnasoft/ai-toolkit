@@ -295,9 +295,7 @@ if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
     new RegExp(
       `^${pattern
         .replace(/[.+^${}()|[\]\\]/g, '\\$&')
-        .replace(/\*(\*?)/g, (match, double) =>
-          double ? '.*' : '[^/]*',
-        )
+        .replace(/\*(\*?)/g, (match, double) => (double ? '.*' : '[^/]*'))
         .replace(/\?/g, '.')}/?$`,
     );
 
