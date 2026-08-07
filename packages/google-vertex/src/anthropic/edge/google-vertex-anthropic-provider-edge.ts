@@ -1,8 +1,5 @@
 import { resolve } from '@ai-toolkit/provider-utils';
-import {
-  generateAuthToken,
-  GoogleCredentials,
-} from '../../edge/google-vertex-auth-edge';
+import { generateAuthToken, GoogleCredentials } from '../../edge/google-vertex-auth-edge';
 import {
   createVertexAnthropic as createVertexAnthropicOriginal,
   GoogleVertexAnthropicProvider,
@@ -27,9 +24,7 @@ export function createVertexAnthropic(
   return createVertexAnthropicOriginal({
     ...options,
     headers: async () => ({
-      Authorization: `Bearer ${await generateAuthToken(
-        options.googleCredentials,
-      )}`,
+      Authorization: `Bearer ${await generateAuthToken(options.googleCredentials)}`,
       ...(await resolve(options.headers)),
     }),
   });

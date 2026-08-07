@@ -6,7 +6,7 @@ async function foo() {
   const result = await GT({
     model: 'gpt-4',
     messages: [],
-    stopWhen: stepCountIs(5)
+    stopWhen: stepCountIs(5),
   });
 
   const maxSteps = 5;
@@ -14,26 +14,26 @@ async function foo() {
   await GT({
     model: 'gpt-4',
     messages: [],
-    stopWhen: stepCountIs(maxSteps)
+    stopWhen: stepCountIs(maxSteps),
   });
 
   await GT({
     model: 'gpt-4',
     messages: [],
-    stopWhen: stepCountIs(5 + 5)
+    stopWhen: stepCountIs(5 + 5),
   });
 
   await GT({
     model: 'gpt-4',
     messages: [],
-    stopWhen: stepCountIs(maxSteps + 5)
+    stopWhen: stepCountIs(maxSteps + 5),
   });
 
   const obj = {
     model: 'gpt-4',
     messages: [],
-    stopWhen: stepCountIs(maxSteps + 5)
-  }
+    stopWhen: stepCountIs(maxSteps + 5),
+  };
 
   await GT(obj);
 
@@ -41,7 +41,7 @@ async function foo() {
     model: 'gpt-4',
     messages: [],
     maxSteps: maxSteps + 5,
-  }
+  };
 
   return result;
 }

@@ -32,4 +32,3 @@ function filterMessages<T extends CoreMessage>(msgs: T[]): T[] {
 
 // Type assertion
 const msg = {} as CoreMessage;
-

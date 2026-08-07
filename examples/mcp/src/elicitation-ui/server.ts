@@ -123,9 +123,7 @@ server.registerTool(
         content: [
           {
             type: 'text',
-            text: `Registration failed: ${
-              error instanceof Error ? error.message : String(error)
-            }`,
+            text: `Registration failed: ${error instanceof Error ? error.message : String(error)}`,
           },
         ],
         isError: true,

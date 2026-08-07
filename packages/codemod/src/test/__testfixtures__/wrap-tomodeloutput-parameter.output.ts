@@ -7,11 +7,7 @@ const imageTool = tool({
   description: 'Generate an image',
   inputSchema: z.object({ prompt: z.string() }),
   execute: async ({ prompt }) => ({ data: 'base64...' }),
-  toModelOutput(
-    {
-      output
-    }
-  ) {
+  toModelOutput({ output }) {
     return typeof output === 'string'
       ? [{ type: 'text', text: output }]
       : [{ type: 'image', data: output.data, mediaType: 'image/png' }];
@@ -23,13 +19,9 @@ const contentTool = tool({
   description: 'Get content',
   inputSchema: z.object({ id: z.string() }),
   execute: async ({ id }) => ({ value: 'content' }),
-  toModelOutput: (
-    {
-      output
-    }
-  ) => ({
+  toModelOutput: ({ output }) => ({
     type: 'content',
-    value: [{ type: 'text', text: output.value }]
+    value: [{ type: 'text', text: output.value }],
   }),
 });
 
@@ -38,9 +30,7 @@ const weatherTool = tool({
   description: 'Get weather',
   inputSchema: z.object({ location: z.string() }),
   execute: async ({ location }) => ({ location, temperature: 72 }),
-  toModelOutput: ({
-    output: { location, temperature }
-  }) => ({
+  toModelOutput: ({ output: { location, temperature } }) => ({
     type: 'text',
     value: `The weather in ${location} is ${temperature} degrees Fahrenheit.`,
   }),
@@ -51,11 +41,7 @@ const simpleTool = tool({
   description: 'Simple tool',
   inputSchema: z.object({ input: z.string() }),
   execute: async ({ input }) => input.toUpperCase(),
-  toModelOutput: (
-    {
-      output
-    }
-  ) => [{ type: 'text', text: output }],
+  toModelOutput: ({ output }) => [{ type: 'text', text: output }],
 });
 
 // Case 5: Function expression with result parameter
@@ -63,11 +49,7 @@ const funcTool = tool({
   description: 'Func tool',
   inputSchema: z.object({ input: z.string() }),
   execute: async ({ input }) => input,
-  toModelOutput: function(
-    {
-      output
-    }
-  ) {
+  toModelOutput: function ({ output }) {
     return [{ type: 'text', text: output }];
   },
 });

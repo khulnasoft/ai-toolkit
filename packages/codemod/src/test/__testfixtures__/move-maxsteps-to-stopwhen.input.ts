@@ -33,7 +33,7 @@ async function foo() {
     model: 'gpt-4',
     messages: [],
     maxSteps: maxSteps + 5,
-  }
+  };
 
   await generateText(obj);
 
@@ -41,7 +41,7 @@ async function foo() {
     model: 'gpt-4',
     messages: [],
     maxSteps: maxSteps + 5,
-  }
+  };
 
   return result;
 }

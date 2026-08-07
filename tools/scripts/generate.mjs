@@ -38,9 +38,7 @@ const generators = {
   provider() {
     const targetDir = path.join(ROOT, 'packages', 'providers', name);
     if (fs.existsSync(targetDir)) {
-      console.error(
-        `❌ Provider "${name}" already exists at packages/providers/${name}`,
-      );
+      console.error(`❌ Provider "${name}" already exists at packages/providers/${name}`);
       process.exit(1);
     }
     fs.mkdirSync(path.join(targetDir, 'src'), { recursive: true });
@@ -101,9 +99,7 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
   adapter() {
     const targetDir = path.join(ROOT, 'packages', 'adapters', name);
     if (fs.existsSync(targetDir)) {
-      console.error(
-        `❌ Adapter "${name}" already exists at packages/adapters/${name}`,
-      );
+      console.error(`❌ Adapter "${name}" already exists at packages/adapters/${name}`);
       process.exit(1);
     }
     fs.mkdirSync(path.join(targetDir, 'src'), { recursive: true });
@@ -147,9 +143,7 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
 
     const targetDir = path.join(ROOT, 'examples', level, name);
     if (fs.existsSync(targetDir)) {
-      console.error(
-        `❌ Example "${name}" already exists at examples/${level}/${name}`,
-      );
+      console.error(`❌ Example "${name}" already exists at examples/${level}/${name}`);
       process.exit(1);
     }
     fs.mkdirSync(targetDir, { recursive: true });
@@ -182,9 +176,7 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
 if (generators[type]) {
   generators[type]();
 } else {
-  console.error(
-    `❌ Unknown type: "${type}". Use: provider, adapter, or example`,
-  );
+  console.error(`❌ Unknown type: "${type}". Use: provider, adapter, or example`);
   showHelp();
   process.exit(1);
 }

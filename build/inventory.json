@@ -43,13 +43,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:assert",
-          "node:events",
-          "node:fs",
-          "node:http",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:assert", "node:events", "node:fs", "node:http", "node:path"],
         "usesGlobalFetch": true
       },
       "stability": null,
@@ -1413,21 +1407,9 @@
       "main": "./dist/index.mjs",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.mts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./edge",
-        "./anthropic",
-        "./anthropic/edge"
-      ],
+      "exports": ["./package.json", ".", "./edge", "./anthropic", "./anthropic/edge"],
       "conditions": ["default", "import", "types"],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./edge",
-        "./anthropic",
-        "./anthropic/edge"
-      ],
+      "publicApi": ["./package.json", ".", "./edge", "./anthropic", "./anthropic/edge"],
       "dependencies": [
         {
           "name": "@ai-toolkit/anthropic",
@@ -2017,13 +1999,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:child_process",
-          "node:events",
-          "node:fs",
-          "node:os",
-          "node:stream"
-        ],
+        "nodeBuiltins": ["node:child_process", "node:events", "node:fs", "node:os", "node:stream"],
         "usesGlobalFetch": false
       },
       "stability": "beta",

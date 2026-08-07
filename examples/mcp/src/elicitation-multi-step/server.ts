@@ -109,11 +109,7 @@ server.registerTool(
         content: [
           {
             type: 'text',
-            text: `Event created successfully!\n\n${JSON.stringify(
-              event,
-              null,
-              2,
-            )}`,
+            text: `Event created successfully!\n\n${JSON.stringify(event, null, 2)}`,
           },
         ],
       };
@@ -151,7 +147,5 @@ app.post('/messages', async (req, res) => {
 });
 
 app.listen(8084, () => {
-  console.log(
-    'MCP multi-step elicitation server listening on http://localhost:8084',
-  );
+  console.log('MCP multi-step elicitation server listening on http://localhost:8084');
 });

@@ -14,4 +14,4 @@ export async function POST(req: Request) {
 
 // Also test function call
 const coreMessages = convertToCoreMessages(uiMessages);
-console.log(coreMessages); 
+console.log(coreMessages);

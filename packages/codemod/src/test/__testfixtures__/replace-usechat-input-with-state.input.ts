@@ -13,7 +13,7 @@ export function ChatComponent() {
 export function AnotherComponent() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
   });
 
   const submitHandler = handleSubmit;
@@ -26,7 +26,7 @@ export function ComponentWithAlias() {
     messages,
     input: chatInput,
     handleInputChange: handleChatInputChange,
-    handleSubmit
+    handleSubmit,
   } = useChat();
 
   const value = chatInput;

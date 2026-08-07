@@ -1,9 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import {
-  createUIMessageStream,
-  createUIMessageStreamResponse,
-  streamText,
-} from 'ai';
+import { createUIMessageStream, createUIMessageStreamResponse, streamText } from 'ai';
 import 'dotenv/config';
 import Fastify from 'fastify';
 

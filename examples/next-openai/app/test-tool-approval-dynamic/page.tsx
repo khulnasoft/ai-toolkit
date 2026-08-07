@@ -4,10 +4,7 @@ import { DynamicWeatherWithApprovalAgentUIMessage } from '@/agent/dynamic-weathe
 import ChatInput from '@/components/chat-input';
 import DynamicToolWithApprovalView from '@/components/tool/dynamic-tool-with-approval-view';
 import { useChat } from '@ai-toolkit/react';
-import {
-  DefaultChatTransport,
-  lastAssistantMessageIsCompleteWithApprovalResponses,
-} from 'ai';
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
 
 export default function TestToolApproval() {
   const { status, sendMessage, messages, addToolApprovalResponse } =
@@ -15,8 +12,7 @@ export default function TestToolApproval() {
       transport: new DefaultChatTransport({
         api: '/api/chat-tool-approval-dynamic',
       }),
-      sendAutomaticallyWhen:
-        lastAssistantMessageIsCompleteWithApprovalResponses,
+      sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
     });
 
   console.log(structuredClone(messages));

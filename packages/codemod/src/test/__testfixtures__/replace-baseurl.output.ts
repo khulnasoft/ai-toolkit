@@ -4,20 +4,20 @@ import { createOpenAI } from '@ai-toolkit/openai';
 import { createMistral } from '@ai-toolkit/mistral';
 
 const anthropic = createAnthropic({
-  baseURL: 'https://api.anthropic.com'
+  baseURL: 'https://api.anthropic.com',
 });
 
 const openai = createOpenAI({
-  baseURL: 'https://api.openai.com'
+  baseURL: 'https://api.openai.com',
 });
 
 const mistral = createMistral({
-  baseURL: 'https://api.mistral.ai'
+  baseURL: 'https://api.mistral.ai',
 });
 
 // Should NOT rename - not in provider creation
 const config = {
-  baseUrl: 'https://example.com'
+  baseUrl: 'https://example.com',
 };
 
 // Should NOT rename - not a provider

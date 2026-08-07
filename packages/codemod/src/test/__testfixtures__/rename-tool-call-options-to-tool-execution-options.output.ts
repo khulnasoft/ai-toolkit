@@ -34,4 +34,3 @@ type ToolOptionsWrapper = {
 function processOptions<T extends ToolExecutionOptions>(opts: T): T {
   return opts;
 }
-

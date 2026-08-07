@@ -27,11 +27,7 @@ export default function Page() {
                       key={index}
                       className={`${GeistMono.className} text-sm text-zinc-500 bg-zinc-100 p-3 rounded-lg`}
                     >
-                      {`${getStaticToolName(part)}(${JSON.stringify(
-                        part.input,
-                        null,
-                        2,
-                      )})`}
+                      {`${getStaticToolName(part)}(${JSON.stringify(part.input, null, 2)})`}
                     </div>
                   );
                 }

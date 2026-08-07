@@ -31,11 +31,7 @@ const tools = {
   getWeatherInformation: getWeatherInformationTool,
 } as const;
 
-export type UseChatToolsMessage = UIMessage<
-  never,
-  UIDataTypes,
-  InferUITools<typeof tools>
->;
+export type UseChatToolsMessage = UIMessage<never, UIDataTypes, InferUITools<typeof tools>>;
 
 export async function POST(req: Request) {
   const { messages } = await req.json();

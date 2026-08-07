@@ -53,9 +53,7 @@ function listPackages() {
     if (!fs.existsSync(dir)) continue;
     const packages = fs
       .readdirSync(dir)
-      .filter(
-        e => fs.statSync(path.join(dir, e)).isDirectory() && !e.startsWith('.'),
-      );
+      .filter(e => fs.statSync(path.join(dir, e)).isDirectory() && !e.startsWith('.'));
     if (packages.length > 0) {
       console.log(`  ${domain}/`);
       packages.forEach(p => console.log(`    └── ${p}`));
@@ -65,9 +63,7 @@ function listPackages() {
 
   const unorganized = entries.filter(
     e =>
-      !domainSet.has(e) &&
-      fs.statSync(path.join(PACKAGES, e)).isDirectory() &&
-      !e.startsWith('.'),
+      !domainSet.has(e) && fs.statSync(path.join(PACKAGES, e)).isDirectory() && !e.startsWith('.'),
   );
 
   if (unorganized.length > 0) {

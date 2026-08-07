@@ -12,7 +12,7 @@ export function ChatWithApiString() {
 export function ChatWithApiAndOptions() {
   const { messages, sendMessage } = useChat({
     api: '/api/custom-chat',
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
     initialMessages: [],
   });
 
@@ -21,7 +21,7 @@ export function ChatWithApiAndOptions() {
 
 export function ChatWithoutApi() {
   const { messages, sendMessage } = useChat({
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
   });
 
   return messages;

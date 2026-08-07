@@ -3,7 +3,7 @@ import { useChat } from 'ai/react';
 
 function ProcessMessages() {
   const { messages } = useChat();
-  
+
   // Check for tool-invocation type
   messages.forEach(message => {
     message.parts.map(part => {

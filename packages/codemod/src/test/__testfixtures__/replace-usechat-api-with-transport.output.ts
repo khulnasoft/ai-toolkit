@@ -4,8 +4,8 @@ import { useChat, DefaultChatTransport } from '@ai-toolkit/react';
 export function ChatWithApiString() {
   const { messages, sendMessage } = useChat({
     transport: new DefaultChatTransport({
-      api: '/api/chat'
-    })
+      api: '/api/chat',
+    }),
   });
 
   return messages;
@@ -13,12 +13,12 @@ export function ChatWithApiString() {
 
 export function ChatWithApiAndOptions() {
   const { messages, sendMessage } = useChat({
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
     initialMessages: [],
 
     transport: new DefaultChatTransport({
-      api: '/api/custom-chat'
-    })
+      api: '/api/custom-chat',
+    }),
   });
 
   return messages;
@@ -26,7 +26,7 @@ export function ChatWithApiAndOptions() {
 
 export function ChatWithoutApi() {
   const { messages, sendMessage } = useChat({
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
   });
 
   return messages;
@@ -38,8 +38,8 @@ export function ChatWithApiVariable() {
     maxSteps: 5,
 
     transport: new DefaultChatTransport({
-      api: apiEndpoint
-    })
+      api: apiEndpoint,
+    }),
   });
 
   return messages;
@@ -52,8 +52,8 @@ export function ChatWithComplexApi() {
     onFinish: handleFinish,
 
     transport: new DefaultChatTransport({
-      api: `${baseUrl}/chat`
-    })
+      api: `${baseUrl}/chat`,
+    }),
   });
 
   return { messages, isLoading };
@@ -70,8 +70,8 @@ import { useChat as useChatNew } from '@ai-toolkit/react';
 export function ChatWithNewImportSyntax() {
   const { messages, sendMessage } = useChatNew({
     transport: new DefaultChatTransport({
-      api: '/api/new-chat'
-    })
+      api: '/api/new-chat',
+    }),
   });
   return messages;
 }

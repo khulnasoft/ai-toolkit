@@ -1,7 +1,25 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "organizeImports": {
-    "enabled": true
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!packages/azure/src/__fixtures__/**",
+      "!examples/nest/src/app.controller.ts",
+      "!packages/cerebras/vitest.edge.config.js",
+      "!packages/cerebras/vitest.node.config.js"
+    ]
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "linter": {
     "enabled": true,

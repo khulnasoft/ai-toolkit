@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
   // Test toDataStream method call
   const stream = result.toUIMessageStream({ data: 'test' });
-  
+
   // Test mergeIntoDataStream method call
   const dataStreamWriter = { write: () => {} };
   result.mergeIntoUIMessageStream(dataStreamWriter);

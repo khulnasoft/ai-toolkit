@@ -5,4 +5,3 @@ async function processMessages(uiMessages: any[]) {
   const modelMessages = convertToModelMessages(uiMessages);
   return modelMessages;
 }
-

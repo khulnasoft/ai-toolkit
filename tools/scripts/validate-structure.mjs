@@ -21,10 +21,7 @@ const EXPECTED_DOMAINS = [
   'validation',
   'infrastructure',
 ];
-const NODE_BUILTINS = new Set([
-  ...builtinModules,
-  ...builtinModules.map(name => `node:${name}`),
-]);
+const NODE_BUILTINS = new Set([...builtinModules, ...builtinModules.map(name => `node:${name}`)]);
 const PRUNE = new Set(['node_modules', 'dist', '.git', '.next', '.turbo']);
 const RUNTIME_NEUTRAL_DOMAINS = new Set(['core', 'validation']);
 const errors = [];
@@ -87,12 +84,9 @@ function scanNodeImports(dir, out = new Set()) {
       } catch {
         continue;
       }
-      for (const m of content.matchAll(
-        /from\s+['"]((?:node:)?[a-zA-Z0-9_@/-]+)['"]/g,
-      )) {
+      for (const m of content.matchAll(/from\s+['"]((?:node:)?[a-zA-Z0-9_@/-]+)['"]/g)) {
         const spec = m[1];
-        if (spec.startsWith('node:') || builtinModules.includes(spec))
-          out.add(spec);
+        if (spec.startsWith('node:') || builtinModules.includes(spec)) out.add(spec);
       }
     }
   }
@@ -115,8 +109,7 @@ function collectPackageNames(root, category) {
       const manifestPath = path.join(full, 'package.json');
       if (fs.existsSync(manifestPath)) {
         const manifest = readJson(manifestPath);
-        if (manifest?.name)
-          discoveredNames.set(manifest.name, { category, dir: full });
+        if (manifest?.name) discoveredNames.set(manifest.name, { category, dir: full });
       }
       walk(full);
     }
@@ -131,9 +124,7 @@ function readJson(file) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
   } catch (error) {
-    reportError(
-      `Invalid JSON: ${path.relative(ROOT, file)} (${error.message})`,
-    );
+    reportError(`Invalid JSON: ${path.relative(ROOT, file)} (${error.message})`);
     return undefined;
   }
 }
@@ -143,22 +134,16 @@ function collectPackages(dir, domain) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
     const packageDir = path.join(dir, entry.name);
-    if (
-      !entry.isDirectory() ||
-      !fs.existsSync(path.join(packageDir, 'package.json'))
-    )
-      continue;
+    if (!entry.isDirectory() || !fs.existsSync(path.join(packageDir, 'package.json'))) continue;
     const manifestPath = path.join(packageDir, 'package.json');
     const manifest = readJson(manifestPath);
-    if (manifest)
-      packages.push({ dir: packageDir, domain, manifest, manifestPath });
+    if (manifest) packages.push({ dir: packageDir, domain, manifest, manifestPath });
   }
 }
 
 for (const domain of EXPECTED_DOMAINS) {
   const domainDir = path.join(PACKAGES, domain);
-  if (!fs.existsSync(domainDir))
-    reportError(`Missing domain directory: packages/${domain}`);
+  if (!fs.existsSync(domainDir)) reportError(`Missing domain directory: packages/${domain}`);
   else if (!fs.statSync(domainDir).isDirectory())
     reportError(`Expected directory but found file: packages/${domain}`);
   else if (!fs.existsSync(path.join(domainDir, 'README.md')))
@@ -171,12 +156,8 @@ else if (!fs.statSync(PACKAGES).isDirectory())
   reportError(`Expected directory but found file: packages/`);
 else {
   for (const entry of fs.readdirSync(PACKAGES, { withFileTypes: true })) {
-    if (entry.name.startsWith('.') || EXPECTED_DOMAINS.includes(entry.name))
-      continue;
-    if (
-      entry.isDirectory() &&
-      fs.existsSync(path.join(PACKAGES, entry.name, 'package.json'))
-    ) {
+    if (entry.name.startsWith('.') || EXPECTED_DOMAINS.includes(entry.name)) continue;
+    if (entry.isDirectory() && fs.existsSync(path.join(PACKAGES, entry.name, 'package.json'))) {
       const packageDir = path.join(PACKAGES, entry.name);
       const manifestPath = path.join(packageDir, 'package.json');
       const manifest = readJson(manifestPath);
@@ -194,9 +175,7 @@ else {
 const names = new Map();
 for (const pkg of packages) {
   if (!pkg.manifest.name)
-    reportError(
-      `Package is missing a name: ${path.relative(ROOT, pkg.manifestPath)}`,
-    );
+    reportError(`Package is missing a name: ${path.relative(ROOT, pkg.manifestPath)}`);
   else if (names.has(pkg.manifest.name))
     reportError(
       `Duplicate package name \"${pkg.manifest.name}\": ${path.relative(ROOT, names.get(pkg.manifest.name))} and ${path.relative(ROOT, pkg.manifestPath)}`,
@@ -204,29 +183,18 @@ for (const pkg of packages) {
   else names.set(pkg.manifest.name, pkg.manifestPath);
 
   if (!pkg.manifest.exports)
-    reportWarning(
-      `Package has no exports map: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportWarning(`Package has no exports map: ${path.relative(ROOT, pkg.dir)}`);
   if (!pkg.manifest.source)
-    reportWarning(
-      `Package has no source entry: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportWarning(`Package has no source entry: ${path.relative(ROOT, pkg.dir)}`);
 
   if (!pkg.manifest.stability)
-    reportWarning(
-      `Package missing stability label: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportWarning(`Package missing stability label: ${path.relative(ROOT, pkg.dir)}`);
   if (!pkg.manifest.owners)
-    reportWarning(
-      `Package missing owners metadata: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportWarning(`Package missing owners metadata: ${path.relative(ROOT, pkg.dir)}`);
 
   const relDir = path.relative(ROOT, pkg.dir).split(path.sep).join('/');
   const inWorkspace = WORKSPACE_REGEXES.some(({ regex }) => regex.test(relDir));
-  if (!inWorkspace)
-    reportError(
-      `Package dir not matched by any pnpm-workspace glob: ${relDir}`,
-    );
+  if (!inWorkspace) reportError(`Package dir not matched by any pnpm-workspace glob: ${relDir}`);
 
   const dependencies = {
     ...pkg.manifest.dependencies,
@@ -271,15 +239,9 @@ for (const pkg of packages) {
   }
 }
 
-const configs = [
-  'pnpm-workspace.yaml',
-  'turbo.json',
-  'tsconfig.json',
-  'CODEOWNERS',
-];
+const configs = ['pnpm-workspace.yaml', 'turbo.json', 'tsconfig.json', 'CODEOWNERS'];
 for (const config of configs)
-  if (!fs.existsSync(path.join(ROOT, config)))
-    reportError(`Missing root config: ${config}`);
+  if (!fs.existsSync(path.join(ROOT, config))) reportError(`Missing root config: ${config}`);
 
 const codeownersPath = path.join(ROOT, 'CODEOWNERS');
 if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
@@ -309,9 +271,7 @@ if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
 
 console.log('\nRepository Structure Validation\n');
 console.log(`Packages discovered: ${packages.length}`);
-console.log(
-  `Domain packages: ${packages.filter(pkg => pkg.domain !== 'legacy').length}`,
-);
+console.log(`Domain packages: ${packages.filter(pkg => pkg.domain !== 'legacy').length}`);
 console.log(
   `Legacy packages remaining: ${packages.filter(pkg => pkg.domain === 'legacy').length}\n`,
 );
@@ -324,8 +284,6 @@ if (warnings.length) {
   console.log('Warnings:');
   warnings.forEach(message => console.log(`  - ${message}`));
 }
-if (!errors.length && !warnings.length)
-  console.log('All structure checks passed.');
-else if (!errors.length)
-  console.log('No errors; warnings indicate migration work remaining.');
+if (!errors.length && !warnings.length) console.log('All structure checks passed.');
+else if (!errors.length) console.log('No errors; warnings indicate migration work remaining.');
 else process.exit(1);

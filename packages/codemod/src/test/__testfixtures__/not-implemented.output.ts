@@ -42,12 +42,12 @@ message.parts.map(part => {
   if (part.type === 'tool-invocation') {
     /* FIXME(@ai-toolkit-upgrade-v5): The `part.toolInvocation.state` property has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
     switch (part.toolInvocation.state) {
-    case 'partial-call':
-      return 'Loading...';
-    case 'call':
-      return `Tool called with ${JSON.stringify(part.toolInvocation.args)}`;
-    case 'result':
-      return `Result: ${part.toolInvocation.result}`;
+      case 'partial-call':
+        return 'Loading...';
+      case 'call':
+        return `Tool called with ${JSON.stringify(part.toolInvocation.args)}`;
+      case 'result':
+        return `Result: ${part.toolInvocation.result}`;
     }
   }
 });

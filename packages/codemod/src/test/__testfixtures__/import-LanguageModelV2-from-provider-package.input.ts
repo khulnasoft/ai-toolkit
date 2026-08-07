@@ -6,12 +6,12 @@ import { LanguageModelV2Middleware } from 'ai';
 import { someOtherFunction } from 'ai';
 
 // Multiple imports in one declaration
-import { 
-  LanguageModelV1 as LMV1Multi, 
-  LanguageModelV2 as LMV2Multi, 
+import {
+  LanguageModelV1 as LMV1Multi,
+  LanguageModelV2 as LMV2Multi,
   LanguageModelV1Middleware as LMV1MiddlewareMulti,
   LanguageModelV2Middleware as LMV2MiddlewareMulti,
-  anotherFunction 
+  anotherFunction,
 } from 'ai';
 
 // Import with alias

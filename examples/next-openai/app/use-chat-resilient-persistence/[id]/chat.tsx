@@ -8,7 +8,10 @@ import { createIdGenerator } from 'ai';
 export default function Chat({
   id,
   initialMessages,
-}: { id?: string | undefined; initialMessages?: UIMessage[] } = {}) {
+}: {
+  id?: string | undefined;
+  initialMessages?: UIMessage[];
+} = {}) {
   const { sendMessage, status, messages, stop } = useChat({
     id,
     messages: initialMessages,
@@ -23,17 +26,11 @@ export default function Chat({
       {messages.map(m => (
         <div key={m.id} className="whitespace-pre-wrap">
           {m.role === 'user' ? 'User: ' : 'AI: '}
-          {m.parts
-            .map(part => (part.type === 'text' ? part.text : ''))
-            .join('')}
+          {m.parts.map(part => (part.type === 'text' ? part.text : '')).join('')}
         </div>
       ))}
 
-      <ChatInput
-        status={status}
-        stop={stop}
-        onSubmit={text => sendMessage({ text })}
-      />
+      <ChatInput status={status} stop={stop} onSubmit={text => sendMessage({ text })} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ function ChatComponent1() {
   const { messages, sendMessage, addToolOutput } = useChat();
 
   return (
-    (<button
+    <button
       onClick={() => {
         addToolOutput({
           tool: 'test-tool',
@@ -15,8 +15,9 @@ function ChatComponent1() {
           output: 'result',
         });
       }}
-    >Submit Result
-          </button>)
+    >
+      Submit Result
+    </button>
   );
 }
 
@@ -36,8 +37,9 @@ function ChatComponent3() {
   const chat = useChat();
 
   return (
-    (<button onClick={() => chat.addToolOutput({ tool: 'test', toolCallId: 'id', output: 'out' })}>Submit
-          </button>)
+    <button onClick={() => chat.addToolOutput({ tool: 'test', toolCallId: 'id', output: 'out' })}>
+      Submit
+    </button>
   );
 }
 
@@ -107,4 +109,3 @@ function OtherComponent() {
   otherToolResult({ tool: 'other', toolCallId: 'id', output: 'data' });
   return null;
 }
-

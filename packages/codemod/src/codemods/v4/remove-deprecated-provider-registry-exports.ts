@@ -15,9 +15,7 @@ export default createTransformer((fileInfo, api, options, context) => {
           const oldName = spec.imported.name;
           if (oldName === 'experimental_createModelRegistry') {
             context.hasChanges = true;
-            return j.importSpecifier(
-              j.identifier('experimental_createProviderRegistry'),
-            );
+            return j.importSpecifier(j.identifier('experimental_createProviderRegistry'));
           }
 
           if (

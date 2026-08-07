@@ -11,7 +11,7 @@ function handleUser(msg: CoreUserMessage) {
 
 const assistant: CoreAssistantMessage = {
   role: 'assistant',
-  content: 'Hello'
+  content: 'Hello',
 };
 
 type ToolHandler = (msg: CoreToolMessage) => void;
