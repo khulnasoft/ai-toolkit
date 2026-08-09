@@ -47,7 +47,9 @@ export type Schema<OBJECT = unknown> = {
  * @param createValidator A function that creates a schema.
  * @returns A function that returns a schema.
  */
-export function lazySchema<SCHEMA>(createSchema: () => Schema<SCHEMA>): LazySchema<SCHEMA> {
+export function lazySchema<SCHEMA>(
+  createSchema: () => Schema<SCHEMA>,
+): LazySchema<SCHEMA> {
   // cache the validator to avoid initializing it multiple times
   let schema: Schema<SCHEMA> | undefined;
   return () => {
@@ -73,15 +75,16 @@ export type FlexibleSchema<SCHEMA = any> =
   | ZodSchema<SCHEMA>
   | StandardSchema<SCHEMA>;
 
-export type InferSchema<SCHEMA> = SCHEMA extends ZodSchema<infer T>
-  ? T
-  : SCHEMA extends StandardSchema<infer T>
+export type InferSchema<SCHEMA> =
+  SCHEMA extends ZodSchema<infer T>
     ? T
-    : SCHEMA extends LazySchema<infer T>
+    : SCHEMA extends StandardSchema<infer T>
       ? T
-      : SCHEMA extends Schema<infer T>
+      : SCHEMA extends LazySchema<infer T>
         ? T
-        : never;
+        : SCHEMA extends Schema<infer T>
+          ? T
+          : never;
 
 /**
  * Create a schema using a JSON Schema.
@@ -97,7 +100,9 @@ export function jsonSchema<OBJECT = unknown>(
   {
     validate,
   }: {
-    validate?: (value: unknown) => ValidationResult<OBJECT> | PromiseLike<ValidationResult<OBJECT>>;
+    validate?: (
+      value: unknown,
+    ) => ValidationResult<OBJECT> | PromiseLike<ValidationResult<OBJECT>>;
   } = {},
 ): Schema<OBJECT> {
   return {
@@ -124,7 +129,9 @@ function isSchema(value: unknown): value is Schema {
   );
 }
 
-export function asSchema<OBJECT>(schema: FlexibleSchema<OBJECT> | undefined): Schema<OBJECT> {
+export function asSchema<OBJECT>(
+  schema: FlexibleSchema<OBJECT> | undefined,
+): Schema<OBJECT> {
   return schema == null
     ? jsonSchema({ properties: {}, additionalProperties: false })
     : isSchema(schema)
@@ -136,7 +143,9 @@ export function asSchema<OBJECT>(schema: FlexibleSchema<OBJECT> | undefined): Sc
         : schema();
 }
 
-function standardSchema<OBJECT>(standardSchema: StandardSchema<OBJECT>): Schema<OBJECT> {
+function standardSchema<OBJECT>(
+  standardSchema: StandardSchema<OBJECT>,
+): Schema<OBJECT> {
   return jsonSchema(
     () =>
       addAdditionalPropertiesToJsonSchema(
@@ -237,7 +246,9 @@ export function isZod4Schema(
 }
 
 export function zodSchema<OBJECT>(
-  zodSchema: z4.core.$ZodType<OBJECT, any> | z3.Schema<OBJECT, z3.ZodTypeDef, any>,
+  zodSchema:
+    | z4.core.$ZodType<OBJECT, any>
+    | z3.Schema<OBJECT, z3.ZodTypeDef, any>,
   options?: {
     /**
      * Enables support for references in the schema.

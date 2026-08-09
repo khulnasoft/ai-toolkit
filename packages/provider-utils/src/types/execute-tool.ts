@@ -9,7 +9,9 @@ export async function* executeTool<INPUT, OUTPUT>({
   execute: ToolExecuteFunction<INPUT, OUTPUT>;
   input: INPUT;
   options: ToolExecutionOptions;
-}): AsyncGenerator<{ type: 'preliminary'; output: OUTPUT } | { type: 'final'; output: OUTPUT }> {
+}): AsyncGenerator<
+  { type: 'preliminary'; output: OUTPUT } | { type: 'final'; output: OUTPUT }
+> {
   const result = execute(input, options);
 
   if (isAsyncIterable(result)) {

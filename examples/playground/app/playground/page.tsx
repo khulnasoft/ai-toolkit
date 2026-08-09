@@ -3,7 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Play, Code, MessageSquare, Settings, Globe, ArrowRight } from 'lucide-react';
+import {
+  Play,
+  Code,
+  MessageSquare,
+  Settings,
+  Globe,
+  ArrowRight,
+} from 'lucide-react';
 import { ChatInterface } from '@/components/chat-interface';
 import { ProviderSelector } from '@/components/provider-selector';
 import { CodeEditor } from '@/components/code-editor';
@@ -116,7 +123,10 @@ export default function HomePage() {
             {activeTab === 'chat' && (
               <div>
                 <h2 className="text-lg font-semibold mb-4">Chat Interface</h2>
-                <ChatInterface providerId={selectedProvider} modelId={selectedModel} />
+                <ChatInterface
+                  providerId={selectedProvider}
+                  modelId={selectedModel}
+                />
               </div>
             )}
 
@@ -133,7 +143,9 @@ export default function HomePage() {
 
             {activeTab === 'examples' && (
               <div>
-                <h2 className="text-lg font-semibold mb-4">Example Templates</h2>
+                <h2 className="text-lg font-semibold mb-4">
+                  Example Templates
+                </h2>
                 <ExampleTemplates onSelectExample={handleSelectExample} />
               </div>
             )}

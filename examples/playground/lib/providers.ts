@@ -26,7 +26,11 @@ export const aiProviders: AIProvider[] = [
   {
     id: 'anthropic',
     name: 'Anthropic',
-    models: ['claude-3-opus-20240229', 'claude-3-sonnet-20240229', 'claude-3-haiku-20240307'],
+    models: [
+      'claude-3-opus-20240229',
+      'claude-3-sonnet-20240229',
+      'claude-3-haiku-20240307',
+    ],
     createModel: (model: string) => anthropic(model),
   },
   {
@@ -44,7 +48,11 @@ export const aiProviders: AIProvider[] = [
   {
     id: 'mistral',
     name: 'Mistral',
-    models: ['mistral-large-latest', 'mistral-medium-latest', 'mistral-small-latest'],
+    models: [
+      'mistral-large-latest',
+      'mistral-medium-latest',
+      'mistral-small-latest',
+    ],
     createModel: (model: string) => mistral(model),
   },
   {
@@ -68,7 +76,11 @@ export const aiProviders: AIProvider[] = [
   {
     id: 'fireworks',
     name: 'Fireworks',
-    models: ['llama-v3-70b-instruct', 'mixtral-8x7b-instruct', 'gem-7b-instruct'],
+    models: [
+      'llama-v3-70b-instruct',
+      'mixtral-8x7b-instruct',
+      'gem-7b-instruct',
+    ],
     createModel: (model: string) => fireworks(model),
   },
   {

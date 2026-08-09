@@ -53,7 +53,10 @@ export default createTransformer((fileInfo, api, options, context) => {
       // Only replace if:
       // 1. It's one of our tracked imports from 'ai'
       // 2. It's not part of an import declaration (to avoid replacing other imports)
-      return targetImports.has(path.node.name) && !j(path).closest(j.ImportDeclaration).size();
+      return (
+        targetImports.has(path.node.name) &&
+        !j(path).closest(j.ImportDeclaration).size()
+      );
     })
     .forEach(path => {
       path.node.name = 'StreamData';

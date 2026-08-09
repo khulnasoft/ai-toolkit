@@ -31,4 +31,6 @@ export type DynamicToolResult = {
   title?: string;
 };
 
-export type TypedToolResult<TOOLS extends ToolSet> = StaticToolResult<TOOLS> | DynamicToolResult;
+export type TypedToolResult<TOOLS extends ToolSet> =
+  | StaticToolResult<TOOLS>
+  | DynamicToolResult;

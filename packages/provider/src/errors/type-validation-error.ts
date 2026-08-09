@@ -37,7 +37,13 @@ export class TypeValidationError extends AITOOLKITError {
    * @param {unknown} params.cause - The original error or cause of the validation failure.
    * @returns {TypeValidationError} A TypeValidationError instance.
    */
-  static wrap({ value, cause }: { value: unknown; cause: unknown }): TypeValidationError {
+  static wrap({
+    value,
+    cause,
+  }: {
+    value: unknown;
+    cause: unknown;
+  }): TypeValidationError {
     return TypeValidationError.isInstance(cause) && cause.value === value
       ? cause
       : new TypeValidationError({ value, cause });

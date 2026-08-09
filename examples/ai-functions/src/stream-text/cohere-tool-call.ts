@@ -14,7 +14,8 @@ run(async () => {
     tools: {
       weather: weatherTool,
     },
-    prompt: 'What is the weather in San Francisco and what attractions should I visit?',
+    prompt:
+      'What is the weather in San Francisco and what attractions should I visit?',
   });
 
   let fullResponse = '';
@@ -34,7 +35,9 @@ run(async () => {
       case 'tool-call': {
         toolCalls.push(delta);
 
-        process.stdout.write(`\nTool call: '${delta.toolName}' ${JSON.stringify(delta.input)}`);
+        process.stdout.write(
+          `\nTool call: '${delta.toolName}' ${JSON.stringify(delta.input)}`,
+        );
         break;
       }
 

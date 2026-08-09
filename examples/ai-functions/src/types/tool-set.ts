@@ -30,4 +30,5 @@ async function generateSomething(prompt: string): Promise<{
   });
 }
 
-const { text, staticToolCalls, staticToolResults } = await generateSomething('...');
+const { text, staticToolCalls, staticToolResults } =
+  await generateSomething('...');

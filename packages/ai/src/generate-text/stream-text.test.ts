@@ -27,7 +27,15 @@ import {
   mockId,
 } from '@ai-toolkit/provider-utils/test';
 import assert from 'node:assert';
-import { afterEach, beforeEach, describe, expect, it, vi, vitest } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  vitest,
+} from 'vitest';
 import { z } from 'zod/v4';
 import { Output } from '..';
 import * as logWarningsModule from '../logger/log-warnings';
@@ -35,7 +43,10 @@ import { MockLanguageModelV3 } from '../test/mock-language-model-v3';
 import { createMockServerResponse } from '../test/mock-server-response';
 import { MockTracer } from '../test/mock-tracer';
 import { mockValues } from '../test/mock-values';
-import { asLanguageModelUsage, createNullLanguageModelUsage } from '../types/usage';
+import {
+  asLanguageModelUsage,
+  createNullLanguageModelUsage,
+} from '../types/usage';
 import { StepResult } from './step-result';
 import { stepCountIs } from './stop-condition';
 import { streamText, StreamTextOnFinishCallback } from './stream-text';
@@ -341,7 +352,9 @@ describe('streamText', () => {
   beforeEach(() => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     vi.setSystemTime(new Date(0));
-    logWarningsSpy = vitest.spyOn(logWarningsModule, 'logWarnings').mockImplementation(() => {});
+    logWarningsSpy = vitest
+      .spyOn(logWarningsModule, 'logWarnings')
+      .mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -381,11 +394,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.textStream)).toStrictEqual([
-        'Hello',
-        ', ',
-        'world!',
-      ]);
+      expect(
+        await convertAsyncIterableToArray(result.textStream),
+      ).toStrictEqual(['Hello', ', ', 'world!']);
     });
 
     it('should filter out empty text deltas', async () => {
@@ -411,7 +422,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.textStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.textStream),
+      ).toMatchSnapshot();
     });
 
     it('should not include reasoning content in textStream', async () => {
@@ -420,7 +433,9 @@ describe('streamText', () => {
         ...defaultSettings(),
       });
 
-      expect(await convertAsyncIterableToArray(result.textStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.textStream),
+      ).toMatchSnapshot();
     });
   });
 
@@ -462,7 +477,8 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -558,7 +574,8 @@ describe('streamText', () => {
         ...defaultSettings(),
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -787,7 +804,8 @@ describe('streamText', () => {
         ...defaultSettings(),
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -895,7 +913,8 @@ describe('streamText', () => {
         ...defaultSettings(),
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -1025,7 +1044,8 @@ describe('streamText', () => {
         },
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -1183,7 +1203,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toMatchSnapshot();
     });
 
     it('should send tool call deltas', async () => {
@@ -1262,7 +1284,8 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -1434,7 +1457,8 @@ describe('streamText', () => {
 
       const chunks = await convertAsyncIterableToArray(result.fullStream);
       const toolInputStart = chunks.find(
-        (c): c is Extract<typeof c, { type: 'tool-input-start' }> => c.type === 'tool-input-start',
+        (c): c is Extract<typeof c, { type: 'tool-input-start' }> =>
+          c.type === 'tool-input-start',
       );
 
       expect(toolInputStart?.providerMetadata).toEqual({
@@ -1471,7 +1495,9 @@ describe('streamText', () => {
             inputSchema: z.object({ value: z.string() }),
             execute: async (input, options) => {
               expect(input).toStrictEqual({ value: 'value' });
-              expect(options.messages).toStrictEqual([{ role: 'user', content: 'test-input' }]);
+              expect(options.messages).toStrictEqual([
+                { role: 'user', content: 'test-input' },
+              ]);
               return `${input.value}-result`;
             },
           }),
@@ -1479,7 +1505,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toMatchSnapshot();
     });
 
     it('should send delayed asynchronous tool results', async () => {
@@ -1518,7 +1546,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toMatchSnapshot();
     });
 
     it('should filter out empty text deltas', async () => {
@@ -1550,7 +1580,8 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -1653,7 +1684,9 @@ describe('streamText', () => {
         onError: () => {},
       });
 
-      expect(await convertAsyncIterableToArray(result.textStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.textStream),
+      ).toMatchSnapshot();
     });
 
     it('should forward error in doStream as error stream part', async () => {
@@ -1667,7 +1700,9 @@ describe('streamText', () => {
         onError: () => {},
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toStrictEqual([
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toStrictEqual([
         {
           type: 'start',
         },
@@ -1952,7 +1987,9 @@ describe('streamText', () => {
 
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         prompt: 'test-input',
         _internal: {
@@ -1973,7 +2010,9 @@ describe('streamText', () => {
 
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         prompt: 'test-input',
         _internal: {
@@ -2304,7 +2343,11 @@ describe('streamText', () => {
           "content-type": "text/plain; charset=utf-8",
         }
       `);
-      expect(mockResponse.getDecodedChunks()).toEqual(['Hello', ', ', 'world!']);
+      expect(mockResponse.getDecodedChunks()).toEqual([
+        'Hello',
+        ', ',
+        'world!',
+      ]);
     });
   });
 
@@ -2317,7 +2360,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream();
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -2429,7 +2473,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream();
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -2564,7 +2609,9 @@ describe('streamText', () => {
         ...defaultSettings(),
       });
 
-      expect(await convertReadableStreamToArray(result.toUIMessageStream())).toMatchSnapshot();
+      expect(
+        await convertReadableStreamToArray(result.toUIMessageStream()),
+      ).toMatchSnapshot();
     });
 
     it('should send message metadata as defined in the metadata function', async () => {
@@ -2586,7 +2633,8 @@ describe('streamText', () => {
         ),
       });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "messageMetadata": {
@@ -2679,7 +2727,9 @@ describe('streamText', () => {
     it('should mask error messages by default', async () => {
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         ...defaultSettings(),
         onError: () => {},
@@ -2687,13 +2737,17 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream();
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchSnapshot();
+      expect(
+        await convertReadableStreamToArray(uiMessageStream),
+      ).toMatchSnapshot();
     });
 
     it('should support custom error messages', async () => {
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         ...defaultSettings(),
         onError: () => {},
@@ -2703,7 +2757,9 @@ describe('streamText', () => {
         onError: error => `custom error message: ${error}`,
       });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchSnapshot();
+      expect(
+        await convertReadableStreamToArray(uiMessageStream),
+      ).toMatchSnapshot();
     });
 
     it('should omit message finish event when sendFinish is false', async () => {
@@ -2726,7 +2782,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream({ sendFinish: false });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -2774,7 +2831,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream({ sendStart: false });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start-step",
@@ -2811,7 +2869,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream({ sendReasoning: true });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -2986,7 +3045,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream({ sendSources: true });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -3048,7 +3108,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream({ sendSources: true });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -3112,7 +3173,8 @@ describe('streamText', () => {
 
       const uiMessageStream = result.toUIMessageStream();
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -3164,7 +3226,8 @@ describe('streamText', () => {
         onFinish: () => {}, // provided onFinish should trigger a new message id
       });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -3216,7 +3279,8 @@ describe('streamText', () => {
         generateMessageId: mockId({ prefix: 'message' }),
       });
 
-      expect(await convertReadableStreamToArray(uiMessageStream)).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(uiMessageStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "messageId": "message-0",
@@ -3306,7 +3370,9 @@ describe('streamText', () => {
       const callArgs = onFinishCallback.mock.calls[0][0];
       expect(callArgs.responseMessage).toBeDefined();
       expect(callArgs.responseMessage.role).toBe('assistant');
-      const textPart = callArgs.responseMessage.parts.find((p: any) => p.type === 'text');
+      const textPart = callArgs.responseMessage.parts.find(
+        (p: any) => p.type === 'text',
+      );
       expect(textPart).toBeDefined();
       expect(textPart.text).toContain('Streaming'); // Partial content
       expect(textPart.state).toBe('streaming');
@@ -3382,7 +3448,9 @@ describe('streamText', () => {
       expect(callArgs.responseMessage.id).toBe('msg-async-iter');
       expect(callArgs.responseMessage.role).toBe('assistant');
 
-      const textPart = callArgs.responseMessage.parts.find((p: any) => p.type === 'text');
+      const textPart = callArgs.responseMessage.parts.find(
+        (p: any) => p.type === 'text',
+      );
       expect(textPart).toBeDefined();
       expect(textPart.text).toContain('First chunk'); // Should have at least the first parts
       expect(textPart.state).toBe('streaming');
@@ -3475,7 +3543,9 @@ describe('streamText', () => {
       const callArgs = onFinishCallback.mock.calls[0][0];
       expect(callArgs.responseMessage).toBeDefined();
       expect(callArgs.responseMessage.role).toBe('assistant');
-      const textPart = callArgs.responseMessage.parts.find((p: any) => p.type === 'text');
+      const textPart = callArgs.responseMessage.parts.find(
+        (p: any) => p.type === 'text',
+      );
       expect(textPart).toBeDefined();
       expect(textPart.text).toBe(''); // Text was not streamed yet when aborted
       expect(callArgs.isAborted).toBe(true); // Stream was aborted
@@ -3583,7 +3653,8 @@ describe('streamText', () => {
       const response = result.toUIMessageStreamResponse();
 
       expect(response.status).toStrictEqual(200);
-      expect(Object.fromEntries(response.headers.entries())).toMatchInlineSnapshot(`
+      expect(Object.fromEntries(response.headers.entries()))
+        .toMatchInlineSnapshot(`
           {
             "cache-control": "no-cache",
             "connection": "keep-alive",
@@ -3593,7 +3664,8 @@ describe('streamText', () => {
           }
         `);
 
-      expect(await convertResponseStreamToArray(response)).toMatchInlineSnapshot(`
+      expect(await convertResponseStreamToArray(response))
+        .toMatchInlineSnapshot(`
           [
             "data: {"type":"start"}
 
@@ -3648,7 +3720,8 @@ describe('streamText', () => {
 
       expect(response.status).toStrictEqual(201);
       expect(response.statusText).toStrictEqual('foo');
-      expect(Object.fromEntries(response.headers.entries())).toMatchInlineSnapshot(`
+      expect(Object.fromEntries(response.headers.entries()))
+        .toMatchInlineSnapshot(`
           {
             "cache-control": "no-cache",
             "connection": "keep-alive",
@@ -3658,7 +3731,8 @@ describe('streamText', () => {
             "x-vercel-ai-ui-message-stream": "v1",
           }
         `);
-      expect(await convertResponseStreamToArray(response)).toMatchInlineSnapshot(`
+      expect(await convertResponseStreamToArray(response))
+        .toMatchInlineSnapshot(`
           [
             "data: {"type":"start"}
 
@@ -3697,7 +3771,9 @@ describe('streamText', () => {
     it('should mask error messages by default', async () => {
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         prompt: 'test-input',
         _internal: {
@@ -3714,7 +3790,9 @@ describe('streamText', () => {
     it('should support custom error messages', async () => {
       const result = streamText({
         model: createTestModel({
-          stream: convertArrayToReadableStream([{ type: 'error', error: 'error' }]),
+          stream: convertArrayToReadableStream([
+            { type: 'error', error: 'error' },
+          ]),
         }),
         prompt: 'test-input',
         _internal: {
@@ -3744,7 +3822,11 @@ describe('streamText', () => {
       expect(Object.fromEntries(response.headers.entries())).toStrictEqual({
         'content-type': 'text/plain; charset=utf-8',
       });
-      expect(await convertResponseStreamToArray(response)).toStrictEqual(['Hello', ', ', 'world!']);
+      expect(await convertResponseStreamToArray(response)).toStrictEqual([
+        'Hello',
+        ', ',
+        'world!',
+      ]);
     });
   });
 
@@ -3847,7 +3929,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      await expect(result.consumeStream({ onError: onErrorCallback })).resolves.not.toThrow();
+      await expect(
+        result.consumeStream({ onError: onErrorCallback }),
+      ).resolves.not.toThrow();
       expect(onErrorCallback).toHaveBeenCalledWith(new Error('Some error'));
     });
   });
@@ -3884,7 +3968,9 @@ describe('streamText', () => {
       expect({
         textStream: await convertAsyncIterableToArray(result.textStream),
         fullStream: await convertAsyncIterableToArray(result.fullStream),
-        uiMessageStream: await convertReadableStreamToArray(result.toUIMessageStream()),
+        uiMessageStream: await convertReadableStreamToArray(
+          result.toUIMessageStream(),
+        ),
       }).toMatchInlineSnapshot(`
         {
           "fullStream": [
@@ -4030,7 +4116,9 @@ describe('streamText', () => {
         prompt: 'test-input',
       });
 
-      expect(await result.warnings).toStrictEqual([{ type: 'other', message: 'test-warning' }]);
+      expect(await result.warnings).toStrictEqual([
+        { type: 'other', message: 'test-warning' },
+      ]);
     });
   });
 
@@ -5274,7 +5362,9 @@ describe('streamText', () => {
     });
 
     it('should send sources', async () => {
-      let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onFinish']>[0];
+      let result!: Parameters<
+        Required<Parameters<typeof streamText>[0]>['onFinish']
+      >[0];
 
       const resultObject = streamText({
         model: modelWithSources,
@@ -5492,7 +5582,9 @@ describe('streamText', () => {
     });
 
     it('should send files', async () => {
-      let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onFinish']>[0];
+      let result!: Parameters<
+        Required<Parameters<typeof streamText>[0]>['onFinish']
+      >[0];
 
       const resultObject = streamText({
         model: modelWithFiles,
@@ -5721,7 +5813,9 @@ describe('streamText', () => {
         onError: () => {},
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toStrictEqual([
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toStrictEqual([
         {
           type: 'start',
         },
@@ -5914,7 +6008,9 @@ describe('streamText', () => {
                   };
                 }
                 default:
-                  throw new Error(`Unexpected response count: ${responseCount}`);
+                  throw new Error(
+                    `Unexpected response count: ${responseCount}`,
+                  );
               }
             },
           }),
@@ -6063,7 +6159,8 @@ describe('streamText', () => {
       });
 
       it('should contain assistant response message and tool message from all steps', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -7016,9 +7113,8 @@ describe('streamText', () => {
       });
 
       it('should have correct ui message stream', async () => {
-        expect(
-          await convertReadableStreamToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertReadableStreamToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -7152,7 +7248,9 @@ describe('streamText', () => {
                     response: { headers: { call: '2' } },
                   };
                 default:
-                  throw new Error(`Unexpected response count: ${doStreamCalls.length}`);
+                  throw new Error(
+                    `Unexpected response count: ${doStreamCalls.length}`,
+                  );
               }
             },
           }),
@@ -7165,7 +7263,13 @@ describe('streamText', () => {
           experimental_context: { context: 'state1' },
           prompt: 'test-input',
           stopWhen: stepCountIs(3),
-          prepareStep: async ({ model, stepNumber, steps, messages, experimental_context }) => {
+          prepareStep: async ({
+            model,
+            stepNumber,
+            steps,
+            messages,
+            experimental_context,
+          }) => {
             prepareStepCalls.push({
               modelId: typeof model === 'string' ? model : model.modelId,
               stepNumber,
@@ -7812,7 +7916,9 @@ describe('streamText', () => {
                   };
                 }
                 default:
-                  throw new Error(`Unexpected response count: ${responseCount}`);
+                  throw new Error(
+                    `Unexpected response count: ${responseCount}`,
+                  );
               }
             },
           }),
@@ -7841,7 +7947,8 @@ describe('streamText', () => {
       });
 
       it('should contain assistant response message and tool message from all steps', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -8921,9 +9028,8 @@ describe('streamText', () => {
       });
 
       it('should have correct ui message stream', async () => {
-        expect(
-          await convertReadableStreamToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertReadableStreamToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -9046,7 +9152,9 @@ describe('streamText', () => {
                   };
                 }
                 default:
-                  throw new Error(`Unexpected response count: ${responseCount}`);
+                  throw new Error(
+                    `Unexpected response count: ${responseCount}`,
+                  );
               }
             },
           }),
@@ -9319,11 +9427,10 @@ describe('streamText', () => {
         headers: { 'custom-request-header': 'request-header-value' },
       });
 
-      assert.deepStrictEqual(await convertAsyncIterableToArray(result.textStream), [
-        'Hello',
-        ', ',
-        'world!',
-      ]);
+      assert.deepStrictEqual(
+        await convertAsyncIterableToArray(result.textStream),
+        ['Hello', ', ', 'world!'],
+      );
     });
   });
 
@@ -9456,7 +9563,8 @@ describe('streamText', () => {
       });
 
       it('should include provider-executed tool call and result in the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -9582,9 +9690,8 @@ describe('streamText', () => {
       });
 
       it('should include provider-executed tool call and result in the ui message stream', async () => {
-        expect(
-          await convertReadableStreamToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertReadableStreamToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -9725,7 +9832,8 @@ describe('streamText', () => {
       });
 
       it('should include dynamic tool call and result in the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -9830,9 +9938,8 @@ describe('streamText', () => {
       });
 
       it('should include dynamic tool call and result in the ui message stream', async () => {
-        expect(
-          await convertReadableStreamToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertReadableStreamToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -9914,9 +10021,10 @@ describe('streamText', () => {
         },
       });
 
-      assert.deepStrictEqual(await convertAsyncIterableToArray(result.textStream), [
-        'provider metadata test',
-      ]);
+      assert.deepStrictEqual(
+        await convertAsyncIterableToArray(result.textStream),
+        ['provider metadata test'],
+      );
     });
   });
 
@@ -10619,7 +10727,9 @@ describe('streamText', () => {
         'exception.message': 'Tool execution failed',
         'exception.name': 'Error',
       });
-      expect(exceptionEvent.attributes?.['exception.stack']).toContain('Tool execution failed');
+      expect(exceptionEvent.attributes?.['exception.stack']).toContain(
+        'Tool execution failed',
+      );
       expect(exceptionEvent.time).toEqual([0, 0]);
     });
 
@@ -10979,7 +11089,9 @@ describe('streamText', () => {
         },
       });
 
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchSnapshot();
+      expect(
+        await convertAsyncIterableToArray(result.fullStream),
+      ).toMatchSnapshot();
     });
   });
 
@@ -10993,7 +11105,10 @@ describe('streamText', () => {
               supportedUrlsCalled = true;
               // Reference 'this' to verify context
               return this.modelId === 'mock-model-id'
-                ? ({ 'image/*': [/^https:\/\/.*$/] } as Record<string, RegExp[]>)
+                ? ({ 'image/*': [/^https:\/\/.*$/] } as Record<
+                    string,
+                    RegExp[]
+                  >)
                 : {};
             },
             doStream: async () => ({
@@ -11066,7 +11181,8 @@ describe('streamText', () => {
     });
 
     it('should include tool error part in the full stream', async () => {
-      expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+      expect(await convertAsyncIterableToArray(result.fullStream))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -11279,7 +11395,8 @@ describe('streamText', () => {
     });
 
     it('should add tool-error parts to ui message stream', async () => {
-      expect(await convertReadableStreamToArray(result.toUIMessageStream())).toMatchInlineSnapshot(`
+      expect(await convertReadableStreamToArray(result.toUIMessageStream()))
+        .toMatchInlineSnapshot(`
           [
             {
               "type": "start",
@@ -11320,7 +11437,10 @@ describe('streamText', () => {
           TextStreamPart<{ tool1: Tool<{ value: string }> }>
         >({
           transform(chunk, controller) {
-            if (chunk.type === 'text-delta' || chunk.type === 'reasoning-delta') {
+            if (
+              chunk.type === 'text-delta' ||
+              chunk.type === 'reasoning-delta'
+            ) {
               chunk.text = chunk.text.toUpperCase();
             }
 
@@ -11346,7 +11466,9 @@ describe('streamText', () => {
 
             if (chunk.type === 'start-step') {
               if (chunk.request.body != null) {
-                chunk.request.body = (chunk.request.body as string).toUpperCase();
+                chunk.request.body = (
+                  chunk.request.body as string
+                ).toUpperCase();
               }
             }
 
@@ -11369,11 +11491,9 @@ describe('streamText', () => {
           prompt: 'test-input',
         });
 
-        expect(await convertAsyncIterableToArray(result.textStream)).toStrictEqual([
-          'HELLO',
-          ', ',
-          'WORLD!',
-        ]);
+        expect(
+          await convertAsyncIterableToArray(result.textStream),
+        ).toStrictEqual(['HELLO', ', ', 'WORLD!']);
       });
 
       it('result.text should be transformed', async () => {
@@ -11805,7 +11925,9 @@ describe('streamText', () => {
       });
 
       it('options.onFinish should receive transformed data', async () => {
-        let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onFinish']>[0];
+        let result!: Parameters<
+          Required<Parameters<typeof streamText>[0]>['onFinish']
+        >[0];
 
         const resultObject = streamText({
           model: createTestModel({
@@ -12134,7 +12256,9 @@ describe('streamText', () => {
       });
 
       it('options.onStepFinish should receive transformed data', async () => {
-        let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onStepFinish']>[0];
+        let result!: Parameters<
+          Required<Parameters<typeof streamText>[0]>['onStepFinish']
+        >[0];
 
         const resultObject = streamText({
           model: createTestModel({
@@ -12503,15 +12627,16 @@ describe('streamText', () => {
       it('should transform the stream', async () => {
         const result = streamText({
           model: createTestModel(),
-          experimental_transform: [toUppercaseAndAddCommaTransform(), omitCommaTransform()],
+          experimental_transform: [
+            toUppercaseAndAddCommaTransform(),
+            omitCommaTransform(),
+          ],
           prompt: 'test-input',
         });
 
-        expect(await convertAsyncIterableToArray(result.textStream)).toStrictEqual([
-          'HELLO',
-          ' ',
-          'WORLD!',
-        ]);
+        expect(
+          await convertAsyncIterableToArray(result.textStream),
+        ).toStrictEqual(['HELLO', ' ', 'WORLD!']);
       });
     });
 
@@ -12592,7 +12717,8 @@ describe('streamText', () => {
           experimental_transform: stopWordTransform(),
         });
 
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -12663,7 +12789,9 @@ describe('streamText', () => {
       });
 
       it('options.onStepFinish should be called', async () => {
-        let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onStepFinish']>[0];
+        let result!: Parameters<
+          Required<Parameters<typeof streamText>[0]>['onStepFinish']
+        >[0];
 
         const resultObject = streamText({
           model: createTestModel({
@@ -12761,9 +12889,8 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(
-          await convertAsyncIterableToArray(result.partialOutputStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.partialOutputStream))
+          .toMatchInlineSnapshot(`
           [
             "Hello, ",
             "Hello, world!",
@@ -12813,9 +12940,8 @@ describe('streamText', () => {
           output: Output.text(),
         });
 
-        expect(
-          await convertAsyncIterableToArray(result.partialOutputStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.partialOutputStream))
+          .toMatchInlineSnapshot(`
           [
             "Hello, ",
             "Hello, world!",
@@ -12954,7 +13080,9 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(await convertAsyncIterableToArray(result.textStream)).toStrictEqual([
+        expect(
+          await convertAsyncIterableToArray(result.textStream),
+        ).toStrictEqual([
           `{ `,
           // key difference: need to combine after `:`
           `"value": "Hello, `,
@@ -12989,7 +13117,9 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(await convertAsyncIterableToArray(result.partialOutputStream)).toStrictEqual([
+        expect(
+          await convertAsyncIterableToArray(result.partialOutputStream),
+        ).toStrictEqual([
           {},
           { value: 'Hello, ' },
           { value: 'Hello, world' },
@@ -13020,11 +13150,9 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(await convertAsyncIterableToArray(result.partialOutputStream)).toStrictEqual([
-          {},
-          { value: 'Hello, ' },
-          { value: 'Hello, world!' },
-        ]);
+        expect(
+          await convertAsyncIterableToArray(result.partialOutputStream),
+        ).toStrictEqual([{}, { value: 'Hello, ' }, { value: 'Hello, world!' }]);
       });
 
       it('should resolve text promise with the correct content', async () => {
@@ -13082,7 +13210,9 @@ describe('streamText', () => {
       });
 
       it('should call onFinish with the correct content', async () => {
-        let result!: Parameters<Required<Parameters<typeof streamText>[0]>['onFinish']>[0];
+        let result!: Parameters<
+          Required<Parameters<typeof streamText>[0]>['onFinish']
+        >[0];
 
         const resultObject = streamText({
           model: createTestModel({
@@ -13307,9 +13437,8 @@ describe('streamText', () => {
         });
 
         it('should stream only complete objects in partialObjectStream', async () => {
-          expect(
-            await convertAsyncIterableToArray(result!.partialOutputStream),
-          ).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result!.partialOutputStream))
+            .toMatchInlineSnapshot(`
             [
               [],
               [
@@ -13341,7 +13470,8 @@ describe('streamText', () => {
         });
 
         it('should stream individual elements in elementStream', async () => {
-          expect(await convertAsyncIterableToArray(result!.elementStream)).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result!.elementStream))
+            .toMatchInlineSnapshot(`
             [
               {
                 "content": "element 1",
@@ -13383,7 +13513,8 @@ describe('streamText', () => {
                 {
                   type: 'text-delta',
                   id: '1',
-                  delta: '{"elements":[{"content":"element 1"},{"content":"element 2"}]}',
+                  delta:
+                    '{"elements":[{"content":"element 1"},{"content":"element 2"}]}',
                 },
                 {
                   type: 'text-end',
@@ -13407,9 +13538,8 @@ describe('streamText', () => {
         });
 
         it('should stream only complete objects in partialObjectStream', async () => {
-          expect(
-            await convertAsyncIterableToArray(result!.partialOutputStream),
-          ).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result!.partialOutputStream))
+            .toMatchInlineSnapshot(`
             [
               [
                 {
@@ -13424,7 +13554,8 @@ describe('streamText', () => {
         });
 
         it('should stream individual elements in elementStream', async () => {
-          expect(await convertAsyncIterableToArray(result!.elementStream)).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result!.elementStream))
+            .toMatchInlineSnapshot(`
             [
               {
                 "content": "element 1",
@@ -13479,9 +13610,8 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(
-          await convertAsyncIterableToArray(result.partialOutputStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.partialOutputStream))
+          .toMatchInlineSnapshot(`
             [
               "sunny",
             ]
@@ -13577,9 +13707,9 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(await convertAsyncIterableToArray(result.partialOutputStream)).toMatchInlineSnapshot(
-          `[]`,
-        );
+        expect(
+          await convertAsyncIterableToArray(result.partialOutputStream),
+        ).toMatchInlineSnapshot(`[]`);
       });
 
       it('should handle ambiguous values', async () => {
@@ -13608,9 +13738,8 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(
-          await convertAsyncIterableToArray(result.partialOutputStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.partialOutputStream))
+          .toMatchInlineSnapshot(`
           [
             "foobar",
           ]
@@ -13644,9 +13773,8 @@ describe('streamText', () => {
           prompt: 'prompt',
         });
 
-        expect(
-          await convertAsyncIterableToArray(result.partialOutputStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.partialOutputStream))
+          .toMatchInlineSnapshot(`
           [
             "foobar",
           ]
@@ -13657,7 +13785,9 @@ describe('streamText', () => {
 
   describe('options.activeTools', () => {
     it('should filter available tools to only the ones in activeTools', async () => {
-      let tools: (LanguageModelV3FunctionTool | LanguageModelV3ProviderTool)[] | undefined;
+      let tools:
+        | (LanguageModelV3FunctionTool | LanguageModelV3ProviderTool)[]
+        | undefined;
 
       const result = streamText({
         model: new MockLanguageModelV3({
@@ -13759,7 +13889,8 @@ describe('streamText', () => {
 
       const chunks = await convertAsyncIterableToArray(result.fullStream);
 
-      expect(chunks.filter(chunk => chunk.type === 'raw')).toMatchInlineSnapshot(`
+      expect(chunks.filter(chunk => chunk.type === 'raw'))
+        .toMatchInlineSnapshot(`
           [
             {
               "rawValue": {
@@ -14041,7 +14172,8 @@ describe('streamText', () => {
       });
 
       it('should return the full stream with the correct parts', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14360,7 +14492,10 @@ describe('streamText', () => {
                     case 3:
                       abortController.abort();
                       controller.error(
-                        new DOMException('The user aborted a request.', 'AbortError'),
+                        new DOMException(
+                          'The user aborted a request.',
+                          'AbortError',
+                        ),
                       );
                       break;
                   }
@@ -14389,7 +14524,8 @@ describe('streamText', () => {
       });
 
       it('should only stream initial chunks in full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14408,9 +14544,8 @@ describe('streamText', () => {
       });
 
       it('should sent an abort chunk in the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14446,7 +14581,10 @@ describe('streamText', () => {
                     case 1:
                       abortController.abort('manual abort');
                       controller.error(
-                        new DOMException('The user aborted a request.', 'AbortError'),
+                        new DOMException(
+                          'The user aborted a request.',
+                          'AbortError',
+                        ),
                       );
                       break;
                   }
@@ -14457,9 +14595,8 @@ describe('streamText', () => {
           prompt: 'test-input',
         });
 
-        expect(
-          await convertAsyncIterableToArray(resultWithReason.fullStream),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(resultWithReason.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14472,7 +14609,9 @@ describe('streamText', () => {
           `);
 
         expect(
-          await convertAsyncIterableToArray(resultWithReason.toUIMessageStream()),
+          await convertAsyncIterableToArray(
+            resultWithReason.toUIMessageStream(),
+          ),
         ).toMatchInlineSnapshot(`
           [
             {
@@ -14565,7 +14704,10 @@ describe('streamText', () => {
                       case 3:
                         abortController.abort();
                         controller.error(
-                          new DOMException('The user aborted a request.', 'AbortError'),
+                          new DOMException(
+                            'The user aborted a request.',
+                            'AbortError',
+                          ),
                         );
                         break;
                     }
@@ -14689,7 +14831,8 @@ describe('streamText', () => {
       });
 
       it('should only stream initial chunks in full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14763,9 +14906,8 @@ describe('streamText', () => {
       });
 
       it('should sent an abort chunk in the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -14930,7 +15072,8 @@ describe('streamText', () => {
       });
 
       it('should end full stream with abort part', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15178,7 +15321,8 @@ describe('streamText', () => {
       });
 
       it('should add tool call and result error parts to the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15304,9 +15448,8 @@ describe('streamText', () => {
       });
 
       it('should add tool call and result error parts to the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15419,7 +15562,8 @@ describe('streamText', () => {
       });
 
       it('should include preliminary tool results in full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15542,9 +15686,8 @@ describe('streamText', () => {
       });
 
       it('should include preliminary tool results in ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15807,7 +15950,8 @@ describe('streamText', () => {
       });
 
       it('should set dynamic and providerExecuted in full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -15921,9 +16065,8 @@ describe('streamText', () => {
       });
 
       it('should set dynamic and providerExecuted in ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -16290,7 +16433,9 @@ describe('streamText', () => {
                   };
 
                 default:
-                  throw new Error(`Unexpected response count: ${responseCount}`);
+                  throw new Error(
+                    `Unexpected response count: ${responseCount}`,
+                  );
               }
             },
           }),
@@ -16342,7 +16487,9 @@ describe('streamText', () => {
             if (stepNumber > 0 && steps.length > 0) {
               const lastStep = steps[steps.length - 1];
               const containerId = (
-                lastStep.providerMetadata?.anthropic as { container?: { id?: string } } | undefined
+                lastStep.providerMetadata?.anthropic as
+                  | { container?: { id?: string } }
+                  | undefined
               )?.container?.id;
 
               if (containerId) {
@@ -17042,7 +17189,8 @@ describe('streamText', () => {
 
         it('should contain provider metadata with container ID for steps 1 and 2', async () => {
           await result.consumeStream();
-          expect(onStepFinishResults[0].providerMetadata).toMatchInlineSnapshot(`
+          expect(onStepFinishResults[0].providerMetadata)
+            .toMatchInlineSnapshot(`
               {
                 "anthropic": {
                   "container": {
@@ -17051,7 +17199,8 @@ describe('streamText', () => {
                 },
               }
             `);
-          expect(onStepFinishResults[1].providerMetadata).toMatchInlineSnapshot(`
+          expect(onStepFinishResults[1].providerMetadata)
+            .toMatchInlineSnapshot(`
               {
                 "anthropic": {
                   "container": {
@@ -17109,7 +17258,8 @@ describe('streamText', () => {
 
       describe('fullStream events', () => {
         it('should emit correct stream parts including tool calls and deferred results', async () => {
-          expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result.fullStream))
+            .toMatchInlineSnapshot(`
               [
                 {
                   "type": "start",
@@ -17734,7 +17884,8 @@ describe('streamText', () => {
       });
 
       it('should add tool approval requests to the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -17825,9 +17976,8 @@ describe('streamText', () => {
       });
 
       it('should add tool approval requests to the UI message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -17970,7 +18120,8 @@ describe('streamText', () => {
       });
 
       it('should add tool approval requests to the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -18082,9 +18233,8 @@ describe('streamText', () => {
       });
 
       it('should add tool approval requests to the UI message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -18421,7 +18571,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool result in the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -18510,9 +18661,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool result in the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -18714,7 +18864,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool result in the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -18827,9 +18978,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool result in the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -19046,7 +19196,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool denied in the full stream', async () => {
-        expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.fullStream))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -19130,9 +19281,8 @@ describe('streamText', () => {
       });
 
       it('should include the tool denied in the ui message stream', async () => {
-        expect(
-          await convertAsyncIterableToArray(result.toUIMessageStream()),
-        ).toMatchInlineSnapshot(`
+        expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+          .toMatchInlineSnapshot(`
             [
               {
                 "type": "start",
@@ -19213,7 +19363,8 @@ describe('streamText', () => {
         });
 
         it('should add provider-executed tool approval request to full stream', async () => {
-          expect(await convertAsyncIterableToArray(result.fullStream)).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result.fullStream))
+            .toMatchInlineSnapshot(`
               [
                 {
                   "type": "start",
@@ -19304,9 +19455,8 @@ describe('streamText', () => {
         });
 
         it('should add provider-executed tool approval request to UI message stream', async () => {
-          expect(
-            await convertAsyncIterableToArray(result.toUIMessageStream()),
-          ).toMatchInlineSnapshot(`
+          expect(await convertAsyncIterableToArray(result.toUIMessageStream()))
+            .toMatchInlineSnapshot(`
               [
                 {
                   "type": "start",
@@ -19438,7 +19588,8 @@ describe('streamText', () => {
                     {
                       type: 'text-delta',
                       id: '1',
-                      delta: 'Here is your shortened URL: https://short.url/abc',
+                      delta:
+                        'Here is your shortened URL: https://short.url/abc',
                     },
                     {
                       type: 'text-end',
@@ -19611,7 +19762,8 @@ describe('streamText', () => {
                     {
                       type: 'text-delta',
                       id: '1',
-                      delta: 'I understand. The tool execution was not approved.',
+                      delta:
+                        'I understand. The tool execution was not approved.',
                     },
                     {
                       type: 'text-end',
@@ -19749,7 +19901,8 @@ describe('streamText', () => {
 
   describe('prepareStep with model switch and image URLs', () => {
     it('should use the prepareStep model supportedUrls for download decision', async () => {
-      const downloadCalls: Array<{ url: URL; isUrlSupportedByModel: boolean }> = [];
+      const downloadCalls: Array<{ url: URL; isUrlSupportedByModel: boolean }> =
+        [];
       const languageModelCalls: Array<LanguageModelV3CallOptions> = [];
 
       const modelWithImageUrlSupport = new MockLanguageModelV3({

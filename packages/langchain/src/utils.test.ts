@@ -1,6 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { AIMessage, AIMessageChunk, HumanMessage, ToolMessage } from '@langchain/core/messages';
-import type { ToolResultPart, AssistantContent, UserContent, UIMessageChunk } from 'ai';
+import {
+  AIMessage,
+  AIMessageChunk,
+  HumanMessage,
+  ToolMessage,
+} from '@langchain/core/messages';
+import type {
+  ToolResultPart,
+  AssistantContent,
+  UserContent,
+  UIMessageChunk,
+} from 'ai';
 import {
   convertToolResultPart,
   convertAssistantContent,
@@ -19,7 +29,9 @@ import {
 /**
  * Creates a mock ReadableStreamDefaultController for testing
  */
-function createMockController(chunks: unknown[]): ReadableStreamDefaultController<UIMessageChunk> {
+function createMockController(
+  chunks: unknown[],
+): ReadableStreamDefaultController<UIMessageChunk> {
   return {
     enqueue: (c: unknown) => {
       chunks.push(c);
@@ -415,7 +427,9 @@ describe('processModelChunk', () => {
 
     processModelChunk(chunk, state, controller);
 
-    expect(chunks).toEqual([{ type: 'text-delta', delta: ' World', id: 'msg-1' }]);
+    expect(chunks).toEqual([
+      { type: 'text-delta', delta: ' World', id: 'msg-1' },
+    ]);
   });
 
   it('should handle array content with text parts', () => {
@@ -918,7 +932,10 @@ describe('processLangGraphEvent', () => {
     emittedImages: new Set<string>(),
     emittedReasoningIds: new Set<string>(),
     messageReasoningIds: {} as Record<string, string>,
-    toolCallInfoByIndex: {} as Record<string, Record<number, { id: string; name: string }>>,
+    toolCallInfoByIndex: {} as Record<
+      string,
+      Record<number, { id: string; name: string }>
+    >,
     currentStep: null as number | null,
     emittedToolCallsByKey: new Map<string, string>(),
   });
@@ -967,7 +984,10 @@ describe('processLangGraphEvent', () => {
     const controller = createMockController(chunks);
 
     processLangGraphEvent(
-      ['custom', { type: 'progress', id: 'progress-1', value: 50, message: 'Half done' }],
+      [
+        'custom',
+        { type: 'progress', id: 'progress-1', value: 50, message: 'Half done' },
+      ],
       state,
       controller,
     );
@@ -1027,7 +1047,11 @@ describe('processLangGraphEvent', () => {
     const chunks: unknown[] = [];
     const controller = createMockController(chunks);
 
-    processLangGraphEvent(['namespace', 'custom', { data: 'value' }], state, controller);
+    processLangGraphEvent(
+      ['namespace', 'custom', { data: 'value' }],
+      state,
+      controller,
+    );
 
     expect(chunks).toEqual([
       {
@@ -1082,7 +1106,11 @@ describe('processLangGraphEvent', () => {
     const chunks: unknown[] = [];
     const controller = createMockController(chunks);
 
-    processLangGraphEvent(['custom', [1, 2, 3, { type: 'ignored' }]], state, controller);
+    processLangGraphEvent(
+      ['custom', [1, 2, 3, { type: 'ignored' }]],
+      state,
+      controller,
+    );
 
     expect(chunks).toEqual([
       {
@@ -1198,7 +1226,9 @@ describe('processLangGraphEvent', () => {
         {
           id: 'msg-1',
           type: 'ai',
-          tool_calls: [{ id: 'call-1', name: 'get_weather', args: { city: 'NYC' } }],
+          tool_calls: [
+            { id: 'call-1', name: 'get_weather', args: { city: 'NYC' } },
+          ],
         },
       ],
     };
@@ -1232,7 +1262,9 @@ describe('processLangGraphEvent', () => {
         {
           id: 'msg-1',
           type: 'ai',
-          tool_calls: [{ id: 'call-1', name: 'get_weather', args: { city: 'NYC' } }],
+          tool_calls: [
+            { id: 'call-1', name: 'get_weather', args: { city: 'NYC' } },
+          ],
         },
       ],
     };
@@ -1382,7 +1414,9 @@ describe('processLangGraphEvent', () => {
     const controller = createMockController(chunks);
 
     const aiChunk = new AIMessageChunk({ content: '', id: 'msg-1' });
-    (aiChunk as unknown as { additional_kwargs: Record<string, unknown> }).additional_kwargs = {
+    (
+      aiChunk as unknown as { additional_kwargs: Record<string, unknown> }
+    ).additional_kwargs = {
       tool_outputs: [
         {
           id: 'img-1',
@@ -1411,7 +1445,9 @@ describe('processLangGraphEvent', () => {
     const controller = createMockController(chunks);
 
     const aiChunk = new AIMessageChunk({ content: '', id: 'msg-1' });
-    (aiChunk as unknown as { additional_kwargs: Record<string, unknown> }).additional_kwargs = {
+    (
+      aiChunk as unknown as { additional_kwargs: Record<string, unknown> }
+    ).additional_kwargs = {
       tool_outputs: [
         {
           id: 'img-1',
@@ -1424,7 +1460,9 @@ describe('processLangGraphEvent', () => {
 
     processLangGraphEvent(['messages', [aiChunk]], state, controller);
 
-    const fileEvents = chunks.filter((c: unknown) => (c as { type: string }).type === 'file');
+    const fileEvents = chunks.filter(
+      (c: unknown) => (c as { type: string }).type === 'file',
+    );
     expect(fileEvents).toHaveLength(0);
   });
 
@@ -1704,7 +1742,11 @@ describe('processLangGraphEvent', () => {
       ],
     };
 
-    processLangGraphEvent(['values', valuesWithMultipleInterrupts], state, controller);
+    processLangGraphEvent(
+      ['values', valuesWithMultipleInterrupts],
+      state,
+      controller,
+    );
 
     // Check both tool starts
     expect(chunks).toContainEqual({
@@ -1775,7 +1817,11 @@ describe('processLangGraphEvent', () => {
       ],
     };
 
-    processLangGraphEvent(['values', valuesWithInterruptNoId], state, controller);
+    processLangGraphEvent(
+      ['values', valuesWithInterruptNoId],
+      state,
+      controller,
+    );
 
     // Should have generated a fallback ID and emit tool-input-start first
     const toolStartChunk = chunks.find(
@@ -1891,7 +1937,10 @@ describe('processLangGraphEvent', () => {
 
     // Pre-populate the state as if tool was already emitted
     state.emittedToolCalls.add(toolCallId);
-    state.emittedToolCallsByKey.set(`${toolName}:${JSON.stringify(input)}`, toolCallId);
+    state.emittedToolCallsByKey.set(
+      `${toolName}:${JSON.stringify(input)}`,
+      toolCallId,
+    );
 
     // Now process interrupt with same tool name and args
     const valuesWithInterrupt = {

@@ -71,11 +71,15 @@ export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
 
               <div
                 className={`max-w-[80%] rounded-lg p-3 ${
-                  message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'
+                  message.role === 'user'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted'
                 }`}
               >
                 <p className="text-sm whitespace-pre-wrap">
-                  {message.parts.map(part => (part.type === 'text' ? part.text : '')).join('')}
+                  {message.parts
+                    .map(part => (part.type === 'text' ? part.text : ''))
+                    .join('')}
                 </p>
               </div>
 
