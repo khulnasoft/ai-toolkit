@@ -3,7 +3,7 @@ import { useChat } from 'ai/react';
 
 function ProcessMessages() {
   const { messages } = useChat();
-  
+
   // Check for tool-invocation type
   messages.forEach(message => {
     message.parts.map(part => {
@@ -29,12 +29,12 @@ function ProcessMessages() {
     if (part.type === 'tool-invocation') {
       /* FIXME(@ai-toolkit-upgrade-v5): The part.toolInvocation.state property has been removed. Tool parts now have specific states: 'input-available', 'calling', 'output-available'. See migration guide: https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#tool-part-type-changes-uimessage */
       switch (part.toolInvocation.state) {
-      case 'partial-call':
-        return 'Loading...';
-      case 'call':
-        return `Tool called with ${JSON.stringify(part.toolInvocation.args)}`;
-      case 'result':
-        return `Result: ${part.toolInvocation.result}`;
+        case 'partial-call':
+          return 'Loading...';
+        case 'call':
+          return `Tool called with ${JSON.stringify(part.toolInvocation.args)}`;
+        case 'result':
+          return `Result: ${part.toolInvocation.result}`;
       }
     }
   });

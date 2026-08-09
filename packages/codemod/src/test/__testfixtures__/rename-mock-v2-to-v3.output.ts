@@ -38,4 +38,3 @@ interface TestConfig {
   model: MockLanguageModelV3;
   embedding: MockEmbeddingModelV3;
 }
-

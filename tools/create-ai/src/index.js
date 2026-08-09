@@ -11,9 +11,7 @@ const main = async () => {
     ui.boxStart('create-ai');
     ui.log('');
     ui.log(chalk.bold('Usage:'));
-    ui.log(
-      `  ${chalk.cyan('create-ai <project-name>')} ${chalk.dim('[options]')}`,
-    );
+    ui.log(`  ${chalk.cyan('create-ai <project-name>')} ${chalk.dim('[options]')}`);
     ui.divider();
     ui.log(chalk.bold('Options:'));
     ui.log(
@@ -22,19 +20,13 @@ const main = async () => {
     ui.log(
       `  ${chalk.cyan('--provider <name>')}     AI provider (openai, anthropic, google, azure, bedrock)`,
     );
-    ui.log(
-      `  ${chalk.cyan('--no-install')}          Skip dependency installation`,
-    );
-    ui.log(
-      `  ${chalk.cyan('-y, --yes')}             Skip prompts and use defaults`,
-    );
+    ui.log(`  ${chalk.cyan('--no-install')}          Skip dependency installation`);
+    ui.log(`  ${chalk.cyan('-y, --yes')}             Skip prompts and use defaults`);
     ui.log(`  ${chalk.cyan('-h, --help')}            Show this help message`);
     ui.divider();
     ui.log(chalk.bold('Examples:'));
     ui.log(`  ${chalk.dim('$')} create-ai my-chat-app`);
-    ui.log(
-      `  ${chalk.dim('$')} create-ai my-app --template next-react --provider openai`,
-    );
+    ui.log(`  ${chalk.dim('$')} create-ai my-app --template next-react --provider openai`);
     ui.log(`  ${chalk.dim('$')} create-ai my-app -y --no-install`);
     ui.boxEnd();
     process.exit(0);

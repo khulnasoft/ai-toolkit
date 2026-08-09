@@ -12,10 +12,7 @@ export function addAwaitFn(functionName: string) {
       .filter(path => path.node.source.value === 'ai')
       .forEach(path => {
         path.node.specifiers?.forEach(specifier => {
-          if (
-            specifier.type === 'ImportSpecifier' &&
-            specifier.imported.name === functionName
-          ) {
+          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === functionName) {
             // Add local name to the set (handle aliasing)
             const localName = specifier.local?.name || specifier.imported.name;
             functionImportNames.add(localName);

@@ -16,4 +16,3 @@ const result = await generateText({
 // These should stay as 'google' since we're using @ai-toolkit/google
 console.log(result.providerMetadata?.google?.safetyRatings);
 const { google: metadata } = result.providerMetadata ?? {};
-

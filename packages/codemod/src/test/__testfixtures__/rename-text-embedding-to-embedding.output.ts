@@ -36,4 +36,3 @@ async function getEmbedding(text: string) {
     value: text,
   });
 }
-

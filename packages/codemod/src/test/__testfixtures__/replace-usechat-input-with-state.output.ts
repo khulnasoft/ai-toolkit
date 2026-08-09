@@ -5,10 +5,7 @@ import { useState } from 'react';
 
 export function ChatComponent() {
   const [input, setInput] = useState('');
-  const {
-    messages,
-    handleSubmit
-  } = useChat({
+  const { messages, handleSubmit } = useChat({
     api: '/api/chat',
   });
 
@@ -18,13 +15,9 @@ export function ChatComponent() {
 
 export function AnotherComponent() {
   const [input, setInput] = useState('');
-  const {
-    messages,
-    handleSubmit,
-    isLoading
-  } = useChat({
+  const { messages, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
-    onError: (error) => console.error(error),
+    onError: error => console.error(error),
   });
 
   const submitHandler = handleSubmit;
@@ -34,10 +27,7 @@ export function AnotherComponent() {
 
 export function ComponentWithAlias() {
   const [chatInput, setChatInput] = useState('');
-  const {
-    messages,
-    handleSubmit
-  } = useChat();
+  const { messages, handleSubmit } = useChat();
 
   const value = chatInput;
   const handler = e => setChatInput(e.target.value);
@@ -46,9 +36,7 @@ export function ComponentWithAlias() {
 
 export function PartialExtraction() {
   const [input, setInput] = useState('');
-  const {
-    handleSubmit
-  } = useChat({
+  const { handleSubmit } = useChat({
     api: '/api/chat',
   });
 
@@ -57,9 +45,7 @@ export function PartialExtraction() {
 
 export function OnlyHandleInputChange() {
   const [input, setInput] = useState('');
-  const {
-    messages
-  } = useChat();
+  const { messages } = useChat();
   return e => setInput(e.target.value);
 }
 

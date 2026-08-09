@@ -4,6 +4,7 @@
 # ===== CORE LAYER =====
 packages/core/ @khulnasoft/ai-toolkit-core
 packages/core/ai/ @khulnasoft/ai-toolkit-core
+packages/core/runtime/ @khulnasoft/ai-toolkit-core
 
 # ===== PROVIDER LAYER =====
 packages/providers/ @khulnasoft/ai-toolkit-providers
@@ -38,6 +39,7 @@ packages/mcp/ @khulnasoft/ai-mcp
 # ===== SPECIAL & INFRASTRUCTURE =====
 packages/special/ @khulnasoft/ai-toolkit-core
 packages/validation/ @khulnasoft/ai-toolkit-core
+packages/validation/capabilities/ @khulnasoft/ai-toolkit-core
 packages/infrastructure/ @khulnasoft/ai-toolkit-infrastructure
 
 # ===== EXAMPLES =====
@@ -51,6 +53,9 @@ examples/05-production-apps/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-
 # ===== DOCUMENTATION =====
 apps/docs/ @khulnasoft/documentation-team
 apps/www/ @khulnasoft/marketing-team
+apps/playground/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
+apps/ @khulnasoft/ai-toolkit-maintainers
+architecture/ @khulnasoft/ai-toolkit-maintainers
 
 # ===== CONFIGURATION & CI/CD =====
 .github/ @khulnasoft/devops-team

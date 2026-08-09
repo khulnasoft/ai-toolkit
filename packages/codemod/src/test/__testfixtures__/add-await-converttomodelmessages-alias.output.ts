@@ -5,4 +5,3 @@ async function processMessages(uiMessages: any[]) {
   const modelMessages = await toModel(uiMessages);
   return modelMessages;
 }
-

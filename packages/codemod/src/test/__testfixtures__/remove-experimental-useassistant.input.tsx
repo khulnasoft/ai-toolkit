@@ -2,8 +2,9 @@
 import { useAssistant, Message } from 'ai/react';
 
 export default function Page() {
-  const { status, messages, input, submitMessage, handleInputChange } =
-    useAssistant({ api: '/api/assistant' });
+  const { status, messages, input, submitMessage, handleInputChange } = useAssistant({
+    api: '/api/assistant',
+  });
 
   return (
     <div className="flex flex-col gap-2">

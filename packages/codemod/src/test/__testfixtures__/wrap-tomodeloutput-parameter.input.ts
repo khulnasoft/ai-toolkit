@@ -49,7 +49,7 @@ const funcTool = tool({
   description: 'Func tool',
   inputSchema: z.object({ input: z.string() }),
   execute: async ({ input }) => input,
-  toModelOutput: function(result) {
+  toModelOutput: function (result) {
     return [{ type: 'text', text: result }];
   },
 });

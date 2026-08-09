@@ -1,10 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import {
-  customProvider,
-  defaultEmbeddingSettingsMiddleware,
-  embed,
-  wrapEmbeddingModel,
-} from 'ai';
+import { customProvider, defaultEmbeddingSettingsMiddleware, embed, wrapEmbeddingModel } from 'ai';
 import { print } from '../../lib/print';
 import { run } from '../../lib/run';
 

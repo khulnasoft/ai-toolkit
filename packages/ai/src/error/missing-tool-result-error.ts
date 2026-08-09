@@ -14,9 +14,7 @@ export class MissingToolResultsError extends AITOOLKITError {
       name,
       message: `Tool result${
         toolCallIds.length > 1 ? 's are' : ' is'
-      } missing for tool call${toolCallIds.length > 1 ? 's' : ''} ${toolCallIds.join(
-        ', ',
-      )}.`,
+      } missing for tool call${toolCallIds.length > 1 ? 's' : ''} ${toolCallIds.join(', ')}.`,
     });
 
     this.toolCallIds = toolCallIds;

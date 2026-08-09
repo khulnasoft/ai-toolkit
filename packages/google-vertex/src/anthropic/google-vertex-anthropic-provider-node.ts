@@ -26,9 +26,7 @@ export function createVertexAnthropic(
   return createVertexAnthropicOriginal({
     ...options,
     headers: async () => ({
-      Authorization: `Bearer ${await generateAuthToken(
-        options.googleAuthOptions,
-      )}`,
+      Authorization: `Bearer ${await generateAuthToken(options.googleAuthOptions)}`,
       ...(await resolve(options.headers)),
     }),
   });

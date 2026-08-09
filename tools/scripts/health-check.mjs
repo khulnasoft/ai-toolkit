@@ -66,8 +66,7 @@ check('turbo is installed', () => {
 });
 
 check('Root package.json exists', () => {
-  if (!fs.existsSync(path.join(ROOT, 'package.json')))
-    throw new Error('package.json not found');
+  if (!fs.existsSync(path.join(ROOT, 'package.json'))) throw new Error('package.json not found');
 });
 
 check('pnpm-workspace.yaml exists', () => {
@@ -76,17 +75,23 @@ check('pnpm-workspace.yaml exists', () => {
 });
 
 check('turbo.json exists', () => {
-  if (!fs.existsSync(path.join(ROOT, 'turbo.json')))
-    throw new Error('turbo.json not found');
+  if (!fs.existsSync(path.join(ROOT, 'turbo.json'))) throw new Error('turbo.json not found');
 });
 
 check('CODEOWNERS exists', () => {
-  if (!fs.existsSync(path.join(ROOT, 'CODEOWNERS')))
-    throw new Error('CODEOWNERS not found');
+  if (!fs.existsSync(path.join(ROOT, 'CODEOWNERS'))) throw new Error('CODEOWNERS not found');
 });
 
 check('Domain directories exist', () => {
-  const domains = ['core', 'providers', 'adapters', 'mcp', 'special', 'validation', 'infrastructure'];
+  const domains = [
+    'core',
+    'providers',
+    'adapters',
+    'mcp',
+    'special',
+    'validation',
+    'infrastructure',
+  ];
   const missing = domains.filter(d => !fs.existsSync(path.join(ROOT, 'packages', d)));
   if (missing.length > 0) throw new Error(`Missing: packages/${missing.join(', packages/')}`);
 });

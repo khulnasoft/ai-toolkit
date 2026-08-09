@@ -80,8 +80,6 @@ async function makePokeApiRequest<T>(path: string): Promise<T | null> {
 function formatPokemonData(pokemon: Pokemon) {
   return [
     `Name: ${pokemon.name}`,
-    `Abilities: ${pokemon.abilities
-      .map(ability => ability.ability.name)
-      .join(', ')}`,
+    `Abilities: ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}`,
   ].join('\n');
 }

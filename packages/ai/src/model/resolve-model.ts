@@ -21,10 +21,7 @@ import { ImageModel } from '../types/image-model';
 
 export function resolveLanguageModel(model: LanguageModel): LanguageModelV3 {
   if (typeof model !== 'string') {
-    if (
-      model.specificationVersion !== 'v3' &&
-      model.specificationVersion !== 'v2'
-    ) {
+    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -41,10 +38,7 @@ export function resolveLanguageModel(model: LanguageModel): LanguageModelV3 {
 
 export function resolveEmbeddingModel(model: EmbeddingModel): EmbeddingModelV3 {
   if (typeof model !== 'string') {
-    if (
-      model.specificationVersion !== 'v3' &&
-      model.specificationVersion !== 'v2'
-    ) {
+    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -63,10 +57,7 @@ export function resolveTranscriptionModel(
   model: TranscriptionModel,
 ): TranscriptionModelV3 | undefined {
   if (typeof model !== 'string') {
-    if (
-      model.specificationVersion !== 'v3' &&
-      model.specificationVersion !== 'v2'
-    ) {
+    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -80,14 +71,9 @@ export function resolveTranscriptionModel(
   return getGlobalProvider().transcriptionModel?.(model);
 }
 
-export function resolveSpeechModel(
-  model: SpeechModel,
-): SpeechModelV3 | undefined {
+export function resolveSpeechModel(model: SpeechModel): SpeechModelV3 | undefined {
   if (typeof model !== 'string') {
-    if (
-      model.specificationVersion !== 'v3' &&
-      model.specificationVersion !== 'v2'
-    ) {
+    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -103,10 +89,7 @@ export function resolveSpeechModel(
 
 export function resolveImageModel(model: ImageModel): ImageModelV3 {
   if (typeof model !== 'string') {
-    if (
-      model.specificationVersion !== 'v3' &&
-      model.specificationVersion !== 'v2'
-    ) {
+    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,

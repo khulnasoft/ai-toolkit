@@ -146,6 +146,24 @@ import * as z4 from 'zod/v4';
 Never use `JSON.parse` directly in production code to prevent security risks.
 Instead use `parseJSON` or `safeParseJSON` from `@ai-toolkit/provider-utils`.
 
+### Package Export-Condition Conventions (ADR-006)
+
+- Every public package `exports` map must declare `types`, `import`, `require`, and `default` conditions on the `.` entry.
+- Declare `browser` (and `worker`/`edge` where supported) conditions as aliases of the runtime-neutral build, or omit them when the package is Node-only.
+- Runtime-neutral packages (`core`, `validation`) must not reference Node-only entry points under any condition.
+- Reference example: `packages/core/runtime/package.json`.
+
+### Runtime-Neutral Node Import Rule (ADR-004, ADR-008)
+
+- Packages in the `core` and `validation` domains must not import Node builtins (`node:*` or bare like `fs`, `os`) in source, and must not depend on Node builtin packages.
+- Enforcement: `pnpm validate-structure` scans both `dependencies` and source `import` statements for `core`/`validation` packages.
+- `@ai-toolkit/runtime` is the canonical browser-safe contract module; `createRuntimeContext` provides capability detection rather than assuming Node globals.
+
+### Package Governance Metadata (ADR-007)
+
+- Every package declares `stability` (`stable` | `beta` | `alpha` | `internal`) and `owners` (team handles) in `package.json`.
+- Missing metadata is a `validate-structure` warning during migration and an error at the end of the migration.
+
 ### File Naming Conventions
 
 - Source files: `kebab-case.ts`

@@ -14,9 +14,9 @@ export async function POST(req: Request) {
 
 // Another example
 const stream = streamText({ model, prompt });
-const response = stream.toUIMessageStreamResponse({ 
+const response = stream.toUIMessageStreamResponse({
   status: 200,
-  headers: { 'custom': 'header' }
+  headers: { custom: 'header' },
 });
 
 const result1 = result.toUIMessageStreamResponse({

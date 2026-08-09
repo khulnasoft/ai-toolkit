@@ -1,9 +1,5 @@
 import { ReasoningUIPart } from 'ai';
-import {
-  Reasoning,
-  ReasoningContent,
-  ReasoningTrigger,
-} from './ai-elements/reasoning';
+import { Reasoning, ReasoningContent, ReasoningTrigger } from './ai-elements/reasoning';
 
 export const ReasoningView = ({ part }: { part: ReasoningUIPart }) => {
   return (

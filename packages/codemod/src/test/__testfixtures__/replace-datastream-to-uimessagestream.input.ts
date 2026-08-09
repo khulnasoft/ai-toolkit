@@ -1,9 +1,5 @@
 // @ts-nocheck
-import {
-  createDataStreamResponse,
-  createDataStream,
-  DataStreamWriter,
-} from 'ai';
+import { createDataStreamResponse, createDataStream, DataStreamWriter } from 'ai';
 
 async function handler() {
   const stream = await createDataStream();

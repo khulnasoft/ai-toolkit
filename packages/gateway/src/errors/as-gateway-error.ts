@@ -2,10 +2,7 @@ import { APICallError } from '@ai-toolkit/provider';
 import { extractApiCallResponse, GatewayError } from '.';
 import { createGatewayErrorFromResponse } from './create-gateway-error';
 
-export function asGatewayError(
-  error: unknown,
-  authMethod?: 'api-key' | 'oidc',
-) {
+export function asGatewayError(error: unknown, authMethod?: 'api-key' | 'oidc') {
   if (GatewayError.isInstance(error)) {
     return error;
   }
@@ -24,9 +21,7 @@ export function asGatewayError(
     response: {},
     statusCode: 500,
     defaultMessage:
-      error instanceof Error
-        ? `Gateway request failed: ${error.message}`
-        : 'Unknown Gateway error',
+      error instanceof Error ? `Gateway request failed: ${error.message}` : 'Unknown Gateway error',
     cause: error,
     authMethod,
   });

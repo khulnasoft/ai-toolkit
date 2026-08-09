@@ -14,12 +14,7 @@ export function parseDef(
   const seenItem = refs.seen.get(def);
 
   if (refs.override) {
-    const overrideResult = refs.override?.(
-      def,
-      refs,
-      seenItem,
-      forceResolution,
-    );
+    const overrideResult = refs.override?.(def, refs, seenItem, forceResolution);
 
     if (overrideResult !== ignoreOverride) {
       return overrideResult;
@@ -84,9 +79,7 @@ const get$ref = (
         item.path.every((value, index) => refs.currentPath[index] === value)
       ) {
         console.warn(
-          `Recursive reference detected at ${refs.currentPath.join(
-            '/',
-          )}! Defaulting to any`,
+          `Recursive reference detected at ${refs.currentPath.join('/')}! Defaulting to any`,
         );
 
         return parseAnyDef();
@@ -97,11 +90,7 @@ const get$ref = (
   }
 };
 
-const addMeta = (
-  def: ZodTypeDef,
-  refs: Refs,
-  jsonSchema: JsonSchema7Type,
-): JsonSchema7Type => {
+const addMeta = (def: ZodTypeDef, refs: Refs, jsonSchema: JsonSchema7Type): JsonSchema7Type => {
   if (def.description) {
     jsonSchema.description = def.description;
   }

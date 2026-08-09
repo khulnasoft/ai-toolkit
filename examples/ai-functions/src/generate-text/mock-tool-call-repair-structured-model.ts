@@ -42,12 +42,7 @@ run(async () => {
     },
     prompt: 'What are the tourist attractions in San Francisco?',
 
-    experimental_repairToolCall: async ({
-      toolCall,
-      tools,
-      inputSchema,
-      error,
-    }) => {
+    experimental_repairToolCall: async ({ toolCall, tools, inputSchema, error }) => {
       if (NoSuchToolError.isInstance(error)) {
         return null; // do not attempt to fix invalid tool names
       }
@@ -62,9 +57,7 @@ run(async () => {
           `The model tried to call the tool "${
             toolCall.toolName
           }" with the following arguments: ${JSON.stringify(toolCall.input)}.`,
-          `The tool accepts the following schema: ${JSON.stringify(
-            inputSchema(toolCall),
-          )}.`,
+          `The tool accepts the following schema: ${JSON.stringify(inputSchema(toolCall))}.`,
           'Please try to fix the arguments.',
         ].join('\n'),
       });

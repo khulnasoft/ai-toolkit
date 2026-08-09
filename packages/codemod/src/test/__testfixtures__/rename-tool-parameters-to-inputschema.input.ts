@@ -33,4 +33,4 @@ const tools = {
       return `Search results for ${query}`;
     },
   },
-}; 
+};

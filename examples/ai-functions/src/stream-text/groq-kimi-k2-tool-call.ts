@@ -33,9 +33,7 @@ run(async () => {
       case 'tool-call': {
         toolCalls.push(delta);
 
-        process.stdout.write(
-          `\nTool call: '${delta.toolName}' ${JSON.stringify(delta.input)}`,
-        );
+        process.stdout.write(`\nTool call: '${delta.toolName}' ${JSON.stringify(delta.input)}`);
         break;
       }
 
@@ -51,9 +49,7 @@ run(async () => {
         toolResponses.push(transformedDelta);
 
         process.stdout.write(
-          `\nTool response: '${delta.toolName}' ${JSON.stringify(
-            delta.output,
-          )}`,
+          `\nTool response: '${delta.toolName}' ${JSON.stringify(delta.output)}`,
         );
         break;
       }

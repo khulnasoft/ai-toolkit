@@ -98,11 +98,7 @@ const v4Bundle = bundle.filter(codemod => codemod.startsWith('v4/'));
 const v5Bundle = bundle.filter(codemod => codemod.startsWith('v5/'));
 const v6Bundle = bundle.filter(codemod => codemod.startsWith('v6/'));
 
-function runCodemods(
-  codemods: string[],
-  options: TransformOptions,
-  versionLabel: string,
-) {
+function runCodemods(codemods: string[], options: TransformOptions, versionLabel: string) {
   const cwd = process.cwd();
   log(`Starting ${versionLabel} codemods...`);
   const modCount = codemods.length;
@@ -129,9 +125,7 @@ function runCodemods(
   bar.stop();
 
   if (allErrors.length > 0) {
-    log(
-      `Some ${versionLabel} codemods did not apply successfully to all files. Details:`,
-    );
+    log(`Some ${versionLabel} codemods did not apply successfully to all files. Details:`);
     allErrors.forEach(({ transform, filename, summary }) => {
       error(`codemod=${transform}, path=${filename}, summary=${summary}`);
     });

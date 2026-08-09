@@ -31,11 +31,11 @@ interface GeneratorConfig {
 // Class properties
 class GeneratorService {
   private generator: IDGenerator;
-  
+
   constructor(gen: IDGenerator) {
     this.generator = gen;
   }
-  
+
   getGenerator(): IDGenerator {
     return this.generator;
   }
@@ -51,7 +51,7 @@ const config: {
   secondary?: IDGenerator;
 } = {
   primary: generator1,
-  secondary: generator2
+  secondary: generator2,
 };
 
 // Should NOT be transformed - different package

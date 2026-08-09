@@ -30,38 +30,32 @@ const features = [
   {
     icon: MessageSquare,
     title: 'Chat & Completions',
-    description:
-      'Generate text, stream responses, and build conversational interfaces with ease.',
+    description: 'Generate text, stream responses, and build conversational interfaces with ease.',
   },
   {
     icon: Sparkles,
     title: 'Structured Output',
-    description:
-      'Use Zod or JSON Schema to get type-safe, validated responses from LLMs.',
+    description: 'Use Zod or JSON Schema to get type-safe, validated responses from LLMs.',
   },
   {
     icon: Blocks,
     title: 'Tools & Function Calling',
-    description:
-      'Define tools that let AI models take actions and call your functions.',
+    description: 'Define tools that let AI models take actions and call your functions.',
   },
   {
     icon: Cpu,
     title: 'Model Middleware',
-    description:
-      'Add retry logic, caching, logging, and more with composable middleware.',
+    description: 'Add retry logic, caching, logging, and more with composable middleware.',
   },
   {
     icon: Layers,
     title: 'Multi-Modal',
-    description:
-      'Generate images, transcribe speech, and embed content seamlessly.',
+    description: 'Generate images, transcribe speech, and embed content seamlessly.',
   },
   {
     icon: Webhook,
     title: 'Server Actions',
-    description:
-      'Integrate with Next.js Server Actions and React Server Components.',
+    description: 'Integrate with Next.js Server Actions and React Server Components.',
   },
 ];
 
@@ -145,12 +139,11 @@ export default function LandingPage() {
             <span>Open-source AI toolkit for developers</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            The Framework Agnostic{' '}
-            <span className="text-primary">AI Toolkit</span>
+            The Framework Agnostic <span className="text-primary">AI Toolkit</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12">
-            Build AI-powered applications and agents with React, Next.js, Vue,
-            Svelte, Node.js, and more. Unified APIs for every provider.
+            Build AI-powered applications and agents with React, Next.js, Vue, Svelte, Node.js, and
+            more. Unified APIs for every provider.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/playground">
@@ -256,12 +249,8 @@ export default function LandingPage() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Simple, unified API
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              One code, works with any provider
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, unified API</h2>
+            <p className="text-lg text-muted-foreground">One code, works with any provider</p>
           </div>
           <div className="max-w-3xl mx-auto rounded-xl border bg-card p-6">
             <pre className="text-sm overflow-x-auto">
@@ -288,19 +277,13 @@ const result2 = await generateText({
       {/* CTA Section */}
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start building AI apps today
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Start building AI apps today</h2>
           <p className="text-xl mb-12 opacity-90">
             Join thousands of developers building with AI Toolkit
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/playground">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="text-lg px-8 py-6"
-              >
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
                 Try the Playground
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -330,10 +313,7 @@ const result2 = await generateText({
             </div>
             <p className="text-sm text-muted-foreground">
               Built by{' '}
-              <a
-                href="https://vercel.com"
-                className="underline hover:text-primary"
-              >
+              <a href="https://vercel.com" className="underline hover:text-primary">
                 Vercel
               </a>
               . Open-source under Apache-2.0 license.

@@ -16,7 +16,7 @@ for await (const part of result.fullStream) {
       console.log('Media type:', part.file.mediaType);
       console.log('Base64:', part.file.base64);
       console.log('Uint8Array:', part.file.uint8Array);
-      
+
       // Direct identifier usage in function calls
       processFile(part.file);
       break;
@@ -39,8 +39,8 @@ const fileStreamPart = {
     mediaType: 'image/png',
     data: new Uint8Array([1, 2, 3]),
     base64: 'AQID',
-    uint8Array: new Uint8Array([1, 2, 3])
-  }
+    uint8Array: new Uint8Array([1, 2, 3]),
+  },
 };
 
 import type { ModelMessage } from 'ai';
@@ -60,4 +60,4 @@ export const TEST_PROMPTS: Record<string, ModelMessage> = {
       },
     ],
   },
-}
+};

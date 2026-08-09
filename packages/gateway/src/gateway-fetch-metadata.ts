@@ -32,9 +32,7 @@ export class GatewayFetchMetadata {
       const { value } = await getFromApi({
         url: `${this.config.baseURL}/config`,
         headers: await resolve(this.config.headers()),
-        successfulResponseHandler: createJsonResponseHandler(
-          gatewayAvailableModelsResponseSchema,
-        ),
+        successfulResponseHandler: createJsonResponseHandler(gatewayAvailableModelsResponseSchema),
         failedResponseHandler: createJsonErrorResponseHandler({
           errorSchema: z.any(),
           errorToMessage: data => data,
@@ -55,9 +53,7 @@ export class GatewayFetchMetadata {
       const { value } = await getFromApi({
         url: `${baseUrl.origin}/v1/credits`,
         headers: await resolve(this.config.headers()),
-        successfulResponseHandler: createJsonResponseHandler(
-          gatewayCreditsResponseSchema,
-        ),
+        successfulResponseHandler: createJsonResponseHandler(gatewayCreditsResponseSchema),
         failedResponseHandler: createJsonErrorResponseHandler({
           errorSchema: z.any(),
           errorToMessage: data => data,
@@ -87,18 +83,12 @@ const gatewayAvailableModelsResponseSchema = lazySchema(() =>
               input_cache_read: z.string().nullish(),
               input_cache_write: z.string().nullish(),
             })
-            .transform(
-              ({ input, output, input_cache_read, input_cache_write }) => ({
-                input,
-                output,
-                ...(input_cache_read
-                  ? { cachedInputTokens: input_cache_read }
-                  : {}),
-                ...(input_cache_write
-                  ? { cacheCreationInputTokens: input_cache_write }
-                  : {}),
-              }),
-            )
+            .transform(({ input, output, input_cache_read, input_cache_write }) => ({
+              input,
+              output,
+              ...(input_cache_read ? { cachedInputTokens: input_cache_read } : {}),
+              ...(input_cache_write ? { cacheCreationInputTokens: input_cache_write } : {}),
+            }))
             .nullish(),
           specification: z.object({
             specificationVersion: z.literal('v3'),

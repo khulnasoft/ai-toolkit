@@ -124,9 +124,7 @@ server.registerTool(
         content: [
           {
             type: 'text',
-            text: `Registration failed: ${
-              error instanceof Error ? error.message : String(error)
-            }`,
+            text: `Registration failed: ${error instanceof Error ? error.message : String(error)}`,
           },
         ],
         isError: true,
@@ -152,7 +150,5 @@ app.post('/messages', async (req, res) => {
 });
 
 app.listen(8083, () => {
-  console.log(
-    'MCP elicitation example server listening on http://localhost:8083',
-  );
+  console.log('MCP elicitation example server listening on http://localhost:8083');
 });

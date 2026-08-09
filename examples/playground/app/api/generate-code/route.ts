@@ -5,12 +5,7 @@ import { getProviderModel } from '@/lib/providers';
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const {
-    prompt,
-    providerId,
-    modelId,
-    language = 'typescript',
-  } = await req.json();
+  const { prompt, providerId, modelId, language = 'typescript' } = await req.json();
 
   try {
     const model = getProviderModel(providerId, modelId);

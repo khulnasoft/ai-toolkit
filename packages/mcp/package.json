@@ -73,5 +73,9 @@
   "keywords": [
     "ai",
     "mcp"
+  ],
+  "stability": "beta",
+  "owners": [
+    "@ai-toolkit/mcp"
   ]
 }

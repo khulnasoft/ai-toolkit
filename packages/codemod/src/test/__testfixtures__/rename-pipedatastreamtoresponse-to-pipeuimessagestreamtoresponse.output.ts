@@ -11,7 +11,7 @@ export async function handler(req: Request, res: Response) {
 
   // Method call
   result.pipeUIMessageStreamToResponse(res);
-  
+
   // Also test standalone function import
   pipeUIMessageStreamToResponse(result.toDataStream(), res);
-} 
+}

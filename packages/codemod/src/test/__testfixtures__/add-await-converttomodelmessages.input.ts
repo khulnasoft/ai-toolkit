@@ -50,4 +50,3 @@ async function alreadyAwaited(messages: any[]) {
   const modelMessages = await convertToModelMessages(messages);
   return modelMessages;
 }
-

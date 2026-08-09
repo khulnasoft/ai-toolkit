@@ -1,7 +1,4 @@
-import {
-  LanguageModelV3StreamPart,
-  SharedV3Warning,
-} from '@ai-toolkit/provider';
+import { LanguageModelV3StreamPart, SharedV3Warning } from '@ai-toolkit/provider';
 import {
   getErrorMessage,
   IdGenerator,
@@ -135,9 +132,7 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   let toolResultsStreamController: ReadableStreamDefaultController<
     SingleRequestTextStreamPart<TOOLS>
   > | null = null;
-  const toolResultsStream = new ReadableStream<
-    SingleRequestTextStreamPart<TOOLS>
-  >({
+  const toolResultsStream = new ReadableStream<SingleRequestTextStreamPart<TOOLS>>({
     start(controller) {
       toolResultsStreamController = controller;
     },
@@ -153,9 +148,8 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   const toolCallsByToolCallId = new Map<string, TypedToolCall<TOOLS>>();
 
   let canClose = false;
-  let finishChunk:
-    | (SingleRequestTextStreamPart<TOOLS> & { type: 'finish' })
-    | undefined = undefined;
+  let finishChunk: (SingleRequestTextStreamPart<TOOLS> & { type: 'finish' }) | undefined =
+    undefined;
 
   function attemptClose() {
     // close the tool results controller if no more outstanding tool calls
@@ -178,9 +172,7 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   >({
     async transform(
       chunk: LanguageModelV3StreamPart,
-      controller: TransformStreamDefaultController<
-        SingleRequestTextStreamPart<TOOLS>
-      >,
+      controller: TransformStreamDefaultController<SingleRequestTextStreamPart<TOOLS>>,
     ) {
       const chunkType = chunk.type;
 
