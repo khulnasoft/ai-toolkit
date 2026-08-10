@@ -16,22 +16,22 @@
   ],
   "references": [
     {
-      "path": "../anthropic"
+      "path": "../../core/provider-utils"
     },
     {
-      "path": "../../google"
-    },
-    {
-      "path": "../openai-compatible"
+      "path": "../../infrastructure/test-server"
     },
     {
       "path": "../../validation/provider"
     },
     {
-      "path": "../../core/provider-utils"
+      "path": "../anthropic"
     },
     {
-      "path": "../../infrastructure/test-server"
+      "path": "../google"
+    },
+    {
+      "path": "../openai-compatible"
     }
   ]
 }

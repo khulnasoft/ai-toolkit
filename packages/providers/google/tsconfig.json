@@ -14,13 +14,13 @@
   ],
   "references": [
     {
-      "path": "../../validation/provider"
-    },
-    {
       "path": "../../core/provider-utils"
     },
     {
       "path": "../../infrastructure/test-server"
+    },
+    {
+      "path": "../../validation/provider"
     }
   ]
 }

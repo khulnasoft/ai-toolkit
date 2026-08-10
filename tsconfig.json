@@ -1,19 +1,16 @@
 {
   "references": [
     {
-      "path": "packages/core/runtime"
-    },
-    {
-      "path": "packages/validation/capabilities"
-    },
-    {
       "path": "packages/core/ai"
     },
     {
-      "path": "packages/providers/amazon-bedrock"
+      "path": "packages/core/provider-utils"
     },
     {
-      "path": "packages/adapters/angular"
+      "path": "packages/core/runtime"
+    },
+    {
+      "path": "packages/providers/amazon-bedrock"
     },
     {
       "path": "packages/providers/anthropic"
@@ -34,9 +31,6 @@
       "path": "packages/providers/cerebras"
     },
     {
-      "path": "packages/codemod"
-    },
-    {
       "path": "packages/providers/cohere"
     },
     {
@@ -49,9 +43,6 @@
       "path": "packages/providers/deepseek"
     },
     {
-      "path": "packages/devtools"
-    },
-    {
       "path": "packages/providers/elevenlabs"
     },
     {
@@ -59,9 +50,6 @@
     },
     {
       "path": "packages/providers/fireworks"
-    },
-    {
-      "path": "packages/special/gateway"
     },
     {
       "path": "packages/providers/gladia"
@@ -82,22 +70,10 @@
       "path": "packages/providers/hume"
     },
     {
-      "path": "packages/special/khulnasoft"
-    },
-    {
-      "path": "packages/langchain"
-    },
-    {
-      "path": "packages/llamaindex"
-    },
-    {
       "path": "packages/providers/lmnt"
     },
     {
       "path": "packages/providers/luma"
-    },
-    {
-      "path": "packages/mcp"
     },
     {
       "path": "packages/providers/mistral"
@@ -115,19 +91,22 @@
       "path": "packages/providers/prodia"
     },
     {
-      "path": "packages/core/provider-utils"
-    },
-    {
-      "path": "packages/validation/provider"
-    },
-    {
-      "path": "packages/adapters/react"
-    },
-    {
       "path": "packages/providers/replicate"
     },
     {
       "path": "packages/providers/revai"
+    },
+    {
+      "path": "packages/providers/togetherai"
+    },
+    {
+      "path": "packages/providers/xai"
+    },
+    {
+      "path": "packages/adapters/angular"
+    },
+    {
+      "path": "packages/adapters/react"
     },
     {
       "path": "packages/adapters/rsc"
@@ -136,82 +115,103 @@
       "path": "packages/adapters/svelte"
     },
     {
-      "path": "packages/infrastructure/test-server"
+      "path": "packages/adapters/vue"
     },
     {
-      "path": "packages/providers/togetherai"
+      "path": "packages/special/gateway"
+    },
+    {
+      "path": "packages/special/khulnasoft"
+    },
+    {
+      "path": "packages/validation/capabilities"
+    },
+    {
+      "path": "packages/validation/provider"
     },
     {
       "path": "packages/validation/valibot"
     },
     {
-      "path": "packages/adapters/vue"
+      "path": "packages/infrastructure/test-server"
     },
     {
-      "path": "packages/providers/xai"
+      "path": "packages/codemod"
     },
     {
-      "path": "examples/ai-functions"
+      "path": "packages/devtools"
     },
     {
-      "path": "examples/angular"
+      "path": "packages/langchain"
     },
     {
-      "path": "examples/express"
+      "path": "packages/llamaindex"
     },
     {
-      "path": "examples/fastify"
+      "path": "packages/mcp"
     },
     {
-      "path": "examples/hono"
+      "path": "examples/01-foundations/ai-functions"
     },
     {
-      "path": "examples/mcp"
+      "path": "examples/01-foundations/express"
     },
     {
-      "path": "examples/nest"
+      "path": "examples/01-foundations/fastify"
     },
     {
-      "path": "examples/next-agent"
+      "path": "examples/01-foundations/hono"
     },
     {
-      "path": "examples/next-fastapi"
+      "path": "examples/01-foundations/node-http-server"
     },
     {
-      "path": "examples/next-google-vertex"
+      "path": "examples/02-framework-integration/angular"
     },
     {
-      "path": "examples/next-langchain"
+      "path": "examples/02-framework-integration/nest"
     },
     {
-      "path": "examples/next-openai-kasada-bot-protection"
+      "path": "examples/02-framework-integration/next-agent"
     },
     {
-      "path": "examples/next-openai-pages"
+      "path": "examples/02-framework-integration/next-fastapi"
     },
     {
-      "path": "examples/next-openai-telemetry-sentry"
+      "path": "examples/02-framework-integration/next-langchain"
     },
     {
-      "path": "examples/next-openai-telemetry"
+      "path": "examples/02-framework-integration/next-openai-pages"
     },
     {
-      "path": "examples/next-openai-upstash-rate-limits"
+      "path": "examples/02-framework-integration/next-openai"
     },
     {
-      "path": "examples/next-openai"
+      "path": "examples/02-framework-integration/next"
     },
     {
-      "path": "examples/next"
+      "path": "examples/02-framework-integration/nuxt-openai"
     },
     {
-      "path": "examples/node-http-server"
+      "path": "examples/03-integrations/mcp"
     },
     {
-      "path": "examples/nuxt-openai"
+      "path": "examples/03-integrations/next-google-vertex"
     },
     {
-      "path": "examples/playground"
+      "path": "examples/03-integrations/next-openai-kasada-bot-protection"
+    },
+    {
+      "path": "examples/03-integrations/next-openai-telemetry-sentry"
+    },
+    {
+      "path": "examples/03-integrations/next-openai-telemetry"
+    },
+    {
+      "path": "examples/03-integrations/next-openai-upstash-rate-limits"
+    },
+    {
+      "path": "examples/04-tools/playground"
     }
   ],
   "include": [],

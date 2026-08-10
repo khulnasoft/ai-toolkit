@@ -3,14 +3,8 @@
   "compilerOptions": {
     "target": "ES2018",
     "stripInternal": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "@types/node"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["@types/node"],
     "composite": true,
     "rootDir": ".",
     "outDir": "dist"
@@ -25,6 +19,9 @@
   ],
   "references": [
     {
+      "path": "../../infrastructure/test-server"
+    },
+    {
       "path": "../../special/gateway"
     },
     {
@@ -32,9 +29,6 @@
     },
     {
       "path": "../provider-utils"
-    },
-    {
-      "path": "../../infrastructure/test-server"
     }
   ]
 }

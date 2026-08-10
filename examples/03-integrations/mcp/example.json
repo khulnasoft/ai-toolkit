@@ -1,0 +1,10 @@
+{
+  "name": "mcp",
+  "title": "MCP Integration",
+  "category": "03-integrations",
+  "categoryOrder": 3,
+  "framework": "node",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with MCP to convert between MCP and AI TOOLKIT tool calls.",
+  "tags": ["mcp", "tools", "protocol"]
+}

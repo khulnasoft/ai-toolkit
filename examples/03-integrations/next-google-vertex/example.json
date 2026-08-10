@@ -1,0 +1,10 @@
+{
+  "name": "next-google-vertex",
+  "title": "Google Vertex AI",
+  "category": "03-integrations",
+  "categoryOrder": 3,
+  "framework": "nextjs",
+  "primaryProvider": "google-vertex",
+  "description": "Use the AI TOOLKIT with Next.js and Google Vertex AI to validate the Google Vertex provider on the Edge runtime.",
+  "tags": ["nextjs", "google-vertex", "edge-runtime", "cloud"]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "next-openai",
+  "title": "Next.js + OpenAI Chat",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with Next.js and OpenAI to create a ChatGPT-like AI-powered streaming chat bot.",
+  "tags": ["nextjs", "openai", "chat", "streaming"]
+}

@@ -5,24 +5,19 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules",
-    "tsup.config.ts"
-  ],
+  "exclude": ["dist", "build", "node_modules", "tsup.config.ts"],
   "references": [
-    {
-      "path": "../openai-compatible"
-    },
-    {
-      "path": "../../validation/provider"
-    },
     {
       "path": "../../core/provider-utils"
     },
     {
       "path": "../../infrastructure/test-server"
+    },
+    {
+      "path": "../../validation/provider"
+    },
+    {
+      "path": "../openai-compatible"
     }
   ]
 }
