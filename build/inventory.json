@@ -1,233 +1,12 @@
 {
-  "generatedAt": "2026-08-09T16:13:57.451Z",
+  "generatedAt": "2026-08-10T22:41:44.718Z",
   "packages": [
     {
-      "name": "ai",
-      "dir": "packages/ai",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": "./src/index.ts",
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal",
-        "./test"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal",
-        "./test"
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/gateway",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@opentelemetry/api",
-          "version": "1.9.0",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:assert",
-          "node:events",
-          "node:fs",
-          "node:http",
-          "node:path"
-        ],
-        "usesGlobalFetch": true
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/gateway",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@opentelemetry/api",
-          "version": "1.9.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/amazon-bedrock",
-      "dir": "packages/amazon-bedrock",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./anthropic"
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./anthropic"
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/anthropic",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@smithy/eventstream-codec",
-          "version": "^4.0.1",
-          "kind": "external"
-        },
-        {
-          "name": "@smithy/util-utf8",
-          "version": "^4.0.0",
-          "kind": "external"
-        },
-        {
-          "name": "aws4fetch",
-          "version": "^1.0.20",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
-        "usesGlobalFetch": true
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/anthropic",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@smithy/eventstream-codec",
-          "version": "^4.0.1",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@smithy/util-utf8",
-          "version": "^4.0.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "aws4fetch",
-          "version": "^1.0.20",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
       "name": "@ai-toolkit/angular",
-      "dir": "packages/angular",
-      "domain": "legacy",
+      "dir": "packages/adapters/angular",
+      "domain": "adapters",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/adapters/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -276,13 +55,13 @@
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "@angular/core",
@@ -293,11 +72,11 @@
       ]
     },
     {
-      "name": "@ai-toolkit/anthropic",
-      "dir": "packages/anthropic",
-      "domain": "legacy",
+      "name": "@ai-toolkit/react",
+      "dir": "packages/adapters/react",
+      "domain": "adapters",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/adapters/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -307,21 +86,116 @@
       "types": "./dist/index.d.ts",
       "exports": [
         "./package.json",
-        ".",
-        "./internal"
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "swr",
+          "version": "^2.2.5",
+          "kind": "external"
+        },
+        {
+          "name": "throttleit",
+          "version": "2.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "swr",
+          "version": "^2.2.5",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "throttleit",
+          "version": "2.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/rsc",
+      "dir": "packages/adapters/rsc",
+      "domain": "adapters",
+      "workspaceGlobs": [
+        "packages/adapters/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/rsc-client.mjs",
+      "module": "./dist/rsc-client.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
       ],
       "conditions": [
         "import",
         "module",
-        "require",
+        "react-server",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        ".",
-        "./internal"
+        "."
       ],
       "dependencies": [
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
@@ -331,6 +205,16 @@
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace"
+        },
+        {
+          "name": "jsondiffpatch",
+          "version": "0.7.3",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external"
         },
         {
           "name": "zod",
@@ -340,7 +224,7 @@
       ],
       "runtimeAssumptions": {
         "nodeBuiltins": [
-          "node:fs"
+          "node:async_hooks"
         ],
         "usesGlobalFetch": false
       },
@@ -348,16 +232,34 @@
       "owners": null,
       "dependencyEdges": [
         {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
+        },
+        {
+          "name": "jsondiffpatch",
+          "version": "0.7.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external",
+          "direction": "external"
         },
         {
           "name": "zod",
@@ -368,11 +270,151 @@
       ]
     },
     {
-      "name": "@ai-toolkit/assemblyai",
-      "dir": "packages/assemblyai",
-      "domain": "legacy",
+      "name": "ai-core-e2e-next-server",
+      "dir": "packages/adapters/rsc/tests/e2e/next-server",
+      "domain": "adapters",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/adapters/rsc/tests/e2e/next-server"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "next",
+          "version": "15.5.9",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "rc",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "rc",
+          "kind": "external"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "next",
+          "version": "15.5.9",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "rc",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "rc",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/svelte",
+      "dir": "packages/adapters/svelte",
+      "domain": "adapters",
+      "workspaceGlobs": [
+        "packages/adapters/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "."
+      ],
+      "conditions": [
+        "svelte",
+        "types"
+      ],
+      "publicApi": [
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "svelte",
+          "version": "^5.31.0",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:url"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "svelte",
+          "version": "^5.31.0",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/vue",
+      "dir": "packages/adapters/vue",
+      "domain": "adapters",
+      "workspaceGlobs": [
+        "packages/adapters/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -395,184 +437,23 @@
       ],
       "dependencies": [
         {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace"
         },
         {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/azure",
-      "dir": "packages/azure",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai",
+          "name": "ai",
           "version": "workspace:*",
           "kind": "workspace"
         },
         {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/baseten",
-      "dir": "packages/baseten",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@basetenlabs/performance-client",
-          "version": "^0.0.10",
+          "name": "swrv",
+          "version": "^1.0.4",
           "kind": "external"
         },
         {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "vue",
+          "version": "^3.3.4",
           "kind": "external"
         }
       ],
@@ -584,183 +465,26 @@
       "owners": null,
       "dependencyEdges": [
         {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
-          "name": "@basetenlabs/performance-client",
-          "version": "^0.0.10",
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "swrv",
+          "version": "^1.0.4",
           "kind": "external",
           "direction": "external"
         },
         {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/black-forest-labs",
-      "dir": "packages/black-forest-labs",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/cerebras",
-      "dir": "packages/cerebras",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "vue",
+          "version": "^3.3.4",
           "kind": "external",
           "direction": "external"
         }
@@ -842,32 +566,42 @@
       ]
     },
     {
-      "name": "@ai-toolkit/cohere",
-      "dir": "packages/cohere",
-      "domain": "legacy",
+      "name": "ai",
+      "dir": "packages/core/ai",
+      "domain": "core",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/core/*"
       ],
       "version": "2.0.0",
       "private": false,
-      "source": null,
+      "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
       "exports": [
         "./package.json",
-        "."
+        ".",
+        "./internal",
+        "./test"
       ],
       "conditions": [
         "import",
+        "module",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        "."
+        ".",
+        "./internal",
+        "./test"
       ],
       "dependencies": [
+        {
+          "name": "@ai-toolkit/gateway",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
@@ -877,6 +611,11 @@
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace"
+        },
+        {
+          "name": "@opentelemetry/api",
+          "version": "1.9.0",
+          "kind": "external"
         },
         {
           "name": "zod",
@@ -886,24 +625,128 @@
       ],
       "runtimeAssumptions": {
         "nodeBuiltins": [
-          "node:fs"
+          "node:assert",
+          "node:events",
+          "node:fs",
+          "node:http",
+          "node:path"
         ],
-        "usesGlobalFetch": false
+        "usesGlobalFetch": true
       },
-      "stability": null,
-      "owners": null,
+      "stability": "stable",
+      "owners": [
+        "@khulnasoft/ai-toolkit-core"
+      ],
       "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/gateway",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-special"
+        },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
+        },
+        {
+          "name": "@opentelemetry/api",
+          "version": "1.9.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/provider-utils",
+      "dir": "packages/core/provider-utils",
+      "domain": "core",
+      "workspaceGlobs": [
+        "packages/core/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./test"
+      ],
+      "conditions": [
+        "import",
+        "module",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./test"
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@standard-schema/spec",
+          "version": "^1.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "eventsource-parser",
+          "version": "^3.0.6",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": true
+      },
+      "stability": "stable",
+      "owners": [
+        "@khulnasoft/ai-toolkit-core"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@standard-schema/spec",
+          "version": "^1.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "eventsource-parser",
+          "version": "^3.0.6",
+          "kind": "external",
+          "direction": "external"
         },
         {
           "name": "zod",
@@ -950,232 +793,6 @@
         "@ai-toolkit/core"
       ],
       "dependencyEdges": []
-    },
-    {
-      "name": "@ai-toolkit/deepgram",
-      "dir": "packages/deepgram",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/deepinfra",
-      "dir": "packages/deepinfra",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/deepseek",
-      "dir": "packages/deepseek",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
     },
     {
       "name": "@ai-toolkit/devtools",
@@ -1233,7 +850,7 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@hono/node-server",
@@ -1250,11 +867,11 @@
       ]
     },
     {
-      "name": "@ai-toolkit/elevenlabs",
-      "dir": "packages/elevenlabs",
-      "domain": "legacy",
+      "name": "@ai-toolkit/test-server",
+      "dir": "packages/infrastructure/test-server",
+      "domain": "infrastructure",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/infrastructure/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -1264,67 +881,47 @@
       "types": "./dist/index.d.ts",
       "exports": [
         "./package.json",
-        "."
+        ".",
+        "./with-vitest"
       ],
       "conditions": [
         "import",
+        "module",
         "require",
         "types"
       ],
       "publicApi": [
         "./package.json",
-        "."
+        ".",
+        "./with-vitest"
       ],
       "dependencies": [
         {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "msw",
+          "version": "^2.7.0",
           "kind": "external"
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": [],
         "usesGlobalFetch": false
       },
-      "stability": null,
-      "owners": null,
+      "stability": "internal",
+      "owners": [
+        "@khulnasoft/ai-toolkit-infrastructure"
+      ],
       "dependencyEdges": [
         {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "msw",
+          "version": "^2.7.0",
           "kind": "external",
           "direction": "external"
         }
       ]
     },
     {
-      "name": "@ai-toolkit/fal",
-      "dir": "packages/fal",
+      "name": "@ai-toolkit/langchain",
+      "dir": "packages/langchain",
       "domain": "legacy",
       "workspaceGlobs": [
         "packages/*"
@@ -1350,96 +947,18 @@
       ],
       "dependencies": [
         {
-          "name": "@ai-toolkit/provider",
+          "name": "ai",
           "version": "workspace:*",
           "kind": "workspace"
         },
         {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "@langchain/core",
+          "version": ">=1.0.0",
           "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
         },
         {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/fireworks",
-      "dir": "packages/fireworks",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "@langchain/langgraph",
+          "version": ">=0.2.0",
           "kind": "external"
         }
       ],
@@ -1451,34 +970,28 @@
       "owners": null,
       "dependencyEdges": [
         {
-          "name": "@ai-toolkit/openai-compatible",
+          "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
+          "name": "@langchain/core",
+          "version": ">=1.0.0",
+          "kind": "external",
+          "direction": "external"
         },
         {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "@langchain/langgraph",
+          "version": ">=0.2.0",
           "kind": "external",
           "direction": "external"
         }
       ]
     },
     {
-      "name": "@ai-toolkit/gateway",
-      "dir": "packages/gateway",
+      "name": "@ai-toolkit/llamaindex",
+      "dir": "packages/llamaindex",
       "domain": "legacy",
       "workspaceGlobs": [
         "packages/*"
@@ -1504,6 +1017,57 @@
       ],
       "dependencies": [
         {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "ai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/mcp",
+      "dir": "packages/mcp",
+      "domain": "legacy",
+      "workspaceGlobs": [
+        "packages/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./mcp-stdio"
+      ],
+      "conditions": [
+        "import",
+        "module",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./mcp-stdio"
+      ],
+      "dependencies": [
+        {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace"
@@ -1514,8 +1078,8 @@
           "kind": "workspace"
         },
         {
-          "name": "@vercel/oidc",
-          "version": "3.1.0",
+          "name": "pkce-challenge",
+          "version": "^5.0.0",
           "kind": "external"
         },
         {
@@ -1526,9 +1090,113 @@
       ],
       "runtimeAssumptions": {
         "nodeBuiltins": [
-          "node:assert",
+          "node:child_process",
+          "node:events",
           "node:fs",
-          "node:path"
+          "node:os",
+          "node:stream"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": "beta",
+      "owners": [
+        "@ai-toolkit/mcp"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "pkce-challenge",
+          "version": "^5.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/amazon-bedrock",
+      "dir": "packages/providers/amazon-bedrock",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./anthropic"
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./anthropic"
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/anthropic",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@smithy/eventstream-codec",
+          "version": "^4.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "@smithy/util-utf8",
+          "version": "^4.0.0",
+          "kind": "external"
+        },
+        {
+          "name": "aws4fetch",
+          "version": "^1.0.20",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
         ],
         "usesGlobalFetch": true
       },
@@ -1536,20 +1204,38 @@
       "owners": null,
       "dependencyEdges": [
         {
+          "name": "@ai-toolkit/anthropic",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
-          "name": "@vercel/oidc",
-          "version": "3.1.0",
+          "name": "@smithy/eventstream-codec",
+          "version": "^4.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@smithy/util-utf8",
+          "version": "^4.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "aws4fetch",
+          "version": "^1.0.20",
           "kind": "external",
           "direction": "external"
         },
@@ -1562,84 +1248,11 @@
       ]
     },
     {
-      "name": "@ai-toolkit/gladia",
-      "dir": "packages/gladia",
-      "domain": "legacy",
+      "name": "@ai-toolkit/anthropic",
+      "dir": "packages/providers/anthropic",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/google",
-      "dir": "packages/google",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -1693,13 +1306,1085 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/assemblyai",
+      "dir": "packages/providers/assemblyai",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs/promises",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/azure",
+      "dir": "packages/providers/azure",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/baseten",
+      "dir": "packages/providers/baseten",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@basetenlabs/performance-client",
+          "version": "^0.0.10",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "@basetenlabs/performance-client",
+          "version": "^0.0.10",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/black-forest-labs",
+      "dir": "packages/providers/black-forest-labs",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/cerebras",
+      "dir": "packages/providers/cerebras",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/cohere",
+      "dir": "packages/providers/cohere",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/deepgram",
+      "dir": "packages/providers/deepgram",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs/promises",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/deepinfra",
+      "dir": "packages/providers/deepinfra",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/deepseek",
+      "dir": "packages/providers/deepseek",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/elevenlabs",
+      "dir": "packages/providers/elevenlabs",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs/promises",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/fal",
+      "dir": "packages/providers/fal",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs/promises",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/fireworks",
+      "dir": "packages/providers/fireworks",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/gladia",
+      "dir": "packages/providers/gladia",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs/promises",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/google",
+      "dir": "packages/providers/google",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./internal"
+      ],
+      "conditions": [
+        "import",
+        "module",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./internal"
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -1711,10 +2396,10 @@
     },
     {
       "name": "@ai-toolkit/google-vertex",
-      "dir": "packages/google-vertex",
-      "domain": "legacy",
+      "dir": "packages/providers/google-vertex",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -1789,31 +2474,31 @@
           "name": "@ai-toolkit/anthropic",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/openai-compatible",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "google-auth-library",
@@ -1831,10 +2516,10 @@
     },
     {
       "name": "@ai-toolkit/groq",
-      "dir": "packages/groq",
-      "domain": "legacy",
+      "dir": "packages/providers/groq",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -1886,13 +2571,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -1904,10 +2589,10 @@
     },
     {
       "name": "@ai-toolkit/huggingface",
-      "dir": "packages/huggingface",
-      "domain": "legacy",
+      "dir": "packages/providers/huggingface",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -1961,19 +2646,19 @@
           "name": "@ai-toolkit/openai-compatible",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -1985,10 +2670,10 @@
     },
     {
       "name": "@ai-toolkit/hume",
-      "dir": "packages/hume",
-      "domain": "legacy",
+      "dir": "packages/providers/hume",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2037,227 +2722,28 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
           "version": "^3.25.76 || ^4.1.8",
           "kind": "external",
           "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/khulnasoft",
-      "dir": "packages/khulnasoft",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/langchain",
-      "dir": "packages/langchain",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@langchain/core",
-          "version": ">=1.0.0",
-          "kind": "external"
-        },
-        {
-          "name": "@langchain/langgraph",
-          "version": ">=0.2.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@langchain/core",
-          "version": ">=1.0.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@langchain/langgraph",
-          "version": ">=0.2.0",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/llamaindex",
-      "dir": "packages/llamaindex",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
         }
       ]
     },
     {
       "name": "@ai-toolkit/lmnt",
-      "dir": "packages/lmnt",
-      "domain": "legacy",
+      "dir": "packages/providers/lmnt",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2306,13 +2792,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2324,10 +2810,10 @@
     },
     {
       "name": "@ai-toolkit/luma",
-      "dir": "packages/luma",
-      "domain": "legacy",
+      "dir": "packages/providers/luma",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2376,105 +2862,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/mcp",
-      "dir": "packages/mcp",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./mcp-stdio"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./mcp-stdio"
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "pkce-challenge",
-          "version": "^5.0.0",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:child_process",
-          "node:events",
-          "node:fs",
-          "node:os",
-          "node:stream"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": "beta",
-      "owners": [
-        "@ai-toolkit/mcp"
-      ],
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "pkce-challenge",
-          "version": "^5.0.0",
-          "kind": "external",
-          "direction": "external"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2486,10 +2880,10 @@
     },
     {
       "name": "@ai-toolkit/mistral",
-      "dir": "packages/mistral",
-      "domain": "legacy",
+      "dir": "packages/providers/mistral",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2538,13 +2932,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2556,10 +2950,10 @@
     },
     {
       "name": "@ai-toolkit/openai",
-      "dir": "packages/openai",
-      "domain": "legacy",
+      "dir": "packages/providers/openai",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "4.0.0-beta.3",
       "private": false,
@@ -2615,13 +3009,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2633,10 +3027,10 @@
     },
     {
       "name": "@ai-toolkit/openai-compatible",
-      "dir": "packages/openai-compatible",
-      "domain": "legacy",
+      "dir": "packages/providers/openai-compatible",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2690,13 +3084,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2708,10 +3102,10 @@
     },
     {
       "name": "@ai-toolkit/perplexity",
-      "dir": "packages/perplexity",
-      "domain": "legacy",
+      "dir": "packages/providers/perplexity",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2760,13 +3154,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -2778,10 +3172,10 @@
     },
     {
       "name": "@ai-toolkit/prodia",
-      "dir": "packages/prodia",
-      "domain": "legacy",
+      "dir": "packages/providers/prodia",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -2830,241 +3224,17 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
           "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/provider",
-      "dir": "packages/provider",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": "./src/index.ts",
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "json-schema",
-          "version": "^0.4.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "json-schema",
-          "version": "^0.4.0",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/provider-utils",
-      "dir": "packages/provider-utils",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": "./src/index.ts",
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./test"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./test"
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@standard-schema/spec",
-          "version": "^1.1.0",
-          "kind": "external"
-        },
-        {
-          "name": "eventsource-parser",
-          "version": "^3.0.6",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": true
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@standard-schema/spec",
-          "version": "^1.1.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "eventsource-parser",
-          "version": "^3.0.6",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/react",
-      "dir": "packages/react",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "swr",
-          "version": "^2.2.5",
-          "kind": "external"
-        },
-        {
-          "name": "throttleit",
-          "version": "2.1.0",
-          "kind": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "swr",
-          "version": "^2.2.5",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "throttleit",
-          "version": "2.1.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
           "kind": "external",
           "direction": "external"
         }
@@ -3072,10 +3242,10 @@
     },
     {
       "name": "@ai-toolkit/replicate",
-      "dir": "packages/replicate",
-      "domain": "legacy",
+      "dir": "packages/providers/replicate",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -3124,13 +3294,13 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -3142,10 +3312,10 @@
     },
     {
       "name": "@ai-toolkit/revai",
-      "dir": "packages/revai",
-      "domain": "legacy",
+      "dir": "packages/providers/revai",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -3197,314 +3367,17 @@
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
           "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/rsc",
-      "dir": "packages/rsc",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/rsc-client.mjs",
-      "module": "./dist/rsc-client.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "react-server",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "jsondiffpatch",
-          "version": "0.7.3",
-          "kind": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:async_hooks"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "jsondiffpatch",
-          "version": "0.7.3",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "ai-core-e2e-next-server",
-      "dir": "packages/rsc/tests/e2e/next-server",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/rsc/tests/e2e/next-server"
-      ],
-      "version": "0.0.0",
-      "private": true,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": null,
-      "exports": [],
-      "conditions": [],
-      "publicApi": [],
-      "dependencies": [
-        {
-          "name": "next",
-          "version": "15.5.9",
-          "kind": "external"
-        },
-        {
-          "name": "react",
-          "version": "rc",
-          "kind": "external"
-        },
-        {
-          "name": "react-dom",
-          "version": "rc",
-          "kind": "external"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "next",
-          "version": "15.5.9",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react",
-          "version": "rc",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react-dom",
-          "version": "rc",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/svelte",
-      "dir": "packages/svelte",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "."
-      ],
-      "conditions": [
-        "svelte",
-        "types"
-      ],
-      "publicApi": [
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "svelte",
-          "version": "^5.31.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:url"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "svelte",
-          "version": "^5.31.0",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/test-server",
-      "dir": "packages/test-server",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./with-vitest"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./with-vitest"
-      ],
-      "dependencies": [
-        {
-          "name": "msw",
-          "version": "^2.7.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "msw",
-          "version": "^2.7.0",
           "kind": "external",
           "direction": "external"
         }
@@ -3512,10 +3385,10 @@
     },
     {
       "name": "@ai-toolkit/togetherai",
-      "dir": "packages/togetherai",
-      "domain": "legacy",
+      "dir": "packages/providers/togetherai",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -3571,19 +3444,19 @@
           "name": "@ai-toolkit/openai-compatible",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "zod",
@@ -3594,11 +3467,11 @@
       ]
     },
     {
-      "name": "@ai-toolkit/valibot",
-      "dir": "packages/valibot",
-      "domain": "legacy",
+      "name": "@ai-toolkit/xai",
+      "dir": "packages/providers/xai",
+      "domain": "providers",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/providers/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -3621,18 +3494,193 @@
       ],
       "dependencies": [
         {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace"
         },
         {
-          "name": "@valibot/to-json-schema",
-          "version": "^1.3.0",
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/gateway",
+      "dir": "packages/special/gateway",
+      "domain": "special",
+      "workspaceGlobs": [
+        "packages/special/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@vercel/oidc",
+          "version": "3.1.0",
           "kind": "external"
         },
         {
-          "name": "valibot",
-          "version": "^1.1.0",
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:assert",
+          "node:fs",
+          "node:path"
+        ],
+        "usesGlobalFetch": true
+      },
+      "stability": "beta",
+      "owners": [
+        "@khulnasoft/ai-toolkit-core"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "@vercel/oidc",
+          "version": "3.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/khulnasoft",
+      "dir": "packages/special/khulnasoft",
+      "domain": "special",
+      "workspaceGlobs": [
+        "packages/special/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": null,
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
           "kind": "external"
         }
       ],
@@ -3644,20 +3692,26 @@
       "owners": null,
       "dependencyEdges": [
         {
+          "name": "@ai-toolkit/openai-compatible",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
-          "name": "@valibot/to-json-schema",
-          "version": "^1.3.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "valibot",
-          "version": "^1.1.0",
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
           "kind": "external",
           "direction": "external"
         }
@@ -3715,11 +3769,61 @@
       ]
     },
     {
-      "name": "@ai-toolkit/vue",
-      "dir": "packages/vue",
-      "domain": "legacy",
+      "name": "@ai-toolkit/provider",
+      "dir": "packages/validation/provider",
+      "domain": "validation",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/validation/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "json-schema",
+          "version": "^0.4.0",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": "stable",
+      "owners": [
+        "@khulnasoft/ai-toolkit-core"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "json-schema",
+          "version": "^0.4.0",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/valibot",
+      "dir": "packages/validation/valibot",
+      "domain": "validation",
+      "workspaceGlobs": [
+        "packages/validation/*"
       ],
       "version": "2.0.0",
       "private": false,
@@ -3747,18 +3851,13 @@
           "kind": "workspace"
         },
         {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "swrv",
-          "version": "^1.0.4",
+          "name": "@valibot/to-json-schema",
+          "version": "^1.3.0",
           "kind": "external"
         },
         {
-          "name": "vue",
-          "version": "^3.3.4",
+          "name": "valibot",
+          "version": "^1.1.0",
           "kind": "external"
         }
       ],
@@ -3773,106 +3872,17 @@
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
-          "name": "ai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "swrv",
-          "version": "^1.0.4",
+          "name": "@valibot/to-json-schema",
+          "version": "^1.3.0",
           "kind": "external",
           "direction": "external"
         },
         {
-          "name": "vue",
-          "version": "^3.3.4",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/xai",
-      "dir": "packages/xai",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": null,
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai-compatible",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/provider-utils",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "^3.25.76 || ^4.1.8",
+          "name": "valibot",
+          "version": "^1.1.0",
           "kind": "external",
           "direction": "external"
         }
@@ -4071,10 +4081,10 @@
     },
     {
       "name": "@example/ai-functionstions",
-      "dir": "examples/ai-functions",
+      "dir": "examples/01-foundations/ai-functions",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -4374,133 +4384,133 @@
           "name": "@ai-toolkit/black-forest-labs",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/amazon-bedrock",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/anthropic",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/assemblyai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/azure",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/baseten",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/cerebras",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/cohere",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/deepgram",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/deepinfra",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/deepseek",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/elevenlabs",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/fal",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/fireworks",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/gateway",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-special"
         },
         {
           "name": "@ai-toolkit/gladia",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google-vertex",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/groq",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/lmnt",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/luma",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/hume",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/mcp",
@@ -4512,79 +4522,79 @@
           "name": "@ai-toolkit/mistral",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/openai-compatible",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/perplexity",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/prodia",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/replicate",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/revai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/togetherai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/valibot",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/khulnasoft",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-special"
         },
         {
           "name": "@ai-toolkit/xai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/huggingface",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@google/generative-ai",
@@ -4626,7 +4636,7 @@
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "arktype",
@@ -4691,214 +4701,11 @@
       ]
     },
     {
-      "name": "@example/angular",
-      "dir": "examples/angular",
-      "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*"
-      ],
-      "version": "0.0.0",
-      "private": true,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": null,
-      "exports": [],
-      "conditions": [],
-      "publicApi": [],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/angular",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@angular/common",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/compiler",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/core",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/forms",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/platform-browser",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/platform-browser-dynamic",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "@angular/router",
-          "version": "^20.3.2",
-          "kind": "external"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace"
-        },
-        {
-          "name": "dotenv",
-          "version": "16.4.5",
-          "kind": "external"
-        },
-        {
-          "name": "express",
-          "version": "5.0.1",
-          "kind": "external"
-        },
-        {
-          "name": "rxjs",
-          "version": "~7.8.0",
-          "kind": "external"
-        },
-        {
-          "name": "tslib",
-          "version": "^2.3.0",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
-          "kind": "external"
-        },
-        {
-          "name": "zone.js",
-          "version": "~0.15.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/angular",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@angular/common",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/compiler",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/core",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/forms",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/platform-browser",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/platform-browser-dynamic",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@angular/router",
-          "version": "^20.3.2",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "dotenv",
-          "version": "16.4.5",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "express",
-          "version": "5.0.1",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "rxjs",
-          "version": "~7.8.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "tslib",
-          "version": "^2.3.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zone.js",
-          "version": "~0.15.0",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
       "name": "@example/express",
-      "dir": "examples/express",
+      "dir": "examples/01-foundations/express",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -4942,13 +4749,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "dotenv",
@@ -4966,10 +4773,10 @@
     },
     {
       "name": "@example/fastify",
-      "dir": "examples/fastify",
+      "dir": "examples/01-foundations/fastify",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5013,13 +4820,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "dotenv",
@@ -5037,10 +4844,10 @@
     },
     {
       "name": "@example/hono",
-      "dir": "examples/hono",
+      "dir": "examples/01-foundations/hono",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5089,7 +4896,7 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@hono/node-server",
@@ -5101,7 +4908,7 @@
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "dotenv",
@@ -5118,11 +4925,11 @@
       ]
     },
     {
-      "name": "@example/mcp",
-      "dir": "examples/mcp",
+      "name": "@example/node-http-server",
+      "dir": "examples/01-foundations/node-http-server",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5140,8 +4947,116 @@
           "kind": "workspace"
         },
         {
-          "name": "@modelcontextprotocol/sdk",
-          "version": "^1.24.0",
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace"
+        },
+        {
+          "name": "dotenv",
+          "version": "16.4.5",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:http"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "dotenv",
+          "version": "16.4.5",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@example/angular",
+      "dir": "examples/02-framework-integration/angular",
+      "domain": "examples",
+      "workspaceGlobs": [
+        "examples/*/*"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/angular",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@angular/common",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/compiler",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/core",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/forms",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/platform-browser",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/platform-browser-dynamic",
+          "version": "^20.3.2",
+          "kind": "external"
+        },
+        {
+          "name": "@angular/router",
+          "version": "^20.3.2",
           "kind": "external"
         },
         {
@@ -5160,32 +5075,84 @@
           "kind": "external"
         },
         {
+          "name": "rxjs",
+          "version": "~7.8.0",
+          "kind": "external"
+        },
+        {
+          "name": "tslib",
+          "version": "^2.3.0",
+          "kind": "external"
+        },
+        {
           "name": "zod",
           "version": "3.25.76",
+          "kind": "external"
+        },
+        {
+          "name": "zone.js",
+          "version": "~0.15.0",
           "kind": "external"
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:child_process",
-          "node:http",
-          "node:process",
-          "node:readline/promises"
-        ],
+        "nodeBuiltins": [],
         "usesGlobalFetch": false
       },
       "stability": null,
       "owners": null,
       "dependencyEdges": [
         {
+          "name": "@ai-toolkit/angular",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-adapters"
+        },
+        {
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
-          "name": "@modelcontextprotocol/sdk",
-          "version": "^1.24.0",
+          "name": "@angular/common",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/compiler",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/core",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/forms",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/platform-browser",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/platform-browser-dynamic",
+          "version": "^20.3.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@angular/router",
+          "version": "^20.3.2",
           "kind": "external",
           "direction": "external"
         },
@@ -5193,7 +5160,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "dotenv",
@@ -5208,8 +5175,26 @@
           "direction": "external"
         },
         {
+          "name": "rxjs",
+          "version": "~7.8.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tslib",
+          "version": "^2.3.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
           "name": "zod",
           "version": "3.25.76",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zone.js",
+          "version": "~0.15.0",
           "kind": "external",
           "direction": "external"
         }
@@ -5217,10 +5202,10 @@
     },
     {
       "name": "@example/nest",
-      "dir": "examples/nest",
+      "dir": "examples/02-framework-integration/nest",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5279,7 +5264,7 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@nestjs/common",
@@ -5303,7 +5288,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "reflect-metadata",
@@ -5321,10 +5306,10 @@
     },
     {
       "name": "@example/next",
-      "dir": "examples/next",
+      "dir": "examples/02-framework-integration/next",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5402,7 +5387,7 @@
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@vercel/blob",
@@ -5414,7 +5399,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -5462,10 +5447,10 @@
     },
     {
       "name": "@example/next-agent",
-      "dir": "examples/next-agent",
+      "dir": "examples/02-framework-integration/next-agent",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5539,13 +5524,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@vercel/blob",
@@ -5557,7 +5542,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -5599,10 +5584,10 @@
     },
     {
       "name": "@example/next-fastapi",
-      "dir": "examples/next-fastapi",
+      "dir": "examples/02-framework-integration/next-fastapi",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5656,106 +5641,13 @@
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "geist",
-          "version": "^1.3.1",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "next",
-          "version": "^15.5.9",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "react-dom",
-          "version": "^18",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@example/next-google-vertex",
-      "dir": "examples/next-google-vertex",
-      "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*"
-      ],
-      "version": "0.0.0",
-      "private": true,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": null,
-      "exports": [],
-      "conditions": [],
-      "publicApi": [],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/google-vertex",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace"
-        },
-        {
-          "name": "geist",
-          "version": "^1.3.1",
-          "kind": "external"
-        },
-        {
-          "name": "next",
-          "version": "^15.5.9",
-          "kind": "external"
-        },
-        {
-          "name": "react",
-          "version": "^18",
-          "kind": "external"
-        },
-        {
-          "name": "react-dom",
-          "version": "^18",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/google-vertex",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "geist",
@@ -5785,10 +5677,10 @@
     },
     {
       "name": "@example/next-langchain",
-      "dir": "examples/next-langchain",
+      "dir": "examples/02-framework-integration/next-langchain",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -5877,7 +5769,7 @@
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@ai-toolkit/langchain",
@@ -5913,7 +5805,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "langchain",
@@ -5955,10 +5847,10 @@
     },
     {
       "name": "@example/next-openai",
-      "dir": "examples/next-openai",
+      "dir": "examples/02-framework-integration/next-openai",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -6185,55 +6077,55 @@
           "name": "@ai-toolkit/amazon-bedrock",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/anthropic",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/azure",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/cohere",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/deepseek",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/fireworks",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google-vertex",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/groq",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/mcp",
@@ -6245,49 +6137,49 @@
           "name": "@ai-toolkit/mistral",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/perplexity",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@ai-toolkit/rsc",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@ai-toolkit/valibot",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/xai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@modelcontextprotocol/sdk",
@@ -6329,7 +6221,7 @@
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "class-variance-authority",
@@ -6418,11 +6310,11 @@
       ]
     },
     {
-      "name": "@example/next-openai-kasada-bot-protection",
-      "dir": "examples/next-openai-kasada-bot-protection",
+      "name": "@example/next-openai-pages",
+      "dir": "examples/02-framework-integration/next-openai-pages",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -6445,11 +6337,6 @@
           "kind": "workspace"
         },
         {
-          "name": "@vercel/functions",
-          "version": "^3.1.0",
-          "kind": "external"
-        },
-        {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace"
@@ -6470,8 +6357,8 @@
           "kind": "external"
         },
         {
-          "name": "sonner",
-          "version": "^1.7.1",
+          "name": "zod",
+          "version": "3.25.76",
           "kind": "external"
         }
       ],
@@ -6486,25 +6373,19 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@vercel/functions",
-          "version": "^3.1.0",
-          "kind": "external",
-          "direction": "external"
+          "direction": "to-adapters"
         },
         {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -6525,19 +6406,281 @@
           "direction": "external"
         },
         {
-          "name": "sonner",
-          "version": "^1.7.1",
+          "name": "zod",
+          "version": "3.25.76",
           "kind": "external",
           "direction": "external"
         }
       ]
     },
     {
-      "name": "@example/next-openai-pages",
-      "dir": "examples/next-openai-pages",
+      "name": "@example/nuxt-openai",
+      "dir": "examples/02-framework-integration/nuxt-openai",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/vue",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/vue",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-adapters"
+        },
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@example/mcp",
+      "dir": "examples/03-integrations/mcp",
+      "domain": "examples",
+      "workspaceGlobs": [
+        "examples/*/*"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@modelcontextprotocol/sdk",
+          "version": "^1.24.0",
+          "kind": "external"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace"
+        },
+        {
+          "name": "dotenv",
+          "version": "16.4.5",
+          "kind": "external"
+        },
+        {
+          "name": "express",
+          "version": "5.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:child_process",
+          "node:http",
+          "node:process",
+          "node:readline/promises"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/openai",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@modelcontextprotocol/sdk",
+          "version": "^1.24.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "dotenv",
+          "version": "16.4.5",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "express",
+          "version": "5.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "3.25.76",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@example/next-google-vertex",
+      "dir": "examples/03-integrations/next-google-vertex",
+      "domain": "examples",
+      "workspaceGlobs": [
+        "examples/*/*"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/google-vertex",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace"
+        },
+        {
+          "name": "geist",
+          "version": "^1.3.1",
+          "kind": "external"
+        },
+        {
+          "name": "next",
+          "version": "^15.5.9",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/google-vertex",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "ai",
+          "version": "6.0.45",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "geist",
+          "version": "^1.3.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next",
+          "version": "^15.5.9",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@example/next-openai-kasada-bot-protection",
+      "dir": "examples/03-integrations/next-openai-kasada-bot-protection",
+      "domain": "examples",
+      "workspaceGlobs": [
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -6560,6 +6703,11 @@
           "kind": "workspace"
         },
         {
+          "name": "@vercel/functions",
+          "version": "^3.1.0",
+          "kind": "external"
+        },
+        {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace"
@@ -6580,8 +6728,8 @@
           "kind": "external"
         },
         {
-          "name": "zod",
-          "version": "3.25.76",
+          "name": "sonner",
+          "version": "^1.7.1",
           "kind": "external"
         }
       ],
@@ -6596,19 +6744,25 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
+        },
+        {
+          "name": "@vercel/functions",
+          "version": "^3.1.0",
+          "kind": "external",
+          "direction": "external"
         },
         {
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -6629,8 +6783,8 @@
           "direction": "external"
         },
         {
-          "name": "zod",
-          "version": "3.25.76",
+          "name": "sonner",
+          "version": "^1.7.1",
           "kind": "external",
           "direction": "external"
         }
@@ -6638,10 +6792,10 @@
     },
     {
       "name": "@example/next-openai-telemetry",
-      "dir": "examples/next-openai-telemetry",
+      "dir": "examples/03-integrations/next-openai-telemetry",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -6720,13 +6874,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@opentelemetry/api-logs",
@@ -6756,7 +6910,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -6786,10 +6940,10 @@
     },
     {
       "name": "@example/next-openai-telemetry-sentry",
-      "dir": "examples/next-openai-telemetry-sentry",
+      "dir": "examples/03-integrations/next-openai-telemetry-sentry",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -6878,13 +7032,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@opentelemetry/api-logs",
@@ -6926,7 +7080,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -6956,10 +7110,10 @@
     },
     {
       "name": "@example/next-openai-rate-limits",
-      "dir": "examples/next-openai-upstash-rate-limits",
+      "dir": "examples/03-integrations/next-openai-upstash-rate-limits",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -7028,13 +7182,13 @@
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@upstash/ratelimit",
@@ -7052,7 +7206,7 @@
           "name": "ai",
           "version": "6.0.45",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "next",
@@ -7075,150 +7229,6 @@
         {
           "name": "sonner",
           "version": "^1.7.1",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@example/node-http-server",
-      "dir": "examples/node-http-server",
-      "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*"
-      ],
-      "version": "0.0.0",
-      "private": true,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": null,
-      "exports": [],
-      "conditions": [],
-      "publicApi": [],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace"
-        },
-        {
-          "name": "dotenv",
-          "version": "16.4.5",
-          "kind": "external"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:http"
-        ],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "dotenv",
-          "version": "16.4.5",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@example/nuxt-openai",
-      "dir": "examples/nuxt-openai",
-      "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*"
-      ],
-      "version": "0.0.0",
-      "private": true,
-      "source": null,
-      "main": null,
-      "module": null,
-      "types": null,
-      "exports": [],
-      "conditions": [],
-      "publicApi": [],
-      "dependencies": [
-        {
-          "name": "@ai-toolkit/vue",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": null,
-      "owners": null,
-      "dependencyEdges": [
-        {
-          "name": "@ai-toolkit/vue",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "@ai-toolkit/openai",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "ai",
-          "version": "6.0.45",
-          "kind": "workspace",
-          "direction": "to-legacy"
-        },
-        {
-          "name": "zod",
-          "version": "3.25.76",
           "kind": "external",
           "direction": "external"
         }
@@ -7226,10 +7236,10 @@
     },
     {
       "name": "@example/playground",
-      "dir": "examples/playground",
+      "dir": "examples/04-tools/playground",
       "domain": "examples",
       "workspaceGlobs": [
-        "examples/*"
+        "examples/*/*"
       ],
       "version": "0.0.0",
       "private": true,
@@ -7503,91 +7513,91 @@
           "name": "@ai-toolkit/anthropic",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/azure",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/cohere",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/deepseek",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/fireworks",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/google-vertex",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/groq",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/mistral",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/openai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/perplexity",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@ai-toolkit/provider",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-validation"
         },
         {
           "name": "@ai-toolkit/provider-utils",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "@ai-toolkit/react",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@ai-toolkit/xai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-providers"
         },
         {
           "name": "@monaco-editor/react",
@@ -7725,7 +7735,7 @@
           "name": "ai",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-core"
         },
         {
           "name": "class-variance-authority",

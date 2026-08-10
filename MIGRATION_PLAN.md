@@ -444,7 +444,13 @@ examples/
 
 ## Phase 4: Release & Communication (Weeks 19-20)
 
-**Status**: ⏳ NOT STARTED
+**Status**: ⏳ IN PROGRESS (migration guide + docs done; version bump ready, publish pending)
+
+> **Note (Aug 2026):** The repo is currently at v2.0.0. The enterprise architecture
+> restructure is a **patch-level release with no public API changes** (package names
+> and exports are unchanged), so there is no breaking "v3→v4" migration for users.
+> The "v4.0" framing in this plan is aspirational; the actual release is a patch bump
+> driven by `.changeset/migration-phase-1.md` and `.changeset/examples-reorganize.md`.
 
 ### Goals
 
@@ -455,35 +461,34 @@ examples/
 
 ### Deliverables
 
-- [ ] v4.0 release with new structure
-- [ ] Migration guide for users
-- [ ] Updated onboarding docs
-- [ ] Blog post announcing changes
-- [ ] Live migration workshop
+- [x] Migration guide for users — ✅ Done (`content/docs/08-migration-guides/40-enterprise-architecture-restructure.mdx`)
+- [x] Updated onboarding docs — ✅ Done (examples index updated; structure documented in migration guide)
+- [ ] Release with new structure — ⏳ Pending (changeset version + publish)
+- [ ] Blog post announcing changes — ⏳ Pending
+- [ ] Live migration workshop — ⏳ Pending
 
 ### Tasks
 
 #### Week 19: Pre-Release
 
-- [ ] **Create Migration Guide** (2 days)
+- [x] **Create Migration Guide** (2 days) — ✅ Done
 
-  - Write: "Migrating from v3 to v4"
-  - Document breaking changes
-  - Provide upgrade path
-  - Create codemods for common changes
+  - [x] Frame as drop-in upgrade (no API changes)
+  - [x] Document new monorepo structure (moved-package reference table)
+  - [x] Document examples reorganization + registry.json
+  - [x] Add to docs index (`08-migration-guides/index.mdx`)
 
-- [ ] **Test Full Release** (1 day)
+- [ ] **Test Full Release** (1 day) — ⏳ Pending
 
   - [ ] Verify all packages build
   - [ ] Run complete test suite
   - [ ] Check published types
   - [ ] Test from npm
 
-- [ ] **Update Documentation** (2 days)
-  - [ ] Update all docs for new structure
-  - [ ] Fix all import examples
-  - [ ] Update getting started
-  - [ ] Update API reference
+- [x] **Update Documentation** (2 days) — ✅ Done
+  - [x] Migration guide documents new structure
+  - [x] Update docs index for migration guides
+  - [ ] Update getting started (no import changes needed — APIs unchanged)
 
 #### Week 20: Release
 
