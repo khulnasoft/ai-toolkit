@@ -1,4 +1,15 @@
 {
   "files": [],
-  "compilerOptions": {}
+  "compilerOptions": {},
+  "references": [
+    {
+      "path": "../../packages/core/ai"
+    },
+    {
+      "path": "../../packages/angular"
+    },
+    {
+      "path": "../../packages/openai"
+    }
+  ]
 }

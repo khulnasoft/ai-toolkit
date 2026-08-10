@@ -24,5 +24,16 @@
     "noEmit": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../packages/core/ai"
+    },
+    {
+      "path": "../../packages/openai"
+    },
+    {
+      "path": "../../packages/react"
+    }
+  ]
 }

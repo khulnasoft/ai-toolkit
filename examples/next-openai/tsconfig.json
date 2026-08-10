@@ -26,5 +26,64 @@
     "noEmit": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../packages/core/ai"
+    },
+    {
+      "path": "../../packages/amazon-bedrock"
+    },
+    {
+      "path": "../../packages/anthropic"
+    },
+    {
+      "path": "../../packages/azure"
+    },
+    {
+      "path": "../../packages/cohere"
+    },
+    {
+      "path": "../../packages/deepseek"
+    },
+    {
+      "path": "../../packages/fireworks"
+    },
+    {
+      "path": "../../packages/google"
+    },
+    {
+      "path": "../../packages/google-vertex"
+    },
+    {
+      "path": "../../packages/groq"
+    },
+    {
+      "path": "../../packages/mcp"
+    },
+    {
+      "path": "../../packages/mistral"
+    },
+    {
+      "path": "../../packages/openai"
+    },
+    {
+      "path": "../../packages/perplexity"
+    },
+    {
+      "path": "../../packages/provider-utils"
+    },
+    {
+      "path": "../../packages/react"
+    },
+    {
+      "path": "../../packages/rsc"
+    },
+    {
+      "path": "../../packages/valibot"
+    },
+    {
+      "path": "../../packages/xai"
+    }
+  ]
 }

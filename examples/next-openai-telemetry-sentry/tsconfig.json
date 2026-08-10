@@ -24,5 +24,16 @@
     "noEmit": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "instrumentation.ts", "sentry.*.config.js"]
+  "exclude": ["node_modules", "instrumentation.ts", "sentry.*.config.js"],
+  "references": [
+    {
+      "path": "../../packages/core/ai"
+    },
+    {
+      "path": "../../packages/openai"
+    },
+    {
+      "path": "../../packages/react"
+    }
+  ]
 }
