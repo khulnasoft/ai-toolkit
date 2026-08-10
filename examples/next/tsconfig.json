@@ -31,7 +31,7 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/react"
+      "path": "../../packages/adapters/react"
     }
   ]
 }

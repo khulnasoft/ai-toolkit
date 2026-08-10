@@ -31,10 +31,10 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     },
     {
-      "path": "../../packages/react"
+      "path": "../../packages/adapters/react"
     }
   ]
 }

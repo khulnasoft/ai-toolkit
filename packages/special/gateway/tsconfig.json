@@ -1,0 +1,31 @@
+{
+  "extends": "../../../tools/tsconfig/ts-library.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@ai-toolkit/test-server": [
+        "../test-server/src"
+      ]
+    }
+  },
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "scripts",
+    "tsup.config.ts"
+  ],
+  "references": [
+    {
+      "path": "../../validation/provider"
+    },
+    {
+      "path": "../../core/provider-utils"
+    },
+    {
+      "path": "../../infrastructure/test-server"
+    }
+  ]
+}

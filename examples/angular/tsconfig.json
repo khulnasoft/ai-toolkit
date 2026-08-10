@@ -6,10 +6,10 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/angular"
+      "path": "../../packages/adapters/angular"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     }
   ]
 }

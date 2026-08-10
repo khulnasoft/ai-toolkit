@@ -23,7 +23,7 @@
       "path": "../../packages/mcp"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     }
   ]
 }

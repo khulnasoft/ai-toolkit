@@ -21,112 +21,112 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/amazon-bedrock"
+      "path": "../../packages/providers/amazon-bedrock"
     },
     {
-      "path": "../../packages/anthropic"
+      "path": "../../packages/providers/anthropic"
     },
     {
-      "path": "../../packages/assemblyai"
+      "path": "../../packages/providers/assemblyai"
     },
     {
-      "path": "../../packages/azure"
+      "path": "../../packages/providers/azure"
     },
     {
-      "path": "../../packages/baseten"
+      "path": "../../packages/providers/baseten"
     },
     {
-      "path": "../../packages/black-forest-labs"
+      "path": "../../packages/providers/black-forest-labs"
     },
     {
-      "path": "../../packages/cerebras"
+      "path": "../../packages/providers/cerebras"
     },
     {
-      "path": "../../packages/cohere"
+      "path": "../../packages/providers/cohere"
     },
     {
-      "path": "../../packages/deepgram"
+      "path": "../../packages/providers/deepgram"
     },
     {
-      "path": "../../packages/deepinfra"
+      "path": "../../packages/providers/deepinfra"
     },
     {
-      "path": "../../packages/deepseek"
+      "path": "../../packages/providers/deepseek"
     },
     {
-      "path": "../../packages/elevenlabs"
+      "path": "../../packages/providers/elevenlabs"
     },
     {
-      "path": "../../packages/fal"
+      "path": "../../packages/providers/fal"
     },
     {
-      "path": "../../packages/fireworks"
+      "path": "../../packages/providers/fireworks"
     },
     {
       "path": "../../packages/gateway"
     },
     {
-      "path": "../../packages/gladia"
+      "path": "../../packages/providers/gladia"
     },
     {
-      "path": "../../packages/google"
+      "path": "../../packages/providers/google"
     },
     {
-      "path": "../../packages/google-vertex"
+      "path": "../../packages/providers/google-vertex"
     },
     {
-      "path": "../../packages/groq"
+      "path": "../../packages/providers/groq"
     },
     {
-      "path": "../../packages/huggingface"
+      "path": "../../packages/providers/huggingface"
     },
     {
-      "path": "../../packages/hume"
+      "path": "../../packages/providers/hume"
     },
     {
-      "path": "../../packages/khulnasoft"
+      "path": "../../packages/special/khulnasoft"
     },
     {
-      "path": "../../packages/lmnt"
+      "path": "../../packages/providers/lmnt"
     },
     {
-      "path": "../../packages/luma"
+      "path": "../../packages/providers/luma"
     },
     {
       "path": "../../packages/mcp"
     },
     {
-      "path": "../../packages/mistral"
+      "path": "../../packages/providers/mistral"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     },
     {
-      "path": "../../packages/openai-compatible"
+      "path": "../../packages/providers/openai-compatible"
     },
     {
-      "path": "../../packages/perplexity"
+      "path": "../../packages/providers/perplexity"
     },
     {
-      "path": "../../packages/prodia"
+      "path": "../../packages/providers/prodia"
     },
     {
       "path": "../../packages/provider"
     },
     {
-      "path": "../../packages/replicate"
+      "path": "../../packages/providers/replicate"
     },
     {
-      "path": "../../packages/revai"
+      "path": "../../packages/providers/revai"
     },
     {
-      "path": "../../packages/togetherai"
+      "path": "../../packages/providers/togetherai"
     },
     {
-      "path": "../../packages/valibot"
+      "path": "../../packages/validation/valibot"
     },
     {
-      "path": "../../packages/xai"
+      "path": "../../packages/providers/xai"
     }
   ]
 }

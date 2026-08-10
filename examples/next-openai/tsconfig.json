@@ -32,58 +32,58 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/amazon-bedrock"
+      "path": "../../packages/providers/amazon-bedrock"
     },
     {
-      "path": "../../packages/anthropic"
+      "path": "../../packages/providers/anthropic"
     },
     {
-      "path": "../../packages/azure"
+      "path": "../../packages/providers/azure"
     },
     {
-      "path": "../../packages/cohere"
+      "path": "../../packages/providers/cohere"
     },
     {
-      "path": "../../packages/deepseek"
+      "path": "../../packages/providers/deepseek"
     },
     {
-      "path": "../../packages/fireworks"
+      "path": "../../packages/providers/fireworks"
     },
     {
-      "path": "../../packages/google"
+      "path": "../../packages/providers/google"
     },
     {
-      "path": "../../packages/google-vertex"
+      "path": "../../packages/providers/google-vertex"
     },
     {
-      "path": "../../packages/groq"
+      "path": "../../packages/providers/groq"
     },
     {
       "path": "../../packages/mcp"
     },
     {
-      "path": "../../packages/mistral"
+      "path": "../../packages/providers/mistral"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     },
     {
-      "path": "../../packages/perplexity"
+      "path": "../../packages/providers/perplexity"
     },
     {
       "path": "../../packages/provider-utils"
     },
     {
-      "path": "../../packages/react"
+      "path": "../../packages/adapters/react"
     },
     {
-      "path": "../../packages/rsc"
+      "path": "../../packages/adapters/rsc"
     },
     {
-      "path": "../../packages/valibot"
+      "path": "../../packages/validation/valibot"
     },
     {
-      "path": "../../packages/xai"
+      "path": "../../packages/providers/xai"
     }
   ]
 }

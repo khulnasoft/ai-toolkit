@@ -5,17 +5,24 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["dist", "build", "node_modules", "tsup.config.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "tsup.config.ts"
+  ],
   "references": [
     {
-      "path": "../provider"
+      "path": "../validation/provider"
     },
     {
-      "path": "../provider-utils"
+      "path": "../core/provider-utils"
     },
     {
-      "path": "../test-server"
+      "path": "../infrastructure/test-server"
     }
   ]
 }

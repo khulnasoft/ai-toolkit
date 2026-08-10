@@ -30,7 +30,7 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/google-vertex"
+      "path": "../../packages/providers/google-vertex"
     }
   ]
 }

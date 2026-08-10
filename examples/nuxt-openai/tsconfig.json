@@ -5,10 +5,10 @@
       "path": "../../packages/core/ai"
     },
     {
-      "path": "../../packages/openai"
+      "path": "../../packages/providers/openai"
     },
     {
-      "path": "../../packages/vue"
+      "path": "../../packages/adapters/vue"
     }
   ]
 }
