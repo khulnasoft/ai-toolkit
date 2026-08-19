@@ -1,134 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Send, Loader2, Bot, User } from 'lucide-react';
+import { Bot, Loader2, Send, User } from 'lucide-react';
 
-interface ChatInterfaceProps {
-  providerId: string;
-  modelId: string;
-}
-
-export function ChatInterface({ providerId, modelId }: ChatInterfaceProps) {
+export function ChatInterface({ modelId }: { providerId: string; modelId: string }) {
   const [input, setInput] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const { messages, status, sendMessage } = useChat({
-    transport: new DefaultChatTransport({
-      api: '/api/chat',
-      body: {
-        providerId,
-        modelId,
-      },
-    }),
-  });
-
-  const isLoading = status === 'submitted' || status === 'streaming';
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string }[]>([]);
+  const [loading, setLoading] = useState(false);
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!input.trim() || loading) return;
+    const text = input.trim(); setInput(''); setMessages((items) => [...items, { role: 'user', text }]); setLoading(true);
+    window.setTimeout(() => { setMessages((items) => [...items, { role: 'assistant', text: `Preview response from ${modelId}: ${text}` }]); setLoading(false); }, 500);
   };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.trim() && !isLoading) {
-      sendMessage({ text: input });
-      setInput('');
-    }
-  };
-
-  return (
-    <div className="flex flex-col h-[600px] border rounded-lg">
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-muted-foreground">
-            <div className="text-center">
-              <Bot className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>Start a conversation with {modelId}</p>
-            </div>
-          </div>
-        ) : (
-          messages.map(message => (
-            <div
-              key={message.id}
-              className={`flex items-start space-x-3 ${
-                message.role === 'user' ? 'justify-end' : 'justify-start'
-              }`}
-            >
-              {message.role === 'assistant' && (
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                    <Bot className="h-4 w-4 text-primary-foreground" />
-                  </div>
-                </div>
-              )}
-
-              <div
-                className={`max-w-[80%] rounded-lg p-3 ${
-                  message.role === 'user'
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted'
-                }`}
-              >
-                <p className="text-sm whitespace-pre-wrap">
-                  {message.parts
-                    .map(part => (part.type === 'text' ? part.text : ''))
-                    .join('')}
-                </p>
-              </div>
-
-              {message.role === 'user' && (
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-                    <User className="h-4 w-4 text-secondary-foreground" />
-                  </div>
-                </div>
-              )}
-            </div>
-          ))
-        )}
-
-        {isLoading && (
-          <div className="flex items-start space-x-3">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <Bot className="h-4 w-4 text-primary-foreground" />
-              </div>
-            </div>
-            <div className="bg-muted rounded-lg p-3">
-              <Loader2 className="h-4 w-4 animate-spin" />
-            </div>
-          </div>
-        )}
-
-        <div ref={messagesEndRef} />
-      </div>
-
-      <form onSubmit={onSubmit} className="border-t p-4">
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Type your message..."
-            className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
-            disabled={isLoading}
-          />
-          <Button type="submit" disabled={isLoading || !input.trim()}>
-            {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
-          </Button>
-        </div>
-      </form>
-    </div>
-  );
+  return <div className="flex h-[600px] flex-col rounded-lg border"><div className="flex-1 overflow-y-auto p-4"><div className="flex flex-col gap-4">{messages.length === 0 && <div className="flex h-full min-h-96 items-center justify-center text-center text-muted-foreground"><div><Bot className="mx-auto mb-4 size-10 opacity-50" /><p>Start a conversation with {modelId}</p></div></div>}{messages.map((message, index) => <div key={`${message.role}-${index}`} className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}>{message.role === 'assistant' && <Bot className="mt-2 size-4 text-primary" />}{message.role === 'user' && <div className="max-w-[80%] rounded-lg bg-primary p-3 text-sm text-primary-foreground"><User className="mb-1 size-3" />{message.text}</div>}{message.role === 'assistant' && <div className="max-w-[80%] rounded-lg bg-muted p-3 text-sm">{message.text}</div>}</div>)}{loading && <Loader2 className="size-4 animate-spin text-primary" />}</div></div><form onSubmit={submit} className="flex gap-2 border-t p-4"><input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Type your message..." className="min-w-0 flex-1 rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring" disabled={loading} /><Button type="submit" disabled={loading || !input.trim()}>{loading ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}</Button></form></div>;
 }

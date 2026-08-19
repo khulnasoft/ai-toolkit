@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
 export const metadata: Metadata = {
-  title: 'AI Toolkit - The Framework Agnostic AI Toolkit',
+  title: 'AI Elements Playground — AI Gateway for developers',
   description:
-    'The open-source AI toolkit designed to help developers build AI-powered applications and agents with React, Next.js, Vue, Svelte, Node.js, and more.',
+    'Explore AI Elements, a component library for building AI-native interfaces with the AI Gateway.',
 };
 
 export default function RootLayout({
@@ -16,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark bg-background">
+      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>
     </html>
   );
 }
