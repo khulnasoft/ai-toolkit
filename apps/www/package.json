@@ -10,6 +10,7 @@
   "dependencies": {
     "ai": "workspace:*",
     "@ai-toolkit/react": "workspace:*",
+    "lucide-react": "^0.545.0",
     "next": "^15.5.9",
     "react": "^18",
     "react-dom": "^18"
