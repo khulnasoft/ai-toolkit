@@ -2,345 +2,127 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import {
-  MessageSquare,
-  Zap,
-  Blocks,
-  Cpu,
-  Sparkles,
-  ArrowRight,
+  ArrowUpRight,
+  Boxes,
   Check,
-  Layers,
-  Webhook,
-  Shield,
-  Scale,
+  ChevronDown,
+  CircleHelp,
+  Code2,
+  Copy,
+  FileJson,
+  Gauge,
+  Github,
+  KeyRound,
+  MessageSquareText,
+  MoreHorizontal,
+  Play,
+  Plus,
+  Sparkles,
+  Terminal,
+  WandSparkles,
+  Zap,
 } from 'lucide-react';
 
-const frameworks = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'Next.js', icon: '⬡' },
-  { name: 'Vue', icon: '💚' },
-  { name: 'Svelte', icon: '🔥' },
-  { name: 'Node.js', icon: '🟢' },
-  { name: 'Angular', icon: '🔺' },
+const models = [
+  { name: 'Claude 3.7 Sonnet', id: 'anthropic/claude-3-7-sonnet', speed: 'Fast', cost: '$3 / 1M' },
+  { name: 'GPT-4.1', id: 'openai/gpt-4.1', speed: 'Fast', cost: '$2 / 1M' },
+  { name: 'Gemini 2.5 Pro', id: 'google/gemini-2.5-pro', speed: 'Standard', cost: '$1.25 / 1M' },
 ];
 
-const features = [
-  {
-    icon: MessageSquare,
-    title: 'Chat & Completions',
-    description:
-      'Generate text, stream responses, and build conversational interfaces with ease.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Structured Output',
-    description:
-      'Use Zod or JSON Schema to get type-safe, validated responses from LLMs.',
-  },
-  {
-    icon: Blocks,
-    title: 'Tools & Function Calling',
-    description:
-      'Define tools that let AI models take actions and call your functions.',
-  },
-  {
-    icon: Cpu,
-    title: 'Model Middleware',
-    description:
-      'Add retry logic, caching, logging, and more with composable middleware.',
-  },
-  {
-    icon: Layers,
-    title: 'Multi-Modal',
-    description:
-      'Generate images, transcribe speech, and embed content seamlessly.',
-  },
-  {
-    icon: Webhook,
-    title: 'Server Actions',
-    description:
-      'Integrate with Next.js Server Actions and React Server Components.',
-  },
+const starterPrompts = [
+  'Summarize the latest customer feedback',
+  'Extract the action items from this meeting',
+  'Write a concise product launch announcement',
 ];
 
-const providers = [
-  { name: 'OpenAI', logo: '⬡' },
-  { name: 'Anthropic', logo: '🌀' },
-  { name: 'Google', logo: '🔷' },
-  { name: 'Azure', logo: '☁️' },
-  { name: 'Amazon', logo: '📦' },
-  { name: 'Mistral', logo: '🌟' },
-  { name: 'Cohere', logo: '🔤' },
-  { name: 'DeepSeek', logo: '🔍' },
-];
+export default function HomePage() {
+  const [activeSurface, setActiveSurface] = useState<'chat' | 'code'>('chat');
+  const [selectedModel, setSelectedModel] = useState(models[0]);
+  const [prompt, setPrompt] = useState('Explain how streaming responses work in the AI SDK.');
+  const [response, setResponse] = useState('');
+  const [isRunning, setIsRunning] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-export default function LandingPage() {
-  const [isHoveringPlayground, setIsHoveringPlayground] = useState(false);
+  const runPrompt = () => {
+    if (!prompt.trim()) return;
+    setIsRunning(true);
+    setResponse('');
+    window.setTimeout(() => {
+      setResponse(
+        'Streaming lets your UI render model output as it arrives instead of waiting for a complete response. The AI Gateway keeps the interface consistent across providers, so you can switch models without rewriting your application.',
+      );
+      setIsRunning(false);
+    }, 700);
+  };
+
+  const copySnippet = async () => {
+    await navigator.clipboard?.writeText(`model: '${selectedModel.id}'`);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1600);
+  };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold">AI Toolkit</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="#features">
-                <Button variant="ghost" size="sm">
-                  Features
-                </Button>
-              </Link>
-              <Link href="#providers">
-                <Button variant="ghost" size="sm">
-                  Providers
-                </Button>
-              </Link>
-              <Link href="#frameworks">
-                <Button variant="ghost" size="sm">
-                  Frameworks
-                </Button>
-              </Link>
-              <Link href="/gateway">
-                <Button variant="ghost" size="sm">
-                  Gateway
-                </Button>
-              </Link>
-              <Link href="/models">
-                <Button variant="ghost" size="sm">
-                  Models
-                </Button>
-              </Link>
-              <Link href="/docs">
-                <Button variant="ghost" size="sm">
-                  Docs
-                </Button>
-              </Link>
-              <Link href="/elements">
-                <Button variant="ghost" size="sm">
-                  Elements
-                </Button>
-              </Link>
-              <Link href="/playground">
-                <Button variant="ghost" size="sm">
-                  Playground
-                </Button>
-              </Link>
-            </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <nav className="border-b border-border/70 bg-background/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 lg:px-8">
+          <Link href="/" className="flex items-center gap-3 font-semibold tracking-tight">
+            <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <Sparkles data-icon="inline-start" />
+            </span>
+            <span>AI Elements</span>
+            <span className="hidden rounded-full border border-border px-2 py-0.5 font-mono text-[10px] font-normal text-muted-foreground sm:inline-flex">PLAYGROUND</span>
+          </Link>
+          <div className="hidden items-center gap-1 text-sm text-muted-foreground md:flex">
+            <Link className="rounded-md px-3 py-2 hover:bg-muted hover:text-foreground" href="/elements">Elements</Link>
+            <Link className="rounded-md px-3 py-2 hover:bg-muted hover:text-foreground" href="/models">Models</Link>
+            <Link className="rounded-md px-3 py-2 hover:bg-muted hover:text-foreground" href="/docs">Docs</Link>
+            <Link className="rounded-md px-3 py-2 hover:bg-muted hover:text-foreground" href="/gateway">Gateway</Link>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link href="https://github.com/vercel/ai" className="hidden items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground sm:flex"><Github data-icon="inline-start" /> GitHub <ArrowUpRight data-icon="inline-end" /></Link>
+            <button className="rounded-md border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm hover:bg-muted">Get started</button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm mb-8 bg-muted/50">
-            <Sparkles className="w-4 h-4 mr-2 text-primary" />
-            <span>Open-source AI toolkit for developers</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            The Framework Agnostic{' '}
-            <span className="text-primary">AI Toolkit</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12">
-            Build AI-powered applications and agents with React, Next.js, Vue,
-            Svelte, Node.js, and more. Unified APIs for every provider.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/playground">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-6"
-                onMouseEnter={() => setIsHoveringPlayground(true)}
-                onMouseLeave={() => setIsHoveringPlayground(false)}
-              >
-                Try the Playground
-                <ArrowRight
-                  className={`ml-2 h-5 w-5 transition-transform ${
-                    isHoveringPlayground ? 'translate-x-1' : ''
-                  }`}
-                />
-              </Button>
-            </Link>
-            <Link href="https://github.com/vercel/ai">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                View on GitHub
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Frameworks Section */}
-      <section id="frameworks" className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Works with your favorite framework
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Use the same AI toolkit across all your projects
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {frameworks.map(framework => (
-              <div
-                key={framework.name}
-                className="flex flex-col items-center justify-center p-6 rounded-xl border bg-background hover:shadow-lg transition-shadow cursor-pointer"
-              >
-                <span className="text-4xl mb-2">{framework.icon}</span>
-                <span className="font-medium">{framework.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Everything you need to build AI apps
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Powerful primitives for modern AI development
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map(feature => (
-              <div
-                key={feature.title}
-                className="p-6 rounded-xl border bg-card text-card-foreground hover:shadow-lg transition-shadow"
-              >
-                <feature.icon className="w-10 h-10 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Providers Section */}
-      <section id="providers" className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Support for every major provider
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Switch between providers with a single line of code
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {providers.map(provider => (
-              <div
-                key={provider.name}
-                className="flex items-center justify-center p-4 rounded-lg border bg-background"
-              >
-                <span className="text-lg font-medium">{provider.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Code Example Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Simple, unified API
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              One code, works with any provider
-            </p>
-          </div>
-          <div className="max-w-3xl mx-auto rounded-xl border bg-card p-6">
-            <pre className="text-sm overflow-x-auto">
-              <code>{`import { generateText } from 'ai';
-import { openai } from '@ai-toolkit/openai';
-import { anthropic } from '@ai-toolkit/anthropic';
-
-// Use with OpenAI
-const result = await generateText({
-  model: openai('gpt-4'),
-  prompt: 'Write a haiku about code',
-});
-
-// Switch to Anthropic - same API!
-const result2 = await generateText({
-  model: anthropic('claude-3-5-sonnet-20241022'),
-  prompt: 'Write a haiku about code',
-});`}</code>
-            </pre>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start building AI apps today
-          </h2>
-          <p className="text-xl mb-12 opacity-90">
-            Join thousands of developers building with AI Toolkit
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/playground">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="text-lg px-8 py-6"
-              >
-                Try the Playground
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="https://docs.studio.khulnasoft.com">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-              >
-                Read the Docs
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <span className="font-medium">AI Toolkit</span>
+      <section className="mx-auto max-w-[1440px] px-5 pb-12 pt-16 lg:px-8 lg:pt-24">
+        <div className="grid items-end gap-10 lg:grid-cols-[1.08fr_.92fr]">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-mono text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-primary" /> v1.0 is now available</div>
+            <h1 className="max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-7xl lg:text-[88px]">Build AI interfaces that feel <span className="text-primary">native.</span></h1>
+            <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">AI Elements is a component library and custom registry built on shadcn/ui. Compose chat, generative UI, and agent experiences without starting from scratch.</p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <button onClick={() => document.getElementById('workbench')?.scrollIntoView({ behavior: 'smooth' })} className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm hover:opacity-90"><WandSparkles data-icon="inline-start" /> Open the playground</button>
+              <Link href="/elements" className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted">Browse components <ArrowUpRight data-icon="inline-end" /></Link>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Built by{' '}
-              <a
-                href="https://vercel.com"
-                className="underline hover:text-primary"
-              >
-                Vercel
-              </a>
-              . Open-source under Apache-2.0 license.
-            </p>
+          </div>
+          <div className="border-l border-border pl-6 lg:mb-3 lg:pl-10">
+            <div className="flex items-center gap-2 font-mono text-xs text-primary"><Zap data-icon="inline-start" /> AI GATEWAY FOR DEVELOPERS</div>
+            <p className="mt-4 max-w-md text-2xl font-medium leading-snug tracking-tight">Hundreds of models. One API key. No markup.</p>
+            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-sm text-muted-foreground"><span className="flex items-center gap-2"><Check className="text-primary" /> Text & reasoning</span><span className="flex items-center gap-2"><Check className="text-primary" /> Image & video</span><span className="flex items-center gap-2"><Check className="text-primary" /> Audio & speech</span><span className="flex items-center gap-2"><Check className="text-primary" /> Automatic fallbacks</span></div>
           </div>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      <section id="workbench" className="mx-auto max-w-[1440px] px-5 pb-20 lg:px-8">
+        <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl shadow-primary/5">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border bg-muted/30 px-4 py-3">
+            <div className="flex items-center gap-3"><div className="flex gap-1.5"><span className="size-2.5 rounded-full bg-destructive/70" /><span className="size-2.5 rounded-full bg-primary/60" /><span className="size-2.5 rounded-full bg-muted-foreground/40" /></div><span className="hidden font-mono text-xs text-muted-foreground sm:inline">playground / untitled-request</span></div>
+            <div className="flex items-center gap-2"><span className="flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground"><span className="size-1.5 rounded-full bg-primary" /> gateway connected</span><button className="rounded-md p-1.5 text-muted-foreground hover:bg-muted"><MoreHorizontal data-icon="inline-start" /></button></div>
+          </div>
+          <div className="grid min-h-[600px] lg:grid-cols-[260px_1fr_300px]">
+            <aside className="border-b border-border p-4 lg:border-b-0 lg:border-r"><p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Workspace</p><div className="flex flex-col gap-1"><button className="flex items-center gap-3 rounded-md bg-muted px-3 py-2.5 text-left text-sm font-medium"><MessageSquareText className="text-primary" /> Chat playground</button><button className="flex items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"><Code2 /> Code examples</button><button className="flex items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"><Boxes /> Component registry</button></div><div className="mt-8 border-t border-border pt-6"><p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Recent</p><button className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-xs text-muted-foreground hover:bg-muted"><FileJson /> JSON extraction</button><button className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-xs text-muted-foreground hover:bg-muted"><Terminal /> Tool calling</button></div><button className="mt-8 flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-border px-3 py-2 text-xs text-muted-foreground hover:bg-muted"><Plus data-icon="inline-start" /> New session</button></aside>
+            <div className="flex min-w-0 flex-col">
+              <div className="flex items-center justify-between border-b border-border px-5 py-4"><div><p className="font-medium">Try a prompt</p><p className="mt-1 text-xs text-muted-foreground">Test your model configuration in real time.</p></div><div className="flex rounded-md border border-border bg-muted p-1"><button onClick={() => setActiveSurface('chat')} className={`rounded px-3 py-1.5 text-xs ${activeSurface === 'chat' ? 'bg-card font-medium shadow-sm' : 'text-muted-foreground'}`}>Chat</button><button onClick={() => setActiveSurface('code')} className={`rounded px-3 py-1.5 text-xs ${activeSurface === 'code' ? 'bg-card font-medium shadow-sm' : 'text-muted-foreground'}`}>Code</button></div></div>
+              <div className="flex flex-1 flex-col gap-5 p-5"><div className="flex flex-1 flex-col justify-end gap-4"><div className="max-w-[86%] rounded-lg border border-border bg-muted/40 p-4 text-sm leading-6 text-muted-foreground"><span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-primary">assistant</span>{response || 'Your response will appear here. Ask anything about the AI SDK, models, or your application.'}</div></div><div className="rounded-lg border border-border bg-background shadow-sm"><textarea value={prompt} onChange={event => setPrompt(event.target.value)} rows={3} className="w-full resize-none bg-transparent p-4 text-sm outline-none placeholder:text-muted-foreground" placeholder="Ask the model anything..." /><div className="flex items-center justify-between border-t border-border px-3 py-2"><div className="flex items-center gap-1"><button className="rounded p-1.5 text-muted-foreground hover:bg-muted"><Plus data-icon="inline-start" /></button><span className="hidden text-xs text-muted-foreground sm:inline">Add context or tools</span></div><button onClick={runPrompt} disabled={isRunning} className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground disabled:opacity-60">{isRunning ? 'Running…' : 'Run prompt'} <Play data-icon="inline-end" /></button></div></div><div className="flex flex-wrap gap-2">{starterPrompts.map(item => <button key={item} onClick={() => setPrompt(item)} className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted">{item}</button>)}</div></div>
+            </div>
+            <aside className="border-t border-border p-5 lg:border-l lg:border-t-0"><div className="flex items-center justify-between"><p className="font-medium">Configuration</p><button className="rounded p-1.5 text-muted-foreground hover:bg-muted"><CircleHelp data-icon="inline-start" /></button></div><label className="mt-6 block text-xs font-medium text-muted-foreground">MODEL</label><div className="relative mt-2"><select value={selectedModel.id} onChange={event => setSelectedModel(models.find(model => model.id === event.target.value) ?? models[0])} className="w-full appearance-none rounded-md border border-border bg-background px-3 py-2.5 pr-8 text-sm outline-none focus:ring-2 focus:ring-ring">{models.map(model => <option key={model.id} value={model.id}>{model.name}</option>)}</select><ChevronDown className="pointer-events-none absolute right-3 top-3 text-muted-foreground" /></div><div className="mt-3 flex items-center justify-between text-xs text-muted-foreground"><span className="flex items-center gap-1.5"><Gauge data-icon="inline-start" /> {selectedModel.speed}</span><span>{selectedModel.cost}</span></div><div className="mt-7 border-t border-border pt-5"><label className="block text-xs font-medium text-muted-foreground">SYSTEM PROMPT</label><div className="mt-2 rounded-md border border-border bg-muted/30 p-3 font-mono text-[11px] leading-5 text-muted-foreground">You are a helpful assistant for developers. Keep answers clear and actionable.</div></div><div className="mt-7 border-t border-border pt-5"><div className="flex items-center justify-between"><label className="text-xs font-medium text-muted-foreground">REQUEST SNIPPET</label><button onClick={copySnippet} className="flex items-center gap-1 text-xs text-primary hover:underline">{copied ? <Check data-icon="inline-start" /> : <Copy data-icon="inline-start" />} {copied ? 'Copied' : 'Copy'}</button></div><pre className="mt-2 overflow-x-auto rounded-md bg-foreground p-3 font-mono text-[11px] leading-5 text-background"><code>{`const result = await streamText({\n  model: '${selectedModel.id}',\n  prompt,\n});`}</code></pre></div><div className="mt-7 rounded-md border border-primary/30 bg-primary/5 p-3 text-xs leading-5 text-muted-foreground"><KeyRound className="mb-2 text-primary" /> Your API key stays on the server. Gateway routing is ready.</div></aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-muted/30"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-5 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-8"><div><p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">Ship the interface</p><h2 className="mt-3 text-3xl font-semibold tracking-tight">The building blocks for your next AI product.</h2></div><div className="flex gap-3"><Link href="/elements" className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground">Explore AI Elements <ArrowUpRight data-icon="inline-end" /></Link><Link href="/docs" className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium">Read the docs</Link></div></div></section>
+    </main>
   );
 }
