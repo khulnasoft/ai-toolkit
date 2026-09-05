@@ -27,7 +27,7 @@ export function parseArgs(argv) {
   }
 
   if (!options.name && !options.help) {
-    throw new Error('Project name is required. Run create-ai --help for usage.');
+    throw new Error('Project name is required. Run create-ai-sdk --help for usage.');
   }
 
   return options;
