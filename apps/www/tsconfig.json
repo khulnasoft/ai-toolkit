@@ -23,6 +23,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "../../content/tools-registry/registry.ts",
+    "../../content/gateways-registry/registry.ts",
     "../../examples/registry.json"
   ],
   "exclude": ["node_modules"]
