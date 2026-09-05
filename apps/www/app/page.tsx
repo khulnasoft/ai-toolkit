@@ -4,6 +4,7 @@ import {
   Boxes,
   Grid2X2,
   Library,
+  Play,
   Sparkles,
   Waypoints,
   Wrench,
@@ -50,6 +51,15 @@ const sections = [
     description:
       'Gateways that unify hundreds of models behind a single integration — with routing, fallbacks, caching, and observability.',
     meta: `${gateways.length} gateways`,
+  },
+  {
+    href: '/playground',
+    icon: Play,
+    eyebrow: 'Playground',
+    title: 'Compare models side-by-side',
+    description:
+      'Tune prompts across models in real time, compare cost and latency, and export production-ready AI Toolkit code.',
+    meta: 'Try it on Studio',
   },
   {
     href: '/templates',

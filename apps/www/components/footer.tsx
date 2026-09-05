@@ -7,6 +7,7 @@ const columns = [
       { label: 'Recipes', href: '/recipes' },
       { label: 'Tools Registry', href: '/tools' },
       { label: 'Gateways', href: '/gateways' },
+      { label: 'Playground', href: '/playground' },
       { label: 'Templates', href: '/templates' },
       { label: 'Showcase', href: '/showcase' },
     ],

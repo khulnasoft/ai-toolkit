@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/recipes', label: 'Recipes' },
   { href: '/tools', label: 'Tools Registry' },
   { href: '/gateways', label: 'Gateways' },
+  { href: '/playground', label: 'Playground' },
   { href: '/templates', label: 'Templates' },
   { href: '/showcase', label: 'Showcase' },
 ];
