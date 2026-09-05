@@ -1,1287 +1,305 @@
-# AI Toolkit: Enterprise Monorepo Architecture Redesign
+# AI Toolkit: Enterprise Monorepo Architecture
 
-**Status:** Architecture Proposal v1.0  
-**Date:** June 2026  
-**Audience:** Principal Engineers, Tech Leads, Contributors  
-**Scope:** Complete restructuring for 500+ contributors, 100+ packages, 1000+ examples
+**Status:** Living document — partially implemented, updated September 2026
+**Audience:** Principal Engineers, Tech Leads, Contributors
+**Scope:** Domain-organized monorepo for 500+ contributors, 100+ packages
 
----
-
-## Executive Summary
-
-This document proposes a **domain-driven, layered architecture** that transforms the current flat monorepo into an enterprise-grade system optimized for:
-
-- **Scalability**: Support 500+ concurrent contributors
-- **Clarity**: Crystal-clear ownership and boundaries
-- **DX**: Superior developer experience with automated workflows
-- **Enterprise**: Production-grade governance and standards
-- **Growth**: Built for 100+ packages and 1000+ examples
-
-**Key Changes:**
-
-- Move from flat `packages/` to domain-organized structure
-- Separate AI providers, MCPs, framework adapters, and tools
-- Establish clear internal vs. public APIs
-- Create comprehensive onboarding & governance
-- Implement ownership, testing, and CI/CD strategies
+> Source of truth lives in code, not in this doc. When they disagree, code wins:
+> `pnpm-workspace.yaml`, `turbo.json`, `CODEOWNERS`, `ADR/`, `tools/scripts/validate-structure.mjs`,
+> `examples/registry.json`, `architecture/`.
+>
+> The original v1.0 proposal (June 2026) used `@ai-sdk/*` / `@vercel/*` names and an
+> aspirational layout. This refactor corrects names to `@ai-toolkit/*` / `@khulnasoft/*`
+> and aligns the document with what is actually implemented.
 
 ---
 
-## Current State Analysis
+## 1. Executive Summary
 
-### Existing Structure Issues
+The monorepo has moved from a flat `packages/` layout to a **domain-driven, layered
+architecture**:
 
-```
-❌ packages/ (50+ packages mixed together)
-   - Core SDK packages (ai, react, rsc)
-   - 30+ AI provider packages
-   - Framework adapters (angular, svelte, vue)
-   - Internal tools (provider-utils, codemod)
-   - Test utilities (test-server, valibot)
-   - MCP implementation (mcp)
+- **Scalability**: domains (`core`, `providers`, `adapters`, `validation`, `special`,
+  `mcp`, `infrastructure`) can be built, tested, and owned independently.
+- **Clarity**: each domain has a `README.md`, a `tsconfig.json`, and `CODEOWNERS` entries.
+- **DX**: `pnpm generate`, `pnpm health-check`, `pnpm inventory`, `pnpm validate-structure`,
+  `pnpm find-package` automate onboarding and governance.
+- **Governance**: ADRs 004–009 plus `validate-structure` enforce dependency direction,
+  export conditions, `stability`/`owners` metadata, and example metadata.
 
-❌ examples/ (20+ examples at root level)
-   - Scattered across different frameworks
-   - No categorization or discovery path
-   - Difficult to maintain consistency
-
-❌ content/ (Documentation scattered)
-   - Docs live in apps/docs/content
-   - Cookbook examples in content/cookbook
-   - Provider docs in content/providers
-   - Duplication across multiple sources
-
-❌ tools/ (Unclear ownership)
-   - Build tools, linters, etc.
-   - No clear separation of concerns
-   - Mixed with packages/
-```
-
-### Current Problems
-
-1. **Poor Discoverability**: 50 packages in flat structure; hard to find related code
-2. **Unclear Ownership**: No CODEOWNERS; difficult to know who maintains what
-3. **Mixed Concerns**: Providers, tools, adapters all in one directory
-4. **Duplicated Docs**: Same concepts explained in multiple places
-5. **Onboarding Friction**: New contributors can't easily find where to add features
-6. **CI/CD Complexity**: Turbo can't easily target specific domains
-7. **Versioning Confusion**: Public APIs, internal APIs, and examples versions mixed
-8. **Testing Scattered**: Tests live in packages; hard to run domain-level suites
+**What changed vs the v1.0 proposal:** names, package locations, example categories,
+tooling, and Turbo syntax are corrected below. Aspirational items that were never
+implemented are explicitly marked **Outstanding** instead of being presented as fact.
 
 ---
 
-## Enterprise Architecture Principles
+## 2. Implemented Repository Structure
 
-### 1. Domain-Driven Design
-
-- Group related packages by business capability
-- Each domain has clear responsibility
-- Domains can be understood independently
-
-### 2. Layered Architecture
-
-- **Core Layer**: Foundation packages (ai, react, rsc)
-- **Provider Layer**: AI provider integrations
-- **Adapter Layer**: Framework-specific implementations
-- **Tool Layer**: Developer utilities and infrastructure
-- **Example Layer**: Reference implementations
-
-### 3. Explicit Boundaries
-
-- **Public APIs**: Versioned, stable, change-controlled
-- **Internal APIs**: Subject to change, documented
-- **Example APIs**: For reference only, not for production
-- **Tool APIs**: Internal developer infrastructure
-
-### 4. Clear Ownership
-
-- CODEOWNERS enforces review requirements
-- Domain leads have decision authority
-- Automated governance prevents accidental changes
-
-### 5. Enterprise Developer Experience
-
-- Automated setup (monorepo setup guides)
-- One-command onboarding
-- Clear contribution workflows
-- Automated governance checks
-
----
-
-## Proposed Repository Structure
+Condensed — see `pnpm-workspace.yaml` and `architecture/PROJECT-STRUCTURE.md` for the
+full tree.
 
 ```
 ai-toolkit/
-├── README.md                              # Quick start guide
-├── CONTRIBUTING.md                         # Contribution workflow
-├── ARCHITECTURE.md                         # Architecture overview (this doc)
-├── CODEOWNERS                              # Ownership & review requirements
-├── ADR/                                    # Architecture Decision Records
-│   ├── ADR-001-monorepo-strategy.md
-│   ├── ADR-002-version-management.md
-│   ├── ADR-003-testing-strategy.md
-│   └── ...
+├── README.md / CONTRIBUTING.md / CODEOWNERS / ARCHITECTURE_*.md
+├── ADR/                                # 004–009 + template (see §10)
+├── architecture/                       # domain-mapping, runtime-support, etc.
+├── .github/workflows/                  # ci.yml, release.yml + ~12 more (see §8)
+├── turbo.json                          # `tasks` (not `pipeline`); build:core/providers/adapters
+├── pnpm-workspace.yaml                 # domain globs + legacy `packages/*` during migration
+├── package.json                        # root scripts (generate, validate-structure, health-check…)
 │
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   ├── PULL_REQUEST_TEMPLATE/
-│   ├── workflows/                          # CI/CD pipelines
-│   │   ├── ci.yml                          # Main CI pipeline
-│   │   ├── release.yml                     # Release automation
-│   │   ├── docs.yml                        # Documentation
-│   │   └── governance.yml                  # Automated checks
-│   ├── scripts/
-│   └── DISCUSSION_TEMPLATE/
+├── packages/core/                      # ai, provider-utils, runtime
+├── packages/providers/                 # 30 providers (see §3)
+├── packages/adapters/                  # react, rsc, angular, svelte, vue
+├── packages/validation/                # provider (@ai-toolkit/provider), capabilities, valibot
+├── packages/special/                   # gateway, khulnasoft
+├── packages/mcp/                       # single @ai-toolkit/mcp package (split is Outstanding)
+├── packages/infrastructure/            # test-server only
 │
-├── .devcontainer/                          # Local dev setup
+├── packages/codemod/                   # legacy flat — Outstanding: move to special/developer-tools
+├── packages/devtools/                  # legacy flat — Outstanding
+├── packages/langchain/                 # legacy flat — Outstanding (decision needed)
+├── packages/llamaindex/                # legacy flat — Outstanding (decision needed)
 │
-├── biome.json                              # Code quality rules
-├── turbo.json                              # Turbo configuration
-├── tsconfig.base.json                      # Shared TypeScript config
-├── pnpm-workspace.yaml                     # Workspace definition
-├── package.json                            # Root package scripts
-│
-# ============================================================
-# CORE LAYER - Foundation packages (Framework-agnostic)
-# ============================================================
-├── packages/core/                          # Core SDK packages
-│   ├── ai/                                 # @ai-sdk/core
-│   │   ├── src/
-│   │   ├── tests/
-│   │   ├── package.json
-│   │   └── README.md
-│   │
-│   ├── shared/                             # @ai-sdk/shared
-│   │   ├── src/
-│   │   │   ├── types/
-│   │   │   ├── utils/
-│   │   │   └── errors/
-│   │   └── package.json
-│   │
-│   └── telemetry/                          # @ai-sdk/telemetry
-│       ├── src/
-│       └── package.json
-│
-# ============================================================
-# PROVIDER LAYER - LLM provider integrations
-# ============================================================
-├── packages/providers/                     # AI provider packages
-│   ├── openai/                             # @ai-sdk/openai
-│   │   ├── src/
-│   │   ├── tests/
-│   │   ├── package.json
-│   │   └── README.md
-│   │
-│   ├── anthropic/                          # @ai-sdk/anthropic
-│   │   ├── src/
-│   │   ├── tests/
-│   │   └── package.json
-│   │
-│   ├── google-vertex/                      # @ai-sdk/google-vertex
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── cohere/                             # @ai-sdk/cohere
-│   ├── mistral/                            # @ai-sdk/mistral
-│   ├── groq/                               # @ai-sdk/groq
-│   ├── deepinfra/                          # @ai-sdk/deepinfra
-│   ├── xai/                                # @ai-sdk/xai
-│   ├── togetherai/                         # @ai-sdk/togetherai
-│   ├── fireworks/                          # @ai-sdk/fireworks
-│   ├── replicate/                          # @ai-sdk/replicate
-│   │
-│   # ✅ 27 more provider directories follow same pattern
-│   │
-│   └── openai-compatible/                  # @ai-sdk/openai-compatible
-│       ├── src/
-│       └── package.json
-│
-# ============================================================
-# FRAMEWORK ADAPTER LAYER - Framework-specific implementations
-# ============================================================
-├── packages/adapters/                      # Framework adapters
-│   ├── react/                              # @ai-sdk/react
-│   │   ├── src/
-│   │   │   ├── hooks/
-│   │   │   ├── components/
-│   │   │   └── ui/
-│   │   ├── tests/
-│   │   └── package.json
-│   │
-│   ├── rsc/                                # @ai-sdk/rsc (Next.js specific)
-│   │   ├── src/
-│   │   ├── tests/
-│   │   │   └── e2e/
-│   │   │       └── next-server/
-│   │   └── package.json
-│   │
-│   ├── angular/                            # @ai-sdk/angular
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── svelte/                             # @ai-sdk/svelte
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   └── vue/                                # @ai-sdk/vue
-│       ├── src/
-│       └── package.json
-│
-# ============================================================
-# MCP LAYER - Model Context Protocol implementations
-# ============================================================
-├── packages/mcp/                           # MCP-specific packages
-│   ├── core/                               # @ai-sdk/mcp-core
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── server/                             # @ai-sdk/mcp-server
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   └── tools/                              # @ai-sdk/mcp-tools
-│       ├── src/
-│       └── package.json
-│
-# ============================================================
-# VALIDATION LAYER - Schema & validation libraries
-# ============================================================
-├── packages/validation/                    # Validation packages
-│   ├── valibot/                            # @ai-sdk/valibot
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   └── provider/                           # @ai-sdk/provider
-│       ├── src/
-│       └── package.json
-│
-# ============================================================
-# SPECIAL PURPOSE PACKAGES
-# ============================================================
-├── packages/special/
-│   ├── gateway/                            # @ai-sdk/gateway (Vercel AI Gateway)
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── khulnasoft/                         # @ai-sdk/khulnasoft (Internal)
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── aws/                                # AWS-specific implementations
-│   │   ├── bedrock/                        # @ai-sdk/aws-bedrock
-│   │   └── package.json
-│   │
-│   ├── azure/                              # Azure-specific
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   └── developer-tools/                    # Development utilities
-│       ├── codemod/                        # @ai-sdk/codemod
-│       ├── devtools/                       # @ai-sdk/devtools
-│       └── package.json
-│
-# ============================================================
-# TESTING & INFRASTRUCTURE
-# ============================================================
-├── packages/infrastructure/                # Testing & infra packages
-│   ├── test-server/                        # @ai-sdk/test-server
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   └── eslint-config/                      # @ai-sdk/eslint-config
-│       ├── index.js
-│       └── package.json
-│
-# ============================================================
-# EXAMPLE LAYER - Categorized reference implementations
-# ============================================================
-├── examples/                               # Organized by use case
-│   ├── 01-foundations/                     # Basic patterns
-│   │   ├── 01-simple-text-generation/
-│   │   ├── 02-streaming-text-generation/
-│   │   ├── 03-tool-calling/
-│   │   ├── 04-structured-data/
-│   │   └── 05-file-handling/
-│   │
-│   ├── 02-framework-integration/           # Framework-specific examples
-│   │   ├── 01-react-hooks/
-│   │   │   ├── use-chat/
-│   │   │   ├── use-completion/
-│   │   │   └── use-object/
-│   │   │
-│   │   ├── 02-next-js/
-│   │   │   ├── server-actions/
-│   │   │   ├── route-handlers/
-│   │   │   ├── app-router/
-│   │   │   └── rsc-integration/
-│   │   │
-│   │   ├── 03-vue/
-│   │   ├── 04-angular/
-│   │   ├── 05-svelte/
-│   │   └── 06-node-js/
-│   │
-│   ├── 03-integrations/                    # Provider-specific examples
-│   │   ├── openai/
-│   │   ├── anthropic/
-│   │   ├── google-vertex/
-│   │   ├── cohere/
-│   │   └── ... (all providers)
-│   │
-│   ├── 04-advanced-patterns/               # Complex real-world patterns
-│   │   ├── 01-multi-turn-conversation/
-│   │   ├── 02-ai-agents/
-│   │   ├── 03-rag-systems/
-│   │   ├── 04-streaming-ssr/
-│   │   ├── 05-cost-optimization/
-│   │   ├── 06-error-recovery/
-│   │   └── 07-multi-modal/
-│   │
-│   ├── 05-production-apps/                 # Full production apps
-│   │   ├── chatbot-saas/
-│   │   ├── content-generator/
-│   │   ├── ai-research-assistant/
-│   │   └── code-generation-tool/
-│   │
-│   ├── 06-mcp-integrations/                # MCP examples
-│   │   ├── local-tools/
-│   │   ├── api-integration/
-│   │   └── custom-server/
-│   │
-│   └── package.json                        # Shared example deps
-│
-# ============================================================
-# DOCUMENTATION LAYER
-# ============================================================
-├── apps/
-│   ├── docs/                               # Main documentation site
-│   │   ├── content/
-│   │   │   ├── 00-introduction/
-│   │   │   ├── 01-getting-started/
-│   │   │   ├── 02-guides/
-│   │   │   ├── 03-api-reference/
-│   │   │   ├── 04-examples/                # Link to examples/
-│   │   │   ├── 05-integrations/            # Provider guides
-│   │   │   ├── 06-troubleshooting/
-│   │   │   └── 07-migration-guides/
-│   │   ├── app/
-│   │   └── package.json
-│   │
-│   └── www/                                # Website / landing page
-│       ├── app/
-│       └── package.json
-│
-├── content/                                # Shared content (deprecated)
-│   └── [Can be gradually migrated to apps/docs]
-│
-# ============================================================
-# TOOLING & GOVERNANCE
-# ============================================================
-├── tools/                                  # Build & development tools
-│   ├── cli/                                # Monorepo CLI
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── generator/                          # Code generation
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── scripts/                            # Node.js scripts
-│   │   ├── generate-examples.mjs
-│   │   ├── validate-packages.mjs
-│   │   ├── sync-versions.mjs
-│   │   └── update-docs.mjs
-│   │
-│   └── templates/                          # Generator templates
-│       ├── provider-package/
-│       ├── framework-adapter/
-│       ├── example/
-│       └── docs/
-│
-# ============================================================
-# INFRASTRUCTURE & RELEASE
-# ============================================================
-├── infra/                                  # Deployment & infrastructure
-│   ├── docker/
-│   ├── vercel/
-│   ├── ci/
-│   └── README.md
-│
-├── tests/                                  # Integration & e2e tests
-│   ├── integration/
-│   ├── e2e/
-│   └── performance/
-│
-├── scripts/                                # Root-level scripts
-│   ├── setup.sh                            # First-time setup
-│   ├── validate-structure.sh               # Validate repository structure
-│   ├── audit-dependencies.sh               # Security audit
-│   └── health-check.sh                     # Repository health
-│
-├── .changesets/                            # Changeset entries
-│
-├── LICENSE
-└── .gitignore
+├── examples/                           # 01-foundations, 02-framework-integration,
+│   │                                   # 03-integrations, 04-tools + registry.json (see §7)
+├── apps/docs/ apps/www/                # docs site + marketing site (consumers, per ADR-005)
+├── content/                            # shared MDX sources consumed by apps/docs
+├── tools/                              # analyze-downloads, create-ai-sdk, eslint-config,
+│                                       # generate-llms-txt, scripts, tsconfig
+└── tools/scripts/                      # generate, validate-structure, health-check,
+                                        # inventory, baseline, find-package, migrate-package
 ```
 
----
+### What the v1.0 proposal got wrong (corrected here)
 
-## Directory Ownership & Responsibilities
-
-### Core Layer (`packages/core/`)
-
-**Owner**: @vercel/ai-sdk-core  
-**Public API**: ✅ Versioned (semver)  
-**Stability**: STABLE
-
-| Package     | Purpose                  | Dependencies      | Exports                                                |
-| ----------- | ------------------------ | ----------------- | ------------------------------------------------------ |
-| `ai`        | Main SDK entry point     | shared, telemetry | `generateText`, `streamText`, `generateObject`, `tool` |
-| `shared`    | Shared types & utilities | none              | Types, error classes, utilities                        |
-| `telemetry` | Analytics & telemetry    | none              | `recordTelemetry`, `getTelemetryData`                  |
-
-**Ownership Rules**:
-
-- Changes require @vercel/ai-sdk-core approval
-- Breaking changes require RFC process
-- Quarterly compatibility audits
+| Proposal claimed                                                                           | Reality                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/core/{ai,shared,telemetry}`                                                      | `packages/core/{ai,provider-utils,runtime}`. There is no `shared` or `telemetry` package. Shared provider utilities = `@ai-toolkit/provider-utils`; spec interfaces = `@ai-toolkit/provider` (under `validation/`).                                               |
+| `packages/special/{gateway,khulnasoft,aws,azure,developer-tools}`                          | `packages/special/{gateway,khulnasoft}` only. `azure` and `amazon-bedrock` are real providers under `packages/providers/`. `codemod`/`devtools` are still flat under `packages/`. `eslint-config` lives in `tools/eslint-config`, not `packages/infrastructure/`. |
+| `packages/mcp/{core,server,tools}`                                                         | Single `packages/mcp` (`@ai-toolkit/mcp`). The three-way split was never implemented.                                                                                                                                                                             |
+| `packages/validation/{valibot,provider}`                                                   | `packages/validation/{provider,capabilities,valibot}` plus `README.md`.                                                                                                                                                                                           |
+| `packages/infrastructure/{test-server,eslint-config}`                                      | `test-server` only.                                                                                                                                                                                                                                               |
+| Examples `01–06` incl. `04-advanced-patterns`, `05-production-apps`, `06-mcp-integrations` | Actually `01-foundations`, `02-framework-integration`, `03-integrations`, `04-tools` + `registry.json`.                                                                                                                                                           |
+| `tools/{cli,generator,scripts,templates}` + `generate-examples.mjs`, `sync-versions.mjs` … | Actually `tools/{analyze-downloads,create-ai-sdk,eslint-config,generate-llms-txt,scripts,tsconfig}`; scripts are `generate.mjs`, `validate-structure.mjs`, `health-check.mjs`, `inventory.mjs`, `baseline.mjs`, `find-package.mjs`, `migrate-package.mjs`.        |
+| `infra/`, `tests/`, root `scripts/`                                                        | Do not exist. Infra concerns live in `.github/` and `tools/`.                                                                                                                                                                                                     |
+| Turbo `pipeline` with `@ai-sdk/*` filters                                                  | `turbo.json` uses `tasks` with `build:core`, `build:providers`, `build:adapters`, `test:core`, …                                                                                                                                                                  |
 
 ---
 
-### Provider Layer (`packages/providers/`)
+## 3. Domains & Ownership
 
-**Owner**: @vercel/ai-sdk-providers (coordinator) + individual teams  
-**Public API**: ✅ Versioned (semver)  
-**Stability**: STABLE
+Ownership is enforced by `CODEOWNERS` — this table is a summary, not a copy.
 
-**Provider Organization**:
+| Domain         | Path                                               | npm scope                                                                                                                                                                  | Stability                      |
+| -------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Core           | `packages/core/`                                   | `ai`, `@ai-toolkit/provider-utils`, `@ai-toolkit/runtime`                                                                                                                  | stable                         |
+| Providers      | `packages/providers/`                              | `@ai-toolkit/{openai,anthropic,google,google-vertex,azure,amazon-bedrock,cohere,mistral,groq,deepinfra,xai,togetherai,fireworks,replicate,openai-compatible,…}` (30 total) | stable per package             |
+| Adapters       | `packages/adapters/`                               | `@ai-toolkit/{react,rsc,angular,svelte,vue}`                                                                                                                               | stable                         |
+| Validation     | `packages/validation/`                             | `@ai-toolkit/provider`, `@ai-toolkit/capabilities`, `@ai-toolkit/valibot`                                                                                                  | stable / beta (`capabilities`) |
+| Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft}`                                                                                                                                         | stable                         |
+| MCP            | `packages/mcp/`                                    | `@ai-toolkit/mcp`                                                                                                                                                          | beta                           |
+| Infrastructure | `packages/infrastructure/`                         | `@ai-toolkit/test-server` (internal)                                                                                                                                       | internal                       |
+| Legacy flat    | `packages/{codemod,devtools,langchain,llamaindex}` | various                                                                                                                                                                    | see mapping §11                |
 
-- Each provider is independent & maintainable
-- Follows `@ai-sdk/{provider}` naming convention
-- Shared utilities in `packages/providers/_shared/`
-- Provider-specific tests included in package
+**Ownership rules:**
 
-**Ownership Examples**:
-| Provider | Owner | Maintenance | Support |
-|----------|-------|-------------|---------|
-| `openai/` | @vercel/ai-openai | Vercel | Production |
-| `anthropic/` | @vercel/ai-anthropic | Vercel | Production |
-| `groq/` | @groq-team | Groq | Community |
-| `cohere/` | @cohere-team | Cohere | Community |
-| `mistral/` | @mistral-team | Mistral | Community |
-
-**Rules**:
-
-- Providers can have custom CI/CD
-- Owners have final say on breaking changes
-- Monthly compatibility audits
-- Version pinning managed per provider
+- Core changes require `@khulnasoft/ai-toolkit-core` approval; breaking changes go through the RFC process.
+- Each Vercel-maintained provider has its own team entry; community providers fall back to `@khulnasoft/ai-toolkit-providers` (see `CODEOWNERS`).
+- Adapters require owner + `@khulnasoft/ai-toolkit-adapters`.
+- `CODEOWNERS` still carries a **Legacy flat structure** section during migration — do not add new flat packages.
 
 ---
 
-### Adapter Layer (`packages/adapters/`)
-
-**Owner**: @vercel/ai-sdk-adapters  
-**Public API**: ✅ Versioned (semver)  
-**Stability**: STABLE
-
-| Adapter    | Framework   | Purpose              | Owners                 |
-| ---------- | ----------- | -------------------- | ---------------------- |
-| `react/`   | React 18+   | Hooks, components    | @vercel/ai-react-team  |
-| `rsc/`     | Next.js 13+ | Server actions, RSC  | @vercel/ai-nextjs-team |
-| `angular/` | Angular 15+ | Directives, services | @angular-community     |
-| `svelte/`  | Svelte 3+   | Stores, components   | @svelte-community      |
-| `vue/`     | Vue 3+      | Composables          | @vue-community         |
-
----
-
-### MCP Layer (`packages/mcp/`)
-
-**Owner**: @vercel/ai-mcp  
-**Public API**: ✅ Versioned (semver)  
-**Stability**: BETA
-
-Implements Model Context Protocol specification. Focus on:
-
-- Server implementations
-- Tool standardization
-- Resource management
-
----
-
-### Special Purpose Packages
-
-**Gateway** (`packages/special/gateway/`)
-
-- Owner: @vercel/vercel-ai-gateway
-- Public API: ✅ Versioned
-- Stability: STABLE
-- Provides unified interface to all providers
-
-**Developer Tools** (`packages/special/developer-tools/`)
-
-- Owner: @vercel/ai-developer-tools
-- Public API: ✅ Versioned
-- Tools: codemod, devtools, linters
-
----
-
-### Testing Infrastructure (`packages/infrastructure/`)
-
-**Owner**: @vercel/ai-infra  
-**Public API**: Internal (not versioned)
-
-Provides shared test utilities, mock servers, type fixtures.
-
----
-
-## Example Organization & Discovery
-
-### Structure by Complexity
+## 4. Layer Dependency Rules (ADR-008, ADR-004)
 
 ```
-examples/
-├── 01-foundations/           [100 lines, 5 min to understand]
-├── 02-framework-integration/ [500-1000 lines, framework patterns]
-├── 03-integrations/          [Provider-specific setup]
-├── 04-advanced-patterns/     [Production patterns]
-└── 05-production-apps/       [Real applications, 5000+ lines]
+ai ────────────┬──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
+               │
+@ai-toolkit/<provider> ─┴──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
+
+@ai-toolkit/runtime ← capability contracts (browser-safe, no Node builtins)
+@ai-toolkit/capabilities ← model capability declarations
+apps/*, examples/* → packages/* (never the reverse; ADR-005)
 ```
 
-### Naming Convention
+Enforced by `pnpm validate-structure` (dependency direction + Node-builtin scan):
 
-Each example follows: `{level}-{category}/{provider-or-framework}/`
-
-Example discovery:
-
-```bash
-# Find all React examples
-ls examples/02-framework-integration/01-react-hooks/
-
-# Find all OpenAI examples
-find examples -type d -name "*openai*"
-
-# Find advanced patterns
-ls examples/04-advanced-patterns/
-```
-
-### Example Metadata
-
-Each example includes `example.json`:
-
-```json
-{
-  "name": "React useChat Hook",
-  "category": "framework-integration",
-  "framework": "react",
-  "difficulty": "beginner",
-  "providers": ["openai", "anthropic"],
-  "timeToUnderstand": "5 minutes",
-  "features": ["streaming", "multi-turn"],
-  "files": ["app.tsx", "chat.ts"],
-  "docs": "../../docs/examples/react-chat-hook.md"
-}
-```
+- `core` and `validation` packages **must not** import Node builtins (`node:*` or bare
+  `fs`, `os`, …) and must not depend on Node-builtin packages. Use `@ai-toolkit/runtime`
+  (`createRuntimeContext`) for capability detection.
+- Never use `JSON.parse` directly in production code — use `parseJSON` / `safeParseJSON`
+  from `@ai-toolkit/provider-utils`.
+- Provider option schemas: `.optional()` unless `null` is meaningful; be restrictive.
+  Response schemas: `.nullish()`, minimal, tolerant of provider API drift.
+- Zod: `zod/v3` only for compat code; new code uses `zod/v4` (`z4.core.$ZodType`).
 
 ---
 
-## Public API vs Internal API Strategy
+## 5. Package Standards (ADR-006, ADR-007)
 
-### Public APIs (Versioned, Stable)
+Every public package `package.json` must declare (see `packages/core/runtime/package.json`
+as the reference example):
+
+- `exports` map with `types`, `import`, `require` (and `default`) on the `.` entry;
+  `browser`/`worker`/`edge` conditions alias the runtime-neutral build or are omitted
+  for Node-only packages. Runtime-neutral packages (`core`, `validation`) must not
+  reference Node-only entry points.
+- Governance metadata: `stability` (`stable` | `beta` | `alpha` | `internal`) and
+  `owners` (team handles). Missing metadata is a `validate-structure` warning during
+  migration and an error at the end of migration.
+- Errors extend `AITOOLKITError` with the `Symbol.for(marker)` pattern and static
+  `isInstance` (see `AGENTS.md` → Error Pattern).
+
+---
+
+## 6. Public vs Internal API
 
 ```typescript
-// ✅ Public: Core AI SDK
-export { generateText, streamText, generateObject } from '@ai-sdk/core';
+// ✅ Public: core entry point (npm `ai`)
+export { generateText, streamText, generateObject } from 'ai';
 
-// ✅ Public: Provider packages
-export { createOpenAI } from '@ai-sdk/openai';
+// ✅ Public: providers
+export { createOpenAI } from '@ai-toolkit/openai';
 
-// ✅ Public: Framework adapters
-export { useChat, useCompletion } from '@ai-sdk/react';
+// ✅ Public: framework adapters
+export { useChat, useCompletion } from '@ai-toolkit/react';
+
+// ⚠️ Internal: subject to change without notice
+import type { … } from '@ai-toolkit/provider-utils/internal';
 ```
 
-**Guarantees**:
-
-- Semantic versioning
-- 6-month deprecation notices
-- Stable for production use
-- Backwards compatibility
-
-### Internal APIs (Not versioned)
-
-```typescript
-// ⚠️ Internal: Subject to change without notice
-import { CoreTypes } from '@ai-sdk/shared/internal';
-```
-
-**Usage Rules**:
-
-- Document in JSDoc
-- No stability guarantees
-- Can change between patches
-- Not for external packages
-
-### Example APIs (Reference only)
-
-```typescript
-// ℹ️ Example: Copy & adapt, don't depend on
-import { setupExample } from '../shared/setup';
-```
+Guarantees for public APIs: semver, 6-month deprecation notices, backwards compatibility.
+Internal APIs: JSDoc-documented, no stability guarantees. Example code: copy & adapt,
+never depend on.
 
 ---
 
-## Testing Strategy
+## 7. Examples (ADR-009)
 
-### Test Organization by Layer
+Four categories, indexed by `examples/registry.json` (do not invent new top-level
+categories without updating the registry schema and `validate-structure`):
 
-```
-Core Layer Tests:
-packages/core/ai/tests/
-├── unit/
-│   ├── generators.test.ts
-│   └── tools.test.ts
-├── integration/
-│   └── end-to-end.test.ts
-└── fixtures/
-    └── responses.ts
+| Category                   | Contents                                                                                                                                                     |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `01-foundations`           | `ai-functions`, `express`, `fastify`, `hono`, `node-http-server`                                                                                             |
+| `02-framework-integration` | `angular`, `nest`, `next`, `next-agent`, `next-fastapi`, `next-langchain`, `next-openai`, `next-openai-pages`, `nuxt-openai`                                 |
+| `03-integrations`          | `mcp`, `next-google-vertex`, `next-openai-kasada-bot-protection`, `next-openai-telemetry`, `next-openai-telemetry-sentry`, `next-openai-upstash-rate-limits` |
+| `04-tools`                 | `playground`                                                                                                                                                 |
 
-Provider Tests:
-packages/providers/openai/tests/
-├── unit/
-├── integration/
-└── fixtures/
-
-Adapter Tests:
-packages/adapters/react/tests/
-├── unit/
-├── integration/
-└── e2e/
-
-Example Tests:
-examples/02-framework-integration/01-react-hooks/tests/
-└── basic.test.tsx
-```
-
-### Test Commands
+Each example carries machine-readable metadata per ADR-009 (validated by
+`validate-structure`); the registry is the discovery index. The v1.0 proposal's
+`04-advanced-patterns` / `05-production-apps` / `06-mcp-integrations` and per-example
+`example.json` sketches do not match the implemented schema — consult
+`ADR/009-example-metadata-schema.md` and `examples/registry.json` instead.
 
 ```bash
-# Run all tests
-pnpm test
-
-# Run tests for specific domain
-pnpm test --filter "@ai-sdk/core"
-
-# Run integration tests only
-pnpm test:integration
-
-# Run with coverage
-pnpm test:coverage
+pnpm inventory      # list packages/examples from source of truth
+pnpm find-package   # locate a package by name
 ```
 
 ---
 
-## CI/CD Pipeline Organization
+## 8. Testing & CI/CD
 
-### GitHub Actions Workflow
-
-```yaml
-# .github/workflows/ci.yml
-- Lint & format check
-  ├── biome check
-  ├── prettier check
-  └── TypeScript
-
-- Test by domain
-  ├── Core layer tests
-  ├── Provider tests (parallel)
-  ├── Adapter tests (parallel)
-  └── Integration tests
-
-- Build & publish
-  ├── Build packages
-  ├── Run publint
-  └── Generate docs
-
-- Security
-  ├── Dependency audit
-  ├── SBOM generation
-  └── License check
-
-- Release (on main)
-  ├── Changesets publish
-  ├── Update docs
-  └── Notify providers
-```
-
-### Turbo Pipelines
-
-```json
-{
-  "pipeline": {
-    // Core layer
-    "@ai-sdk/core#build": {
-      "outputs": ["dist"],
-      "cache": false
-    },
-
-    // Providers (parallel)
-    "@ai-sdk/providers:*#build": {
-      "outputs": ["dist"],
-      "dependsOn": ["@ai-sdk/core#build"]
-    },
-
-    // Adapters (parallel)
-    "@ai-sdk/adapters:*#build": {
-      "outputs": ["dist"],
-      "dependsOn": ["@ai-sdk/core#build"]
-    },
-
-    // Examples
-    "@example/*#build": {
-      "outputs": ["dist", "build"],
-      "dependsOn": ["@ai-sdk/core#build", "@ai-sdk/providers:*#build"]
-    }
-  }
-}
-```
+- **Framework**: Vitest. Test files `*.test.ts` next to source; type tests
+  `*.test-d.ts`; fixtures in `__fixtures__`, snapshots in `__snapshots__`.
+- **Commands**: `pnpm test` (all packages/examples/tools via Turbo), plus domain
+  shortcuts `test:core`, `test:providers`, `test:adapters`; per-package
+  `test:node` / `test:edge` / `test:watch`.
+- **Turbo** (`turbo.json`, `tasks` syntax): `build` (`dependsOn: ["^build"]`),
+  `type-check` / `test` / `publint` (depend on `^build` + `build`), domain tasks
+  `build:core`, `build:providers` (depends on `^build:core`), `build:adapters`.
+- **Workflows** (`.github/workflows/`): `ci.yml`, `release.yml`, plus
+  `ai-provider-api-changes.yml`, `verify-changesets.yml`,
+  `update-model-settings.yml`, and triage/backport/automerge helpers. The v1.0
+  sketch (`docs.yml`, `governance.yml`, `biome+prettier+TS` pseudo-YAML) was
+  illustrative — read the actual workflow files.
+- **Quality gates**: `pnpm lint`, `pnpm prettier-check`, `pnpm types:check`,
+  `pnpm validate-structure`, `pnpm health-check`.
 
 ---
 
-## CODEOWNERS & Governance
-
-### CODEOWNERS Structure
-
-```
-# Root governance
-* @vercel/ai-sdk-maintainers
-
-# Core packages
-packages/core/ @vercel/ai-sdk-core
-packages/core/ai/ @vercel/ai-sdk-core-ai
-
-# Providers
-packages/providers/ @vercel/ai-sdk-providers
-packages/providers/openai/ @vercel/ai-openai
-packages/providers/anthropic/ @vercel/ai-anthropic
-packages/providers/google-vertex/ @vercel/ai-google
-packages/providers/groq/ @groq-team
-packages/providers/cohere/ @cohere-team
-# ... etc for all providers
-
-# Adapters
-packages/adapters/react/ @vercel/ai-react-team
-packages/adapters/rsc/ @vercel/ai-nextjs-team
-packages/adapters/angular/ @angular-community
-packages/adapters/svelte/ @svelte-community
-packages/adapters/vue/ @vue-community
-
-# MCP
-packages/mcp/ @vercel/ai-mcp
-
-# Documentation
-apps/docs/ @vercel/documentation-team
-
-# CI/CD & Infra
-.github/ @vercel/devops-team
-infra/ @vercel/devops-team
-tools/ @vercel/developer-tools-team
-
-# Root configs
-package.json @vercel/ai-sdk-maintainers
-turbo.json @vercel/ai-sdk-maintainers
-tsconfig.base.json @vercel/ai-sdk-maintainers
-ARCHITECTURE.md @vercel/ai-sdk-maintainers
-```
-
-### Approval Requirements
-
-```yaml
-Core Layer:
-  - Required approvals: 2
-  - Teams: @vercel/ai-sdk-core
-  - Dismiss on push: false
-  - Require status checks: true
-
-Providers:
-  - Required approvals: 1 (owner) + 1 (core team)
-  - Dismiss on push: false
-
-Adapters:
-  - Required approvals: 1 (owner) + 1 (core team)
-
-Examples:
-  - Required approvals: 1
-
-Documentation:
-  - Required approvals: 1
-```
-
----
-
-## Architecture Decision Records (ADRs)
-
-### ADR Template Location: `ADR/template.md`
-
-Key ADRs to create:
-
-1. **ADR-001**: Monorepo strategy (TurboRepo + pnpm)
-2. **ADR-002**: Package organization & naming
-3. **ADR-003**: Version management strategy
-4. **ADR-004**: API stability guarantees
-5. **ADR-005**: Testing architecture
-6. **ADR-006**: CI/CD organization
-7. **ADR-007**: Documentation strategy
-8. **ADR-008**: Example organization
-9. **ADR-009**: Dependency governance
-10. **ADR-010**: Security & compliance
-
----
-
-## Contributor Workflow
-
-### Getting Started (5 minutes)
+## 9. Tooling & Contributor Workflow
 
 ```bash
-# Clone & setup
-git clone https://github.com/vercel/ai-toolkit
-cd ai-toolkit
-pnpm setup-dev  # New script: sets up environment
-
-# Verify setup
-pnpm health-check
+git clone https://github.com/khulnasoft/ai-toolkit && cd ai-toolkit
+pnpm install && pnpm build
+pnpm health-check        # verify setup
+pnpm generate --help     # scaffold provider / adapter / example (tools/scripts/generate.mjs)
+pnpm validate-structure  # governance checks (replaces the proposal's validate-structure.sh etc.)
 ```
 
-### Adding a New Provider (30 minutes)
-
-```bash
-# Generate provider scaffold
-pnpm generate provider --name=my-provider
-
-# Output:
-# packages/providers/my-provider/
-# ├── src/
-# ├── tests/
-# ├── package.json
-# └── README.md
-
-# Follow the prompts & implement
-cd packages/providers/my-provider
-pnpm dev
-
-# Test & submit PR
-```
-
-### Adding a Framework Adapter (1 hour)
-
-```bash
-pnpm generate adapter --framework=next
-
-# Output: packages/adapters/rsc/
-```
-
-### Adding an Example (30 minutes)
-
-```bash
-pnpm generate example \
-  --level=02-framework-integration \
-  --category=next-js \
-  --name=server-actions
-
-# Output: examples/02-framework-integration/02-next-js/server-actions/
-```
-
-### Submitting a PR
-
-1. **Check ownership**: CODEOWNERS identifies required reviewers
-2. **Automated checks**: CI runs lint, test, type-check
-3. **Review**: Required approvers review
-4. **Merge**: Automatically triggers related CI/CD
+- Adding a package: create under the correct domain (`packages/<domain>/<name>`),
+  add to root `tsconfig.json` references, run `pnpm update-references`.
+- Shell-script helpers from the proposal (`scripts/setup.sh`, `audit-dependencies.sh`, …)
+  were superseded by Node scripts in `tools/scripts/` — use those.
+- PRs: `CODEOWNERS` selects reviewers; CI runs lint, type-check, test,
+  `validate-structure`; production-code PRs need a changeset (`pnpm changeset`,
+  default `patch`; minor/major need maintainer approval; never select example packages).
 
 ---
 
-## Scaling Guidelines (Future Preparation)
+## 10. ADRs
 
-### At 100+ Packages
+Location: `ADR/`. The v1.0 proposal listed ADR-001…010; the implemented set is:
 
-- Consider domain subgroups: `packages/providers/{domain}/{provider}/`
-- Example: `packages/providers/text-generation/openai/`, `packages/providers/image-generation/openai/`
-- Establish shared utilities under `packages/providers/_shared/`
+| ADR                                        | Topic                                        |
+| ------------------------------------------ | -------------------------------------------- |
+| `004-runtime-and-capability-contracts`     | `@ai-toolkit/runtime`, capability detection  |
+| `005-workspace-topology-apps-as-consumers` | `apps/*` consume `packages/*`, never reverse |
+| `006-export-condition-conventions`         | `exports` map requirements                   |
+| `007-stability-labels-and-ownership`       | `stability` + `owners` metadata              |
+| `008-dependency-direction-and-validator`   | Layer rules + `validate-structure`           |
+| `009-example-metadata-schema`              | Example categories + `registry.json`         |
 
-### At 1000+ Examples
-
-- Add example registry: `examples/registry.json`
-- Implement example search & discovery CLI: `pnpm search-examples`
-- Organize by business problem, not technology
-- Create example template system
-
-### At 500+ Contributors
-
-- Establish code review SLAs
-- Create bot-assisted approval workflow
-- Implement automatic permission management
-- Create contributor tiers (triager, committer, maintainer)
+Follow `ADR/template.md` for new decisions.
 
 ---
 
-## Naming Conventions
+## 11. Migration Status
 
-### Package Names
+**Done:** domain directories + `pnpm-workspace.yaml` globs, `CODEOWNERS` (incl. legacy
+section), `turbo.json` domain tasks, `tools/scripts/*` generation + validation,
+`examples/registry.json`, ADRs 004–009, `packages/core/runtime`,
+`packages/validation/capabilities`, root scripts (`health-check`, `inventory`,
+`baseline`, `find-package`).
 
-```
-Public packages:
-@ai-sdk/core
-@ai-sdk/{provider-name}
-@ai-sdk/{framework-name}
-@ai-sdk/{category}/{subcategory}
+**Outstanding:**
 
-Internal packages:
-@ai-sdk/{domain}-internal
-@ai-sdk-private/{internal-tool}
+1. Move `packages/{codemod,devtools}` → `packages/special/developer-tools/` (proposal §"special").
+2. Decide fate of `packages/{langchain,llamaindex}` (keep flat, move, or extract).
+3. Decide whether the `packages/mcp` → `{core,server,tools}` split is still wanted; today it is a single package.
+4. `shared` / `telemetry` packages from the proposal were never created — close or re-propose (likely covered by `provider-utils` / `runtime` / observability docs).
+5. Retire the `packages/*` legacy workspace glob once 1–2 are done; flip missing
+   `stability`/`owners` metadata from warning to error.
+6. ~~Reconcile `AGENTS.md` "Key Directories" table (still describes the old flat layout:
+   `packages/ai`, `packages/provider`, …) with this document.~~ Done — table now lists
+   domain paths; "Adding New Packages" points at `packages/<domain>/<name>`.
 
-Examples:
-@example/{level}/{category}/{name}
-```
+### Appendix A — Current → domain mapping (corrected)
 
-### Type Names
+| Current                                                  | Domain location                       | npm name                             |
+| -------------------------------------------------------- | ------------------------------------- | ------------------------------------ |
+| `packages/ai` (legacy re-export)                         | `packages/core/ai`                    | `ai`                                 |
+| `packages/provider-utils` (legacy path)                  | `packages/core/provider-utils`        | `@ai-toolkit/provider-utils`         |
+| — (new)                                                  | `packages/core/runtime`               | `@ai-toolkit/runtime`                |
+| `packages/provider` (legacy path)                        | `packages/validation/provider`        | `@ai-toolkit/provider`               |
+| `packages/valibot` (legacy path)                         | `packages/validation/valibot`         | `@ai-toolkit/valibot`                |
+| — (new)                                                  | `packages/validation/capabilities`    | `@ai-toolkit/capabilities`           |
+| `packages/{openai,anthropic,…}` (30)                     | `packages/providers/{…}`              | `@ai-toolkit/{…}`                    |
+| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}`               | `@ai-toolkit/{…}`                    |
+| `packages/gateway` (legacy path)                         | `packages/special/gateway`            | `@ai-toolkit/gateway`                |
+| `packages/khulnasoft` (legacy path)                      | `packages/special/khulnasoft`         | `@ai-toolkit/khulnasoft`             |
+| `packages/mcp` (legacy path)                             | `packages/mcp`                        | `@ai-toolkit/mcp`                    |
+| `packages/test-server` (legacy path)                     | `packages/infrastructure/test-server` | `@ai-toolkit/test-server` (internal) |
+| `packages/{codemod,devtools,langchain,llamaindex}`       | Outstanding (§11)                     | various                              |
 
-```
-// Core types
-AITextGenerationResult
-AIToolResult
-AIModelAdapter
-
-// Provider-specific
-OpenAILanguageModel
-AnthropicLanguageModel
-
-// Framework-specific
-UseChatResult
-UseCompletionResult
-```
-
-### Function Names
-
-```
-// Generators
-generateText()
-streamText()
-generateObject()
-
-// Hooks
-useChat()
-useCompletion()
-useObject()
-
-// Utilities
-createOpenAI()
-createAnthropic()
-```
+> Full historical mapping (including per-provider rows) lives in
+> `architecture/domain-mapping.md` — consult it before moving packages.
 
 ---
 
-## Version Management Strategy
-
-### Semantic Versioning
-
-**Public packages**: `@ai-sdk/*`
-
-- `MAJOR`: Breaking API changes
-- `MINOR`: New features (backwards compatible)
-- `PATCH`: Bug fixes
-
-**Example packages**: No version (git-based, no releases)
-
-**Internal packages**: No semver (subject to change)
-
-### Release Cadence
-
-- **Core**: Monthly aligned releases
-- **Providers**: Quarterly coordinated releases + on-demand hotfixes
-- **Adapters**: As needed
-- **Examples**: Continuous (no version)
-
-### Changesets Workflow
-
-Each PR includes changeset:
-
-```bash
-pnpm changeset
-
-# Follow prompts:
-# 1. Select affected packages
-# 2. Choose change type (major/minor/patch)
-# 3. Write human-readable summary
-```
-
----
-
-## Migration Plan (Phased Approach)
-
-### Phase 1: Planning & Documentation (Week 1)
-
-- [x] Create this architecture document
-- [ ] Create ADRs for each major decision
-- [ ] Update CONTRIBUTING.md
-- [ ] Create migration checklist
-
-### Phase 2: Infrastructure Setup (Weeks 2-4)
-
-- [ ] Reorganize directories
-- [ ] Update turbo.json
-- [ ] Create CODEOWNERS
-- [ ] Update tsconfig references
-- [ ] Create generation templates
-
-### Phase 3: Package Migration (Weeks 5-12)
-
-- [ ] Migrate core packages
-- [ ] Migrate provider packages
-- [ ] Migrate adapter packages
-- [ ] Migrate special packages
-- [ ] Update imports across repo
-
-### Phase 4: Example Reorganization (Weeks 13-16)
-
-- [ ] Categorize examples
-- [ ] Add example.json metadata
-- [ ] Create example registry
-- [ ] Update documentation links
-
-### Phase 5: Documentation & Tooling (Weeks 17-20)
-
-- [ ] Update all docs
-- [ ] Create generation CLI
-- [ ] Add contributor guides
-- [ ] Create architecture diagrams
-
-### Phase 6: Release & Communication (Week 21+)
-
-- [ ] Release v4.0 with new structure
-- [ ] Announce to community
-- [ ] Migrate external packages
-- [ ] Sunset old structure
-
----
-
-## Success Metrics
-
-### Developer Experience
-
-- [ ] Onboarding time < 30 minutes
-- [ ] First contribution time < 2 hours
-- [ ] Package discovery time < 5 minutes
-- [ ] 90% contributor satisfaction
-
-### Operational Excellence
-
-- [ ] CI/CD time < 15 minutes
-- [ ] Release time < 1 hour
-- [ ] 99.9% uptime
-- [ ] Zero unowned packages
-
-### Scalability
-
-- [ ] Support 500+ contributors
-- [ ] 100+ packages maintainable
-- [ ] 1000+ examples discoverable
-- [ ] Zero critical bugs in core
-
----
-
-## Next Steps
-
-1. **Review & Approve**: Get stakeholder sign-off
-2. **Create ADRs**: Document all major decisions
-3. **Plan Migration**: Create detailed timeline
-4. **Update CONTRIBUTING.md**: Document new workflow
-5. **Start Phase 1**: Begin implementation
-6. **Communicate**: Update team & community
-
----
-
-## Appendix A: Current Structure Mapping
-
-### packages/ → New Location
-
-| Current                    | New Location                                | Category       |
-| -------------------------- | ------------------------------------------- | -------------- |
-| `ai`                       | `packages/core/ai`                          | Core           |
-| `react`                    | `packages/adapters/react`                   | Adapter        |
-| `rsc`                      | `packages/adapters/rsc`                     | Adapter        |
-| `openai`                   | `packages/providers/openai`                 | Provider       |
-| `anthropic`                | `packages/providers/anthropic`              | Provider       |
-| ... (all providers)        | `packages/providers/{provider}`             | Provider       |
-| `angular`, `svelte`, `vue` | `packages/adapters/{framework}`             | Adapter        |
-| `mcp`                      | `packages/mcp/core`                         | MCP            |
-| `gateway`                  | `packages/special/gateway`                  | Special        |
-| `valibot`                  | `packages/validation/valibot`               | Validation     |
-| `codemod`                  | `packages/special/developer-tools/codemod`  | Tool           |
-| `devtools`                 | `packages/special/developer-tools/devtools` | Tool           |
-| `test-server`              | `packages/infrastructure/test-server`       | Infrastructure |
-
----
-
-## Appendix B: CODEOWNERS Template
-
-```
-# Root governance
-* @vercel/ai-sdk-maintainers
-
-# ===== CORE LAYER =====
-packages/core/ @vercel/ai-sdk-core
-packages/core/ai/ @vercel/ai-sdk-core-ai @vercel/ai-sdk-core
-packages/core/shared/ @vercel/ai-sdk-core @vercel/ai-sdk-infrastructure
-packages/core/telemetry/ @vercel/ai-sdk-core @vercel/devops-team
-
-# ===== PROVIDER LAYER =====
-packages/providers/ @vercel/ai-sdk-providers
-
-# Vercel-maintained providers
-packages/providers/openai/ @vercel/ai-openai
-packages/providers/anthropic/ @vercel/ai-anthropic
-packages/providers/google-vertex/ @vercel/ai-google
-packages/providers/gateway/ @vercel/ai-gateway
-packages/providers/amazon-bedrock/ @vercel/ai-aws
-packages/providers/azure/ @vercel/ai-azure
-packages/providers/khulnasoft/ @vercel/ai-khulnasoft
-
-# Community providers (template-based)
-packages/providers/groq/ @groq-team @vercel/ai-sdk-providers
-packages/providers/cohere/ @cohere-team @vercel/ai-sdk-providers
-packages/providers/mistral/ @mistral-team @vercel/ai-sdk-providers
-packages/providers/openai-compatible/ @vercel/ai-sdk-providers
-
-# ===== ADAPTER LAYER =====
-packages/adapters/ @vercel/ai-sdk-adapters
-packages/adapters/react/ @vercel/ai-react-team
-packages/adapters/rsc/ @vercel/ai-nextjs-team
-packages/adapters/angular/ @angular-community @vercel/ai-sdk-adapters
-packages/adapters/svelte/ @svelte-community @vercel/ai-sdk-adapters
-packages/adapters/vue/ @vue-community @vercel/ai-sdk-adapters
-
-# ===== MCP LAYER =====
-packages/mcp/ @vercel/ai-mcp
-
-# ===== SPECIAL & INFRASTRUCTURE =====
-packages/special/ @vercel/ai-sdk-core
-packages/validation/ @vercel/ai-sdk-core
-packages/infrastructure/ @vercel/ai-sdk-infrastructure
-
-# ===== EXAMPLES =====
-examples/ @vercel/ai-sdk-developers
-examples/01-foundations/ @vercel/ai-sdk-core @vercel/ai-sdk-developers
-examples/02-framework-integration/ @vercel/ai-sdk-adapters @vercel/ai-sdk-developers
-examples/03-integrations/ @vercel/ai-sdk-providers @vercel/ai-sdk-developers
-examples/04-advanced-patterns/ @vercel/ai-sdk-core @vercel/ai-sdk-developers
-examples/05-production-apps/ @vercel/ai-sdk-core @vercel/ai-sdk-developers
-
-# ===== DOCUMENTATION =====
-apps/docs/ @vercel/documentation-team
-apps/www/ @vercel/marketing-team
-
-# ===== CONFIGURATION & CI/CD =====
-.github/ @vercel/devops-team
-.github/workflows/ @vercel/devops-team
-infra/ @vercel/devops-team
-tools/ @vercel/developer-tools-team
-
-# ===== ROOT CONFIGURATION =====
-package.json @vercel/ai-sdk-maintainers
-pnpm-workspace.yaml @vercel/ai-sdk-maintainers
-turbo.json @vercel/ai-sdk-maintainers
-tsconfig.json @vercel/ai-sdk-maintainers
-biome.json @vercel/ai-sdk-maintainers
-CODEOWNERS @vercel/ai-sdk-maintainers
-ARCHITECTURE.md @vercel/ai-sdk-maintainers
-CONTRIBUTING.md @vercel/ai-sdk-maintainers
-ADR/ @vercel/ai-sdk-maintainers
-```
-
----
-
-## Appendix C: TypeScript Configuration Hierarchy
-
-```
-tsconfig.json                    # Root: references others
-├── tsconfig.base.json           # Shared base config
-├── packages/core/tsconfig.json  # Core overrides
-├── packages/providers/tsconfig.json
-├── packages/adapters/tsconfig.json
-├── examples/tsconfig.json
-└── apps/*/tsconfig.json
-```
-
----
-
-## Appendix D: Example generator.mjs script
-
-```javascript
-// tools/scripts/generate-example.mjs
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-async function generateExample() {
-  const answers = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'level',
-      message: 'Example level:',
-      choices: [
-        '01-foundations',
-        '02-framework-integration',
-        '03-integrations',
-        '04-advanced-patterns',
-        '05-production-apps',
-      ],
-    },
-    {
-      type: 'input',
-      name: 'name',
-      message: 'Example name (kebab-case):',
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Example description:',
-    },
-  ]);
-
-  const exampleDir = path.join(
-    __dirname,
-    '../../examples',
-    answers.level,
-    answers.name,
-  );
-
-  // Create directory
-  await fs.mkdir(exampleDir, { recursive: true });
-
-  // Create example.json
-  await fs.writeFile(
-    path.join(exampleDir, 'example.json'),
-    JSON.stringify(
-      {
-        name: answers.name,
-        description: answers.description,
-        level: answers.level,
-        createdAt: new Date().toISOString(),
-      },
-      null,
-      2,
-    ),
-  );
-
-  console.log(`✅ Created example at ${exampleDir}`);
-}
-
-generateExample().catch(console.error);
-```
-
----
-
-**Document Version**: 1.0  
-**Last Updated**: June 2026  
-**Status**: Ready for Implementation Planning
+**Document version:** 2.0 (refactor of v1.0 proposal)
+**Last updated:** September 2026
+**Status:** Partially implemented — §11 tracks the remainder.

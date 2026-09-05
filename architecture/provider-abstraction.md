@@ -32,10 +32,10 @@ If you're unable to find any of the functions mentioned below in the codebase, t
 Language models are used for text generation and structured generation workflows from prompt or message input.
 
 - **AI functions**
-  - `generateText` - [`packages/ai/src/generate-text/generate-text.ts`](packages/ai/src/generate-text/generate-text.ts) - Generates a complete text result from a language model in a single call.
-  - `streamText` - [`packages/ai/src/generate-text/stream-text.ts`](packages/ai/src/generate-text/stream-text.ts) - Streams language model output incrementally as it is produced.
+  - `generateText` - [`packages/core/ai/src/generate-text/generate-text.ts`](packages/core/ai/src/generate-text/generate-text.ts) - Generates a complete text result from a language model in a single call.
+  - `streamText` - [`packages/core/ai/src/generate-text/stream-text.ts`](packages/core/ai/src/generate-text/stream-text.ts) - Streams language model output incrementally as it is produced.
 - **Model specification**
-  - `LanguageModelV3` - [`packages/provider/src/language-model/v3/language-model-v3.ts`](packages/provider/src/language-model/v3/language-model-v3.ts)
+  - `LanguageModelV3` - [`packages/validation/provider/src/language-model/v3/language-model-v3.ts`](packages/validation/provider/src/language-model/v3/language-model-v3.ts)
 - **Provider implementations (examples)**
   - [`OpenAIChatLanguageModel`](packages/openai/src/chat/openai-chat-language-model.ts), [`AnthropicMessagesLanguageModel`](packages/anthropic/src/anthropic-messages-language-model.ts)
 
@@ -58,10 +58,10 @@ classDiagram
 Embedding models are used to convert text into numeric vectors for similarity and retrieval use cases.
 
 - **AI functions**
-  - `embed` - [`packages/ai/src/embed/embed.ts`](packages/ai/src/embed/embed.ts) - Creates a single embedding vector for one text value.
-  - `embedMany` - [`packages/ai/src/embed/embed-many.ts`](packages/ai/src/embed/embed-many.ts) - Creates embedding vectors for multiple text values, batching calls when needed.
+  - `embed` - [`packages/core/ai/src/embed/embed.ts`](packages/core/ai/src/embed/embed.ts) - Creates a single embedding vector for one text value.
+  - `embedMany` - [`packages/core/ai/src/embed/embed-many.ts`](packages/core/ai/src/embed/embed-many.ts) - Creates embedding vectors for multiple text values, batching calls when needed.
 - **Model specification**
-  - `EmbeddingModelV3` - [`packages/provider/src/embedding-model/v3/embedding-model-v3.ts`](packages/provider/src/embedding-model/v3/embedding-model-v3.ts)
+  - `EmbeddingModelV3` - [`packages/validation/provider/src/embedding-model/v3/embedding-model-v3.ts`](packages/validation/provider/src/embedding-model/v3/embedding-model-v3.ts)
 - **Provider implementations (examples)**
   - [`OpenAIEmbeddingModel`](packages/openai/src/embedding/openai-embedding-model.ts), [`MistralEmbeddingModel`](packages/mistral/src/mistral-embedding-model.ts)
 
@@ -84,9 +84,9 @@ classDiagram
 Image models are used to generate image outputs from text prompts.
 
 - **AI functions**
-  - `generateImage` - [`packages/ai/src/generate-image/generate-image.ts`](packages/ai/src/generate-image/generate-image.ts) - Generates one or more images from prompt input.
+  - `generateImage` - [`packages/core/ai/src/generate-image/generate-image.ts`](packages/core/ai/src/generate-image/generate-image.ts) - Generates one or more images from prompt input.
 - **Model specification**
-  - `ImageModelV3` - [`packages/provider/src/image-model/v3/image-model-v3.ts`](packages/provider/src/image-model/v3/image-model-v3.ts)
+  - `ImageModelV3` - [`packages/validation/provider/src/image-model/v3/image-model-v3.ts`](packages/validation/provider/src/image-model/v3/image-model-v3.ts)
 - **Provider implementations (examples)**
   - [`OpenAIImageModel`](packages/openai/src/image/openai-image-model.ts), [`GoogleGenerativeAIImageModel`](packages/google/src/google-generative-ai-image-model.ts)
 
@@ -107,9 +107,9 @@ classDiagram
 Reranking models are used to reorder candidate documents by relevance to a query.
 
 - **AI functions**
-  - `rerank` - [`packages/ai/src/rerank/rerank.ts`](packages/ai/src/rerank/rerank.ts) - Reorders documents and returns a relevance-ranked result set for a query.
+  - `rerank` - [`packages/core/ai/src/rerank/rerank.ts`](packages/core/ai/src/rerank/rerank.ts) - Reorders documents and returns a relevance-ranked result set for a query.
 - **Model specification**
-  - `RerankingModelV3` - [`packages/provider/src/reranking-model/v3/reranking-model-v3.ts`](packages/provider/src/reranking-model/v3/reranking-model-v3.ts)
+  - `RerankingModelV3` - [`packages/validation/provider/src/reranking-model/v3/reranking-model-v3.ts`](packages/validation/provider/src/reranking-model/v3/reranking-model-v3.ts)
 - **Provider implementations (examples)**
   - [`CohereRerankingModel`](packages/cohere/src/reranking/cohere-reranking-model.ts), [`BedrockRerankingModel`](packages/amazon-bedrock/src/reranking/bedrock-reranking-model.ts)
 
@@ -130,9 +130,9 @@ classDiagram
 Transcription models are used to convert audio input into text transcripts.
 
 - **AI functions**
-  - `transcribe` - [`packages/ai/src/transcribe/transcribe.ts`](packages/ai/src/transcribe/transcribe.ts) - Transcribes audio into text with segment and metadata support.
+  - `transcribe` - [`packages/core/ai/src/transcribe/transcribe.ts`](packages/core/ai/src/transcribe/transcribe.ts) - Transcribes audio into text with segment and metadata support.
 - **Model specification**
-  - `TranscriptionModelV3` - [`packages/provider/src/transcription-model/v3/transcription-model-v3.ts`](packages/provider/src/transcription-model/v3/transcription-model-v3.ts)
+  - `TranscriptionModelV3` - [`packages/validation/provider/src/transcription-model/v3/transcription-model-v3.ts`](packages/validation/provider/src/transcription-model/v3/transcription-model-v3.ts)
 - **Provider implementations (examples)**
   - [`OpenAITranscriptionModel`](packages/openai/src/transcription/openai-transcription-model.ts), [`DeepgramTranscriptionModel`](packages/deepgram/src/deepgram-transcription-model.ts)
 
@@ -153,9 +153,9 @@ classDiagram
 Speech models are used to synthesize audio from text input.
 
 - **AI functions**
-  - `generateSpeech` - [`packages/ai/src/generate-speech/generate-speech.ts`](packages/ai/src/generate-speech/generate-speech.ts) - Generates speech audio from text input.
+  - `generateSpeech` - [`packages/core/ai/src/generate-speech/generate-speech.ts`](packages/core/ai/src/generate-speech/generate-speech.ts) - Generates speech audio from text input.
 - **Model specification**
-  - `SpeechModelV3` - [`packages/provider/src/speech-model/v3/speech-model-v3.ts`](packages/provider/src/speech-model/v3/speech-model-v3.ts)
+  - `SpeechModelV3` - [`packages/validation/provider/src/speech-model/v3/speech-model-v3.ts`](packages/validation/provider/src/speech-model/v3/speech-model-v3.ts)
 - **Provider implementations (examples)**
   - [`OpenAISpeechModel`](packages/openai/src/speech/openai-speech-model.ts), [`ElevenLabsSpeechModel`](packages/elevenlabs/src/elevenlabs-speech-model.ts)
 
@@ -176,9 +176,9 @@ classDiagram
 Video models are used to generate video outputs from prompts.
 
 - **AI functions**
-  - `generateVideo` - [`packages/ai/src/generate-video/generate-video.ts`](packages/ai/src/generate-video/generate-video.ts) - Generates one or more videos from prompt input.
+  - `generateVideo` - [`packages/core/ai/src/generate-video/generate-video.ts`](packages/core/ai/src/generate-video/generate-video.ts) - Generates one or more videos from prompt input.
 - **Model specification**
-  - `VideoModelV3` - [`packages/provider/src/video-model/v3/video-model-v3.ts`](packages/provider/src/video-model/v3/video-model-v3.ts)
+  - `VideoModelV3` - [`packages/validation/provider/src/video-model/v3/video-model-v3.ts`](packages/validation/provider/src/video-model/v3/video-model-v3.ts)
 - **Provider implementations (examples)**
   - [`FalVideoModel`](packages/fal/src/fal-video-model.ts), [`ReplicateVideoModel`](packages/replicate/src/replicate-video-model.ts)
 

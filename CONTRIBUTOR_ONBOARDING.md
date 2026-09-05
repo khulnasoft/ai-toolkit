@@ -14,7 +14,7 @@ Welcome to the AI Toolkit! This guide will get you from zero to productive in **
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/vercel/ai-toolkit.git
+git clone https://github.com/khulnasoft/ai-toolkit.git
 cd ai-toolkit
 
 # 2. Install dependencies
@@ -63,19 +63,17 @@ packages/
 ├── special/        ← Gateway, internal tools
 └── infrastructure/ ← Testing utilities
 
-examples/          ← Organized reference implementations
+examples/          ← Organized reference implementations (see registry.json)
 ├── 01-foundations/          → Basic patterns
 ├── 02-framework-integration/ → React, Next.js, Vue, etc.
 ├── 03-integrations/         → Provider-specific examples
-├── 04-advanced-patterns/    → Complex real-world patterns
-└── 05-production-apps/      → Full applications
+└── 04-tools/                → Developer tools and playgrounds
 
 apps/
 ├── docs/          ← Main documentation site
 └── www/           ← Website / marketing
 
 tools/            ← Build & dev tools
-infra/            ← Deployment & CI/CD
 ```
 
 ### Finding Code
@@ -83,8 +81,8 @@ infra/            ← Deployment & CI/CD
 **Looking for a provider?**
 
 ```bash
-ls packages/providers/openai/  # @ai-sdk/openai
-ls packages/providers/anthropic/  # @ai-sdk/anthropic
+ls packages/providers/openai/  # @ai-toolkit/openai
+ls packages/providers/anthropic/  # @ai-toolkit/anthropic
 ```
 
 **Looking for a framework?**
@@ -126,7 +124,7 @@ ls examples/02-framework-integration/  # All framework examples
 code apps/docs/content/01-getting-started/index.mdx
 
 # Verify it renders locally
-pnpm dev --filter=@ai-sdk/docs
+pnpm dev --filter=@ai-toolkit/docs
 # Visit http://localhost:3000
 ```
 
@@ -162,7 +160,7 @@ git checkout -b fix/issue-description
 # Implement the fix
 
 # 5. Verify
-pnpm test --filter=@ai-sdk/core
+pnpm test:core
 
 # 6. Submit PR with reference to issue
 ```
@@ -171,13 +169,13 @@ pnpm test --filter=@ai-sdk/core
 
 ```bash
 # 1. Find package with low coverage
-pnpm test:coverage
+pnpm test:core -- --coverage
 
 # 2. Identify untested code
 # 3. Write tests
 # 4. Verify coverage improves
 
-pnpm test --filter=@ai-sdk/core -- --coverage
+pnpm test --filter=@ai-toolkit/react -- --coverage
 ```
 
 ---
@@ -191,16 +189,16 @@ pnpm test --filter=@ai-sdk/core -- --coverage
 pnpm test
 
 # Specific package
-pnpm test --filter=@ai-sdk/react
+pnpm test --filter=@ai-toolkit/react
 
-# Watch mode
-pnpm test --watch
+# Watch mode (per package)
+cd packages/adapters/react && pnpm test:watch
 
 # With coverage
-pnpm test --coverage
+pnpm test -- --coverage
 
-# Integration tests only
-pnpm test:integration
+# Providers only
+pnpm test:providers
 
 # A specific test file
 pnpm test -- useChat.test.ts
@@ -242,7 +240,7 @@ pnpm lint:markdown
 pnpm build
 
 # Build specific package
-pnpm build --filter=@ai-sdk/react
+pnpm build --filter=@ai-toolkit/react
 
 # Clean build
 pnpm clean && pnpm build
@@ -277,7 +275,7 @@ git checkout -b docs/improve-readme
 code packages/adapters/react/src/use-chat.ts
 
 # Run tests
-pnpm test --filter=@ai-sdk/react
+pnpm test --filter=@ai-toolkit/react
 
 # Check types
 pnpm types:check
@@ -354,18 +352,18 @@ Then create a PR on GitHub. The template will guide you through the details.
 **Tool Layer** (`packages/special/` + `tools/`)
 
 - Developer utilities
-- Gateway, codemod, devtools
+- Gateway, KhulnaSoft packages
 - Internal infrastructure
 
 ### Public vs Internal APIs
 
 ```typescript
 // ✅ Public API - Use freely, stable
-import { generateText } from '@ai-sdk/core';
-import { useChat } from '@ai-sdk/react';
+import { generateText } from 'ai';
+import { useChat } from '@ai-toolkit/react';
 
 // ⚠️ Internal API - May change, don't depend on externally
-import { CoreTypes } from '@ai-sdk/shared/internal';
+import type { … } from 'ai/internal';
 
 // ℹ️ Example API - Copy & adapt, don't depend on
 import { setupChat } from './example-setup';
@@ -378,7 +376,7 @@ Each package has clear ownership. See `CODEOWNERS` file:
 ```bash
 # Find who maintains the React adapter
 grep "packages/adapters/react" CODEOWNERS
-# Output: packages/adapters/react/ @vercel/ai-react-team
+# Output: packages/adapters/react/ @khulnasoft/ai-react-team
 ```
 
 ---
@@ -403,11 +401,11 @@ code packages/adapters/react/src/use-chat.ts
 # - Update docs in apps/docs/
 
 # 4. Test
-pnpm test --filter=@ai-sdk/react
+pnpm test --filter=@ai-toolkit/react
 
 # 5. Create changeset
 pnpm changeset
-# Select: @ai-sdk/react
+# Select: @ai-toolkit/react
 # Type: minor (new feature)
 # Message: "Add auto-scroll feature to useChat"
 ```
@@ -433,11 +431,11 @@ pnpm generate provider --name=my-provider
 # Add README and example
 
 # 5. Create example
-pnpm generate example --provider=my-provider
+pnpm generate example --level=03-integrations --name=my-provider-example
 
 # 6. Test everything
-pnpm test --filter=@ai-sdk-my-provider
-pnpm test --filter=@example-my-provider
+pnpm test --filter=@ai-toolkit/my-provider
+pnpm test --filter=@example/my-provider
 ```
 
 ### Improving Documentation
@@ -450,7 +448,7 @@ code apps/docs/content/
 # Most docs are self-contained files
 
 # 3. Preview locally
-pnpm dev --filter=@ai-sdk/docs
+pnpm dev --filter=@ai-toolkit/docs
 # Visit http://localhost:3000
 
 # 4. Commit and submit PR
@@ -497,7 +495,7 @@ pnpm clean
 pnpm install && pnpm build
 
 # Check specific package
-pnpm build --filter=@ai-sdk/react
+pnpm build --filter=@ai-toolkit/react
 
 # See build output
 pnpm build -- --verbose
@@ -511,18 +509,18 @@ pnpm build -- --verbose
 
 **For questions:**
 
-- GitHub Discussions: https://github.com/vercel/ai-toolkit/discussions
+- GitHub Discussions: https://github.com/khulnasoft/ai-toolkit/discussions
 - Discord: [invite link]
 - Twitter: @vercel, @ai_toolkit
 
 **For bugs:**
 
-- GitHub Issues: https://github.com/vercel/ai-toolkit/issues
+- GitHub Issues: https://github.com/khulnasoft/ai-toolkit/issues
 - Include: reproduction steps, error message, environment
 
 **For guidance:**
 
-- ARCHITECTURE.md — Understand the overall structure
+- ARCHITECTURE_REDESIGN.md — Understand the overall structure
 - CONTRIBUTING.md — Contribution guidelines
 - Code comments — Existing implementations
 - Examples — How to use APIs
@@ -538,7 +536,7 @@ pnpm build -- --verbose
 ## Next Steps
 
 1. **Run `pnpm health-check`** — Verify everything works
-2. **Look at `ARCHITECTURE.md`** — Understand the structure
+2. **Look at `ARCHITECTURE_REDESIGN.md`** — Understand the structure
 3. **Find an issue** — Search `good-first-issue` label
 4. **Make your first contribution** — Start small
 5. **Join the community** — Discord, discussions, etc.
@@ -547,7 +545,7 @@ pnpm build -- --verbose
 
 ## Additional Resources
 
-- **Architecture**: `ARCHITECTURE.md`
+- **Architecture**: `ARCHITECTURE_REDESIGN.md`
 - **Contributing**: `CONTRIBUTING.md`
 - **Decisions**: `ADR/` directory
 - **Examples**: `examples/` directory

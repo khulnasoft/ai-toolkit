@@ -16,18 +16,24 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 
 ### Key Directories
 
-| Directory                 | Description                                                                          |
-| ------------------------- | ------------------------------------------------------------------------------------ |
-| `packages/ai`             | Main SDK package (`ai` on npm)                                                       |
-| `packages/provider`       | Provider interface specifications (`@ai-toolkit/provider`)                           |
-| `packages/provider-utils` | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)               |
-| `packages/<provider>`     | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.) |
-| `packages/<framework>`    | UI framework integrations (react, vue, svelte, angular, rsc)                         |
-| `packages/codemod`        | Automated migrations for major releases                                              |
-| `examples/`               | Example applications (ai-functions, next-openai, etc.)                               |
-| `content/`                | Documentation source files (MDX)                                                     |
-| `contributing/`           | Contributor guides and documentation                                                 |
-| `tools/`                  | Internal tooling (eslint-config, tsconfig)                                           |
+| Directory                             | Description                                                                                  |
+| ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `packages/core/ai`                    | Main SDK package (`ai` on npm)                                                               |
+| `packages/validation/provider`        | Provider interface specifications (`@ai-toolkit/provider`)                                   |
+| `packages/core/provider-utils`        | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)                       |
+| `packages/core/runtime`               | Browser-safe runtime contracts (`@ai-toolkit/runtime`; no Node builtins)                     |
+| `packages/validation/capabilities`    | Model capability declarations (`@ai-toolkit/capabilities`)                                   |
+| `packages/providers/<provider>`       | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.)         |
+| `packages/adapters/<framework>`       | UI framework integrations (react, vue, svelte, angular, rsc)                                 |
+| `packages/special/<package>`          | Special-purpose packages (gateway, khulnasoft)                                               |
+| `packages/mcp`                        | Model Context Protocol implementation (`@ai-toolkit/mcp`)                                    |
+| `packages/validation/valibot`         | Valibot schema adapter (`@ai-toolkit/valibot`)                                               |
+| `packages/infrastructure/test-server` | Internal test utilities (not published)                                                      |
+| `packages/codemod`                    | Automated migrations for major releases (legacy flat path; see ARCHITECTURE_REDESIGN.md §11) |
+| `examples/`                           | Example applications in `01-foundations` … `04-tools` (indexed by `registry.json`)           |
+| `content/`                            | Documentation source files (MDX), consumed by `apps/docs`                                    |
+| `contributing/`                       | Contributor guides and documentation                                                         |
+| `tools/`                              | Internal tooling (`scripts/`, `eslint-config`, `tsconfig`, …)                                |
 
 ### Core Package Dependencies
 
@@ -69,7 +75,7 @@ pnpm build          # Build all packages
 
 ### Package-Level Commands
 
-Run these from within a package directory (e.g., `packages/ai`):
+Run these from within a package directory (e.g., `packages/core/ai`):
 
 | Command            | Description                 |
 | ------------------ | --------------------------- |
@@ -221,7 +227,9 @@ The SDK uses a layered provider architecture following the adapter pattern:
 
 ### Adding New Packages
 
-1. Create folder under `packages/<name>`
+1. Create folder under `packages/<domain>/<name>` (e.g., `packages/providers/my-provider`;
+   see ARCHITECTURE_REDESIGN.md §2–3 for the domain layout; legacy flat `packages/<name>`
+   paths such as `packages/codemod` are frozen during migration)
 2. Add to root `tsconfig.json` references
 3. Run `pnpm update-references` if adding dependencies between packages
 

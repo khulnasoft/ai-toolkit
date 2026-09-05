@@ -18,8 +18,7 @@ examples/           ← Organized by complexity & use case
 ├── 01-foundations/
 ├── 02-framework-integration/
 ├── 03-integrations/
-├── 04-advanced-patterns/
-└── 05-production-apps/
+└── 04-tools/
 ```
 
 ## Reporting Bugs
@@ -91,7 +90,7 @@ pnpm generate example --level=01-foundations --name=my-example
 ### Running the Examples
 
 ```bash
-cd examples/ai-functions
+cd examples/01-foundations/ai-functions
 pnpm tsx src/stream-text/openai.ts
 ```
 

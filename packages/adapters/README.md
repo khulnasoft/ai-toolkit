@@ -2,7 +2,7 @@
 
 Framework-specific implementations that wrap the core SDK with idiomatic APIs for each framework.
 
-**Owner**: @vercel/ai-sdk-adapters
+**Owner**: @khulnasoft/ai-toolkit-adapters
 
 | Adapter   | Framework   | Exports                           |
 | --------- | ----------- | --------------------------------- |
