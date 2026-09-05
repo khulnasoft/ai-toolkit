@@ -1,0 +1,10 @@
+{
+  "name": "next-openai-pages",
+  "title": "Next.js Pages Router",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with the Next.js pages router and OpenAI to create a ChatGPT-like streaming chat bot.",
+  "tags": ["nextjs", "pages-router", "openai", "chat"]
+}

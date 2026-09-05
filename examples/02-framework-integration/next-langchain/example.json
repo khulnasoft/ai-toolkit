@@ -1,0 +1,10 @@
+{
+  "name": "next-langchain",
+  "title": "Next.js + LangChain",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with Next.js, LangChain, LangGraph, and OpenAI to create AI-powered streaming applications.",
+  "tags": ["nextjs", "langchain", "langgraph", "streaming"]
+}
