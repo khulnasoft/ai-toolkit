@@ -1,0 +1,10 @@
+{
+  "name": "ai-functions",
+  "title": "AI Functions",
+  "category": "01-foundations",
+  "categoryOrder": 1,
+  "framework": "multi-provider",
+  "primaryProvider": null,
+  "description": "Scripts and test suites for validating, testing, and iterating on AI functions across providers.",
+  "tags": ["testing", "providers", "multi-provider"]
+}

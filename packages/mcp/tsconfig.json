@@ -9,13 +9,13 @@
   "exclude": ["dist", "build", "node_modules", "tsup.config.ts"],
   "references": [
     {
-      "path": "../provider"
+      "path": "../core/provider-utils"
     },
     {
-      "path": "../provider-utils"
+      "path": "../infrastructure/test-server"
     },
     {
-      "path": "../test-server"
+      "path": "../validation/provider"
     }
   ]
 }

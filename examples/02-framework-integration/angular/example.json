@@ -1,0 +1,10 @@
+{
+  "name": "angular",
+  "title": "Angular Chat",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "angular",
+  "primaryProvider": "openai",
+  "description": "A simple chat application built with Angular that connects to OpenAI models using the AI TOOLKIT.",
+  "tags": ["angular", "chat", "angular-components"]
+}

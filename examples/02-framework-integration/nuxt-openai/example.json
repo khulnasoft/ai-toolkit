@@ -1,0 +1,10 @@
+{
+  "name": "nuxt-openai",
+  "title": "Nuxt + OpenAI Chat",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nuxt",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with Nuxt and OpenAI to create a ChatGPT-like AI-powered streaming chat bot.",
+  "tags": ["nuxt", "vue", "openai", "chat"]
+}

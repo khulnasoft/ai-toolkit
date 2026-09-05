@@ -32,7 +32,9 @@ export default createTransformer((fileInfo, api, options, context) => {
   root
     .find(j.CallExpression)
     .filter(
-      path => path.node.callee.type === 'Identifier' && targetImports.has(path.node.callee.name),
+      path =>
+        path.node.callee.type === 'Identifier' &&
+        targetImports.has(path.node.callee.name),
     )
     .forEach(path => {
       if (path.node.callee.type === 'Identifier') {

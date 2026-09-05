@@ -32,7 +32,8 @@ export default createTransformer((fileInfo, api, options, context) => {
     .find(j.TSTypeReference)
     .filter(
       path =>
-        path.node.typeName.type === 'Identifier' && targetImports.has(path.node.typeName.name),
+        path.node.typeName.type === 'Identifier' &&
+        targetImports.has(path.node.typeName.name),
     )
     .forEach(path => {
       if (path.node.typeName.type === 'Identifier') {
