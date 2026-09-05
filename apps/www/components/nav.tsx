@@ -28,10 +28,7 @@ export function Nav() {
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-semibold tracking-tight"
-          >
+          <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
             <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Sparkles className="size-4" />
             </span>

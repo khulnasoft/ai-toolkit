@@ -139,7 +139,8 @@ function readAllPackageDirs() {
 
   // Scan flat packages/
   for (const entry of fs.readdirSync(PACKAGES, { withFileTypes: true })) {
-    if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+    if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules')
+      continue;
     const dir = path.join(PACKAGES, entry.name);
     if (!fs.existsSync(path.join(dir, 'package.json'))) continue;
     const manifest = readJson(path.join(dir, 'package.json'));
@@ -153,7 +154,15 @@ function readAllPackageDirs() {
   }
 
   // Scan domain subdirectories
-  const domains = ['core', 'providers', 'adapters', 'mcp', 'special', 'validation', 'infrastructure'];
+  const domains = [
+    'core',
+    'providers',
+    'adapters',
+    'mcp',
+    'special',
+    'validation',
+    'infrastructure',
+  ];
   for (const domain of domains) {
     const domainDir = path.join(PACKAGES, domain);
     if (!fs.existsSync(domainDir)) continue;
@@ -195,7 +204,8 @@ function readAllPackageDirs() {
 }
 
 function updateExtendsPath(tsconfig, pkgDirRel) {
-  if (!tsconfig.extends || !tsconfig.extends.startsWith('./node_modules/@khulnasoft/ai-tsconfig/')) return false;
+  if (!tsconfig.extends || !tsconfig.extends.startsWith('./node_modules/@khulnasoft/ai-tsconfig/'))
+    return false;
   const oldExtends = tsconfig.extends;
   const depth = pkgDirRel.split('/').length;
   const prefix = '../'.repeat(depth);
@@ -298,10 +308,12 @@ function main() {
   const pkgName = explicitPkg;
 
   const domainArg = args.find(a => a.startsWith('--domain='));
-  const targetDomain = domainArg ? domainArg.split('=')[1] : (pkgName ? DOMAIN_MAP[pkgName] : null);
+  const targetDomain = domainArg ? domainArg.split('=')[1] : pkgName ? DOMAIN_MAP[pkgName] : null;
 
   if (!pkgName) {
-    console.error('Usage: node tools/scripts/migrate-package.mjs <package-dir-name> [--domain=<domain>] [--dry-run]');
+    console.error(
+      'Usage: node tools/scripts/migrate-package.mjs <package-dir-name> [--domain=<domain>] [--dry-run]',
+    );
     console.error('Known packages:', Object.keys(DOMAIN_MAP).join(', '));
     process.exit(1);
   }
@@ -434,7 +446,10 @@ function main() {
     if (manifest && manifest.scripts) {
       const pathScripts = {};
       for (const [name, script] of Object.entries(manifest.scripts)) {
-        if (typeof script === 'string' && (script.includes('../../content/') || script.includes('../content/'))) {
+        if (
+          typeof script === 'string' &&
+          (script.includes('../../content/') || script.includes('../content/'))
+        ) {
           pathScripts[name] = script;
         }
       }

@@ -40,9 +40,5 @@ function renderInline(text: string, key: number): React.ReactNode {
 }
 
 export function InlineText({ text }: { text: string }) {
-  return (
-    <p className="text-sm leading-7 text-muted-foreground">
-      {renderInline(text, 0)}
-    </p>
-  );
+  return <p className="text-sm leading-7 text-muted-foreground">{renderInline(text, 0)}</p>;
 }

@@ -18,10 +18,10 @@
   "include": ["src/server.ts"],
   "references": [
     {
-      "path": "../../packages/core/ai"
+      "path": "../../../packages/core/ai"
     },
     {
-      "path": "../../packages/providers/openai"
+      "path": "../../../packages/providers/openai"
     }
   ]
 }

@@ -5,28 +5,16 @@
       "name": "@ai-toolkit/angular",
       "dir": "packages/adapters/angular",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/*"
-      ],
+      "workspaceGlobs": ["packages/adapters/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "dist/index.cjs",
       "module": "dist/index.mjs",
       "types": "dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider-utils",
@@ -75,28 +63,16 @@
       "name": "@ai-toolkit/react",
       "dir": "packages/adapters/react",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/*"
-      ],
+      "workspaceGlobs": ["packages/adapters/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider-utils",
@@ -167,29 +143,16 @@
       "name": "@ai-toolkit/rsc",
       "dir": "packages/adapters/rsc",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/*"
-      ],
+      "workspaceGlobs": ["packages/adapters/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/rsc-client.mjs",
       "module": "./dist/rsc-client.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "react-server",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "module", "react-server", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "ai",
@@ -223,9 +186,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:async_hooks"
-        ],
+        "nodeBuiltins": ["node:async_hooks"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -273,9 +234,7 @@
       "name": "ai-core-e2e-next-server",
       "dir": "packages/adapters/rsc/tests/e2e/next-server",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/rsc/tests/e2e/next-server"
-      ],
+      "workspaceGlobs": ["packages/adapters/rsc/tests/e2e/next-server"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -344,25 +303,16 @@
       "name": "@ai-toolkit/svelte",
       "dir": "packages/adapters/svelte",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/*"
-      ],
+      "workspaceGlobs": ["packages/adapters/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": null,
       "module": null,
       "types": "./dist/index.d.ts",
-      "exports": [
-        "."
-      ],
-      "conditions": [
-        "svelte",
-        "types"
-      ],
-      "publicApi": [
-        "."
-      ],
+      "exports": ["."],
+      "conditions": ["svelte", "types"],
+      "publicApi": ["."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider-utils",
@@ -381,9 +331,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:url"
-        ],
+        "nodeBuiltins": ["node:url"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -413,28 +361,16 @@
       "name": "@ai-toolkit/vue",
       "dir": "packages/adapters/vue",
       "domain": "adapters",
-      "workspaceGlobs": [
-        "packages/adapters/*"
-      ],
+      "workspaceGlobs": ["packages/adapters/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider-utils",
@@ -494,9 +430,7 @@
       "name": "@ai-toolkit/codemod",
       "dir": "packages/codemod",
       "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
+      "workspaceGlobs": ["packages/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
@@ -529,11 +463,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:child_process",
-          "node:fs",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:child_process", "node:fs", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -569,33 +499,16 @@
       "name": "ai",
       "dir": "packages/core/ai",
       "domain": "core",
-      "workspaceGlobs": [
-        "packages/core/*"
-      ],
+      "workspaceGlobs": ["packages/core/*"],
       "version": "2.0.0",
       "private": false,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal",
-        "./test"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal",
-        "./test"
-      ],
+      "exports": ["./package.json", ".", "./internal", "./test"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./internal", "./test"],
       "dependencies": [
         {
           "name": "@ai-toolkit/gateway",
@@ -624,19 +537,11 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:assert",
-          "node:events",
-          "node:fs",
-          "node:http",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:assert", "node:events", "node:fs", "node:http", "node:path"],
         "usesGlobalFetch": true
       },
       "stability": "stable",
-      "owners": [
-        "@khulnasoft/ai-toolkit-core"
-      ],
+      "owners": ["@khulnasoft/ai-toolkit-core"],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/gateway",
@@ -674,31 +579,16 @@
       "name": "@ai-toolkit/provider-utils",
       "dir": "packages/core/provider-utils",
       "domain": "core",
-      "workspaceGlobs": [
-        "packages/core/*"
-      ],
+      "workspaceGlobs": ["packages/core/*"],
       "version": "2.0.0",
       "private": false,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./test"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./test"
-      ],
+      "exports": ["./package.json", ".", "./test"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./test"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -726,9 +616,7 @@
         "usesGlobalFetch": true
       },
       "stability": "stable",
-      "owners": [
-        "@khulnasoft/ai-toolkit-core"
-      ],
+      "owners": ["@khulnasoft/ai-toolkit-core"],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/provider",
@@ -760,64 +648,39 @@
       "name": "@ai-toolkit/runtime",
       "dir": "packages/core/runtime",
       "domain": "core",
-      "workspaceGlobs": [
-        "packages/core/*"
-      ],
+      "workspaceGlobs": ["packages/core/*"],
       "version": "0.1.0",
       "private": false,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "default",
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["default", "import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [],
       "runtimeAssumptions": {
         "nodeBuiltins": [],
         "usesGlobalFetch": true
       },
       "stability": "stable",
-      "owners": [
-        "@ai-toolkit/core"
-      ],
+      "owners": ["@ai-toolkit/core"],
       "dependencyEdges": []
     },
     {
       "name": "@ai-toolkit/devtools",
       "dir": "packages/devtools",
       "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
+      "workspaceGlobs": ["packages/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "."
-      ],
-      "conditions": [
-        "default",
-        "import",
-        "types"
-      ],
-      "publicApi": [
-        "."
-      ],
+      "exports": ["."],
+      "conditions": ["default", "import", "types"],
+      "publicApi": ["."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -836,11 +699,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs",
-          "node:path",
-          "node:url"
-        ],
+        "nodeBuiltins": ["node:fs", "node:path", "node:url"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -870,31 +729,16 @@
       "name": "@ai-toolkit/test-server",
       "dir": "packages/infrastructure/test-server",
       "domain": "infrastructure",
-      "workspaceGlobs": [
-        "packages/infrastructure/*"
-      ],
+      "workspaceGlobs": ["packages/infrastructure/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./with-vitest"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./with-vitest"
-      ],
+      "exports": ["./package.json", ".", "./with-vitest"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./with-vitest"],
       "dependencies": [
         {
           "name": "msw",
@@ -907,9 +751,7 @@
         "usesGlobalFetch": false
       },
       "stability": "internal",
-      "owners": [
-        "@khulnasoft/ai-toolkit-infrastructure"
-      ],
+      "owners": ["@khulnasoft/ai-toolkit-infrastructure"],
       "dependencyEdges": [
         {
           "name": "msw",
@@ -923,28 +765,16 @@
       "name": "@ai-toolkit/langchain",
       "dir": "packages/langchain",
       "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
+      "workspaceGlobs": ["packages/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "ai",
@@ -993,28 +823,16 @@
       "name": "@ai-toolkit/llamaindex",
       "dir": "packages/llamaindex",
       "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
+      "workspaceGlobs": ["packages/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "ai",
@@ -1041,31 +859,16 @@
       "name": "@ai-toolkit/mcp",
       "dir": "packages/mcp",
       "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
+      "workspaceGlobs": ["packages/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./mcp-stdio"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./mcp-stdio"
-      ],
+      "exports": ["./package.json", ".", "./mcp-stdio"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./mcp-stdio"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1089,19 +892,11 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:child_process",
-          "node:events",
-          "node:fs",
-          "node:os",
-          "node:stream"
-        ],
+        "nodeBuiltins": ["node:child_process", "node:events", "node:fs", "node:os", "node:stream"],
         "usesGlobalFetch": false
       },
       "stability": "beta",
-      "owners": [
-        "@ai-toolkit/mcp"
-      ],
+      "owners": ["@ai-toolkit/mcp"],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/provider",
@@ -1133,30 +928,16 @@
       "name": "@ai-toolkit/amazon-bedrock",
       "dir": "packages/providers/amazon-bedrock",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./anthropic"
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./anthropic"
-      ],
+      "exports": ["./package.json", ".", "./anthropic"],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", ".", "./anthropic"],
       "dependencies": [
         {
           "name": "@ai-toolkit/anthropic",
@@ -1195,9 +976,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": true
       },
       "stability": null,
@@ -1251,31 +1030,16 @@
       "name": "@ai-toolkit/anthropic",
       "dir": "packages/providers/anthropic",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
+      "exports": ["./package.json", ".", "./internal"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./internal"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1294,9 +1058,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -1326,28 +1088,16 @@
       "name": "@ai-toolkit/assemblyai",
       "dir": "packages/providers/assemblyai",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1366,10 +1116,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -1399,28 +1146,16 @@
       "name": "@ai-toolkit/azure",
       "dir": "packages/providers/azure",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai",
@@ -1444,9 +1179,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -1482,28 +1215,16 @@
       "name": "@ai-toolkit/baseten",
       "dir": "packages/providers/baseten",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -1574,28 +1295,16 @@
       "name": "@ai-toolkit/black-forest-labs",
       "dir": "packages/providers/black-forest-labs",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1644,28 +1353,16 @@
       "name": "@ai-toolkit/cerebras",
       "dir": "packages/providers/cerebras",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -1725,28 +1422,16 @@
       "name": "@ai-toolkit/cohere",
       "dir": "packages/providers/cohere",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1765,9 +1450,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -1797,28 +1480,16 @@
       "name": "@ai-toolkit/deepgram",
       "dir": "packages/providers/deepgram",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1837,10 +1508,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -1870,28 +1538,16 @@
       "name": "@ai-toolkit/deepinfra",
       "dir": "packages/providers/deepinfra",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -1951,28 +1607,16 @@
       "name": "@ai-toolkit/deepseek",
       "dir": "packages/providers/deepseek",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -1991,9 +1635,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2023,28 +1665,16 @@
       "name": "@ai-toolkit/elevenlabs",
       "dir": "packages/providers/elevenlabs",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2063,10 +1693,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2096,28 +1723,16 @@
       "name": "@ai-toolkit/fal",
       "dir": "packages/providers/fal",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2136,10 +1751,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2169,28 +1781,16 @@
       "name": "@ai-toolkit/fireworks",
       "dir": "packages/providers/fireworks",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -2250,28 +1850,16 @@
       "name": "@ai-toolkit/gladia",
       "dir": "packages/providers/gladia",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2290,10 +1878,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2323,31 +1908,16 @@
       "name": "@ai-toolkit/google",
       "dir": "packages/providers/google",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
+      "exports": ["./package.json", ".", "./internal"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./internal"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2366,9 +1936,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2398,34 +1966,16 @@
       "name": "@ai-toolkit/google-vertex",
       "dir": "packages/providers/google-vertex",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.mjs",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.mts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./edge",
-        "./anthropic",
-        "./anthropic/edge"
-      ],
-      "conditions": [
-        "default",
-        "import",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./edge",
-        "./anthropic",
-        "./anthropic/edge"
-      ],
+      "exports": ["./package.json", ".", "./edge", "./anthropic", "./anthropic/edge"],
+      "conditions": ["default", "import", "types"],
+      "publicApi": ["./package.json", ".", "./edge", "./anthropic", "./anthropic/edge"],
       "dependencies": [
         {
           "name": "@ai-toolkit/anthropic",
@@ -2518,28 +2068,16 @@
       "name": "@ai-toolkit/groq",
       "dir": "packages/providers/groq",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2558,10 +2096,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -2591,28 +2126,16 @@
       "name": "@ai-toolkit/huggingface",
       "dir": "packages/providers/huggingface",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -2672,28 +2195,16 @@
       "name": "@ai-toolkit/hume",
       "dir": "packages/providers/hume",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2742,28 +2253,16 @@
       "name": "@ai-toolkit/lmnt",
       "dir": "packages/providers/lmnt",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2812,28 +2311,16 @@
       "name": "@ai-toolkit/luma",
       "dir": "packages/providers/luma",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2882,28 +2369,16 @@
       "name": "@ai-toolkit/mistral",
       "dir": "packages/providers/mistral",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2952,31 +2427,16 @@
       "name": "@ai-toolkit/openai",
       "dir": "packages/providers/openai",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "4.0.0-beta.3",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
+      "exports": ["./package.json", ".", "./internal"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./internal"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -2995,11 +2455,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs",
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs", "node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3029,31 +2485,16 @@
       "name": "@ai-toolkit/openai-compatible",
       "dir": "packages/providers/openai-compatible",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
-      "conditions": [
-        "import",
-        "module",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        ".",
-        "./internal"
-      ],
+      "exports": ["./package.json", ".", "./internal"],
+      "conditions": ["import", "module", "require", "types"],
+      "publicApi": ["./package.json", ".", "./internal"],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3072,9 +2513,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3104,28 +2543,16 @@
       "name": "@ai-toolkit/perplexity",
       "dir": "packages/providers/perplexity",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3174,28 +2601,16 @@
       "name": "@ai-toolkit/prodia",
       "dir": "packages/providers/prodia",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3244,28 +2659,16 @@
       "name": "@ai-toolkit/replicate",
       "dir": "packages/providers/replicate",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3314,28 +2717,16 @@
       "name": "@ai-toolkit/revai",
       "dir": "packages/providers/revai",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3354,10 +2745,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3387,28 +2775,16 @@
       "name": "@ai-toolkit/togetherai",
       "dir": "packages/providers/togetherai",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -3432,9 +2808,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3470,28 +2844,16 @@
       "name": "@ai-toolkit/xai",
       "dir": "packages/providers/xai",
       "domain": "providers",
-      "workspaceGlobs": [
-        "packages/providers/*"
-      ],
+      "workspaceGlobs": ["packages/providers/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -3515,9 +2877,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs"
-        ],
+        "nodeBuiltins": ["node:fs"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3553,28 +2913,16 @@
       "name": "@ai-toolkit/gateway",
       "dir": "packages/special/gateway",
       "domain": "special",
-      "workspaceGlobs": [
-        "packages/special/*"
-      ],
+      "workspaceGlobs": ["packages/special/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider",
@@ -3598,17 +2946,11 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:assert",
-          "node:fs",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:assert", "node:fs", "node:path"],
         "usesGlobalFetch": true
       },
       "stability": "beta",
-      "owners": [
-        "@khulnasoft/ai-toolkit-core"
-      ],
+      "owners": ["@khulnasoft/ai-toolkit-core"],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/provider",
@@ -3640,28 +2982,16 @@
       "name": "@ai-toolkit/khulnasoft",
       "dir": "packages/special/khulnasoft",
       "domain": "special",
-      "workspaceGlobs": [
-        "packages/special/*"
-      ],
+      "workspaceGlobs": ["packages/special/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/openai-compatible",
@@ -3721,29 +3051,16 @@
       "name": "@ai-toolkit/capabilities",
       "dir": "packages/validation/capabilities",
       "domain": "validation",
-      "workspaceGlobs": [
-        "packages/validation/*"
-      ],
+      "workspaceGlobs": ["packages/validation/*"],
       "version": "0.1.0",
       "private": false,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "default",
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["default", "import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/runtime",
@@ -3756,9 +3073,7 @@
         "usesGlobalFetch": false
       },
       "stability": "beta",
-      "owners": [
-        "@ai-toolkit/core"
-      ],
+      "owners": ["@ai-toolkit/core"],
       "dependencyEdges": [
         {
           "name": "@ai-toolkit/runtime",
@@ -3772,28 +3087,16 @@
       "name": "@ai-toolkit/provider",
       "dir": "packages/validation/provider",
       "domain": "validation",
-      "workspaceGlobs": [
-        "packages/validation/*"
-      ],
+      "workspaceGlobs": ["packages/validation/*"],
       "version": "2.0.0",
       "private": false,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "json-schema",
@@ -3806,9 +3109,7 @@
         "usesGlobalFetch": false
       },
       "stability": "stable",
-      "owners": [
-        "@khulnasoft/ai-toolkit-core"
-      ],
+      "owners": ["@khulnasoft/ai-toolkit-core"],
       "dependencyEdges": [
         {
           "name": "json-schema",
@@ -3822,28 +3123,16 @@
       "name": "@ai-toolkit/valibot",
       "dir": "packages/validation/valibot",
       "domain": "validation",
-      "workspaceGlobs": [
-        "packages/validation/*"
-      ],
+      "workspaceGlobs": ["packages/validation/*"],
       "version": "2.0.0",
       "private": false,
       "source": null,
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
+      "exports": ["./package.json", "."],
+      "conditions": ["import", "require", "types"],
+      "publicApi": ["./package.json", "."],
       "dependencies": [
         {
           "name": "@ai-toolkit/provider-utils",
@@ -3892,9 +3181,7 @@
       "name": "analyze-downloads",
       "dir": "tools/analyze-downloads",
       "domain": "tools",
-      "workspaceGlobs": [
-        "tools/*"
-      ],
+      "workspaceGlobs": ["tools/*"],
       "version": "0.0.0",
       "private": false,
       "source": null,
@@ -3917,9 +3204,7 @@
       "name": "create-ai",
       "dir": "tools/create-ai",
       "domain": "tools",
-      "workspaceGlobs": [
-        "tools/*"
-      ],
+      "workspaceGlobs": ["tools/*"],
       "version": "0.1.0",
       "private": true,
       "source": null,
@@ -3937,11 +3222,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs",
-          "node:path",
-          "node:readline"
-        ],
+        "nodeBuiltins": ["node:fs", "node:path", "node:readline"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -3959,9 +3240,7 @@
       "name": "eslint-config-khulnasoft-ai",
       "dir": "tools/eslint-config",
       "domain": "tools",
-      "workspaceGlobs": [
-        "tools/*"
-      ],
+      "workspaceGlobs": ["tools/*"],
       "version": "0.0.0",
       "private": false,
       "source": null,
@@ -4030,9 +3309,7 @@
       "name": "generate-llms-txt",
       "dir": "tools/generate-llms-txt",
       "domain": "tools",
-      "workspaceGlobs": [
-        "tools/*"
-      ],
+      "workspaceGlobs": ["tools/*"],
       "version": "0.0.0",
       "private": false,
       "source": null,
@@ -4044,10 +3321,7 @@
       "publicApi": [],
       "dependencies": [],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -4058,9 +3332,7 @@
       "name": "@khulnasoft/ai-tsconfig",
       "dir": "tools/tsconfig",
       "domain": "tools",
-      "workspaceGlobs": [
-        "tools/*"
-      ],
+      "workspaceGlobs": ["tools/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4083,9 +3355,7 @@
       "name": "@example/ai-functionstions",
       "dir": "examples/01-foundations/ai-functions",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4704,9 +3974,7 @@
       "name": "@example/express",
       "dir": "examples/01-foundations/express",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4775,9 +4043,7 @@
       "name": "@example/fastify",
       "dir": "examples/01-foundations/fastify",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4846,9 +4112,7 @@
       "name": "@example/hono",
       "dir": "examples/01-foundations/hono",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4928,9 +4192,7 @@
       "name": "@example/node-http-server",
       "dir": "examples/01-foundations/node-http-server",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -4963,9 +4225,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:http"
-        ],
+        "nodeBuiltins": ["node:http"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -5001,9 +4261,7 @@
       "name": "@example/angular",
       "dir": "examples/02-framework-integration/angular",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5204,9 +4462,7 @@
       "name": "@example/nest",
       "dir": "examples/02-framework-integration/nest",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5308,9 +4564,7 @@
       "name": "@example/next",
       "dir": "examples/02-framework-integration/next",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5373,11 +4627,7 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [
-          "node:fs",
-          "node:fs/promises",
-          "node:path"
-        ],
+        "nodeBuiltins": ["node:fs", "node:fs/promises", "node:path"],
         "usesGlobalFetch": false
       },
       "stability": null,
@@ -5449,9 +4699,7 @@
       "name": "@example/next-agent",
       "dir": "examples/02-framework-integration/next-agent",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5586,9 +4834,7 @@
       "name": "@example/next-fastapi",
       "dir": "examples/02-framework-integration/next-fastapi",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5679,9 +4925,7 @@
       "name": "@example/next-langchain",
       "dir": "examples/02-framework-integration/next-langchain",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -5849,9 +5093,7 @@
       "name": "@example/next-openai",
       "dir": "examples/02-framework-integration/next-openai",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6313,9 +5555,7 @@
       "name": "@example/next-openai-pages",
       "dir": "examples/02-framework-integration/next-openai-pages",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6417,9 +5657,7 @@
       "name": "@example/nuxt-openai",
       "dir": "examples/02-framework-integration/nuxt-openai",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6488,9 +5726,7 @@
       "name": "@example/mcp",
       "dir": "examples/03-integrations/mcp",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6586,9 +5822,7 @@
       "name": "@example/next-google-vertex",
       "dir": "examples/03-integrations/next-google-vertex",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6679,9 +5913,7 @@
       "name": "@example/next-openai-kasada-bot-protection",
       "dir": "examples/03-integrations/next-openai-kasada-bot-protection",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6794,9 +6026,7 @@
       "name": "@example/next-openai-telemetry",
       "dir": "examples/03-integrations/next-openai-telemetry",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -6942,9 +6172,7 @@
       "name": "@example/next-openai-telemetry-sentry",
       "dir": "examples/03-integrations/next-openai-telemetry-sentry",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -7112,9 +6340,7 @@
       "name": "@example/next-openai-rate-limits",
       "dir": "examples/03-integrations/next-openai-upstash-rate-limits",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,
@@ -7238,9 +6464,7 @@
       "name": "@example/playground",
       "dir": "examples/04-tools/playground",
       "domain": "examples",
-      "workspaceGlobs": [
-        "examples/*/*"
-      ],
+      "workspaceGlobs": ["examples/*/*"],
       "version": "0.0.0",
       "private": true,
       "source": null,

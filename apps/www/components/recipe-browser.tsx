@@ -21,8 +21,7 @@ export function RecipeBrowser({
       const matchesCategory = active === 'all' || recipe.category === active;
       const haystack =
         `${recipe.title} ${recipe.description} ${recipe.tags.join(' ')}`.toLowerCase();
-      const matchesQuery =
-        query === '' || haystack.includes(query.toLowerCase());
+      const matchesQuery = query === '' || haystack.includes(query.toLowerCase());
       return matchesCategory && matchesQuery;
     });
   }, [active, query, recipes]);
@@ -87,9 +86,7 @@ export function RecipeBrowser({
               </span>
               <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
             </div>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">
-              {recipe.title}
-            </h3>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">{recipe.title}</h3>
             <p className="mt-2 line-clamp-2 flex-1 text-sm leading-6 text-muted-foreground">
               {recipe.description}
             </p>
@@ -108,9 +105,7 @@ export function RecipeBrowser({
 
       {filtered.length === 0 && (
         <div className="rounded-xl border border-dashed border-border py-16 text-center">
-          <p className="text-sm text-muted-foreground">
-            No recipes match your search.
-          </p>
+          <p className="text-sm text-muted-foreground">No recipes match your search.</p>
           <button
             onClick={() => {
               setQuery('');

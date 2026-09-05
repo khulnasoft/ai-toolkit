@@ -1,11 +1,11 @@
 ---
-"ai": patch
-"@ai-toolkit/provider-utils": patch
-"@ai-toolkit/provider": patch
-"@ai-toolkit/gateway": patch
-"@ai-toolkit/test-server": patch
-"@ai-toolkit/khulnasoft": patch
-"@ai-toolkit/valibot": patch
+'ai': patch
+'@ai-toolkit/provider-utils': patch
+'@ai-toolkit/provider': patch
+'@ai-toolkit/gateway': patch
+'@ai-toolkit/test-server': patch
+'@ai-toolkit/khulnasoft': patch
+'@ai-toolkit/valibot': patch
 ---
 
 Complete the first phase of enterprise architecture restructuring (MIGRATION_PLAN.md):

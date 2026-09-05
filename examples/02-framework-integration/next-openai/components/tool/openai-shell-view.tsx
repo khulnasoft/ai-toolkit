@@ -23,9 +23,7 @@ export default function ShellView({
 
           <div className="p-6">
             <div className="mb-4">
-              <div className="mb-2 text-sm font-medium text-black">
-                Commands to execute:
-              </div>
+              <div className="mb-2 text-sm font-medium text-black">Commands to execute:</div>
               <div className="space-y-2">
                 {commands.map((cmd, index) => (
                   <pre
@@ -77,9 +75,7 @@ export default function ShellView({
 
           <div className="p-6">
             <div className="mb-4">
-              <div className="mb-2 text-sm font-medium text-black">
-                Commands:
-              </div>
+              <div className="mb-2 text-sm font-medium text-black">Commands:</div>
               <div className="space-y-2">
                 {commands.map((cmd, index) => (
                   <pre
@@ -135,9 +131,7 @@ export default function ShellView({
                       <div className="space-y-2">
                         {outcome.type === 'timeout' ? (
                           <div className="p-3 bg-red-50 border border-red-300 rounded-lg">
-                            <div className="text-sm font-medium text-red-600">
-                              ⏱ Timeout
-                            </div>
+                            <div className="text-sm font-medium text-red-600">⏱ Timeout</div>
                           </div>
                         ) : (
                           <div className="p-3 bg-gray-100 border border-gray-300 rounded-lg">
@@ -149,9 +143,7 @@ export default function ShellView({
 
                         {output.stdout && (
                           <div>
-                            <div className="mb-2 text-sm font-medium text-black">
-                              Output:
-                            </div>
+                            <div className="mb-2 text-sm font-medium text-black">Output:</div>
                             <div className="p-3 bg-gray-100 rounded-lg border border-gray-300">
                               <div className="font-mono text-sm text-black whitespace-pre-wrap">
                                 {output.stdout}
@@ -162,9 +154,7 @@ export default function ShellView({
 
                         {output.stderr && (
                           <div>
-                            <div className="mb-2 text-sm font-medium text-black">
-                              Error:
-                            </div>
+                            <div className="mb-2 text-sm font-medium text-black">Error:</div>
                             <div className="p-3 bg-red-50 rounded-lg border border-red-300">
                               <div className="font-mono text-sm text-red-600 whitespace-pre-wrap">
                                 {output.stderr}
@@ -193,9 +183,7 @@ export default function ShellView({
 
           <div className="p-6">
             <div className="mb-4">
-              <div className="mb-2 text-sm font-medium text-black">
-                Commands:
-              </div>
+              <div className="mb-2 text-sm font-medium text-black">Commands:</div>
               <div className="space-y-2">
                 {commands.map((cmd, index) => (
                   <pre
@@ -208,9 +196,7 @@ export default function ShellView({
               </div>
             </div>
 
-            <div className="text-sm font-medium text-red-600">
-              Execution was denied by user.
-            </div>
+            <div className="text-sm font-medium text-red-600">Execution was denied by user.</div>
           </div>
         </div>
       );

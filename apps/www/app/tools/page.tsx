@@ -1,10 +1,6 @@
 import { ToolBrowser } from '@/components/tool-browser';
 import { SectionHeader } from '@/components/section-header';
-import {
-  getToolCategoriesWithCounts,
-  toolCategoryOf,
-  tools,
-} from '@/lib/tools';
+import { getToolCategoriesWithCounts, toolCategoryOf, tools } from '@/lib/tools';
 
 export const metadata = {
   title: 'Tools Registry',

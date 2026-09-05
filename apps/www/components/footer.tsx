@@ -52,8 +52,8 @@ export function Footer() {
               AI TOOLKIT
             </div>
             <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">
-              The AI Toolkit for TypeScript and JavaScript. A unified layer for
-              building AI apps and agents.
+              The AI Toolkit for TypeScript and JavaScript. A unified layer for building AI apps and
+              agents.
             </p>
             <a
               href="https://github.com/khulnasoft/ai-toolkit"
@@ -75,12 +75,8 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      target={
-                        link.href.startsWith('http') ? '_blank' : undefined
-                      }
-                      rel={
-                        link.href.startsWith('http') ? 'noreferrer' : undefined
-                      }
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
                       className="text-sm text-muted-foreground hover:text-foreground"
                     >
                       {link.label}
@@ -92,9 +88,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
-          <p className="text-sm text-muted-foreground">
-            Open-source under the Apache-2.0 license.
-          </p>
+          <p className="text-sm text-muted-foreground">Open-source under the Apache-2.0 license.</p>
           <p className="text-sm text-muted-foreground">
             Built by the KhulnaSoft team · © {new Date().getFullYear()}
           </p>

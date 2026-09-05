@@ -14,8 +14,7 @@ run(async () => {
       weather: weatherTool,
     },
     toolChoice: 'required',
-    prompt:
-      'What is the weather in San Francisco and what attractions should I visit?',
+    prompt: 'What is the weather in San Francisco and what attractions should I visit?',
   });
 
   let fullResponse = '';
@@ -30,16 +29,12 @@ run(async () => {
       }
 
       case 'tool-call': {
-        console.log(
-          `TOOL CALL ${chunk.toolName} ${JSON.stringify(chunk.input)}`,
-        );
+        console.log(`TOOL CALL ${chunk.toolName} ${JSON.stringify(chunk.input)}`);
         break;
       }
 
       case 'tool-result': {
-        console.log(
-          `TOOL RESULT ${chunk.toolName} ${JSON.stringify(chunk.output)}`,
-        );
+        console.log(`TOOL RESULT ${chunk.toolName} ${JSON.stringify(chunk.output)}`);
         break;
       }
 

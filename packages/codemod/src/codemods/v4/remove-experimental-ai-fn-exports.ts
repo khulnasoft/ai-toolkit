@@ -21,9 +21,7 @@ export default createTransformer((fileInfo, api, options, context) => {
         ) {
           context.hasChanges = true;
           const newName =
-            EXPERIMENTAL_MAPPINGS[
-              specifier.imported.name as keyof typeof EXPERIMENTAL_MAPPINGS
-            ];
+            EXPERIMENTAL_MAPPINGS[specifier.imported.name as keyof typeof EXPERIMENTAL_MAPPINGS];
           specifier.imported.name = newName;
           if (specifier.local) {
             specifier.local.name = newName;
@@ -35,15 +33,10 @@ export default createTransformer((fileInfo, api, options, context) => {
 
   // Replace calls to experimental functions
   root.find(j.CallExpression).forEach(path => {
-    if (
-      path.node.callee.type === 'Identifier' &&
-      path.node.callee.name in EXPERIMENTAL_MAPPINGS
-    ) {
+    if (path.node.callee.type === 'Identifier' && path.node.callee.name in EXPERIMENTAL_MAPPINGS) {
       context.hasChanges = true;
       path.node.callee.name =
-        EXPERIMENTAL_MAPPINGS[
-          path.node.callee.name as keyof typeof EXPERIMENTAL_MAPPINGS
-        ];
+        EXPERIMENTAL_MAPPINGS[path.node.callee.name as keyof typeof EXPERIMENTAL_MAPPINGS];
     }
   });
 });

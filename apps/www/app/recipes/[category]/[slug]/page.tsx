@@ -45,10 +45,7 @@ export default async function RecipePage({
             Recipes
           </a>
           <span>/</span>
-          <a
-            href={`/recipes?category=${recipe.category}`}
-            className="hover:text-foreground"
-          >
+          <a href={`/recipes?category=${recipe.category}`} className="hover:text-foreground">
             {recipe.categoryTitle}
           </a>
         </div>

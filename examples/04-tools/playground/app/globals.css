@@ -26,18 +26,41 @@
     --radius: 0.45rem;
   }
 
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground antialiased; }
-  button, a, select, textarea { @apply transition-colors; }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  button,
+  a,
+  select,
+  textarea {
+    @apply transition-colors;
+  }
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .text-pretty { text-wrap: pretty; }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
 }
 
-.monaco-editor { @apply rounded-md border; }
-.prose { @apply max-w-none; }
-.prose pre { @apply overflow-x-auto rounded-md bg-muted p-4; }
-.prose code { @apply rounded bg-muted px-1 py-0.5 text-sm; }
-.prose pre code { @apply bg-transparent p-0; }
+.monaco-editor {
+  @apply rounded-md border;
+}
+.prose {
+  @apply max-w-none;
+}
+.prose pre {
+  @apply overflow-x-auto rounded-md bg-muted p-4;
+}
+.prose code {
+  @apply rounded bg-muted px-1 py-0.5 text-sm;
+}
+.prose pre code {
+  @apply bg-transparent p-0;
+}

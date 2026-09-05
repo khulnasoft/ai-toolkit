@@ -35,9 +35,7 @@ export default function ShowcasePage() {
             <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
               <Star className="size-5" />
             </div>
-            <h3 className="mt-5 text-lg font-semibold tracking-tight">
-              {item.name}
-            </h3>
+            <h3 className="mt-5 text-lg font-semibold tracking-tight">{item.name}</h3>
             <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">
               {item.description}
             </p>
@@ -64,9 +62,7 @@ export default function ShowcasePage() {
             <div className="flex size-9 items-center justify-center rounded-lg bg-muted text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary">
               <Grid2X2 className="size-4" />
             </div>
-            <h3 className="mt-4 text-base font-semibold tracking-tight">
-              {item.name}
-            </h3>
+            <h3 className="mt-4 text-base font-semibold tracking-tight">{item.name}</h3>
             <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">
               {item.description}
             </p>
