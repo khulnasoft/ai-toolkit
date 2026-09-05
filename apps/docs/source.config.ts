@@ -4,7 +4,7 @@ import {
   geistdocsFrontmatterSchema,
   geistdocsMetaSchema,
   geistShikiTheme,
-} from '@vercel/geistdocs/source-config';
+} from 'source-config';
 import { rehypeCodeDefaultOptions } from 'fumadocs-core/mdx-plugins';
 import { defineDocs } from 'fumadocs-mdx/config';
 
