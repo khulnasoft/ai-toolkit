@@ -1,4 +1,4 @@
-import { ToolNameMapping } from '../../../provider-utils/src/create-tool-name-mapping';
+import { ToolNameMapping } from '@ai-toolkit/provider-utils';
 import { convertToOpenAIResponsesInput } from './convert-to-openai-responses-input';
 import { describe, it, expect } from 'vitest';
 
