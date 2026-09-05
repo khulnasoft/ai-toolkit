@@ -136,10 +136,10 @@
       "path": "packages/infrastructure/test-server"
     },
     {
-      "path": "packages/codemod"
+      "path": "packages/special/codemod"
     },
     {
-      "path": "packages/devtools"
+      "path": "packages/special/devtools"
     },
     {
       "path": "packages/langchain"

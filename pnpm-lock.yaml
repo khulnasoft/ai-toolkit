@@ -1897,7 +1897,7 @@ importers:
         specifier: 3.25.76
         version: 3.25.76
 
-  packages/codemod:
+  packages/special/codemod:
     dependencies:
       cli-progress:
         specifier: ^3.12.0
@@ -1914,7 +1914,7 @@ importers:
     devDependencies:
       '@khulnasoft/ai-tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../../tools/tsconfig
       '@types/cli-progress':
         specifier: ^3.11.6
         version: 3.11.6
@@ -1932,7 +1932,7 @@ importers:
         version: 7.8.0
       ai:
         specifier: workspace:*
-        version: link:../core/ai
+        version: link:../../core/ai
       msw:
         specifier: 2.6.4
         version: 2.6.4(@types/node@20.17.24)(typescript@5.8.3)
@@ -1959,7 +1959,7 @@ importers:
         version: link:../../validation/provider
       '@ai-toolkit/provider-utils':
         specifier: workspace:*
-        version: link:../provider-utils
+        version: link:../../core/provider-utils
       '@opentelemetry/api':
         specifier: 1.9.0
         version: 1.9.0
@@ -2050,11 +2050,11 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
-  packages/devtools:
+  packages/special/devtools:
     dependencies:
       '@ai-toolkit/provider':
         specifier: workspace:*
-        version: link:../validation/provider
+        version: link:../../validation/provider
       '@hono/node-server':
         specifier: ^1.13.7
         version: 1.19.17(hono@4.13.1)
@@ -2091,7 +2091,7 @@ importers:
         version: 4.7.0(vite@6.4.3(@types/node@20.17.24)(jiti@2.7.0)(less@4.4.0)(lightningcss@1.32.0)(sass@1.90.0)(terser@5.49.2)(tsx@4.23.11)(yaml@2.9.0))
       ai:
         specifier: workspace:*
-        version: link:../core/ai
+        version: link:../../core/ai
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1

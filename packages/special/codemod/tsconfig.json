@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@khulnasoft/ai-tsconfig/ts-library.json",
+  "extends": "../../../tools/tsconfig/ts-library.json",
   "compilerOptions": {
     "composite": true,
     "rootDir": "src",
@@ -9,7 +9,7 @@
   "exclude": ["dist", "scripts", "build", "node_modules", "tsup.config.ts"],
   "references": [
     {
-      "path": "../core/ai"
+      "path": "../../core/ai"
     }
   ]
 }

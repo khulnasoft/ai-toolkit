@@ -232,7 +232,7 @@ If a codemod doesn't transform some code:
 First, navigate to the codemod directory:
 
 ```sh
-cd packages/codemod
+cd packages/special/codemod
 ```
 
 Then run the tests:

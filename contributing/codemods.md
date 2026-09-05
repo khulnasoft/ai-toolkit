@@ -6,15 +6,15 @@ Here is a list of instructions that will help the AI model to come up with a bet
 
 ```md
 - Start all input/output fixtures files with `// @ts-nocheck`. Make sure the comment remains in place in the output fixture file.
-- Update `packages/codemod/src/lib/upgrade.ts`
+- Update `packages/special/codemod/src/lib/upgrade.ts`
 - Use `import { createTransformer } from './lib/create-transformer';` for codemods. Do not import anything from `jscodeshift` directly.
 - No need to cover imports that use `require()`
 - The codemod should not return anything. It should set `context.hasChanges` to `true` instead.
-- See files in `packages/codemod/src/codemods` for conventions
+- See files in `packages/special/codemod/src/codemods` for conventions
 - Multiple input/output files can be used in case of import conflicts.
 - Run tests to verify the change
 - Run the codemod manually to verify that it's working
-- If you need to create temporary files for testing, create them in `packages/codemod/`, and remove them when done.
+- If you need to create temporary files for testing, create them in `packages/special/codemod/`, and remove them when done.
 ```
 
 Depending on the complexity of the changes, you can instruct the AI to review changes directly from a pull request, e.g. https://github.com/khulnasoft/ai-toolkit/pull/5750.diff. If that doesn't yield a useful result, try describing the breaking change such as in the example below

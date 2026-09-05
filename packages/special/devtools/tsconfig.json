@@ -19,10 +19,10 @@
   "exclude": ["node_modules", "dist", "examples"],
   "references": [
     {
-      "path": "../core/ai"
+      "path": "../../core/ai"
     },
     {
-      "path": "../validation/provider"
+      "path": "../../validation/provider"
     }
   ]
 }

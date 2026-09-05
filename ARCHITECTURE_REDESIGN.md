@@ -52,12 +52,10 @@ ai-toolkit/
 ├── packages/providers/                 # 30 providers (see §3)
 ├── packages/adapters/                  # react, rsc, angular, svelte, vue
 ├── packages/validation/                # provider (@ai-toolkit/provider), capabilities, valibot
-├── packages/special/                   # gateway, khulnasoft
+├── packages/special/                   # gateway, khulnasoft, codemod, devtools
 ├── packages/mcp/                       # single @ai-toolkit/mcp package (split is Outstanding)
 ├── packages/infrastructure/            # test-server only
 │
-├── packages/codemod/                   # legacy flat — Outstanding: move to special/developer-tools
-├── packages/devtools/                  # legacy flat — Outstanding
 ├── packages/langchain/                 # legacy flat — Outstanding (decision needed)
 ├── packages/llamaindex/                # legacy flat — Outstanding (decision needed)
 │
@@ -76,7 +74,7 @@ ai-toolkit/
 | Proposal claimed                                                                           | Reality                                                                                                                                                                                                                                                           |
 | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `packages/core/{ai,shared,telemetry}`                                                      | `packages/core/{ai,provider-utils,runtime}`. There is no `shared` or `telemetry` package. Shared provider utilities = `@ai-toolkit/provider-utils`; spec interfaces = `@ai-toolkit/provider` (under `validation/`).                                               |
-| `packages/special/{gateway,khulnasoft,aws,azure,developer-tools}`                          | `packages/special/{gateway,khulnasoft}` only. `azure` and `amazon-bedrock` are real providers under `packages/providers/`. `codemod`/`devtools` are still flat under `packages/`. `eslint-config` lives in `tools/eslint-config`, not `packages/infrastructure/`. |
+| `packages/special/{gateway,khulnasoft,aws,azure,developer-tools}`                          | `packages/special/{gateway,khulnasoft}` only. `azure` and `amazon-bedrock` are real providers under `packages/providers/`. `codemod`/`devtools` have since moved to `packages/special/` (see §11). `eslint-config` lives in `tools/eslint-config`, not `packages/infrastructure/`. |
 | `packages/mcp/{core,server,tools}`                                                         | Single `packages/mcp` (`@ai-toolkit/mcp`). The three-way split was never implemented.                                                                                                                                                                             |
 | `packages/validation/{valibot,provider}`                                                   | `packages/validation/{provider,capabilities,valibot}` plus `README.md`.                                                                                                                                                                                           |
 | `packages/infrastructure/{test-server,eslint-config}`                                      | `test-server` only.                                                                                                                                                                                                                                               |
@@ -100,7 +98,7 @@ Ownership is enforced by `CODEOWNERS` — this table is a summary, not a copy.
 | Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft}`                                                                                                                                         | stable                         |
 | MCP            | `packages/mcp/`                                    | `@ai-toolkit/mcp`                                                                                                                                                          | beta                           |
 | Infrastructure | `packages/infrastructure/`                         | `@ai-toolkit/test-server` (internal)                                                                                                                                       | internal                       |
-| Legacy flat    | `packages/{codemod,devtools,langchain,llamaindex}` | various                                                                                                                                                                    | see mapping §11                |
+| Legacy flat    | `packages/{langchain,llamaindex}` | various | see mapping §11 |
 
 **Ownership rules:**
 
@@ -270,8 +268,14 @@ stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `apps/playground/`).
 
 **Outstanding:**
 
-1. Move `packages/{codemod,devtools}` → `packages/special/developer-tools/` (proposal §"special").
+1. ~~Move `packages/{codemod,devtools}` → `packages/special/developer-tools/` (proposal §"special").~~
+   Done — moved to `packages/special/{codemod,devtools}` (flat under `special`,
+   per `tools/scripts/migrate-package.mjs` `DOMAIN_MAP`; the nested
+   `developer-tools/` grouping was dropped as it would require workspace-glob
+   and validator changes for no packaging benefit — npm names unchanged).
 2. Decide fate of `packages/{langchain,llamaindex}` (keep flat, move, or extract).
+   Note: `migrate-package.mjs` `DOMAIN_MAP` suggests `validation`, but no
+   decision has been executed.
 3. Decide whether the `packages/mcp` → `{core,server,tools}` split is still wanted; today it is a single package.
 4. `shared` / `telemetry` packages from the proposal were never created — close or re-propose (likely covered by `provider-utils` / `runtime` / observability docs).
 5. ~~Retire the `packages/*` legacy workspace glob once 1–2 are done; flip missing
@@ -302,7 +306,9 @@ stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `apps/playground/`).
 | `packages/khulnasoft` (legacy path)                      | `packages/special/khulnasoft`         | `@ai-toolkit/khulnasoft`             |
 | `packages/mcp` (legacy path)                             | `packages/mcp`                        | `@ai-toolkit/mcp`                    |
 | `packages/test-server` (legacy path)                     | `packages/infrastructure/test-server` | `@ai-toolkit/test-server` (internal) |
-| `packages/{codemod,devtools,langchain,llamaindex}`       | Outstanding (§11)                     | various                              |
+| `packages/codemod` (legacy path)                         | `packages/special/codemod`            | `@ai-toolkit/codemod`                |
+| `packages/devtools` (legacy path)                        | `packages/special/devtools`           | `@ai-toolkit/devtools`               |
+| `packages/{langchain,llamaindex}`                        | Outstanding (§11)                     | various                              |
 
 > Full historical mapping (including per-provider rows) lives in
 > `architecture/domain-mapping.md` — consult it before moving packages.

@@ -332,10 +332,12 @@ packages/
 │   └── tsconfig/
 
 Other packages kept at top level (not in plan):
-- packages/codemod/
-- packages/devtools/
 - packages/langchain/
 - packages/llamaindex/
+
+Already moved to `packages/special/` via `tools/scripts/migrate-package.mjs`:
+- packages/special/codemod/ (from `packages/codemod/`)
+- packages/special/devtools/ (from `packages/devtools/`)
 ```
 
 > **Divergences from plan**:

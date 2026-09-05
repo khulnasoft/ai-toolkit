@@ -25,11 +25,11 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 | `packages/validation/capabilities`    | Model capability declarations (`@ai-toolkit/capabilities`)                                   |
 | `packages/providers/<provider>`       | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.)         |
 | `packages/adapters/<framework>`       | UI framework integrations (react, vue, svelte, angular, rsc)                                 |
-| `packages/special/<package>`          | Special-purpose packages (gateway, khulnasoft)                                               |
+| `packages/special/<package>` | Special-purpose packages (gateway, khulnasoft, codemod, devtools)            |
 | `packages/mcp`                        | Model Context Protocol implementation (`@ai-toolkit/mcp`)                                    |
 | `packages/validation/valibot`         | Valibot schema adapter (`@ai-toolkit/valibot`)                                               |
 | `packages/infrastructure/test-server` | Internal test utilities (not published)                                                      |
-| `packages/codemod`                    | Automated migrations for major releases (legacy flat path; see ARCHITECTURE_REDESIGN.md §11) |
+| `packages/codemod`                    | ⛔ Removed — moved to `packages/special/codemod` (see ARCHITECTURE_REDESIGN.md §11) |
 | `examples/`                           | Example applications in `01-foundations` … `04-tools` (indexed by `registry.json`)           |
 | `content/`                            | Documentation source files (MDX), consumed by `apps/docs`                                    |
 | `contributing/`                       | Contributor guides and documentation                                                         |
@@ -228,8 +228,9 @@ The SDK uses a layered provider architecture following the adapter pattern:
 ### Adding New Packages
 
 1. Create folder under `packages/<domain>/<name>` (e.g., `packages/providers/my-provider`;
-   see ARCHITECTURE_REDESIGN.md §2–3 for the domain layout; legacy flat `packages/<name>`
-   paths such as `packages/codemod` are frozen during migration)
+   see ARCHITECTURE_REDESIGN.md §2–3 for the domain layout; move legacy flat
+   packages with `node tools/scripts/migrate-package.mjs <name> --dry-run` first —
+   remaining flat paths are `packages/langchain` and `packages/llamaindex`)
 2. Add to root `tsconfig.json` references
 3. Run `pnpm update-references` if adding dependencies between packages
 
