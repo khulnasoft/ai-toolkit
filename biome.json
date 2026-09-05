@@ -8,10 +8,10 @@
   "files": {
     "includes": [
       "**",
-      "!packages/azure/src/__fixtures__/**",
-      "!examples/nest/src/app.controller.ts",
-      "!packages/cerebras/vitest.edge.config.js",
-      "!packages/cerebras/vitest.node.config.js"
+      "!packages/providers/azure/src/__fixtures__/**",
+      "!examples/02-framework-integration/nest/src/app.controller.ts",
+      "!packages/providers/cerebras/vitest.edge.config.js",
+      "!packages/providers/cerebras/vitest.node.config.js"
     ]
   },
   "assist": {
