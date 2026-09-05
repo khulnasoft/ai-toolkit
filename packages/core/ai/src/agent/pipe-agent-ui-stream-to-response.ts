@@ -1,4 +1,4 @@
-import { ServerResponse } from 'node:http';
+import type { ServerResponse } from 'node:http';
 import { StreamTextTransform, UIMessageStreamOptions } from '../generate-text';
 import { Output } from '../generate-text/output';
 import { ToolSet } from '../generate-text/tool-set';

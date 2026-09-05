@@ -23,6 +23,11 @@ const EXPECTED_DOMAINS = [
 ];
 const NODE_BUILTINS = new Set([...builtinModules, ...builtinModules.map(name => `node:${name}`)]);
 const PRUNE = new Set(['node_modules', 'dist', '.git', '.next', '.turbo']);
+// Test files, dev scripts, and tooling configs execute under Node by design and
+// never ship; the runtime-neutral rule (ADR-004) governs shipped source, so they
+// are excluded from the builtin scan.
+const TEST_PATH =
+  /(\.test(-d)?\.tsx?$|[\\/]__tests__[\\/]|[\\/]test[\\/]|[\\/]__fixtures__[\\/]|[\\/]__snapshots__[\\/]|[\\/]scripts[\\/]|\.config\.(js|mjs|cjs|ts)$)/;
 const RUNTIME_NEUTRAL_DOMAINS = new Set(['core', 'validation']);
 const errors = [];
 const warnings = [];
@@ -78,12 +83,16 @@ function scanNodeImports(dir, out = new Set()) {
       if (PRUNE.has(entry.name) || entry.name.startsWith('.')) continue;
       scanNodeImports(full, out);
     } else if (/\.(ts|tsx|mjs|js)$/.test(entry.name)) {
+      if (TEST_PATH.test(full)) continue;
       let content;
       try {
         content = fs.readFileSync(full, 'utf8');
       } catch {
         continue;
       }
+      // `import type` statements are erased at compile time and carry no
+      // runtime dependency, so they never violate runtime-neutrality.
+      content = content.replace(/import\s+type\s+[^;]+;/g, '');
       for (const m of content.matchAll(/from\s+['"]((?:node:)?[a-zA-Z0-9_@/-]+)['"]/g)) {
         const spec = m[1];
         if (spec.startsWith('node:') || builtinModules.includes(spec)) out.add(spec);

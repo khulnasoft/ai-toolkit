@@ -13,7 +13,7 @@ import {
   ProviderOptions,
   type InferSchema,
 } from '@ai-toolkit/provider-utils';
-import { ServerResponse } from 'http';
+import type { ServerResponse } from 'http';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveLanguageModel } from '../model/resolve-model';
 import { CallSettings } from '../prompt/call-settings';

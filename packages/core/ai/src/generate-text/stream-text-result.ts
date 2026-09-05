@@ -1,5 +1,5 @@
 import { IdGenerator } from '@ai-toolkit/provider-utils';
-import { ServerResponse } from 'node:http';
+import type { ServerResponse } from 'node:http';
 import {
   CallWarning,
   FinishReason,

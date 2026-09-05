@@ -31,8 +31,14 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "stability": "stable",
+  "owners": [
+    "@svelte-community",
+    "@khulnasoft/ai-toolkit-adapters"
+  ],
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "type": "module",
   "exports": {
     ".": {

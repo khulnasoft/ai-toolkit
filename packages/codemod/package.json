@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
+  "stability": "stable",
+  "owners": [
+    "@khulnasoft/developer-tools-team"
+  ],
+  "source": "./src/bin/codemod.ts",
   "files": [
     "dist/**/*",
     "CHANGELOG.md",

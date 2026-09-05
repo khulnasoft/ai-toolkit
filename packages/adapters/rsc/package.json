@@ -3,9 +3,14 @@
   "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
+  "stability": "stable",
+  "owners": [
+    "@khulnasoft/ai-nextjs-team"
+  ],
   "main": "./dist/rsc-client.mjs",
   "module": "./dist/rsc-client.mjs",
   "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "scripts": {
     "build": "tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm build --watch",

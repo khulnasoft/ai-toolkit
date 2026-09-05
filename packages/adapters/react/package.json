@@ -3,9 +3,14 @@
   "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
+  "stability": "stable",
+  "owners": [
+    "@khulnasoft/ai-react-team"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "scripts": {
     "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm clean && tsup --watch --tsconfig tsconfig.build.json",

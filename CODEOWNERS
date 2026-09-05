@@ -8,7 +8,6 @@ packages/core/runtime/ @khulnasoft/ai-toolkit-core
 
 # ===== PROVIDER LAYER =====
 packages/providers/ @khulnasoft/ai-toolkit-providers
-packages/providers/_shared/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-providers
 
 # Vercel-maintained providers
 packages/providers/openai/ @khulnasoft/ai-openai
@@ -17,7 +16,6 @@ packages/providers/google/ @khulnasoft/ai-google
 packages/providers/google-vertex/ @khulnasoft/ai-google
 packages/providers/amazon-bedrock/ @khulnasoft/ai-aws
 packages/providers/azure/ @khulnasoft/ai-azure
-packages/providers/khulnasoft/ @khulnasoft/ai-khulnasoft
 
 # Community providers
 packages/providers/groq/ @groq-team @khulnasoft/ai-toolkit-providers
@@ -53,7 +51,6 @@ examples/05-production-apps/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-
 # ===== DOCUMENTATION =====
 apps/docs/ @khulnasoft/documentation-team
 apps/www/ @khulnasoft/marketing-team
-apps/playground/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
 apps/ @khulnasoft/ai-toolkit-maintainers
 architecture/ @khulnasoft/ai-toolkit-maintainers
 

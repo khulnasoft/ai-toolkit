@@ -14,7 +14,7 @@ import {
   ToolContent,
 } from '@ai-toolkit/provider-utils';
 import { Span } from '@opentelemetry/api';
-import { ServerResponse } from 'node:http';
+import type { ServerResponse } from 'node:http';
 import { NoOutputGeneratedError } from '../error';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveLanguageModel } from '../model/resolve-model';

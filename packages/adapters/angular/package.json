@@ -3,9 +3,15 @@
   "version": "2.0.0",
   "description": "Angular implementation of ai-toolkit.",
   "license": "Apache-2.0",
+  "stability": "stable",
+  "owners": [
+    "@angular-community",
+    "@khulnasoft/ai-toolkit-adapters"
+  ],
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "source": "./src/index.ts",
   "scripts": {
     "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
     "build:watch": "pnpm clean && tsup --tsconfig tsconfig.build.json --watch",

@@ -1,4 +1,4 @@
-import { ServerResponse } from 'http';
+import type { ServerResponse } from 'http';
 import { AsyncIterableStream } from '../util/async-iterable-stream';
 import {
   CallWarning,

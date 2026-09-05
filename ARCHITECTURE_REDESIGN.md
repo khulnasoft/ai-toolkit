@@ -263,7 +263,10 @@ Follow `ADR/template.md` for new decisions.
 section), `turbo.json` domain tasks, `tools/scripts/*` generation + validation,
 `examples/registry.json`, ADRs 004–009, `packages/core/runtime`,
 `packages/validation/capabilities`, root scripts (`health-check`, `inventory`,
-`baseline`, `find-package`).
+`baseline`, `find-package`), `validate-structure` zero-error baseline
+(`ServerResponse` imports in `core/ai` converted to `import type`; validator
+ignores `import type` and excludes tests, dev `scripts/`, and tooling configs),
+stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `apps/playground/`).
 
 **Outstanding:**
 
@@ -271,8 +274,14 @@ section), `turbo.json` domain tasks, `tools/scripts/*` generation + validation,
 2. Decide fate of `packages/{langchain,llamaindex}` (keep flat, move, or extract).
 3. Decide whether the `packages/mcp` → `{core,server,tools}` split is still wanted; today it is a single package.
 4. `shared` / `telemetry` packages from the proposal were never created — close or re-propose (likely covered by `provider-utils` / `runtime` / observability docs).
-5. Retire the `packages/*` legacy workspace glob once 1–2 are done; flip missing
-   `stability`/`owners` metadata from warning to error.
+5. ~~Retire the `packages/*` legacy workspace glob once 1–2 are done; flip missing
+   `stability`/`owners` metadata from warning to error.~~ Partially done —
+   `stability`/`owners`/`source` metadata backfilled for all 49 packages
+   (provider/adapters owners mapped from `CODEOWNERS`; `langchain`/`llamaindex`
+   carry interim `@khulnasoft/ai-toolkit-maintainers` ownership pending a
+   maintainer decision in item 2). Remaining validator warnings are
+   `exports`-map conditions (`default`/`import`/`require`), deferred as they
+   affect published module resolution.
 6. ~~Reconcile `AGENTS.md` "Key Directories" table (still describes the old flat layout:
    `packages/ai`, `packages/provider`, …) with this document.~~ Done — table now lists
    domain paths; "Adding New Packages" points at `packages/<domain>/<name>`.
