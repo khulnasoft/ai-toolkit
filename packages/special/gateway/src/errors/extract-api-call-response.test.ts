@@ -4,7 +4,7 @@ import { extractApiCallResponse } from './extract-api-call-response';
 
 describe('extractResponseFromAPICallError', () => {
   describe('when error.data is available', () => {
-    it('should return error.data when successfully parsed by AI TOOLKIT', () => {
+    it('should return error.data when successfully parsed by AI TOOLKIT', async () => {
       const parsedData = {
         error: { message: 'Parsed error', type: 'authentication_error' },
       };
@@ -18,12 +18,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(parsedData); // Should prefer parsed data over responseBody
     });
 
-    it('should return error.data even when it is null', () => {
+    it('should return error.data even when it is null', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -34,12 +34,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBeNull(); // Should return null, not fallback to responseBody
     });
 
-    it('should return error.data even when it is an empty object', () => {
+    it('should return error.data even when it is an empty object', async () => {
       const emptyData = {};
       const apiCallError = new APICallError({
         message: 'Request failed',
@@ -51,14 +51,14 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(emptyData); // Should return empty object, not fallback
     });
   });
 
   describe('when error.data is undefined', () => {
-    it('should parse and return responseBody as JSON when valid', () => {
+    it('should parse and return responseBody as JSON when valid', async () => {
       const responseData = {
         ferror: { message: 'Malformed error', type: 'model_not_found' },
       };
@@ -72,12 +72,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toEqual(responseData);
     });
 
-    it('should return raw responseBody when JSON parsing fails', () => {
+    it('should return raw responseBody when JSON parsing fails', async () => {
       const invalidJson = 'This is not valid JSON';
       const apiCallError = new APICallError({
         message: 'Request failed',
@@ -89,13 +89,14 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(invalidJson);
     });
 
-    it('should handle HTML error responses', () => {
-      const htmlResponse = '<html><body><h1>500 Internal Server Error</h1></body></html>';
+    it('should handle HTML error responses', async () => {
+      const htmlResponse =
+        '<html><body><h1>500 Internal Server Error</h1></body></html>';
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -106,12 +107,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(htmlResponse);
     });
 
-    it('should handle empty string responseBody', () => {
+    it('should handle empty string responseBody', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 502,
@@ -122,12 +123,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe('');
     });
 
-    it('should handle malformed JSON gracefully', () => {
+    it('should handle malformed JSON gracefully', async () => {
       const malformedJson = '{"incomplete": json';
       const apiCallError = new APICallError({
         message: 'Request failed',
@@ -139,12 +140,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(malformedJson); // Should return raw string, not throw
     });
 
-    it('should parse complex nested JSON structures', () => {
+    it('should parse complex nested JSON structures', async () => {
       const complexData = {
         error: {
           message: 'Complex error',
@@ -176,14 +177,14 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toEqual(complexData);
     });
   });
 
   describe('when responseBody is not available', () => {
-    it('should return empty object when both data and responseBody are undefined', () => {
+    it('should return empty object when both data and responseBody are undefined', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -194,12 +195,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toEqual({});
     });
 
-    it('should return empty object when responseBody is null', () => {
+    it('should return empty object when responseBody is null', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -210,14 +211,14 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toEqual({});
     });
   });
 
   describe('edge cases', () => {
-    it('should handle numeric responseBody', () => {
+    it('should handle numeric responseBody', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -228,12 +229,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(404); // Should parse as number
     });
 
-    it('should handle boolean responseBody', () => {
+    it('should handle boolean responseBody', async () => {
       const apiCallError = new APICallError({
         message: 'Request failed',
         statusCode: 500,
@@ -244,12 +245,12 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toBe(true); // Should parse as boolean
     });
 
-    it('should handle array responseBody', () => {
+    it('should handle array responseBody', async () => {
       const arrayData = ['error1', 'error2', 'error3'];
       const apiCallError = new APICallError({
         message: 'Request failed',
@@ -261,7 +262,7 @@ describe('extractResponseFromAPICallError', () => {
         requestBodyValues: {},
       });
 
-      const result = extractApiCallResponse(apiCallError);
+      const result = await extractApiCallResponse(apiCallError);
 
       expect(result).toEqual(arrayData);
     });

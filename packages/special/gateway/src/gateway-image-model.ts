@@ -7,13 +7,12 @@ import {
   combineHeaders,
   convertUint8ArrayToBase64,
   createJsonResponseHandler,
-  createJsonErrorResponseHandler,
   postJsonToApi,
   resolve,
-  type Resolvable,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
-import type { GatewayConfig } from './gateway-config';
+import type { GatewayModelConfig } from './gateway-config';
+import { gatewayErrorResponseHandler } from './gateway-config';
 import { asGatewayError } from './errors';
 import { parseAuthMethod } from './errors/parse-auth-method';
 
@@ -24,10 +23,7 @@ export class GatewayImageModel implements ImageModelV3 {
 
   constructor(
     readonly modelId: string,
-    private readonly config: GatewayConfig & {
-      provider: string;
-      o11yHeaders: Resolvable<Record<string, string>>;
-    },
+    private readonly config: GatewayModelConfig,
   ) {}
 
   get provider(): string {
@@ -74,11 +70,10 @@ export class GatewayImageModel implements ImageModelV3 {
           }),
           ...(mask && { mask: maybeEncodeImageFile(mask) }),
         },
-        successfulResponseHandler: createJsonResponseHandler(gatewayImageResponseSchema),
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: z.any(),
-          errorToMessage: data => data,
-        }),
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayImageResponseSchema,
+        ),
+        failedResponseHandler: gatewayErrorResponseHandler,
         ...(abortSignal && { abortSignal }),
         fetch: this.config.fetch,
       });
@@ -86,7 +81,8 @@ export class GatewayImageModel implements ImageModelV3 {
       return {
         images: responseBody.images, // Always base64 strings from server
         warnings: responseBody.warnings ?? [],
-        providerMetadata: responseBody.providerMetadata as ImageModelV3ProviderMetadata,
+        providerMetadata:
+          responseBody.providerMetadata as ImageModelV3ProviderMetadata,
         response: {
           timestamp: new Date(),
           modelId: this.modelId,
@@ -94,7 +90,7 @@ export class GatewayImageModel implements ImageModelV3 {
         },
       };
     } catch (error) {
-      throw asGatewayError(error, await parseAuthMethod(resolvedHeaders));
+      throw await asGatewayError(error, await parseAuthMethod(resolvedHeaders));
     }
   }
 
@@ -136,5 +132,7 @@ const gatewayImageResponseSchema = z.object({
       }),
     )
     .optional(),
-  providerMetadata: z.record(z.string(), providerMetadataEntrySchema).optional(),
+  providerMetadata: z
+    .record(z.string(), providerMetadataEntrySchema)
+    .optional(),
 });

@@ -1,5 +1,4 @@
 import {
-  createJsonErrorResponseHandler,
   createJsonResponseHandler,
   getFromApi,
   lazySchema,
@@ -9,6 +8,7 @@ import {
 import { z } from 'zod/v4';
 import { asGatewayError } from './errors';
 import type { GatewayConfig } from './gateway-config';
+import { gatewayErrorResponseHandler } from './gateway-config';
 import type { GatewayLanguageModelEntry } from './gateway-model-entry';
 
 type GatewayFetchMetadataConfig = GatewayConfig;
@@ -32,11 +32,10 @@ export class GatewayFetchMetadata {
       const { value } = await getFromApi({
         url: `${this.config.baseURL}/config`,
         headers: await resolve(this.config.headers()),
-        successfulResponseHandler: createJsonResponseHandler(gatewayAvailableModelsResponseSchema),
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: z.any(),
-          errorToMessage: data => data,
-        }),
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayAvailableModelsResponseSchema,
+        ),
+        failedResponseHandler: gatewayErrorResponseHandler,
         fetch: this.config.fetch,
       });
 
@@ -48,16 +47,17 @@ export class GatewayFetchMetadata {
 
   async getCredits(): Promise<GatewayCreditsResponse> {
     try {
+      // The credits endpoint is served from the host origin (not under the
+      // base URL path), so build it from the origin instead.
       const baseUrl = new URL(this.config.baseURL);
 
       const { value } = await getFromApi({
         url: `${baseUrl.origin}/v1/credits`,
         headers: await resolve(this.config.headers()),
-        successfulResponseHandler: createJsonResponseHandler(gatewayCreditsResponseSchema),
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: z.any(),
-          errorToMessage: data => data,
-        }),
+        successfulResponseHandler: createJsonResponseHandler(
+          gatewayCreditsResponseSchema,
+        ),
+        failedResponseHandler: gatewayErrorResponseHandler,
         fetch: this.config.fetch,
       });
 
@@ -83,12 +83,18 @@ const gatewayAvailableModelsResponseSchema = lazySchema(() =>
               input_cache_read: z.string().nullish(),
               input_cache_write: z.string().nullish(),
             })
-            .transform(({ input, output, input_cache_read, input_cache_write }) => ({
-              input,
-              output,
-              ...(input_cache_read ? { cachedInputTokens: input_cache_read } : {}),
-              ...(input_cache_write ? { cacheCreationInputTokens: input_cache_write } : {}),
-            }))
+            .transform(
+              ({ input, output, input_cache_read, input_cache_write }) => ({
+                input,
+                output,
+                ...(input_cache_read
+                  ? { cachedInputTokens: input_cache_read }
+                  : {}),
+                ...(input_cache_write
+                  ? { cacheCreationInputTokens: input_cache_write }
+                  : {}),
+              }),
+            )
             .nullish(),
           specification: z.object({
             specificationVersion: z.literal('v3'),
