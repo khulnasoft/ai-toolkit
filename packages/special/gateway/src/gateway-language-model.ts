@@ -1,7 +1,6 @@
 import type {
   LanguageModelV3,
   LanguageModelV3CallOptions,
-  SharedV3Warning,
   LanguageModelV3FilePart,
   LanguageModelV3StreamPart,
   LanguageModelV3GenerateResult,
@@ -9,24 +8,19 @@ import type {
 } from '@ai-toolkit/provider';
 import {
   combineHeaders,
+  convertUint8ArrayToBase64,
   createEventSourceResponseHandler,
-  createJsonErrorResponseHandler,
   createJsonResponseHandler,
   postJsonToApi,
   resolve,
   type ParseResult,
-  type Resolvable,
 } from '@ai-toolkit/provider-utils';
 import { z } from 'zod/v4';
-import type { GatewayConfig } from './gateway-config';
+import type { GatewayModelConfig } from './gateway-config';
+import { gatewayErrorResponseHandler } from './gateway-config';
 import type { GatewayModelId } from './gateway-language-model-settings';
 import { asGatewayError } from './errors';
 import { parseAuthMethod } from './errors/parse-auth-method';
-
-type GatewayChatConfig = GatewayConfig & {
-  provider: string;
-  o11yHeaders: Resolvable<Record<string, string>>;
-};
 
 export class GatewayLanguageModel implements LanguageModelV3 {
   readonly specificationVersion = 'v3';
@@ -34,7 +28,7 @@ export class GatewayLanguageModel implements LanguageModelV3 {
 
   constructor(
     readonly modelId: GatewayModelId,
-    private readonly config: GatewayChatConfig,
+    private readonly config: GatewayModelConfig,
   ) {}
 
   get provider(): string {
@@ -45,12 +39,17 @@ export class GatewayLanguageModel implements LanguageModelV3 {
     const { abortSignal: _abortSignal, ...optionsWithoutSignal } = options;
 
     return {
-      args: this.maybeEncodeFileParts(optionsWithoutSignal),
+      args: {
+        ...optionsWithoutSignal,
+        prompt: this.encodeFileParts(optionsWithoutSignal.prompt),
+      },
       warnings: [],
     };
   }
 
-  async doGenerate(options: LanguageModelV3CallOptions): Promise<LanguageModelV3GenerateResult> {
+  async doGenerate(
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3GenerateResult> {
     const { args, warnings } = await this.getArgs(options);
     const { abortSignal } = options;
 
@@ -71,10 +70,7 @@ export class GatewayLanguageModel implements LanguageModelV3 {
         ),
         body: args,
         successfulResponseHandler: createJsonResponseHandler(z.any()),
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: z.any(),
-          errorToMessage: data => data,
-        }),
+        failedResponseHandler: gatewayErrorResponseHandler,
         ...(abortSignal && { abortSignal }),
         fetch: this.config.fetch,
       });
@@ -90,7 +86,9 @@ export class GatewayLanguageModel implements LanguageModelV3 {
     }
   }
 
-  async doStream(options: LanguageModelV3CallOptions): Promise<LanguageModelV3StreamResult> {
+  async doStream(
+    options: LanguageModelV3CallOptions,
+  ): Promise<LanguageModelV3StreamResult> {
     const { args, warnings } = await this.getArgs(options);
     const { abortSignal } = options;
 
@@ -107,17 +105,17 @@ export class GatewayLanguageModel implements LanguageModelV3 {
         ),
         body: args,
         successfulResponseHandler: createEventSourceResponseHandler(z.any()),
-        failedResponseHandler: createJsonErrorResponseHandler({
-          errorSchema: z.any(),
-          errorToMessage: data => data,
-        }),
+        failedResponseHandler: gatewayErrorResponseHandler,
         ...(abortSignal && { abortSignal }),
         fetch: this.config.fetch,
       });
 
       return {
         stream: response.pipeThrough(
-          new TransformStream<ParseResult<LanguageModelV3StreamPart>, LanguageModelV3StreamPart>({
+          new TransformStream<
+            ParseResult<LanguageModelV3StreamPart>,
+            LanguageModelV3StreamPart
+          >({
             start(controller) {
               if (warnings.length > 0) {
                 controller.enqueue({ type: 'stream-start', warnings });
@@ -143,7 +141,9 @@ export class GatewayLanguageModel implements LanguageModelV3 {
 
                 controller.enqueue(streamPart);
               } else {
-                controller.error((chunk as { success: false; error: unknown }).error);
+                controller.error(
+                  (chunk as { success: false; error: unknown }).error,
+                );
               }
             },
           }),
@@ -157,34 +157,39 @@ export class GatewayLanguageModel implements LanguageModelV3 {
   }
 
   private isFilePart(part: unknown) {
-    return part && typeof part === 'object' && 'type' in part && part.type === 'file';
+    return (
+      part && typeof part === 'object' && 'type' in part && part.type === 'file'
+    );
   }
 
   /**
-   * Encodes file parts in the prompt to base64. Mutates the passed options
-   * instance directly to avoid copying the file data.
-   * @param options - The options to encode.
-   * @returns The options with the file parts encoded.
+   * Returns a copy of the prompt with binary file parts encoded as data URLs,
+   * leaving the caller's options untouched.
    */
-  private maybeEncodeFileParts(options: LanguageModelV3CallOptions) {
-    for (const message of options.prompt) {
-      for (const part of message.content) {
-        if (this.isFilePart(part)) {
-          const filePart = part as LanguageModelV3FilePart;
-          // If the file part is a URL it will get cleanly converted to a string.
-          // If it's a binary file attachment we convert it to a data url.
-          // In either case, server-side we should only ever see URLs as strings.
-          if (filePart.data instanceof Uint8Array) {
-            const buffer = Uint8Array.from(filePart.data);
-            const base64Data = Buffer.from(buffer).toString('base64');
-            filePart.data = new URL(
-              `data:${filePart.mediaType || 'application/octet-stream'};base64,${base64Data}`,
-            );
-          }
-        }
-      }
-    }
-    return options;
+  private encodeFileParts(prompt: LanguageModelV3CallOptions['prompt']) {
+    return prompt.map(message => ({
+      ...message,
+      content: Array.isArray(message.content)
+        ? message.content.map(part => {
+            if (!this.isFilePart(part)) {
+              return part;
+            }
+            // If the file part is a URL it will get cleanly converted to a string.
+            // If it's a binary file attachment we convert it to a data url.
+            // In either case, server-side we should only ever see URLs as strings.
+            const filePart = part as LanguageModelV3FilePart;
+            if (!(filePart.data instanceof Uint8Array)) {
+              return part;
+            }
+            return {
+              ...filePart,
+              data: new URL(
+                `data:${filePart.mediaType || 'application/octet-stream'};base64,${convertUint8ArrayToBase64(filePart.data)}`,
+              ),
+            };
+          })
+        : message.content,
+    }));
   }
 
   private getUrl() {
