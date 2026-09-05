@@ -68,7 +68,7 @@ export async function createAIProject(options) {
     throw new Error(`Directory "${name}" already exists`);
   }
 
-  ui.boxStart('create-ai');
+  ui.boxStart('create-ai-sdk');
 
   if (interactive) {
     const rl = createPrompt();

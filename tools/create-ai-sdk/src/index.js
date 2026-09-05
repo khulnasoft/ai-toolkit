@@ -8,10 +8,10 @@ const main = async () => {
   const args = parseArgs(process.argv);
 
   if (args.help) {
-    ui.boxStart('create-ai');
+    ui.boxStart('create-ai-sdk');
     ui.log('');
     ui.log(chalk.bold('Usage:'));
-    ui.log(`  ${chalk.cyan('create-ai <project-name>')} ${chalk.dim('[options]')}`);
+    ui.log(`  ${chalk.cyan('create-ai-sdk <project-name>')} ${chalk.dim('[options]')}`);
     ui.divider();
     ui.log(chalk.bold('Options:'));
     ui.log(
@@ -25,9 +25,9 @@ const main = async () => {
     ui.log(`  ${chalk.cyan('-h, --help')}            Show this help message`);
     ui.divider();
     ui.log(chalk.bold('Examples:'));
-    ui.log(`  ${chalk.dim('$')} create-ai my-chat-app`);
-    ui.log(`  ${chalk.dim('$')} create-ai my-app --template next-react --provider openai`);
-    ui.log(`  ${chalk.dim('$')} create-ai my-app -y --no-install`);
+    ui.log(`  ${chalk.dim('$')} create-ai-sdk my-chat-app`);
+    ui.log(`  ${chalk.dim('$')} create-ai-sdk my-app --template next-react --provider openai`);
+    ui.log(`  ${chalk.dim('$')} create-ai-sdk my-app -y --no-install`);
     ui.boxEnd();
     process.exit(0);
   }
