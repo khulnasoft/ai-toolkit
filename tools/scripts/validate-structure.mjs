@@ -140,6 +140,13 @@ function readJson(file) {
 
 function collectPackages(dir, domain) {
   if (!fs.existsSync(dir)) return;
+  // A domain directory may itself be a package (e.g. packages/mcp).
+  const rootManifestPath = path.join(dir, 'package.json');
+  if (fs.existsSync(rootManifestPath)) {
+    const manifest = readJson(rootManifestPath);
+    if (manifest)
+      packages.push({ dir, domain, manifest, manifestPath: rootManifestPath });
+  }
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
     const packageDir = path.join(dir, entry.name);
