@@ -259,6 +259,44 @@ const configs = ['pnpm-workspace.yaml', 'turbo.json', 'tsconfig.json', 'CODEOWNE
 for (const config of configs)
   if (!fs.existsSync(path.join(ROOT, config))) reportError(`Missing root config: ${config}`);
 
+// Docs are mirrored: root content/ (shipped by package prepack scripts) and
+// apps/docs/content/ (consumed by the docs site) must stay byte-identical.
+// Root content/ is canonical; mirror it after editing.
+function collectFiles(dir, base = dir, out = new Map()) {
+  let entries;
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return out;
+  }
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
+      collectFiles(full, base, out);
+    } else {
+      out.set(
+        path.relative(base, full).split(path.sep).join('/'),
+        fs.readFileSync(full),
+      );
+    }
+  }
+  return out;
+}
+
+const contentFiles = collectFiles(path.join(ROOT, 'content'));
+const siteContentFiles = collectFiles(path.join(ROOT, 'apps/docs/content'));
+for (const [rel, buf] of contentFiles) {
+  if (!siteContentFiles.has(rel))
+    reportError(`Docs mirror missing in apps/docs/content: ${rel}`);
+  else if (!buf.equals(siteContentFiles.get(rel)))
+    reportError(`Docs mirror diverged in apps/docs/content: ${rel}`);
+}
+for (const rel of siteContentFiles.keys()) {
+  if (!contentFiles.has(rel))
+    reportError(`File only in apps/docs/content, missing in canonical content/: ${rel}`);
+}
+
 const codeownersPath = path.join(ROOT, 'CODEOWNERS');
 if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
   const rules = fs

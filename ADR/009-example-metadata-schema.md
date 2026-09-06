@@ -1,8 +1,22 @@
 # ADR-009: Example Metadata Schema and Categorization
 
-**Status:** Proposed  
+**Status:** Implemented with modifications (see Implementation notes below)  
 **Date:** 2026-08-05  
 **Stakeholders:** SDK core, developer experience, docs
+
+---
+
+## Implementation notes (added September 2026)
+
+Implemented with the following deltas from the Decision above:
+
+- Categories use ordered directory prefixes: `01-foundations`,
+  `02-framework-integration`, `03-integrations`, `04-tools` (replacing the
+  proposed `foundations`, `advanced-patterns`, `production-apps` set).
+- A central `examples/registry.json` index exists alongside the per-example
+  `example.json` files (consumed by `apps/www/lib/templates.ts`).
+- `examples/04-tools/playground` was kept as an example instead of being
+  promoted to `apps/playground`.
 
 ---
 

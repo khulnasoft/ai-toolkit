@@ -264,7 +264,10 @@ section), `turbo.json` domain tasks, `tools/scripts/*` generation + validation,
 `baseline`, `find-package`), `validate-structure` zero-error baseline
 (`ServerResponse` imports in `core/ai` converted to `import type`; validator
 ignores `import type` and excludes tests, dev `scripts/`, and tooling configs),
-stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `apps/playground/`).
+stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `providers/khulnasoft/`,
+`apps/playground/`, legacy block, `examples/04-*`/`05-*` rules), docs-mirror invariant (`content/` ≡
+`apps/docs/content/`, enforced by `validate-structure`; root `content/` is
+canonical as package `prepack` scripts consume it).
 
 **Outstanding:**
 
