@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { HeroExample } from '@/components/hero-example';
 import { CommandRow } from '@/components/command-row';
+import { Faq } from '@/components/faq';
 import { getAllRecipes } from '@/lib/recipes';
 import { gateways } from '@/lib/gateways';
 import { resources } from '@/lib/resources';
@@ -20,6 +21,48 @@ const stats = [
   { value: '26.3K', label: 'GitHub stars' },
   { value: '695+', label: 'Contributors' },
   { value: '100+', label: 'Models supported' },
+];
+
+const providerNames = [
+  'OpenAI',
+  'Anthropic',
+  'Google',
+  'Meta',
+  'Mistral',
+  'xAI',
+  'Amazon',
+];
+
+const faqs = [
+  {
+    question: 'What is AI TOOLKIT?',
+    answer:
+      'AI TOOLKIT is an open-source TypeScript SDK for building AI apps and agents. It gives you one unified interface for streaming, structured output, tools, fallbacks, and multi-model support across every major provider and framework.',
+  },
+  {
+    question: 'How is it different from calling each provider directly?',
+    answer:
+      'You write against a single API instead of N provider SDKs. Swap models, add structured output, wire in tools, and set up fallbacks without changing your application code.',
+  },
+  {
+    question: 'Which providers and models are supported?',
+    answer: `A growing catalog: ${resources.count('recipes')} recipes, ${gateways.length} gateways serving every major lab, and first-party providers for OpenAI, Anthropic, Google, Amazon Bedrock, and more — all browsable in the Providers section.`,
+  },
+  {
+    question: 'Does it work with my framework?',
+    answer:
+      'Yes. Official frameworks cover React, Next.js, Vue, Svelte, Angular, and RSC, with adapters for LangChain and LlamaIndex. Bring your own prompts, stream into React hooks, or run purely in Node.js.',
+  },
+  {
+    question: 'Is AI TOOLKIT production-ready?',
+    answer:
+      'Yes. It is Apache-2.0 licensed, powers production applications, and ships with typed errors, request logging, telemetry, and documented load test results for every core primitive.',
+  },
+  {
+    question: 'How do I get started?',
+    answer:
+      'Install the core package, then start from a recipe or template. The Recipes section is built to copy, paste, and run on any model.',
+  },
 ];
 
 const sections = [
@@ -96,19 +139,24 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 lg:px-6">
       {/* Hero */}
-      <section className="py-20 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section className="relative py-20 lg:py-28">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 left-1/2 h-80 w-[720px] max-w-[90vw] -translate-x-1/2 rounded-full bg-primary/[0.07] blur-3xl"
+        />
+        <div className="relative grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-xs text-muted-foreground">
+            <div className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="mr-2 size-3.5 text-primary" />
               The AI Toolkit for TypeScript &amp; JavaScript
             </div>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-.05em] sm:text-6xl">
-              Universal AI layer for building frameworks and agents
+            <h1 className="mt-6 text-balance text-5xl font-semibold leading-[0.95] tracking-[-.06em] sm:text-6xl lg:text-7xl">
+              Universal AI layer for every app
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-              A unified SDK for building AI apps with modern streaming,
-              fallbacks, and multi-model support — powered by Vercel.
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground">
+              One SDK for building AI features, agents, and apps — with
+              streaming, structured output, tools, and fallbacks across every
+              major provider.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -119,6 +167,12 @@ export default function Home() {
                 <ArrowUpRight className="size-4" />
               </Link>
               <Link
+                href="/gateways/models"
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm text-foreground hover:bg-muted"
+              >
+                Explore models
+              </Link>
+              <Link
                 href="https://studio.khulnasoft.com/docs"
                 target="_blank"
                 rel="noreferrer"
@@ -126,6 +180,19 @@ export default function Home() {
               >
                 Read the docs
               </Link>
+            </div>
+            <div className="mt-12">
+              <p className="eyebrow">Works with every major provider</p>
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+                {providerNames.map(name => (
+                  <span
+                    key={name}
+                    className="text-sm font-semibold tracking-tight text-muted-foreground/70"
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
           <HeroExample />
@@ -137,7 +204,7 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-8 py-10 md:grid-cols-4">
           {stats.map(stat => (
             <div key={stat.label} className="text-center">
-              <p className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <p className="text-3xl font-semibold tracking-tight sm:text-4xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
@@ -146,16 +213,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Four sections */}
+      {/* Explore */}
       <section className="py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-            EXPLORE
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
+          <p className="eyebrow">Explore</p>
+          <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-.04em] sm:text-5xl">
             Everything you need to ship AI
           </h2>
-          <p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-base">
+          <p className="mt-5 text-balance text-base leading-7 text-muted-foreground sm:text-lg">
             Start from a recipe, wire in a tool, or fork a template. Then see
             what the community has built.
           </p>
@@ -165,26 +230,22 @@ export default function Home() {
             <Link
               key={section.href}
               href={section.href}
-              className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50 hover:bg-card/70"
+              className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25"
             >
               <div className="flex items-start justify-between">
-                <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground group-hover:text-foreground">
                   <section.icon className="size-5" />
                 </div>
-                <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </div>
-              <p className="mt-5 font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-                {section.eyebrow}
-              </p>
+              <p className="mt-5 eyebrow">{section.eyebrow}</p>
               <h3 className="mt-2 text-lg font-semibold tracking-tight">
                 {section.title}
               </h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 {section.description}
               </p>
-              <p className="mt-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                {section.meta}
-              </p>
+              <p className="mt-4 eyebrow">{section.meta}</p>
             </Link>
           ))}
         </div>
@@ -195,10 +256,8 @@ export default function Home() {
         <section className="pb-20">
           <div className="flex items-end justify-between">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-                FEATURED RECIPES
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+              <p className="eyebrow">Featured recipes</p>
+              <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
                 Build with AI TOOLKIT today
               </h2>
             </div>
@@ -214,13 +273,11 @@ export default function Home() {
               <Link
                 key={`${recipe.category}-${recipe.slug}`}
                 href={`/resources/recipes/${recipe.category}/${recipe.slug}`}
-                className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+                className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    {recipe.categoryTitle}
-                  </span>
-                  <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <span className="eyebrow">{recipe.categoryTitle}</span>
+                  <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold tracking-tight">
                   {recipe.title}
@@ -240,17 +297,31 @@ export default function Home() {
         </section>
       )}
 
+      {/* FAQ */}
+      <section className="pb-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">FAQ</p>
+          <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-.04em] sm:text-5xl">
+            Questions, answered
+          </h2>
+          <p className="mt-5 text-base leading-7 text-muted-foreground">
+            Everything you need to know before you start building.
+          </p>
+        </div>
+        <div className="mt-10">
+          <Faq items={faqs} />
+        </div>
+      </section>
+
       {/* Install CTA */}
       <section className="mb-20 overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-muted/40 to-background">
         <div className="grid gap-8 p-8 lg:grid-cols-2 lg:p-12">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-              GET STARTED
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+            <p className="eyebrow">Get started</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
               Build with AI TOOLKIT today
             </h2>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
               Get started with the AI TOOLKIT by using our recipes or templates,
               or install the core package in seconds.
             </p>
@@ -280,9 +351,7 @@ function InstallCommand() {
   return (
     <div className="flex items-center justify-center">
       <div className="w-full max-w-sm">
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          Install
-        </p>
+        <p className="mb-2 eyebrow">Install</p>
         <CommandRow command="npm install ai" />
       </div>
     </div>

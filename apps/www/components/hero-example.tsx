@@ -88,20 +88,27 @@ export function HeroExample() {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-muted/30 px-4 py-2">
-        <div className="flex items-center gap-2">
-          {examples.map((item, index) => (
-            <button
-              key={item.label}
-              onClick={() => setActive(index)}
-              className={`rounded-md px-2.5 py-1 font-mono text-[11px] ${
-                index === active
-                  ? 'bg-primary/15 text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="flex items-center gap-3">
+          <span className="flex gap-1.5">
+            <span className="size-2 rounded-full bg-destructive/60" />
+            <span className="size-2 rounded-full bg-yellow-500/60" />
+            <span className="size-2 rounded-full bg-green-500/60" />
+          </span>
+          <div className="flex items-center gap-1">
+            {examples.map((item, index) => (
+              <button
+                key={item.label}
+                onClick={() => setActive(index)}
+                className={`rounded-md px-2.5 py-1 font-mono text-[11px] ${
+                  index === active
+                    ? 'bg-muted text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="flex items-center gap-1">
           <button
@@ -114,12 +121,16 @@ export function HeroExample() {
             onClick={copy}
             className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
           >
-            {copied ? <Check className="size-3.5 text-primary" /> : <Copy className="size-3.5" />}
+            {copied ? (
+              <Check className="size-3.5 text-primary" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
             {copied ? 'Copied' : 'Copy'}
           </button>
         </div>
       </div>
-      <pre className="overflow-x-auto p-5 text-[13px] leading-6 text-foreground/90">
+      <pre className="overflow-x-auto bg-background/40 p-5 text-[13px] leading-6 text-foreground/90">
         <code>{example.code}</code>
       </pre>
       <div className="border-t border-border bg-muted/30 px-4 py-3 text-xs text-muted-foreground">

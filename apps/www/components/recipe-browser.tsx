@@ -21,7 +21,8 @@ export function RecipeBrowser({
       const matchesCategory = active === 'all' || recipe.category === active;
       const haystack =
         `${recipe.title} ${recipe.description} ${recipe.tags.join(' ')}`.toLowerCase();
-      const matchesQuery = query === '' || haystack.includes(query.toLowerCase());
+      const matchesQuery =
+        query === '' || haystack.includes(query.toLowerCase());
       return matchesCategory && matchesQuery;
     });
   }, [active, query, recipes]);
@@ -35,8 +36,8 @@ export function RecipeBrowser({
             className={cn(
               'rounded-lg border px-3 py-1.5 text-sm transition-colors',
               active === 'all'
-                ? 'border-primary/50 bg-primary/15 text-primary'
-                : 'border-border text-muted-foreground hover:text-foreground',
+                ? 'border-border bg-muted text-foreground'
+                : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
             )}
           >
             All
@@ -51,8 +52,8 @@ export function RecipeBrowser({
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm transition-colors',
                 active === category.id
-                  ? 'border-primary/50 bg-primary/15 text-primary'
-                  : 'border-border text-muted-foreground hover:text-foreground',
+                  ? 'border-border bg-muted text-foreground'
+                  : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
               )}
             >
               {category.title}
@@ -78,15 +79,17 @@ export function RecipeBrowser({
           <Link
             key={`${recipe.category}-${recipe.slug}`}
             href={`/resources/recipes/${recipe.category}/${recipe.slug}`}
-            className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+            className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/25"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 {recipe.categoryTitle}
               </span>
-              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
             </div>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">{recipe.title}</h3>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">
+              {recipe.title}
+            </h3>
             <p className="mt-2 line-clamp-2 flex-1 text-sm leading-6 text-muted-foreground">
               {recipe.description}
             </p>
@@ -105,7 +108,9 @@ export function RecipeBrowser({
 
       {filtered.length === 0 && (
         <div className="rounded-xl border border-dashed border-border py-16 text-center">
-          <p className="text-sm text-muted-foreground">No recipes match your search.</p>
+          <p className="text-sm text-muted-foreground">
+            No recipes match your search.
+          </p>
           <button
             onClick={() => {
               setQuery('');

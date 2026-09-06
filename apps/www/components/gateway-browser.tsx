@@ -47,8 +47,8 @@ export function GatewayBrowser({
             className={cn(
               'rounded-lg border px-3 py-1.5 text-sm transition-colors',
               active === 'all'
-                ? 'border-primary/50 bg-primary/15 text-primary'
-                : 'border-border text-muted-foreground hover:text-foreground',
+                ? 'border-border bg-muted text-foreground'
+                : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
             )}
           >
             All
@@ -63,8 +63,8 @@ export function GatewayBrowser({
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm transition-colors',
                 active === category.id
-                  ? 'border-primary/50 bg-primary/15 text-primary'
-                  : 'border-border text-muted-foreground hover:text-foreground',
+                  ? 'border-border bg-muted text-foreground'
+                  : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
               )}
             >
               {category.title}
@@ -89,10 +89,10 @@ export function GatewayBrowser({
         {filtered.map(gateway => (
           <div
             key={gateway.slug}
-            className="flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+            className="flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/25"
           >
             <div className="flex items-start justify-between">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+              <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                 <Waypoints className="size-5" />
               </div>
               <button
@@ -110,7 +110,7 @@ export function GatewayBrowser({
                 {gateway.name}
               </h3>
               {gateway.featured && (
-                <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-primary">
+                <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-foreground">
                   Featured
                 </span>
               )}
@@ -167,7 +167,7 @@ export function GatewayBrowser({
 
       {/* Gateway detail drawer */}
       {selected && (
-        <div className="mt-8 rounded-xl border border-primary/40 bg-card">
+        <div className="mt-8 rounded-xl border border-foreground/25 bg-card">
           <div className="flex items-start justify-between border-b border-border px-6 py-4">
             <div>
               <h3 className="text-lg font-semibold tracking-tight">

@@ -1,7 +1,15 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ArrowUpRight, Check, Copy, ExternalLink, Key, Search, Wrench } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Check,
+  Copy,
+  ExternalLink,
+  Key,
+  Search,
+  Wrench,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Tool } from '@/lib/tools';
 import type { ToolCategory } from '@/lib/tools';
@@ -24,7 +32,8 @@ export function ToolBrowser({
       const matchesCategory = active === 'all' || tool.category === active;
       const haystack =
         `${tool.name} ${tool.description} ${(tool.tags ?? []).join(' ')}`.toLowerCase();
-      const matchesQuery = query === '' || haystack.includes(query.toLowerCase());
+      const matchesQuery =
+        query === '' || haystack.includes(query.toLowerCase());
       return matchesCategory && matchesQuery;
     });
   }, [active, query, tools]);
@@ -38,8 +47,8 @@ export function ToolBrowser({
             className={cn(
               'rounded-lg border px-3 py-1.5 text-sm transition-colors',
               active === 'all'
-                ? 'border-primary/50 bg-primary/15 text-primary'
-                : 'border-border text-muted-foreground hover:text-foreground',
+                ? 'border-border bg-muted text-foreground'
+                : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
             )}
           >
             All
@@ -54,8 +63,8 @@ export function ToolBrowser({
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm transition-colors',
                 active === category.id
-                  ? 'border-primary/50 bg-primary/15 text-primary'
-                  : 'border-border text-muted-foreground hover:text-foreground',
+                  ? 'border-border bg-muted text-foreground'
+                  : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
               )}
             >
               {category.title}
@@ -80,21 +89,25 @@ export function ToolBrowser({
         {filtered.map(tool => (
           <div
             key={tool.slug}
-            className="flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+            className="flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/25"
           >
             <div className="flex items-start justify-between">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+              <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                 <Wrench className="size-5" />
               </div>
               <button
-                onClick={() => setSelected(selected?.slug === tool.slug ? null : tool)}
+                onClick={() =>
+                  setSelected(selected?.slug === tool.slug ? null : tool)
+                }
                 className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 <code className="text-[11px]">{tool.packageName}</code>
                 <ArrowUpRight className="size-3.5" />
               </button>
             </div>
-            <h3 className="mt-4 text-base font-semibold tracking-tight">{tool.name}</h3>
+            <h3 className="mt-4 text-base font-semibold tracking-tight">
+              {tool.name}
+            </h3>
             <p className="mt-2 line-clamp-3 flex-1 text-sm leading-6 text-muted-foreground">
               {tool.description}
             </p>
@@ -127,7 +140,9 @@ export function ToolBrowser({
 
       {filtered.length === 0 && (
         <div className="rounded-xl border border-dashed border-border py-16 text-center">
-          <p className="text-sm text-muted-foreground">No tools match your search.</p>
+          <p className="text-sm text-muted-foreground">
+            No tools match your search.
+          </p>
           <button
             onClick={() => {
               setQuery('');
@@ -142,11 +157,15 @@ export function ToolBrowser({
 
       {/* Tool detail drawer */}
       {selected && (
-        <div className="mt-8 rounded-xl border border-primary/40 bg-card">
+        <div className="mt-8 rounded-xl border border-foreground/25 bg-card">
           <div className="flex items-start justify-between border-b border-border px-6 py-4">
             <div>
-              <h3 className="text-lg font-semibold tracking-tight">{selected.name}</h3>
-              <p className="mt-1 font-mono text-xs text-muted-foreground">{selected.packageName}</p>
+              <h3 className="text-lg font-semibold tracking-tight">
+                {selected.name}
+              </h3>
+              <p className="mt-1 font-mono text-xs text-muted-foreground">
+                {selected.packageName}
+              </p>
             </div>
             <div className="flex items-center gap-2">
               {selected.apiKeyEnvName && (
@@ -170,7 +189,10 @@ export function ToolBrowser({
               </p>
               <div className="space-y-2">
                 {packageManagers.map(manager => (
-                  <InstallRow key={manager} command={selected.installCommand[manager]} />
+                  <InstallRow
+                    key={manager}
+                    command={selected.installCommand[manager]}
+                  />
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -243,7 +265,11 @@ function InstallRow({ command }: { command: string }) {
         onClick={copy}
         className="shrink-0 rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
       >
-        {copied ? <Check className="size-3.5 text-primary" /> : <Copy className="size-3.5" />}
+        {copied ? (
+          <Check className="size-3.5 text-primary" />
+        ) : (
+          <Copy className="size-3.5" />
+        )}
       </button>
     </div>
   );

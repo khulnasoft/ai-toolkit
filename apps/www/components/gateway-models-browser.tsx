@@ -23,17 +23,17 @@ const modalityMeta: Record<
   language: {
     icon: Bot,
     label: 'Language',
-    className: 'text-primary bg-primary/15',
+    className: 'text-muted-foreground bg-muted',
   },
   embedding: {
     icon: Layers,
     label: 'Embedding',
-    className: 'text-emerald-400 bg-emerald-400/15',
+    className: 'text-muted-foreground bg-muted',
   },
   image: {
     icon: Image,
     label: 'Image',
-    className: 'text-violet-400 bg-violet-400/15',
+    className: 'text-muted-foreground bg-muted',
   },
 };
 
@@ -72,8 +72,8 @@ export function GatewayModelsBrowser({
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm transition-colors',
                 active === modality.id
-                  ? 'border-primary/50 bg-primary/15 text-primary'
-                  : 'border-border text-muted-foreground hover:text-foreground',
+                  ? 'border-border bg-muted text-foreground'
+                  : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
               )}
             >
               {modality.label}
@@ -125,7 +125,7 @@ export function GatewayModelsBrowser({
           return (
             <div
               key={`${model.modality}-${model.id}`}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/50"
+              className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/25"
             >
               <div
                 className={cn(

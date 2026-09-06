@@ -50,13 +50,13 @@ export function ProviderBrowser({
             href={`${DOCS_ROOT}/${docsSlug}/${provider.slug}`}
             target="_blank"
             rel="noreferrer"
-            className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+            className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25"
           >
             <div className="flex items-start justify-between">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+              <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                 <Cpu className="size-5" />
               </div>
-              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
             </div>
             <h3 className="mt-4 text-base font-semibold tracking-tight">
               {provider.name}

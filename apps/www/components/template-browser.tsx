@@ -6,7 +6,11 @@ import { cn } from '@/lib/utils';
 import type { Template, TemplateCategory } from '@/lib/templates';
 import { frameworkLabels } from '@/lib/templates';
 
-export function TemplateBrowser({ categories }: { categories: TemplateCategory[] }) {
+export function TemplateBrowser({
+  categories,
+}: {
+  categories: TemplateCategory[];
+}) {
   const [active, setActive] = useState('all');
   const [query, setQuery] = useState('');
 
@@ -20,7 +24,8 @@ export function TemplateBrowser({ categories }: { categories: TemplateCategory[]
       const matchesCategory = active === 'all' || template.category === active;
       const haystack =
         `${template.title} ${template.description} ${template.tags.join(' ')}`.toLowerCase();
-      const matchesQuery = query === '' || haystack.includes(query.toLowerCase());
+      const matchesQuery =
+        query === '' || haystack.includes(query.toLowerCase());
       return matchesCategory && matchesQuery;
     });
   }, [active, query, allTemplates]);
@@ -34,8 +39,8 @@ export function TemplateBrowser({ categories }: { categories: TemplateCategory[]
             className={cn(
               'rounded-lg border px-3 py-1.5 text-sm transition-colors',
               active === 'all'
-                ? 'border-primary/50 bg-primary/15 text-primary'
-                : 'border-border text-muted-foreground hover:text-foreground',
+                ? 'border-border bg-muted text-foreground'
+                : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
             )}
           >
             All
@@ -50,8 +55,8 @@ export function TemplateBrowser({ categories }: { categories: TemplateCategory[]
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm transition-colors',
                 active === category.id
-                  ? 'border-primary/50 bg-primary/15 text-primary'
-                  : 'border-border text-muted-foreground hover:text-foreground',
+                  ? 'border-border bg-muted text-foreground'
+                  : 'border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground',
               )}
             >
               {category.title}
@@ -79,15 +84,17 @@ export function TemplateBrowser({ categories }: { categories: TemplateCategory[]
             href={template.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+            className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/25"
           >
             <div className="flex items-start justify-between">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+              <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                 <Boxes className="size-5" />
               </div>
-              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
             </div>
-            <h3 className="mt-4 text-base font-semibold tracking-tight">{template.title}</h3>
+            <h3 className="mt-4 text-base font-semibold tracking-tight">
+              {template.title}
+            </h3>
             <p className="mt-2 line-clamp-2 flex-1 text-sm leading-6 text-muted-foreground">
               {template.description}
             </p>
@@ -112,7 +119,9 @@ export function TemplateBrowser({ categories }: { categories: TemplateCategory[]
 
       {filtered.length === 0 && (
         <div className="rounded-xl border border-dashed border-border py-16 text-center">
-          <p className="text-sm text-muted-foreground">No templates match your search.</p>
+          <p className="text-sm text-muted-foreground">
+            No templates match your search.
+          </p>
           <button
             onClick={() => {
               setQuery('');

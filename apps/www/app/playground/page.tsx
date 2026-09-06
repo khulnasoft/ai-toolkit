@@ -34,7 +34,7 @@ export default function PlaygroundPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
       <SectionHeader
-        eyebrow="AI PLAYGROUND"
+        eyebrow="AI Playground"
         title="Compare every model, side-by-side."
         description="Tune prompts across models in real time. Stream responses, compare cost and latency, then export production-ready AI Toolkit code."
       />
@@ -67,10 +67,8 @@ export default function PlaygroundPage() {
       {/* Features */}
       <section className="mt-20">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-            FEATURES
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+          <p className="eyebrow">Features</p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
             Everything you need to pick the right model
           </h2>
         </div>
@@ -82,7 +80,7 @@ export default function PlaygroundPage() {
                 key={feature.id}
                 className="rounded-xl border border-border bg-card p-6"
               >
-                <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                   <Icon className="size-5" />
                 </div>
                 <h3 className="mt-4 text-base font-semibold tracking-tight">
@@ -98,7 +96,7 @@ export default function PlaygroundPage() {
             href={PLAYGROUND_URL}
             target="_blank"
             rel="noreferrer"
-            className="group flex flex-col justify-between rounded-xl border border-dashed border-border bg-card p-6 transition-colors hover:border-primary/50"
+            className="group flex flex-col justify-between rounded-xl border border-dashed border-border bg-card p-6 transition-colors hover:border-foreground/25"
           >
             <p className="text-base font-semibold tracking-tight">
               And more, on Studio
@@ -115,18 +113,16 @@ export default function PlaygroundPage() {
       <section className="mt-20">
         <div className="flex items-end justify-between">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-              PROVIDERS
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+            <p className="eyebrow">Providers</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
               One prompt, every provider
             </h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-xl text-base leading-7 text-muted-foreground">
               Test leading frontier and open-source models against each other,
               without wiring up a single API key by hand.
             </p>
           </div>
-          <div className="hidden items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground sm:flex">
+          <div className="hidden items-center gap-1.5 eyebrow sm:flex">
             <Cpu className="size-4" />
             {playgroundProviders.length} providers
           </div>
@@ -161,13 +157,11 @@ export default function PlaygroundPage() {
       {/* Sample prompts */}
       <section className="mt-20">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-            SAMPLE PROMPTS
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+          <p className="eyebrow">Sample prompts</p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
             Start from a question, not a blank box
           </h2>
-          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+          <p className="mt-4 text-base leading-7 text-muted-foreground">
             Pre-built examples cover the everyday tasks you will tune and
             compare in the playground.
           </p>
@@ -179,9 +173,7 @@ export default function PlaygroundPage() {
               className="rounded-xl border border-border bg-card p-5"
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                  {prompt.title}
-                </span>
+                <span className="eyebrow">{prompt.title}</span>
                 <Lightbulb className="size-3.5 text-muted-foreground" />
               </div>
               <p className="mt-3 text-sm leading-6 text-foreground/90">
@@ -196,13 +188,11 @@ export default function PlaygroundPage() {
       <section className="mt-20 overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-muted/40 to-background">
         <div className="flex flex-col items-center gap-6 p-8 text-center lg:p-12">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">
-              GET STARTED
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-[-.04em] sm:text-3xl">
+            <p className="eyebrow">Get started</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
               Find your model in minutes
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
+            <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
               No downloads or setup. Open the AI Playground, compare responses
               across models, and export code that runs in your app.
             </p>

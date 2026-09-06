@@ -89,7 +89,7 @@ export function PlaygroundCompare() {
               className={cn(
                 'rounded-md px-2.5 py-1 font-mono text-[11px]',
                 index === active
-                  ? 'bg-primary/15 text-primary'
+                  ? 'bg-muted text-foreground'
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
