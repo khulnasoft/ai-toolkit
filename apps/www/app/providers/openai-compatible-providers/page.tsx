@@ -1,9 +1,9 @@
 import { ProviderCategoryPage } from '@/components/provider-category-page';
 
 export const metadata = {
-  title: 'AI Toolkit Providers',
+  title: 'OpenAI-Compatible Providers',
 };
 
 export default function ProvidersPage() {
-  return <ProviderCategoryPage categoryId="ai-toolkit" />;
+  return <ProviderCategoryPage categoryId="openai-compatible" />;
 }

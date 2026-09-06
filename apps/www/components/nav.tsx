@@ -28,7 +28,17 @@ const navItems: NavItem[] = [
       { href: '/resources/showcase', label: 'Showcase' },
     ],
   },
-  { href: '/providers/ai-toolkit-providers', label: 'Providers' },
+  {
+    label: 'Providers',
+    href: '/providers',
+    children: [
+      { href: '/providers/ai-toolkit-providers', label: 'AI Toolkit' },
+      { href: '/providers/openai-compatible-providers', label: 'OpenAI-Compatible' },
+      { href: '/providers/community-providers', label: 'Community' },
+      { href: '/providers/adapters', label: 'Adapters' },
+      { href: '/providers/observability', label: 'Observability' },
+    ],
+  },
   {
     label: 'Gateways',
     href: '/gateways',

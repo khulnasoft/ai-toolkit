@@ -5,10 +5,15 @@ import Link from 'next/link';
 import { ArrowUpRight, Cpu, Search } from 'lucide-react';
 import type { Provider } from '@/lib/providers';
 
-const DOCS_ROOT =
-  'https://studio.khulnasoft.com/providers/ai-toolkit-providers';
+const DOCS_ROOT = 'https://studio.khulnasoft.com/providers';
 
-export function ProviderBrowser({ providers }: { providers: Provider[] }) {
+export function ProviderBrowser({
+  providers,
+  docsSlug,
+}: {
+  providers: Provider[];
+  docsSlug: string;
+}) {
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
@@ -42,7 +47,7 @@ export function ProviderBrowser({ providers }: { providers: Provider[] }) {
         {filtered.map(provider => (
           <Link
             key={provider.slug}
-            href={`${DOCS_ROOT}/${provider.slug}`}
+            href={`${DOCS_ROOT}/${docsSlug}/${provider.slug}`}
             target="_blank"
             rel="noreferrer"
             className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
@@ -60,7 +65,7 @@ export function ProviderBrowser({ providers }: { providers: Provider[] }) {
               {provider.description || 'AI Toolkit model provider.'}
             </p>
             <p className="mt-4 border-t border-border pt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              @ai-toolkit/{provider.slug}
+              {provider.slug}
             </p>
           </Link>
         ))}

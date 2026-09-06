@@ -8,7 +8,7 @@ const columns = [
       { label: 'Tools Registry', href: '/resources/tools' },
       { label: 'Templates', href: '/resources/templates' },
       { label: 'Showcase', href: '/resources/showcase' },
-      { label: 'Providers', href: '/providers/ai-toolkit-providers' },
+      { label: 'Providers', href: '/providers' },
       { label: 'Gateways', href: '/gateways' },
       { label: 'Gateway Models', href: '/gateways/models' },
       { label: 'Playground', href: '/playground' },
