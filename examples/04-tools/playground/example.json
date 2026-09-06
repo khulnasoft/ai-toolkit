@@ -1,0 +1,10 @@
+{
+  "name": "playground",
+  "title": "Playground",
+  "category": "04-tools",
+  "categoryOrder": 4,
+  "framework": "nextjs",
+  "primaryProvider": null,
+  "description": "An interactive web-based playground for experimenting with AI models and providers using the AI TOOLKIT.",
+  "tags": ["nextjs", "playground", "dashboard", "multi-provider"]
+}

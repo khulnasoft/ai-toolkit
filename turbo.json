@@ -5,16 +5,27 @@
     "build": {
       "dependsOn": ["^build"],
       "env": [
+        "AI_GATEWAY_API_KEY",
+        "AI_TOOLKIT_DEVTOOLS_PORT",
+        "ALIBABA_API_KEY",
         "ANTHROPIC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "ANTHROPIC_MICROSOFT_RESOURCE_NAME",
+        "ANTHROPIC_MICROSOFT_API_KEY",
+        "ARK_API_KEY",
         "ASSISTANT_ID",
         "AWS_REGION",
         "AWS_ACCESS_KEY_ID",
         "AWS_SECRET_ACCESS_KEY",
+        "AZURE_RESOURCE_NAME",
+        "AZURE_API_KEY",
         "BASETEN_API_KEY",
         "CEREBRAS_API_KEY",
         "COHERE_API_KEY",
         "DEEPINFRA_API_KEY",
         "DEEPSEEK_API_KEY",
+        "ELEVENLABS_API_KEY",
+        "FAL_KEY",
         "FAL_API_KEY",
         "FIREWORKS_API_KEY",
         "GOOGLE_API_KEY",
@@ -23,9 +34,12 @@
         "GOOGLE_GENERATIVE_AI_API_KEY",
         "GOOGLE_PRIVATE_KEY",
         "GOOGLE_PRIVATE_KEY_ID",
+        "GOOGLE_VERTEX_API_KEY",
         "GOOGLE_VERTEX_LOCATION",
         "GOOGLE_VERTEX_PROJECT",
         "GROQ_API_KEY",
+        "KLINGAI_ACCESS_KEY",
+        "KLINGAI_SECRET_KEY",
         "LUMA_API_KEY",
         "MISTRAL_API_KEY",
         "NEXT_RUNTIME",
@@ -33,13 +47,34 @@
         "NODE_ENV",
         "OPENAI_API_KEY",
         "OPENAI_API_BASE",
+        "OPENAI_BASE_URL",
         "PERPLEXITY_API_KEY",
         "REPLICATE_API_TOKEN",
         "SENTRY_AUTH_TOKEN",
         "SENTRY_ORG",
         "SENTRY_PROJECT",
+        "TOGETHER_API_KEY",
         "TOGETHER_AI_API_KEY",
-        "KHULNASOFT_URL",
+        "VERCEL_API_KEY",
+        "VERCEL_ARTIFACTS_TOKEN",
+        "VERCEL_AUTOMATION_BYPASS_SECRET",
+        "VERCEL_BRANCH_URL",
+        "VERCEL_DEPLOYMENT_ID",
+        "VERCEL_ENV",
+        "VERCEL_GIT_BRANCH",
+        "VERCEL_GIT_COMMIT_AUTHOR_LOGIN",
+        "VERCEL_GIT_COMMIT_AUTHOR_NAME",
+        "VERCEL_GIT_COMMIT_MESSAGE",
+        "VERCEL_GIT_COMMIT_REF",
+        "VERCEL_GIT_COMMIT_SHA",
+        "VERCEL_GIT_PULL_REQUEST_ID",
+        "VERCEL_GIT_REPO_ID",
+        "VERCEL_GIT_REPO_OWNER",
+        "VERCEL_GIT_REPO_SLUG",
+        "VERCEL_OIDC_TOKEN",
+        "VERCEL_PROJECT_PRODUCTION_URL",
+        "VERCEL_REGION",
+        "VERCEL_URL",
         "XAI_API_KEY"
       ],
       "outputs": [
@@ -60,6 +95,9 @@
     "test": {
       "dependsOn": ["^build", "build"]
     },
+    "test:update": {
+      "dependsOn": ["^build", "build"]
+    },
     "publint": {
       "dependsOn": ["^build", "build"]
     },
@@ -73,6 +111,27 @@
     "prettier-check": {},
     "integration-test": {
       "dependsOn": ["^build", "build"]
+    },
+    "build:core": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "build:providers": {
+      "dependsOn": ["^build:core"],
+      "outputs": ["dist/**"]
+    },
+    "build:adapters": {
+      "dependsOn": ["^build:core"],
+      "outputs": ["dist/**"]
+    },
+    "test:core": {
+      "dependsOn": ["build:core"]
+    },
+    "test:providers": {
+      "dependsOn": ["build:providers"]
+    },
+    "test:adapters": {
+      "dependsOn": ["build:adapters"]
     }
   }
 }

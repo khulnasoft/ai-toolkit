@@ -1,0 +1,10 @@
+{
+  "name": "next-openai-kasada-bot-protection",
+  "title": "Kasada Bot Protection",
+  "category": "03-integrations",
+  "categoryOrder": 3,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "Integration of an AI chat app based on the AI TOOLKIT and Kasada's advanced bot protection solution.",
+  "tags": ["nextjs", "openai", "security", "bot-protection"]
+}

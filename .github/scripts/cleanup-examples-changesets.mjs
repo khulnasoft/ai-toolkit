@@ -6,13 +6,7 @@
  * Source: https://github.com/TooTallNate/nx.js/blob/main/.github/scripts/cleanup-examples.mjs
  */
 
-import {
-  readFileSync,
-  writeFileSync,
-  unlinkSync,
-  readdirSync,
-  statSync,
-} from 'node:fs';
+import { readFileSync, writeFileSync, unlinkSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'url';
 import { join } from 'path';
 
@@ -44,7 +38,4 @@ for (const app of readdirSync(fileURLToPath(examplesUrl))) {
 }
 
 // next test server
-cleanup(
-  '.',
-  new URL('../../packages/ai-toolkit/tests/e2e/next-server', import.meta.url),
-);
+cleanup('.', new URL('../../packages/rsc/tests/e2e/next-server', import.meta.url));

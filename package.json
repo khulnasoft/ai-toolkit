@@ -1,21 +1,45 @@
 {
   "private": true,
-  "name": "ai-repo",
+  "name": "ai-monorepo",
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --concurrency 1",
+    "build:examples": "turbo --filter \"./examples/**\" build",
+    "build:packages": "turbo --filter \"./packages/**\" build",
+    "build:core": "turbo build:core",
+    "build:providers": "turbo build:providers",
+    "build:adapters": "turbo build:adapters",
     "changeset": "changeset",
     "clean": "turbo clean",
-    "dev": "turbo dev --no-cache  --concurrency 19 --continue",
+    "dev": "turbo dev --no-cache --concurrency 21 --continue",
+    "format:check": "pnpm prettier --check . && biome format",
+    "format": "prettier --write . && biome format --write",
     "lint": "turbo lint",
+    "lint:check": "biome check --diagnostic-level=error",
+    "lint:markdown": "remark --frail .",
+    "lint:fix": "biome check --write && pnpm eslint \"**/*.vue\" --fix",
     "prepare": "husky install",
-    "prettier-check": "prettier --check \"**/*.{js,ts,tsx,md,mdx}\"",
-    "type-check": "turbo type-check",
-    "prettier-fix": "prettier --write \"**/*.{js,ts,tsx,md,mdx}\"",
+    "update-references": "update-ts-references",
+    "prettier-check": "prettier --check \"**/*.{js,ts,tsx,md,mdx,svelte}\"",
+    "prettier-fix": "prettier --write \"**/*.{js,ts,tsx,md,mdx,svelte}\"",
     "publint": "turbo publint",
-    "test": "turbo test",
+    "test": "turbo --filter './packages/**' --filter './examples/**' --filter './tools/**' test",
+    "test:core": "turbo test:core",
+    "test:providers": "turbo test:providers",
+    "test:adapters": "turbo test:adapters",
+    "types:check": "turbo type-check && tsc --build",
+    "types:full": "tsc --build tsconfig.with-examples.json",
+    "types:check:raw": "pnpm run -r --parallel type-check",
+    "types:build": "turbo type-check",
+    "test:update": "turbo test:update --filter=!@example/*",
     "ci:release": "turbo clean && turbo build && changeset publish",
     "ci:version": "changeset version && node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
-    "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile"
+    "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
+    "health-check": "node tools/scripts/health-check.mjs",
+    "inventory": "node tools/scripts/inventory.mjs",
+    "baseline": "node tools/scripts/baseline.mjs",
+    "generate": "node tools/scripts/generate.mjs",
+    "validate-structure": "node tools/scripts/validate-structure.mjs",
+    "find-package": "node tools/scripts/find-package.mjs"
   },
   "lint-staged": {
     "*": [
@@ -23,43 +47,71 @@
     ]
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.4",
     "@changesets/cli": "2.27.10",
     "@playwright/test": "^1.44.1",
+    "del-cli": "^5.1.0",
     "eslint": "8.57.1",
     "eslint-config-khulnasoft-ai": "workspace:*",
     "husky": "^8.0.0",
     "lint-staged": "15.2.10",
-    "next": "15.0.0-canary.23",
+    "next": "15.0.7",
     "playwright": "^1.44.1",
-    "prettier": "2.8.8",
+    "prettier": "3.5.3",
+    "prettier-plugin-svelte": "^3.3.3",
     "publint": "0.2.12",
     "react": "19.0.0-rc-cc1ec60d0d-20240607",
     "react-dom": "19.0.0-rc-cc1ec60d0d-20240607",
-    "turbo": "2.3.3",
-    "typescript": "5.6.3",
+    "remark-cli": "^12.0.1",
+    "turbo": "2.4.4",
+    "typescript": "5.8.3",
+    "update-ts-references": "^3.6.0",
     "vitest": "2.1.4"
   },
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
   },
-  "homepage": "https://sdk.khulnasoft.com/docs",
+  "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khulnasoft/ai-toolkit.git"
   },
-  "license": "Apache License",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/khulnasoft/ai-toolkit/issues"
   },
   "keywords": [
-    "ai-toolkit"
+    "ai"
   ],
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@10.11.0",
   "prettier": {
     "tabWidth": 2,
     "useTabs": false,
     "singleQuote": true,
     "arrowParens": "avoid",
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
+    "overrides": [
+      {
+        "files": "*.svelte",
+        "options": {
+          "parser": "svelte"
+        }
+      }
+    ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@sentry/cli",
+      "esbuild",
+      "lmdb",
+      "msgpackr-extract",
+      "msw",
+      "protobufjs",
+      "sharp"
+    ]
   }
 }

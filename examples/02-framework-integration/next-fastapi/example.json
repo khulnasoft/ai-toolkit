@@ -1,0 +1,10 @@
+{
+  "name": "next-fastapi",
+  "title": "Next.js + FastAPI",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": null,
+  "description": "Use the AI TOOLKIT with Next.js and FastAPI to create AI-powered streaming applications.",
+  "tags": ["nextjs", "fastapi", "streaming", "full-stack"]
+}

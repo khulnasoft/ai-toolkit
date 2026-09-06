@@ -1,0 +1,89 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"],
+      "@component/*": ["./component/*"],
+      "@util/*": ["./util/*"]
+    },
+    "noEmit": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../../packages/adapters/react"
+    },
+    {
+      "path": "../../../packages/adapters/rsc"
+    },
+    {
+      "path": "../../../packages/core/ai"
+    },
+    {
+      "path": "../../../packages/core/provider-utils"
+    },
+    {
+      "path": "../../../packages/mcp"
+    },
+    {
+      "path": "../../../packages/providers/amazon-bedrock"
+    },
+    {
+      "path": "../../../packages/providers/anthropic"
+    },
+    {
+      "path": "../../../packages/providers/azure"
+    },
+    {
+      "path": "../../../packages/providers/cohere"
+    },
+    {
+      "path": "../../../packages/providers/deepseek"
+    },
+    {
+      "path": "../../../packages/providers/fireworks"
+    },
+    {
+      "path": "../../../packages/providers/google"
+    },
+    {
+      "path": "../../../packages/providers/google-vertex"
+    },
+    {
+      "path": "../../../packages/providers/groq"
+    },
+    {
+      "path": "../../../packages/providers/mistral"
+    },
+    {
+      "path": "../../../packages/providers/openai"
+    },
+    {
+      "path": "../../../packages/providers/perplexity"
+    },
+    {
+      "path": "../../../packages/providers/xai"
+    },
+    {
+      "path": "../../../packages/validation/valibot"
+    }
+  ]
+}
