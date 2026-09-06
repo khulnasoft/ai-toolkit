@@ -45,7 +45,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-alpha-border-strong">
       <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
         <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
           <div>
@@ -95,7 +95,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-alpha-border pt-6 md:flex-row">
           <p className="text-sm text-muted-foreground">
             Open-source under the Apache-2.0 license.
           </p>

@@ -33,7 +33,10 @@ const navItems: NavItem[] = [
     href: '/providers',
     children: [
       { href: '/providers/ai-toolkit-providers', label: 'AI Toolkit' },
-      { href: '/providers/openai-compatible-providers', label: 'OpenAI-Compatible' },
+      {
+        href: '/providers/openai-compatible-providers',
+        label: 'OpenAI-Compatible',
+      },
       { href: '/providers/community-providers', label: 'Community' },
       { href: '/providers/adapters', label: 'Adapters' },
       { href: '/providers/observability', label: 'Observability' },
@@ -69,8 +72,8 @@ export function Nav() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 lg:px-6">
+    <header className="sticky top-0 z-20 border-b border-alpha-border-strong bg-surface-200/80 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 lg:px-6">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setOpen(!open)}
@@ -110,7 +113,7 @@ export function Nav() {
                     <ChevronDown className="size-3.5" />
                   </button>
                   {dropdown === item.label && (
-                    <div className="absolute left-0 top-full mt-1 w-48 rounded-lg border border-border bg-background p-1.5 shadow-lg">
+                    <div className="absolute left-0 top-full mt-1 w-48 rounded-lg border border-alpha-border bg-surface-200 p-1.5 shadow-lg">
                       <Link
                         href={item.href ?? '#'}
                         onClick={() => setDropdown(null)}
@@ -175,7 +178,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <nav className="border-t border-border px-4 py-3 lg:hidden">
+        <nav className="border-t border-alpha-border px-4 py-3 lg:hidden">
           <div className="flex flex-col gap-1">
             {navItems.map(item => (
               <div key={item.label}>

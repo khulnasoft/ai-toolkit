@@ -53,7 +53,7 @@ export default function PlaygroundPage() {
           href="https://studio.khulnasoft.com/docs"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm text-foreground hover:bg-muted"
+          className="inline-flex items-center gap-2 rounded-lg border border-alpha-border-strong px-4 py-2.5 text-sm text-foreground hover:bg-surface-200"
         >
           Read the docs
         </Link>
@@ -78,9 +78,9 @@ export default function PlaygroundPage() {
             return (
               <div
                 key={feature.id}
-                className="rounded-xl border border-border bg-card p-6"
+                className="rounded-xl border border-alpha-border bg-surface-100 p-6"
               >
-                <div className="flex size-10 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-surface-200 text-muted-foreground">
                   <Icon className="size-5" />
                 </div>
                 <h3 className="mt-4 text-base font-semibold tracking-tight">
@@ -96,7 +96,7 @@ export default function PlaygroundPage() {
             href={PLAYGROUND_URL}
             target="_blank"
             rel="noreferrer"
-            className="group flex flex-col justify-between rounded-xl border border-dashed border-border bg-card p-6 transition-colors hover:border-foreground/25"
+            className="group flex flex-col justify-between rounded-xl border border-dashed border-alpha-border-strong bg-surface-100 p-6 transition-colors hover:border-foreground/25"
           >
             <p className="text-base font-semibold tracking-tight">
               And more, on Studio
@@ -131,7 +131,7 @@ export default function PlaygroundPage() {
           {playgroundProviders.map(provider => (
             <div
               key={provider.name}
-              className="rounded-xl border border-border bg-card p-5"
+              className="rounded-xl border border-alpha-border bg-surface-100 p-5"
             >
               <h3 className="text-sm font-semibold tracking-tight">
                 {provider.name}
@@ -143,7 +143,7 @@ export default function PlaygroundPage() {
                 {provider.capabilities.map(capability => (
                   <span
                     key={capability}
-                    className="rounded-md bg-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+                    className="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
                   >
                     {capability}
                   </span>
@@ -170,7 +170,7 @@ export default function PlaygroundPage() {
           {samplePrompts.map(prompt => (
             <div
               key={prompt.title}
-              className="rounded-xl border border-border bg-card p-5"
+              className="rounded-xl border border-alpha-border bg-surface-100 p-5"
             >
               <div className="flex items-center justify-between">
                 <span className="eyebrow">{prompt.title}</span>
@@ -185,7 +185,7 @@ export default function PlaygroundPage() {
       </section>
 
       {/* CTA */}
-      <section className="mt-20 overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-muted/40 to-background">
+      <section className="mt-20 overflow-hidden rounded-2xl border border-alpha-border-strong bg-gradient-to-b from-surface-200/60 to-surface-100">
         <div className="flex flex-col items-center gap-6 p-8 text-center lg:p-12">
           <div>
             <p className="eyebrow">Get started</p>

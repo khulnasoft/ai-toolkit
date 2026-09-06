@@ -1,12 +1,15 @@
 'use client';
 
-import { GitCompare, Sparkles, Timer } from 'lucide-react';
+import { Braces, Feather, History, Plus, Sparkles, Timer } from 'lucide-react';
 import { useState } from 'react';
+import { CodeBlock } from '@/components/code-block';
+import { IconButton } from '@/components/icon-button';
 import { cn } from '@/lib/utils';
 
 const comparisons = [
   {
     label: 'Explain',
+    icon: Sparkles,
     prompt: 'Explain serverless functions in one paragraph.',
     models: [
       {
@@ -29,6 +32,7 @@ const comparisons = [
   },
   {
     label: 'Extract',
+    icon: Braces,
     prompt:
       'Extract JSON with the fields city, summary, and temperature from: "Sunny in Paris today, 24 degrees."',
     models: [
@@ -52,6 +56,7 @@ const comparisons = [
   },
   {
     label: 'Haiku',
+    icon: Feather,
     prompt: 'Write a haiku about distributed databases.',
     models: [
       {
@@ -74,67 +79,119 @@ const comparisons = [
   },
 ];
 
+function isJsonResponse(response: string): boolean {
+  return response.trim().startsWith('{');
+}
+
+function prettyJsonLines(response: string): string[] {
+  const inner = response.trim().slice(1, -1);
+  const parts = inner.split(/,\s*(?=")/);
+  return ['{', ...parts.map(part => `  ${part.trim()}`), '}'];
+}
+
+function responseLines(response: string): string[] {
+  if (!isJsonResponse(response)) {
+    return response.split('\n');
+  }
+  return prettyJsonLines(response);
+}
+
 export function PlaygroundCompare() {
   const [active, setActive] = useState(0);
   const comparison = comparisons[active];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-muted/30 px-4 py-2">
-        <div className="flex items-center gap-2">
-          {comparisons.map((item, index) => (
-            <button
-              key={item.label}
-              onClick={() => setActive(index)}
-              className={cn(
-                'rounded-md px-2.5 py-1 font-mono text-[11px]',
-                index === active
-                  ? 'bg-muted text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
+    <div className="overflow-hidden rounded-xl border border-alpha-border-strong bg-surface-100">
+      {/* Shell title bar */}
+      <div className="flex h-12 items-center justify-between border-b border-alpha-border bg-surface-200/80 px-2.5 backdrop-blur">
+        <div className="flex items-center gap-2.5">
+          <span className="size-2 rounded-full bg-primary/80" />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            AI SDK Playground · Model compare
+          </span>
         </div>
-        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          <GitCompare className="size-3.5" />
-          Compare
-        </span>
+        <div className="flex items-center gap-0.5">
+          <IconButton label="New conversation">
+            <Plus className="size-3.5" />
+          </IconButton>
+          <IconButton label="View chat history">
+            <History className="size-3.5" />
+          </IconButton>
+        </div>
       </div>
 
-      <div className="border-b border-border px-4 py-3">
-        <p className="text-sm text-foreground/90">{comparison.prompt}</p>
-      </div>
+      <div className="flex flex-col sm:flex-row">
+        {/* Icon rail */}
+        <div className="flex items-center gap-1 border-b border-alpha-border px-2 py-1.5 sm:w-10 sm:flex-col sm:border-b-0 sm:border-r sm:py-2">
+          {comparisons.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <IconButton
+                key={item.label}
+                label={`${item.label} example`}
+                onClick={() => setActive(index)}
+                className={cn(
+                  'size-8',
+                  index === active
+                    ? 'bg-surface-200 text-foreground'
+                    : 'text-muted-foreground hover:bg-surface-200 hover:text-foreground',
+                )}
+              >
+                <Icon className="size-4" />
+              </IconButton>
+            );
+          })}
+        </div>
 
-      <div className="grid gap-0 md:grid-cols-2">
-        {comparison.models.map((model, index) => (
-          <div
-            key={model.name}
-            className={cn(
-              'flex flex-col p-4',
-              index === 0 ? 'md:border-r md:border-border' : '',
-            )}
-          >
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-                <Sparkles className="size-3.5 text-primary" />
-                {model.name}
-              </span>
-              <span className="flex items-center gap-1 font-mono text-[10px] text-muted-foreground">
-                <Timer className="size-3" />
-                {model.latency}
-              </span>
-            </div>
-            <p className="mt-3 text-[13px] leading-6 text-foreground/90">
-              {model.response}
+        <div className="min-w-0 flex-1">
+          {/* Prompt bar */}
+          <div className="flex items-start gap-3 border-b border-alpha-border bg-background px-4 py-3">
+            <span className="eyebrow shrink-0 pt-0.5">Prompt</span>
+            <p className="text-sm leading-6 text-foreground/90">
+              {comparison.prompt}
             </p>
-            <div className="mt-4 flex gap-4 border-t border-border pt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              <span>{model.tokens} tok</span>
-              <span>{model.cost}</span>
-            </div>
           </div>
-        ))}
+
+          {/* Model columns */}
+          <div className="grid md:grid-cols-2">
+            {comparison.models.map((model, index) => {
+              const lines = responseLines(model.response);
+              return (
+                <div
+                  key={model.name}
+                  className={cn(
+                    'flex flex-col',
+                    index === 0 && 'md:border-r md:border-alpha-border',
+                  )}
+                >
+                  <div className="flex h-11 items-center justify-between border-b border-alpha-border bg-surface-200/60 px-3">
+                    <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-foreground">
+                      <Sparkles className="size-3 text-primary" />
+                      {model.name}
+                    </span>
+                    <span className="flex items-center gap-1 font-mono text-[10px] text-muted-foreground">
+                      <Timer className="size-3" />
+                      {model.latency}
+                    </span>
+                  </div>
+                  <div className="flex-1 p-3">
+                    {isJsonResponse(model.response) ? (
+                      <CodeBlock title="response" lines={lines} />
+                    ) : (
+                      <p className="text-[13px] leading-6 text-foreground/90">
+                        {model.response}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-4 border-t border-alpha-border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    <span>{model.tokens} tok</span>
+                    <span>{model.cost}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -40,6 +40,14 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        surface: {
+          DEFAULT: 'hsl(var(--background-100))',
+          100: 'hsl(var(--background-100))',
+          200: 'hsl(var(--background-200))',
+          300: 'hsl(var(--background-300))',
+        },
+        'alpha-border': 'rgb(255 255 255 / 0.08)',
+        'alpha-border-strong': 'rgb(255 255 255 / 0.14)',
       },
       borderRadius: {
         lg: 'var(--radius)',
