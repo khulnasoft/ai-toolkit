@@ -8,8 +8,8 @@ packages:
   - 'packages/validation/*'
   - 'packages/infrastructure/*'
   - 'packages/ui/*'
-  # Legacy flat structure (during migration)
-  - 'packages/*'
+  # Domain dir that is itself a package (no subdirectory)
+  - 'packages/mcp'
   # Other workspaces
   - 'tools/*'
   # Application workspaces (www site)

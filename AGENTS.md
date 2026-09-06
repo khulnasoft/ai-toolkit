@@ -164,6 +164,7 @@ Instead use `parseJSON` or `safeParseJSON` from `@ai-toolkit/provider-utils`.
 
 - Packages in the `core` and `validation` domains must not import Node builtins (`node:*` or bare like `fs`, `os`) in source, and must not depend on Node builtin packages.
 - Enforcement: `pnpm validate-structure` scans both `dependencies` and source `import` statements for `core`/`validation` packages.
+- Lint (editor/CI feedback, same scope): root `.eslintrc.js` `overrides` rejects `node:*`/bare-builtin imports in `packages/core/**` + `packages/validation/**` shipped source (tests, scripts, fixtures, configs excluded). Lives in root config — not `tools/eslint-config` — because override globs resolve relative to the declaring file. Globals like `process` are intentionally unrestricted; use `globalThis` capability detection instead.
 - `@ai-toolkit/runtime` is the canonical browser-safe contract module; `createRuntimeContext` provides capability detection rather than assuming Node globals.
 
 ### Package Governance Metadata (ADR-007)

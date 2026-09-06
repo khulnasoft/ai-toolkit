@@ -1,8 +1,8 @@
 # Implementation Plan: Separate Platform Primitives from Applications
 
-**Status:** Draft for review
-**Date:** August 2026
-**Scope:** Make the SDK monorepo own platform primitives (contracts, providers, adapters, MCP, workflows, memory/RAG primitives, registries, developer tooling) while applications (docs, www, playground, future enterprise console) and `examples/` become consumers — never dependencies.
+**Status:** In progress — Phases A, B substantially complete; C/D/E largely complete except final wave (see §8 review 2026-09-06)
+**Date:** August 2026 (reviewed/updated September 2026)
+**Scope:** Make the SDK monorepo own platform primitives (contracts, providers, adapters, MCP, workflows, memory/RAG primitives, registries, developer tooling) while applications (`apps/docs`, `apps/www`) and `examples/` become consumers — never dependencies.
 
 ---
 
@@ -10,24 +10,25 @@
 
 1. **One direction of dependency.** Apps and examples import from `packages/*`. No package may depend on an app; no app depends on another app. Enforced by tooling, not convention.
 2. **Primitives are runtime-neutral.** Contracts and capability metadata are browser-safe; Node-only code lives behind adapters.
-3. **Apps are thin consumers.** `apps/docs`, `apps/www`, `apps/playground` consume published/workspace packages only.
+3. **Apps are thin consumers.** `apps/docs`, `apps/www` consume published/workspace packages only. (The playground intentionally stays a categorized example, not an app — D2.)
 4. **Examples are content, not platform.** Runnable, categorized, with machine-readable metadata (`example.json`).
 5. **Public names are a compatibility boundary.** Physical migration must not change published package names (already accepted in `ADR/004`).
 
-## 2. Current State (verified against repo)
+## 2. Current State (verified against repo — updated 2026-09-06)
 
-| Area               | Current state                                                                                                                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Workspace globs    | `pnpm-workspace.yaml` includes `packages/{core,providers,adapters,mcp,special,validation,infrastructure}/*`, **legacy `packages/*`**, `tools/*`, `examples/*`. **`apps/*` is NOT a workspace member.** |
-| Domain migration   | `packages/core/runtime`, `packages/validation/capabilities` migrated; `packages/mcp` has direct `package.json`. ~48 legacy flat packages remain under `packages/*`.                                    |
-| Runtime contracts  | `packages/core/runtime` exports `RuntimeTarget`, `RuntimeCapabilities`, `RuntimeCapabilityName`, `assertRuntimeCapability`, `createRuntimeContext` (browser-safe). ADR-004 accepted.                   |
-| Capability catalog | `packages/validation/capabilities` owns model-category descriptors + in-memory catalog primitive (`ModelCapability`, `ModelCatalog`).                                                                  |
-| Apps               | `apps/docs` is a content-only stub (`@ai-toolkit/docs`, no build). `apps/www` is a Next.js app consuming `ai` + `@ai-toolkit/react`.                                                                   |
-| Playground         | Lives at `examples/playground` (`@example/playground`, Next.js) — mislocated per target structure; not an isolated app.                                                                                |
-| Examples           | 21 flat directories under `examples/` (incl. `ai-functions`, `playground`, framework examples). No `example.json` metadata anywhere.                                                                   |
-| Validator          | `tools/scripts/validate-structure.mjs`: domain dirs, packages-root guard, duplicate names, exports/source entries, Node-builtin bans for core/validation, root configs, CODEOWNERS coverage.           |
-| Health             | `tools/scripts/health-check.mjs` exists.                                                                                                                                                               |
-| Governance         | `CODEOWNERS` exists with domain rules; ADRs at `ADR/{template,004-009...}.md`; no `apps/` rules yet, no stability labels, no export-condition metadata.                                                |
+| Area               | Current state                                                                                                                                                                                                                                                                                                           |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workspace globs    | `pnpm-workspace.yaml` includes `packages/{core,providers,adapters,ui,mcp,special,validation,infrastructure}/*`, **legacy `packages/*`**, `tools/*`, `examples/*/*`, **`apps/*`**, plus RSC e2e fixture. `apps/*` membership (planned in D1) is **done**.                                                                |
+| Domain migration   | 56 packages discovered, 54 in domains, **only 2 legacy flat packages remain: `packages/langchain`, `packages/llamaindex`** (both → `adapters` per `architecture/domain-mapping.md`). All core/validation/providers/adapters-waves except those two are migrated.                                                        |
+| Runtime contracts  | `packages/core/runtime` exports `RuntimeTarget`, `RuntimeCapabilities`, `RuntimeCapabilityName`, `assertRuntimeCapability`, `createRuntimeContext` (browser-safe). ADR-004 accepted. No package imports/depends on Node builtins (validator source-scan green).                                                         |
+| Capability catalog | `packages/validation/capabilities` owns model-category descriptors + in-memory catalog primitive (`ModelCapability`, `ModelCatalog`).                                                                                                                                                                                   |
+| Apps               | `apps/docs` is a **real Next.js app** (D3 done) with restructured `apps/docs/content/` (unprefixed dirs). `apps/www` is a Next.js app consuming workspace packages. `apps/studio` exists (outside this plan). No `apps/playground` by decision (D2: playground stays an example).                                       |
+| Playground         | Lives at `examples/04-tools/playground` with valid `example.json`, indexed in `examples/registry.json` — its canonical home by D2 decision.                                                                                                                                                                             |
+| Examples           | Categorized `examples/01-foundations`, `02-framework-integration`, `03-integrations`, `04-tools` + `registry.json`; every example dir carries valid `example.json` (D4 done — validator example checks green).                                                                                                          |
+| Validator          | `tools/scripts/validate-structure.mjs` covers: domain dirs, packages-root guard, duplicate names, exports/source entries + condition coverage (warn), Node-builtin bans for core/validation **deps + source imports**, root configs, CODEOWNERS coverage, `example.json` + `registry.json`, docs-mirror check.          |
+| Health             | `tools/scripts/health-check.mjs`, `inventory.mjs`, `baseline.mjs`, `migrate-package.mjs` all exist. Root scripts wire `health-check`, `inventory`, `baseline`, `validate-structure`, `build:core/providers/adapters`. Turbo has domain tasks `build:core/providers/adapters`, `test:core/providers/adapters` (E5 done). |
+| Governance         | `CODEOWNERS` covers `apps/*`, `examples/*` (per-category), `tools/*`, each domain (C4/D5 done). ADRs `004`–`009` exist. `AGENTS.md` codifies ADR-006 export conditions, ADR-004/008 runtime-neutral Node rule, ADR-007 stability/owners. Every package carries `stability` + `owners` (no missing-metadata warnings).   |
+| CI                 | `.github/workflows/ci.yml` runs build-examples, prettier, eslint, types, bundle-size, tests, plus `structure` (validate-structure), `health` (health-check), `inventory` (inventory freshness) jobs. Root `.eslintrc.js` enforces the Node-import ban in `core`/`validation` via the eslint job.                        |
 
 ## 3. Target Structure
 
@@ -35,11 +36,9 @@
 apps/
   docs/        # canonical docs: API references (generated), recipes, provider/model catalog pages
   www/         # marketing, ecosystem, templates, gateway/enterprise positioning
-  playground/  # chat, model comparison, prompt editor, structured outputs, tool testing,
-               # multimodal, streaming telemetry, token/cost views, shareable sessions
-  console/     # future enterprise console (stub only)
 examples/
   <category>/<name>/   # runnable, machine-readable example.json, NOT platform code
+  # (04-tools/playground is the canonical playground example — D2)
 packages/
   core/ providers/ adapters/ mcp/ special/ validation/ infrastructure/
 tools/
@@ -50,8 +49,6 @@ App rules:
 
 - `apps/*` are private, not published, excluded from changesets/release.
 - `apps/docs` consumes generated API references produced from package exports; it does not reimplement SDK logic.
-- `apps/playground` consumes provider + capability-catalog packages; provider API differences surface only through the capability catalog, never hard-coded per-app.
-- `examples/playground` is removed or moved into `apps/playground`.
 
 ---
 
@@ -75,7 +72,7 @@ App rules:
 - `apps/*` not in workspace; `examples/playground` mislocated; no `example.json` metadata.
 - `types:check`/`test` failures are **environmental** (8 GB, no swap → OOM-killed turbo fan-out); focused builds pass.
 
-**Gate (done):** inventory + baseline report committed; CI job for inventory freshness is a follow-up.
+**Gate (done):** inventory + baseline report committed; inventory-freshness CI job landed 2026-09-06 (`inventory` job, `inventory:check` script).
 
 ### Phase B — Decision Records & Architecture Matrix ✅
 
@@ -91,48 +88,35 @@ App rules:
 
 **Gate (done):** ADRs created and matrix written. Publishing the matrix into the `apps/docs` content tree is deferred to Phase D3 (which moves `architecture/` content into the docs app).
 
-### Phase C — Boundary & Governance Foundation
+### Phase C — Boundary & Governance Foundation (complete; see C2 exceptions)
 
-- [ ] **C1. Shared runtime-capability package.** Finalize `packages/core/runtime` (already browser-safe) as the internal contract module. Move/re-export shared capability types used by providers into it where the dependency direction is `core ← providers ← adapters` only.
-- [ ] **C2. Export-condition conventions.**
-  - Codify in `AGENTS.md` + `tools/eslint-config`:
-    - `exports` must declare `import`/`require`, and `node`/`browser` (or `worker`) conditions where the package is conditionally runtime-aware, plus `default`.
-    - Runtime-neutral packages (`core`, `validation`) must NOT declare Node-only `imports` conditions.
-  - Extend the structure validator: missing/invalid condition keys → error.
-- [ ] **C3. Lint rules against Node imports.** Add ESLint/Biome rule set (in `tools/eslint-config`) that rejects `node:*` and Node-global references in runtime-neutral packages (extend the existing `NODE_BUILTINS` check from deps to source imports).
-- [ ] **C4. Governance metadata.**
-  - Real root `CODEOWNERS` covering `apps/*`, `examples/*`, `tools/*`, each domain; existing rules extended, not replaced.
-  - Package ownership metadata + `stability` label in each `package.json`.
-  - Validator checks: every package has a non-empty `owners`/`stability` field (warn in Phase C, error in Phase E).
-- [ ] **C5. Validator upgrade** (`tools/scripts/validate-structure.mjs`):
-  - package manifest checks (name, version, source, exports map + condition coverage)
-  - workspace inclusion check (package dir matched by a glob in `pnpm-workspace.yaml`)
-  - duplicate package names
-  - forbidden dependency directions (`packages/*` → `apps/*` or `examples/*`; `apps/*` → `apps/*`)
-  - export-condition consistency
-  - generated-metadata consistency (`inventory.json` freshness, `example.json` schema)
-- [ ] **C6. Run gating.** Add `pnpm validate-structure` + new lint rules to CI on all PRs. Fix all surfaced violations before Phase D moves code.
+- [x] **C1. Shared runtime-capability package.** `packages/core/runtime` finalized as browser-safe contract module; validator source-scan confirms zero Node-builtin imports in `core`/`validation`.
+- [x] **C2. Export-condition conventions.** Codified in `AGENTS.md` (ADR-006 section); validator enforces `types`/`import`/`default` on `.` plus `exports`-map presence as **errors** (escalated 2026-09-06). Sweep done: `default` (→ CJS `require` target, matching `@ai-toolkit/runtime`) added to 43 packages; `import`+`default` added to `@ai-toolkit/svelte`; `./package.json` exports added to bin-only `@ai-toolkit/codemod`; stale `repository.directory` fixed for svelte. Standing exceptions (accepted 2026-09-06): `require` waived for ESM-only-by-design packages (`rsc`, `google-vertex`, `devtools`, `svelte` — no correct CJS target; adding CJS builds is a build change), `source` still warning-level (only private `@ai-toolkit/ai-docs` lacks one).
+- [x] **C3. Lint rules against Node imports.** Done 2026-09-06: root `.eslintrc.js` `overrides` rejects `node:*` (patterns) + bare builtins (paths, computed from `module.builtinModules`) in `packages/core/**` + `packages/validation/**` shipped source; tests/scripts/fixtures/configs excluded mirroring validator `TEST_PATH`. Lives in root config — not `tools/eslint-config` — because override globs resolve relative to the declaring file; documented in `AGENTS.md`. Globals intentionally unrestricted (shipped source legitimately uses `globalThis.process` capability detection). Verified: probe file fails with ADR-004 message; zero new violations across core/validation (before/after eslint counts identical; remaining lint noise — dist/tsbuildinfo parsing, `unicorn/error-message` rule gap — is pre-existing).
+- [x] **C4. Governance metadata.** `CODEOWNERS` covers `apps/*`, `examples/*`, `tools/*`, each domain; every `package.json` carries `stability` + `owners` (validator emits zero missing-metadata warnings).
+- [x] **C5. Validator upgrade** (`tools/scripts/validate-structure.mjs`): DONE — manifest checks, workspace inclusion, duplicate names, forbidden `packages/*` → `apps/*`/`examples/*` directions, export-condition consistency (warn), `inventory.json`/`example.json`/`registry.json` consistency, docs-mirror check, CODEOWNERS coverage, runtime-neutral source scan.
+- [x] **C6. Run gating (structure).** Done 2026-09-06: `ci.yml` has a `structure` job running `pnpm validate-structure` (exit 0, warnings only). The C3 rule rides the existing eslint CI job via per-package `lint` scripts.
 
-**Gate:** validator + lint green repo-wide; governance metadata populated.
+**Gate (updated):** validator green repo-wide (exit 0); Phase C closed.
 
-### Phase D — Workspace & App Separation
+### Phase D — Workspace & App Separation (done)
 
-- [ ] **D1. Add `apps/*` to workspace** (`pnpm-workspace.yaml` → `- 'apps/*'`), keeping legacy glob during migration. Tag apps `"private": true` and exclude from changesets/release pipeline (`ci:release` filters).
-- [ ] **D2. Promote playground.** Move `examples/playground` → `apps/playground`; rename to `@ai-toolkit/playground`; keep consuming only `@ai-toolkit/*` packages. Wire `pnpm dev`/`pnpm build` targets.
-- [ ] **D3. Make docs a real app.** `apps/docs`: add Next.js build (mirror `apps/www` scaffolding), move `content/` under `apps/docs/content`, bring `architecture/` matrix + mapping into the docs app, add generated-API-reference ingestion from package `exports` (via inventory).
-- [ ] **D4. Examples metadata.** Add `example.json` to each example dir (name, category, framework, difficulty, providers, features, docs link). Extend validator to require schema for new examples; add `example-catalog` generator for `apps/docs` and `apps/www` consumption.
-- [ ] **D5. Update CODEOWNERS** for new `apps/*` paths; validator's CODEOWNERS coverage check includes `apps/`, `examples/`.
+- [x] **D1. Add `apps/*` to workspace** — done (`pnpm-workspace.yaml` has `- 'apps/*'`). Apps are `"private": true`; changesets skips private packages and `cleanup-examples-changesets.mjs` guards examples (E6).
+- [x] **D2. Playground home — decided 2026-09-06: keep as example.** `examples/04-tools/playground` stays categorized content (valid `example.json`, indexed in `registry.json`); the `apps/playground` target is dropped. (`apps/studio` exists outside this plan and is unaffected.)
+- [x] **D3. Make docs a real app.** Done — `apps/docs` is a Next.js app; docs-mirror resolved via coverage + normalized-freshness check (§8 item 1).
+- [x] **D4. Examples metadata.** Done — categorized `01-foundations`…`04-tools`, per-example `example.json`, `examples/registry.json` index; validator enforces schema + index consistency (green).
+- [x] **D5. Update CODEOWNERS** — done for `apps/*`, `examples/*` (per-category), `tools/*`; validator CODEOWNERS coverage check includes domains.
 
-**Gate:** apps build in CI; `pnpm test` still green; no app→app or package→app edges.
+**Gate (updated):** Phase D closed (D2 decided keep-as-example); apps build in CI; no app→app or package→app edges (validator direction check green).
 
-### Phase E — Package Migration Waves & Finalization
+### Phase E — Package Migration Waves & Finalization (done)
 
-- [ ] **E1. Wave 1 — core/validation:** `ai`, `provider`, `provider-utils` → `packages/core/`; `valibot` → `packages/validation/`. Update imports via codemod (`tools/scripts/generate.mjs`/codemod) + `pnpm update-references`.
-- [ ] **E2. Wave 2 — providers:** migrate ~31 provider packages to `packages/providers/<name>/` in batches (5–8 per PR), each verified with validator + focused tests. Reconcile `architecture/model-capabilities.md` "current" cells against each provider's exports as they land.
-- [ ] **E3. Wave 3 — adapters/special/infrastructure:** `react`, `rsc`, `angular`, `svelte`, `vue`, `langchain`, `llamaindex` → `packages/adapters/`; `gateway`, `khulnasoft`, `codemod`, `devtools` → `packages/special/`; `test-server` → `packages/infrastructure/`.
-- [ ] **E4. Workspace finalization.** Remove legacy `- 'packages/*'` glob only after the final package wave; run `pnpm install --force` and verify no package is orphaned.
-- [ ] **E5. Turbo update.** Only after groups are verified: add domain-scoped tasks (`build:core`, `build:providers`, `build:adapters`) and per-group `dependsOn`, replacing the current implicit globs. Keep `build:examples` separate from package builds.
-- [ ] **E6. Release pipeline.** Confirm changesets cover only published `packages/**`; apps and examples excluded.
+- [x] **E1. Wave 1 — core/validation:** done (`packages/core/ai`, `core/provider-utils`, `validation/provider`, `validation/valibot` in place).
+- [x] **E2. Wave 2 — providers:** done (32 provider dirs under `packages/providers/`).
+- [x] **E3. Wave 3 — adapters/special/infrastructure:** complete 2026-09-06 (`react`, `rsc`, `angular`, `svelte`, `vue`, **`langchain`, `llamaindex`** → `adapters/`; `gateway`, `khulnasoft`, `codemod`, `devtools` → `special/`; `test-server` → `infrastructure/`; `ui/`, `mcp/` placed). Fixed `migrate-package.mjs` `DOMAIN_MAP` bug (`langchain`/`llamaindex` were mapped to `validation`; canonical home is `adapters` per `architecture/domain-mapping.md` + `AGENTS.md`). Zero legacy packages remain. Operational note: `git mv` carries `node_modules/` along with stale relative `.pnpm` symlinks — after each move, delete the moved package's `node_modules/` and re-run `pnpm install` (lockfile importer paths update accordingly), then rebuild + validator before proceeding.
+- [x] **E4. Workspace finalization.** Done 2026-09-06: legacy `- 'packages/*'` glob removed from `pnpm-workspace.yaml`. Removal exposed that `packages/mcp` (a domain dir that is itself a package, matched only via `packages/mcp/*` + legacy glob) was orphaned — added exact-path `- 'packages/mcp'` glob. Reinstalled, validator confirms 56/56 packages matched, 0 legacy, 0 orphaned.
+- [x] **E5. Turbo update.** Done — `turbo.json` has `build:core`, `build:providers`, `build:adapters` (+ `test:core/providers/adapters`) with `dependsOn`; root scripts expose them. `build:examples` stays separate.
+- [x] **E6. Release pipeline.** Verified + fixed 2026-09-06: apps (`docs`, `www`, `studio`) and examples (`@example/*`) are `"private": true`, so changesets skips them; `.github/scripts/cleanup-examples-changesets.mjs` (run by `ci:version`/`clean-examples`) was **broken for the categorized layout** (iterated `examples/` top level → ENOENT crash) with a stale e2e path (`packages/rsc/...`) — fixed to walk `examples/<category>/<name>/` and target `packages/adapters/rsc/tests/e2e/next-server`; dry-run verified as clean no-op. Decided 2026-09-06: `@ai-toolkit/test-server` marked `"private": true` (and contradictory `publishConfig.access: public` removed) to match its `internal` stability label; workspace dependents unaffected.
 
 **Gate:** `packages/*` glob removed; `pnpm health-check`, `pnpm validate-structure`, `pnpm types:check`, `pnpm build`, `pnpm test` all green; zero legacy packages.
 
@@ -152,20 +136,33 @@ pnpm lint:check
 
 ## 6. Risks & Mitigations
 
-| Risk                                              | Mitigation                                                                          |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Public name changes break consumers               | ADR-004: names unchanged; migration is physical only; codemod + `update-references` |
-| `apps/*` workspace addition destabilizes installs | Add in Phase D after groups verified; legacy glob retained until E4                 |
-| Validator/lint blockers block migration velocity  | Land C5/C6 fully green before moving code; validator is the speed-up, not a brake   |
-| Node-only imports creep into core                 | C3 lint + C5 builtin bans (extends current dep-level check to source level)         |
-| Example/playground duplication                    | Single home in `apps/playground`; examples stay categorized content                 |
-| Baseline `types:check`/`test` OOM locally         | Cap turbo concurrency for local baseline; run full checks on CI hardware            |
+| Risk                                              | Mitigation                                                                                            |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Public name changes break consumers               | ADR-004: names unchanged; migration is physical only; codemod + `update-references`                   |
+| `apps/*` workspace addition destabilizes installs | Add in Phase D after groups verified; legacy glob retained until E4                                   |
+| Validator/lint blockers block migration velocity  | Land C5/C6 fully green before moving code; validator is the speed-up, not a brake                     |
+| Node-only imports creep into core                 | C3 lint + C5 builtin bans (extends current dep-level check to source level)                           |
+| Example/playground duplication                    | Dropped target: single home in `examples/04-tools/playground`; examples stay categorized content (D2) |
+| Baseline `types:check`/`test` OOM locally         | Cap turbo concurrency for local baseline; run full checks on CI hardware                              |
 
 ## 7. Success Criteria (Definition of Done)
 
 - No `packages/*` imports from `apps/*` or `examples/*`; no app→app edges (CI-enforced).
-- `apps/docs`, `apps/www`, `apps/playground` build in CI as workspace members and consume only `@ai-toolkit/*`.
+- `apps/docs`, `apps/www` build in CI as workspace members and consume only `@ai-toolkit/*` (playground intentionally stays a categorized example, not an app — D2).
 - Every example has valid `example.json`; catalog generated for docs.
 - Runtime-support and model-capability matrices mark current vs planned, not unsupported.
 - Validator covers manifests, workspace inclusion, duplicate names, export conditions, dependency direction, generated-metadata consistency.
 - Legacy `packages/*` workspace glob removed; all packages in a domain group.
+
+---
+
+## 8. Review Findings 2026-09-06 (verified against repo)
+
+Validator run: 56 packages discovered, 54 in domains, **2 legacy remaining** (`langchain`, `llamaindex`). Zero dependency-direction, Node-builtin, stability/owners, or example-metadata errors.
+
+1. **Docs-mirror check resolved 2026-09-06 (was the sole error source, ~978 errors).** Root causes found: (a) `apps/docs/content/` is a Geistdocs rebuild (commit `ebc7561`), not a byte mirror — numeric `NN-` prefixes stripped per path segment, leading H1 dropped, fence syntax migrated (`filename=`/`file=` → `title=`, `highlight=".."`/`highlight={..}` → `{..}`, `env` → `dotenv`), plus site-only `**/meta.json` nav files and site-only `docs/elements/` section. Validator now enforces **coverage** (every canonical page maps; `index.mdx` drops are warnings) + **transform-normalized freshness** instead of byte identity (see `normalizeDocsContent` in `validate-structure.mjs`, which documents the transform). (b) 24 genuine editorial drifts (stale anchors, vendored `/images/`, Elements nav entries, a fence typo, prettier formatting) were backported from the newer site tree into canonical `content/` — direction verified per file via git log (apps tree uniformly newer). Validator docs checks are green (exit 0); a `structure` CI job now gates `pnpm validate-structure` on all PRs.
+2. **Export conditions enforced 2026-09-06 (was ~50 warnings).** `default` added across 43 dual-build packages; `svelte` gained `import`+`default`; bin-only `codemod` gained a `./package.json` exports map. Validator escalated to error for missing exports map / `types` / `import` / `default` / `require`. Deliberate standing warnings: `require` waived for ESM-only-by-design `rsc`, `google-vertex`, `devtools`, `svelte` (pointing `require` at ESM output would be wrong metadata; adding CJS builds is a maintainer decision), `source` still warning-level for private `@ai-toolkit/ai-docs`. `publint --pack` spot-checks on dual-build packages show no errors (only pre-existing `type`-field/`.d.ts`-interop suggestions).
+3. **`migrate-package.mjs` DOMAIN_MAP bug — fixed and migrated 2026-09-06.** `langchain`/`llamaindex` moved to `packages/adapters/`; zero legacy packages remain; legacy workspace glob removed (E3/E4 done).
+4. **C3 done; governance CI jobs done.** Root `.eslintrc.js` rejects Node-builtin imports in `core`/`validation` shipped source (globals intentionally unrestricted); `ci.yml` has `structure`, `health`, and `inventory` jobs 2026-09-06 (`inventory:check` compares against committed `build/inventory.json` ignoring the `generatedAt` timestamp; `health-check` domain list fixed to include `ui`).
+5. **D2 decided 2026-09-06: keep playground as example.** `examples/04-tools/playground` stays (valid `example.json`, indexed); `apps/playground` target dropped. `apps/studio` remains out of scope.
+6. **Stale plan claims corrected in this update.** `apps/*` workspace membership, categorized examples + `registry.json`/`example.json`, real `apps/docs` Next.js app, CODEOWNERS coverage, `stability`/`owners` metadata, Turbo domain tasks, and provider/adapter/special/infrastructure waves were already done; §2–§4 now reflect that.

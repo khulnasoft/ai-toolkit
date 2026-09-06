@@ -36,6 +36,7 @@
     "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
     "health-check": "node tools/scripts/health-check.mjs",
     "inventory": "node tools/scripts/inventory.mjs",
+    "inventory:check": "node tools/scripts/inventory.mjs --check",
     "baseline": "node tools/scripts/baseline.mjs",
     "generate": "node tools/scripts/generate.mjs",
     "validate-structure": "node tools/scripts/validate-structure.mjs",

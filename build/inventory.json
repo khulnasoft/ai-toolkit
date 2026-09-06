@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T00:56:23.607Z",
+  "generatedAt": "2026-09-06T23:35:15.861Z",
   "packages": [
     {
       "name": "@ai-toolkit/angular",
@@ -19,6 +19,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -75,6 +76,130 @@
       ]
     },
     {
+      "name": "@ai-toolkit/langchain",
+      "dir": "packages/adapters/langchain",
+      "domain": "adapters",
+      "workspaceGlobs": [
+        "packages/adapters/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "default",
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@langchain/core",
+          "version": ">=1.0.0",
+          "kind": "external"
+        },
+        {
+          "name": "@langchain/langgraph",
+          "version": ">=0.2.0",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": "stable",
+      "owners": [
+        "@khulnasoft/ai-toolkit-maintainers"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "@langchain/core",
+          "version": ">=1.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@langchain/langgraph",
+          "version": ">=0.2.0",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/llamaindex",
+      "dir": "packages/adapters/llamaindex",
+      "domain": "adapters",
+      "workspaceGlobs": [
+        "packages/adapters/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "default",
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": "stable",
+      "owners": [
+        "@khulnasoft/ai-toolkit-maintainers"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        }
+      ]
+    },
+    {
       "name": "@ai-toolkit/react",
       "dir": "packages/adapters/react",
       "domain": "adapters",
@@ -92,6 +217,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -186,6 +312,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "react-server",
@@ -364,6 +491,8 @@
         "."
       ],
       "conditions": [
+        "default",
+        "import",
         "svelte",
         "types"
       ],
@@ -437,6 +566,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -504,7 +634,7 @@
       ]
     },
     {
-      "name": "ai-toolkit",
+      "name": "@ai-toolkit/ai",
       "dir": "packages/core/ai",
       "domain": "core",
       "workspaceGlobs": [
@@ -635,6 +765,8 @@
       "runtimeAssumptions": {
         "nodeBuiltins": [
           "node:assert",
+          "node:async_hooks",
+          "node:diagnostics_channel",
           "node:events",
           "node:fs",
           "node:http",
@@ -698,6 +830,7 @@
         "./test"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -731,7 +864,10 @@
         }
       ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [],
+        "nodeBuiltins": [
+          "node:dns",
+          "node:module"
+        ],
         "usesGlobalFetch": true
       },
       "stability": "stable",
@@ -811,7 +947,7 @@
         "packages/infrastructure/*"
       ],
       "version": "2.0.0",
-      "private": false,
+      "private": true,
       "source": "./src/index.ts",
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
@@ -822,6 +958,7 @@
         "./with-vitest"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -857,133 +994,11 @@
       ]
     },
     {
-      "name": "@ai-toolkit/langchain",
-      "dir": "packages/langchain",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": "./src/index.ts",
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace"
-        },
-        {
-          "name": "@langchain/core",
-          "version": ">=1.0.0",
-          "kind": "external"
-        },
-        {
-          "name": "@langchain/langgraph",
-          "version": ">=0.2.0",
-          "kind": "external"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": "stable",
-      "owners": [
-        "@khulnasoft/ai-toolkit-maintainers"
-      ],
-      "dependencyEdges": [
-        {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-core"
-        },
-        {
-          "name": "@langchain/core",
-          "version": ">=1.0.0",
-          "kind": "external",
-          "direction": "external"
-        },
-        {
-          "name": "@langchain/langgraph",
-          "version": ">=0.2.0",
-          "kind": "external",
-          "direction": "external"
-        }
-      ]
-    },
-    {
-      "name": "@ai-toolkit/llamaindex",
-      "dir": "packages/llamaindex",
-      "domain": "legacy",
-      "workspaceGlobs": [
-        "packages/*"
-      ],
-      "version": "2.0.0",
-      "private": false,
-      "source": "./src/index.ts",
-      "main": "./dist/index.js",
-      "module": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
-      "exports": [
-        "./package.json",
-        "."
-      ],
-      "conditions": [
-        "import",
-        "require",
-        "types"
-      ],
-      "publicApi": [
-        "./package.json",
-        "."
-      ],
-      "dependencies": [
-        {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace"
-        }
-      ],
-      "runtimeAssumptions": {
-        "nodeBuiltins": [],
-        "usesGlobalFetch": false
-      },
-      "stability": "stable",
-      "owners": [
-        "@khulnasoft/ai-toolkit-maintainers"
-      ],
-      "dependencyEdges": [
-        {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-core"
-        }
-      ]
-    },
-    {
       "name": "@ai-toolkit/mcp",
       "dir": "packages/mcp",
       "domain": "legacy",
       "workspaceGlobs": [
-        "packages/*"
+        "packages/mcp"
       ],
       "version": "2.0.0",
       "private": false,
@@ -997,6 +1012,7 @@
         "./mcp-stdio"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -1089,6 +1105,7 @@
         "./anthropic"
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1209,6 +1226,7 @@
         "./internal"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -1285,6 +1303,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1360,6 +1379,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1445,6 +1465,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1539,6 +1560,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1594,6 +1616,79 @@
       ]
     },
     {
+      "name": "@ai-toolkit/bytedance",
+      "dir": "packages/providers/bytedance",
+      "domain": "providers",
+      "workspaceGlobs": [
+        "packages/providers/*"
+      ],
+      "version": "2.0.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        "."
+      ],
+      "conditions": [
+        "default",
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        "."
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": "beta",
+      "owners": [
+        "@khulnasoft/ai-toolkit-providers"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/provider",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-validation"
+        },
+        {
+          "name": "@ai-toolkit/provider-utils",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "zod",
+          "version": "^3.25.76 || ^4.1.8",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
       "name": "@ai-toolkit/cerebras",
       "dir": "packages/providers/cerebras",
       "domain": "providers",
@@ -1611,6 +1706,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1694,6 +1790,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1769,6 +1866,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1844,6 +1942,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -1927,6 +2026,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2001,6 +2101,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2076,6 +2177,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2151,6 +2253,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2234,6 +2337,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2310,6 +2414,7 @@
         "./internal"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -2508,6 +2613,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2584,6 +2690,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2667,6 +2774,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2739,6 +2847,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2811,6 +2920,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2883,6 +2993,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -2957,6 +3068,7 @@
         "./internal"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -3036,6 +3148,7 @@
         "./internal"
       ],
       "conditions": [
+        "default",
         "import",
         "module",
         "require",
@@ -3112,6 +3225,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3184,6 +3298,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3256,6 +3371,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3328,6 +3444,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3403,6 +3520,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3488,6 +3606,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3556,6 +3675,677 @@
       ]
     },
     {
+      "name": "@ai-toolkit/ai-docs",
+      "dir": "packages/special/ai-docs",
+      "domain": "special",
+      "workspaceGlobs": [
+        "packages/special/*"
+      ],
+      "version": "1.26.1",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [
+        "./config",
+        "./layout",
+        "./localize-href",
+        "./navbar",
+        "./page-visibility",
+        "./footer",
+        "./home-layout",
+        "./mobile-docs-bar",
+        "./controls",
+        "./source",
+        "./sidebar",
+        "./versions",
+        "./pages/docs",
+        "./routes/chat",
+        "./routes/search",
+        "./routes/search-export",
+        "./routes/llms",
+        "./routes/sitemap",
+        "./routes/agents",
+        "./routes/mcp",
+        "./routes/not-found",
+        "./proxy",
+        "./next",
+        "./mdx",
+        "./source-config",
+        "./docs/agents.md",
+        "./docs/llms.txt",
+        "./docs/manifest.json",
+        "./docs/pages/*",
+        "./docs/sitemap.md",
+        "./shiki-theme",
+        "./components/badge",
+        "./components/button",
+        "./components/button-group",
+        "./components/callout",
+        "./components/card",
+        "./components/code-block",
+        "./components/code-block-tabs",
+        "./components/collapsible",
+        "./components/command-prompt",
+        "./components/copy-prompt",
+        "./components/dialog",
+        "./components/drawer",
+        "./components/dropdown-menu",
+        "./components/input",
+        "./components/input-group",
+        "./components/kbd",
+        "./components/theme-aware-image",
+        "./components/mermaid",
+        "./components/navigation-menu",
+        "./components/popover",
+        "./components/scroll-area",
+        "./components/separator",
+        "./components/sheet",
+        "./components/sonner",
+        "./components/spinner",
+        "./components/switch",
+        "./components/theme-switcher",
+        "./components/textarea",
+        "./components/tooltip",
+        "./components/video",
+        "./assets/icons",
+        "./assets/icons/*",
+        "./assets/logos",
+        "./assets/logos/*",
+        "./styles.css",
+        "./theme.css",
+        "./package.json"
+      ],
+      "conditions": [
+        "default",
+        "types"
+      ],
+      "publicApi": [
+        "./config",
+        "./layout",
+        "./localize-href",
+        "./navbar",
+        "./page-visibility",
+        "./footer",
+        "./home-layout",
+        "./mobile-docs-bar",
+        "./controls",
+        "./source",
+        "./sidebar",
+        "./versions",
+        "./pages/docs",
+        "./routes/chat",
+        "./routes/search",
+        "./routes/search-export",
+        "./routes/llms",
+        "./routes/sitemap",
+        "./routes/agents",
+        "./routes/mcp",
+        "./routes/not-found",
+        "./proxy",
+        "./next",
+        "./mdx",
+        "./source-config",
+        "./docs/agents.md",
+        "./docs/llms.txt",
+        "./docs/manifest.json",
+        "./docs/pages/*",
+        "./docs/sitemap.md",
+        "./shiki-theme",
+        "./components/badge",
+        "./components/button",
+        "./components/button-group",
+        "./components/callout",
+        "./components/card",
+        "./components/code-block",
+        "./components/code-block-tabs",
+        "./components/collapsible",
+        "./components/command-prompt",
+        "./components/copy-prompt",
+        "./components/dialog",
+        "./components/drawer",
+        "./components/dropdown-menu",
+        "./components/input",
+        "./components/input-group",
+        "./components/kbd",
+        "./components/theme-aware-image",
+        "./components/mermaid",
+        "./components/navigation-menu",
+        "./components/popover",
+        "./components/scroll-area",
+        "./components/separator",
+        "./components/sheet",
+        "./components/sonner",
+        "./components/spinner",
+        "./components/switch",
+        "./components/theme-switcher",
+        "./components/textarea",
+        "./components/tooltip",
+        "./components/video",
+        "./assets/icons",
+        "./assets/icons/*",
+        "./assets/logos",
+        "./assets/logos/*",
+        "./styles.css",
+        "./theme.css",
+        "./package.json"
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-sdk/react",
+          "version": "^3.0.134",
+          "kind": "external"
+        },
+        {
+          "name": "@clack/prompts",
+          "version": "^0.11.0",
+          "kind": "external"
+        },
+        {
+          "name": "@icons-pack/react-simple-icons",
+          "version": "^13.8.0",
+          "kind": "external"
+        },
+        {
+          "name": "@next/env",
+          "version": "16.3.3",
+          "kind": "external"
+        },
+        {
+          "name": "@orama/tokenizers",
+          "version": "^3.1.16",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "@types/mdx",
+          "version": "^2.0.13",
+          "kind": "external"
+        },
+        {
+          "name": "@types/react",
+          "version": "^19.2.7",
+          "kind": "external"
+        },
+        {
+          "name": "@vercel/agent-readability",
+          "version": "^0.7.0",
+          "kind": "external"
+        },
+        {
+          "name": "@vercel/oidc",
+          "version": "^3.4.1",
+          "kind": "external"
+        },
+        {
+          "name": "ai",
+          "version": "^6.0.132",
+          "kind": "external"
+        },
+        {
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "commander",
+          "version": "^14.0.2",
+          "kind": "external"
+        },
+        {
+          "name": "dexie",
+          "version": "^4.2.1",
+          "kind": "external"
+        },
+        {
+          "name": "dexie-react-hooks",
+          "version": "^4.2.0",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-core",
+          "version": "16.2.2",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-mdx",
+          "version": "14.0.4",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-ui",
+          "version": "16.2.2",
+          "kind": "external"
+        },
+        {
+          "name": "glob",
+          "version": "^11.0.0",
+          "kind": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.555.0",
+          "kind": "external"
+        },
+        {
+          "name": "mermaid",
+          "version": "^11.12.2",
+          "kind": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.23.25",
+          "kind": "external"
+        },
+        {
+          "name": "next-themes",
+          "version": "^0.4.6",
+          "kind": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "1.6.4",
+          "kind": "external"
+        },
+        {
+          "name": "react-player",
+          "version": "^3.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "remark-frontmatter",
+          "version": "^5.0.0",
+          "kind": "external"
+        },
+        {
+          "name": "remark-gfm",
+          "version": "^4.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "remark-mdx",
+          "version": "^3.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "remark-parse",
+          "version": "^11.0.0",
+          "kind": "external"
+        },
+        {
+          "name": "sonner",
+          "version": "^2.0.7",
+          "kind": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "ts-morph",
+          "version": "^27.0.2",
+          "kind": "external"
+        },
+        {
+          "name": "tw-animate-css",
+          "version": "^1.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "unified",
+          "version": "^11.0.5",
+          "kind": "external"
+        },
+        {
+          "name": "unist-util-visit",
+          "version": "^5.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "vaul",
+          "version": "^1.1.2",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^4.1.13",
+          "kind": "external"
+        },
+        {
+          "name": "next",
+          "version": "^16.3.3",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^19.2.3",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^19.2.3",
+          "kind": "external"
+        },
+        {
+          "name": "tailwindcss",
+          "version": "^4.1.17",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:child_process",
+          "node:fs",
+          "node:fs/promises",
+          "node:path",
+          "node:util"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": "internal",
+      "owners": [
+        "@khulnasoft/ai-toolkit-core"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-sdk/react",
+          "version": "^3.0.134",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@clack/prompts",
+          "version": "^0.11.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@icons-pack/react-simple-icons",
+          "version": "^13.8.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@next/env",
+          "version": "16.3.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@orama/tokenizers",
+          "version": "^3.1.16",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@types/mdx",
+          "version": "^2.0.13",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@types/react",
+          "version": "^19.2.7",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@vercel/agent-readability",
+          "version": "^0.7.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@vercel/oidc",
+          "version": "^3.4.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ai",
+          "version": "^6.0.132",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "commander",
+          "version": "^14.0.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "dexie",
+          "version": "^4.2.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "dexie-react-hooks",
+          "version": "^4.2.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-core",
+          "version": "16.2.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-mdx",
+          "version": "14.0.4",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-ui",
+          "version": "16.2.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "glob",
+          "version": "^11.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.555.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "mermaid",
+          "version": "^11.12.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.23.25",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next-themes",
+          "version": "^0.4.6",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "1.6.4",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-player",
+          "version": "^3.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "remark-frontmatter",
+          "version": "^5.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "remark-gfm",
+          "version": "^4.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "remark-mdx",
+          "version": "^3.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "remark-parse",
+          "version": "^11.0.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "sonner",
+          "version": "^2.0.7",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ts-morph",
+          "version": "^27.0.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tw-animate-css",
+          "version": "^1.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "unified",
+          "version": "^11.0.5",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "unist-util-visit",
+          "version": "^5.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "vaul",
+          "version": "^1.1.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^4.1.13",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next",
+          "version": "^16.3.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^19.2.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^19.2.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tailwindcss",
+          "version": "^4.1.17",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
       "name": "@ai-toolkit/codemod",
       "dir": "packages/special/codemod",
       "domain": "special",
@@ -3568,9 +4358,13 @@
       "main": null,
       "module": null,
       "types": null,
-      "exports": [],
+      "exports": [
+        "./package.json"
+      ],
       "conditions": [],
-      "publicApi": [],
+      "publicApi": [
+        "./package.json"
+      ],
       "dependencies": [
         {
           "name": "cli-progress",
@@ -3724,6 +4518,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3811,6 +4606,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3877,8 +4673,408 @@
       ]
     },
     {
+      "name": "@ai-toolkit/design",
+      "dir": "packages/ui/design",
+      "domain": "legacy",
+      "workspaceGlobs": [
+        "packages/ui/*"
+      ],
+      "version": "0.1.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./utils",
+        "./panel",
+        "./section",
+        "./status-pill",
+        "./kpi-card",
+        "./sparkline",
+        "./bars",
+        "./donut",
+        "./icon-button",
+        "./code-block",
+        "./data-table",
+        "./filter-bar",
+        "./drawer",
+        "./globals.css",
+        "./tailwind-preset"
+      ],
+      "conditions": [
+        "default",
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./utils",
+        "./panel",
+        "./section",
+        "./status-pill",
+        "./kpi-card",
+        "./sparkline",
+        "./bars",
+        "./donut",
+        "./icon-button",
+        "./code-block",
+        "./data-table",
+        "./filter-bar",
+        "./drawer",
+        "./globals.css",
+        "./tailwind-preset"
+      ],
+      "dependencies": [
+        {
+          "name": "lucide-react",
+          "version": "^0.545.0",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [],
+        "usesGlobalFetch": false
+      },
+      "stability": "alpha",
+      "owners": [
+        "@khulnasoft/ai-toolkit"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "lucide-react",
+          "version": "^0.545.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
       "name": "@ai-toolkit/elements",
       "dir": "packages/ui/elements",
+      "domain": "legacy",
+      "workspaceGlobs": [
+        "packages/ui/*"
+      ],
+      "version": "0.2.0",
+      "private": false,
+      "source": "./src/index.ts",
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "exports": [
+        "./package.json",
+        ".",
+        "./*"
+      ],
+      "conditions": [
+        "default",
+        "import",
+        "require",
+        "types"
+      ],
+      "publicApi": [
+        "./package.json",
+        ".",
+        "./*"
+      ],
+      "dependencies": [
+        {
+          "name": "@ai-toolkit/shadcn-ui",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@radix-ui/react-use-controllable-state",
+          "version": "^1.2.2",
+          "kind": "external"
+        },
+        {
+          "name": "@rive-app/react-webgl2",
+          "version": "^4.26.1",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.2",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/math",
+          "version": "^1.0.2",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/mermaid",
+          "version": "^1.0.2",
+          "kind": "external"
+        },
+        {
+          "name": "@xyflow/react",
+          "version": "^12.10.0",
+          "kind": "external"
+        },
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "ansi-to-react",
+          "version": "^6.2.6",
+          "kind": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.577.0",
+          "kind": "external"
+        },
+        {
+          "name": "media-chrome",
+          "version": "^4.17.2",
+          "kind": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.26.2",
+          "kind": "external"
+        },
+        {
+          "name": "nanoid",
+          "version": "^5.1.6",
+          "kind": "external"
+        },
+        {
+          "name": "react-jsx-parser",
+          "version": "^2.2.0",
+          "kind": "external"
+        },
+        {
+          "name": "shiki",
+          "version": "3.22.0",
+          "kind": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^2.6.0",
+          "kind": "external"
+        },
+        {
+          "name": "tokenlens",
+          "version": "^1.3.1",
+          "kind": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.3",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18 || ^19",
+          "kind": "external"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": "beta",
+      "owners": [
+        "@khulnasoft/ai-react-team"
+      ],
+      "dependencyEdges": [
+        {
+          "name": "@ai-toolkit/shadcn-ui",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-legacy"
+        },
+        {
+          "name": "@radix-ui/react-use-controllable-state",
+          "version": "^1.2.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@rive-app/react-webgl2",
+          "version": "^4.26.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/math",
+          "version": "^1.0.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/mermaid",
+          "version": "^1.0.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@xyflow/react",
+          "version": "^12.10.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ai-toolkit",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-core"
+        },
+        {
+          "name": "ansi-to-react",
+          "version": "^6.2.6",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.577.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "media-chrome",
+          "version": "^4.17.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.26.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "nanoid",
+          "version": "^5.1.6",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-jsx-parser",
+          "version": "^2.2.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "shiki",
+          "version": "3.22.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^2.6.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tokenlens",
+          "version": "^1.3.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18 || ^19",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/shadcn-ui",
+      "dir": "packages/ui/shadcn-ui",
       "domain": "legacy",
       "workspaceGlobs": [
         "packages/ui/*"
@@ -3894,6 +5090,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -3904,9 +5101,39 @@
       ],
       "dependencies": [
         {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace"
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "cmdk",
+          "version": "1.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "embla-carousel-react",
+          "version": "^8.6.0",
+          "kind": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.577.0",
+          "kind": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "latest",
+          "kind": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external"
         },
         {
           "name": "react",
@@ -3929,10 +5156,46 @@
       ],
       "dependencyEdges": [
         {
-          "name": "ai-toolkit",
-          "version": "workspace:*",
-          "kind": "workspace",
-          "direction": "to-core"
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "cmdk",
+          "version": "1.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "embla-carousel-react",
+          "version": "^8.6.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.577.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "latest",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external",
+          "direction": "external"
         },
         {
           "name": "react",
@@ -4017,6 +5280,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -4067,6 +5331,7 @@
         "."
       ],
       "conditions": [
+        "default",
         "import",
         "require",
         "types"
@@ -4360,6 +5625,11 @@
           "kind": "workspace"
         },
         {
+          "name": "@ai-toolkit/bytedance",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
           "name": "@ai-toolkit/cerebras",
           "version": "workspace:*",
           "kind": "workspace"
@@ -4645,6 +5915,12 @@
         },
         {
           "name": "@ai-toolkit/baseten",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-providers"
+        },
+        {
+          "name": "@ai-toolkit/bytedance",
           "version": "workspace:*",
           "kind": "workspace",
           "direction": "to-providers"
@@ -6008,7 +7284,7 @@
           "name": "@ai-toolkit/langchain",
           "version": "workspace:*",
           "kind": "workspace",
-          "direction": "to-legacy"
+          "direction": "to-adapters"
         },
         {
           "name": "@langchain/openai",
@@ -8060,14 +9336,525 @@
       "exports": [],
       "conditions": [],
       "publicApi": [],
-      "dependencies": [],
+      "dependencies": [
+        {
+          "name": "@ai-sdk/react",
+          "version": "^3.0.134",
+          "kind": "external"
+        },
+        {
+          "name": "@ai-toolkit/ai-docs",
+          "version": "workspace:*",
+          "kind": "workspace"
+        },
+        {
+          "name": "@icons-pack/react-simple-icons",
+          "version": "^13.8.0",
+          "kind": "external"
+        },
+        {
+          "name": "@orama/tokenizers",
+          "version": "^3.1.16",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.0.1",
+          "kind": "external"
+        },
+        {
+          "name": "@vercel/agent-readability",
+          "version": "^0.7.0",
+          "kind": "external"
+        },
+        {
+          "name": "@vercel/analytics",
+          "version": "^1.6.1",
+          "kind": "external"
+        },
+        {
+          "name": "@vercel/speed-insights",
+          "version": "^1.3.1",
+          "kind": "external"
+        },
+        {
+          "name": "ai",
+          "version": "^6.0.132",
+          "kind": "external"
+        },
+        {
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "cmdk",
+          "version": "^1.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "dexie",
+          "version": "^4.2.1",
+          "kind": "external"
+        },
+        {
+          "name": "dexie-react-hooks",
+          "version": "^4.2.0",
+          "kind": "external"
+        },
+        {
+          "name": "feed",
+          "version": "^5.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-core",
+          "version": "16.2.2",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-mdx",
+          "version": "14.0.4",
+          "kind": "external"
+        },
+        {
+          "name": "fumadocs-ui",
+          "version": "16.2.2",
+          "kind": "external"
+        },
+        {
+          "name": "geist",
+          "version": "^1.7.1",
+          "kind": "external"
+        },
+        {
+          "name": "jotai",
+          "version": "^2.15.2",
+          "kind": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.555.0",
+          "kind": "external"
+        },
+        {
+          "name": "mermaid",
+          "version": "^11.12.2",
+          "kind": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.23.25",
+          "kind": "external"
+        },
+        {
+          "name": "nanoid",
+          "version": "^5.1.6",
+          "kind": "external"
+        },
+        {
+          "name": "next",
+          "version": "16.3.3",
+          "kind": "external"
+        },
+        {
+          "name": "next-themes",
+          "version": "^0.4.6",
+          "kind": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "1.6.4",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^19.2.3",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^19.2.3",
+          "kind": "external"
+        },
+        {
+          "name": "react-player",
+          "version": "^3.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "shiki",
+          "version": "3.19.0",
+          "kind": "external"
+        },
+        {
+          "name": "sonner",
+          "version": "^2.0.7",
+          "kind": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.1.0",
+          "kind": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.1",
+          "kind": "external"
+        },
+        {
+          "name": "vaul",
+          "version": "^1.1.2",
+          "kind": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^4.1.13",
+          "kind": "external"
+        }
+      ],
       "runtimeAssumptions": {
-        "nodeBuiltins": [],
+        "nodeBuiltins": [
+          "node:fs",
+          "node:fs/promises",
+          "node:os",
+          "node:path",
+          "node:url"
+        ],
         "usesGlobalFetch": false
       },
       "stability": null,
       "owners": null,
-      "dependencyEdges": []
+      "dependencyEdges": [
+        {
+          "name": "@ai-sdk/react",
+          "version": "^3.0.134",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@ai-toolkit/ai-docs",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-special"
+        },
+        {
+          "name": "@icons-pack/react-simple-icons",
+          "version": "^13.8.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@orama/tokenizers",
+          "version": "^3.1.16",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/cjk",
+          "version": "^1.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@streamdown/code",
+          "version": "^1.0.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@vercel/agent-readability",
+          "version": "^0.7.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@vercel/analytics",
+          "version": "^1.6.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@vercel/speed-insights",
+          "version": "^1.3.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "ai",
+          "version": "^6.0.132",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "class-variance-authority",
+          "version": "^0.7.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "cmdk",
+          "version": "^1.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "dexie",
+          "version": "^4.2.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "dexie-react-hooks",
+          "version": "^4.2.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "feed",
+          "version": "^5.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-core",
+          "version": "16.2.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-mdx",
+          "version": "14.0.4",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "fumadocs-ui",
+          "version": "16.2.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "geist",
+          "version": "^1.7.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "jotai",
+          "version": "^2.15.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.555.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "mermaid",
+          "version": "^11.12.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "motion",
+          "version": "^12.23.25",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "nanoid",
+          "version": "^5.1.6",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next",
+          "version": "16.3.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next-themes",
+          "version": "^0.4.6",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "radix-ui",
+          "version": "1.6.4",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^19.2.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^19.2.3",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-player",
+          "version": "^3.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "shiki",
+          "version": "3.19.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "sonner",
+          "version": "^2.0.7",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "streamdown",
+          "version": "^2.1.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^3.4.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "use-stick-to-bottom",
+          "version": "^1.1.1",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "vaul",
+          "version": "^1.1.2",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "zod",
+          "version": "^4.1.13",
+          "kind": "external",
+          "direction": "external"
+        }
+      ]
+    },
+    {
+      "name": "@ai-toolkit/studio",
+      "dir": "apps/studio",
+      "domain": "apps",
+      "workspaceGlobs": [
+        "apps/*"
+      ],
+      "version": "0.0.0",
+      "private": true,
+      "source": null,
+      "main": null,
+      "module": null,
+      "types": null,
+      "exports": [],
+      "conditions": [],
+      "publicApi": [],
+      "dependencies": [
+        {
+          "name": "lucide-react",
+          "version": "^0.545.0",
+          "kind": "external"
+        },
+        {
+          "name": "next",
+          "version": "^15.5.9",
+          "kind": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external"
+        },
+        {
+          "name": "@ai-toolkit/design",
+          "version": "workspace:*",
+          "kind": "workspace"
+        }
+      ],
+      "runtimeAssumptions": {
+        "nodeBuiltins": [
+          "node:fs",
+          "node:path"
+        ],
+        "usesGlobalFetch": false
+      },
+      "stability": null,
+      "owners": null,
+      "dependencyEdges": [
+        {
+          "name": "lucide-react",
+          "version": "^0.545.0",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "next",
+          "version": "^15.5.9",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "react-dom",
+          "version": "^18",
+          "kind": "external",
+          "direction": "external"
+        },
+        {
+          "name": "@ai-toolkit/design",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-legacy"
+        }
+      ]
     },
     {
       "name": "@ai-toolkit/www",
@@ -8115,6 +9902,11 @@
           "name": "react-dom",
           "version": "^18",
           "kind": "external"
+        },
+        {
+          "name": "@ai-toolkit/design",
+          "version": "workspace:*",
+          "kind": "workspace"
         }
       ],
       "runtimeAssumptions": {
@@ -8162,6 +9954,12 @@
           "version": "^18",
           "kind": "external",
           "direction": "external"
+        },
+        {
+          "name": "@ai-toolkit/design",
+          "version": "workspace:*",
+          "kind": "workspace",
+          "direction": "to-legacy"
         }
       ]
     }

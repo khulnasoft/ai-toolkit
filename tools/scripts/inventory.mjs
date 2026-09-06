@@ -254,10 +254,31 @@ function main() {
   }));
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.writeFileSync(
-    OUT_FILE,
-    JSON.stringify({ generatedAt: new Date().toISOString(), packages: enriched }, null, 2),
-  );
+  const payload = { generatedAt: new Date().toISOString(), packages: enriched };
+
+  // `--check` (CI freshness gate): compare against the committed file,
+  // ignoring the `generatedAt` timestamp. Exits 1 when stale.
+  if (process.argv.includes('--check')) {
+    let committed;
+    try {
+      committed = JSON.parse(fs.readFileSync(OUT_FILE, 'utf8'));
+    } catch {
+      console.error(`Missing committed inventory: ${path.relative(ROOT, OUT_FILE)}`);
+      process.exit(1);
+    }
+    const same =
+      JSON.stringify(committed.packages) === JSON.stringify(payload.packages);
+    if (!same) {
+      console.error(
+        `Stale inventory: ${path.relative(ROOT, OUT_FILE)} does not match the workspace. Run \`pnpm inventory\` and commit the result.`,
+      );
+      process.exit(1);
+    }
+    console.log(`Inventory is fresh (${enriched.length} packages).`);
+    return;
+  }
+
+  fs.writeFileSync(OUT_FILE, JSON.stringify(payload, null, 2));
 
   const byDomain = {};
   for (const pkg of enriched) {

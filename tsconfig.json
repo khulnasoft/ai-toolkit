@@ -157,10 +157,10 @@
       "path": "packages/ui/shadcn-ui"
     },
     {
-      "path": "packages/langchain"
+      "path": "packages/adapters/langchain"
     },
     {
-      "path": "packages/llamaindex"
+      "path": "packages/adapters/llamaindex"
     },
     {
       "path": "packages/mcp"
