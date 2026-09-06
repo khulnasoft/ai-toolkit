@@ -30,6 +30,7 @@ import {
 import { MDXImage } from '@/components/docs/mdx-image';
 import { ButtonLink, GithubLink } from '@/components/docs/misc';
 import { Note } from '@/components/docs/note';
+import { PropertiesTable } from '@/components/docs/properties-table';
 import { PreviewSwitchProviders } from '@/components/docs/provider-preview';
 import { Snippet } from '@/components/docs/snippet';
 import { createStub } from '@/components/docs/stub';
@@ -168,6 +169,7 @@ export const getMDXComponents = ({
     ...stubs,
     ...pseudoTags,
     Note,
+    PropertiesTable,
     Check,
     Cross,
     InstallPackages,

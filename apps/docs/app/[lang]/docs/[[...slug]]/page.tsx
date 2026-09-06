@@ -1,8 +1,8 @@
-import { MobileDocsBar } from "@vercel/geistdocs/mobile-docs-bar";
-import { createDocsPage } from "@vercel/geistdocs/pages/docs";
-import { getMDXComponents } from "@/components/geistdocs/mdx-components";
-import { config } from "@/lib/geistdocs/config";
-import { geistdocsSource } from "@/lib/geistdocs/source";
+import { MobileDocsBar } from '@vercel/geistdocs/mobile-docs-bar';
+import { createDocsPage } from '@vercel/geistdocs/pages/docs';
+import { getMDXComponents } from '@/components/geistdocs/mdx-components';
+import { config } from '@/lib/geistdocs/config';
+import { geistdocsSource } from '@/lib/geistdocs/source';
 
 const docsPage = createDocsPage({
   config,

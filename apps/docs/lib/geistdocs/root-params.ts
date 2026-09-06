@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 // biome-ignore lint/performance/noNamespaceImport: Next.js generates root parameter getters on this module.
-import * as root from "next/root-params";
+import * as root from 'next/root-params';
 
 export const getRootLang = async () => (await root.lang()) ?? notFound();

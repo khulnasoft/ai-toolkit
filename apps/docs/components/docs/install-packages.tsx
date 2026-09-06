@@ -18,7 +18,9 @@ export const InstallPackages = ({
   <Tabs items={managers.map(manager => manager.label)} label="Package manager">
     {managers.map(manager => (
       <Tab key={manager.label}>
-        <Snippet text={`${dev ? manager.devCommand : manager.command} ${packages}`} />
+        <Snippet
+          text={`${dev ? manager.devCommand : manager.command} ${packages}`}
+        />
       </Tab>
     ))}
   </Tabs>

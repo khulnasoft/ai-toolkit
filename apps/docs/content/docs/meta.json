@@ -1,6 +1,6 @@
 {
+  "title": "AI TOOLKIT Documentation",
   "root": true,
-  "title": "Docs",
   "pages": [
     "introduction",
     "foundations",

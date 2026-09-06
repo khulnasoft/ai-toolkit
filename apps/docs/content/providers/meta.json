@@ -1,6 +1,6 @@
 {
+  "title": "AI TOOLKIT Providers",
   "root": true,
-  "title": "Providers",
   "pages": [
     "ai-toolkit-providers",
     "openai-compatible-providers",

@@ -1,7 +1,7 @@
-import type { DetectionMethod } from "@vercel/agent-readability";
-import { siteId } from "@/geistdocs";
+import type { DetectionMethod } from '@vercel/agent-readability';
+import { siteId } from '@/geistdocs';
 
-const PLATFORM_URL = "https://geistdocs.com/md-tracking";
+const PLATFORM_URL = 'https://geistdocs.com/md-tracking';
 
 interface TrackMdRequestParams {
   acceptHeader: string | null;
@@ -10,7 +10,7 @@ interface TrackMdRequestParams {
   path: string;
   referer: string | null;
   /** How the markdown was requested: 'md-url' for direct .md URLs, 'header-negotiated' for Accept header, 'agent-rewrite' for detected AI agents */
-  requestType?: "md-url" | "header-negotiated" | "agent-rewrite";
+  requestType?: 'md-url' | 'header-negotiated' | 'agent-rewrite';
   userAgent: string | null;
 }
 
@@ -28,13 +28,13 @@ export async function trackMdRequest({
 }: TrackMdRequestParams): Promise<void> {
   try {
     const response = await fetch(PLATFORM_URL, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         path,
-        siteId: siteId ?? "geistdocs-unknown",
+        siteId: siteId ?? 'geistdocs-unknown',
         userAgent,
         referer,
         acceptHeader,
@@ -45,12 +45,12 @@ export async function trackMdRequest({
 
     if (!response.ok) {
       console.error(
-        "MD tracking failed:",
+        'MD tracking failed:',
         response.status,
-        await response.text()
+        await response.text(),
       );
     }
   } catch (error) {
-    console.error("MD tracking error:", error);
+    console.error('MD tracking error:', error);
   }
 }

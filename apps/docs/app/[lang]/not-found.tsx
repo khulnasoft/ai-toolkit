@@ -1,5 +1,5 @@
-import { lang } from "next/root-params";
-import { getLocalizedPath } from "@/lib/geistdocs/public-path";
+import { lang } from 'next/root-params';
+import { getLocalizedPath } from '@/lib/geistdocs/public-path';
 
 const NotFound = async () => {
   const currentLang = await lang();
@@ -15,17 +15,17 @@ const NotFound = async () => {
       </p>
       <ul className="grid gap-2">
         <li>
-          <a className="underline" href={path("/docs")}>
+          <a className="underline" href={path('/docs')}>
             Browse the documentation
           </a>
         </li>
         <li>
-          <a className="underline" href={path("/sitemap.md")}>
+          <a className="underline" href={path('/sitemap.md')}>
             Open the semantic sitemap
           </a>
         </li>
         <li>
-          <a className="underline" href={path("/llms.txt")}>
+          <a className="underline" href={path('/llms.txt')}>
             Open the complete Markdown corpus
           </a>
         </li>

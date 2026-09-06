@@ -2,10 +2,7 @@ import type { GeistdocsAIConfig } from '@vercel/geistdocs/config';
 
 export const Logo = () => (
   <span className="font-semibold text-gray-1000 text-lg leading-none tracking-[-3%]">
-    AI{' '}
-    <span className="font-normal text-gray-900">
-      TOOL&shy;KIT
-    </span>
+    AI <span className="font-normal text-gray-900">TOOL&shy;KIT</span>
   </span>
 );
 
