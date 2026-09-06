@@ -10,7 +10,7 @@ export default function NotFound() {
         The page you are looking for doesn&apos;t exist or has moved.
       </p>
       <Link
-        href="/recipes"
+        href="/resources/recipes"
         className="mt-8 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
       >
         Browse recipes <ArrowUpRight className="size-4" />

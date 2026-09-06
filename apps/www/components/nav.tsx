@@ -2,22 +2,57 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Github, Menu, Sparkles, X } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronDown, Github, Menu, Sparkles, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-const navLinks = [
-  { href: '/recipes', label: 'Recipes' },
-  { href: '/tools', label: 'Tools Registry' },
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface NavItem {
+  label: string;
+  href?: string;
+  children?: NavLink[];
+}
+
+const navItems: NavItem[] = [
+  {
+    label: 'Resources',
+    href: '/resources',
+    children: [
+      { href: '/resources/recipes', label: 'Recipes' },
+      { href: '/resources/tools', label: 'Tools Registry' },
+      { href: '/resources/templates', label: 'Templates' },
+      { href: '/resources/showcase', label: 'Showcase' },
+    ],
+  },
+  { href: '/providers/ai-toolkit-providers', label: 'Providers' },
   { href: '/gateways', label: 'Gateways' },
   { href: '/playground', label: 'Playground' },
-  { href: '/templates', label: 'Templates' },
-  { href: '/showcase', label: 'Showcase' },
 ];
+
+function isActive(href: string, pathname: string): boolean {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isItemActive(item: NavItem, pathname: string): boolean {
+  return (
+    isActive(item.href ?? '', pathname) ||
+    item.children?.some(child => isActive(child.href, pathname)) === true
+  );
+}
 
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [dropdown, setDropdown] = useState<string | null>(null);
+
+  useEffect(() => {
+    setDropdown(null);
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur">
@@ -41,18 +76,68 @@ export function Nav() {
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-1 text-sm text-muted-foreground md:flex">
-          {navLinks.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'rounded-md px-3 py-2 hover:bg-muted hover:text-foreground',
-                pathname === link.href && 'bg-muted text-foreground',
+        <nav className="hidden items-center gap-1 text-sm text-muted-foreground lg:flex">
+          {navItems.map(item => (
+            <div key={item.label} className="relative">
+              {item.children ? (
+                <>
+                  <button
+                    onClick={() =>
+                      setDropdown(dropdown === item.label ? null : item.label)
+                    }
+                    className={cn(
+                      'flex items-center gap-1 rounded-md px-3 py-2 hover:bg-muted hover:text-foreground',
+                      isItemActive(item, pathname) &&
+                        'bg-muted text-foreground',
+                      dropdown === item.label && 'bg-muted text-foreground',
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown className="size-3.5" />
+                  </button>
+                  {dropdown === item.label && (
+                    <div className="absolute left-0 top-full mt-1 w-48 rounded-lg border border-border bg-background p-1.5 shadow-lg">
+                      <Link
+                        href={item.href ?? '#'}
+                        onClick={() => setDropdown(null)}
+                        className={cn(
+                          'block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-muted',
+                          isActive(item.href ?? '', pathname) &&
+                            'bg-muted text-foreground',
+                        )}
+                      >
+                        Overview
+                      </Link>
+                      {item.children.map(child => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setDropdown(null)}
+                          className={cn(
+                            'block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground',
+                            isActive(child.href, pathname) &&
+                              'bg-muted text-foreground',
+                          )}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={item.href ?? '#'}
+                  className={cn(
+                    'rounded-md px-3 py-2 hover:bg-muted hover:text-foreground',
+                    isActive(item.href ?? '', pathname) &&
+                      'bg-muted text-foreground',
+                  )}
+                >
+                  {item.label}
+                </Link>
               )}
-            >
-              {link.label}
-            </Link>
+            </div>
           ))}
         </nav>
 
@@ -67,7 +152,7 @@ export function Nav() {
             <span className="hidden sm:inline">GitHub</span>
           </a>
           <Link
-            href="/recipes"
+            href="/resources/recipes"
             className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
             Get started
@@ -76,20 +161,39 @@ export function Nav() {
       </div>
 
       {open && (
-        <nav className="border-t border-border px-4 py-3 md:hidden">
+        <nav className="border-t border-border px-4 py-3 lg:hidden">
           <div className="flex flex-col gap-1">
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  'rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground',
-                  pathname === link.href && 'bg-muted text-foreground',
+            {navItems.map(item => (
+              <div key={item.label}>
+                <Link
+                  href={item.href ?? '#'}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    'rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground',
+                    isItemActive(item, pathname) && 'bg-muted text-foreground',
+                  )}
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="ml-3 flex flex-col gap-1 border-l border-border pl-3">
+                    {item.children.map(child => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          'rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground',
+                          isActive(child.href, pathname) &&
+                            'bg-muted text-foreground',
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              >
-                {link.label}
-              </Link>
+              </div>
             ))}
           </div>
         </nav>

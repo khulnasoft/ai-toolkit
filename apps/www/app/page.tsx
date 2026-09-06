@@ -12,10 +12,8 @@ import {
 import { HeroExample } from '@/components/hero-example';
 import { CommandRow } from '@/components/command-row';
 import { getAllRecipes } from '@/lib/recipes';
-import { tools } from '@/lib/tools';
 import { gateways } from '@/lib/gateways';
-import { getAllTemplates } from '@/lib/templates';
-import { showcaseItems } from '@/lib/showcase';
+import { resources } from '@/lib/resources';
 
 const stats = [
   { value: '18.3M', label: 'Weekly downloads' },
@@ -26,22 +24,22 @@ const stats = [
 
 const sections = [
   {
-    href: '/recipes',
+    href: '/resources/recipes',
     icon: Library,
     eyebrow: 'Recipes',
     title: 'Build AI features faster',
     description:
       'Focused MDX recipes with runnable examples. Structured extraction, durable agents, RAG, and more.',
-    meta: `${getAllRecipes().length} recipes`,
+    meta: `${resources.count('recipes')} recipes`,
   },
   {
-    href: '/tools',
+    href: '/resources/tools',
     icon: Wrench,
     eyebrow: 'Tools Registry',
     title: 'Give your agent superpowers',
     description:
       'Community-built tools that add web search, extraction, code execution, and more. Install, define a schema, ship.',
-    meta: `${tools.length} tools`,
+    meta: `${resources.count('tools')} tools`,
   },
   {
     href: '/gateways',
@@ -62,22 +60,22 @@ const sections = [
     meta: 'Try it on Studio',
   },
   {
-    href: '/templates',
+    href: '/resources/templates',
     icon: Boxes,
     eyebrow: 'Templates',
     title: 'Start from a real app',
     description:
       'Official app templates, examples, and framework integrations with the right primitives already wired up.',
-    meta: `${getAllTemplates().length} templates`,
+    meta: `${resources.count('templates')} templates`,
   },
   {
-    href: '/showcase',
+    href: '/resources/showcase',
     icon: Grid2X2,
     eyebrow: 'Showcase',
     title: 'See what people are shipping',
     description:
       'Popular products and projects built with the AI SDK — proof and inspiration for your next build.',
-    meta: `${showcaseItems.length} projects`,
+    meta: `${resources.count('showcase')} projects`,
   },
 ];
 
@@ -114,7 +112,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                href="/recipes"
+                href="/resources/recipes"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
               >
                 Browse recipes
@@ -205,7 +203,7 @@ export default function Home() {
               </h2>
             </div>
             <Link
-              href="/recipes"
+              href="/resources/recipes"
               className="hidden items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground sm:flex"
             >
               View all recipes <ArrowUpRight className="size-4" />
@@ -215,7 +213,7 @@ export default function Home() {
             {featured.map(recipe => (
               <Link
                 key={`${recipe.category}-${recipe.slug}`}
-                href={`/recipes/${recipe.category}/${recipe.slug}`}
+                href={`/resources/recipes/${recipe.category}/${recipe.slug}`}
                 className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
               >
                 <div className="flex items-center justify-between">
@@ -258,13 +256,13 @@ export default function Home() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/recipes"
+                href="/resources/recipes"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
               >
                 Browse recipes <ArrowUpRight className="size-4" />
               </Link>
               <Link
-                href="/templates"
+                href="/resources/templates"
                 className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm text-foreground hover:bg-muted"
               >
                 View templates

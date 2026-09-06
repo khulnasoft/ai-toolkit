@@ -77,7 +77,7 @@ export function RecipeBrowser({
         {filtered.map(recipe => (
           <Link
             key={`${recipe.category}-${recipe.slug}`}
-            href={`/recipes/${recipe.category}/${recipe.slug}`}
+            href={`/resources/recipes/${recipe.category}/${recipe.slug}`}
             className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
           >
             <div className="flex items-center justify-between">

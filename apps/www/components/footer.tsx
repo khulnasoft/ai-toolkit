@@ -4,12 +4,13 @@ const columns = [
   {
     title: 'Explore',
     links: [
-      { label: 'Recipes', href: '/recipes' },
-      { label: 'Tools Registry', href: '/tools' },
+      { label: 'Recipes', href: '/resources/recipes' },
+      { label: 'Tools Registry', href: '/resources/tools' },
+      { label: 'Templates', href: '/resources/templates' },
+      { label: 'Showcase', href: '/resources/showcase' },
+      { label: 'Providers', href: '/providers/ai-toolkit-providers' },
       { label: 'Gateways', href: '/gateways' },
       { label: 'Playground', href: '/playground' },
-      { label: 'Templates', href: '/templates' },
-      { label: 'Showcase', href: '/showcase' },
     ],
   },
   {

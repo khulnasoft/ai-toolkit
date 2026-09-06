@@ -41,11 +41,11 @@ export default async function RecipePage({
       {/* Header */}
       <div>
         <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          <a href="/recipes" className="hover:text-foreground">
+          <a href="/resources/recipes" className="hover:text-foreground">
             Recipes
           </a>
           <span>/</span>
-          <a href={`/recipes?category=${recipe.category}`} className="hover:text-foreground">
+          <a href={`/resources/recipes?category=${recipe.category}`} className="hover:text-foreground">
             {recipe.categoryTitle}
           </a>
         </div>
@@ -148,10 +148,9 @@ export default async function RecipePage({
       {/* Related */}
       <div className="mt-16 border-t border-border pt-8">
         <a
-          href="/recipes"
+href="/resources/recipes"
           className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
         >
-          <ArrowUpRight className="size-4" />
           Browse all recipes
         </a>
       </div>
