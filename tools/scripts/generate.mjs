@@ -140,6 +140,7 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
   example() {
     const levelArg = args.find(a => a.startsWith('--level='));
     const level = levelArg ? levelArg.split('=')[1] : '01-foundations';
+    const categoryOrder = parseInt(level.split('-')[0], 10) || 1;
 
     const targetDir = path.join(ROOT, 'examples', level, name);
     if (fs.existsSync(targetDir)) {
@@ -153,9 +154,13 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
       JSON.stringify(
         {
           name,
+          title: name,
+          category: level,
+          categoryOrder,
+          framework: '',
+          primaryProvider: null,
           description: '',
-          level,
-          createdAt: new Date().toISOString(),
+          tags: [],
         },
         null,
         2,

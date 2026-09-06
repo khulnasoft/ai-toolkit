@@ -29,7 +29,9 @@
     "build": "pnpm build:client && pnpm build:server",
     "build:client": "vite build",
     "build:server": "tsup",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "lint": "eslint \"./**/*.ts*\"",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@ai-toolkit/provider": "workspace:*",

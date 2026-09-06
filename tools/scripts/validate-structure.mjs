@@ -297,6 +297,77 @@ for (const rel of siteContentFiles.keys()) {
     reportError(`File only in apps/docs/content, missing in canonical content/: ${rel}`);
 }
 
+// Example metadata (ADR-009): every examples/<category>/<name>/ dir carries an
+// example.json whose name/category match its location; examples/registry.json
+// indexes the same set.
+const REQUIRED_EXAMPLE_KEYS = [
+  'name',
+  'title',
+  'category',
+  'categoryOrder',
+  'framework',
+  'primaryProvider',
+  'description',
+  'tags',
+];
+const examplesRoot = path.join(ROOT, 'examples');
+const exampleMetas = new Map();
+if (fs.existsSync(examplesRoot)) {
+  for (const entry of fs.readdirSync(examplesRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules')
+      continue;
+    const catDir = path.join(examplesRoot, entry.name);
+    for (const sub of fs.readdirSync(catDir, { withFileTypes: true })) {
+      if (!sub.isDirectory() || sub.name.startsWith('.') || sub.name === 'node_modules')
+        continue;
+      const rel = `${entry.name}/${sub.name}`;
+      const metaPath = path.join(catDir, sub.name, 'example.json');
+      if (!fs.existsSync(metaPath)) {
+        reportError(`Example missing example.json: examples/${rel}`);
+        continue;
+      }
+      const meta = readJson(metaPath);
+      if (meta === undefined) continue; // parse error already reported
+      if (!meta || typeof meta !== 'object' || Array.isArray(meta)) {
+        reportError(`example.json must be an object: examples/${rel}`);
+        continue;
+      }
+      exampleMetas.set(rel, meta);
+      for (const key of REQUIRED_EXAMPLE_KEYS)
+        if (!(key in meta)) reportError(`example.json missing "${key}": examples/${rel}`);
+      if (meta.name !== sub.name)
+        reportError(`example.json name "${meta.name}" mismatches dir: examples/${rel}`);
+      if (meta.category !== entry.name)
+        reportError(
+          `example.json category "${meta.category}" mismatches dir: examples/${rel}`,
+        );
+      const order = parseInt(entry.name.split('-')[0], 10);
+      if (!Number.isNaN(order) && meta.categoryOrder !== order)
+        reportError(`example.json categoryOrder ${meta.categoryOrder} mismatches dir: examples/${rel}`);
+    }
+  }
+}
+
+const registryPath = path.join(examplesRoot, 'registry.json');
+if (!fs.existsSync(registryPath)) reportError('Missing examples/registry.json');
+else {
+  const registry = readJson(registryPath);
+  if (registry) {
+    const indexed = new Set();
+    for (const cat of registry.categories || []) {
+      for (const name of cat.examples || []) {
+        const rel = `${cat.id}/${name}`;
+        indexed.add(rel);
+        if (!exampleMetas.has(rel))
+          reportError(`registry.json lists missing example: examples/${rel}`);
+      }
+    }
+    for (const rel of exampleMetas.keys())
+      if (!indexed.has(rel))
+        reportError(`Example not indexed in registry.json: examples/${rel}`);
+  }
+}
+
 const codeownersPath = path.join(ROOT, 'CODEOWNERS');
 if (fs.existsSync(codeownersPath) && fs.statSync(codeownersPath).isFile()) {
   const rules = fs
