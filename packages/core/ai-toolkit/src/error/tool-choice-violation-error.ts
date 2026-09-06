@@ -1,5 +1,5 @@
 import {
-  AISDKError,
+  AITOOLKITError,
   type LanguageModelV4Content,
   type LanguageModelV4ToolChoice,
 } from '@ai-toolkit/provider';
@@ -17,7 +17,7 @@ type EnforcedToolChoice = Extract<
 /**
  * Thrown when a model response does not satisfy an enforced tool choice.
  */
-export class ToolChoiceViolationError extends AISDKError {
+export class ToolChoiceViolationError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   /**
@@ -75,6 +75,6 @@ export class ToolChoiceViolationError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is ToolChoiceViolationError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

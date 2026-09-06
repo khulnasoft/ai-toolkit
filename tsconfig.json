@@ -28,6 +28,9 @@
       "path": "packages/providers/baseten"
     },
     {
+      "path": "packages/providers/bytedance"
+    },
+    {
       "path": "packages/providers/black-forest-labs"
     },
     {
@@ -146,6 +149,9 @@
     },
     {
       "path": "packages/ui/elements"
+    },
+    {
+      "path": "packages/ui/shadcn-ui"
     },
     {
       "path": "packages/langchain"

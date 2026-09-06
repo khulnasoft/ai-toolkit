@@ -1,20 +1,17 @@
-import type {
-  ImageModelV4CallOptions,
-  ImageModelV4Middleware,
-} from '@ai-toolkit/provider';
+import { ImageModelV3CallOptions, ImageModelV3Middleware } from '@ai-toolkit/provider';
 import { wrapImageModel } from '../middleware/wrap-image-model';
-import { MockImageModelV4 } from '../test/mock-image-model-v4';
+import { MockImageModelV3 } from '../test/mock-image-model-v3';
 import { describe, it, expect, vi } from 'vitest';
 
 describe('wrapImageModel', () => {
   describe('model property', () => {
     it('should pass through by default', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
         },
       });
 
@@ -23,11 +20,11 @@ describe('wrapImageModel', () => {
 
     it('should use middleware overrideModelId if provided', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
           overrideModelId: ({ model }) => 'override-model',
         },
       });
@@ -37,11 +34,11 @@ describe('wrapImageModel', () => {
 
     it('should use modelId parameter if provided', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
         },
         modelId: 'override-model',
       });
@@ -53,11 +50,11 @@ describe('wrapImageModel', () => {
   describe('provider property', () => {
     it('should pass through by default', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
         },
       });
 
@@ -66,11 +63,11 @@ describe('wrapImageModel', () => {
 
     it('should use middleware overrideProvider if provided', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
           overrideProvider: ({ model }) => 'override-provider',
         },
       });
@@ -80,11 +77,11 @@ describe('wrapImageModel', () => {
 
     it('should use providerId parameter if provided', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({
+        model: new MockImageModelV3({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
         },
         providerId: 'override-provider',
       });
@@ -96,9 +93,9 @@ describe('wrapImageModel', () => {
   describe('maxImagesPerCall property', () => {
     it('should pass through by default', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({ maxImagesPerCall: 2 }),
+        model: new MockImageModelV3({ maxImagesPerCall: 2 }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
         },
       });
 
@@ -107,9 +104,9 @@ describe('wrapImageModel', () => {
 
     it('should use middleware overrideMaxImagesPerCall if provided', () => {
       const wrappedModel = wrapImageModel({
-        model: new MockImageModelV4({ maxImagesPerCall: 2 }),
+        model: new MockImageModelV3({ maxImagesPerCall: 2 }),
         middleware: {
-          specificationVersion: 'v4',
+          specificationVersion: 'v3',
           overrideMaxImagesPerCall: () => 3,
         },
       });
@@ -119,9 +116,9 @@ describe('wrapImageModel', () => {
   });
 
   it('should call transformParams middleware for doGenerate', async () => {
-    let capturedArgs!: Parameters<MockImageModelV4['doGenerate']>[0];
+    let capturedArgs!: Parameters<MockImageModelV3['doGenerate']>[0];
 
-    const mockModel = new MockImageModelV4({
+    const mockModel = new MockImageModelV3({
       doGenerate: vi.fn().mockImplementation(async args => {
         capturedArgs = args;
         return {
@@ -144,12 +141,12 @@ describe('wrapImageModel', () => {
     const wrappedModel = wrapImageModel({
       model: mockModel,
       middleware: {
-        specificationVersion: 'v4',
+        specificationVersion: 'v3',
         transformParams,
       },
     });
 
-    const params: ImageModelV4CallOptions = {
+    const params: ImageModelV3CallOptions = {
       prompt: 'original',
       n: 1,
       size: undefined,
@@ -174,7 +171,7 @@ describe('wrapImageModel', () => {
   });
 
   it('should call wrapGenerate middleware', async () => {
-    const mockModel = new MockImageModelV4({
+    const mockModel = new MockImageModelV3({
       doGenerate: vi.fn().mockResolvedValue({
         images: [],
         warnings: [],
@@ -186,19 +183,17 @@ describe('wrapImageModel', () => {
       }),
     });
 
-    const wrapGenerate = vi
-      .fn()
-      .mockImplementation(({ doGenerate }) => doGenerate());
+    const wrapGenerate = vi.fn().mockImplementation(({ doGenerate }) => doGenerate());
 
     const wrappedModel = wrapImageModel({
       model: mockModel,
       middleware: {
-        specificationVersion: 'v4',
+        specificationVersion: 'v3',
         wrapGenerate,
       },
     });
 
-    const params: ImageModelV4CallOptions = {
+    const params: ImageModelV3CallOptions = {
       prompt: 'original',
       n: 1,
       size: undefined,
@@ -221,7 +216,7 @@ describe('wrapImageModel', () => {
   it('should support models that use \"this\" context in maxImagesPerCall', async () => {
     let maxImagesPerCallThis: unknown = undefined;
 
-    class MockImageModelWithThisContext extends MockImageModelV4 {
+    class MockImageModelWithThisContext extends MockImageModelV3 {
       readonly value = 42;
 
       constructor() {
@@ -238,7 +233,7 @@ describe('wrapImageModel', () => {
 
     const wrappedModel = wrapImageModel({
       model,
-      middleware: { specificationVersion: 'v4' },
+      middleware: { specificationVersion: 'v3' },
     });
 
     if (!(wrappedModel.maxImagesPerCall instanceof Function)) {
@@ -255,9 +250,9 @@ describe('wrapImageModel', () => {
 
   describe('multiple middlewares', () => {
     it('should call multiple transformParams middlewares in sequence for doGenerate', async () => {
-      let capturedArgs!: Parameters<MockImageModelV4['doGenerate']>[0];
+      let capturedArgs!: Parameters<MockImageModelV3['doGenerate']>[0];
 
-      const mockModel = new MockImageModelV4({
+      const mockModel = new MockImageModelV3({
         doGenerate: async args => {
           capturedArgs = args;
           return {
@@ -286,17 +281,17 @@ describe('wrapImageModel', () => {
         model: mockModel,
         middleware: [
           {
-            specificationVersion: 'v4',
+            specificationVersion: 'v3',
             transformParams: transformParams1,
           },
           {
-            specificationVersion: 'v4',
+            specificationVersion: 'v3',
             transformParams: transformParams2,
           },
         ],
       });
 
-      const params: ImageModelV4CallOptions = {
+      const params: ImageModelV3CallOptions = {
         prompt: 'original',
         n: 1,
         size: undefined,
@@ -328,7 +323,7 @@ describe('wrapImageModel', () => {
     });
 
     it('should chain multiple wrapGenerate middlewares in the correct order', async () => {
-      const mockModel = new MockImageModelV4({
+      const mockModel = new MockImageModelV3({
         doGenerate: vi.fn().mockResolvedValue({
           images: [],
           warnings: [],
@@ -340,41 +335,37 @@ describe('wrapImageModel', () => {
         }),
       });
 
-      const wrapGenerate1 = vi
-        .fn()
-        .mockImplementation(async ({ doGenerate }) => {
-          const result = await doGenerate();
-          return {
-            ...result,
-            wrapped: `wrapGenerate1(${(result as any).wrapped ?? 'result'})`,
-          };
-        });
+      const wrapGenerate1 = vi.fn().mockImplementation(async ({ doGenerate }) => {
+        const result = await doGenerate();
+        return {
+          ...result,
+          wrapped: `wrapGenerate1(${(result as any).wrapped ?? 'result'})`,
+        };
+      });
 
-      const wrapGenerate2 = vi
-        .fn()
-        .mockImplementation(async ({ doGenerate }) => {
-          const result = await doGenerate();
-          return {
-            ...result,
-            wrapped: `wrapGenerate2(${(result as any).wrapped ?? 'result'})`,
-          };
-        });
+      const wrapGenerate2 = vi.fn().mockImplementation(async ({ doGenerate }) => {
+        const result = await doGenerate();
+        return {
+          ...result,
+          wrapped: `wrapGenerate2(${(result as any).wrapped ?? 'result'})`,
+        };
+      });
 
       const wrappedModel = wrapImageModel({
         model: mockModel,
         middleware: [
           {
-            specificationVersion: 'v4',
+            specificationVersion: 'v3',
             wrapGenerate: wrapGenerate1,
           },
           {
-            specificationVersion: 'v4',
+            specificationVersion: 'v3',
             wrapGenerate: wrapGenerate2,
           },
         ],
       });
 
-      const params: ImageModelV4CallOptions = {
+      const params: ImageModelV3CallOptions = {
         prompt: 'original',
         n: 1,
         size: undefined,
@@ -387,31 +378,26 @@ describe('wrapImageModel', () => {
 
       const result = await wrappedModel.doGenerate(params);
 
-      expect((result as any).wrapped).toBe(
-        'wrapGenerate1(wrapGenerate2(result))',
-      );
+      expect((result as any).wrapped).toBe('wrapGenerate1(wrapGenerate2(result))');
       expect(wrapGenerate1).toHaveBeenCalled();
       expect(wrapGenerate2).toHaveBeenCalled();
     });
 
     it('should not mutate the middleware array argument', async () => {
       const middleware1 = {
-        specificationVersion: 'v4',
+        specificationVersion: 'v3',
         wrapStream: vi.fn(),
       };
 
       const middleware2 = {
-        specificationVersion: 'v4',
+        specificationVersion: 'v3',
         wrapStream: vi.fn(),
       };
 
-      const middlewares = [
-        middleware1,
-        middleware2,
-      ] as ImageModelV4Middleware[];
+      const middlewares = [middleware1, middleware2] as ImageModelV3Middleware[];
 
       wrapImageModel({
-        model: new MockImageModelV4(),
+        model: new MockImageModelV3(),
         middleware: middlewares,
       });
 

@@ -1,10 +1,10 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_NoSuchToolError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class NoSuchToolError extends AISDKError {
+export class NoSuchToolError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly toolName: string;
@@ -30,6 +30,6 @@ export class NoSuchToolError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is NoSuchToolError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

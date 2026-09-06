@@ -1,10 +1,10 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_InvalidArgumentError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class InvalidArgumentError extends AISDKError {
+export class InvalidArgumentError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly parameter: string;
@@ -29,6 +29,6 @@ export class InvalidArgumentError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is InvalidArgumentError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

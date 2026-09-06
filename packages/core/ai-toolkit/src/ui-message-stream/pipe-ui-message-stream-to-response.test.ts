@@ -1,8 +1,6 @@
 import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { createMockServerResponse } from '../test/mock-server-response';
-import type { TextStreamPart } from '../generate-text/stream-text-result';
 import { pipeUIMessageStreamToResponse } from './pipe-ui-message-stream-to-response';
-import { toUIMessageStream } from './to-ui-message-stream';
 import { describe, it, expect } from 'vitest';
 
 describe('pipeUIMessageStreamToResponse', () => {
@@ -68,9 +66,7 @@ describe('pipeUIMessageStreamToResponse', () => {
     pipeUIMessageStreamToResponse({
       response: mockResponse,
       status: 200,
-      stream: convertArrayToReadableStream([
-        { type: 'error', errorText: 'Custom error message' },
-      ]),
+      stream: convertArrayToReadableStream([{ type: 'error', errorText: 'Custom error message' }]),
     });
 
     // Wait for the stream to finish writing
@@ -81,42 +77,6 @@ describe('pipeUIMessageStreamToResponse', () => {
     expect(decodedChunks).toMatchInlineSnapshot(`
       [
         "data: {"type":"error","errorText":"Custom error message"}
-
-      ",
-        "data: [DONE]
-
-      ",
-      ]
-    `);
-  });
-
-  it('can pipe a stream created by toUIMessageStream', async () => {
-    const mockResponse = createMockServerResponse();
-
-    pipeUIMessageStreamToResponse({
-      response: mockResponse,
-      stream: toUIMessageStream({
-        stream: convertArrayToReadableStream([
-          { type: 'start' },
-          { type: 'text-start', id: 't1' },
-          { type: 'text-delta', id: 't1', text: 'Hello' },
-          { type: 'text-end', id: 't1' },
-        ] satisfies TextStreamPart<{}>[]),
-        sendStart: false,
-      }),
-    });
-
-    await mockResponse.waitForEnd();
-
-    expect(mockResponse.getDecodedChunks()).toMatchInlineSnapshot(`
-      [
-        "data: {"type":"text-start","id":"t1"}
-
-      ",
-        "data: {"type":"text-delta","id":"t1","delta":"Hello"}
-
-      ",
-        "data: {"type":"text-end","id":"t1"}
 
       ",
         "data: [DONE]

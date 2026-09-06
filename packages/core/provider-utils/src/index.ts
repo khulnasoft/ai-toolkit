@@ -9,6 +9,7 @@ export { DelayedPromise } from './delayed-promise';
 export * from './extract-response-headers';
 export { convertImageModelFileToDataUri } from './convert-image-model-file-to-data-uri';
 export { convertToFormData } from './convert-to-form-data';
+export { detectMediaType } from './detect-media-type';
 export { downloadBlob } from './download-blob';
 export { DownloadError } from './download-error';
 export * from './fetch-function';

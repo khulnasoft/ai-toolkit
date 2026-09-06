@@ -10,8 +10,8 @@ export function getTextFromDataUrl(dataUrl: string): string {
   }
 
   try {
-    return globalThis.atob(base64Content);
-  } catch {
+    return window.atob(base64Content);
+  } catch (error) {
     throw new Error(`Error decoding data URL`);
   }
 }

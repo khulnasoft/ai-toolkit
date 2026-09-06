@@ -1,7 +1,5 @@
-import {
-  DefaultGeneratedFile,
-  type GeneratedFile,
-} from '../generate-text/generated-file';
+import { GeneratedFile, DefaultGeneratedFile } from '../generate-text/generated-file';
+
 /**
  * A generated audio file.
  */
@@ -12,10 +10,7 @@ export interface GeneratedAudioFile extends GeneratedFile {
   readonly format: string;
 }
 
-export class DefaultGeneratedAudioFile
-  extends DefaultGeneratedFile
-  implements GeneratedAudioFile
-{
+export class DefaultGeneratedAudioFile extends DefaultGeneratedFile implements GeneratedAudioFile {
   readonly format: string;
 
   constructor({
@@ -41,10 +36,8 @@ export class DefaultGeneratedAudioFile
     }
 
     if (!format) {
-      // TODO this should be an AI SDK error
-      throw new Error(
-        'Audio format must be provided or determinable from media type',
-      );
+      // TODO this should be an AI TOOLKIT error
+      throw new Error('Audio format must be provided or determinable from media type');
     }
 
     this.format = format;

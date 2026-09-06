@@ -1,19 +1,18 @@
-import type {
+import {
   ModelMessage,
   ToolApprovalRequest,
   ToolApprovalResponse,
-  ToolResultPart,
-  ToolSet,
 } from '@ai-toolkit/provider-utils';
 import { InvalidToolApprovalError } from '../error/invalid-tool-approval-error';
 import { ToolCallNotFoundForApprovalError } from '../error/tool-call-not-found-for-approval-error';
-import type { TypedToolCall } from './tool-call';
+import { TypedToolCall } from './tool-call';
+import { TypedToolResult } from './tool-result';
+import { ToolSet } from './tool-set';
 
 export type CollectedToolApprovals<TOOLS extends ToolSet> = {
   approvalRequest: ToolApprovalRequest;
   approvalResponse: ToolApprovalResponse;
   toolCall: TypedToolCall<TOOLS>;
-  existingToolResult?: ToolResultPart;
 };
 
 /**
@@ -37,19 +36,8 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
     };
   }
 
-  // gather tool calls and prepare lookup.
-  //
-  // These maps are keyed by client-supplied ids (`toolCallId`, `approvalId`)
-  // from the message history. Using `Object.create(null)` gives them no
-  // prototype, so an id that matches an inherited object property (e.g.
-  // `toString`, `constructor`, `__proto__`) is treated as absent instead of
-  // resolving to a prototype value and slipping past the `== null` guards
-  // below (which would otherwise skip the InvalidToolApproval /
-  // ToolCallNotFound checks).
-  const toolCallsByToolCallId: Record<
-    string,
-    TypedToolCall<TOOLS>
-  > = Object.create(null);
+  // gather tool calls and prepare lookup
+  const toolCallsByToolCallId: Record<string, TypedToolCall<TOOLS>> = {};
   for (const message of messages) {
     if (message.role === 'assistant' && typeof message.content !== 'string') {
       const content = message.content;
@@ -62,8 +50,7 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
   }
 
   // gather approval responses and prepare lookup
-  const toolApprovalRequestsByApprovalId: Record<string, ToolApprovalRequest> =
-    Object.create(null);
+  const toolApprovalRequestsByApprovalId: Record<string, ToolApprovalRequest> = {};
   for (const message of messages) {
     if (message.role === 'assistant' && typeof message.content !== 'string') {
       const content = message.content;
@@ -76,10 +63,10 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
   }
 
   // gather tool results from the last tool message
-  const toolResults: Record<string, ToolResultPart> = Object.create(null);
+  const toolResults: Record<string, TypedToolResult<TOOLS>> = {};
   for (const part of lastMessage.content) {
     if (part.type === 'tool-result') {
-      toolResults[part.toolCallId] = part;
+      toolResults[part.toolCallId] = part as TypedToolResult<TOOLS>;
     }
   }
 
@@ -90,8 +77,7 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
     part => part.type === 'tool-approval-response',
   );
   for (const approvalResponse of approvalResponses) {
-    const approvalRequest =
-      toolApprovalRequestsByApprovalId[approvalResponse.approvalId];
+    const approvalRequest = toolApprovalRequestsByApprovalId[approvalResponse.approvalId];
 
     if (approvalRequest == null) {
       throw new InvalidToolApprovalError({
@@ -99,12 +85,7 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
       });
     }
 
-    const existingToolResult = toolResults[approvalRequest.toolCallId];
-    if (
-      existingToolResult != null &&
-      (approvalResponse.approved ||
-        existingToolResult.output.type !== 'execution-denied')
-    ) {
+    if (toolResults[approvalRequest.toolCallId] != null) {
       continue;
     }
 
@@ -120,7 +101,6 @@ export function collectToolApprovals<TOOLS extends ToolSet>({
       approvalRequest,
       approvalResponse,
       toolCall,
-      ...(existingToolResult != null ? { existingToolResult } : {}),
     };
 
     if (approvalResponse.approved) {

@@ -1,8 +1,9 @@
 import { isToolUIPart, type UIMessage } from './ui-messages';
+
 /**
- * Check if the last message is an assistant message with completed tool call approvals.
- * The last step of the message must have at least one tool approval response and
- * all tool approvals must have a response.
+Check if the last message is an assistant message with completed tool call approvals.
+The last step of the message must have at least one tool approval response and
+all tool approvals must have a response.
  */
 export function lastAssistantMessageIsCompleteWithApprovalResponses({
   messages,
@@ -25,18 +26,17 @@ export function lastAssistantMessageIsCompleteWithApprovalResponses({
 
   const lastStepToolInvocations = message.parts
     .slice(lastStepStartIndex + 1)
-    .filter(isToolUIPart);
+    .filter(isToolUIPart)
+    .filter(part => !part.providerExecuted);
 
   return (
     // has at least one tool approval response
-    lastStepToolInvocations.filter(part => part.state === 'approval-responded')
-      .length > 0 &&
+    lastStepToolInvocations.filter(part => part.state === 'approval-responded').length > 0 &&
     // all tool approvals must have a response
     lastStepToolInvocations.every(
       part =>
         part.state === 'output-available' ||
         part.state === 'output-error' ||
-        part.state === 'output-denied' ||
         part.state === 'approval-responded',
     )
   );

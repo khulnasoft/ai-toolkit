@@ -1,4 +1,4 @@
-import type { TranscriptionModelV3 } from '@ai-toolkit/provider';
+import { TranscriptionModelV3 } from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockTranscriptionModelV3 implements TranscriptionModelV3 {

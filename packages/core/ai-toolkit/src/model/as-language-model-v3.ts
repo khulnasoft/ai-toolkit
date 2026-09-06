@@ -1,4 +1,4 @@
-import type {
+import {
   LanguageModelV2,
   LanguageModelV2FinishReason,
   LanguageModelV2StreamPart,
@@ -10,9 +10,7 @@ import type {
 } from '@ai-toolkit/provider';
 import { logV2CompatibilityWarning } from '../util/log-v2-compatibility-warning';
 
-export function asLanguageModelV3(
-  model: LanguageModelV2 | LanguageModelV3,
-): LanguageModelV3 {
+export function asLanguageModelV3(model: LanguageModelV2 | LanguageModelV3): LanguageModelV3 {
   if (model.specificationVersion === 'v3') {
     return model;
   }
@@ -68,7 +66,7 @@ function convertV2StreamToV3(
             });
             break;
           default:
-            // TODO: AI SDK 6 - no casting (stream parts need to be mapped)
+            // TODO: AI TOOLKIT 6 - no casting (stream parts need to be mapped)
             controller.enqueue(chunk as LanguageModelV3StreamPart);
             break;
         }

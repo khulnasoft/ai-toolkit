@@ -1,8 +1,4 @@
-import type {
-  ImageModelV4Usage,
-  JSONObject,
-  LanguageModelV4Usage,
-} from '@ai-toolkit/provider';
+import { ImageModelV3Usage, JSONObject, LanguageModelV3Usage } from '@ai-toolkit/provider';
 
 /**
  * Represents the number of tokens used in a prompt and completion.
@@ -59,6 +55,16 @@ export type LanguageModelUsage = {
   totalTokens: number | undefined;
 
   /**
+   * @deprecated Use outputTokenDetails.reasoning instead.
+   */
+  reasoningTokens?: number | undefined;
+
+  /**
+   * @deprecated Use inputTokenDetails.cacheRead instead.
+   */
+  cachedInputTokens?: number | undefined;
+
+  /**
    * Raw usage information from the provider.
    *
    * This is the usage information in the shape that the provider returns.
@@ -68,19 +74,17 @@ export type LanguageModelUsage = {
 };
 
 /**
- * Represents the number of tokens used in an embedding.
+Represents the number of tokens used in an embedding.
  */
-// TODO replace with EmbeddingModelV4Usage once available in @ai-toolkit/provider
+// TODO replace with EmbeddingModelV3Usage
 export type EmbeddingModelUsage = {
   /**
-   * The number of tokens used in the embedding.
+The number of tokens used in the embedding.
    */
   tokens: number;
 };
 
-export function asLanguageModelUsage(
-  usage: LanguageModelV4Usage,
-): LanguageModelUsage {
+export function asLanguageModelUsage(usage: LanguageModelV3Usage): LanguageModelUsage {
   return {
     inputTokens: usage.inputTokens.total,
     inputTokenDetails: {
@@ -93,11 +97,10 @@ export function asLanguageModelUsage(
       textTokens: usage.outputTokens.text,
       reasoningTokens: usage.outputTokens.reasoning,
     },
-    totalTokens: addTokenCounts(
-      usage.inputTokens.total,
-      usage.outputTokens.total,
-    ),
+    totalTokens: addTokenCounts(usage.inputTokens.total, usage.outputTokens.total),
     raw: usage.raw,
+    reasoningTokens: usage.outputTokens.reasoning,
+    cachedInputTokens: usage.inputTokens.cacheRead,
   };
 }
 
@@ -151,6 +154,8 @@ export function addLanguageModelUsage(
       ),
     },
     totalTokens: addTokenCounts(usage1.totalTokens, usage2.totalTokens),
+    reasoningTokens: addTokenCounts(usage1.reasoningTokens, usage2.reasoningTokens),
+    cachedInputTokens: addTokenCounts(usage1.cachedInputTokens, usage2.cachedInputTokens),
   };
 }
 
@@ -164,9 +169,9 @@ function addTokenCounts(
 }
 
 /**
- * Usage information for an image model call.
+Usage information for an image model call.
  */
-export type ImageModelUsage = ImageModelV4Usage;
+export type ImageModelUsage = ImageModelV3Usage;
 
 export function addImageModelUsage(
   usage1: ImageModelUsage,

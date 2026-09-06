@@ -1,17 +1,9 @@
-import type { JSONObject, TranscriptionModelV4 } from '@ai-toolkit/provider';
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vitest,
-  vi,
-} from 'vitest';
+import { JSONObject, TranscriptionModelV3 } from '@ai-toolkit/provider';
+import { afterEach, beforeEach, describe, expect, it, vitest, vi } from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';
-import { MockTranscriptionModelV4 } from '../test/mock-transcription-model-v4';
+import { MockTranscriptionModelV3 } from '../test/mock-transcription-model-v3';
 import { transcribe } from './transcribe';
-import type { Warning } from '../types/warning';
+import { Warning } from '../types/warning';
 
 vi.mock('../version', () => {
   return {
@@ -72,9 +64,7 @@ describe('transcribe', () => {
   let logWarningsSpy: ReturnType<typeof vitest.spyOn>;
 
   beforeEach(() => {
-    logWarningsSpy = vitest
-      .spyOn(logWarningsModule, 'logWarnings')
-      .mockImplementation(() => {});
+    logWarningsSpy = vitest.spyOn(logWarningsModule, 'logWarnings').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -85,10 +75,10 @@ describe('transcribe', () => {
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
 
-    let capturedArgs!: Parameters<TranscriptionModelV4['doGenerate']>[0];
+    let capturedArgs!: Parameters<TranscriptionModelV3['doGenerate']>[0];
 
     await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -115,41 +105,9 @@ describe('transcribe', () => {
     });
   });
 
-  it('should detect MP4 audio with an ftyp box', async () => {
-    const mp4AudioData = new Uint8Array([
-      0x00,
-      0x00,
-      0x00,
-      0x1c, // box size
-      0x66,
-      0x74,
-      0x79,
-      0x70, // "ftyp"
-      0x4d,
-      0x34,
-      0x41,
-      0x20, // "M4A "
-    ]);
-    let capturedArgs!: Parameters<TranscriptionModelV4['doGenerate']>[0];
-
-    await transcribe({
-      model: new MockTranscriptionModelV4({
-        doGenerate: async args => {
-          capturedArgs = args;
-          return createMockResponse({
-            ...sampleTranscript,
-          });
-        },
-      }),
-      audio: mp4AudioData,
-    });
-
-    expect(capturedArgs.mediaType).toMatchInlineSnapshot(`"audio/mp4"`);
-  });
-
   it('should return warnings', async () => {
     const result = await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async () =>
           createMockResponse({
             ...sampleTranscript,
@@ -191,7 +149,7 @@ describe('transcribe', () => {
     ];
 
     await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async () =>
           createMockResponse({
             ...sampleTranscript,
@@ -211,7 +169,7 @@ describe('transcribe', () => {
 
   it('should call logWarnings with empty array when no warnings are present', async () => {
     await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async () =>
           createMockResponse({
             ...sampleTranscript,
@@ -231,7 +189,7 @@ describe('transcribe', () => {
 
   it('should return the transcript', async () => {
     const result = await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async () =>
           createMockResponse({
             ...sampleTranscript,
@@ -258,7 +216,7 @@ describe('transcribe', () => {
     it('should throw NoTranscriptGeneratedError when no transcript is returned', async () => {
       await expect(
         transcribe({
-          model: new MockTranscriptionModelV4({
+          model: new MockTranscriptionModelV3({
             doGenerate: async () =>
               createMockResponse({
                 text: '',
@@ -285,7 +243,7 @@ describe('transcribe', () => {
     it('should include response headers in error when no transcript generated', async () => {
       await expect(
         transcribe({
-          model: new MockTranscriptionModelV4({
+          model: new MockTranscriptionModelV3({
             doGenerate: async () =>
               createMockResponse({
                 text: '',
@@ -322,7 +280,7 @@ describe('transcribe', () => {
     const testHeaders = { 'x-test': 'value' };
 
     const result = await transcribe({
-      model: new MockTranscriptionModelV4({
+      model: new MockTranscriptionModelV3({
         doGenerate: async () =>
           createMockResponse({
             ...sampleTranscript,

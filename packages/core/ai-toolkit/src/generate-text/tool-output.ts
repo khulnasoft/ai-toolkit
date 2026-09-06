@@ -1,7 +1,5 @@
-import type { TypedToolError } from './tool-error';
-import type { TypedToolResult } from './tool-result';
-import type { ToolSet } from '@ai-toolkit/provider-utils';
+import { TypedToolError } from './tool-error';
+import { TypedToolResult } from './tool-result';
+import { ToolSet } from './tool-set';
 
-export type ToolOutput<TOOLS extends ToolSet> =
-  | TypedToolResult<TOOLS>
-  | TypedToolError<TOOLS>;
+export type ToolOutput<TOOLS extends ToolSet> = TypedToolResult<TOOLS> | TypedToolError<TOOLS>;

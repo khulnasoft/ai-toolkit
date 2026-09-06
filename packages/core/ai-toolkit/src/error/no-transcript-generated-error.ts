@@ -1,30 +1,20 @@
-import { AISDKError } from '@ai-toolkit/provider';
-import type { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
-
-const name = 'AI_NoTranscriptGeneratedError';
-const marker = `vercel.ai.error.${name}`;
-const symbol = Symbol.for(marker);
+import { AITOOLKITError } from '@ai-toolkit/provider';
+import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
 
 /**
- * Error that is thrown when no transcript was generated.
+Error that is thrown when no transcript was generated.
  */
-export class NoTranscriptGeneratedError extends AISDKError {
-  private readonly [symbol] = true; // used in isInstance
-
+export class NoTranscriptGeneratedError extends AITOOLKITError {
   readonly responses: Array<TranscriptionModelResponseMetadata>;
 
   constructor(options: {
     responses: Array<TranscriptionModelResponseMetadata>;
   }) {
     super({
-      name,
+      name: 'AI_NoTranscriptGeneratedError',
       message: 'No transcript generated.',
     });
 
     this.responses = options.responses;
-  }
-
-  static isInstance(error: unknown): error is NoTranscriptGeneratedError {
-    return AISDKError.hasMarker(error, marker);
   }
 }

@@ -1,104 +1,83 @@
-import type { Context, ToolSet } from '@ai-toolkit/provider-utils';
-import type {
-  CallWarning,
-  FinishReason,
-  LanguageModelResponseMetadata,
-  ProviderMetadata,
-} from '../types';
-import type { Source } from '../types/language-model';
-import type { LanguageModelUsage } from '../types/usage';
-import type { ContentPart } from './content-part';
-import type { GeneratedFile } from './generated-file';
-import type { Output } from './output';
-import type { InferCompleteOutput } from './output-utils';
-import type { ReasoningFileOutput, ReasoningOutput } from './reasoning-output';
-import type { ResponseMessage } from './response-message';
-import type { StepResult } from './step-result';
-import type {
-  DynamicToolCall,
-  StaticToolCall,
-  TypedToolCall,
-} from './tool-call';
-import type {
-  DynamicToolResult,
-  StaticToolResult,
-  TypedToolResult,
-} from './tool-result';
+import { CallWarning, FinishReason, ProviderMetadata } from '../types';
+import { Source } from '../types/language-model';
+import { LanguageModelRequestMetadata } from '../types/language-model-request-metadata';
+import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
+import { LanguageModelUsage } from '../types/usage';
+import { ContentPart } from './content-part';
+import { GeneratedFile } from './generated-file';
+import { Output } from './output';
+import { InferCompleteOutput } from './output-utils';
+import { ReasoningOutput } from './reasoning-output';
+import { ResponseMessage } from './response-message';
+import { StepResult } from './step-result';
+import { DynamicToolCall, StaticToolCall, TypedToolCall } from './tool-call';
+import { DynamicToolResult, StaticToolResult, TypedToolResult } from './tool-result';
+import { ToolSet } from './tool-set';
 
 /**
- * The result of a `generateText` call.
- * It contains the generated text, the tool calls that were made during the generation, and the results of the tool calls.
+The result of a `generateText` call.
+It contains the generated text, the tool calls that were made during the generation, and the results of the tool calls.
  */
-export interface GenerateTextResult<
-  TOOLS extends ToolSet,
-  RUNTIME_CONTEXT extends Context,
-  OUTPUT extends Output,
-> {
+export interface GenerateTextResult<TOOLS extends ToolSet, OUTPUT extends Output> {
   /**
-   * The content that was generated in all steps.
+The content that was generated in the last step.
    */
   readonly content: Array<ContentPart<TOOLS>>;
 
   /**
-   * The concatenation of all text parts generated in the final step.
-   * It is an empty string if the final step contains no text parts.
-   * Inspect `finalStep.content` to distinguish that case.
-   */
+The text that was generated in the last step.
+     */
   readonly text: string;
 
   /**
-   * The full reasoning that the model has generated in the last step.
-   *
-   * @deprecated Use `finalStep.reasoning` instead.
+The full reasoning that the model has generated in the last step.
    */
-  readonly reasoning: Array<ReasoningOutput | ReasoningFileOutput>;
+  readonly reasoning: Array<ReasoningOutput>;
 
   /**
-   * The reasoning text that the model has generated in the last step. Can be undefined if the model
-   * has only generated text.
-   *
-   * @deprecated Use `finalStep.reasoningText` instead.
+The reasoning text that the model has generated in the last step. Can be undefined if the model
+has only generated text.
    */
   readonly reasoningText: string | undefined;
 
   /**
-   * The files that were generated in all steps.
-   * Empty array if no files were generated.
-   */
+The files that were generated in the last step.
+Empty array if no files were generated.
+     */
   readonly files: Array<GeneratedFile>;
 
   /**
-   * Sources that have been used as references in all steps.
+Sources that have been used as references in the last step.
    */
   readonly sources: Array<Source>;
 
   /**
-   * The tool calls that were made in all steps.
+The tool calls that were made in the last step.
    */
   readonly toolCalls: Array<TypedToolCall<TOOLS>>;
 
   /**
-   * The static tool calls that were made in all steps.
+The static tool calls that were made in the last step.
    */
   readonly staticToolCalls: Array<StaticToolCall<TOOLS>>;
 
   /**
-   * The dynamic tool calls that were made in all steps.
+The dynamic tool calls that were made in the last step.
    */
   readonly dynamicToolCalls: Array<DynamicToolCall>;
 
   /**
-   * The results of the tool calls from all steps.
+The results of the tool calls from the last step.
    */
   readonly toolResults: Array<TypedToolResult<TOOLS>>;
 
   /**
-   * The static tool results that were made in all steps.
+The static tool results that were made in the last step.
    */
   readonly staticToolResults: Array<StaticToolResult<TOOLS>>;
 
   /**
-   * The dynamic tool results that were made in all steps.
+The dynamic tool results that were made in the last step.
    */
   readonly dynamicToolResults: Array<DynamicToolResult>;
 
@@ -113,70 +92,70 @@ export interface GenerateTextResult<
   readonly rawFinishReason: string | undefined;
 
   /**
-   * The total token usage of all steps.
-   * When there are multiple steps, the usage is the sum of all step usages.
+The token usage of the last step.
    */
   readonly usage: LanguageModelUsage;
 
   /**
-   * The total token usage of all steps.
-   * When there are multiple steps, the usage is the sum of all step usages.
-   *
-   * @deprecated Use `usage` instead.
+The total token usage of all steps.
+When there are multiple steps, the usage is the sum of all step usages.
    */
   readonly totalUsage: LanguageModelUsage;
 
   /**
-   * Warnings from the model provider (e.g. unsupported settings) in all steps.
+Warnings from the model provider (e.g. unsupported settings)
    */
   readonly warnings: CallWarning[] | undefined;
 
   /**
-   * Additional request information from the last step.
-   *
-   * @deprecated Use `finalStep.request` instead.
+Additional request information.
    */
-  readonly request: StepResult<TOOLS, RUNTIME_CONTEXT>['request'];
+  readonly request: LanguageModelRequestMetadata;
 
   /**
-   * Additional response information from the last step.
-   *
-   * @deprecated Use `finalStep.response` instead.
+Additional response information.
    */
-  readonly response: LanguageModelResponseMetadata;
+  readonly response: LanguageModelResponseMetadata & {
+    /**
+The response messages that were generated during the call. It consists of an assistant message,
+potentially containing tool calls.
+
+When there are tool results, there is an additional tool message with the tool results that are available.
+If there are tools that do not have execute functions, they are not included in the tool results and
+need to be added separately.
+       */
+    messages: Array<ResponseMessage>;
+
+    /**
+Response body (available only for providers that use HTTP requests).
+     */
+    body?: unknown;
+  };
 
   /**
-   * The accumulated response messages of all steps that were generated during the call.
-   */
-  readonly responseMessages: Array<ResponseMessage>;
-
-  /**
-   * Additional provider-specific metadata from the final step. They are passed
-   * through from the provider to the AI SDK and enable provider-specific
-   * results that can be fully encapsulated in the provider.
-   *
-   * @deprecated Use `finalStep.providerMetadata` instead.
+Additional provider-specific metadata. They are passed through
+from the provider to the AI TOOLKIT and enable provider-specific
+results that can be fully encapsulated in the provider.
    */
   readonly providerMetadata: ProviderMetadata | undefined;
 
   /**
-   * Details for all steps.
-   * You can use this to get information about intermediate steps,
-   * such as the tool calls or the response headers.
+Details for all steps.
+You can use this to get information about intermediate steps,
+such as the tool calls or the response headers.
    */
-  readonly steps: Array<StepResult<TOOLS, RUNTIME_CONTEXT>>;
+  readonly steps: Array<StepResult<TOOLS>>;
 
   /**
-   * The final step. This is a shortcut for `steps.at(-1)`.
+The generated structured output. It uses the `output` specification.
+
+@deprecated Use `output` instead.
    */
-  readonly finalStep: StepResult<TOOLS, RUNTIME_CONTEXT>;
+  readonly experimental_output: InferCompleteOutput<OUTPUT>;
 
   /**
-   * The generated output according to the `output` specification.
-   *
-   * @throws {NoOutputGeneratedError} When no output is available, for example
-   * when the final step finishes with a `tool-calls` reason, or when it
-   * contains no text and does not finish with a `stop` reason.
+The generated structured output. It uses the `output` specification.
+
    */
   readonly output: InferCompleteOutput<OUTPUT>;
 }

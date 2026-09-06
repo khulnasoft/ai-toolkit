@@ -1,4 +1,4 @@
-import type { Job } from './job';
+import { Job } from './job';
 
 export class SerialJobExecutor {
   private queue: Array<Job> = [];

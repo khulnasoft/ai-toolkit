@@ -1,12 +1,13 @@
 import {
+  EmbeddingModelV2,
+  ImageModelV2,
+  LanguageModelV2,
   NoSuchModelError,
-  type EmbeddingModelV2,
-  type ImageModelV2,
-  type LanguageModelV2,
-  type ProviderV2,
-  type SpeechModelV2,
-  type TranscriptionModelV2,
+  ProviderV2,
+  SpeechModelV2,
+  TranscriptionModelV2,
 } from '@ai-toolkit/provider';
+
 export class MockProviderV2 implements ProviderV2 {
   languageModel: ProviderV2['languageModel'];
   textEmbeddingModel: ProviderV2['textEmbeddingModel'];

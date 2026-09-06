@@ -86,12 +86,12 @@ pnpm generate example --level=01-foundations --name=my-example
 
 | Area                             | Owner                          | Review              |
 | -------------------------------- | ------------------------------ | ------------------- |
-| `packages/core/`                 | @khulnasoft/ai-sdk-core        | 2 approvals         |
+| `packages/core/`                 | @khulnasoft/ai-toolkit-core        | 2 approvals         |
 | `packages/providers/{provider}/` | Provider team                  | 1 approval + 1 core |
 | `packages/adapters/`             | Framework teams                | 1 approval          |
-| `examples/`                      | @khulnasoft/ai-sdk-developers  | 1 approval          |
+| `examples/`                      | @khulnasoft/ai-toolkit-developers  | 1 approval          |
 | `.github/`                       | @khulnasoft/devops-team        | 1 approval          |
-| Root configs                     | @khulnasoft/ai-sdk-maintainers | 1 approval          |
+| Root configs                     | @khulnasoft/ai-toolkit-maintainers | 1 approval          |
 
 **See**: `CODEOWNERS` file for complete mapping
 

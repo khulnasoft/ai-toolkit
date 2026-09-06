@@ -2,6 +2,7 @@ import type {
   Experimental_VideoModelV4CallOptions,
   Experimental_VideoModelV4FrameType,
   JSONValue,
+  SharedV4Warning,
 } from '@ai-toolkit/provider';
 import {
   generateId,
@@ -15,7 +16,6 @@ import type {
   VideoModelProviderMetadata,
 } from '../types/video-model';
 import type { VideoModelResponseMetadata } from '../types/video-model-response-metadata';
-import type { Warning } from '../types/warning';
 import { prepareRetries } from '../util/prepare-retries';
 import { VERSION } from '../version';
 import {
@@ -37,7 +37,7 @@ export interface StartVideoResult {
   /**
    * Warnings for the call, e.g. unsupported settings.
    */
-  readonly warnings: Array<Warning>;
+  readonly warnings: Array<SharedV4Warning>;
 
   /**
    * Provider-specific metadata passed through from the provider.

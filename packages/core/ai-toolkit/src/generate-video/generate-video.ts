@@ -7,6 +7,7 @@ import type {
   Experimental_VideoModelV4FrameImage,
   Experimental_VideoModelV4FrameType,
   SharedV4ProviderMetadata,
+  SharedV4Warning,
 } from '@ai-toolkit/provider';
 import {
   convertBase64ToUint8Array,
@@ -27,7 +28,6 @@ import { mergeAbortSignals } from '../util/merge-abort-signals';
 import { resolveVideoModel } from '../model/resolve-model';
 import type { VideoModel } from '../types/video-model';
 import type { VideoModelResponseMetadata } from '../types/video-model-response-metadata';
-import type { Warning } from '../types/warning';
 import { createDownload } from '../util/download/create-download';
 import { prepareRetries } from '../util/prepare-retries';
 import { VERSION } from '../version';
@@ -714,7 +714,7 @@ export function normalizeVideoCallInputs({
   resolvedImage: Experimental_VideoModelV4File | undefined;
   normalizedFrameImages: Array<Experimental_VideoModelV4FrameImage> | undefined;
   effectiveInputReferences: Array<Experimental_VideoModelV4File> | undefined;
-  warnings: Array<Warning>;
+  warnings: Array<SharedV4Warning>;
 } {
   const { prompt, image } = normalizePrompt(promptArg);
 
@@ -739,7 +739,7 @@ export function normalizeVideoCallInputs({
       ? undefined
       : normalizedInputReferences;
 
-  const warnings: Array<Warning> = [];
+  const warnings: Array<SharedV4Warning> = [];
 
   if (
     normalizedFrameImages != null &&

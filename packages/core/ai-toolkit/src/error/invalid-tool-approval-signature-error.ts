@@ -1,10 +1,10 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_InvalidToolApprovalSignatureError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class InvalidToolApprovalSignatureError extends AISDKError {
+export class InvalidToolApprovalSignatureError extends AITOOLKITError {
   private readonly [symbol] = true;
 
   readonly approvalId: string;
@@ -30,6 +30,6 @@ export class InvalidToolApprovalSignatureError extends AISDKError {
   static isInstance(
     error: unknown,
   ): error is InvalidToolApprovalSignatureError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }

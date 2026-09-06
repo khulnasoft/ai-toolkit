@@ -1,4 +1,4 @@
-import type { LanguageModelV2 } from '@ai-toolkit/provider';
+import { LanguageModelV2 } from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockLanguageModelV2 implements LanguageModelV2 {
@@ -24,9 +24,7 @@ export class MockLanguageModelV2 implements LanguageModelV2 {
   }: {
     provider?: LanguageModelV2['provider'];
     modelId?: LanguageModelV2['modelId'];
-    supportedUrls?:
-      | LanguageModelV2['supportedUrls']
-      | (() => LanguageModelV2['supportedUrls']);
+    supportedUrls?: LanguageModelV2['supportedUrls'] | (() => LanguageModelV2['supportedUrls']);
     doGenerate?:
       | LanguageModelV2['doGenerate']
       | Awaited<ReturnType<LanguageModelV2['doGenerate']>>
@@ -42,9 +40,9 @@ export class MockLanguageModelV2 implements LanguageModelV2 {
       this.doGenerateCalls.push(options);
 
       if (typeof doGenerate === 'function') {
-        return await doGenerate(options);
+        return doGenerate(options);
       } else if (Array.isArray(doGenerate)) {
-        return doGenerate[this.doGenerateCalls.length - 1];
+        return doGenerate[this.doGenerateCalls.length];
       } else {
         return doGenerate;
       }
@@ -53,17 +51,15 @@ export class MockLanguageModelV2 implements LanguageModelV2 {
       this.doStreamCalls.push(options);
 
       if (typeof doStream === 'function') {
-        return await doStream(options);
+        return doStream(options);
       } else if (Array.isArray(doStream)) {
-        return doStream[this.doStreamCalls.length - 1];
+        return doStream[this.doStreamCalls.length];
       } else {
         return doStream;
       }
     };
     this._supportedUrls =
-      typeof supportedUrls === 'function'
-        ? supportedUrls
-        : async () => await supportedUrls;
+      typeof supportedUrls === 'function' ? supportedUrls : async () => supportedUrls;
   }
 
   get supportedUrls() {

@@ -1,4 +1,4 @@
-import type { EmbeddingModelV3 } from '@ai-toolkit/provider';
+import { EmbeddingModelV3 } from '@ai-toolkit/provider';
 import { notImplemented } from './not-implemented';
 
 export class MockEmbeddingModelV3 implements EmbeddingModelV3 {
@@ -39,7 +39,7 @@ export class MockEmbeddingModelV3 implements EmbeddingModelV3 {
       if (typeof doEmbed === 'function') {
         return doEmbed(options);
       } else if (Array.isArray(doEmbed)) {
-        return doEmbed[this.doEmbedCalls.length - 1];
+        return doEmbed[this.doEmbedCalls.length];
       } else {
         return doEmbed;
       }

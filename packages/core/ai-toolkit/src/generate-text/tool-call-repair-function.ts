@@ -1,8 +1,8 @@
-import type { JSONSchema7, LanguageModelV4ToolCall } from '@ai-toolkit/provider';
-import type { InvalidToolInputError } from '../error/invalid-tool-input-error';
-import type { NoSuchToolError } from '../error/no-such-tool-error';
-import type { Instructions, ModelMessage } from '../prompt';
-import type { ToolSet } from '@ai-toolkit/provider-utils';
+import { JSONSchema7, LanguageModelV3ToolCall } from '@ai-toolkit/provider';
+import { InvalidToolInputError } from '../error/invalid-tool-input-error';
+import { NoSuchToolError } from '../error/no-such-tool-error';
+import { ModelMessage, SystemModelMessage } from '../prompt';
+import { ToolSet } from './tool-set';
 
 /**
  * A function that attempts to repair a tool call that failed to parse.
@@ -10,8 +10,7 @@ import type { ToolSet } from '@ai-toolkit/provider-utils';
  * It receives the error and the context as arguments and returns the repair
  * tool call JSON as text.
  *
- * @param options.instructions - The instructions provided to the model.
- * @param options.system - The instructions provided to the model.
+ * @param options.system - The system prompt.
  * @param options.messages - The messages in the current generation step.
  * @param options.toolCall - The tool call that failed to parse.
  * @param options.tools - The tools that are available.
@@ -19,14 +18,10 @@ import type { ToolSet } from '@ai-toolkit/provider-utils';
  * @param options.error - The error that occurred while parsing the tool call.
  */
 export type ToolCallRepairFunction<TOOLS extends ToolSet> = (options: {
-  instructions: Instructions | undefined;
-  /**
-   * @deprecated Use `instructions` instead.
-   */
-  system: Instructions | undefined;
+  system: string | SystemModelMessage | Array<SystemModelMessage> | undefined;
   messages: ModelMessage[];
-  toolCall: LanguageModelV4ToolCall;
+  toolCall: LanguageModelV3ToolCall;
   tools: TOOLS;
   inputSchema: (options: { toolName: string }) => PromiseLike<JSONSchema7>;
   error: NoSuchToolError | InvalidToolInputError;
-}) => Promise<LanguageModelV4ToolCall | null>;
+}) => Promise<LanguageModelV3ToolCall | null>;

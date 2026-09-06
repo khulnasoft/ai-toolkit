@@ -1,23 +1,13 @@
-import { delay as originalDelay, type ToolSet } from '@ai-toolkit/provider-utils';
-import {
-  InvalidArgumentError,
-  type SharedV4ProviderMetadata,
-} from '@ai-toolkit/provider';
-import type { TextStreamPart } from './stream-text-result';
+import { delay as originalDelay } from '@ai-toolkit/provider-utils';
+import { SharedV3ProviderMetadata } from '@ai-toolkit/provider';
+import { TextStreamPart } from './stream-text-result';
+import { ToolSet } from './tool-set';
+import { InvalidArgumentError } from '@ai-toolkit/provider';
 
 const CHUNKING_REGEXPS = {
   word: /\S+\s+/m,
   line: /\n+/m,
 };
-
-// Browsers heavily throttle timers in hidden documents (e.g. background tabs),
-// which would stall the smoothing delay and, through backpressure, the entire
-// stream. Smoothing has no visual purpose there, so the delay is skipped.
-function isDocumentHidden(): boolean {
-  return (
-    typeof document !== 'undefined' && document.visibilityState === 'hidden'
-  );
-}
 
 /**
  * Detects the first chunk in a buffer.
@@ -31,8 +21,8 @@ export type ChunkDetector = (buffer: string) => string | undefined | null;
 /**
  * Smooths text and reasoning streaming output.
  *
- * @param delayInMs - The delay in milliseconds between each chunk. Defaults to 10ms. Can be set to `null` to skip the delay. The delay is skipped while the document is hidden (e.g. browser background tabs), where timer throttling would otherwise stall the stream.
- * @param chunking - Controls how the text is chunked for streaming. Use "word" to stream word by word (default), "line" to stream line by line, provide a custom RegExp pattern that does not match the empty string for custom chunking, provide an Intl.Segmenter for locale-aware word segmentation (recommended for CJK languages), or provide a custom ChunkDetector function.
+ * @param delayInMs - The delay in milliseconds between each chunk. Defaults to 10ms. Can be set to `null` to skip the delay.
+ * @param chunking - Controls how the text is chunked for streaming. Use "word" to stream word by word (default), "line" to stream line by line, provide a custom RegExp pattern for custom chunking, provide an Intl.Segmenter for locale-aware word segmentation (recommended for CJK languages), or provide a custom ChunkDetector function.
  *
  * @returns A transform stream that smooths text streaming output.
  */
@@ -104,25 +94,13 @@ export function smoothStream<TOOLS extends ToolSet>({
     }
 
     detectChunk = buffer => {
-      const lastIndex = chunkingRegex.lastIndex;
-      chunkingRegex.lastIndex = 0;
-
-      let match: RegExpExecArray | null;
-      try {
-        match = chunkingRegex.exec(buffer);
-      } finally {
-        chunkingRegex.lastIndex = lastIndex;
-      }
+      const match = chunkingRegex.exec(buffer);
 
       if (!match) {
         return null;
       }
 
-      if (!match[0].length) {
-        throw new Error(`Chunking RegExp must not match an empty string.`);
-      }
-
-      return buffer.slice(0, match.index) + match[0];
+      return buffer.slice(0, match.index) + match?.[0];
     };
   }
 
@@ -130,15 +108,10 @@ export function smoothStream<TOOLS extends ToolSet>({
     let buffer = '';
     let id = '';
     let type: 'text-delta' | 'reasoning-delta' | undefined = undefined;
-    let providerMetadata: SharedV4ProviderMetadata | undefined = undefined;
+    let providerMetadata: SharedV3ProviderMetadata | undefined = undefined;
 
-    function flushBuffer(
-      controller: TransformStreamDefaultController<TextStreamPart<TOOLS>>,
-    ) {
-      if (
-        type !== undefined &&
-        (buffer.length > 0 || providerMetadata != null)
-      ) {
+    function flushBuffer(controller: TransformStreamDefaultController<TextStreamPart<TOOLS>>) {
+      if (buffer.length > 0 && type !== undefined) {
         controller.enqueue({
           type,
           text: buffer,
@@ -160,10 +133,7 @@ export function smoothStream<TOOLS extends ToolSet>({
         }
 
         // Flush buffer when type or id changes
-        if (
-          (chunk.type !== type || chunk.id !== id) &&
-          (buffer.length > 0 || providerMetadata != null)
-        ) {
+        if ((chunk.type !== type || chunk.id !== id) && buffer.length > 0) {
           flushBuffer(controller);
         }
 
@@ -182,7 +152,7 @@ export function smoothStream<TOOLS extends ToolSet>({
           controller.enqueue({ type, text: match, id });
           buffer = buffer.slice(match.length);
 
-          await delay(isDocumentHidden() ? null : delayInMs);
+          await delay(delayInMs);
         }
       },
     });

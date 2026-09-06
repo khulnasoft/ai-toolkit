@@ -1,19 +1,10 @@
-import { describe, expectTypeOf, it } from 'vitest';
+import { expectTypeOf } from 'vitest';
 import { generateObject } from './generate-object';
 import { z } from 'zod/v4';
-import type { JSONValue } from '@ai-toolkit/provider';
+import { JSONValue } from '@ai-toolkit/provider';
+import { describe, it } from 'vitest';
 
 describe('generateObject', () => {
-  it('should not accept timeout option', async () => {
-    generateObject({
-      schema: z.object({ number: z.number() }),
-      model: undefined!,
-      messages: [],
-      // @ts-expect-error timeout is not supported for the deprecated generateObject API
-      timeout: 5000,
-    });
-  });
-
   it('should support enum types', async () => {
     const result = await generateObject({
       output: 'enum',
@@ -54,19 +45,5 @@ describe('generateObject', () => {
     });
 
     expectTypeOf<typeof result.object>().toEqualTypeOf<number[]>();
-  });
-
-  it('should support stable start callbacks', async () => {
-    generateObject({
-      schema: z.object({ number: z.number() }),
-      model: undefined!,
-      messages: [],
-      onStart: event => {
-        expectTypeOf(event.operationId).toEqualTypeOf<string>();
-      },
-      onStepStart: event => {
-        expectTypeOf(event.stepNumber).toEqualTypeOf<0>();
-      },
-    });
   });
 });

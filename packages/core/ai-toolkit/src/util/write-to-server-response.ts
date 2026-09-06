@@ -1,9 +1,5 @@
 import type { ServerResponse } from 'node:http';
 
-type FlushableServerResponse = ServerResponse & {
-  flush?: () => void;
-};
-
 /**
  * Writes the content of a stream to a server response.
  */
@@ -19,7 +15,7 @@ export function writeToServerResponse({
   statusText?: string;
   headers?: Record<string, string | number | string[]>;
   stream: ReadableStream<Uint8Array>;
-}): Promise<void> {
+}): void {
   const statusCode = status ?? 200;
   if (statusText !== undefined) {
     response.writeHead(statusCode, statusText, headers);
@@ -36,11 +32,6 @@ export function writeToServerResponse({
 
         // Respect backpressure: if write() returns false, wait for 'drain' event
         const canContinue = response.write(value);
-        const flush = (response as FlushableServerResponse).flush;
-        if (typeof flush === 'function') {
-          flush.call(response);
-        }
-
         if (!canContinue) {
           await new Promise<void>(resolve => {
             response.once('drain', resolve);
@@ -54,5 +45,5 @@ export function writeToServerResponse({
     }
   };
 
-  return read();
+  read();
 }

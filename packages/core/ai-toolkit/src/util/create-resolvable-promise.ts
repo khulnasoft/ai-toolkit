@@ -1,4 +1,4 @@
-import type { ErrorHandler } from './error-handler';
+import { ErrorHandler } from './error-handler';
 
 /**
  * Creates a Promise with externally accessible resolve and reject functions.

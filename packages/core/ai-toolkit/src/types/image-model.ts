@@ -1,19 +1,19 @@
-import type {
+import {
   ImageModelV2,
   ImageModelV3,
-  ImageModelV4,
-  ImageModelV4ProviderMetadata,
+  ImageModelV3ProviderMetadata,
   ImageModelV2ProviderMetadata,
 } from '@ai-toolkit/provider';
 
 /**
- * Image model that is used by the AI SDK.
- */
-export type ImageModel = string | ImageModelV4 | ImageModelV3 | ImageModelV2;
+Image model that is used by the AI TOOLKIT.
+  */
+export type ImageModel = string | ImageModelV3 | ImageModelV2;
 
 /**
- * Metadata from the model provider for this call.
- */
+Metadata from the model provider for this call
+  */
+// TODO should this be v3 only?
 export type ImageModelProviderMetadata =
-  | ImageModelV4ProviderMetadata
+  | ImageModelV3ProviderMetadata
   | ImageModelV2ProviderMetadata;
