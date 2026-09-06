@@ -6,22 +6,28 @@ import {
   ProviderV3,
   SpeechModelV3,
   TranscriptionModelV3,
+  type Experimental_VideoModelV4,
 } from '@ai-toolkit/provider';
 import { UnsupportedModelVersionError } from '../error';
 import { EmbeddingModel } from '../types/embedding-model';
+import { ImageModel } from '../types/image-model';
 import { LanguageModel } from '../types/language-model';
 import { SpeechModel } from '../types/speech-model';
 import { TranscriptionModel } from '../types/transcription-model';
+import { VideoModel } from '../types/video-model';
 import { asEmbeddingModelV3 } from './as-embedding-model-v3';
 import { asImageModelV3 } from './as-image-model-v3';
 import { asLanguageModelV3 } from './as-language-model-v3';
 import { asSpeechModelV3 } from './as-speech-model-v3';
 import { asTranscriptionModelV3 } from './as-transcription-model-v3';
-import { ImageModel } from '../types/image-model';
+import { asVideoModelV4 } from './as-video-model-v4';
 
 export function resolveLanguageModel(model: LanguageModel): LanguageModelV3 {
   if (typeof model !== 'string') {
-    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
+    if (
+      model.specificationVersion !== 'v3' &&
+      model.specificationVersion !== 'v2'
+    ) {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -38,7 +44,10 @@ export function resolveLanguageModel(model: LanguageModel): LanguageModelV3 {
 
 export function resolveEmbeddingModel(model: EmbeddingModel): EmbeddingModelV3 {
   if (typeof model !== 'string') {
-    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
+    if (
+      model.specificationVersion !== 'v3' &&
+      model.specificationVersion !== 'v2'
+    ) {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -57,7 +66,10 @@ export function resolveTranscriptionModel(
   model: TranscriptionModel,
 ): TranscriptionModelV3 | undefined {
   if (typeof model !== 'string') {
-    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
+    if (
+      model.specificationVersion !== 'v3' &&
+      model.specificationVersion !== 'v2'
+    ) {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -71,9 +83,14 @@ export function resolveTranscriptionModel(
   return getGlobalProvider().transcriptionModel?.(model);
 }
 
-export function resolveSpeechModel(model: SpeechModel): SpeechModelV3 | undefined {
+export function resolveSpeechModel(
+  model: SpeechModel,
+): SpeechModelV3 | undefined {
   if (typeof model !== 'string') {
-    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
+    if (
+      model.specificationVersion !== 'v3' &&
+      model.specificationVersion !== 'v2'
+    ) {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -89,7 +106,10 @@ export function resolveSpeechModel(model: SpeechModel): SpeechModelV3 | undefine
 
 export function resolveImageModel(model: ImageModel): ImageModelV3 {
   if (typeof model !== 'string') {
-    if (model.specificationVersion !== 'v3' && model.specificationVersion !== 'v2') {
+    if (
+      model.specificationVersion !== 'v3' &&
+      model.specificationVersion !== 'v2'
+    ) {
       const unsupportedModel: any = model;
       throw new UnsupportedModelVersionError({
         version: unsupportedModel.specificationVersion,
@@ -102,6 +122,40 @@ export function resolveImageModel(model: ImageModel): ImageModelV3 {
   }
 
   return getGlobalProvider().imageModel(model);
+}
+
+export function resolveVideoModel(
+  model: VideoModel,
+): Experimental_VideoModelV4 {
+  if (typeof model === 'string') {
+    const provider = getGlobalProvider();
+    // TODO AI SDK v7
+    // @ts-expect-error - videoModel support is experimental
+    const videoModel = provider.videoModel;
+
+    if (!videoModel) {
+      throw new Error(
+        'The default provider does not support video models. ' +
+          'Please use an Experimental_VideoModelV4 object from a provider (e.g., provider.video("model-id")).',
+      );
+    }
+
+    return videoModel(model);
+  }
+
+  if (
+    model.specificationVersion !== 'v4' &&
+    model.specificationVersion !== 'v3'
+  ) {
+    const unsupportedModel: any = model;
+    throw new UnsupportedModelVersionError({
+      version: unsupportedModel.specificationVersion,
+      provider: unsupportedModel.provider,
+      modelId: unsupportedModel.modelId,
+    });
+  }
+
+  return asVideoModelV4(model);
 }
 
 function getGlobalProvider(): ProviderV3 {

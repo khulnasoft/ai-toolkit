@@ -1,3 +1,4 @@
+import type { SharedV4Warning } from '@ai-toolkit/provider';
 import { Warning } from '../types';
 
 /**
@@ -16,7 +17,7 @@ export type LogWarningsFunction = (options: {
   /**
    * The warnings returned by the model provider.
    */
-  warnings: Warning[];
+  warnings: Array<Warning | SharedV4Warning>;
 
   /**
    * The provider id used for the call.
@@ -37,7 +38,7 @@ function formatWarning({
   provider,
   model,
 }: {
-  warning: Warning;
+  warning: Warning | SharedV4Warning;
   provider: string;
   model: string;
 }): string {
@@ -58,6 +59,10 @@ function formatWarning({
         message += ` ${warning.details}`;
       }
       return message;
+    }
+
+    case 'deprecated': {
+      return `${prefix} The setting "${warning.setting}" is deprecated. ${warning.message}`;
     }
 
     case 'other': {
