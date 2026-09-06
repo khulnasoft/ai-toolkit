@@ -7,7 +7,7 @@ import AnthropicToolSearchView from '@/components/tool/anthropic-tool-search-vie
 import WeatherView from '@/components/tool/weather-view';
 import SendEmailView from '@/components/tool/send-email-view';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function ChatAnthropicToolSearch() {
   const { error, status, sendMessage, messages, regenerate } =

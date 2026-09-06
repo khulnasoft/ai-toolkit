@@ -8,7 +8,7 @@ import {
   normalizeHeaders,
   safeValidateTypes,
 } from '@ai-toolkit/provider-utils';
-import { asSchema, DeepPartial, isDeepEqualData, parsePartialJson } from 'ai';
+import { asSchema, DeepPartial, isDeepEqualData, parsePartialJson } from 'ai-toolkit';
 import { useCallback, useId, useRef, useState } from 'react';
 import useSWR from 'swr';
 

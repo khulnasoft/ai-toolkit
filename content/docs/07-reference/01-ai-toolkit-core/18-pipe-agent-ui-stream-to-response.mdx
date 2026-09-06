@@ -10,14 +10,14 @@ The `pipeAgentUIStreamToResponse` function runs an [Agent](/docs/reference/ai-to
 ## Import
 
 <Snippet
-  text={`import { pipeAgentUIStreamToResponse } from "ai"`}
+  text={`import { pipeAgentUIStreamToResponse } from "ai-toolkit"`}
   prompt={false}
 />
 
 ## Usage
 
 ```ts
-import { pipeAgentUIStreamToResponse } from 'ai';
+import { pipeAgentUIStreamToResponse } from 'ai-toolkit';
 import { MyAgent } from './agent';
 
 export async function handler(req, res) {
@@ -105,7 +105,7 @@ A `Promise<void>`. The function completes when the UI message stream has been fu
 ## Example: Express Route Handler
 
 ```ts
-import { pipeAgentUIStreamToResponse } from 'ai';
+import { pipeAgentUIStreamToResponse } from 'ai-toolkit';
 import { openaiWebSearchAgent } from './openai-web-search-agent';
 
 app.post('/chat', async (req, res) => {

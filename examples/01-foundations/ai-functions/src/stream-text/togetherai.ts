@@ -1,5 +1,5 @@
 import { togetherai } from '@ai-toolkit/togetherai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

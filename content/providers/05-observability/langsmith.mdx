@@ -54,7 +54,7 @@ To start tracing, you will need to import and call the `wrapAITOOLKIT` method at
 
 ```ts highlight="6-7"
 import { openai } from '@ai-toolkit/openai';
-import * as ai from 'ai';
+import * as ai from 'ai-toolkit';
 
 import { wrapAITOOLKIT } from 'langsmith/experimental/vercel';
 
@@ -72,8 +72,8 @@ You should see a trace in your LangSmith dashboard [like this one](https://smith
 You can also trace runs with tool calls:
 
 ```ts
-import * as ai from 'ai';
-import { tool, stepCountIs } from 'ai';
+import * as ai from 'ai-toolkit';
+import { tool, stepCountIs } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -118,8 +118,8 @@ You can wrap `traceable` calls around AI TOOLKIT calls or within AI TOOLKIT tool
 want to group runs together in LangSmith:
 
 ```ts
-import * as ai from 'ai';
-import { tool, stepCountIs } from 'ai';
+import * as ai from 'ai-toolkit';
+import { tool, stepCountIs } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 

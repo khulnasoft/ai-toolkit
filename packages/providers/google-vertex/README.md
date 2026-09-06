@@ -22,7 +22,7 @@ The Node.js runtime is the default runtime supported by the AI TOOLKIT. You can 
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: vertex('gemini-1.5-flash'),
@@ -40,7 +40,7 @@ You can use the default provider instance to generate text with the `gemini-1.5-
 
 ```ts
 import { vertex } from '@ai-toolkit/google-vertex/edge';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: vertex('gemini-1.5-flash'),
@@ -58,7 +58,7 @@ The Google Vertex Anthropic provider is available for both Node.js and Edge runt
 
 ```ts
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: vertexAnthropic('claude-3-5-sonnet@20240620'),
@@ -70,7 +70,7 @@ const { text } = await generateText({
 
 ```ts
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic/edge';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: vertexAnthropic('claude-3-5-sonnet@20240620'),
@@ -88,7 +88,7 @@ To enable prompt caching, you can use the `cacheControl` property in the setting
 
 ```ts
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import fs from 'node:fs';
 
 const errorMessage = fs.readFileSync('data/error-message.txt', 'utf8');
@@ -138,7 +138,7 @@ You can create a custom provider instance using the `createVertex` function. Thi
 
 ```ts
 import { createVertex } from '@ai-toolkit/google-vertex';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const customProvider = createVertex({
   project: 'your-project-id',
@@ -163,7 +163,7 @@ The Edge provider supports a `googleCredentials` option rather than `googleAuthO
 
 ```ts
 import { createVertex } from '@ai-toolkit/google-vertex/edge';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const customProvider = createVertex({
   project: 'your-project-id',
@@ -186,7 +186,7 @@ The Google Vertex Anthropic provider custom configuration is analogous to the ab
 
 ```ts
 import { createVertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const customProvider = createVertexAnthropic({
   project: 'your-project-id',
@@ -203,7 +203,7 @@ And for the Edge runtime:
 
 ```ts
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic/edge';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const customProvider = createVertexAnthropic({
   project: 'your-project-id',

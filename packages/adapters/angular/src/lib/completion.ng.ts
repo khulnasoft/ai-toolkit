@@ -4,7 +4,7 @@ import {
   generateId,
   type CompletionRequestOptions,
   type UseCompletionOptions,
-} from 'ai';
+} from 'ai-toolkit';
 
 export type CompletionOptions = Readonly<UseCompletionOptions>;
 

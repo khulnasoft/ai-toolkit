@@ -1,5 +1,5 @@
 import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
-import { generateText, Output, stepCountIs, tool } from 'ai';
+import { generateText, Output, stepCountIs, tool } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

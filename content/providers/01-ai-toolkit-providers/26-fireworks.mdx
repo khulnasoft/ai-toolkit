@@ -82,7 +82,7 @@ You can use the `extractReasoningMiddleware` to extract this reasoning and expos
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
+import { wrapLanguageModel, extractReasoningMiddleware } from 'ai-toolkit';
 
 const enhancedModel = wrapLanguageModel({
   model: fireworks('accounts/fireworks/models/deepseek-r1'),
@@ -98,7 +98,7 @@ You can use Fireworks language models to generate text with the `generateText` f
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: fireworks('accounts/fireworks/models/firefunction-v1'),
@@ -157,7 +157,7 @@ You can use Fireworks embedding models to generate embeddings with the `embed` f
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: fireworks.embedding('nomic-ai/nomic-embed-text-v1.5'),
@@ -183,7 +183,7 @@ For more on image generation with the AI TOOLKIT see [generateImage()](/docs/ref
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: fireworks.image('accounts/fireworks/models/flux-1-dev-fp8'),

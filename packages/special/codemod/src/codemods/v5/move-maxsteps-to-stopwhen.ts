@@ -80,7 +80,7 @@ export default createTransformer((fileInfo, api, options, context) => {
       const importedName = specifier.imported.name;
       const localName = specifier.local?.name || importedName;
 
-      if (source === 'ai') {
+      if (source === 'ai-toolkit') {
         if (importedName === 'generateText') {
           trackedFunctions.generateText = localName;
         } else if (importedName === 'streamText') {
@@ -144,7 +144,7 @@ export default createTransformer((fileInfo, api, options, context) => {
 
   // Add stepCountIs to existing `ai` or create new import if needed
   if (shouldAddStepCountIsImport && !hasStepCountIsImport) {
-    const aiImport = root.find(j.ImportDeclaration).filter(path => path.node.source.value === 'ai');
+    const aiImport = root.find(j.ImportDeclaration).filter(path => path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit');
 
     if (aiImport.size()) {
       const path = aiImport.get();
@@ -161,7 +161,7 @@ export default createTransformer((fileInfo, api, options, context) => {
       const firstImport = root.find(j.ImportDeclaration).at(0);
       const importDecl = j.importDeclaration(
         [j.importSpecifier(j.identifier('stepCountIs'))],
-        j.literal('ai'),
+        j.literal('ai-toolkit'),
       );
       if (firstImport.size()) {
         firstImport.insertAfter(importDecl);

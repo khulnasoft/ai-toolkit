@@ -83,7 +83,7 @@ Now let's implement the `generateResponse` function. Use the `streamText` functi
 ```typescript filename='app/actions.ts'
 'use server';
 
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { createStreamableValue } from '@ai-toolkit/rsc';
 
@@ -116,7 +116,7 @@ If you are looking to track loading state on a more granular level, you can crea
 ```typescript filename='app/actions.ts' highlight='9,22,25'
 'use server';
 
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { createStreamableValue } from '@ai-toolkit/rsc';
 

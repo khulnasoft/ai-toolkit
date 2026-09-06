@@ -1,4 +1,4 @@
-import { CompletionRequestOptions, UseCompletionOptions, callCompletionApi } from 'ai';
+import { CompletionRequestOptions, UseCompletionOptions, callCompletionApi } from 'ai-toolkit';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import useSWR from 'swr';
 import { throttle } from './throttle';

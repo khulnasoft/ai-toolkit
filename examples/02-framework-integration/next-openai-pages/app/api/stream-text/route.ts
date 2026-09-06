@@ -1,4 +1,4 @@
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {

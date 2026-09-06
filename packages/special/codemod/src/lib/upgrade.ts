@@ -88,6 +88,7 @@ const bundle = [
   'v6/rename-vertex-provider-metadata-key',
   'v6/wrap-tomodeloutput-parameter',
   'v6/add-await-converttomodelmessages',
+  'v6/rename-ai-to-ai-toolkit',
 ];
 
 const log = debug('codemod:upgrade');

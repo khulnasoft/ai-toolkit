@@ -1,4 +1,4 @@
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 import { openaiCodeInterpreterAgent } from '@/agent/openai-code-interpreter-agent';
 
 export async function POST(req: Request) {

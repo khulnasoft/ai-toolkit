@@ -1,5 +1,5 @@
 import { mistral } from '@ai-toolkit/mistral';
-import { extractReasoningMiddleware, generateText, wrapLanguageModel } from 'ai';
+import { extractReasoningMiddleware, generateText, wrapLanguageModel } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

@@ -23,7 +23,7 @@ The AI TOOLKIT abstracts away the differences between model providers, eliminate
 At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call GPT-4o with the new Responses API using the AI TOOLKIT:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -37,7 +37,7 @@ const { text } = await generateText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -61,7 +61,7 @@ This code snippet will generate a type-safe recipe that conforms to the specifie
 The Responses API supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. Here's an example of using tool calling with the AI TOOLKIT:
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -92,7 +92,7 @@ The Responses API introduces a built-in tool for grounding responses called `web
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.responses('gpt-4o-mini'),
@@ -109,7 +109,7 @@ console.log(result.sources);
 The `webSearch` tool also allows you to specify query-specific metadata that can be used to improve the quality of the search results.
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.responses('gpt-4o-mini'),
@@ -136,7 +136,7 @@ The Responses API also supports connecting to [Model Context Protocol (MCP)](htt
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.responses('gpt-5-mini'),
@@ -165,7 +165,7 @@ There are two options available to use persistence:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result1 = await generateText({
   model: openai.responses('gpt-4o-mini'),
@@ -191,7 +191,7 @@ Once you have created a conversation, you can continue it:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.responses('gpt-4o-mini'),
@@ -210,7 +210,7 @@ const result = await generateText({
 Migrating from the OpenAI Completions API (via the AI TOOLKIT) to the new Responses API is simple. To migrate, simply change your provider instance from `openai(modelId)` to `openai.responses(modelId)`:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // Completions API
@@ -229,7 +229,7 @@ const { text } = await generateText({
 When using the Responses API, provider specific options that were previously specified on the model provider instance have now moved to the `providerOptions` object:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // Completions API

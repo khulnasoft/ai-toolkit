@@ -25,7 +25,7 @@ When you provide `stopWhen`, the agent continues executing after tool calls unti
 The AI TOOLKIT provides several built-in stopping conditions:
 
 ```ts
-import { ToolLoopAgent, stepCountIs } from 'ai';
+import { ToolLoopAgent, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -46,7 +46,7 @@ const result = await agent.generate({
 Combine multiple stopping conditions. The loop stops when it meets any condition:
 
 ```ts
-import { ToolLoopAgent, stepCountIs, hasToolCall } from 'ai';
+import { ToolLoopAgent, stepCountIs, hasToolCall } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -70,7 +70,7 @@ const result = await agent.generate({
 Build custom stopping conditions for specific requirements:
 
 ```ts
-import { ToolLoopAgent, StopCondition, ToolSet } from 'ai';
+import { ToolLoopAgent, StopCondition, ToolSet } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const tools = {
@@ -120,7 +120,7 @@ The `prepareStep` callback runs before each step in the loop and defaults to the
 Switch models based on step requirements:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -150,7 +150,7 @@ const result = await agent.generate({
 Manage growing conversation history in long-running loops:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -182,7 +182,7 @@ const result = await agent.generate({
 Control which tools are available at each step:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -248,7 +248,7 @@ prepareStep: async ({ stepNumber }) => {
 Transform messages before sending them to the model:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -308,7 +308,7 @@ prepareStep: async ({
 You can force the agent to always use tools by combining `toolChoice: 'required'` with a `done` tool that has no `execute` function. This pattern ensures the agent uses tools for every step and stops only when it explicitly signals completion.
 
 ```ts
-import { ToolLoopAgent, tool } from 'ai';
+import { ToolLoopAgent, tool } from 'ai-toolkit';
 import { z } from 'zod';
 __PROVIDER_IMPORT__;
 
@@ -356,7 +356,7 @@ For scenarios requiring complete control over the agent loop, you can use AI TOO
 Build your own agent loop when you need full control over execution:
 
 ```ts
-import { generateText, ModelMessage } from 'ai';
+import { generateText, ModelMessage } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const messages: ModelMessage[] = [{ role: 'user', content: '...' }];

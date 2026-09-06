@@ -23,7 +23,7 @@ import { revai } from '@ai-toolkit/revai';
 
 ```ts
 import { revai } from '@ai-toolkit/revai';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 
 const { text } = await transcribe({
   model: revai.transcription('machine'),

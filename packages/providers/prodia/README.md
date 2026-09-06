@@ -23,7 +23,7 @@ import { prodia } from '@ai-toolkit/prodia';
 ```ts
 import fs from 'node:fs';
 import { prodia } from '@ai-toolkit/prodia';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: prodia.image('inference.flux-fast.schnell.txt2img.v2'),
@@ -41,7 +41,7 @@ If you want to pass additional inputs to the model besides the prompt, use the `
 
 ```ts
 import { prodia, type ProdiaImageProviderOptions } from '@ai-toolkit/prodia';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: prodia.image('inference.flux-fast.schnell.txt2img.v2'),

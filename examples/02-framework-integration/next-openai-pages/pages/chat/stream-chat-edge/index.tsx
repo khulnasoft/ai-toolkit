@@ -1,5 +1,5 @@
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Chat() {

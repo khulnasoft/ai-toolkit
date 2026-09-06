@@ -1,5 +1,5 @@
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import 'dotenv/config';
 
 async function main() {

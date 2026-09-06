@@ -78,7 +78,7 @@ You can use Heroku language models to generate text with the `generateText` func
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const heroku = createOpenAICompatible({
   name: 'heroku',
@@ -98,7 +98,7 @@ Heroku language models are also able to generate text in a streaming fashion wit
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const heroku = createOpenAICompatible({
   name: 'heroku',

@@ -1,0 +1,57 @@
+{
+  "name": "@ai-toolkit/shadcn-ui",
+  "version": "0.1.0",
+  "description": "AI TOOLKIT shadcn/ui primitives for AI Elements - unstyled building blocks paired with @ai-toolkit/elements",
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "stability": "beta",
+  "owners": ["@khulnasoft/ai-react-team"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
+  "files": ["dist/**/*", "CHANGELOG.md", "README.md"],
+  "scripts": {
+    "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
+    "build:watch": "pnpm clean && tsup --watch",
+    "clean": "del-cli dist *.tsbuildinfo",
+    "lint": "eslint \"./**/*.ts*\"",
+    "type-check": "tsc --build",
+    "prettier-check": "prettier --check \"./**/*.ts*\""
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "1.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^0.577.0",
+    "radix-ui": "latest",
+    "tailwind-merge": "^3.4.0"
+  },
+  "peerDependencies": {
+    "react": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+    "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@khulnasoft/ai-tsconfig": "workspace:*",
+    "@types/node": "20.17.24",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "del-cli": "^6.0.0",
+    "eslint": "8.57.1",
+    "eslint-config-khulnasoft-ai": "workspace:*",
+    "react": "^18",
+    "react-dom": "^18",
+    "tsup": "^7.2.0",
+    "typescript": "5.8.3"
+  }
+}

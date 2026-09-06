@@ -1,5 +1,5 @@
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 
 export const anthropicWebSearchAgent = new ToolLoopAgent({
   model: anthropic('claude-sonnet-4-5'),

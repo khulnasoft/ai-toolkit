@@ -45,7 +45,7 @@ import {
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import { wrapLanguageModel, simulateReadableStream } from 'ai';
+import { wrapLanguageModel, simulateReadableStream } from 'ai-toolkit';
 
 const CACHE_FILE = path.join(process.cwd(), '.cache/ai-cache.json');
 
@@ -208,7 +208,7 @@ The middleware can be easily integrated into your existing AI TOOLKIT setup:
 
 ```ts highlight="4,8"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import 'dotenv/config';
 import { cached } from '../middleware/your-cache-middleware';
 

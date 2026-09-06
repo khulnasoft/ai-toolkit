@@ -8,7 +8,7 @@
 > `pnpm-workspace.yaml`, `turbo.json`, `CODEOWNERS`, `ADR/`, `tools/scripts/validate-structure.mjs`,
 > `examples/registry.json`, `architecture/`.
 >
-> The original v1.0 proposal (June 2026) used `@ai-sdk/*` / `@vercel/*` names and an
+> The original v1.0 proposal (June 2026) used `@ai-toolkit/*` / `@vercel/*` names and an
 > aspirational layout. This refactor corrects names to `@ai-toolkit/*` / `@khulnasoft/*`
 > and aligns the document with what is actually implemented.
 
@@ -51,6 +51,7 @@ ai-toolkit/
 ├── packages/core/                      # ai, provider-utils, runtime
 ├── packages/providers/                 # 30 providers (see §3)
 ├── packages/adapters/                  # react, rsc, angular, svelte, vue
+├── packages/ui/                        # elements (@ai-toolkit/elements: chat components + shadcn registry)
 ├── packages/validation/                # provider (@ai-toolkit/provider), capabilities, valibot
 ├── packages/special/                   # gateway, khulnasoft, codemod, devtools
 ├── packages/mcp/                       # single @ai-toolkit/mcp package (split is Outstanding)
@@ -81,7 +82,7 @@ ai-toolkit/
 | Examples `01–06` incl. `04-advanced-patterns`, `05-production-apps`, `06-mcp-integrations` | Actually `01-foundations`, `02-framework-integration`, `03-integrations`, `04-tools` + `registry.json`.                                                                                                                                                           |
 | `tools/{cli,generator,scripts,templates}` + `generate-examples.mjs`, `sync-versions.mjs` … | Actually `tools/{analyze-downloads,create-ai-sdk,eslint-config,generate-llms-txt,scripts,tsconfig}`; scripts are `generate.mjs`, `validate-structure.mjs`, `health-check.mjs`, `inventory.mjs`, `baseline.mjs`, `find-package.mjs`, `migrate-package.mjs`.        |
 | `infra/`, `tests/`, root `scripts/`                                                        | Do not exist. Infra concerns live in `.github/` and `tools/`.                                                                                                                                                                                                     |
-| Turbo `pipeline` with `@ai-sdk/*` filters                                                  | `turbo.json` uses `tasks` with `build:core`, `build:providers`, `build:adapters`, `test:core`, …                                                                                                                                                                  |
+| Turbo `pipeline` with `@ai-toolkit/*` filters                                                  | `turbo.json` uses `tasks` with `build:core`, `build:providers`, `build:adapters`, `test:core`, …                                                                                                                                                                  |
 
 ---
 
@@ -93,7 +94,8 @@ Ownership is enforced by `CODEOWNERS` — this table is a summary, not a copy.
 | -------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | Core           | `packages/core/`                                   | `ai`, `@ai-toolkit/provider-utils`, `@ai-toolkit/runtime`                                                                                                                  | stable                         |
 | Providers      | `packages/providers/`                              | `@ai-toolkit/{openai,anthropic,google,google-vertex,azure,amazon-bedrock,cohere,mistral,groq,deepinfra,xai,togetherai,fireworks,replicate,openai-compatible,…}` (30 total) | stable per package             |
-| Adapters       | `packages/adapters/`                               | `@ai-toolkit/{react,rsc,angular,svelte,vue}`                                                                                                                               | stable                         |
+| Adapters | `packages/adapters/` | `@ai-toolkit/{react,rsc,angular,svelte,vue}` | stable |
+| UI | `packages/ui/` | `@ai-toolkit/elements` | beta |
 | Validation     | `packages/validation/`                             | `@ai-toolkit/provider`, `@ai-toolkit/capabilities`, `@ai-toolkit/valibot`                                                                                                  | stable / beta (`capabilities`) |
 | Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft}`                                                                                                                                         | stable                         |
 | MCP            | `packages/mcp/`                                    | `@ai-toolkit/mcp`                                                                                                                                                          | beta                           |
@@ -155,7 +157,7 @@ as the reference example):
 
 ```typescript
 // ✅ Public: core entry point (npm `ai`)
-export { generateText, streamText, generateObject } from 'ai';
+export { generateText, streamText, generateObject } from 'ai-toolkit';
 
 // ✅ Public: providers
 export { createOpenAI } from '@ai-toolkit/openai';
@@ -304,7 +306,8 @@ canonical as package `prepack` scripts consume it).
 | `packages/valibot` (legacy path)                         | `packages/validation/valibot`         | `@ai-toolkit/valibot`                |
 | — (new)                                                  | `packages/validation/capabilities`    | `@ai-toolkit/capabilities`           |
 | `packages/{openai,anthropic,…}` (30)                     | `packages/providers/{…}`              | `@ai-toolkit/{…}`                    |
-| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}`               | `@ai-toolkit/{…}`                    |
+| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}` | `@ai-toolkit/{…}` |
+| — (new) | `packages/ui/elements` | `@ai-toolkit/elements` |
 | `packages/gateway` (legacy path)                         | `packages/special/gateway`            | `@ai-toolkit/gateway`                |
 | `packages/khulnasoft` (legacy path)                      | `packages/special/khulnasoft`         | `@ai-toolkit/khulnasoft`             |
 | `packages/mcp` (legacy path)                             | `packages/mcp`                        | `@ai-toolkit/mcp`                    |

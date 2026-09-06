@@ -2,7 +2,7 @@
 
 import ChatInput from '@/components/chat-input';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithToolCalls } from 'ai-toolkit';
 import { UseChatToolsMessage } from '../api/use-chat-tools/route';
 
 export default function Chat() {

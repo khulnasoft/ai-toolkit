@@ -2,7 +2,7 @@ import { createTestServer, TestResponseController } from '@ai-toolkit/test-serve
 import '@testing-library/jest-dom/vitest';
 import userEvent from '@testing-library/user-event';
 import { findByText, screen } from '@testing-library/vue';
-import { UIMessageChunk } from 'ai';
+import { UIMessageChunk } from 'ai-toolkit';
 import TestCompletionComponent from './TestCompletionComponent.vue';
 import TestCompletionTextStreamComponent from './TestCompletionTextStreamComponent.vue';
 import { setupTestComponent } from './setup-test-component';

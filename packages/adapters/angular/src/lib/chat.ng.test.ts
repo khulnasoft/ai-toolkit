@@ -1,6 +1,6 @@
 import { mockId } from '@ai-toolkit/provider-utils/test';
 import { createTestServer, TestResponseController } from '@ai-toolkit/test-server/with-vitest';
-import { DefaultChatTransport, isStaticToolUIPart, TextStreamChatTransport } from 'ai';
+import { DefaultChatTransport, isStaticToolUIPart, TextStreamChatTransport } from 'ai-toolkit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Chat } from './chat.ng';
 

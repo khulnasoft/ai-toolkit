@@ -162,7 +162,7 @@ function getNextPage(templateName) {
   return `'use client';
 
 import { useState } from 'react';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { ${templateName === 'next-rsc' ? 'google' : 'openai'} } from '@ai-toolkit/${templateName === 'next-rsc' ? 'google' : 'openai'}';
 
 export default function HomePage() {
@@ -206,7 +206,7 @@ export default function HomePage() {
 }
 
 function getNodeIndex() {
-  return `import { generateText } from 'ai';
+  return `import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const prompt = process.argv[2] || 'Hello';

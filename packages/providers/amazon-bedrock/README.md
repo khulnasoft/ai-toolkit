@@ -37,7 +37,7 @@ export AWS_BEARER_TOKEN_BEDROCK=your-api-key-here
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: bedrock('anthropic.claude-3-haiku-20240307-v1:0'),
@@ -52,7 +52,7 @@ You can also pass the API key directly in the provider configuration:
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const bedrockWithApiKey = bedrock.withSettings({
   apiKey: process.env.AWS_BEARER_TOKEN_BEDROCK, // or your API key directly
@@ -71,7 +71,7 @@ If no API key is provided, the provider automatically falls back to AWS SigV4 au
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 // Uses AWS credentials from environment variables or AWS credential chain
 const { text } = await generateText({
@@ -98,7 +98,7 @@ The provider uses the following authentication precedence:
 
 ```ts
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: bedrock('meta.llama3-8b-instruct-v1:0'),

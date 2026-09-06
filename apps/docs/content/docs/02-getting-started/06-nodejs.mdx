@@ -73,7 +73,7 @@ Replace `xxxxxxxxx` with your actual Vercel AI Gateway API key.
 Create an `index.ts` file in the root of your project and add the following code:
 
 ```ts filename="index.ts"
-import { ModelMessage, streamText } from 'ai';
+import { ModelMessage, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import 'dotenv/config';
 import * as readline from 'node:readline/promises';
@@ -144,8 +144,8 @@ model: __MODEL__;
 You can also explicitly import and use the gateway provider in two other equivalent ways:
 
 ```ts
-// Option 1: Import from 'ai' package (included by default)
-import { gateway } from 'ai';
+// Option 1: Import from 'ai-toolkit' package (included by default)
+import { gateway } from 'ai-toolkit';
 model: gateway('anthropic/claude-sonnet-4.5');
 
 // Option 2: Install and import from '@ai-toolkit/gateway' package
@@ -197,7 +197,7 @@ Let's enhance your agent by adding a simple weather tool.
 Modify your `index.ts` file to include the new weather tool:
 
 ```ts filename="index.ts" highlight="2,4,24-37"
-import { ModelMessage, streamText, tool } from 'ai';
+import { ModelMessage, streamText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import 'dotenv/config';
 import { z } from 'zod';
@@ -269,7 +269,7 @@ Try asking something like "What's the weather in New York?" and see how the agen
 Notice the blank "assistant" response? This is because instead of generating a text response, the agent generated a tool call. You can access the tool call and subsequent tool result in the `toolCall` and `toolResult` keys of the result object.
 
 ```typescript highlight="46-47"
-import { ModelMessage, streamText, tool } from 'ai';
+import { ModelMessage, streamText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import 'dotenv/config';
 import { z } from 'zod';
@@ -340,7 +340,7 @@ To solve this, you can enable multi-step tool calls using `stopWhen`. This featu
 Modify your `index.ts` file to configure stopping conditions with `stopWhen`:
 
 ```ts filename="index.ts" highlight="38-41"
-import { ModelMessage, streamText, tool, stepCountIs } from 'ai';
+import { ModelMessage, streamText, tool, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import 'dotenv/config';
 import { z } from 'zod';
@@ -416,7 +416,7 @@ By setting `stopWhen: stepCountIs(5)`, you're allowing the agent to use up to 5 
 Update your `index.ts` file to add a new tool to convert the temperature from Celsius to Fahrenheit:
 
 ```ts filename="index.ts" highlight="37-48"
-import { ModelMessage, streamText, tool, stepCountIs } from 'ai';
+import { ModelMessage, streamText, tool, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import 'dotenv/config';
 import { z } from 'zod';

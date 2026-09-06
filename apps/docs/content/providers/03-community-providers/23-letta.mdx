@@ -70,7 +70,7 @@ LETTA_API_KEY=your-letta-api-key
 
 ```typescript
 import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: lettaCloud(), // Model configuration (LLM, temperature, etc.) is managed through your Letta agent
@@ -93,7 +93,7 @@ You can configure Letta-specific settings using the `providerOptions.letta` para
 
 ```typescript
 import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: lettaCloud(),
@@ -151,7 +151,7 @@ const result = streamText({
 Letta agents support custom tools and MCP (Model Context Protocol) servers through provider-executed tools. Once [ configured on your Letta agent ](https://docs.letta.com/guides/agents/custom-tools), you can include them in your requests using `letta.tool()` and Letta handles tool execution.
 
 ```typescript
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { z } from 'zod';
 import { lettaCloud } from '@letta-ai/vercel-ai-toolkit-provider';
 

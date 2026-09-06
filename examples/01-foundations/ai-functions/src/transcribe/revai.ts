@@ -1,5 +1,5 @@
 import { revai } from '@ai-toolkit/revai';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 import { readFile } from 'fs/promises';
 import { run } from '../lib/run';
 

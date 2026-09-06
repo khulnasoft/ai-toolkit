@@ -132,14 +132,14 @@ jobs:
         run: pnpm run build:packages
 
       - name: Check bundle size
-        run: cd packages/ai && pnpm run check-bundle-size
+        run: cd packages/core/ai-toolkit && pnpm run check-bundle-size
 
       - name: Upload bundle size metafiles
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: bundle-size-metafiles
-          path: packages/ai/dist-bundle-check/*.json
+          path: packages/core/ai-toolkit/dist-bundle-check/*.json
 
   test_matrix:
     name: 'Test'
@@ -195,7 +195,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - module: 'ai'
+          - module: 'ai-toolkit'
             max-load-time: 100
           - module: '@ai-toolkit/openai'
             max-load-time: 65

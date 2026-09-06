@@ -1,5 +1,5 @@
-import { simulateReadableStream, smoothStream, streamText } from 'ai';
-import { MockLanguageModelV3 } from 'ai/test';
+import { simulateReadableStream, smoothStream, streamText } from 'ai-toolkit';
+import { MockLanguageModelV3 } from 'ai-toolkit/test';
 import { run } from '../lib/run';
 
 run(async () => {

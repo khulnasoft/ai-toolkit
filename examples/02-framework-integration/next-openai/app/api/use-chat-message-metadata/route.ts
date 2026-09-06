@@ -1,4 +1,4 @@
-import { createAgentUIStreamResponse, UIMessage } from 'ai';
+import { createAgentUIStreamResponse, UIMessage } from 'ai-toolkit';
 import { ExampleMetadata, openaiMetadataAgent } from '@/agent/openai-metadata-agent';
 
 export async function POST(req: Request) {

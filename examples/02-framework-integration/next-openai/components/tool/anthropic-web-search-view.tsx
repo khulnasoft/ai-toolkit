@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { UIToolInvocation } from 'ai';
+import { UIToolInvocation } from 'ai-toolkit';
 
 export default function AnthropicWebSearchView({
   invocation,

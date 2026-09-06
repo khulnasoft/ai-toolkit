@@ -20,7 +20,7 @@ It can be used to force the language model to return structured data, e.g. for i
 #### Example: generate an object using a schema
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -44,7 +44,7 @@ console.log(JSON.stringify(object, null, 2));
 For arrays, you specify the schema of the array items.
 
 ```ts highlight="7"
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -68,7 +68,7 @@ When you want to generate a specific enum value, you can set the output strategy
 and provide the list of possible values in the `enum` parameter.
 
 ```ts highlight="5-6"
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 
 const { object } = await generateObject({
   model: __MODEL__,
@@ -84,7 +84,7 @@ const { object } = await generateObject({
 #### Example: generate JSON without a schema
 
 ```ts highlight="6"
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 
 const { object } = await generateObject({
   model: __MODEL__,
@@ -97,7 +97,7 @@ To see `generateObject` in action, check out the [additional examples](#more-exa
 
 ## Import
 
-<Snippet text={`import { generateObject } from "ai"`} prompt={false} />
+<Snippet text={`import { generateObject } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 

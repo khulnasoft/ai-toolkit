@@ -1,8 +1,8 @@
 import { LanguageModelV3Usage } from '@ai-toolkit/provider';
 import { delay } from '@ai-toolkit/provider-utils';
 import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
-import { asLanguageModelUsage } from 'ai/internal';
-import { MockLanguageModelV3 } from 'ai/test';
+import { asLanguageModelUsage } from 'ai-toolkit/internal';
+import { MockLanguageModelV3 } from 'ai-toolkit/test';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { z } from 'zod/v4';
 import { streamUI } from './stream-ui';

@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { createApplyPatchExecutor } from '../lib/apply-patch-file-editor';

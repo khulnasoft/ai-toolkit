@@ -64,7 +64,7 @@ below and the status summary at the end of this document.
 
 ### Deliverables
 
-- [x] Updated turbo.json with new pipeline — ✅ Done (root `turbo.json` updated; `@ai-sdk/core#build` and `@ai-sdk/providers:*#build` targets configured)
+- [x] Updated turbo.json with new pipeline — ✅ Done (root `turbo.json` updated; `@ai-toolkit/core#build` and `@ai-toolkit/providers:*#build` targets configured)
 - [x] Updated tsconfig.base.json with path mappings — ✅ Done (root `tsconfig.json` references updated via `pnpm update-references`)
 - [x] CODEOWNERS file with all teams — ✅ Done (`.github/CODEOWNERS` added)
 - [x] Generation CLI tool working — ✅ Done (`tools/scripts/generate.mjs` is the package generator)
@@ -611,7 +611,7 @@ Project Lead (1)
 
 Core Wave Lead (1)
 ├── Owns packages/core/ reorganization
-├── Coordinates with @vercel/ai-sdk-core
+├── Coordinates with @vercel/ai-toolkit-core
 └── Handles most critical code
 
 Provider Wave Lead (1)

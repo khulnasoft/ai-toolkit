@@ -27,7 +27,7 @@ https://inference-docs.cerebras.ai/models/overview
 
 ```ts
 import { cerebras } from '@ai-toolkit/cerebras';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: cerebras('llama-3.3-70b'),

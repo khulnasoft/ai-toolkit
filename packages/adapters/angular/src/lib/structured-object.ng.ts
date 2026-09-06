@@ -6,7 +6,7 @@ import {
   type InferSchema,
 } from '@ai-toolkit/provider-utils';
 import { signal } from '@angular/core';
-import { FlexibleSchema, asSchema, isDeepEqualData, parsePartialJson, type DeepPartial } from 'ai';
+import { FlexibleSchema, asSchema, isDeepEqualData, parsePartialJson, type DeepPartial } from 'ai-toolkit';
 
 export type StructuredObjectOptions<SCHEMA extends FlexibleSchema, RESULT = InferSchema<SCHEMA>> = {
   /**

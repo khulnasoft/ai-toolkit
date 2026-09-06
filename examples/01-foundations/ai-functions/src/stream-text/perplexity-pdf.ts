@@ -1,5 +1,5 @@
 import { perplexity } from '@ai-toolkit/perplexity';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import fs from 'fs';
 import { run } from '../lib/run';
 

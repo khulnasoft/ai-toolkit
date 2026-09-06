@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateText, wrapLanguageModel } from 'ai';
+import { generateText, wrapLanguageModel } from 'ai-toolkit';
 import { yourLogMiddleware } from './your-log-middleware';
 import { run } from '../lib/run';
 

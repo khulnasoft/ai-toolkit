@@ -1,5 +1,5 @@
 import { mistral } from '@ai-toolkit/mistral';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';

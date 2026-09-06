@@ -1,5 +1,5 @@
 ---
-'ai': patch
+'ai-toolkit': patch
 '@ai-toolkit/provider-utils': patch
 '@ai-toolkit/provider': patch
 '@ai-toolkit/gateway': patch

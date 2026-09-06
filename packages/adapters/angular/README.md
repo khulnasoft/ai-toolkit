@@ -464,7 +464,7 @@ structuredObject.stop();
 
 ```typescript
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 import express from 'express';
 
 const app = express();
@@ -500,7 +500,7 @@ app.post('/api/completion', async (req, res) => {
 ### Express.js Structured Object Endpoint
 
 ```typescript
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 app.post('/api/analyze', async (req, res) => {

@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText, UIDataTypes, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIDataTypes, UIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds

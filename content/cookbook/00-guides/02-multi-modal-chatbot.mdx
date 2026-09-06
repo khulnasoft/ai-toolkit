@@ -108,7 +108,7 @@ To build a multi-modal agent, you will need to:
 Create a route handler, `app/api/chat/route.ts` and add the following code:
 
 ```tsx filename="app/api/chat/route.ts"
-import { streamText, convertToModelMessages, type UIMessage } from 'ai';
+import { streamText, convertToModelMessages, type UIMessage } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -145,7 +145,7 @@ Update your root page (`app/page.tsx`) with the following code to show a list of
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Chat() {
@@ -216,7 +216,7 @@ Update your root page (`app/page.tsx`) with the following code:
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 

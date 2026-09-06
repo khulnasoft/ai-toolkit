@@ -1,5 +1,5 @@
 import { createAnthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';

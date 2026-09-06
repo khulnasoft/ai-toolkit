@@ -1,5 +1,5 @@
 import { xai } from '@ai-toolkit/xai';
-import { stepCountIs, ModelMessage, streamText, tool } from 'ai';
+import { stepCountIs, ModelMessage, streamText, tool } from 'ai-toolkit';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
 import { run } from '../lib/run';

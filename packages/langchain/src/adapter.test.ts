@@ -4,7 +4,7 @@ import {
 } from '@ai-toolkit/provider-utils/test';
 import { toUIMessageStream, toBaseMessages, convertModelMessages } from './adapter';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import type { ModelMessage, UIMessage } from 'ai';
+import type { ModelMessage, UIMessage } from 'ai-toolkit';
 import {
   AIMessage,
   AIMessageChunk,
@@ -203,7 +203,7 @@ describe('toUIMessageStream', () => {
     const plainMsg = {
       content: 'Hello from RemoteGraph',
       id: 'chatcmpl-123',
-      type: 'ai',
+      type: 'ai-toolkit',
       tool_call_chunks: [],
     };
 
@@ -279,7 +279,7 @@ describe('toUIMessageStream', () => {
         {
           content: '',
           id: 'ai-msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           tool_calls: [
             {
               id: 'call-123',
@@ -329,7 +329,7 @@ describe('toUIMessageStream', () => {
         {
           content: '',
           id: 'ai-msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           additional_kwargs: {
             tool_calls: [
               {
@@ -382,7 +382,7 @@ describe('toUIMessageStream', () => {
     const streamedChunk = {
       content: '',
       id: 'ai-msg-1',
-      type: 'ai',
+      type: 'ai-toolkit',
       tool_call_chunks: [
         {
           id: 'call-789',
@@ -398,7 +398,7 @@ describe('toUIMessageStream', () => {
         {
           content: '',
           id: 'ai-msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           tool_calls: [
             {
               id: 'call-789',
@@ -436,7 +436,7 @@ describe('toUIMessageStream', () => {
     const streamedChunkWithoutId = {
       content: '',
       id: 'ai-msg-1',
-      type: 'ai',
+      type: 'ai-toolkit',
       tool_call_chunks: [
         {
           // No id in chunk - should be skipped
@@ -452,7 +452,7 @@ describe('toUIMessageStream', () => {
         {
           content: '',
           id: 'ai-msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           tool_calls: [
             {
               id: 'call-real-id',
@@ -695,7 +695,7 @@ describe('toUIMessageStream', () => {
     const toolCallChunk = {
       content: '',
       id: 'msg-1',
-      type: 'ai',
+      type: 'ai-toolkit',
       tool_call_chunks: [
         {
           id: 'call-123',
@@ -1471,7 +1471,7 @@ describe('toUIMessageStream', () => {
         // Historical tool call with response (plain object format)
         {
           id: 'ai-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           tool_calls: [{ id: historicalToolCallId, name: 'search', args: { q: 'test' } }],
         },
@@ -1484,7 +1484,7 @@ describe('toUIMessageStream', () => {
         // Current tool call without response
         {
           id: 'ai-2',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           tool_calls: [{ id: currentToolCallId, name: 'search', args: { q: 'new' } }],
         },
@@ -1517,7 +1517,7 @@ describe('toUIMessageStream', () => {
         // AI message with 2 tool calls
         {
           id: 'ai-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           tool_calls: [
             { id: toolCall1, name: 'tool_a', args: { a: 1 } },
@@ -1540,7 +1540,7 @@ describe('toUIMessageStream', () => {
         // New tool call
         {
           id: 'ai-2',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           tool_calls: [{ id: currentToolCall, name: 'tool_c', args: { c: 3 } }],
         },
@@ -1794,7 +1794,7 @@ describe('toUIMessageStream LangGraph finish events', () => {
       messages: [
         {
           id: 'ai-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: 'Hello!',
         },
       ],
@@ -1861,7 +1861,7 @@ describe('toUIMessageStream LangGraph finish events', () => {
       messages: [
         {
           id: 'ai-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: 'Hello!',
         },
       ],

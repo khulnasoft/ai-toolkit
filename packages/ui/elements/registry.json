@@ -1,0 +1,61 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "@ai-toolkit/elements",
+  "homepage": "https://studio.khulnasoft.com/docs",
+  "items": [
+    {
+      "name": "conversation",
+      "type": "registry:component",
+      "title": "Conversation",
+      "description": "Scrollable conversation container with auto-scroll for AI chat UIs.",
+      "dependencies": ["react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/conversation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/util/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:component",
+      "title": "Message",
+      "description": "Renders a UIMessage with role-based alignment and per-part rendering.",
+      "dependencies": ["ai", "react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/message.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/util/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:component",
+      "title": "PromptInput",
+      "description": "Chat input form with Enter-to-send and controlled/uncontrolled modes.",
+      "dependencies": ["react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/prompt-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/util/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}

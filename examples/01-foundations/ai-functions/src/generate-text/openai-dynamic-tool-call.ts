@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { dynamicTool, generateText, stepCountIs, ToolSet } from 'ai';
+import { dynamicTool, generateText, stepCountIs, ToolSet } from 'ai-toolkit';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';

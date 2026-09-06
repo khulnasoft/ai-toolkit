@@ -1,5 +1,5 @@
 import { perplexity } from '@ai-toolkit/perplexity';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

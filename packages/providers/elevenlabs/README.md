@@ -23,7 +23,7 @@ import { elevenlabs } from '@ai-toolkit/elevenlabs';
 
 ```ts
 import { elevenlabs } from '@ai-toolkit/elevenlabs';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 
 const { text } = await transcribe({
   model: elevenlabs.transcription('scribe_v1'),

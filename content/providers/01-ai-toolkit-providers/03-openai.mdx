@@ -115,7 +115,7 @@ You can use OpenAI language models to generate text with the `generateText` func
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: openai('gpt-5'),
@@ -139,7 +139,7 @@ You can validate the provider options using the `OpenAIResponsesProviderOptions`
 
 ```ts
 import { openai, OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5'), // or openai.responses('gpt-5')
@@ -280,7 +280,7 @@ For reasoning models like `gpt-5`, you can enable reasoning summaries to see the
 
 ```ts highlight="8-9,16"
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: openai('gpt-5'),
@@ -305,7 +305,7 @@ For non-streaming calls with `generateText`, the reasoning summaries are availab
 
 ```ts highlight="8-9,13"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5'),
@@ -327,7 +327,7 @@ You can control the length and detail of model responses using the `textVerbosit
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5-mini'),
@@ -429,7 +429,7 @@ You can use the image tool with either `generateText` or `streamText`:
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5'),
@@ -449,7 +449,7 @@ for (const toolResult of result.staticToolResults) {
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: openai('gpt-5'),
@@ -489,7 +489,7 @@ This allows models to write and execute Python code.
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5'),
@@ -522,7 +522,7 @@ The OpenAI responses API supports connecting to [Model Context Protocol (MCP)](h
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5'),
@@ -613,7 +613,7 @@ Local shell is a tool that allows agents to run shell commands locally on a mach
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.responses('gpt-5-codex'),
@@ -643,7 +643,7 @@ The model proposes shell commands; your integration executes them and returns th
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 
@@ -678,7 +678,7 @@ enabling iterative, multi-step code editing workflows.
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-5.1'),
@@ -869,7 +869,7 @@ import {
   openai,
   type OpenaiResponsesTextProviderMetadata,
 } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-4.1-mini'),
@@ -946,7 +946,7 @@ import {
   openai,
   type OpenaiResponsesSourceDocumentProviderMetadata,
 } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai('gpt-4.1-mini'),
@@ -1144,7 +1144,7 @@ They support additional settings and response metadata:
 
 ```ts highlight="4,7-11,17"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, usage, providerMetadata } = await generateText({
   model: openai.chat('gpt-5'),
@@ -1176,7 +1176,7 @@ console.log('Usage:', {
 
 ```ts highlight="12"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.chat('gpt-5'),
@@ -1210,7 +1210,7 @@ You can disable them by setting the `strictJsonSchema` option to `false`.
 
 ```ts highlight="7"
 import { openai, OpenAIChatLanguageModelOptions } from '@ai-toolkit/openai';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateObject({
@@ -1256,7 +1256,7 @@ You can access it in the `providerMetadata` object.
 
 ```ts highlight="11"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.chat('gpt-5'),
@@ -1457,7 +1457,7 @@ This will save the generation to the OpenAI platform for later use in distillati
 
 ```typescript highlight="9-16"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import 'dotenv/config';
 
 async function main() {
@@ -1496,7 +1496,7 @@ including `gpt-4o` and `gpt-4o-mini`.
 
 ```ts highlight="11"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, usage, providerMetadata } = await generateText({
   model: openai.chat('gpt-4o-mini'),
@@ -1513,7 +1513,7 @@ To improve cache hit rates, you can manually control caching using the `promptCa
 
 ```ts highlight="7-11"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, usage, providerMetadata } = await generateText({
   model: openai.chat('gpt-5'),
@@ -1535,7 +1535,7 @@ For GPT-5.1 models, you can enable extended prompt caching that keeps cached pre
 
 ```ts highlight="7-12"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, usage, providerMetadata } = await generateText({
   model: openai.chat('gpt-5.1'),
@@ -1565,7 +1565,7 @@ With the `gpt-4o-audio-preview` model, you can pass audio files to the model.
 
 ```ts highlight="12-14"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: openai.chat('gpt-4o-audio-preview'),
@@ -1702,7 +1702,7 @@ You can pass them as an options argument:
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: openai.embedding('text-embedding-3-large'),
@@ -1890,7 +1890,7 @@ const model = openai.transcription('whisper-1');
 You can also pass additional provider-specific options using the `providerOptions` argument. For example, supplying the input language in ISO-639-1 (e.g. `en`) format will improve accuracy and latency.
 
 ```ts highlight="6"
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await transcribe({
@@ -1903,7 +1903,7 @@ const result = await transcribe({
 To get word-level timestamps, specify the granularity:
 
 ```ts highlight="8-9"
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await transcribe({
@@ -1967,7 +1967,7 @@ const model = openai.speech('tts-1');
 The `voice` argument can be set to one of OpenAI's available voices: `alloy`, `ash`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, or `shimmer`.
 
 ```ts highlight="6"
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateSpeech({
@@ -1980,7 +1980,7 @@ const result = await generateSpeech({
 You can also pass additional provider-specific options using the `providerOptions` argument:
 
 ```ts highlight="7-9"
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateSpeech({

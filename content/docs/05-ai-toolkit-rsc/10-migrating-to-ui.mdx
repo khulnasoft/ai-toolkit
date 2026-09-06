@@ -102,7 +102,7 @@ The `streamUI` function combines generating text and rendering the user interfac
 The `streamText` function executes as part of a route handler and streams the response to the client. The `useChat` hook on the client decodes this stream and renders the response within the chat interface.
 
 ```ts filename="@/app/api/chat/route.ts"
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(request) {
@@ -216,7 +216,7 @@ The `streamText` function streams the props data as response to the client, whil
 import { z } from 'zod';
 import { openai } from '@ai-toolkit/openai';
 import { getWeather } from '@/utils/queries';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 export async function POST(request) {
   const { messages } = await request.json();
@@ -483,7 +483,7 @@ With AI TOOLKIT UI, you will save chats using the `onFinish` callback function o
 ```ts filename="@/app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
 import { saveChat } from '@/utils/queries';
-import { streamText, convertToModelMessages } from 'ai';
+import { streamText, convertToModelMessages } from 'ai-toolkit';
 
 export async function POST(request) {
   const { id, messages } = await request.json();
@@ -568,7 +568,7 @@ export default async function Page({ params }: { params: any }) {
 ```tsx filename="@/app/components/chat.tsx"
 'use client';
 
-import { Message } from 'ai';
+import { Message } from 'ai-toolkit';
 import { useChat } from '@ai-toolkit/react';
 
 export function Chat({
@@ -603,7 +603,7 @@ The `createStreamableValue` function streams any serializable data from the serv
 #### Before: Use streamable value to stream object generations
 
 ```ts filename="@/app/actions.ts"
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { createStreamableValue } from '@ai-toolkit/rsc';
 import { notificationsSchema } from '@/utils/schemas';
@@ -672,7 +672,7 @@ To migrate to AI TOOLKIT UI, you should use the `useObject` hook and implement `
 #### After: Replace with route handler and stream text response
 
 ```ts filename="@/app/api/object/route.ts"
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { notificationSchema } from '@/utils/schemas';
 

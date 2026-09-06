@@ -39,7 +39,7 @@ Before submitting your tool, ensure you have:
        yarn: 'yarn add your-package-name',
        bun: 'bun add your-package-name',
      },
-     codeExample: `import { generateText, gateway, stepCountIs } from 'ai';
+     codeExample: `import { generateText, gateway, stepCountIs } from 'ai-toolkit';
    import { yourTool } from 'your-package-name';
 
    const { text } = await generateText({

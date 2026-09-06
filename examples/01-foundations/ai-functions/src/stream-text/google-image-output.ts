@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { presentImages } from '../lib/present-image';
 import { run } from '../lib/run';
 

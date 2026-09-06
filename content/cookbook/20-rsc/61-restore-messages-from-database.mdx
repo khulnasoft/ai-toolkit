@@ -40,7 +40,7 @@ export default function RootLayout({
 import { useState, useEffect } from 'react';
 import { ClientMessage } from './actions';
 import { useActions, useUIState } from '@ai-toolkit/rsc';
-import { generateId } from 'ai';
+import { generateId } from 'ai-toolkit';
 
 export default function Home() {
   const [conversation, setConversation] = useUIState();
@@ -100,7 +100,7 @@ The server-side implementation handles the restoration of messages and their tra
 import { createAI } from '@ai-toolkit/rsc';
 import { ServerMessage, ClientMessage, continueConversation } from './actions';
 import { Stock } from '@ai-studio/components/stock';
-import { generateId } from 'ai';
+import { generateId } from 'ai-toolkit';
 
 export const AI = createAI<ServerMessage[], ClientMessage[]>({
   actions: {

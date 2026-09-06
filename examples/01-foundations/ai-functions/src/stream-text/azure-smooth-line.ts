@@ -1,5 +1,5 @@
 import { azure } from '@ai-toolkit/azure';
-import { smoothStream, streamText } from 'ai';
+import { smoothStream, streamText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

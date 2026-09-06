@@ -1,4 +1,4 @@
-import { StreamTextResult } from 'ai';
+import { StreamTextResult } from 'ai-toolkit';
 
 export async function printFullStream({ result }: { result: StreamTextResult<any, any> }) {
   for await (const chunk of result.fullStream) {

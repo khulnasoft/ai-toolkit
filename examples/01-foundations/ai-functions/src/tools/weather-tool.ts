@@ -1,4 +1,4 @@
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const conditions = [

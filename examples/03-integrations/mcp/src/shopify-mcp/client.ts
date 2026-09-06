@@ -1,6 +1,6 @@
 import { openai } from '@ai-toolkit/openai';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import 'dotenv/config';
 import { createMCPClient, MCPClient } from '@ai-toolkit/mcp';
 

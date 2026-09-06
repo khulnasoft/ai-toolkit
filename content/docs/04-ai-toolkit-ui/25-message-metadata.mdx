@@ -20,7 +20,7 @@ Here's a simple example of using message metadata to track timestamps and model 
 First, define your metadata type for type safety:
 
 ```tsx filename="app/types.ts"
-import { UIMessage } from 'ai';
+import { UIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Define your metadata schema
@@ -41,7 +41,7 @@ export type MyUIMessage = UIMessage<MessageMetadata>;
 Use the `messageMetadata` callback in `toUIMessageStreamResponse` to send metadata at different streaming stages:
 
 ```ts filename="app/api/chat/route.ts" highlight="11-20"
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import type { MyUIMessage } from '@/types';
 
@@ -88,7 +88,7 @@ Access metadata through the `message.metadata` property:
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import type { MyUIMessage } from '@/types';
 
 export default function Chat() {

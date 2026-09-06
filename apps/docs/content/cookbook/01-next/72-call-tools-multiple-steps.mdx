@@ -16,7 +16,7 @@ Let's create a React component that imports the `useChat` hook from the `@ai-too
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 import type { ChatMessage } from './api/chat/route';
 
@@ -89,7 +89,7 @@ import {
   stepCountIs,
   streamText,
   tool,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 const tools = {

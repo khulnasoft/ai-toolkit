@@ -8,7 +8,7 @@ import {
   stepCountIs,
   streamText,
   UIMessage,
-} from 'ai';
+} from 'ai-toolkit';
 import { rollDieToolWithProgrammaticCalling } from '@/tool/roll-die-tool-with-programmatic-calling';
 
 const tools = {

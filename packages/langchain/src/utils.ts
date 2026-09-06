@@ -14,7 +14,7 @@ import {
   type ToolResultPart,
   type AssistantContent,
   type UserContent,
-} from 'ai';
+} from 'ai-toolkit';
 
 import {
   type LangGraphEventState,
@@ -517,7 +517,7 @@ export function getMessageId(msg: unknown): string | undefined {
 /**
  * Checks if a message is an AI message chunk (works for both class instances and plain objects).
  * For class instances, only AIMessageChunk is matched (not AIMessage).
- * For plain objects from RemoteGraph API, matches type === 'ai'.
+ * For plain objects from RemoteGraph API, matches type === 'ai-toolkit'.
  * For serialized LangChain messages, matches type === 'constructor' with AIMessageChunk in id path.
  *
  * @param msg - The message to check.
@@ -536,9 +536,9 @@ export function isAIMessageChunk(
   if (isPlainMessageObject(msg)) {
     const obj = msg as Record<string, unknown>;
     /**
-     * Direct type === 'ai' (RemoteGraph format)
+     * Direct type === 'ai-toolkit' (RemoteGraph format)
      */
-    if ('type' in obj && obj.type === 'ai') return true;
+    if ('type' in obj && obj.type === 'ai-toolkit') return true;
     /**
      * Serialized LangChain message format: { lc: 1, type: "constructor", id: ["...", "AIMessageChunk"], kwargs: {...} }
      */
@@ -1291,7 +1291,7 @@ export function processLangGraphEvent(
                   (obj.id as string[]).includes('AIMessage'));
               const dataSource = isSerializedFormat ? (obj.kwargs as Record<string, unknown>) : obj;
 
-              if (obj.type === 'ai' || isSerializedFormat) {
+              if (obj.type === 'ai-toolkit' || isSerializedFormat) {
                 /**
                  * Try tool_calls first (normalized format)
                  */

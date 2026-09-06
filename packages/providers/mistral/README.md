@@ -22,7 +22,7 @@ import { mistral } from '@ai-toolkit/mistral';
 
 ```ts
 import { mistral } from '@ai-toolkit/mistral';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: mistral('mistral-large-latest'),

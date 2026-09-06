@@ -3,13 +3,13 @@ import { createTransformer } from '../lib/create-transformer';
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Track imports from 'ai' package
+  // Track imports from 'ai-toolkit' package
   const targetImports = new Set<string>();
 
   // Replace imports
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai')
+    .filter(path => path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit')
     .forEach(path => {
       path.node.specifiers = path.node.specifiers?.filter(spec => {
         if (

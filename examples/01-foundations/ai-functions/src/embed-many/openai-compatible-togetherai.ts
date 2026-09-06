@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { embedMany } from 'ai';
+import { embedMany } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

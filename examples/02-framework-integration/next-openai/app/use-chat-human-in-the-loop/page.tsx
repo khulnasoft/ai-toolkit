@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, getStaticToolName, isStaticToolUIPart } from 'ai';
+import { DefaultChatTransport, getStaticToolName, isStaticToolUIPart } from 'ai-toolkit';
 import { tools } from '../api/use-chat-human-in-the-loop/tools';
 import { APPROVAL, getToolsRequiringConfirmation } from '../api/use-chat-human-in-the-loop/utils';
 import { useState } from 'react';

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isStaticToolUIPart } from 'ai';
+import { isStaticToolUIPart } from '@ai-toolkit/ai';
 import { Chat } from './chat.vue';
 
 const chat = new Chat({});

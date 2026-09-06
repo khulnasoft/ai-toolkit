@@ -4,6 +4,9 @@
       "path": "packages/core/ai"
     },
     {
+      "path": "packages/core/ai-toolkit"
+    },
+    {
       "path": "packages/core/provider-utils"
     },
     {
@@ -23,6 +26,9 @@
     },
     {
       "path": "packages/providers/baseten"
+    },
+    {
+      "path": "packages/providers/bytedance"
     },
     {
       "path": "packages/providers/black-forest-labs"
@@ -140,6 +146,12 @@
     },
     {
       "path": "packages/special/devtools"
+    },
+    {
+      "path": "packages/ui/elements"
+    },
+    {
+      "path": "packages/ui/shadcn-ui"
     },
     {
       "path": "packages/langchain"

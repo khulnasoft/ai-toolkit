@@ -51,7 +51,7 @@ You can obtain your Firemoon API key from the [Firemoon Dashboard](https://firem
 Firemoon supports various image generation models through the `image()` method:
 
 ```ts
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const result = await generateImage({
   model: firemoon.image('flux/dev'),
@@ -154,7 +154,7 @@ const result = await generateImage({
 
 ```ts
 import { createFiremoon } from '@firemoon/ai-provider';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const firemoon = createFiremoon({
   apiKey: process.env.FIREMOON_API_KEY,
@@ -180,7 +180,7 @@ console.log(result.images[0]);
 The Firemoon provider throws `APICallError` for API-related errors:
 
 ```ts
-import { APICallError } from 'ai';
+import { APICallError } from 'ai-toolkit';
 
 try {
   const result = await generateImage({

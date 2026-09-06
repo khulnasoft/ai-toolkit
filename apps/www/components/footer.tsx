@@ -36,7 +36,7 @@ const columns = [
       { label: 'GitHub', href: 'https://github.com/khulnasoft/ai-toolkit' },
       { label: 'Discord', href: 'https://discord.com/invite/a3VTVwXdEd' },
       { label: 'AI Gateway', href: 'https://vercel.com/ai-gateway' },
-      { label: 'AI Elements', href: 'https://elements.ai-sdk.dev/' },
+      { label: 'AI Elements', href: 'https://elements.ai-toolkit.dev/' },
     ],
   },
 ];

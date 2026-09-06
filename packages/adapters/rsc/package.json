@@ -44,7 +44,7 @@
     "README.md"
   ],
   "dependencies": {
-    "ai": "workspace:*",
+    "ai-toolkit": "workspace:*",
     "@ai-toolkit/provider": "workspace:*",
     "@ai-toolkit/provider-utils": "workspace:*",
     "jsondiffpatch": "0.7.3"

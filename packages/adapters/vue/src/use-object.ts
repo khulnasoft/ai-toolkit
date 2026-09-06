@@ -6,7 +6,7 @@ import {
   type DeepPartial,
   type FlexibleSchema,
   type InferSchema,
-} from 'ai';
+} from 'ai-toolkit';
 import swrv from 'swrv';
 import { ref, type Ref } from 'vue';
 

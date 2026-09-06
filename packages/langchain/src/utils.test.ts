@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { AIMessage, AIMessageChunk, HumanMessage, ToolMessage } from '@langchain/core/messages';
-import type { ToolResultPart, AssistantContent, UserContent, UIMessageChunk } from 'ai';
+import type { ToolResultPart, AssistantContent, UserContent, UIMessageChunk } from 'ai-toolkit';
 import {
   convertToolResultPart,
   convertAssistantContent,
@@ -738,7 +738,7 @@ describe('processModelChunk', () => {
 
 describe('isPlainMessageObject', () => {
   it('should return true for plain objects', () => {
-    expect(isPlainMessageObject({ type: 'ai', content: 'Hello' })).toBe(true);
+    expect(isPlainMessageObject({ type: 'ai-toolkit', content: 'Hello' })).toBe(true);
   });
 
   it('should return false for LangChain class instances', () => {
@@ -763,7 +763,7 @@ describe('isAIMessageChunk', () => {
   });
 
   it('should return true for plain objects with type: ai', () => {
-    const plainObj = { type: 'ai', content: 'Hello', id: 'msg-1' };
+    const plainObj = { type: 'ai-toolkit', content: 'Hello', id: 'msg-1' };
     expect(isAIMessageChunk(plainObj)).toBe(true);
   });
 
@@ -804,7 +804,7 @@ describe('isToolMessageType', () => {
   });
 
   it('should return false for other types', () => {
-    expect(isToolMessageType({ type: 'ai', content: 'Hello' })).toBe(false);
+    expect(isToolMessageType({ type: 'ai-toolkit', content: 'Hello' })).toBe(false);
     expect(isToolMessageType({ type: 'human', content: 'Hello' })).toBe(false);
   });
 
@@ -842,7 +842,7 @@ describe('getMessageText', () => {
   });
 
   it('should return empty string for objects without content', () => {
-    expect(getMessageText({ type: 'ai' })).toBe('');
+    expect(getMessageText({ type: 'ai-toolkit' })).toBe('');
   });
 });
 
@@ -1145,7 +1145,7 @@ describe('processLangGraphEvent', () => {
     const chunks: unknown[] = [];
     const controller = createMockController(chunks);
 
-    const plainMsg = { type: 'ai', content: 'Hello', id: 'msg-1' };
+    const plainMsg = { type: 'ai-toolkit', content: 'Hello', id: 'msg-1' };
     processLangGraphEvent(['messages', [plainMsg]], state, controller);
 
     expect(chunks).toContainEqual({ type: 'text-start', id: 'msg-1' });
@@ -1197,7 +1197,7 @@ describe('processLangGraphEvent', () => {
       messages: [
         {
           id: 'msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           tool_calls: [{ id: 'call-1', name: 'get_weather', args: { city: 'NYC' } }],
         },
       ],
@@ -1231,7 +1231,7 @@ describe('processLangGraphEvent', () => {
       messages: [
         {
           id: 'msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           tool_calls: [{ id: 'call-1', name: 'get_weather', args: { city: 'NYC' } }],
         },
       ],
@@ -1256,7 +1256,7 @@ describe('processLangGraphEvent', () => {
       messages: [
         {
           id: 'msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           response_metadata: {
             output: [
@@ -1299,7 +1299,7 @@ describe('processLangGraphEvent', () => {
       messages: [
         {
           id: 'msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           content: '',
           response_metadata: {
             output: [
@@ -1342,7 +1342,7 @@ describe('processLangGraphEvent', () => {
       messages: [
         {
           id: 'msg-1',
-          type: 'ai',
+          type: 'ai-toolkit',
           additional_kwargs: {
             tool_calls: [
               {

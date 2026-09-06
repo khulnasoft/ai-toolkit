@@ -1,6 +1,6 @@
 import { bedrockAnthropic, createBedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
 import { LanguageModelV3 } from '@ai-toolkit/provider';
-import { APICallError, generateText, stepCountIs } from 'ai';
+import { APICallError, generateText, stepCountIs } from 'ai-toolkit';
 import 'dotenv/config';
 import fs from 'fs';
 import { describe, expect, it } from 'vitest';

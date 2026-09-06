@@ -1,5 +1,5 @@
 import { cohere } from '@ai-toolkit/cohere';
-import { stepCountIs, ModelMessage, streamText, tool } from 'ai';
+import { stepCountIs, ModelMessage, streamText, tool } from 'ai-toolkit';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
 import { run } from '../lib/run';

@@ -1,5 +1,5 @@
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import fs from 'node:fs';
 import { run } from '../lib/run';
 

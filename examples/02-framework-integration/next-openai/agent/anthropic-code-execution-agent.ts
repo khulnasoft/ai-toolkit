@@ -1,5 +1,5 @@
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 export const anthropicCodeExecutionAgent = new ToolLoopAgent({

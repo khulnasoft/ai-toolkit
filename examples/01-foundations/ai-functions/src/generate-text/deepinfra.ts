@@ -1,5 +1,5 @@
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

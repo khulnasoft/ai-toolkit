@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { GoogleVertexImageProviderOptions, vertex } from '@ai-toolkit/google-vertex';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import { presentImages } from '../lib/present-image';
 import { run } from '../lib/run';
 

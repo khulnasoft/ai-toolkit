@@ -12,11 +12,11 @@ const mockRenames: Record<string, string> = {
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Replace import specifiers from 'ai/test' package
+  // Replace import specifiers from 'ai-toolkit/test' package
   root
     .find(j.ImportDeclaration)
     .filter(path => {
-      return path.node.source.type === 'StringLiteral' && path.node.source.value === 'ai/test';
+      return path.node.source.type === 'StringLiteral' && (path.node.source.value === 'ai-toolkit/test' || path.node.source.value === 'ai-toolkit/test');
     })
     .forEach(path => {
       path.node.specifiers?.forEach(specifier => {

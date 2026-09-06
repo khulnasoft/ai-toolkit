@@ -145,27 +145,27 @@ const result = await generateText({
 ##### `CoreMessage` → `ModelMessage`
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { CoreMessage } from 'ai';
+import { CoreMessage } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { ModelMessage } from 'ai';
+import { ModelMessage } from 'ai-toolkit';
 ```
 
 ##### `Message` → `UIMessage`
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { Message, CreateMessage } from 'ai';
+import { Message, CreateMessage } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { UIMessage, CreateUIMessage } from 'ai';
+import { UIMessage, CreateUIMessage } from 'ai-toolkit';
 ```
 
 ##### `convertToCoreMessages` → `convertToModelMessages`
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { convertToCoreMessages, streamText } from 'ai';
+import { convertToCoreMessages, streamText } from 'ai-toolkit';
 
 const result = await streamText({
   model: __MODEL__,
@@ -174,7 +174,7 @@ const result = await streamText({
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 
 const result = await streamText({
   model: __MODEL__,
@@ -194,7 +194,7 @@ const result = await streamText({
 For `UIMessage`s (previously called `Message`), the `.content` property has been replaced with a `parts` array structure.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { type Message } from 'ai'; // v4 Message type
+import { type Message } from 'ai-toolkit'; // v4 Message type
 
 // Messages (useChat) - had content property
 const message: Message = {
@@ -205,7 +205,7 @@ const message: Message = {
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { type UIMessage, type ModelMessage } from 'ai';
+import { type UIMessage, type ModelMessage } from 'ai-toolkit';
 
 // UIMessages (useChat) - now use parts array
 const uiMessage: UIMessage = {
@@ -350,7 +350,7 @@ File parts now use `.url` instead of `.data` and `.mimeType`.
 The `StreamData` class has been completely removed and replaced with UI message streams for custom data.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { StreamData } from 'ai';
+import { StreamData } from 'ai-toolkit';
 
 const streamData = new StreamData();
 streamData.append('custom-data');
@@ -358,7 +358,7 @@ streamData.close();
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { createUIMessageStream, createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStream, createUIMessageStreamResponse } from 'ai-toolkit';
 
 const stream = createUIMessageStream({
   execute({ writer }) {
@@ -387,7 +387,7 @@ return createUIMessageStreamResponse({ stream });
 The `writeMessageAnnotation` and `writeData` methods from `DataStreamWriter` have been removed. Instead, use custom data parts with the new `UIMessage` stream architecture.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { createDataStreamResponse, streamText } from 'ai';
+import { createDataStreamResponse, streamText } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -430,7 +430,7 @@ import {
   createUIMessageStreamResponse,
   streamText,
   generateId,
-} from 'ai';
+} from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -518,7 +518,7 @@ console.log(result.providerMetadata?.openai);
 Tool definitions have been updated to use `inputSchema` instead of `parameters` and error classes have been renamed.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 
 const weatherTool = tool({
   description: 'Get the weather for a city',
@@ -532,7 +532,7 @@ const weatherTool = tool({
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 
 const weatherTool = tool({
   description: 'Get the weather for a city',
@@ -613,7 +613,7 @@ for await (const part of result.fullStream) {
 The `ToolExecutionError` class has been removed. Tool execution errors now appear as `tool-error` content parts in the result steps, enabling automated LLM roundtrips in multi-step scenarios.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { ToolExecutionError } from 'ai';
+import { ToolExecutionError } from 'ai-toolkit';
 
 try {
   const result = await generateText({
@@ -714,7 +714,7 @@ AI TOOLKIT 5.0 introduces dynamic tools for handling tools with unknown types at
 The new `dynamicTool` helper function allows you to define tools where the input and output types are not known at compile time.
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { dynamicTool } from 'ai';
+import { dynamicTool } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Define a dynamic tool
@@ -733,7 +733,7 @@ const runtimeTool = dynamicTool({
 MCP tools that don't provide schemas are now automatically treated as dynamic tools:
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { MCPClient } from 'ai';
+import { MCPClient } from 'ai-toolkit';
 
 const client = new MCPClient({
   /* ... */
@@ -938,7 +938,7 @@ In v4, you typically rendered tool invocations using a catch-all `tool-invocatio
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { isToolUIPart, getToolName } from 'ai';
+import { isToolUIPart, getToolName } from 'ai-toolkit';
 
 {
   message.parts.map((part, index) => {
@@ -1164,7 +1164,7 @@ const { messages } = useChat({
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { stepCountIs, hasToolCall } from 'ai';
+import { stepCountIs, hasToolCall } from 'ai-toolkit';
 
 // V5: Server-side - flexible stopping conditions with stopWhen
 const result = await generateText({
@@ -1276,7 +1276,7 @@ const { messages, sendMessage } = useChat({
 
 ```tsx filename="AI TOOLKIT 5.0"
 // Server-side: Use stopWhen for multi-step control
-import { streamText, convertToModelMessages, stepCountIs } from 'ai';
+import { streamText, convertToModelMessages, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await streamText({
@@ -1290,7 +1290,7 @@ import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
-} from 'ai';
+} from 'ai-toolkit';
 
 const { messages, sendMessage, addToolOutput } = useChat({
   // Automatically submit when all tool results are available
@@ -1406,7 +1406,7 @@ const { messages } = useChat({
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages } = useChat({
   transport: new DefaultChatTransport({
@@ -1440,7 +1440,7 @@ export default function Page() {
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Page() {
@@ -1604,11 +1604,11 @@ sendMessage(
 `RequestOptions` has been renamed to `CompletionRequestOptions`.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import type { RequestOptions } from 'ai';
+import type { RequestOptions } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import type { CompletionRequestOptions } from 'ai';
+import type { CompletionRequestOptions } from 'ai-toolkit';
 ```
 
 #### addToolResult Renamed to addToolOutput
@@ -1671,7 +1671,7 @@ import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
-} from 'ai';
+} from 'ai-toolkit';
 
 const { messages, sendMessage, addToolOutput } = useChat({
   // Automatic submission with helper
@@ -1790,7 +1790,7 @@ import {
   streamText,
   UIMessage,
   type LanguageModelUsage,
-} from 'ai';
+} from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 // Create a new metadata type (optional for type-safety)
@@ -1828,7 +1828,7 @@ Then, on the client, you can access the message-level metadata.
 
 import { useChat } from '@ai-toolkit/react';
 import type { MyUIMessage } from './api/chat/route';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function Chat() {
   // Use custom message type defined on the server (optional for type-safety)
@@ -1866,7 +1866,7 @@ You can also access your metadata from the `onFinish` callback of `useChat`:
 
 import { useChat } from '@ai-toolkit/react';
 import type { MyUIMessage } from './api/chat/route';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function Chat() {
   // Use custom message type defined on the server (optional for type-safety)
@@ -1900,7 +1900,7 @@ const { messages } = useChat({
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages } = useChat({
   transport: new DefaultChatTransport({
@@ -1932,7 +1932,7 @@ const { messages, input, handleSubmit } = useChat({
 ```typescript filename="@ai-toolkit/vue v2"
 <script setup>
 import { Chat } from '@ai-toolkit/vue';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { ref } from 'vue';
 
 const input = ref('');
@@ -1987,7 +1987,7 @@ const chatInstance = Chat({
 
 ```js filename="@ai-toolkit/svelte v2"
 import { Chat } from '@ai-toolkit/svelte';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const chatInstance = Chat(() => ({
   transport: new DefaultChatTransport({ api: '/api/chat' }),
@@ -2037,7 +2037,7 @@ import { getTextFromDataUrl } from '@ai-toolkit/ui-utils';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { getTextFromDataUrl } from 'ai';
+import { getTextFromDataUrl } from 'ai-toolkit';
 ```
 
 **Note**: `processDataStream` was removed entirely in v5.0. Use `readUIMessageStream` instead for processing UI message streams, or use the more configurable Chat/useChat APIs for most use cases.
@@ -2198,14 +2198,14 @@ const { embeddings, usage } = await embedMany({
 The `LangChainAdapter` has been moved to `@ai-toolkit/langchain` and the API has been updated to use UI message streams.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { LangChainAdapter } from 'ai';
+import { LangChainAdapter } from 'ai-toolkit';
 
 const response = LangChainAdapter.toDataStreamResponse(stream);
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { toUIMessageStream } from '@ai-toolkit/langchain';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 const response = createUIMessageStreamResponse({
   stream: toUIMessageStream(stream),
@@ -2221,14 +2221,14 @@ const response = createUIMessageStreamResponse({
 The `LlamaIndexAdapter` has been extracted to a separate package `@ai-toolkit/llamaindex` and follows the same UI message stream pattern.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { LlamaIndexAdapter } from 'ai';
+import { LlamaIndexAdapter } from 'ai-toolkit';
 
 const response = LlamaIndexAdapter.toDataStreamResponse(stream);
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { toUIMessageStream } from '@ai-toolkit/llamaindex';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 const response = createUIMessageStreamResponse({
   stream: toUIMessageStream(stream),
@@ -2508,7 +2508,7 @@ for await (const part of result.fullStream) {
 The data stream protocol has been updated to use Server-Sent Events.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { createDataStream, formatDataStreamPart } from 'ai';
+import { createDataStream, formatDataStreamPart } from 'ai-toolkit';
 
 const dataStream = createDataStream({
   execute: writer => {
@@ -2526,7 +2526,7 @@ const dataStream = createDataStream({
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { createUIMessageStream } from 'ai';
+import { createUIMessageStream } from 'ai-toolkit';
 
 const stream = createUIMessageStream({
   execute: ({ writer }) => {
@@ -2594,11 +2594,11 @@ return result.toUIMessageStreamResponse();
 Various stream-related functions have been renamed for consistency.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { DataStreamToSSETransformStream } from 'ai';
+import { DataStreamToSSETransformStream } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { JsonToSseTransformStream } from 'ai';
+import { JsonToSseTransformStream } from 'ai-toolkit';
 ```
 
 #### Error Handling: getErrorMessage → onError
@@ -2656,11 +2656,11 @@ const id = generator(); // Fixed size from creation
 The type name has been updated.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { IDGenerator } from 'ai';
+import { IDGenerator } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { IdGenerator } from 'ai';
+import { IdGenerator } from 'ai-toolkit';
 ```
 
 ### Provider Interface Changes
@@ -2670,7 +2670,7 @@ import { IdGenerator } from 'ai';
 `LanguageModelV3` must now be imported from `@ai-toolkit/provider`.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { LanguageModelV3 } from 'ai';
+import { LanguageModelV3 } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
@@ -2682,7 +2682,7 @@ import { LanguageModelV3 } from '@ai-toolkit/provider';
 `LanguageModelV1Middleware` has been renamed and moved.
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { LanguageModelV1Middleware } from 'ai';
+import { LanguageModelV1Middleware } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
@@ -2828,11 +2828,11 @@ Provider response objects have been updated.
 #### `wrapLanguageModel` now stable
 
 ```tsx filename="AI TOOLKIT 4.0"
-import { experimental_wrapLanguageModel } from 'ai';
+import { experimental_wrapLanguageModel } from 'ai-toolkit';
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { wrapLanguageModel } from 'ai';
+import { wrapLanguageModel } from 'ai-toolkit';
 ```
 
 #### `activeTools` No Longer Experimental
@@ -2934,7 +2934,7 @@ import {
   convertToModelMessages,
   appendClientMessage,
   appendResponseMessages,
-} from 'ai';
+} from 'ai-toolkit';
 
 const updatedMessages = appendClientMessage({
   messages,
@@ -2961,7 +2961,7 @@ const result = streamText({
 In v5, message persistence is now handled through the `toUIMessageStreamResponse` method, which automatically formats response messages in the `UIMessage` format:
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { streamText, convertToModelMessages, UIMessage } from 'ai';
+import { streamText, convertToModelMessages, UIMessage } from 'ai-toolkit';
 
 const messages: UIMessage[] = [
   // Your existing messages in UIMessage format
@@ -3031,7 +3031,7 @@ import {
   streamText,
   convertToModelMessages,
   UIMessage,
-} from 'ai';
+} from 'ai-toolkit';
 
 const stream = createUIMessageStream({
   originalMessages: messages,
@@ -3096,7 +3096,7 @@ In AI TOOLKIT 4.0, you could set the `strictSchemas` option on Responses models 
 
 ```tsx filename="AI TOOLKIT 4.0"
 import { z } from 'zod';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import {
   openai,
   type OpenAIResponsesProviderOptions,
@@ -3117,7 +3117,7 @@ const result = await generateObject({
 
 ```tsx filename="AI TOOLKIT 5.0"
 import { z } from 'zod';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import {
   openai,
   type OpenAIResponsesProviderOptions,
@@ -3144,7 +3144,7 @@ The `structuredOutputs` option is now configured using provider options rather t
 
 ```tsx filename="AI TOOLKIT 4.0"
 import { z } from 'zod';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateObject({
@@ -3155,7 +3155,7 @@ const result = await generateObject({
 
 ```tsx filename="AI TOOLKIT 5.0 (Chat Completions API)"
 import { z } from 'zod';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import {
   openai,
   type OpenAIChatLanguageModelOptions,
@@ -3216,7 +3216,7 @@ const result = generateText({
 ```
 
 ```tsx filename="AI TOOLKIT 5.0"
-import { simulateStreamingMiddleware, wrapLanguageModel } from 'ai';
+import { simulateStreamingMiddleware, wrapLanguageModel } from 'ai-toolkit';
 
 const model = wrapLanguageModel({
   model: openai('gpt-4.1'),

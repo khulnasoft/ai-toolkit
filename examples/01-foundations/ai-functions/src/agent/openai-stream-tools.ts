@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { ToolLoopAgent, tool } from 'ai';
+import { ToolLoopAgent, tool } from 'ai-toolkit';
 import { run } from '../lib/run';
 import { z } from 'zod';
 

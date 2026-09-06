@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 
 import { z } from 'zod';
 

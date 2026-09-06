@@ -32,7 +32,7 @@ import {
   customProvider,
   defaultSettingsMiddleware,
   wrapLanguageModel,
-} from 'ai';
+} from 'ai-toolkit';
 
 // custom provider with different provider options:
 export const openai = customProvider({
@@ -73,7 +73,7 @@ export const openai = customProvider({
 You can also provide model name aliases, so you can update the model version in one place in the future:
 
 ```ts
-import { customProvider, gateway } from 'ai';
+import { customProvider, gateway } from 'ai-toolkit';
 
 // custom provider with alias names:
 export const anthropic = customProvider({
@@ -96,7 +96,7 @@ import {
   defaultSettingsMiddleware,
   wrapLanguageModel,
   gateway,
-} from 'ai';
+} from 'ai-toolkit';
 
 export const myProvider = customProvider({
   languageModels: {
@@ -143,7 +143,7 @@ You can create a [provider registry](/docs/reference/ai-toolkit-core/provider-re
 ```ts filename={"registry.ts"}
 import { anthropic } from '@ai-toolkit/anthropic';
 import { openai } from '@ai-toolkit/openai';
-import { createProviderRegistry, gateway } from 'ai';
+import { createProviderRegistry, gateway } from 'ai-toolkit';
 
 export const registry = createProviderRegistry({
   // register provider with prefix and default setup using gateway:
@@ -162,7 +162,7 @@ By default, the registry uses `:` as the separator between provider and model ID
 ```ts filename={"registry.ts"}
 import { anthropic } from '@ai-toolkit/anthropic';
 import { openai } from '@ai-toolkit/openai';
-import { createProviderRegistry, gateway } from 'ai';
+import { createProviderRegistry, gateway } from 'ai-toolkit';
 
 export const customSeparatorRegistry = createProviderRegistry(
   {
@@ -180,7 +180,7 @@ You can access language models by using the `languageModel` method on the regist
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { text } = await generateText({
@@ -197,7 +197,7 @@ You can access text embedding models by using the `.embeddingModel` method on th
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { embedding } = await embed({
@@ -212,7 +212,7 @@ You can access image models by using the `imageModel` method on the registry.
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { image } = await generateImage({
@@ -249,7 +249,7 @@ import {
   defaultSettingsMiddleware,
   gateway,
   wrapLanguageModel,
-} from 'ai';
+} from 'ai-toolkit';
 
 export const registry = createProviderRegistry(
   {
@@ -315,7 +315,7 @@ const model = registry.languageModel('anthropic > reasoning');
 The AI TOOLKIT 5 includes a global provider feature that allows you to specify a model using just a plain model ID string:
 
 ```ts
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await streamText({
@@ -338,7 +338,7 @@ globalThis.AI_TOOLKIT_DEFAULT_PROVIDER = openai;
 ```
 
 ```ts filename="app.ts"
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = await streamText({
   model: 'gpt-5.1', // Uses OpenAI provider without prefix

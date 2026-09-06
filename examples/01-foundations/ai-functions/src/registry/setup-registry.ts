@@ -12,7 +12,7 @@ import {
   customProvider,
   defaultSettingsMiddleware,
   wrapLanguageModel,
-} from 'ai';
+} from 'ai-toolkit';
 import 'dotenv/config';
 
 // custom provider with alias names:

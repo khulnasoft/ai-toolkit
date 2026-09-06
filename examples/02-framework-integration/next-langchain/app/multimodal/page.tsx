@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { AlertCircle, ImageIcon, X, Send, Loader2, Sparkles } from 'lucide-react';
 import { ChatMessage } from '../../components/chat-message';

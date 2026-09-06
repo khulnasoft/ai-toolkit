@@ -1,4 +1,4 @@
-import { ModelMessage, generateText } from 'ai';
+import { ModelMessage, generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {

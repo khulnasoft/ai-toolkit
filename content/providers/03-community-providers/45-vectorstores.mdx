@@ -63,7 +63,7 @@ const index = await VectorStoreIndex.fromDocuments(documents, {
 The `vercelTool` function wraps a vectorstores retriever as an AI TOOLKIT tool, enabling agents that can autonomously access data in vector databases.
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { vercelTool } from '@vectorstores/vercel';
 

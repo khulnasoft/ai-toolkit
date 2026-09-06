@@ -13,7 +13,7 @@ When building a chatbot, you may want to allow the user to generate an image. Th
 Let's create an endpoint at `/api/chat` that generates the assistant's response based on the conversation history. You will also define a tool called `generateImage` that will generate an image based on the assistant's response.
 
 ```typescript filename='tools/generate-image.ts'
-import { generateImage, tool } from 'ai';
+import { generateImage, tool } from 'ai-toolkit';
 import z from 'zod';
 
 export const generateImageTool = tool({
@@ -39,7 +39,7 @@ import {
   stepCountIs,
   streamText,
   type UIMessage,
-} from 'ai';
+} from 'ai-toolkit';
 
 import { generateImageTool } from '@/tools/generate-image';
 
@@ -77,7 +77,7 @@ Let's create a simple chat interface with `useChat`. You will call the `/api/cha
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, type UIMessage } from 'ai';
+import { DefaultChatTransport, type UIMessage } from 'ai-toolkit';
 import Image from 'next/image';
 import { type FormEvent, useState } from 'react';
 import type { ChatTools } from './api/chat/route';

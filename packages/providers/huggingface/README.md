@@ -22,7 +22,7 @@ import { huggingface } from '@ai-toolkit/huggingface';
 
 ```ts
 import { huggingface } from '@ai-toolkit/huggingface';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: huggingface('meta-llama/Llama-3.1-8B-Instruct'),

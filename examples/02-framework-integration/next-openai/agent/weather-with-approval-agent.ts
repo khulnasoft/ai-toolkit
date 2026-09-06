@@ -1,6 +1,6 @@
 import { weatherToolWithApproval } from '@/tool/weather-tool-with-approval';
 import { anthropic } from '@ai-toolkit/anthropic';
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 
 export const weatherWithApprovalAgent = new ToolLoopAgent({
   model: anthropic('claude-sonnet-4-5'),

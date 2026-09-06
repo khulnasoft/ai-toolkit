@@ -1,5 +1,5 @@
 ---
-'ai': patch
+'ai-toolkit': patch
 ---
 
 Examples reorganization (Wave 5 of MIGRATION_PLAN.md):

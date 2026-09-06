@@ -22,7 +22,7 @@ import { deepseek } from '@ai-toolkit/deepseek';
 
 ```ts
 import { deepseek } from '@ai-toolkit/deepseek';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: deepseek('deepseek-chat'),

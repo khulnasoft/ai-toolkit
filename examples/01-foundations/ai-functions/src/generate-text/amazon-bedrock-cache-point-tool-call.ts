@@ -1,4 +1,4 @@
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { run } from '../lib/run';

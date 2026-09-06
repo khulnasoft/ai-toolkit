@@ -6,7 +6,7 @@ import {
   ToolCallPart,
   ToolResultPart,
   wrapLanguageModel,
-} from 'ai';
+} from 'ai-toolkit';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';
 

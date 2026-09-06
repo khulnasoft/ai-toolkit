@@ -6,7 +6,7 @@ import ChatInput from '@/components/chat-input';
 import { ReasoningView } from '@/components/reasoning-view';
 import WeatherView from '@/components/tool/weather-view';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function ChatDeepSeekTools() {
   const { error, status, sendMessage, messages, regenerate } = useChat<DeepSeekToolsAgentMessage>({

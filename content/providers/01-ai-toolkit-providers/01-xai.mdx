@@ -87,7 +87,7 @@ You can use xAI language models to generate text with the `generateText` functio
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: xai('grok-3'),
@@ -150,7 +150,7 @@ The Responses API supports image input with vision models:
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: xai.responses('grok-2-vision-1212'),
@@ -172,7 +172,7 @@ The web search tool enables autonomous web research with optional domain filteri
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources } = await generateText({
   model: xai.responses('grok-4-fast'),
@@ -270,7 +270,7 @@ xAI supports file search through OpenAI compatibility. You can use the OpenAI pr
 
 ```ts
 import { createOpenAI } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const openai = createOpenAI({
   baseURL: 'https://api.x.ai/v1',
@@ -301,7 +301,7 @@ You can combine multiple server-side tools for comprehensive research:
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const { fullStream } = streamText({
   model: xai.responses('grok-4-fast'),
@@ -328,7 +328,7 @@ The Responses API supports the following provider options:
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: xai.responses('grok-4-fast'),
@@ -362,7 +362,7 @@ To enable search, specify `searchParameters` with a search mode:
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources } = await generateText({
   model: xai('grok-3-latest'),
@@ -602,7 +602,7 @@ for (const source of sources) {
 Live Search works with streaming responses. Citations are included when the stream completes:
 
 ```ts
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: xai('grok-3-latest'),
@@ -661,7 +661,7 @@ You can create xAI image models using the `.image()` factory method. For more on
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: xai.image('grok-2-image'),
@@ -680,7 +680,7 @@ You can customize the image generation behavior with model-specific settings:
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { images } = await generateImage({
   model: xai.image('grok-2-image'),

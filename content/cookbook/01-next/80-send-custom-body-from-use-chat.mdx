@@ -34,7 +34,7 @@ This can be useful if you want to reduce the amount of data sent to the server.
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Chat() {
@@ -84,7 +84,7 @@ We need to adjust the server to receive the custom request format with the chat 
 The rest of the message history can be loaded from storage.
 
 ```tsx filename='app/api/chat/route.ts' highlight="8,11,12,16"
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;

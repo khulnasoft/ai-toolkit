@@ -121,7 +121,7 @@ Both formats access the same MiniMax models with the same capabilities.
 
 ```ts
 import { minimax } from 'vercel-minimax-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: minimax('MiniMax-M2'),
@@ -135,7 +135,7 @@ console.log(result.text);
 
 ```ts
 import { minimax } from 'vercel-minimax-ai-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: minimax('MiniMax-M2'),

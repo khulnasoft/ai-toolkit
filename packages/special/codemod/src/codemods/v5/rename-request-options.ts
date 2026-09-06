@@ -10,7 +10,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     .find(j.ImportDeclaration)
     .filter(path => {
       return !!(
-        path.node.source.value === 'ai' &&
+        path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit' &&
         path.node.specifiers &&
         path.node.specifiers.some(
           spec =>

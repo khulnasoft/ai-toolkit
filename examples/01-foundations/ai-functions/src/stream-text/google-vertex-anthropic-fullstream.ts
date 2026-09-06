@@ -1,5 +1,5 @@
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';

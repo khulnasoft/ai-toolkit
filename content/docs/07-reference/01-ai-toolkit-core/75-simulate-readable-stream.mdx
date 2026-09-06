@@ -8,7 +8,7 @@ description: Create a ReadableStream that emits values with configurable delays
 `simulateReadableStream` is a utility function that creates a ReadableStream which emits provided values sequentially with configurable delays. This is particularly useful for testing streaming functionality or simulating time-delayed data streams.
 
 ```ts
-import { simulateReadableStream } from 'ai';
+import { simulateReadableStream } from 'ai-toolkit';
 
 const stream = simulateReadableStream({
   chunks: ['Hello', ' ', 'World'],
@@ -19,7 +19,7 @@ const stream = simulateReadableStream({
 
 ## Import
 
-<Snippet text={`import { simulateReadableStream } from "ai"`} prompt={false} />
+<Snippet text={`import { simulateReadableStream } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 

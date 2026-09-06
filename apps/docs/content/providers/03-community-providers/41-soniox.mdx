@@ -34,7 +34,7 @@ Get your API key from the [Soniox Console](https://console.soniox.com).
 
 ```ts
 import { soniox } from '@soniox/vercel-ai-toolkit-provider';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 
 const { text } = await transcribe({
   model: soniox.transcription('stt-async-v3'),

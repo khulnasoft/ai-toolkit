@@ -22,7 +22,7 @@ import { cohere } from '@ai-toolkit/cohere';
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: cohere('command-r-plus'),

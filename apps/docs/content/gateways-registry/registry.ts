@@ -27,7 +27,7 @@ export const gateways: Gateway[] = [
     developer: 'Vercel',
     description:
       'Access models from OpenAI, Anthropic, Google, Meta, xAI, and more through a single interface. Built into the AI TOOLKIT with automatic authentication on Vercel, BYOK support, provider routing, fallbacks, and observability in your Vercel dashboard.',
-    packageName: 'ai',
+    packageName: 'ai-toolkit',
     featured: true,
     tags: ['unified-access', 'routing', 'observability', 'byok'],
     apiKeyEnvName: 'AI_GATEWAY_API_KEY',
@@ -37,7 +37,7 @@ export const gateways: Gateway[] = [
       yarn: 'yarn add ai',
       bun: 'bun add ai',
     },
-    codeExample: `import { generateText, gateway } from 'ai';
+    codeExample: `import { generateText, gateway } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: gateway('openai/gpt-5'),
@@ -66,7 +66,7 @@ console.log(text);`,
       yarn: 'yarn add @openrouter/ai-toolkit-provider',
       bun: 'bun add @openrouter/ai-toolkit-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createOpenRouter } from '@openrouter/ai-toolkit-provider';
 
 const openrouter = createOpenRouter({
@@ -100,7 +100,7 @@ console.log(text);`,
       yarn: 'yarn add ai-gateway-provider',
       bun: 'bun add ai-gateway-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createAiGateway } from 'ai-gateway-provider';
 import { createOpenAI } from '@ai-toolkit/openai';
 
@@ -146,7 +146,7 @@ console.log(text);`,
       yarn: 'yarn add @portkey-ai/vercel-provider',
       bun: 'bun add @portkey-ai/vercel-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createPortkey } from '@portkey-ai/vercel-provider';
 
 const portkey = createPortkey({
@@ -191,7 +191,7 @@ console.log(text);`,
       yarn: 'yarn add @langdb/vercel-provider',
       bun: 'bun add @langdb/vercel-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createLangDB } from '@langdb/vercel-provider';
 
 const langdb = createLangDB({
@@ -231,7 +231,7 @@ console.log(text);`,
       yarn: 'yarn add @requesty/ai-toolkit',
       bun: 'bun add @requesty/ai-toolkit',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createRequesty } from '@requesty/ai-toolkit';
 
 const requesty = createRequesty({
@@ -264,7 +264,7 @@ console.log(text);`,
       yarn: 'yarn add @apertis/ai-toolkit-provider',
       bun: 'bun add @apertis/ai-toolkit-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { apertis } from '@apertis/ai-toolkit-provider';
 
 const { text } = await generateText({
@@ -293,7 +293,7 @@ console.log(text);`,
       yarn: 'yarn add @llamagate/ai-toolkit-provider',
       bun: 'bun add @llamagate/ai-toolkit-provider',
     },
-    codeExample: `import { generateText } from 'ai';
+    codeExample: `import { generateText } from 'ai-toolkit';
 import { createLlamaGate } from '@llamagate/ai-toolkit-provider';
 
 const llamagate = createLlamaGate({

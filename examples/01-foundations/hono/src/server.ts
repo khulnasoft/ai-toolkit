@@ -5,7 +5,7 @@ import {
   createUIMessageStream,
   createUIMessageStreamResponse,
   streamText,
-} from 'ai';
+} from 'ai-toolkit';
 import 'dotenv/config';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';

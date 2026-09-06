@@ -2,7 +2,7 @@
 
 import { Card } from '@/app/components';
 import { useChat } from '@ai-toolkit/react';
-import { TextStreamChatTransport } from 'ai';
+import { TextStreamChatTransport } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Page() {

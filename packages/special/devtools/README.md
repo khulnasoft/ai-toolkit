@@ -22,7 +22,7 @@ pnpm add @ai-toolkit/devtools
 ### 1. Add the middleware to your model
 
 ```typescript
-import { wrapLanguageModel } from 'ai';
+import { wrapLanguageModel } from 'ai-toolkit';
 import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({

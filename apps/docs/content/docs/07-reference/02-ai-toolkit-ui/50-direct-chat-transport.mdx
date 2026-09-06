@@ -15,7 +15,7 @@ Unlike `DefaultChatTransport` which sends HTTP requests to an API endpoint, `Dir
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { DirectChatTransport, ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -34,7 +34,7 @@ export default function Chat() {
 
 ## Import
 
-<Snippet text={`import { DirectChatTransport } from "ai"`} prompt={false} />
+<Snippet text={`import { DirectChatTransport } from "ai-toolkit"`} prompt={false} />
 
 ## Constructor
 
@@ -198,7 +198,7 @@ Always returns `Promise<null>`.
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { DirectChatTransport, ToolLoopAgent } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent({
@@ -231,7 +231,7 @@ export default function Chat() {
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent, tool } from 'ai';
+import { DirectChatTransport, ToolLoopAgent, tool } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -264,7 +264,7 @@ export default function Chat() {
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { DirectChatTransport, ToolLoopAgent } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent<{ userId: string }>({
@@ -293,7 +293,7 @@ export default function Chat({ userId }: { userId: string }) {
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { DirectChatTransport, ToolLoopAgent } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const agent = new ToolLoopAgent({

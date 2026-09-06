@@ -48,7 +48,7 @@ import { useChat } from '@ai-toolkit/react';
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
-} from 'ai';
+} from 'ai-toolkit';
 import { useState } from 'react';
 import { ChatMessage } from './api/chat/route';
 
@@ -214,7 +214,7 @@ import {
   stepCountIs,
   streamText,
   tool,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 const tools = {

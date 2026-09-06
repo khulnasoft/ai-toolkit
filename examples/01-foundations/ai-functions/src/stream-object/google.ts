@@ -1,5 +1,5 @@
 import { google } from '@ai-toolkit/google';
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

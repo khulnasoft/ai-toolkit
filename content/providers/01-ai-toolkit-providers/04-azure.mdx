@@ -113,7 +113,7 @@ You can use the `extractReasoningMiddleware` to extract this reasoning and expos
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
+import { wrapLanguageModel, extractReasoningMiddleware } from 'ai-toolkit';
 
 const enhancedModel = wrapLanguageModel({
   model: azure('your-deepseek-r1-deployment-name'),
@@ -134,7 +134,7 @@ You can use OpenAI language models to generate text with the `generateText` func
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: azure('your-deployment-name'),
@@ -203,7 +203,7 @@ You can pass them as an options argument:
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure.chat('your-deployment-name'),
@@ -276,7 +276,7 @@ You can validate the provider options using the `OpenAIResponsesProviderOptions`
 
 ```ts
 import { azure, OpenAIResponsesProviderOptions } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure('your-deployment-name'),
@@ -432,7 +432,7 @@ Availability is restricted to specific models (for example, `gpt-5` variants).
 
 ```ts
 import { createAzure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const azure = createAzure({
   headers: {
@@ -486,7 +486,7 @@ The Azure OpenAI provider supports the code interpreter tool through the `azure.
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure('gpt-5'),
@@ -595,7 +595,7 @@ import {
   azure,
   type AzureResponsesTextProviderMetadata,
 } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure('gpt-4.1-mini'),
@@ -672,7 +672,7 @@ import {
   azure,
   type AzureResponsesSourceDocumentProviderMetadata,
 } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure('gpt-4.1-mini'),
@@ -744,7 +744,7 @@ You can pass them as an options argument:
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: azure.completion('your-gpt-35-turbo-instruct-deployment'),
@@ -819,7 +819,7 @@ You can pass them as an options argument:
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: azure.embedding('your-embedding-deployment'),
@@ -875,7 +875,7 @@ You can use Azure OpenAI image models to generate images with the `generateImage
 
 ```ts
 import { azure } from '@ai-toolkit/azure';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: azure.image('your-dalle-deployment-name'),
@@ -935,7 +935,7 @@ When using useDeploymentBasedUrls, the default api-version is not valid. You mus
 You can also pass additional provider-specific options using the `providerOptions` argument. For example, supplying the input language in ISO-639-1 (e.g. `en`) format will improve accuracy and latency.
 
 ```ts highlight="6"
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 import { azure } from '@ai-toolkit/azure';
 import { readFile } from 'fs/promises';
 

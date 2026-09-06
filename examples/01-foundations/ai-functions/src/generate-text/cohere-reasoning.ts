@@ -1,5 +1,5 @@
 import { cohere, type CohereChatModelOptions } from '@ai-toolkit/cohere';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

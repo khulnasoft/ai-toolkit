@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

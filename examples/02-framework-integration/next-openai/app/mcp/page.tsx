@@ -8,7 +8,7 @@ import {
   type DynamicToolUIPart,
   type ToolUIPart,
   isToolUIPart,
-} from 'ai';
+} from 'ai-toolkit';
 
 export default function Chat() {
   const { error, status, sendMessage, messages, regenerate, stop } = useChat({

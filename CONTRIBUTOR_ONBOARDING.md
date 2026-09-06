@@ -359,11 +359,11 @@ Then create a PR on GitHub. The template will guide you through the details.
 
 ```typescript
 // ✅ Public API - Use freely, stable
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { useChat } from '@ai-toolkit/react';
 
 // ⚠️ Internal API - May change, don't depend on externally
-import type { … } from 'ai/internal';
+import type { … } from 'ai-toolkit/internal';
 
 // ℹ️ Example API - Copy & adapt, don't depend on
 import { setupChat } from './example-setup';

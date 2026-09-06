@@ -1,6 +1,6 @@
 import { GoogleAIFileManager } from '@google/generative-ai/server';
 import { google } from '@ai-toolkit/google';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import path from 'path';
 import { z } from 'zod';
 import { run } from '../lib/run';

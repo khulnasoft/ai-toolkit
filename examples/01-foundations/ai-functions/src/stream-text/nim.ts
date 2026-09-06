@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

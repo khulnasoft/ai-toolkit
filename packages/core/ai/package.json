@@ -1,7 +1,7 @@
 {
-  "name": "ai",
+  "name": "@ai-toolkit/ai",
   "version": "2.0.0",
-  "description": "AI TOOLKIT by KhulnaSoft - The AI Toolkit for TypeScript and JavaScript",
+  "description": "AI TOOLKIT by KhulnaSoft - Shim for @ai-toolkit/ai (re-exports from ai-toolkit)",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -41,26 +41,26 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./internal": {
       "types": "./dist/internal/index.d.ts",
       "import": "./dist/internal/index.mjs",
       "module": "./dist/internal/index.mjs",
-      "require": "./dist/internal/index.js"
+      "require": "./dist/internal/index.js",
+      "default": "./dist/internal/index.js"
     },
     "./test": {
       "types": "./dist/test/index.d.ts",
       "import": "./dist/test/index.mjs",
       "module": "./dist/test/index.mjs",
-      "require": "./dist/test/index.js"
+      "require": "./dist/test/index.js",
+      "default": "./dist/test/index.js"
     }
   },
   "dependencies": {
-    "@ai-toolkit/gateway": "workspace:*",
-    "@ai-toolkit/provider": "workspace:*",
-    "@ai-toolkit/provider-utils": "workspace:*",
-    "@opentelemetry/api": "1.9.0"
+    "ai-toolkit": "workspace:*"
   },
   "devDependencies": {
     "@ai-toolkit/test-server": "workspace:*",

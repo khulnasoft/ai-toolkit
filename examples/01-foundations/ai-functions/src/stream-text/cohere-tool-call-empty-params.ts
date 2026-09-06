@@ -1,5 +1,5 @@
 import { cohere } from '@ai-toolkit/cohere';
-import { streamText, ModelMessage, ToolCallPart, ToolResultPart, tool } from 'ai';
+import { streamText, ModelMessage, ToolCallPart, ToolResultPart, tool } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

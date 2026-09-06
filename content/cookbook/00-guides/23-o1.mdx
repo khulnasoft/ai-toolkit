@@ -50,7 +50,7 @@ The AI TOOLKIT abstracts away the differences between model providers, eliminate
 At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call OpenAI o1 with the AI TOOLKIT:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -67,7 +67,7 @@ const { text } = await generateText({
 AI TOOLKIT Core abstracts away the differences between model providers, allowing you to focus on building great applications. The unified interface also means that you can easily switch between models by changing just one line of code.
 
 ```ts highlight="5"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -86,7 +86,7 @@ You can control the amount of reasoning effort expended by o1 through the `reaso
 This parameter can be set to `'low'`, `'medium'`, or `'high'` to adjust how much time and computation the model spends on internal reasoning before producing a response.
 
 ```ts highlight="9"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // Reduce reasoning effort for faster responses
@@ -109,7 +109,7 @@ const { text } = await generateText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -141,7 +141,7 @@ The AI TOOLKIT supports tool usage across several of its functions, like [`gener
 Here's an example of how you can use a tool with the AI TOOLKIT and o1:
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -179,7 +179,7 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 // Allow responses up to 5 minutes
 export const maxDuration = 300;

@@ -63,7 +63,7 @@ For static values that don't change during the component lifecycle, use the `Def
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages, sendMessage } = useChat({
   transport: new DefaultChatTransport({
@@ -87,7 +87,7 @@ If you need dynamic values at the hook level, you can use functions that return 
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages, sendMessage } = useChat({
   transport: new DefaultChatTransport({

@@ -1,6 +1,6 @@
 import { openai as provider } from '@ai-toolkit/openai';
 import { LanguageModelV3 } from '@ai-toolkit/provider';
-import { APICallError } from 'ai';
+import { APICallError } from 'ai-toolkit';
 import 'dotenv/config';
 import { expect } from 'vitest';
 import {

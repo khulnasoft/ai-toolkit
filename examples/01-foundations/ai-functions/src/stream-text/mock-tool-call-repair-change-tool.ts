@@ -1,5 +1,5 @@
-import { streamText, tool } from 'ai';
-import { convertArrayToReadableStream, MockLanguageModelV3 } from 'ai/test';
+import { streamText, tool } from 'ai-toolkit';
+import { convertArrayToReadableStream, MockLanguageModelV3 } from 'ai-toolkit/test';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

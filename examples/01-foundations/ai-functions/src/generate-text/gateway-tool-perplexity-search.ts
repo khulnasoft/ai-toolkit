@@ -1,4 +1,4 @@
-import { gateway, generateText } from 'ai';
+import { gateway, generateText } from 'ai-toolkit';
 import 'dotenv/config';
 
 async function main() {

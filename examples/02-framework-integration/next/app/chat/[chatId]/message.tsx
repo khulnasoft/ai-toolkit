@@ -1,5 +1,5 @@
 import type { MyUIMessage } from '@/util/chat-schema';
-import { ChatStatus } from 'ai';
+import { ChatStatus } from 'ai-toolkit';
 
 export default function Message({
   message,

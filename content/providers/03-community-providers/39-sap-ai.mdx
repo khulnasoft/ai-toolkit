@@ -113,7 +113,7 @@ Here are examples of using SAP AI Core with the AI TOOLKIT:
 
 ```typescript
 import { createSAPAIProvider } from '@mymediset/sap-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 // Authentication via AICORE_SERVICE_KEY environment variable
 const sapai = createSAPAIProvider();
@@ -130,7 +130,7 @@ console.log(text);
 
 ```typescript
 import { createSAPAIProvider } from '@mymediset/sap-ai-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const sapai = createSAPAIProvider();
 
@@ -148,7 +148,7 @@ for await (const textPart of result.textStream) {
 
 ```typescript
 import { createSAPAIProvider } from '@mymediset/sap-ai-provider';
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const sapai = createSAPAIProvider();
@@ -179,7 +179,7 @@ console.log(result.text);
 
 ```typescript
 import { createSAPAIProvider } from '@mymediset/sap-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const sapai = createSAPAIProvider();
 
@@ -211,7 +211,7 @@ import {
   createSAPAIProvider,
   buildDpiMaskingProvider,
 } from '@mymediset/sap-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const dpiConfig = buildDpiMaskingProvider({
   method: 'anonymization',

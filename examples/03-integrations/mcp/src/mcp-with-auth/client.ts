@@ -1,16 +1,16 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 
 /**
  * @deprecated Use the `@ai-toolkit/mcp` package instead.
  *
-import { experimental_createMCPClient, auth } from 'ai';
+import { experimental_createMCPClient, auth } from 'ai-toolkit';
 import type {
   OAuthClientProvider,
   OAuthClientInformation,
   OAuthClientMetadata,
   OAuthTokens,
-} from 'ai';
+} from 'ai-toolkit';
 */
 
 import { createMCPClient, auth } from '@ai-toolkit/mcp';

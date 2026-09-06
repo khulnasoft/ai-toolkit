@@ -85,7 +85,7 @@ You can use the `extractReasoningMiddleware` to extract this reasoning and expos
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
+import { wrapLanguageModel, extractReasoningMiddleware } from 'ai-toolkit';
 
 const enhancedModel = wrapLanguageModel({
   model: togetherai('deepseek-ai/DeepSeek-R1'),
@@ -101,7 +101,7 @@ You can use Together.ai language models to generate text with the `generateText`
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: togetherai('meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo'),
@@ -141,7 +141,7 @@ For more on image generation with the AI TOOLKIT see [generateImage()](/docs/ref
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { images } = await generateImage({
   model: togetherai.image('black-forest-labs/FLUX.1-dev'),
@@ -153,7 +153,7 @@ You can pass optional provider-specific request parameters using the `providerOp
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { images } = await generateImage({
   model: togetherai.image('black-forest-labs/FLUX.1-dev'),
@@ -265,7 +265,7 @@ For more on embedding models with the AI TOOLKIT see [embed()](/docs/reference/a
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: togetherai.embedding('togethercomputer/m2-bert-80M-2k-retrieval'),
@@ -298,7 +298,7 @@ For more on reranking with the AI TOOLKIT see [rerank()](/docs/reference/ai-tool
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const documents = [
   'sunny day at the beach',
@@ -324,7 +324,7 @@ Together.ai reranking models support additional provider options for object docu
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const documents = [
   {

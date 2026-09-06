@@ -45,10 +45,10 @@ export default createTransformer((fileInfo, api, options, context) => {
   }
 
   if (shouldRemoveLlamaIndexAdapter) {
-    // Remove or update the 'ai' import that includes LlamaIndexAdapter
+    // Remove or update the 'ai-toolkit' import that includes LlamaIndexAdapter
     root
       .find(j.ImportDeclaration, {
-        source: { value: 'ai' },
+        source: { value: 'ai-toolkit' },
       })
       .forEach(path => {
         const specifiers = path.node.specifiers || [];

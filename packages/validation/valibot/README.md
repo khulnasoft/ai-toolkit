@@ -16,7 +16,7 @@ npm install @ai-toolkit/valibot
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
 import { valibotSchema } from '@ai-toolkit/valibot';
-import { generateText, Output } from 'ai';
+import { generateText, Output } from 'ai-toolkit';
 import * as v from 'valibot';
 
 const result = await generateText({

@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { ChatAddToolApproveResponseFunction, UIToolInvocation } from 'ai';
+import { ChatAddToolApproveResponseFunction, UIToolInvocation } from 'ai-toolkit';
 
 export default function ShellView({
   invocation,

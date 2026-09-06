@@ -45,7 +45,7 @@ At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overv
 
 ```ts
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: deepinfra('meta-llama/Meta-Llama-3.1-405B-Instruct'),
@@ -64,7 +64,7 @@ const { text } = await generateText({
 AI TOOLKIT Core abstracts away the differences between model providers, allowing you to focus on building great applications. Prefer to use [Amazon Bedrock](/providers/ai-toolkit-providers/amazon-bedrock)? The unified interface also means that you can easily switch between models by changing just two lines of code.
 
 ```tsx highlight="2,5"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
 
 const { text } = await generateText({
@@ -78,7 +78,7 @@ const { text } = await generateText({
 To stream the model's response as it's being generated, update your code snippet to use the [`streamText`](/docs/reference/ai-toolkit-core/stream-text) function.
 
 ```tsx
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 
 const { textStream } = streamText({
@@ -92,7 +92,7 @@ const { textStream } = streamText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 import { z } from 'zod';
 
@@ -122,7 +122,7 @@ The AI TOOLKIT supports tool usage across several of its functions, including [`
 Here's an example of how you can use a tool with the AI TOOLKIT and Llama 3.1:
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 import { z } from 'zod';
 
@@ -159,7 +159,7 @@ The AI TOOLKIT supports agent implementation through the `maxSteps` parameter. T
 Here's an example of an agent that solves math problems:
 
 ```tsx
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 import * as mathjs from 'mathjs';
 import { z } from 'zod';
@@ -197,7 +197,7 @@ Let's explore building a chatbot with [Next.js](https://nextjs.org), the AI TOOL
 
 ```tsx filename="app/api/chat/route.ts"
 import { deepinfra } from '@ai-toolkit/deepinfra';
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -323,7 +323,7 @@ Here's how simple the migration process can be:
 **OpenAI Example:**
 
 ```tsx
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -335,7 +335,7 @@ const { text } = await generateText({
 **Llama on DeepInfra Example:**
 
 ```tsx
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { deepinfra } from '@ai-toolkit/deepinfra';
 
 const { text } = await generateText({

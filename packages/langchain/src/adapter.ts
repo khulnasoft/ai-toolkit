@@ -1,5 +1,5 @@
 import { SystemMessage, BaseMessage, AIMessageChunk } from '@langchain/core/messages';
-import { type UIMessage, type UIMessageChunk, convertToModelMessages, type ModelMessage } from 'ai';
+import { type UIMessage, type UIMessageChunk, convertToModelMessages, type ModelMessage } from 'ai-toolkit';
 import {
   convertToolResultPart,
   convertAssistantContent,

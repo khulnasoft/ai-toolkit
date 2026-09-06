@@ -31,6 +31,9 @@ packages/adapters/angular/ @angular-community @khulnasoft/ai-toolkit-adapters
 packages/adapters/svelte/ @svelte-community @khulnasoft/ai-toolkit-adapters
 packages/adapters/vue/ @vue-community @khulnasoft/ai-toolkit-adapters
 
+# ===== UI LAYER =====
+packages/ui/ @khulnasoft/ai-react-team
+
 # ===== MCP LAYER =====
 packages/mcp/ @khulnasoft/ai-mcp
 

@@ -5,7 +5,7 @@ import type { AI } from './ai';
 import { useActions } from '@ai-toolkit/rsc';
 
 import { useAIState, useUIState } from '@ai-toolkit/rsc';
-import { generateId } from 'ai';
+import { generateId } from 'ai-toolkit';
 import { Message } from './message';
 
 export default function Home() {

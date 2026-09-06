@@ -82,7 +82,7 @@ You can use Anthropic language models to generate text with the `generateText` f
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: anthropic('claude-3-haiku-20240307'),
@@ -135,7 +135,7 @@ Tool call streaming is enabled by default. You can opt out by setting the
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText, tool } from 'ai';
+import { streamText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = streamText({
@@ -163,7 +163,7 @@ Anthropic introduced an `effort` option with `claude-opus-4-5` that affects thin
 
 ```ts highlight="8-10"
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, usage } = await generateText({
   model: anthropic('claude-opus-4-20250514'),
@@ -188,7 +188,7 @@ and specifying a thinking budget in tokens.
 
 ```ts highlight="4,8-10"
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, reasoningText, reasoning } = await generateText({
   model: anthropic('claude-opus-4-20250514'),
@@ -216,7 +216,7 @@ You can configure context management using the `contextManagement` provider opti
 
 ```ts highlight="7-20"
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: anthropic('claude-3-7-sonnet-20250219'),
@@ -312,7 +312,7 @@ that resolves to the metadata. Alternatively you can receive it in the
 
 ```ts highlight="8,18-20,29-30"
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const errorMessage = '... long error message ...';
 
@@ -564,7 +564,7 @@ You can enable web search using the provider-defined web search tool:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const webSearchTool = anthropic.tools.webSearch_20250305({
   maxUses: 5,
@@ -635,7 +635,7 @@ You can enable web fetch using the provider-defined web fetch tool:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: anthropic('claude-sonnet-4-0'),
@@ -660,7 +660,7 @@ There are two variants:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateText({
@@ -713,7 +713,7 @@ You can enable this feature with the `mcpServers` provider option:
 
 ```ts
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: anthropic('claude-sonnet-4-5'),
@@ -817,7 +817,7 @@ You can enable code execution using the provider-defined code execution tool:
 
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const codeExecutionTool = anthropic.tools.codeExecution_20250825();
 
@@ -890,7 +890,7 @@ import {
   anthropic,
   forwardAnthropicContainerIdFromLastStep,
 } from '@ai-toolkit/anthropic';
-import { generateText, tool, stepCountIs } from 'ai';
+import { generateText, tool, stepCountIs } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateText({
@@ -959,7 +959,7 @@ To use skills, you need to:
 
 ```ts highlight="4,9-17,19-23"
 import { anthropic, AnthropicProviderOptions } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: anthropic('claude-sonnet-4-5'),
