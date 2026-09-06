@@ -21,124 +21,102 @@
 
 </div>
 
-<div align="center">
+---
 
-## 🌟 **The Ultimate TypeScript AI Toolkit**
+## ✨ Why AI TOOLKIT?
 
-[AI TOOLKIT](https://sdk.khulnasoft.com/docs) is a **production-ready**, **type-safe** TypeScript toolkit for building **AI-powered applications** with seamless integration across **Next.js, React, Svelte, Vue** and **Node.js** runtimes.
+AI TOOLKIT provides a unified TypeScript API for integrating AI models into modern applications without coupling your application architecture to a single provider or UI framework.
 
-</div>
+### Core principles
+
+* **Type-safe** — Designed for TypeScript-first development.
+* **Provider-agnostic** — Use multiple AI providers behind a consistent API.
+* **Streaming-first** — Build responsive AI experiences with streaming generation.
+* **Framework-friendly** — Integrate with React, Next.js, Svelte, Vue, Solid.js, and Node.js.
+* **Extensible** — Add providers, tools, middleware, and application-specific abstractions.
+* **Production-oriented** — Structured error handling, observability hooks, and predictable APIs.
 
 ---
 
-## ✨ **Key Features**
+## 🌟 Features
 
-<table align="center">
-<tr>
-<td width="50%">
+| Capability                     | Description                                                                 |
+| ------------------------------ | --------------------------------------------------------------------------- |
+| 🤖 **Multiple AI Providers**   | Connect OpenAI, Anthropic, Google, Azure, Groq, Cohere, and other providers |
+| 🔗 **Unified API**             | Use a consistent interface across supported model providers                 |
+| 🌊 **Streaming**               | Stream generated responses for interactive applications                     |
+| 🛠️ **Tool Calling**           | Build AI applications that can invoke application-defined tools             |
+| 🧩 **Framework Integrations**  | React, Next.js, Svelte, Vue, Solid.js, and Node.js                          |
+| 🎨 **Generative UI**           | Connect streamed AI output to interactive application interfaces            |
+| 🔒 **Type Safety**             | TypeScript-first APIs and typed integrations                                |
+| 📊 **Observability**           | Integrate logging, metrics, tracing, and application monitoring             |
+| 🧱 **Extensible Architecture** | Build custom providers and application-level abstractions                   |
 
-**🔗 Seamless AI Integration**
-
-- 🤖 **20+ AI Providers**: OpenAI, Anthropic, Google, Azure, Groq, Cohere, and more
-- 🔄 **Unified API**: Single interface for all providers
-- ⚡ **Streaming Support**: Real-time AI responses
-- 🛡️ **Error Handling**: Robust fallback mechanisms
-
-</td>
-<td width="50%">
-
-**🎯 Framework Agnostic**
-
-- ⚛️ **React & Next.js**: Hooks and components
-- 🎨 **Svelte & Vue**: Reactive UI integrations
-- 🟢 **Node.js**: Server-side AI processing
-- 📦 **Universal**: Works everywhere JavaScript runs
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-**👨‍� Developer Experience**
-
-- 📝 **100% TypeScript**: Full type safety
-- 🚀 **Zero Config**: Get started in minutes
-- 📚 **Comprehensive Docs**: Detailed guides & examples
-- 🔧 **Extensible**: Easy to customize and extend
-
-</td>
-<td width="50%">
-
-**🏗️ Production Ready**
-
-- ⚡ **High Performance**: Optimized for production
-- 🛡️ **Secure**: Best practices built-in
-- 📊 **Monitoring**: Built-in logging and metrics
-- 🔄 **Reliable**: Battle-tested in production
-
-</td>
-</tr>
-</table>
+> Provider availability and individual capabilities depend on the corresponding provider integration.
 
 ---
 
-## 📚 **Documentation & Resources**
+# 📦 Installation
 
-| Resource                    | Description                       | Link                                                                |
-| --------------------------- | --------------------------------- | ------------------------------------------------------------------- |
-| **📖 Full Documentation**   | Complete API reference and guides | [docs.khulnasoft.com](https://sdk.khulnasoft.com/docs)              |
-| **🔧 API Reference**        | Detailed API documentation        | [API Reference](https://sdk.khulnasoft.com/docs/reference)          |
-| **🎨 Examples & Templates** | Ready-to-use project templates    | [Templates](https://khulnasoft.com/templates?type=ai)               |
-| **💬 Community**            | Get help and share ideas          | [Discussions](https://github.com/khulnasoft/ai-toolkit/discussions) |
+## Requirements
 
----
+* Node.js **18+**
+* npm, pnpm, yarn, or Bun
+* TypeScript **5+** recommended
 
-## � **Quick Start**
-
-### 📋 **Prerequisites**
-
-- **Node.js** 18 or higher
-- **Package Manager**: npm, yarn, pnpm, or bun
-
-### 📦 **Installation**
-
-<div align="center">
-
-| Package Manager | Command                  |
-| --------------- | ------------------------ |
-| **npm**         | `npm install ai-toolkit` |
-| **yarn**        | `yarn add ai-toolkit`    |
-| **pnpm**        | `pnpm add ai-toolkit`    |
-| **bun**         | `bun add ai-toolkit`     |
-
-</div>
-
-### ⚡ **Environment Setup**
-
-Create a `.env.local` file in your project root:
-
-```env
-# OpenAI (most popular)
-OPENAI_API_KEY=your_openai_api_key_here
-
-# Or choose another provider:
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
-GOOGLE_GENERATIVE_AI_API_KEY=your_google_api_key_here
-```
-
-#### 📦 **Install Provider Package**
+## Install the core package
 
 ```bash
-# For OpenAI (most popular)
-npm install @ai-toolkit/openai
+npm install ai-toolkit
+```
 
-# Or any other provider
+Or:
+
+```bash
+pnpm add ai-toolkit
+```
+
+```bash
+yarn add ai-toolkit
+```
+
+```bash
+bun add ai-toolkit
+```
+
+### Install a provider
+
+For example:
+
+```bash
+npm install @ai-toolkit/openai
+```
+
+Other provider integrations:
+
+```bash
 npm install @ai-toolkit/anthropic
 npm install @ai-toolkit/google
 npm install @ai-toolkit/groq
 ```
 
-#### � **Basic Text Generation**
+---
+
+# ⚡ Quick Start
+
+## 1. Configure your API key
+
+Create `.env.local`:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+```
+
+For another provider, configure the environment variable required by that provider integration.
+
+---
+
+## 2. Generate text
 
 ```typescript
 import { generateText } from 'ai-toolkit';
@@ -156,94 +134,107 @@ export async function generateResponse(prompt: string) {
   return text;
 }
 
-// Usage
-const response = await generateResponse('Explain quantum computing simply');
+const response = await generateResponse(
+  'Explain quantum computing simply.'
+);
+
 console.log(response);
 ```
 
-#### 🌊 **Streaming Responses**
+---
+
+# 🌊 Streaming
+
+Streaming allows applications to display generated output as it becomes available instead of waiting for the complete response.
 
 ```typescript
 import { streamText } from 'ai-toolkit';
 import { anthropic } from '@ai-toolkit/anthropic';
 
 export async function* streamResponse(prompt: string) {
-  const { textStream } = await streamText({
+  const result = await streamText({
     model: anthropic('claude-3-5-sonnet-20241022'),
-    system: 'You are a creative writer.',
-    prompt: 'Write a short story about time travel.',
+    system: 'You are a helpful AI assistant.',
+    prompt,
   });
 
-  for await (const chunk of textStream) {
+  for await (const chunk of result.textStream) {
     yield chunk;
   }
 }
 
-// Usage
 for await (const chunk of streamResponse('Tell me about AI')) {
   process.stdout.write(chunk);
 }
 ```
 
-### 🎨 **AI TOOLKIT UI**
+---
 
-The [AI TOOLKIT UI](https://sdk.khulnasoft.com/docs/ai-toolkit-ui/overview) provides **framework-agnostic hooks** to build **AI chatbots** and **generative UI components** with **real-time streaming**.
+# 🎨 AI TOOLKIT UI
 
-<div align="center">
+AI TOOLKIT UI provides framework integrations for building conversational interfaces, streamed responses, and generative AI experiences.
 
-| Framework         | Hook                             | Status              |
-| ----------------- | -------------------------------- | ------------------- |
-| **React/Next.js** | `useChat`, `useCompletion`       | ✅ Production Ready |
-| **Svelte**        | `createChat`, `createCompletion` | ✅ Production Ready |
-| **Vue**           | `useChat`, `useCompletion`       | ✅ Production Ready |
-| **Solid.js**      | `createChat`, `createCompletion` | ✅ Production Ready |
+## Supported frameworks
 
-</div>
+| Framework       | API                              | Status |
+| --------------- | -------------------------------- | ------ |
+| React / Next.js | `useChat`, `useCompletion`       | ✅      |
+| Svelte          | `createChat`, `createCompletion` | ✅      |
+| Vue             | `useChat`, `useCompletion`       | ✅      |
+| Solid.js        | `createChat`, `createCompletion` | ✅      |
 
-#### ⚛️ **React/Next.js Example**
+See the [AI TOOLKIT UI documentation](https://sdk.khulnasoft.com/docs/ai-toolkit-ui/overview) for framework-specific APIs.
+
+---
+
+# ⚛️ React / Next.js
+
+Example client component:
 
 ```tsx
-// app/page.tsx
 'use client';
+
 import { useChat } from 'ai-toolkit/react';
-import { useState } from 'react';
 
 export default function ChatInterface() {
-  const { messages, input, handleSubmit, handleInputChange, status, error } =
-    useChat();
-  const [isTyping, setIsTyping] = useState(false);
+  const {
+    messages,
+    input,
+    handleSubmit,
+    handleInputChange,
+    status,
+    error,
+  } = useChat();
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <div className="bg-gray-50 rounded-lg p-4 mb-4 min-h-[400px]">
+    <div className="mx-auto max-w-2xl p-4">
+      <div className="mb-4 min-h-[400px] rounded-lg border p-4">
         {messages.length === 0 ? (
-          <div className="text-gray-500 text-center">
-            Start a conversation with AI 🤖
+          <div className="text-center text-gray-500">
+            Start a conversation 🤖
           </div>
         ) : (
-          messages.map(message => (
-            <div
-              key={message.id}
-              className={`mb-4 p-3 rounded-lg ${
-                message.role === 'user'
-                  ? 'bg-blue-100 ml-auto max-w-[80%]'
-                  : 'bg-white border border-gray-200 max-w-[80%]'
-              }`}
-            >
-              <div className="font-semibold text-sm mb-1">
-                {message.role === 'user' ? '👤 You' : '🤖 AI'}
+          messages.map((message) => (
+            <div key={message.id} className="mb-4">
+              <div className="mb-1 text-sm font-semibold">
+                {message.role === 'user' ? 'You' : 'AI'}
               </div>
-              <div className="text-gray-800">{message.content}</div>
+
+              <div className="rounded-lg border p-3">
+                {message.content}
+              </div>
             </div>
           ))
         )}
 
         {status === 'loading' && (
-          <div className="text-gray-500 italic">AI is thinking...</div>
+          <div className="text-sm text-gray-500">
+            AI is thinking...
+          </div>
         )}
 
         {error && (
-          <div className="text-red-500 bg-red-50 p-3 rounded-lg">
+          <div className="rounded-lg border p-3 text-red-600">
             Error: {error.message}
           </div>
         )}
@@ -255,12 +246,13 @@ export default function ChatInterface() {
           onChange={handleInputChange}
           placeholder="Type your message..."
           disabled={status !== 'ready'}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          className="flex-1 rounded-lg border px-4 py-2"
         />
+
         <button
           type="submit"
           disabled={status !== 'ready' || !input.trim()}
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="rounded-lg border px-6 py-2 disabled:opacity-50"
         >
           Send
         </button>
@@ -270,10 +262,13 @@ export default function ChatInterface() {
 }
 ```
 
-#### 🚀 **Next.js API Route**
+---
+
+# ▲ Next.js API Route
+
+A minimal streaming endpoint:
 
 ```ts
-// app/api/chat/route.ts
 import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { NextRequest } from 'next/server';
@@ -282,20 +277,29 @@ export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
 
-    // Validate input
-    if (!messages || !Array.isArray(messages)) {
-      return new Response('Invalid messages format', { status: 400 });
+    if (!Array.isArray(messages)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid messages format' }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
-    const result = streamText({
+    const result = await streamText({
       model: openai('gpt-4o'),
-      system: `You are a helpful AI assistant. Be concise and clear.
-      
-      Guidelines:
-      - Respond in a friendly, professional tone
-      - Provide accurate, helpful information
-      - If you don't know something, say so
-      - Keep responses focused on the user's question`,
+      system: `
+You are a helpful AI assistant.
+
+Guidelines:
+- Be accurate and concise.
+- Be clear and professional.
+- If you do not know something, say so.
+- Focus on the user's request.
+      `.trim(),
       messages,
       temperature: 0.7,
       maxTokens: 1000,
@@ -304,37 +308,62 @@ export async function POST(req: NextRequest) {
     return result.toDataStreamResponse();
   } catch (error) {
     console.error('Chat API error:', error);
-    return new Response('Internal server error', { status: 500 });
+
+    return new Response(
+      JSON.stringify({ error: 'Internal server error' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 }
 ```
 
-#### 🎯 **Svelte Example**
+> **Security:** Never expose provider API keys to browser/client-side code. Keep credentials on the server.
+
+---
+
+# 🟠 Svelte
 
 ```svelte
-<!-- +page.svelte -->
 <script lang="ts">
   import { createChat } from 'ai-toolkit/svelte';
 
-  const { messages, input, handleSubmit, handleInputChange, status, error } =
-    createChat();
+  const {
+    messages,
+    input,
+    handleSubmit,
+    handleInputChange,
+    status,
+    error,
+  } = createChat();
 </script>
 
 <div class="chat-container">
   <div class="messages">
     {#each $messages as message}
-      <div class="message" class:user={message.role === 'user'}>
-        <strong>{message.role === 'user' ? 'You' : 'AI'}:</strong>
+      <div class:user={message.role === 'user'} class="message">
+        <strong>
+          {message.role === 'user' ? 'You' : 'AI'}
+        </strong>
+
         <p>{message.content}</p>
       </div>
     {/each}
 
     {#if $status === 'loading'}
-      <div class="typing-indicator">AI is typing...</div>
+      <div class="typing-indicator">
+        AI is thinking...
+      </div>
     {/if}
 
     {#if $error}
-      <div class="error">Error: {$error.message}</div>
+      <div class="error">
+        Error: {$error.message}
+      </div>
     {/if}
   </div>
 
@@ -345,189 +374,175 @@ export async function POST(req: NextRequest) {
       placeholder="Type your message..."
       disabled={$status !== 'ready'}
     />
-    <button type="submit" disabled={$status !== 'ready' || !$input.trim()}>
+
+    <button
+      type="submit"
+      disabled={$status !== 'ready' || !$input.trim()}
+    >
       Send
     </button>
   </form>
 </div>
-
-<style>
-  .chat-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .message {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    background: #f5f5f5;
-  }
-
-  .message.user {
-    background: #e3f2fd;
-    margin-left: auto;
-    max-width: 80%;
-  }
-
-  .typing-indicator {
-    color: #666;
-    font-style: italic;
-  }
-
-  .error {
-    color: #d32f2f;
-    background: #ffebee;
-    padding: 10px;
-    border-radius: 4px;
-  }
-</style>
 ```
 
 ---
 
-## 📦 Templates
+# 🧩 Architecture
 
-We provide **ready-to-use templates** with AI TOOLKIT integrations for different frameworks, providers, and use cases.  
-Check them out [here](https://khulnasoft.com/templates?type=ai).
+AI TOOLKIT is designed around a layered architecture:
 
----
+```text
+┌───────────────────────────────────────────────┐
+│                 Application                   │
+│     Next.js · React · Svelte · Vue · Node    │
+├───────────────────────────────────────────────┤
+│                  UI Layer                     │
+│       Chat · Completion · Generative UI       │
+├───────────────────────────────────────────────┤
+│                AI TOOLKIT                     │
+│ Generate · Stream · Tools · Middleware        │
+├───────────────────────────────────────────────┤
+│              Provider Layer                   │
+│ OpenAI · Anthropic · Google · Groq · Azure   │
+├───────────────────────────────────────────────┤
+│             Model Infrastructure              │
+│        HTTP · Streaming · Provider APIs       │
+└───────────────────────────────────────────────┘
+```
 
-## 🌎 Community
-
-Join the **AI TOOLKIT** community to discuss, share ideas, and contribute!  
-💬 [GitHub Discussions](https://github.com/khulnasoft/ai-toolkit/discussions)  
-🐦 [Follow us on Twitter](https://twitter.com/khulnasoft)  
-🚀 [Join our Discord](https://discord.gg/khulnasoft)
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Before you start, please read our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md).
-
----
-
-## 👨‍💻 Authors & Credits
-
-Developed by **[Khulnasoft](https://khulnasoft.com)** and **[Next.js](https://nextjs.org)** team members, with valuable contributions from the **Open Source Community**.  
-[View Contributors](https://github.com/khulnasoft/ai-toolkit/graphs/contributors) 💙
+This separation keeps application code independent from individual model providers wherever practical.
 
 ---
 
-## 📜 License
+# 🛠️ Use Cases
 
-This project is licensed under the **MIT License**. See the full [LICENSE](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE) for details.
+AI TOOLKIT can be used to build:
+
+* 💬 AI chat applications
+* 🤖 AI assistants
+* ✍️ Writing and content-generation tools
+* 📚 RAG applications
+* 🔎 AI-powered search
+* 🧠 Agentic workflows
+* 🛠️ Tool-using AI agents
+* 📊 AI dashboards
+* 🧑‍💻 Developer assistants
+* ⚡ Streaming AI interfaces
+* 🎨 Generative UI applications
+* 🔗 Multi-provider AI applications
 
 ---
 
-## 🎨 **Project Templates & Examples**
+# 📚 Documentation
+
+| Resource                                                                      | Description                        |
+| ----------------------------------------------------------------------------- | ---------------------------------- |
+| 📖 [Documentation](https://sdk.khulnasoft.com/docs)                           | Guides and concepts                |
+| 🔧 [API Reference](https://sdk.khulnasoft.com/docs/reference)                 | API documentation                  |
+| 🎨 [Templates](https://khulnasoft.com/templates?type=ai)                      | Ready-to-use examples              |
+| 💬 [GitHub Discussions](https://github.com/khulnasoft/ai-toolkit/discussions) | Questions and community discussion |
+| 🐛 [GitHub Issues](https://github.com/khulnasoft/ai-toolkit/issues)           | Bug reports and feature requests   |
+
+---
+
+# 🚀 Templates
+
+Start with a ready-made application:
+
+| Template     | Framework | Provider  | Use Case           |
+| ------------ | --------- | --------- | ------------------ |
+| AI Chatbot   | Next.js   | OpenAI    | Chat application   |
+| AI Assistant | React     | Anthropic | AI assistant       |
+| AI Writer    | Svelte    | Google    | Content generation |
+| AI Dashboard | Vue       | Multiple  | Analytics          |
+| AI API       | Node.js   | OpenAI    | Backend AI service |
+
+**Browse all templates →**
+https://khulnasoft.com/templates?type=ai
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+## Development workflow
+
+```bash
+# Clone
+git clone https://github.com/khulnasoft/ai-toolkit.git
+
+# Enter the repository
+cd ai-toolkit
+
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Build
+npm run build
+```
+
+### Pull requests
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Implement your changes.
+4. Add or update tests.
+5. Run the test suite.
+6. Commit your changes.
+7. Push your branch.
+8. Open a pull request.
+
+Please read the [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md) before submitting a PR.
+
+---
+
+# 🌍 Community
+
+Have a question, idea, bug report, or integration to share?
+
+* 💬 [GitHub Discussions](https://github.com/khulnasoft/ai-toolkit/discussions)
+* 💬 [Discord](https://discord.gg/khulnasoft)
+* 🐦 [Twitter / X](https://twitter.com/khulnasoft)
+* 🐛 [GitHub Issues](https://github.com/khulnasoft/ai-toolkit/issues)
+
+---
+
+# 👥 Contributors
+
+AI TOOLKIT is built by **Khulnasoft** together with the open-source community.
+
+<a href="https://github.com/khulnasoft/ai-toolkit/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=khulnasoft/ai-toolkit" alt="Contributors" />
+</a>
+
+See all contributors:
+
+https://github.com/khulnasoft/ai-toolkit/graphs/contributors
+
+---
+
+# 📄 License
+
+AI TOOLKIT is released under the **MIT License**.
+
+See [LICENSE](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE) for details.
+
+---
 
 <div align="center">
 
-### 🚀 **Ready-to-Use Templates**
+## ⭐ AI TOOLKIT
 
-| Template         | Framework | Provider  | Use Case             | Quick Start                                           |
-| ---------------- | --------- | --------- | -------------------- | ----------------------------------------------------- |
-| **AI Chatbot**   | Next.js   | OpenAI    | Chat Interface       | [→](https://khulnasoft.com/templates/chat-nextjs)     |
-| **AI Assistant** | React     | Anthropic | Virtual Assistant    | [→](https://khulnasoft.com/templates/assistant-react) |
-| **AI Writer**    | Svelte    | Google    | Content Generation   | [→](https://khulnasoft.com/templates/writer-svelte)   |
-| **AI Dashboard** | Vue       | Multiple  | Analytics & Insights | [→](https://khulnasoft.com/templates/dashboard-vue)   |
-| **AI API**       | Node.js   | OpenAI    | Backend Service      | [→](https://khulnasoft.com/templates/api-node)        |
+**Build AI applications in TypeScript.
+Use the providers you want.
+Keep your application architecture yours.**
 
-</div>
+Made with ❤️ by **Khulnasoft** and the open-source community.
 
-<div align="center">
-
-[![Browse All Templates](https://img.shields.io/badge/📖_Browse_All_Templates-100%25-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=2196f3&color=2196f3)](https://khulnasoft.com/templates?type=ai)
-
-</div>
-
----
-
-## 🌍 **Community & Support**
-
-<div align="center">
-
-### 💬 **Get Help & Connect**
-
-| Platform               | Purpose                  | Link                                                           |
-| ---------------------- | ------------------------ | -------------------------------------------------------------- |
-| **GitHub Discussions** | Questions, ideas, help   | [Join →](https://github.com/khulnasoft/ai-toolkit/discussions) |
-| **Discord Server**     | Real-time chat & support | [Join →](https://discord.gg/khulnasoft)                        |
-| **Twitter/X**          | Updates & announcements  | [Follow →](https://twitter.com/khulnasoft)                     |
-| **GitHub Issues**      | Bug reports & features   | [Report →](https://github.com/khulnasoft/ai-toolkit/issues)    |
-
-</div>
-
-### 🤝 **Contributing**
-
-We **welcome contributions** from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
-
-<div align="center">
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge&logo=git&logoColor=white&labelColor=2ea043&color=2ea043)](http://makeapullrequest.com)
-
-</div>
-
-#### 🚀 **How to Contribute**
-
-1. **🍴 Fork** the repository
-2. **🌿 Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **💻 Make** your changes with tests
-4. **✅ Run** tests (`npm test`)
-5. **📤 Commit** your changes (`git commit -m 'Add amazing feature'`)
-6. **📤 Push** to the branch (`git push origin feature/amazing-feature`)
-7. **🔀 Open** a Pull Request
-
-📖 **Read our [Contribution Guidelines](https://github.com/khulnasoft/ai-toolkit/blob/main/CONTRIBUTING.md)** for detailed instructions.
-
----
-
-## 👥 **Authors & Contributors**
-
-<div align="center">
-
-### 🏢 **Primary Development**
-
-**[Khulnasoft](https://khulnasoft.com)** × **[Next.js Team](https://nextjs.org)**
-
-Built with ❤️ by the open source community
-
-</div>
-
-<div align="center">
-
-[![Contributors](https://img.shields.io/github/contributors/khulnasoft/ai-toolkit?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=24292e)](https://github.com/khulnasoft/ai-toolkit/graphs/contributors)
-[![GitHub stars](https://img.shields.io/github/stars/khulnasoft/ai-toolkit?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=24292e)](https://github.com/khulnasoft/ai-toolkit)
-
-**[👀 View All Contributors](https://github.com/khulnasoft/ai-toolkit/graphs/contributors)** 💙
-
-</div>
-
----
-
-## 📄 **License**
-
-<div align="center">
-
-[![License](https://img.shields.io/npm/l/ai-toolkit?style=for-the-badge&logo=open-source-initiative&logoColor=white&labelColor=3da639&color=3da639)](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE)
-
-This project is licensed under the **MIT License**.
-
-📖 **View the full [LICENSE](https://github.com/khulnasoft/ai-toolkit/blob/main/LICENSE)** for details.
-
-</div>
-
----
-
-<div align="center">
-
-## 🎉 **Thank You for Using AI TOOLKIT!**
-
-Made with ❤️ by **[Khulnasoft](https://khulnasoft.com)**
-
-[![Back to top](https://img.shields.io/badge/⬆️_Back_to_Top-000000?style=for-the-badge)](#-ai-toolkit)
+[⬆ Back to top](#-ai-toolkit)
 
 </div>
