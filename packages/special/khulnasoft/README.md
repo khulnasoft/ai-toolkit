@@ -30,7 +30,7 @@ import { vercel } from '@ai-toolkit/khulnasoft';
 
 ```ts
 import { vercel } from '@ai-toolkit/khulnasoft';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: vercel('v0-1.0-md'),

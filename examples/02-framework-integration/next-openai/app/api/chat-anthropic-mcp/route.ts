@@ -1,5 +1,5 @@
 import { anthropicMcpAgent } from '@/agent/anthropic-mcp-agent';
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 
 export async function POST(request: Request) {
   const body = await request.json();

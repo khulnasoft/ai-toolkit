@@ -83,7 +83,7 @@ You can use Baseten language models to generate text with the `generateText` fun
 
 ```ts
 import { baseten } from '@ai-toolkit/baseten';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: baseten('moonshotai/Kimi-K2-Instruct-0905'),
@@ -132,7 +132,7 @@ You can create models that call the Baseten embeddings API using the `.embedding
 
 ```ts
 import { createBaseten } from '@ai-toolkit/baseten';
-import { embed, embedMany } from 'ai';
+import { embed, embedMany } from 'ai-toolkit';
 
 const baseten = createBaseten({
   modelURL: 'https://model-{MODEL_ID}.api.baseten.co/sync',
@@ -183,7 +183,7 @@ The Baseten provider includes built-in error handling for common API errors:
 
 ```ts
 import { baseten } from '@ai-toolkit/baseten';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 try {
   const { text } = await generateText({

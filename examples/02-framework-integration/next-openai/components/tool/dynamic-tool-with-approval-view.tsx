@@ -1,4 +1,4 @@
-import type { ChatAddToolApproveResponseFunction, DynamicToolUIPart } from 'ai';
+import type { ChatAddToolApproveResponseFunction, DynamicToolUIPart } from 'ai-toolkit';
 
 export default function WeatherWithApprovalView({
   invocation,

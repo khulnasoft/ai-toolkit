@@ -27,7 +27,7 @@
     "generate-readme": "tsx scripts/generate-readme.ts"
   },
   "devDependencies": {
-    "ai": "workspace:*",
+    "ai-toolkit": "workspace:*",
     "@types/cli-progress": "^3.11.6",
     "@types/debug": "^4.1.12",
     "@types/jscodeshift": "^0.12.0",

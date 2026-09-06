@@ -1,6 +1,6 @@
 'use client';
 
-import { isDataUIPart, isTextUIPart, isReasoningUIPart, isFileUIPart, isToolUIPart } from 'ai';
+import { isDataUIPart, isTextUIPart, isReasoningUIPart, isFileUIPart, isToolUIPart } from 'ai-toolkit';
 import { Reasoning, Text, File, ToolInvocation } from './message-parts';
 import { DataProgress, DataStatus, DataFileStatus } from './data-parts';
 import { type CustomDataMessage } from '../app/types';

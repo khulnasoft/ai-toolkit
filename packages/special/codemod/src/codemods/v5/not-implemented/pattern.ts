@@ -11,19 +11,19 @@ const patterns: {
     keyword: 'appendResponseMessages',
     message:
       'The `appendResponseMessages` option has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
-    importedFrom: 'ai',
+    importedFrom: 'ai-toolkit',
   },
   {
     keyword: 'appendClientMessage',
     message:
       'The `appendClientMessage` option has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#message-persistence-changes',
-    importedFrom: 'ai',
+    importedFrom: 'ai-toolkit',
   },
   {
     keyword: 'StreamData',
     message:
       'The `StreamData` type has been removed. Please manually migrate following https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#stream-data-removal',
-    importedFrom: 'ai',
+    importedFrom: 'ai-toolkit',
   },
   {
     keyword: 'experimental_attachments',

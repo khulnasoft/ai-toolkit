@@ -11,7 +11,7 @@ import {
   UIDataTypes,
   UIMessage,
   validateUIMessages,
-} from 'ai';
+} from 'ai-toolkit';
 
 const tools = {
   code_interpreter: openai.tools.codeInterpreter(),

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { TextStreamChatTransport } from 'ai';
+import { TextStreamChatTransport } from '@ai-toolkit/ai';
 import { Chat } from './chat.vue';
-import { UIMessage } from 'ai';
+import { UIMessage } from '@ai-toolkit/ai';
 
 const onFinishCalls: Array<{ message: UIMessage }> = reactive([]);
 

@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { addToolInputExamplesMiddleware, generateText, tool, wrapLanguageModel } from 'ai';
+import { addToolInputExamplesMiddleware, generateText, tool, wrapLanguageModel } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

@@ -74,11 +74,11 @@ export default createTransformer((fileInfo, api, options, context) => {
     }
   });
 
-  // Add necessary imports to 'ai' import declaration
+  // Add necessary imports to 'ai-toolkit' import declaration
   if (needsSimulateStreamingMiddleware || needsWrapLanguageModel) {
     root
       .find(j.ImportDeclaration, {
-        source: { value: 'ai' },
+        source: { value: 'ai-toolkit' },
       })
       .forEach(path => {
         const existingSpecifiers = path.node.specifiers || [];

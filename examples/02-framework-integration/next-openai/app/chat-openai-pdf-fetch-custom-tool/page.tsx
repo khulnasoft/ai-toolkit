@@ -3,7 +3,7 @@
 import ChatInput from '@/components/chat-input';
 import FetchPDFView from '@/components/tool/fetch-pdf-view';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { OpenAIFetchPdfCustomToolMessage } from '@/agent/openai-fetch-pdf-custom-tool-agent';
 
 export default function TestOpenAIFileGenerationPDF() {

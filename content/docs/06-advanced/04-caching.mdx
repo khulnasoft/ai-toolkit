@@ -22,7 +22,7 @@ import {
   type LanguageModelV3Middleware,
   type LanguageModelV3StreamPart,
   simulateReadableStream,
-} from 'ai';
+} from 'ai-toolkit';
 
 const redis = new Redis({
   url: process.env.KV_URL,
@@ -125,7 +125,7 @@ Here's an example of how you can implement caching using Vercel KV and Next.js t
 This example uses [Upstash Redis](https://upstash.com/docs/redis/overall/getstarted) and Next.js to cache the response for 1 hour.
 
 ```tsx filename="app/api/chat/route.ts"
-import { formatDataStreamPart, streamText, UIMessage } from 'ai';
+import { formatDataStreamPart, streamText, UIMessage } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { Redis } from '@upstash/redis';
 

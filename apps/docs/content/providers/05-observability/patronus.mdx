@@ -57,7 +57,7 @@ export function register() {
 The AI TOOLKIT emits a span only when you opt in with `experimental_telemetry`:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateText({
@@ -79,7 +79,7 @@ Every attribute inside `metadata` becomes an OTEL attribute and is indexed by Pa
 
 ```ts filename="app/api/chat/route.ts"
 import { trace } from '@opentelemetry/api';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {

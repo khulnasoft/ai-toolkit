@@ -89,7 +89,7 @@ The AI TOOLKIT abstracts away the differences between model providers, eliminate
 At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overview), which provides a unified API to call any LLM. The code snippet below is all you need to call OpenAI GPT-5 with the AI TOOLKIT:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text } = await generateText({
@@ -103,7 +103,7 @@ const { text } = await generateText({
 While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI TOOLKIT Core provides two functions ([`generateObject`](/docs/reference/ai-toolkit-core/generate-object) and [`streamObject`](/docs/reference/ai-toolkit-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -127,7 +127,7 @@ This code snippet will generate a type-safe recipe that conforms to the specifie
 One of GPT-5's new features is verbosity control, allowing you to adjust response length without modifying your prompt:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // Concise response
@@ -158,7 +158,7 @@ const { text: detailedText } = await generateText({
 GPT-5 can access real-time information through the integrated web search tool:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = await generateText({
@@ -181,7 +181,7 @@ For transparency into GPT-5's thought process, enable reasoning summaries:
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: openai.responses('gpt-5'),
@@ -209,7 +209,7 @@ for await (const part of result.fullStream) {
 GPT-5 supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. Here's an example of using tool calling with the AI TOOLKIT:
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -249,7 +249,7 @@ Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 // Allow responses up to 30 seconds
 export const maxDuration = 30;

@@ -1,5 +1,5 @@
 import { perplexity } from '@ai-toolkit/perplexity';
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 export const maxDuration = 30;
 

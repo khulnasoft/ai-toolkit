@@ -5,7 +5,7 @@ import {
   createUIMessageStream,
   convertToModelMessages,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { processToolCalls } from './utils';
 import { tools } from './tools';
 import { HumanInTheLoopUIMessage } from './types';

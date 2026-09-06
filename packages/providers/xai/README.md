@@ -23,7 +23,7 @@ import { xai } from '@ai-toolkit/xai';
 
 ```ts
 import { xai } from '@ai-toolkit/xai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: xai('grok-3-beta'),

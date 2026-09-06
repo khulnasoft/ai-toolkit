@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

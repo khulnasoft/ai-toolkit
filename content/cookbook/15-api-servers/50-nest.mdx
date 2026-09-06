@@ -20,7 +20,7 @@ You can use the `pipeUIMessageStreamToResponse` method to pipe the stream data t
 
 ```ts filename='app.controller.ts'
 import { Controller, Post, Res } from '@nestjs/common';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { Response } from 'express';
 
 @Controller()
@@ -47,7 +47,7 @@ import {
   createUIMessageStream,
   streamText,
   pipeUIMessageStreamToResponse,
-} from 'ai';
+} from 'ai-toolkit';
 import { Response } from 'express';
 
 @Controller()
@@ -93,7 +93,7 @@ You can use the `pipeTextStreamToResponse` method to get a text stream from the 
 
 ```ts filename='app.controller.ts'
 import { Controller, Post, Res } from '@nestjs/common';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { Response } from 'express';
 
 @Controller()

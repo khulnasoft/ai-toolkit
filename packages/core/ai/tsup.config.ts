@@ -1,12 +1,11 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig([
-  // Universal APIs
   {
     entry: ['src/index.ts'],
     format: ['cjs', 'esm'],
-    external: ['react', 'svelte', 'vue', 'chai', 'chai/*'],
-    dts: true,
+    external: ['ai-toolkit', 'react', 'svelte', 'vue', 'chai', 'chai/*'],
+    dts: false,
     sourcemap: true,
     target: 'es2018',
     platform: 'node',
@@ -16,13 +15,12 @@ export default defineConfig([
       ),
     },
   },
-  // Internal APIs
   {
     entry: ['internal/index.ts'],
     outDir: 'dist/internal',
     format: ['cjs', 'esm'],
-    external: ['chai', 'chai/*'],
-    dts: true,
+    external: ['ai-toolkit', 'chai', 'chai/*'],
+    dts: false,
     sourcemap: true,
     target: 'es2018',
     platform: 'node',
@@ -32,25 +30,13 @@ export default defineConfig([
       ),
     },
   },
-  // Test utilities
   {
     entry: ['test/index.ts'],
     outDir: 'dist/test',
     format: ['cjs', 'esm'],
-    external: [
-      'chai',
-      'chai/*',
-      'vitest',
-      'vitest/*',
-      '@vitest/*',
-      'vitest/dist/*',
-      'vitest/dist/chunks/*',
-      'vitest/dist/node/*',
-      'vitest/dist/node/chunks/*',
-    ],
-    dts: true,
+    external: ['ai-toolkit', 'chai', 'chai/*', 'vitest', 'vitest/*', '@vitest/*', 'vitest/dist/*', 'vitest/dist/chunks/*', 'vitest/dist/node/*', 'vitest/dist/node/chunks/*'],
+    dts: false,
     sourcemap: true,
-    // Allow BigInt in tests
     target: 'es2020',
     platform: 'node',
     define: {

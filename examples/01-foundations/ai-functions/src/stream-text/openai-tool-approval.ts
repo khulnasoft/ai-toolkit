@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { ModelMessage, stepCountIs, streamText, tool, ToolApprovalResponse } from 'ai';
+import { ModelMessage, stepCountIs, streamText, tool, ToolApprovalResponse } from 'ai-toolkit';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
 import { run } from '../lib/run';

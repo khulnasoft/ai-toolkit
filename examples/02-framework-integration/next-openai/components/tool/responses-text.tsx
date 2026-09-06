@@ -3,7 +3,7 @@
 import { Response } from '@/components/ai-elements/response';
 import type { OpenaiResponsesTextProviderMetadata } from '@ai-toolkit/openai';
 import type { AzureResponsesTextProviderMetadata } from '@ai-toolkit/azure';
-import { TextUIPart } from 'ai';
+import { TextUIPart } from 'ai-toolkit';
 
 type ResponsesOutputTextProviderMetadata =
   | OpenaiResponsesTextProviderMetadata

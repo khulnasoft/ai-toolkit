@@ -1,5 +1,5 @@
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, isStaticToolUIPart } from 'ai';
+import { DefaultChatTransport, isStaticToolUIPart } from 'ai-toolkit';
 import { useState } from 'react';
 
 export default function Page() {

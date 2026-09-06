@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@ai-toolkit/provider-utils": "workspace:*",
-    "ai": "workspace:*",
+    "ai-toolkit": "workspace:*",
     "swr": "^2.2.5",
     "throttleit": "2.1.0"
   },

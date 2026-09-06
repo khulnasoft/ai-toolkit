@@ -32,7 +32,7 @@ At the center of the AI TOOLKIT is [AI TOOLKIT Core](/docs/ai-toolkit-core/overv
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: google('gemini-3-pro-preview'),
@@ -47,7 +47,7 @@ Gemini 3 models can use enhanced reasoning through thinking mode, which improves
 
 ```ts
 import { google, GoogleGenerativeAIProviderOptions } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: google('gemini-3-pro-preview'),
@@ -76,7 +76,7 @@ Gemini 3 excels at tool calling with improved reliability and consistency for mu
 
 ```ts
 import { z } from 'zod';
-import { generateText, tool, stepCountIs } from 'ai';
+import { generateText, tool, stepCountIs } from 'ai-toolkit';
 import { google } from '@ai-toolkit/google';
 
 const result = await generateText({
@@ -109,7 +109,7 @@ With [search grounding](https://ai.google.dev/gemini-api/docs/google-search), Ge
 ```ts
 import { google } from '@ai-toolkit/google';
 import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-3-pro-preview'),
@@ -150,7 +150,7 @@ Then, create a route handler for the chat endpoint:
 
 ```tsx filename="app/api/chat/route.ts"
 import { google } from '@ai-toolkit/google';
-import { streamText, UIMessage, convertToModelMessages } from 'ai';
+import { streamText, UIMessage, convertToModelMessages } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();

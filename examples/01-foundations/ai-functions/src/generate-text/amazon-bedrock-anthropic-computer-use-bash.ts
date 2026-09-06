@@ -1,5 +1,5 @@
 import { bedrockAnthropic } from '@ai-toolkit/amazon-bedrock/anthropic';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 import 'dotenv/config';
 import { run } from '../lib/run';
 

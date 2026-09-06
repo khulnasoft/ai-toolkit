@@ -76,7 +76,7 @@ export default function Page() {
 To handle the chat requests and model responses, set up an API route:
 
 ```ts filename="app/api/chat/route.ts"
-import { streamText, convertToModelMessages, UIMessage, stepCountIs } from 'ai';
+import { streamText, convertToModelMessages, UIMessage, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(request: Request) {
@@ -102,7 +102,7 @@ Before enhancing your chat interface with dynamic UI elements, you need to creat
 Create a new file called `ai/tools.ts` with the following content:
 
 ```ts filename="ai/tools.ts"
-import { tool as createTool } from 'ai';
+import { tool as createTool } from 'ai-toolkit';
 import { z } from 'zod';
 
 export const weatherTool = createTool({
@@ -128,7 +128,7 @@ In this file, you've created a tool called `weatherTool`. This tool simulates fe
 Update the API route to include the tool you've defined:
 
 ```ts filename="app/api/chat/route.ts" highlight="3,8,14"
-import { streamText, convertToModelMessages, UIMessage, stepCountIs } from 'ai';
+import { streamText, convertToModelMessages, UIMessage, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { tools } from '@/ai/tools';
 

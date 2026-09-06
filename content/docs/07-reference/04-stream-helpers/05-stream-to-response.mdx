@@ -20,14 +20,14 @@ By default, the status code is set to 200 and the Content-Type header is set to 
 
 ## Import
 
-<Snippet text={`import { streamToResponse } from "ai"`} prompt={false} />
+<Snippet text={`import { streamToResponse } from "ai-toolkit"`} prompt={false} />
 
 ## Example
 
 You can e.g. use `streamToResponse` to pipe a data stream to a Node.js HTTP server response:
 
 ```ts
-import { StreamData, streamText, streamToResponse } from 'ai';
+import { StreamData, streamText, streamToResponse } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { createServer } from 'http';
 

@@ -8,18 +8,19 @@ const ImportMappings: Record<string, string> = {
 };
 
 /**
- * Codemod to update imports of LanguageModelV2 and related types from 'ai' to '@ai-toolkit/provider'.
+ * Codemod to update imports of LanguageModelV2 and related types from 'ai-toolkit' to '@ai-toolkit/provider'.
  * @see https://studio.khulnasoft.com/docs/migration-guides/migration-guide-5-0#language-model-v2-import
  */
 export default createTransformer((fileInfo, api, options, context) => {
   const { j, root } = context;
 
-  // Find all import declarations from 'ai'
+  // Find all import declarations from 'ai-toolkit'
   root.find(j.ImportDeclaration).forEach(importPath => {
     const node = importPath.node;
 
-    // Check if the source value is exactly 'ai'
-    if (node.source.value !== 'ai') return;
+    // Check if the source value is exactly 'ai-toolkit' or 'ai-toolkit'
+    if ((node.source.value !== 'ai-toolkit' && node.source.value !== 'ai-toolkit')) return;
+    const originalSource = node.source.value as string;
 
     // Find specifiers that should be moved to '@ai-toolkit/provider'
     const targetSpecifiers =
@@ -30,7 +31,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     // If no target specifiers found, skip this import
     if (targetSpecifiers.length === 0) return;
 
-    // Get remaining specifiers that should stay in 'ai'
+    // Get remaining specifiers that should stay in 'ai-toolkit'
     const remainingSpecifiers = node.specifiers?.filter(s => !targetSpecifiers.includes(s)) ?? [];
 
     // Rename LanguageModelV1 to LanguageModelV2 in target specifiers
@@ -46,7 +47,7 @@ export default createTransformer((fileInfo, api, options, context) => {
     if (remainingSpecifiers.length === 0) {
       // All specifiers should be moved, just change the source
       node.source.value = '@ai-toolkit/provider';
-      context.messages.push(`Updated import from 'ai' to '@ai-toolkit/provider'`);
+      context.messages.push(`Updated import from 'ai-toolkit' to '@ai-toolkit/provider'`);
     } else {
       // Mixed imports: need to split them
       // The current import (with comments) should become the moved import
@@ -56,13 +57,17 @@ export default createTransformer((fileInfo, api, options, context) => {
       node.source.value = '@ai-toolkit/provider';
       node.specifiers = targetSpecifiers;
 
-      // Create new import for remaining specifiers after the current one
-      const remainingImport = j.importDeclaration(remainingSpecifiers, j.literal('ai'));
+      // Create new import for remaining specifiers after the current one,
+      // preserving the original package specifier ('ai-toolkit' or 'ai-toolkit')
+      const remainingImport = j.importDeclaration(
+        remainingSpecifiers,
+        j.literal(originalSource),
+      );
 
       // Insert the remaining import after the current one
       importPath.insertAfter(remainingImport);
 
-      context.messages.push(`Split import: moved some imports from 'ai' to '@ai-toolkit/provider'`);
+      context.messages.push(`Split import: moved some imports from 'ai-toolkit' to '@ai-toolkit/provider'`);
     }
   });
 });

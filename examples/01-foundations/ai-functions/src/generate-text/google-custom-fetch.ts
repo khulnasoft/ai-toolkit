@@ -1,5 +1,5 @@
 import { createGoogleGenerativeAI } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 const google = createGoogleGenerativeAI({

@@ -22,7 +22,7 @@ import { fireworks } from '@ai-toolkit/fireworks';
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: fireworks('accounts/fireworks/models/deepseek-v3'),
@@ -34,7 +34,7 @@ const { text } = await generateText({
 
 ```ts
 import { fireworks } from '@ai-toolkit/fireworks';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import fs from 'fs';
 
 const { image } = await generateImage({

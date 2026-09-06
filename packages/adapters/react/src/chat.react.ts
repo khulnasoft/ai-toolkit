@@ -1,4 +1,4 @@
-import { AbstractChat, ChatInit, ChatState, ChatStatus, UIMessage } from 'ai';
+import { AbstractChat, ChatInit, ChatState, ChatStatus, UIMessage } from 'ai-toolkit';
 import { throttle } from './throttle';
 
 class ReactChatState<UI_MESSAGE extends UIMessage> implements ChatState<UI_MESSAGE> {

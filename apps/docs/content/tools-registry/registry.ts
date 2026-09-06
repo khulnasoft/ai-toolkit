@@ -36,7 +36,7 @@ export const tools: Tool[] = [
       yarn: 'yarn add ai-toolkit-tool-code-execution',
       bun: 'bun add ai-toolkit-tool-code-execution',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { executeCode } from 'ai-toolkit-tool-code-execution';
 
 const { text } = await generateText({
@@ -68,7 +68,7 @@ console.log(text);`,
       yarn: 'yarn add @exalabs/ai-toolkit',
       bun: 'bun add @exalabs/ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { webSearch } from '@exalabs/ai-toolkit';
 
 const { text } = await generateText({
@@ -100,7 +100,7 @@ console.log(text);`,
       yarn: 'yarn add @parallel-web/ai-toolkit-tools',
       bun: 'bun add @parallel-web/ai-toolkit-tools',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { searchTool, extractTool } from '@parallel-web/ai-toolkit-tools';
 
 const { text } = await generateText({
@@ -132,7 +132,7 @@ console.log(text);`,
       yarn: 'yarn add ctx-zip',
       bun: 'bun add ctx-zip',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { createVercelSandboxCodeMode, SANDBOX_SYSTEM_PROMPT } from 'ctx-zip';
 
 const { tools } = await createVercelSandboxCodeMode({
@@ -185,7 +185,7 @@ console.log(text);
       yarn: 'yarn add @perplexity-ai/ai-toolkit',
       bun: 'bun add @perplexity-ai/ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { perplexitySearch } from '@perplexity-ai/ai-toolkit';
 
 const { text } = await generateText({
@@ -217,7 +217,7 @@ console.log(text);`,
       yarn: 'yarn add @tavily/ai-toolkit',
       bun: 'bun add @tavily/ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { tavilySearch } from '@tavily/ai-toolkit';
 
 const { text } = await generateText({
@@ -249,7 +249,7 @@ console.log(text);`,
       yarn: 'yarn add firecrawl-aitoolkit',
       bun: 'bun add firecrawl-aitoolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { scrapeTool } from 'firecrawl-aitoolkit';
 
 const { text } = await generateText({
@@ -281,7 +281,7 @@ console.log(text);`,
       yarn: 'yarn add bedrock-agentcore',
       bun: 'bun add bedrock-agentcore',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { bedrock } from '@ai-toolkit/amazon-bedrock';
 import { awsCredentialsProvider } from '@vercel/oidc-aws-credentials-provider';
 import { CodeInterpreterTools } from 'bedrock-agentcore/code-interpreter/vercel-ai';
@@ -329,7 +329,7 @@ try {
       yarn: 'yarn add @superagent-ai/ai-toolkit',
       bun: 'bun add @superagent-ai/ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { guard, redact, verify } from '@superagent-ai/ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
@@ -363,7 +363,7 @@ console.log(text);`,
       bun: 'bun add @takoviz/ai-toolkit',
     },
     codeExample: `import { takoSearch } from '@takoviz/ai-toolkit';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: 'openai/gpt-5.2',
@@ -396,7 +396,7 @@ console.log(text);`,
       yarn: 'yarn add @valyu/ai-toolkit',
       bun: 'bun add @valyu/ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { webSearch } from '@valyu/ai-toolkit';
 // Available specialised search tools: financeSearch, paperSearch,
 // bioSearch, patentSearch, secSearch, economicsSearch, companyResearch
@@ -430,7 +430,7 @@ console.log(text);`,
       yarn: 'yarn add @airweave/vercel-ai-toolkit',
       bun: 'bun add @airweave/vercel-ai-toolkit',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { airweaveSearch } from '@airweave/vercel-ai-toolkit';
 
 const { text } = await generateText({
@@ -463,7 +463,7 @@ console.log(text);`,
       yarn: 'yarn add bash-tool',
       bun: 'bun add bash-tool',
     },
-    codeExample: `import { generateText, stepCountIs } from 'ai';
+    codeExample: `import { generateText, stepCountIs } from 'ai-toolkit';
 import { createBashTool } from 'bash-tool';
 
 const { tools } = await createBashTool({

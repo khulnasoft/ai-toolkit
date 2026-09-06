@@ -1,4 +1,4 @@
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { anthropic } from '@ai-toolkit/anthropic';
 import { run } from '../lib/run';
 

@@ -5,7 +5,7 @@ import {
   streamText,
   createUIMessageStream,
   createUIMessageStreamResponse,
-} from 'ai';
+} from 'ai-toolkit';
 import {
   createMCPClient,
   auth,

@@ -101,7 +101,7 @@ export default function Page() {
 On the server, we use [`streamObject`](/docs/reference/ai-toolkit-core/stream-object) to stream the object generation process.
 
 ```typescript filename='app/api/use-object/route.ts'
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { notificationSchema } from './schema';
 
 // Allow streaming responses up to 30 seconds
@@ -236,7 +236,7 @@ export default function Page() {
 On the server, specify `output: 'array'` to generate an array of objects.
 
 ```typescript filename='app/api/use-object/route.ts'
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { notificationSchema } from './schema';
 
 export const maxDuration = 30;
@@ -305,7 +305,7 @@ export default function Page() {
 On the server, specify `output: 'no-schema'`.
 
 ```typescript filename='app/api/use-object/route.ts'
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 
 export const maxDuration = 30;
 

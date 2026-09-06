@@ -79,6 +79,9 @@ const DOMAIN_MAP = {
   svelte: 'adapters',
   vue: 'adapters',
 
+  // UI
+  elements: 'ui',
+
   // Special
   gateway: 'special',
   codemod: 'special',
@@ -96,6 +99,7 @@ const OWNER_MAP = {
   core: '@khulnasoft/ai-toolkit-core',
   providers: '@khulnasoft/ai-toolkit-providers',
   adapters: '@khulnasoft/ai-toolkit-adapters',
+  ui: '@khulnasoft/ai-react-team',
   mcp: '@khulnasoft/ai-mcp',
   special: '@khulnasoft/ai-toolkit-core',
   validation: '@khulnasoft/ai-toolkit-core',
@@ -120,6 +124,7 @@ const STABILITY_MAP = {
   cohere: 'stable',
   react: 'stable',
   rsc: 'stable',
+  elements: 'beta',
 };
 
 function readJson(file) {
@@ -158,6 +163,7 @@ function readAllPackageDirs() {
     'core',
     'providers',
     'adapters',
+    'ui',
     'mcp',
     'special',
     'validation',

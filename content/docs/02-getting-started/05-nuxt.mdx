@@ -101,7 +101,7 @@ import {
   UIMessage,
   convertToModelMessages,
   createGateway,
-} from 'ai';
+} from 'ai-toolkit';
 
 export default defineLazyEventHandler(async () => {
   const apiKey = useRuntimeConfig().aiGatewayApiKey;
@@ -144,8 +144,8 @@ model: __MODEL__;
 You can also explicitly import and use the gateway provider in two other equivalent ways:
 
 ```ts
-// Option 1: Import from 'ai' package (included by default)
-import { gateway } from 'ai';
+// Option 1: Import from 'ai-toolkit' package (included by default)
+import { gateway } from 'ai-toolkit';
 model: gateway('anthropic/claude-sonnet-4.5');
 
 // Option 2: Install and import from '@ai-toolkit/gateway' package
@@ -265,7 +265,7 @@ import {
   UIMessage,
   convertToModelMessages,
   tool,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 export default defineLazyEventHandler(async () => {
@@ -387,7 +387,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 export default defineLazyEventHandler(async () => {
@@ -444,7 +444,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 export default defineLazyEventHandler(async () => {

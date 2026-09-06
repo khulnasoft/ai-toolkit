@@ -1,4 +1,4 @@
-import type { JSONValue } from 'ai';
+import type { JSONValue } from 'ai-toolkit';
 import { SvelteMap } from 'svelte/reactivity';
 import { createContext, KeyedStore } from './utils.svelte.js';
 

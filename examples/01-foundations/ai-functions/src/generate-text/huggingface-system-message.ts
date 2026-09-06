@@ -1,5 +1,5 @@
 import { huggingface } from '@ai-toolkit/huggingface';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

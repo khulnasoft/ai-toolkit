@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai-toolkit';
 import ChatInput from '@/components/chat-input';
 import { OpenAILocalShellMessage } from '@/agent/openai-local-shell-agent';
 import LocalShellView from '@/components/tool/openai-local-shell-view';

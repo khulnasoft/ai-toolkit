@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UIMessage } from 'ai';
+import { UIMessage } from '@ai-toolkit/ai';
 import { Chat } from './chat.vue';
 import { ref } from 'vue';
 

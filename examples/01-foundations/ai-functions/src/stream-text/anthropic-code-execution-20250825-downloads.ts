@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { run } from '../lib/run';
 import * as fs from 'fs';
 

@@ -1,5 +1,5 @@
 import { openai, OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

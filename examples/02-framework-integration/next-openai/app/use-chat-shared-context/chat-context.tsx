@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 import { Chat } from '@ai-toolkit/react';
-import { DefaultChatTransport, UIMessage } from 'ai';
+import { DefaultChatTransport, UIMessage } from 'ai-toolkit';
 
 interface ChatContextValue {
   // replace with your custom message type

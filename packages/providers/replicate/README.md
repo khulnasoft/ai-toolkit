@@ -14,7 +14,7 @@ npm i @ai-toolkit/replicate
 
 ```ts
 import { replicate } from '@ai-toolkit/replicate';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: replicate.image('black-forest-labs/flux-schnell'),

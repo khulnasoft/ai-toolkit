@@ -1,4 +1,4 @@
-import { convertArrayToAsyncIterable, convertReadableStreamToArray } from 'ai/test';
+import { convertArrayToAsyncIterable, convertReadableStreamToArray } from 'ai-toolkit/test';
 import { toUIMessageStream } from './llamaindex-adapter';
 import { describe, it, expect } from 'vitest';
 

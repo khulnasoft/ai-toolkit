@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { cosineSimilarity, embedMany } from 'ai';
+import { cosineSimilarity, embedMany } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

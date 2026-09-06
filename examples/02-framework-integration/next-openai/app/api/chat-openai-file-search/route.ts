@@ -7,7 +7,7 @@ import {
   UIDataTypes,
   UIMessage,
   validateUIMessages,
-} from 'ai';
+} from 'ai-toolkit';
 
 export const maxDuration = 30;
 

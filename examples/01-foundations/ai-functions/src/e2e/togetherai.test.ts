@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { expect } from 'vitest';
 import { togetherai as provider, TogetherAIErrorData } from '@ai-toolkit/togetherai';
-import { APICallError } from 'ai';
+import { APICallError } from 'ai-toolkit';
 import {
   createEmbeddingModelWithCapabilities,
   createFeatureTestSuite,

@@ -1,5 +1,5 @@
 import { vertexAnthropic } from '@ai-toolkit/google-vertex/anthropic';
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

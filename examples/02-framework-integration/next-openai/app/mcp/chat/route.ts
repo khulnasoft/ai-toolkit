@@ -1,6 +1,6 @@
 import { openai } from '@ai-toolkit/openai';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { convertToModelMessages, stepCountIs, streamText } from 'ai';
+import { convertToModelMessages, stepCountIs, streamText } from 'ai-toolkit';
 import { createMCPClient } from '@ai-toolkit/mcp';
 
 export async function POST(req: Request) {

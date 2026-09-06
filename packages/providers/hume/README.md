@@ -23,7 +23,7 @@ import { hume } from '@ai-toolkit/hume';
 
 ```ts
 import { hume } from '@ai-toolkit/hume';
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 
 const result = await generateSpeech({
   model: hume.speech('aurora'),

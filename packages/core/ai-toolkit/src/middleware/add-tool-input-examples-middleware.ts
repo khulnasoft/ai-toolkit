@@ -20,7 +20,7 @@ function defaultFormatExample(example: { input: JSONObject }): string {
  *
  * @example
  * ```ts
- * import { wrapLanguageModel, addToolInputExamplesMiddleware } from 'ai';
+ * import { wrapLanguageModel, addToolInputExamplesMiddleware } from 'ai-toolkit';
  *
  * const model = wrapLanguageModel({
  *   model: yourModel,

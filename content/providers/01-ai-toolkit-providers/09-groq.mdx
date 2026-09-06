@@ -87,7 +87,7 @@ It supports the options `parsed`, `hidden`, and `raw`.
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: groq('qwen/qwen3-32b'),
@@ -171,7 +171,7 @@ You can disable them by setting the `structuredOutputs` option to `false`.
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateObject({
@@ -193,7 +193,7 @@ You can disable structured outputs for models that don't support them:
 
 ```ts highlight="9"
 import { groq } from '@ai-toolkit/groq';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateObject({
@@ -230,7 +230,7 @@ You can use Groq language models to generate text with the `generateText` functi
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: groq('gemma2-9b-it'),
@@ -244,7 +244,7 @@ Groq's multi-modal models like `meta-llama/llama-4-scout-17b-16e-instruct` suppo
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: groq('meta-llama/llama-4-scout-17b-16e-instruct'),
@@ -267,7 +267,7 @@ You can also use base64-encoded images:
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { readFileSync } from 'fs';
 
 const imageData = readFileSync('path/to/image.jpg', 'base64');
@@ -341,7 +341,7 @@ Browser search is only available for these specific models:
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: groq('openai/gpt-oss-120b'), // Must use supported model
@@ -360,7 +360,7 @@ console.log(result.text);
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: groq('openai/gpt-oss-120b'),
@@ -432,7 +432,7 @@ const model = groq.transcription('whisper-large-v3');
 You can also pass additional provider-specific options using the `providerOptions` argument. For example, supplying the input language in ISO-639-1 (e.g. `en`) format will improve accuracy and latency.
 
 ```ts highlight="6"
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 import { groq } from '@ai-toolkit/groq';
 import { readFile } from 'fs/promises';
 

@@ -1,5 +1,5 @@
 import { vercel } from '@ai-toolkit/khulnasoft';
-import { streamText, ToolCallPart, ToolResultPart, ModelMessage } from 'ai';
+import { streamText, ToolCallPart, ToolResultPart, ModelMessage } from 'ai-toolkit';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';
 

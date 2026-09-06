@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai';
+import { streamText, ModelMessage, ToolCallPart, ToolResultPart } from 'ai-toolkit';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';
 

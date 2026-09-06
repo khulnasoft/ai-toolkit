@@ -109,7 +109,7 @@ pnpm generate example --level=01-foundations --name=my-example
 **Examples**:
 
 ```typescript
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { useChat } from '@ai-toolkit/react';
 import { createOpenAI } from '@ai-toolkit/openai';
 ```
@@ -124,7 +124,7 @@ import { createOpenAI } from '@ai-toolkit/openai';
 **Examples**:
 
 ```typescript
-import type { … } from 'ai/internal';
+import type { … } from 'ai-toolkit/internal';
 ```
 
 ### Example APIs ℹ️
@@ -308,7 +308,7 @@ pnpm generate example --level=02-framework-integration --name=my-example
 
 ```typescript
 // Core
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 // Providers
 import { createOpenAI } from '@ai-toolkit/openai';
@@ -319,7 +319,7 @@ import { useChat } from '@ai-toolkit/react';
 import { useCompletion } from '@ai-toolkit/react';
 
 // Internal (subject to change)
-import type { … } from 'ai/internal';
+import type { … } from 'ai-toolkit/internal';
 
 // Don't import from examples
 // ❌ import { setupExample } from '../example-setup';

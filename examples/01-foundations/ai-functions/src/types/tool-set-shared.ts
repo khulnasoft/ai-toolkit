@@ -1,4 +1,4 @@
-import { InferUITools, tool, Tool, UIMessage } from 'ai';
+import { InferUITools, tool, Tool, UIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 type WeatherTool = Tool<

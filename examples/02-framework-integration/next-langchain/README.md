@@ -196,7 +196,7 @@ return createUIMessageStreamResponse({
 import { createAgent } from 'langchain';
 import { tool } from '@langchain/core/tools';
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Define a tool using LangChain's tool decorator

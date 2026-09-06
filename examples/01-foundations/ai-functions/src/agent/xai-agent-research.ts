@@ -1,5 +1,5 @@
 import { xai } from '@ai-toolkit/xai';
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 const agent = new ToolLoopAgent({

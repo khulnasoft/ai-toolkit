@@ -1,5 +1,5 @@
 import { createAzure, azure } from '@ai-toolkit/azure';
-import { InferAgentUIMessage, ToolLoopAgent } from 'ai';
+import { InferAgentUIMessage, ToolLoopAgent } from 'ai-toolkit';
 
 export const azureImageGenerationAgent = new ToolLoopAgent({
   model: createAzure({

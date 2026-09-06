@@ -1,4 +1,4 @@
-import { extractJsonMiddleware, gateway, Output, streamText, wrapLanguageModel } from 'ai';
+import { extractJsonMiddleware, gateway, Output, streamText, wrapLanguageModel } from 'ai-toolkit';
 import { google } from '@ai-toolkit/google';
 import { z } from 'zod';
 import { run } from '../lib/run';

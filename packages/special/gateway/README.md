@@ -22,7 +22,7 @@ import { gateway } from '@ai-toolkit/gateway';
 
 ```ts
 import { gateway } from '@ai-toolkit/gateway';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: gateway('xai/grok-3-beta'),

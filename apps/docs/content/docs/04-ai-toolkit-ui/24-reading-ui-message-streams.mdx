@@ -12,7 +12,7 @@ The `readUIMessageStream` helper transforms a stream of `UIMessageChunk` objects
 ## Basic Usage
 
 ```tsx
-import { readUIMessageStream, streamText } from 'ai';
+import { readUIMessageStream, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 async function main() {
@@ -34,7 +34,7 @@ async function main() {
 Handle streaming responses that include tool calls:
 
 ```tsx
-import { readUIMessageStream, streamText, tool } from 'ai';
+import { readUIMessageStream, streamText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -82,7 +82,7 @@ async function handleToolCalls() {
 Resume streaming from a previous message state:
 
 ```tsx
-import { readUIMessageStream, streamText } from 'ai';
+import { readUIMessageStream, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 async function resumeConversation(lastMessage: UIMessage) {

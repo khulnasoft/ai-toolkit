@@ -1,5 +1,5 @@
 import { togetherai } from '@ai-toolkit/togetherai';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 import { print } from '../lib/print';
 import { run } from '../lib/run';
 

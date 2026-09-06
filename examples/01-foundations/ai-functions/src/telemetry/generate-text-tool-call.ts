@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 

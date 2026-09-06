@@ -1,5 +1,5 @@
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 const deepSeek = createOpenAICompatible({

@@ -72,7 +72,7 @@ export async function verifyChangesets(event, env = process.env, readFile = fs.r
     // Find version bump by package. `frontmatter` looks like this:
     //
     // ```yaml
-    // 'ai': patch
+    // '@ai-toolkit/ai': patch
     // '@ai-toolkit/provider': patch
     // ```
     const lines = frontmatter.split('\n').slice(1, -1);

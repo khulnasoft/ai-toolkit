@@ -4,7 +4,7 @@ import {
   type UIMessageChunk,
   type ChatTransport,
   type ChatRequestOptions,
-} from 'ai';
+} from 'ai-toolkit';
 import { RemoteGraph, type RemoteGraphParams } from '@langchain/langgraph/remote';
 import { toBaseMessages, toUIMessageStream } from './adapter';
 

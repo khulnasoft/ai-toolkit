@@ -10,7 +10,7 @@ Creates a reusable AI agent capable of generating text, streaming responses, and
 Unlike single-step calls like `generateText()`, an agent can iteratively invoke tools, collect tool results, and decide next actions until completion or user approval is required.
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -33,7 +33,7 @@ To see `ToolLoopAgent` in action, check out [these examples](#examples).
 
 ## Import
 
-<Snippet text={`import { ToolLoopAgent } from "ai"`} prompt={false} />
+<Snippet text={`import { ToolLoopAgent } from "ai-toolkit"`} prompt={false} />
 
 ## Constructor
 
@@ -318,7 +318,7 @@ Infers the UI message type for the given agent instance. Useful for type-safe UI
 #### Basic Example
 
 ```ts
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 
 const weatherAgent = new ToolLoopAgent({
   model: __MODEL__,
@@ -333,7 +333,7 @@ type WeatherAgentUIMessage = InferAgentUIMessage<typeof weatherAgent>;
 You can provide a second type argument to customize the metadata for each message. This is useful for tracking rich metadata returned by the agent (such as createdAt, tokens, finish reason, etc.).
 
 ```ts
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Example schema for message metadata
@@ -363,7 +363,7 @@ type MetadataAgentUIMessage = InferAgentUIMessage<
 ### Basic Agent with Tools
 
 ```ts
-import { ToolLoopAgent, stepCountIs } from 'ai';
+import { ToolLoopAgent, stepCountIs } from 'ai-toolkit';
 import { weatherTool, calculatorTool } from './tools';
 
 const assistant = new ToolLoopAgent({
@@ -429,7 +429,7 @@ console.log(result.output);
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 
 const agent = new ToolLoopAgent({
   model: __MODEL__,

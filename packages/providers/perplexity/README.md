@@ -34,7 +34,7 @@ import { perplexity } from '@ai-toolkit/perplexity';
 
 ```ts
 import { perplexity } from '@ai-toolkit/perplexity';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: perplexity('sonar-pro'),

@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { ModelMessage, generateText } from 'ai';
+import { ModelMessage, generateText } from 'ai-toolkit';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';
 import { run } from '../lib/run';

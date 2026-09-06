@@ -1,4 +1,4 @@
-import { ModelMessage, generateText } from 'ai';
+import { ModelMessage, generateText } from 'ai-toolkit';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';
 import { cohere } from '@ai-toolkit/cohere';

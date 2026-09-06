@@ -119,7 +119,7 @@ export default createTransformer((fileInfo, api, options, context) => {
   if (formatDataStreamPartUsages.length === 0) {
     root.find(j.ImportDeclaration).forEach((path: any) => {
       if (
-        path.node.source.value === 'ai' &&
+        path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit' &&
         path.node.specifiers?.some(
           (spec: any) =>
             spec.type === 'ImportSpecifier' && spec.imported.name === 'formatDataStreamPart',

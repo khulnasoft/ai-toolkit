@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-toolkit/openai';
-import { convertToModelMessages, stepCountIs, streamText } from 'ai';
+import { convertToModelMessages, stepCountIs, streamText } from 'ai-toolkit';
 import { z } from 'zod';
 
 export default defineLazyEventHandler(async () => {

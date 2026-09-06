@@ -37,7 +37,7 @@ const customOpenAI = createOpenAI({
 The AI Gateway provides zero-config access to multiple providers:
 
 ```typescript
-import { gateway } from 'ai';
+import { gateway } from 'ai-toolkit';
 
 // Use any supported model through the gateway
 const model = gateway('openai/gpt-4o');
@@ -52,7 +52,7 @@ const googleModel = gateway('google/gemini-3-flash');
 For single completions:
 
 ```typescript
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text, usage, finishReason } = await generateText({
@@ -66,7 +66,7 @@ const { text, usage, finishReason } = await generateText({
 For streaming responses:
 
 ```typescript
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const result = streamText({
@@ -89,7 +89,7 @@ const { text, usage } = await result;
 Generate structured data with schema validation:
 
 ```typescript
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -111,7 +111,7 @@ const { object } = await generateObject({
 Stream structured data:
 
 ```typescript
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 
@@ -138,7 +138,7 @@ for await (const partialObject of result.partialObjectStream) {
 ### Defining Tools
 
 ```typescript
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const weatherTool = tool({
@@ -157,7 +157,7 @@ const weatherTool = tool({
 ### Using Tools with generateText
 
 ```typescript
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { text, toolResults } = await generateText({
@@ -181,7 +181,7 @@ const { text } = await generateText({
 ## Embeddings
 
 ```typescript
-import { embed, embedMany } from 'ai';
+import { embed, embedMany } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // Single embedding
@@ -200,7 +200,7 @@ const { embeddings } = await embedMany({
 ## Image Generation
 
 ```typescript
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { image } = await generateImage({
@@ -236,7 +236,7 @@ const { text } = await generateText({
 
 ```typescript
 // app/api/chat/route.ts
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function POST(req: Request) {
@@ -281,7 +281,7 @@ export default function Chat() {
 ## Error Handling
 
 ```typescript
-import { generateText, AIError } from 'ai';
+import { generateText, AIError } from 'ai-toolkit';
 
 try {
   const { text } = await generateText({

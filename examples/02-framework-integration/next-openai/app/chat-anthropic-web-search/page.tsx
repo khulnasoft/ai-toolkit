@@ -7,7 +7,7 @@ import { ReasoningView } from '@/components/reasoning-view';
 import SourcesView from '@/components/sources-view';
 import AnthropicWebSearchView from '@/components/tool/anthropic-web-search-view';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function TestAnthropicWebSearch() {
   const { error, status, sendMessage, messages, regenerate } = useChat<AnthropicWebSearchMessage>({

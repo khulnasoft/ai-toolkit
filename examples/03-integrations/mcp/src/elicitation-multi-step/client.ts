@@ -1,6 +1,6 @@
 import { createMCPClient, ElicitationRequestSchema } from '@ai-toolkit/mcp';
 import { openai } from '@ai-toolkit/openai';
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai-toolkit';
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import 'dotenv/config';

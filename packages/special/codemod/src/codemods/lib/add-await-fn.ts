@@ -4,12 +4,12 @@ export function addAwaitFn(functionName: string) {
   return createTransformer((fileInfo, api, options, context) => {
     const { j, root } = context;
 
-    // Find import of the specified function from 'ai'
+    // Find import of the specified function from 'ai-toolkit'
     const functionImportNames = new Set<string>();
 
     root
       .find(j.ImportDeclaration)
-      .filter(path => path.node.source.value === 'ai')
+      .filter(path => path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit')
       .forEach(path => {
         path.node.specifiers?.forEach(specifier => {
           if (specifier.type === 'ImportSpecifier' && specifier.imported.name === functionName) {

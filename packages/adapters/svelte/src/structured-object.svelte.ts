@@ -11,7 +11,7 @@ import {
   type DeepPartial,
   type FlexibleSchema,
   type InferSchema,
-} from 'ai';
+} from 'ai-toolkit';
 import {
   getStructuredObjectContext,
   hasStructuredObjectContext,

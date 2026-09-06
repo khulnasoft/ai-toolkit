@@ -332,7 +332,7 @@ export default function HomePage() {
   };
   const copyCode = async () => {
     await navigator.clipboard?.writeText(
-      `import { streamText } from 'ai'\n\nconst result = streamText({\n  model: '${modelA}',\n  prompt,\n})`,
+      `import { streamText } from 'ai-toolkit'\n\nconst result = streamText({\n  model: '${modelA}',\n  prompt,\n})`,
     );
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);

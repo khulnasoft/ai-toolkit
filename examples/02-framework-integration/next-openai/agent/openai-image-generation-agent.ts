@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { InferAgentUIMessage, ToolLoopAgent } from 'ai';
+import { InferAgentUIMessage, ToolLoopAgent } from 'ai-toolkit';
 
 export const openaiImageGenerationAgent = new ToolLoopAgent({
   model: openai('gpt-5-nano'),

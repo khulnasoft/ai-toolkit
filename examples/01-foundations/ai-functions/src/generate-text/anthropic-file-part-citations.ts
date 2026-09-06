@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { run } from '../lib/run';

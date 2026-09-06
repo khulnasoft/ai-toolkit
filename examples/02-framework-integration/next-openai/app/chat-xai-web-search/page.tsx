@@ -5,7 +5,7 @@ import { Response } from '@/components/ai-elements/response';
 import ChatInput from '@/components/chat-input';
 import SourcesView from '@/components/sources-view';
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function ChatXaiWebSearch() {
   const { error, status, sendMessage, messages, regenerate } = useChat<XaiWebSearchMessage>({

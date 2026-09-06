@@ -1,4 +1,4 @@
-import { Embedding, EmbeddingModel, embed, embedMany, cosineSimilarity } from 'ai';
+import { Embedding, EmbeddingModel, embed, embedMany, cosineSimilarity } from 'ai-toolkit';
 
 export interface Route<NAME extends string> {
   name: NAME;

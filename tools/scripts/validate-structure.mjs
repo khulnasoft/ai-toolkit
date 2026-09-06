@@ -16,6 +16,7 @@ const EXPECTED_DOMAINS = [
   'core',
   'providers',
   'adapters',
+  'ui',
   'mcp',
   'special',
   'validation',

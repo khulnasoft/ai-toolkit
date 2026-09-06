@@ -22,7 +22,7 @@ The `tools` parameter of `generateText` and `streamText` is an object that has t
 
 ```ts highlight="6-17"
 import { z } from 'zod';
-import { generateText, tool, stepCountIs } from 'ai';
+import { generateText, tool, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await generateText({
@@ -110,7 +110,7 @@ tool({
 By default, tools with an `execute` function run automatically as the model calls them. You can require approval before execution by setting `needsApproval`:
 
 ```ts highlight="13"
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const runCommand = tool({
@@ -146,7 +146,7 @@ Here's the complete flow:
 After calling `generateText` or `streamText`, check `result.content` for `tool-approval-request` parts:
 
 ```ts
-import { type ModelMessage, generateText } from 'ai';
+import { type ModelMessage, generateText } from 'ai-toolkit';
 
 const messages: ModelMessage[] = [
   { role: 'user', content: 'Remove the most recent file' },
@@ -170,7 +170,7 @@ for (const part of result.content) {
 To respond, create a `tool-approval-response` and add it to your messages:
 
 ```ts
-import { type ToolApprovalResponse } from 'ai';
+import { type ToolApprovalResponse } from 'ai-toolkit';
 
 const approvals: ToolApprovalResponse[] = [];
 
@@ -251,7 +251,7 @@ In the following example, there are two steps:
 
 ```ts highlight="18-19"
 import { z } from 'zod';
-import { generateText, tool, stepCountIs } from 'ai';
+import { generateText, tool, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const { text, steps } = await generateText({
@@ -284,7 +284,7 @@ It contains all the text, tool calls, tool results, and more from each step.
 #### Example: Extract tool results from all steps
 
 ```ts highlight="3,9-10"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const { steps } = await generateText({
@@ -305,7 +305,7 @@ i.e. all text deltas, tool calls, and tool results for the step are available.
 When you have multiple steps, the callback is triggered for each step.
 
 ```tsx highlight="5-7"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   // ...
@@ -331,7 +331,7 @@ It is called with the following parameters:
 You can use it to provide different settings for a step, including modifying the input messages.
 
 ```tsx highlight="5-7"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   // ...
@@ -392,7 +392,7 @@ It is also available in the `onFinish` callback of `streamText`.
 The `response.messages` property contains an array of `ModelMessage` objects that you can add to your conversation history:
 
 ```ts
-import { generateText, ModelMessage } from 'ai';
+import { generateText, ModelMessage } from 'ai-toolkit';
 
 const messages: ModelMessage[] = [
   // ...
@@ -420,7 +420,7 @@ AI TOOLKIT Core supports dynamic tools for scenarios where tool schemas are not 
 The `dynamicTool` helper creates tools with unknown input/output types:
 
 ```ts
-import { dynamicTool } from 'ai';
+import { dynamicTool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const customTool = dynamicTool({
@@ -518,7 +518,7 @@ It supports the following settings:
 
 ```ts highlight="18"
 import { z } from 'zod';
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await generateText({
@@ -555,7 +555,7 @@ import {
   tool,
   createUIMessageStream,
   createUIMessageStreamResponse,
-} from 'ai';
+} from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -599,7 +599,7 @@ You can access them in the second parameter of the `execute` function.
 In multi-step calls, the messages contain the text, tool calls, and tool results from all previous steps.
 
 ```ts highlight="8-9"
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 
 const result = await generateText({
   // ...
@@ -622,7 +622,7 @@ You can access them in the second parameter of the `execute` function and e.g. a
 
 ```ts highlight="6,11,14"
 import { z } from 'zod';
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await generateText({
@@ -678,7 +678,7 @@ The following tool input lifecycle hooks are available:
 ### Example
 
 ```ts highlight="15-23"
-import { streamText, tool } from 'ai';
+import { streamText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -726,7 +726,7 @@ and `TypedToolResult<TOOLS extends ToolSet>` can be used to
 extract the tool call and tool result types from the tools.
 
 ```ts highlight="18-19,23-24"
-import { TypedToolCall, TypedToolResult, generateText, tool } from 'ai';
+import { TypedToolCall, TypedToolResult, generateText, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -859,7 +859,7 @@ You can use different strategies to repair the tool call:
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateObject, generateText, NoSuchToolError, tool } from 'ai';
+import { generateObject, generateText, NoSuchToolError, tool } from 'ai-toolkit';
 
 const result = await generateText({
   model,
@@ -900,7 +900,7 @@ const result = await generateText({
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { generateObject, generateText, NoSuchToolError, tool } from 'ai';
+import { generateObject, generateText, NoSuchToolError, tool } from 'ai-toolkit';
 
 const result = await generateText({
   model,
@@ -972,7 +972,7 @@ By default, the value is `undefined` and all tools are active.
 
 ```ts highlight="7"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const { text } = await generateText({
@@ -1043,7 +1043,7 @@ The `tool` helper function is crucial for this, because it ensures correct type 
 Here is an example of an extracted tool:
 
 ```ts filename="tools/weather-tool.ts" highlight="1,4-5"
-import { tool } from 'ai';
+import { tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 // the `tool` helper function ensures correct type inference:

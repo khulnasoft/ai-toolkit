@@ -1,4 +1,4 @@
-import { AbstractChat, ChatInit as BaseChatInit, ChatState, ChatStatus, UIMessage } from 'ai';
+import { AbstractChat, ChatInit as BaseChatInit, ChatState, ChatStatus, UIMessage } from 'ai-toolkit';
 import { Ref, ref } from 'vue';
 
 class VueChatState<UI_MESSAGE extends UIMessage> implements ChatState<UI_MESSAGE> {

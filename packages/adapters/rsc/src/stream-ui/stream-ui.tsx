@@ -15,7 +15,7 @@ import {
   Prompt,
   Schema,
   ToolChoice,
-} from 'ai';
+} from 'ai-toolkit';
 import {
   asLanguageModelUsage,
   convertToLanguageModelPrompt,
@@ -23,7 +23,7 @@ import {
   prepareRetries,
   prepareToolsAndToolChoice,
   standardizePrompt,
-} from 'ai/internal';
+} from 'ai-toolkit/internal';
 import { ReactNode } from 'react';
 import * as z3 from 'zod/v3';
 import * as z4 from 'zod/v4';

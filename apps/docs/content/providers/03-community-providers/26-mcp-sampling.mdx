@@ -133,7 +133,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { createMCPSamplingProvider } from '@mcpc-tech/mcp-sampling-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 // Create MCP server with sampling capability
 const server = new Server(
@@ -202,7 +202,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { createMCPSamplingProvider } from '@mcpc-tech/mcp-sampling-ai-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const server = new Server(
   { name: 'ai-assistant', version: '1.0.0' },
@@ -260,7 +260,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { createMCPSamplingProvider } from '@mcpc-tech/mcp-sampling-ai-provider';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const server = new Server(
@@ -327,7 +327,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { createMCPSamplingProvider } from '@mcpc-tech/mcp-sampling-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { z } from 'zod';
 
 const server = new Server(
@@ -409,7 +409,7 @@ import {
   selectModelFromPreferences,
   setupClientSampling,
 } from '@mcpc-tech/mcp-sampling-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const client = new Client(
   { name: 'my-client', version: '1.0.0' },

@@ -1,4 +1,4 @@
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 import { NextResponse } from 'next/server';
 
 import { z } from 'zod';

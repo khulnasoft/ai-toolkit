@@ -53,7 +53,7 @@ It supports:
 ```tsx filename="app/api/completion/route.ts" highlight={"13"}
 import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
 import { toUIMessageStream } from '@ai-toolkit/langchain';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 import { ChatOpenAI } from '@langchain/openai';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();

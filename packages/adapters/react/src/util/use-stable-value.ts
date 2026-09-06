@@ -1,4 +1,4 @@
-import { isDeepEqualData } from 'ai';
+import { isDeepEqualData } from 'ai-toolkit';
 import { useEffect, useState } from 'react';
 
 /**

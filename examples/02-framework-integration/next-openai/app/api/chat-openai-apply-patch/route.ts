@@ -1,5 +1,5 @@
 import { openaiApplyPatchAgent } from '@/agent/openai-apply-patch-agent';
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const body = await req.json();

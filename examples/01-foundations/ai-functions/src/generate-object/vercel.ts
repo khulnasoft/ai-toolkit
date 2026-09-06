@@ -1,5 +1,5 @@
 import { vercel } from '@ai-toolkit/khulnasoft';
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

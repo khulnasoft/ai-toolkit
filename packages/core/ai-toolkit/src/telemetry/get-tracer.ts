@@ -16,5 +16,5 @@ export function getTracer({
     return tracer;
   }
 
-  return trace.getTracer('ai');
+  return trace.getTracer('ai-toolkit');
 }

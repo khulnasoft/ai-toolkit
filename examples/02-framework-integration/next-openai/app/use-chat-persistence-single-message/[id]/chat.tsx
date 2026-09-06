@@ -2,7 +2,7 @@
 
 import ChatInput from '@/components/chat-input';
 import { UIMessage, useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export default function Chat({
   id,

@@ -6,12 +6,12 @@ export default createTransformer((fileInfo, api, options, context) => {
   // Track if the experimental function was imported and what local name it uses
   let importedLocalName: string | null = null;
 
-  // Find import declarations from 'ai' and rename experimental_wrapLanguageModel
+  // Find import declarations from 'ai-toolkit' and rename experimental_wrapLanguageModel
   root.find(j.ImportDeclaration).forEach(importPath => {
     const node = importPath.node;
 
-    // Check if the source is 'ai'
-    if (node.source.value !== 'ai') return;
+    // Check if the source is 'ai-toolkit'
+    if ((node.source.value !== 'ai-toolkit' && node.source.value !== 'ai-toolkit')) return;
 
     // Check named imports and rename them
     const specifiers = node.specifiers?.filter(s => j.ImportSpecifier.check(s)) ?? [];

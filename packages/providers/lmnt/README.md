@@ -23,7 +23,7 @@ import { lmnt } from '@ai-toolkit/lmnt';
 
 ```ts
 import { lmnt } from '@ai-toolkit/lmnt';
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 
 const result = await generateSpeech({
   model: lmnt.speech('aurora'),

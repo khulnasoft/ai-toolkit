@@ -25,7 +25,7 @@ import { deepgram } from '@ai-toolkit/deepgram';
 
 ```ts
 import { deepgram } from '@ai-toolkit/deepgram';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 
 const { text } = await transcribe({
   model: deepgram.transcription('nova-3'),
@@ -39,7 +39,7 @@ const { text } = await transcribe({
 
 ```ts
 import { deepgram } from '@ai-toolkit/deepgram';
-import { experimental_transcribe as transcribe } from 'ai';
+import { experimental_transcribe as transcribe } from 'ai-toolkit';
 
 const { text, language } = await transcribe({
   model: deepgram.transcription('nova-3'),
@@ -58,7 +58,7 @@ const { text, language } = await transcribe({
 
 ```ts
 import { deepgram } from '@ai-toolkit/deepgram';
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 
 const { audio } = await generateSpeech({
   model: deepgram.speech('aura-2-helena-en'),

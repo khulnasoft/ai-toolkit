@@ -1,5 +1,5 @@
 import { huggingface } from '@ai-toolkit/huggingface';
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod/v4';
 import { run } from '../lib/run';
 

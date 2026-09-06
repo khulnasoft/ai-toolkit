@@ -22,7 +22,7 @@ import { baseten } from '@ai-toolkit/baseten';
 
 ```ts
 import { baseten } from '@ai-toolkit/baseten';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: baseten('deepseek-ai/DeepSeek-V3-0324'),

@@ -142,7 +142,7 @@ Both `generate()` and `stream()` accept an `AgentCallParameters<CALL_OPTIONS>` o
 Here's how you might implement your own Agent:
 
 ```ts
-import { Agent, GenerateTextResult, StreamTextResult } from 'ai';
+import { Agent, GenerateTextResult, StreamTextResult } from 'ai-toolkit';
 import type { ModelMessage } from '@ai-toolkit/provider-utils';
 
 class MyEchoAgent implements Agent {
@@ -173,7 +173,7 @@ All SDK utilities that accept an agent—including [`createAgentUIStream`](/docs
 You can use the official [`ToolLoopAgent`](/docs/reference/ai-toolkit-core/tool-loop-agent) (recommended for multi-step AI workflows with tool use), or supply your own implementation:
 
 ```ts
-import { ToolLoopAgent, createAgentUIStream } from "ai";
+import { ToolLoopAgent, createAgentUIStream } from "ai-toolkit";
 
 const agent = new ToolLoopAgent({ ... });
 

@@ -40,7 +40,7 @@ Use `toUIMessageStream` to convert LangGraph streams to AI TOOLKIT format:
 
 ```ts
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 // Convert messages and stream from a LangGraph graph
 const langchainMessages = await toBaseMessages(uiMessages);
@@ -62,7 +62,7 @@ You can also use `toUIMessageStream` with `streamEvents()` for more granular eve
 
 ```ts
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 // Using streamEvents with an agent
 const langchainMessages = await toBaseMessages(uiMessages);
@@ -141,7 +141,7 @@ const stream = await graph.stream(
 Use `LangSmithDeploymentTransport` with the AI TOOLKIT `useChat` hook to connect directly to a LangGraph deployment from the browser:
 
 ```tsx
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-toolkit/ai/react';
 import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
 import { useMemo } from 'react';
 

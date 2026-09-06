@@ -20,7 +20,7 @@ description: Evaluate & Observe LLM applications with Maxim
 ## Requirements
 
 ```
-"ai"
+"ai-toolkit"
 "@ai-toolkit/openai"
 "@ai-toolkit/anthropic"
 "@ai-toolkit/google"
@@ -74,7 +74,7 @@ const model = wrapMaximAITOOLKITModel(openai('gpt-4'), logger);
 ## Make LLM calls using wrapped models
 
 ```javascript
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { wrapMaximAITOOLKITModel } from '@maximai/maxim-js/vercel-ai-toolkit';
 
@@ -98,7 +98,7 @@ The wrapped model works seamlessly with all Vercel AI TOOLKIT functions:
 ### **Generate Object**
 
 ```javascript
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const response = await generateObject({
@@ -118,7 +118,7 @@ console.log(response.object);
 ### **Stream Text**
 
 ```javascript
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const { textStream } = await streamText({
   model: model,
@@ -180,7 +180,7 @@ const response = await generateText({
 ## Streaming Support
 
 ```javascript
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { wrapMaximAITOOLKITModel, MaximVercelProviderMetadata } from '@maximai/maxim-js/vercel-ai-toolkit';
 
@@ -236,7 +236,7 @@ const responses = await Promise.all([
 
 ```javascript
 // app/api/chat/route.js
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { wrapMaximAITOOLKITModel, MaximVercelProviderMetadata } from '@maximai/maxim-js/vercel-ai-toolkit';
 import { Maxim } from "@maximai/maxim-js";

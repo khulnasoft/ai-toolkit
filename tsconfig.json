@@ -4,6 +4,9 @@
       "path": "packages/core/ai"
     },
     {
+      "path": "packages/core/ai-toolkit"
+    },
+    {
       "path": "packages/core/provider-utils"
     },
     {
@@ -140,6 +143,9 @@
     },
     {
       "path": "packages/special/devtools"
+    },
+    {
+      "path": "packages/ui/elements"
     },
     {
       "path": "packages/langchain"

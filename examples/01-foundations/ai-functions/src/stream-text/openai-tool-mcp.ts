@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { run } from '../lib/run';
 import { saveRawChunks } from '../lib/save-raw-chunks';
 

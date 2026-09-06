@@ -1,5 +1,5 @@
 import { deepseek } from '@ai-toolkit/deepseek';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { print } from '../lib/print';
 import { run } from '../lib/run';
 

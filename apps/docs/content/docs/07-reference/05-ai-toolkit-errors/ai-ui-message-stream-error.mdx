@@ -29,7 +29,7 @@ This error often surfaces when an upstream request fails **before any tokens are
 You can check if an error is an instance of `AI_UIMessageStreamError` using:
 
 ```typescript
-import { UIMessageStreamError } from 'ai';
+import { UIMessageStreamError } from 'ai-toolkit';
 
 if (UIMessageStreamError.isInstance(error)) {
   console.log('Chunk type:', error.chunkType);

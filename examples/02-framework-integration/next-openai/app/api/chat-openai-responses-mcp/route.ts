@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText, UIMessage, InferUITools } from 'ai';
+import { convertToModelMessages, streamText, UIMessage, InferUITools } from 'ai-toolkit';
 
 export const maxDuration = 30;
 

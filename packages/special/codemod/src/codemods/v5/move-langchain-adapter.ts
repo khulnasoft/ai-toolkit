@@ -6,7 +6,7 @@ export default createTransformer((fileInfo: any, api: any, options: any, context
   const renamedLocals: { old: string; new: string }[] = [];
 
   // Transform import declarations
-  root.find(j.ImportDeclaration, { source: { value: 'ai' } }).forEach((path: any) => {
+  root.find(j.ImportDeclaration, { source: { value: 'ai-toolkit' } }).forEach((path: any) => {
     const specifiers = path.node.specifiers;
     specifiers.forEach((specifier: any) => {
       if (
@@ -30,7 +30,7 @@ export default createTransformer((fileInfo: any, api: any, options: any, context
     });
     path.node.source.value = '@ai-toolkit/langchain';
     context.messages.push(
-      "Updated import of LangChainAdapter from 'ai' to '@ai-toolkit/langchain' and renamed to toDataStreamResponse",
+      "Updated import of LangChainAdapter from 'ai-toolkit' to '@ai-toolkit/langchain' and renamed to toDataStreamResponse",
     );
   });
 

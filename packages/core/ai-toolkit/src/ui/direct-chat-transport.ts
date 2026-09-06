@@ -38,7 +38,7 @@ export type DirectChatTransportOptions<
  * @example
  * ```tsx
  * import { useChat } from '@ai-toolkit/react';
- * import { DirectChatTransport } from 'ai';
+ * import { DirectChatTransport } from 'ai-toolkit';
  * import { myAgent } from './my-agent';
  *
  * const { messages, sendMessage } = useChat({

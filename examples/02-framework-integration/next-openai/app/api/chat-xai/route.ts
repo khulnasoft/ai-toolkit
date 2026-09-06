@@ -1,5 +1,5 @@
 import { xai } from '@ai-toolkit/xai';
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 export const maxDuration = 30;
 

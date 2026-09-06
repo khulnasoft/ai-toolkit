@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai-toolkit';
 import ChatInput from '@/components/chat-input';
 import { WeatherWithApprovalAgentUIMessage } from '@/agent/weather-with-approval-agent';
 import WeatherWithApprovalView from '@/components/tool/weather-with-approval-view';

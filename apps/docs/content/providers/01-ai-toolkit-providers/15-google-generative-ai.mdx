@@ -83,7 +83,7 @@ You can use Google Generative AI language models to generate text with the `gene
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: google('gemini-2.5-flash'),
@@ -210,7 +210,7 @@ For Gemini 3 models, use the `thinkingLevel` parameter to control the depth of r
 
 ```ts
 import { google, GoogleGenerativeAIProviderOptions } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const model = google('gemini-3-pro-preview');
 
@@ -238,7 +238,7 @@ For Gemini 2.5 models, use the `thinkingBudget` parameter to control the number 
 
 ```ts
 import { google, GoogleGenerativeAIProviderOptions } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const model = google('gemini-2.5-flash');
 
@@ -266,7 +266,7 @@ The Google Generative AI provider supports file inputs, e.g. PDF files.
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: google('gemini-2.5-flash'),
@@ -293,7 +293,7 @@ You can also use YouTube URLs directly:
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: google('gemini-2.5-flash'),
@@ -344,7 +344,7 @@ To maximize cache hits with implicit caching:
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 // Structure prompts with consistent content at the beginning
 const baseContext =
@@ -390,7 +390,7 @@ For guaranteed cost savings, you can still use explicit caching with Gemini 2.5 
 ```ts
 import { google } from '@ai-toolkit/google';
 import { GoogleAICacheManager } from '@google/generative-ai/server';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const cacheManager = new GoogleAICacheManager(
   process.env.GOOGLE_GENERATIVE_AI_API_KEY,
@@ -439,7 +439,7 @@ You can enable code execution by adding the `code_execution` tool to your reques
 ```ts
 import { google } from '@ai-toolkit/google';
 import { googleTools } from '@ai-toolkit/google/internal';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, toolCalls, toolResults } = await generateText({
   model: google('gemini-2.5-pro'),
@@ -459,7 +459,7 @@ Google search can be used to provide answers around current events:
 ```ts highlight="8,17-20"
 import { google } from '@ai-toolkit/google';
 import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
@@ -534,7 +534,7 @@ The [File Search tool](https://ai.google.dev/gemini-api/docs/file-search) lets G
 
 ```ts highlight="9-13"
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources } = await generateText({
   model: google('gemini-2.5-pro'),
@@ -561,7 +561,7 @@ The URL context tool allows you to provide specific URLs that you want the model
 
 ```ts highlight="9,13-17"
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
@@ -642,7 +642,7 @@ You can combine the URL context tool with search grounding to provide the model 
 
 ```ts highlight="9-10"
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
@@ -669,7 +669,7 @@ the model has access to Google Maps data for location-aware responses. This enab
 ```ts highlight="7-16"
 import { google } from '@ai-toolkit/google';
 import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text, sources, providerMetadata } = await generateText({
   model: google('gemini-2.5-flash'),
@@ -730,7 +730,7 @@ This enables the model to provide answers based on your specific data sources an
 ```ts highlight="8,17-20"
 import { createVertex } from '@ai-toolkit/google-vertex';
 import { GoogleGenerativeAIProviderMetadata } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const vertex = createVertex({
   project: 'my-project',
@@ -832,7 +832,7 @@ Gemini models with image generation capabilities (`gemini-2.5-flash-image-previe
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: google('gemini-2.5-flash-image-preview'),
@@ -966,7 +966,7 @@ Gemma models don't natively support the `systemInstruction` parameter, but the p
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: google('gemma-3-27b-it'),
@@ -995,7 +995,7 @@ Google Generative AI embedding models support aditional settings. You can pass t
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const model = google.embedding('gemini-embedding-001');
 
@@ -1044,7 +1044,7 @@ For more on image generation with the AI TOOLKIT see [generateImage()](/docs/ref
 
 ```ts
 import { google } from '@ai-toolkit/google';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: google.image('imagen-4.0-generate-001'),
@@ -1058,7 +1058,7 @@ Further configuration can be done using Google provider options. You can validat
 ```ts
 import { google } from '@ai-toolkit/google';
 import { GoogleGenerativeAIImageProviderOptions } from '@ai-toolkit/google';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: google.image('imagen-4.0-generate-001'),

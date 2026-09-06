@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { UIToolInvocation, tool, generateImage } from 'ai';
+import { UIToolInvocation, tool, generateImage } from 'ai-toolkit';
 import { z } from 'zod';
 
 export const generateImageTool = tool({

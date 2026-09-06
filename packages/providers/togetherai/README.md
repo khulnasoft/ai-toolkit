@@ -22,7 +22,7 @@ import { togetherai } from '@ai-toolkit/togetherai';
 
 ```ts
 import { togetherai } from '@ai-toolkit/togetherai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: togetherai('meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo'),

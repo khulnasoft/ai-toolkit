@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { UIToolInvocation } from 'ai';
+import { UIToolInvocation } from 'ai-toolkit';
 
 export default function FileSearchView({
   invocation,

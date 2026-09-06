@@ -1,5 +1,5 @@
-import type { CompletionRequestOptions, UseCompletionOptions } from 'ai';
-import { callCompletionApi } from 'ai';
+import type { CompletionRequestOptions, UseCompletionOptions } from 'ai-toolkit';
+import { callCompletionApi } from 'ai-toolkit';
 import swrv from 'swrv';
 import type { Ref } from 'vue';
 import { ref, unref } from 'vue';

@@ -1,5 +1,5 @@
 import { azure } from '@ai-toolkit/azure';
-import { UIToolInvocation } from 'ai';
+import { UIToolInvocation } from 'ai-toolkit';
 
 export default function AzureWebSearchPreviewView({
   invocation,

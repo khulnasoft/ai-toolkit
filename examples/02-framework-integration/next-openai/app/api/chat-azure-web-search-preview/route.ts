@@ -6,7 +6,7 @@ import {
   ToolSet,
   UIDataTypes,
   UIMessage,
-} from 'ai';
+} from 'ai-toolkit';
 
 const tools = {
   web_search_preview: azure.tools.webSearchPreview({}),

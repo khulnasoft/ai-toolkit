@@ -1,0 +1,63 @@
+{
+  "name": "@ai-toolkit/elements",
+  "version": "0.1.0",
+  "description": "AI TOOLKIT Elements - React components for AI-native applications (shadcn-ready)",
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "stability": "beta",
+  "owners": ["@khulnasoft/ai-react-team"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
+  "files": [
+    "dist/**/*",
+    "registry.json",
+    "registry/**/*",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "pnpm clean && tsup --tsconfig tsconfig.build.json",
+    "build:watch": "pnpm clean && tsup --watch",
+    "clean": "del-cli dist *.tsbuildinfo",
+    "lint": "eslint \"./**/*.ts*\"",
+    "type-check": "tsc --build",
+    "prettier-check": "prettier --check \"./**/*.ts*\"",
+    "test": "vitest --config vitest.config.js --run",
+    "test:update": "vitest --config vitest.config.js --run -u",
+    "test:watch": "vitest --config vitest.config.js"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "ai-toolkit": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18 || ~19.0.1 || ~19.1.2 || ^19.2.1",
+    "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "20.17.24",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@khulnasoft/ai-tsconfig": "workspace:*",
+    "@vitejs/plugin-react": "4.3.3",
+    "eslint": "8.57.1",
+    "eslint-config-khulnasoft-ai": "workspace:*",
+    "jsdom": "^24.0.0",
+    "react": "^18",
+    "react-dom": "^18 || ^19",
+    "tsup": "^7.2.0",
+    "typescript": "5.8.3"
+  }
+}

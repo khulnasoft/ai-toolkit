@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { generateId } from 'ai';
-import { mockId } from 'ai/test';
+import { generateId } from '@ai-toolkit/ai';
+import { mockId } from '@ai-toolkit/ai/test';
 import { computed, ref } from 'vue';
 import { Chat } from './chat.vue';
 

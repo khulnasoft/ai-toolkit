@@ -1,5 +1,5 @@
 import { azure } from '@ai-toolkit/azure';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 /**

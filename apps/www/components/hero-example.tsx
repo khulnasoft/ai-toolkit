@@ -7,7 +7,7 @@ const examples = [
   {
     label: 'generate-text.ts',
     language: 'typescript',
-    code: `import { generateText } from 'ai';
+    code: `import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: 'openai/gpt-4o',
@@ -19,7 +19,7 @@ console.log(text);`,
   {
     label: 'stream-text.ts',
     language: 'typescript',
-    code: `import { streamText } from 'ai';
+    code: `import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: 'anthropic/claude-3-5-sonnet',
@@ -33,7 +33,7 @@ for await (const chunk of result.textStream) {
   {
     label: 'generate-object.ts',
     language: 'typescript',
-    code: `import { generateObject } from 'ai';
+    code: `import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const { object } = await generateObject({
@@ -50,7 +50,7 @@ console.log(object);`,
   {
     label: 'call-tools.ts',
     language: 'typescript',
-    code: `import { generateText, tool } from 'ai';
+    code: `import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const { text } = await generateText({

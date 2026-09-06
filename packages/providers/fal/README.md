@@ -22,7 +22,7 @@ import { fal } from '@ai-toolkit/fal';
 
 ```ts
 import { fal } from '@ai-toolkit/fal';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import fs from 'fs';
 const { image } = await generateImage({
   model: fal.image('fal-ai/flux/schnell'),

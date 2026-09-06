@@ -1,5 +1,5 @@
 import { huggingface } from '@ai-toolkit/huggingface';
-import { generateText, streamText, generateObject, streamObject } from 'ai';
+import { generateText, streamText, generateObject, streamObject } from 'ai-toolkit';
 import { describe, it, expect } from 'vitest';
 import { z } from 'zod/v4';
 import 'dotenv/config';

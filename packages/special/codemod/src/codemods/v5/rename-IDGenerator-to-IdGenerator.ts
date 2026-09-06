@@ -6,10 +6,10 @@ export default createTransformer((fileInfo, api, options, context) => {
   // Track local names of imported IDGenerator
   const localNames = new Set<string>();
 
-  // Find and update imports from 'ai'
+  // Find and update imports from 'ai-toolkit'
   root
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === 'ai')
+    .filter(path => path.node.source.value === 'ai-toolkit' || path.node.source.value === 'ai-toolkit')
     .forEach(path => {
       path.node.specifiers?.forEach(specifier => {
         if (

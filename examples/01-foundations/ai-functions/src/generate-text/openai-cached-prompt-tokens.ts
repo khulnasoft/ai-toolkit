@@ -1,5 +1,5 @@
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { setTimeout } from 'node:timers/promises';
 import { performance } from 'node:perf_hooks';
 import { run } from '../lib/run';

@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@ai-toolkit/openai": "workspace:*",
-    "ai": "6.0.45",
     "dotenv": "16.4.5",
-    "zod": "3.25.76"
+    "zod": "3.25.76",
+    "ai-toolkit": "workspace:*"
   },
   "scripts": {
     "type-check": "tsc --build",

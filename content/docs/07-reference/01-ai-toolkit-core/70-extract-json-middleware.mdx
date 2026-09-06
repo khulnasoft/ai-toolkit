@@ -8,14 +8,14 @@ description: Middleware that extracts JSON from text content by stripping markdo
 `extractJsonMiddleware` is a middleware function that extracts JSON from text content by stripping markdown code fences and other formatting. This is useful when using `Output.object()` with models that wrap JSON responses in markdown code blocks (e.g., ` ```json ... ``` `).
 
 ```ts
-import { extractJsonMiddleware } from 'ai';
+import { extractJsonMiddleware } from 'ai-toolkit';
 
 const middleware = extractJsonMiddleware();
 ```
 
 ## Import
 
-<Snippet text={`import { extractJsonMiddleware } from "ai"`} prompt={false} />
+<Snippet text={`import { extractJsonMiddleware } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 
@@ -54,7 +54,7 @@ import {
   wrapLanguageModel,
   extractJsonMiddleware,
   Output,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateText({
@@ -86,7 +86,7 @@ import {
   wrapLanguageModel,
   extractJsonMiddleware,
   Output,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 const { partialOutputStream } = streamText({
@@ -115,7 +115,7 @@ for await (const partialObject of partialOutputStream) {
 For models that use different formatting, you can provide a custom transform:
 
 ```ts
-import { extractJsonMiddleware } from 'ai';
+import { extractJsonMiddleware } from 'ai-toolkit';
 
 const middleware = extractJsonMiddleware({
   transform: text =>

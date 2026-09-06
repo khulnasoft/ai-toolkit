@@ -1,5 +1,5 @@
 import { openai, OpenAIResponsesProviderOptions } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;

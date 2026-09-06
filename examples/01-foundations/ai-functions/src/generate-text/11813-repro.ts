@@ -1,7 +1,7 @@
-import { generateText, streamText, tool } from 'ai';
+import { generateText, streamText, tool } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
-import { stepCountIs } from 'ai';
+import { stepCountIs } from 'ai-toolkit';
 import { run } from '../lib/run';
 
 run(async () => {

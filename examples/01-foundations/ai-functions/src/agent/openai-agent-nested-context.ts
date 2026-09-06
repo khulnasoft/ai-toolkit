@@ -2,7 +2,7 @@ import { openai } from '@ai-toolkit/openai';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
-import { ToolLoopAgent, tool, stepCountIs } from 'ai';
+import { ToolLoopAgent, tool, stepCountIs } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

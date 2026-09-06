@@ -22,7 +22,7 @@ This is equivalent to:
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages, sendMessage } = useChat({
   transport: new DefaultChatTransport({
@@ -37,7 +37,7 @@ Configure the default transport with custom options:
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 const { messages, sendMessage } = useChat({
   transport: new DefaultChatTransport({
@@ -108,7 +108,7 @@ This is useful for:
 
 ```tsx
 import { useChat } from '@ai-toolkit/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { DirectChatTransport, ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({

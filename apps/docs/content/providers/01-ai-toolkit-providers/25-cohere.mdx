@@ -85,7 +85,7 @@ You can use Cohere language models to generate text with the `generateText` func
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: cohere('command-r-plus'),
@@ -126,7 +126,7 @@ Cohere has introduced reasoning with the `command-a-reasoning-08-2025` model. Yo
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 async function main() {
   const { text, reasoning } = await generateText({
@@ -164,7 +164,7 @@ You can use Cohere embedding models to generate embeddings with the `embed` func
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: cohere.embedding('embed-english-v3.0'),
@@ -181,7 +181,7 @@ Cohere embedding models support additional provider options that can be passed v
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: cohere.embedding('embed-english-v3.0'),
@@ -240,7 +240,7 @@ You can use Cohere reranking models to rerank documents with the `rerank` functi
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const documents = [
   'sunny day at the beach',
@@ -266,7 +266,7 @@ Cohere reranking models support additional provider options that can be passed v
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),

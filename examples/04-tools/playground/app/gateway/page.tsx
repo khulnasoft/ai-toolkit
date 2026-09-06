@@ -62,7 +62,7 @@ const features = [
   },
 ];
 
-const codeExample = `import { generateText } from 'ai';
+const codeExample = `import { generateText } from 'ai-toolkit';
 import { gateway } from '@ai-toolkit/gateway';
 
 // Use any model with a single line

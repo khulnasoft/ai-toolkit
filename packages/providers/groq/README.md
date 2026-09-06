@@ -36,7 +36,7 @@ Browser search is only available for these models:
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: groq('openai/gpt-oss-120b'), // Must use supported model
@@ -55,7 +55,7 @@ console.log(result.text);
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const result = streamText({
   model: groq('openai/gpt-oss-120b'),
@@ -111,7 +111,7 @@ const result = await generateText({
 
 ```ts
 import { groq } from '@ai-toolkit/groq';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: groq('gemma2-9b-it'),

@@ -1,4 +1,4 @@
-import { UIDataTypes, UIMessage } from 'ai';
+import { UIDataTypes, UIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 export const myMessageMetadataSchema = z.object({

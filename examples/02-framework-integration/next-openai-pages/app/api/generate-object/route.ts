@@ -1,4 +1,4 @@
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 import { z } from 'zod';
 

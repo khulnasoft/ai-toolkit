@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-toolkit/anthropic';
-import { streamText, tool, stepCountIs } from 'ai';
+import { streamText, tool, stepCountIs } from 'ai-toolkit';
 import { z } from 'zod';
 import { run } from '../lib/run';
 

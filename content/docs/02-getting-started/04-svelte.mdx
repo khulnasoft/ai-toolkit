@@ -88,7 +88,7 @@ import {
   type UIMessage,
   convertToModelMessages,
   createGateway,
-} from 'ai';
+} from 'ai-toolkit';
 
 import { AI_GATEWAY_API_KEY } from '$env/static/private';
 
@@ -134,8 +134,8 @@ model: __MODEL__;
 You can also explicitly import and use the gateway provider in two other equivalent ways:
 
 ```ts
-// Option 1: Import from 'ai' package (included by default)
-import { gateway } from 'ai';
+// Option 1: Import from 'ai-toolkit' package (included by default)
+import { gateway } from 'ai-toolkit';
 model: gateway('anthropic/claude-sonnet-4.5');
 
 // Option 2: Install and import from '@ai-toolkit/gateway' package
@@ -260,7 +260,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 import { AI_GATEWAY_API_KEY } from '$env/static/private';
@@ -381,7 +381,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 import { AI_GATEWAY_API_KEY } from '$env/static/private';
@@ -434,7 +434,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 import { AI_GATEWAY_API_KEY } from '$env/static/private';

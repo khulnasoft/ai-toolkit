@@ -51,6 +51,7 @@ ai-toolkit/
 ├── packages/core/                      # ai, provider-utils, runtime
 ├── packages/providers/                 # 30 providers (see §3)
 ├── packages/adapters/                  # react, rsc, angular, svelte, vue
+├── packages/ui/                        # elements (@ai-toolkit/elements: chat components + shadcn registry)
 ├── packages/validation/                # provider (@ai-toolkit/provider), capabilities, valibot
 ├── packages/special/                   # gateway, khulnasoft, codemod, devtools
 ├── packages/mcp/                       # single @ai-toolkit/mcp package (split is Outstanding)
@@ -93,7 +94,8 @@ Ownership is enforced by `CODEOWNERS` — this table is a summary, not a copy.
 | -------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | Core           | `packages/core/`                                   | `ai`, `@ai-toolkit/provider-utils`, `@ai-toolkit/runtime`                                                                                                                  | stable                         |
 | Providers      | `packages/providers/`                              | `@ai-toolkit/{openai,anthropic,google,google-vertex,azure,amazon-bedrock,cohere,mistral,groq,deepinfra,xai,togetherai,fireworks,replicate,openai-compatible,…}` (30 total) | stable per package             |
-| Adapters       | `packages/adapters/`                               | `@ai-toolkit/{react,rsc,angular,svelte,vue}`                                                                                                                               | stable                         |
+| Adapters | `packages/adapters/` | `@ai-toolkit/{react,rsc,angular,svelte,vue}` | stable |
+| UI | `packages/ui/` | `@ai-toolkit/elements` | beta |
 | Validation     | `packages/validation/`                             | `@ai-toolkit/provider`, `@ai-toolkit/capabilities`, `@ai-toolkit/valibot`                                                                                                  | stable / beta (`capabilities`) |
 | Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft}`                                                                                                                                         | stable                         |
 | MCP            | `packages/mcp/`                                    | `@ai-toolkit/mcp`                                                                                                                                                          | beta                           |
@@ -155,7 +157,7 @@ as the reference example):
 
 ```typescript
 // ✅ Public: core entry point (npm `ai`)
-export { generateText, streamText, generateObject } from 'ai';
+export { generateText, streamText, generateObject } from 'ai-toolkit';
 
 // ✅ Public: providers
 export { createOpenAI } from '@ai-toolkit/openai';
@@ -304,7 +306,8 @@ canonical as package `prepack` scripts consume it).
 | `packages/valibot` (legacy path)                         | `packages/validation/valibot`         | `@ai-toolkit/valibot`                |
 | — (new)                                                  | `packages/validation/capabilities`    | `@ai-toolkit/capabilities`           |
 | `packages/{openai,anthropic,…}` (30)                     | `packages/providers/{…}`              | `@ai-toolkit/{…}`                    |
-| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}`               | `@ai-toolkit/{…}`                    |
+| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}` | `@ai-toolkit/{…}` |
+| — (new) | `packages/ui/elements` | `@ai-toolkit/elements` |
 | `packages/gateway` (legacy path)                         | `packages/special/gateway`            | `@ai-toolkit/gateway`                |
 | `packages/khulnasoft` (legacy path)                      | `packages/special/khulnasoft`         | `@ai-toolkit/khulnasoft`             |
 | `packages/mcp` (legacy path)                             | `packages/mcp`                        | `@ai-toolkit/mcp`                    |

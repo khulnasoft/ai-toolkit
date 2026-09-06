@@ -1,4 +1,4 @@
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 import { registry } from './setup-registry';
 import { run } from '../lib/run';
 

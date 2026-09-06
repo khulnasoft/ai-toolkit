@@ -1,4 +1,4 @@
-import { gateway, streamText } from 'ai';
+import { gateway, streamText } from 'ai-toolkit';
 import 'dotenv/config';
 
 async function main() {

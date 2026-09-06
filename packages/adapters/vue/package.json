@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "@ai-toolkit/provider-utils": "workspace:*",
-    "ai": "workspace:*",
+    "ai-toolkit": "workspace:*",
     "swrv": "^1.0.4"
   },
   "devDependencies": {

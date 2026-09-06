@@ -64,7 +64,7 @@ You can use NIM language models to generate text with the `generateText` functio
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const nim = createOpenAICompatible({
   name: 'nim',
@@ -90,7 +90,7 @@ NIM language models can also generate text in a streaming fashion with the `stre
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const nim = createOpenAICompatible({
   name: 'nim',
