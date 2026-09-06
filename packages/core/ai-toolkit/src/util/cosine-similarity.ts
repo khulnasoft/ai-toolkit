@@ -7,7 +7,8 @@ import { InvalidArgumentError } from '../error/invalid-argument-error';
  * @param vector1 - The first vector.
  * @param vector2 - The second vector.
  *
- * @returns The cosine similarity between vector1 and vector2, or 0 if either vector is the zero vector.
+ * @returns The cosine similarity between vector1 and vector2.
+ * @returns 0 if either vector is the zero vector.
  *
  * @throws {InvalidArgumentError} If the vectors do not have the same length.
  */
@@ -41,6 +42,5 @@ export function cosineSimilarity(vector1: number[], vector2: number[]): number {
 
   return magnitudeSquared1 === 0 || magnitudeSquared2 === 0
     ? 0
-    : dotProduct /
-        (Math.sqrt(magnitudeSquared1) * Math.sqrt(magnitudeSquared2));
+    : dotProduct / (Math.sqrt(magnitudeSquared1) * Math.sqrt(magnitudeSquared2));
 }

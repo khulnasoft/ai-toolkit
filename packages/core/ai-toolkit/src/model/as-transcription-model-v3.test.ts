@@ -1,4 +1,4 @@
-import type { TranscriptionModelV2 } from '@ai-toolkit/provider';
+import { TranscriptionModelV2 } from '@ai-toolkit/provider';
 import { asTranscriptionModelV3 } from './as-transcription-model-v3';
 import { MockTranscriptionModelV2 } from '../test/mock-transcription-model-v2';
 import { MockTranscriptionModelV3 } from '../test/mock-transcription-model-v3';
@@ -9,9 +9,7 @@ describe('asTranscriptionModelV3', () => {
   let logWarningSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    logWarningSpy = vi
-      .spyOn(logWarningsModule, 'logWarnings')
-      .mockImplementation(() => {});
+    logWarningSpy = vi.spyOn(logWarningsModule, 'logWarnings');
   });
 
   afterEach(() => {
@@ -82,9 +80,7 @@ describe('asTranscriptionModelV3', () => {
           {
             type: 'compatibility',
             feature: 'specificationVersion',
-            details: expect.stringContaining(
-              'Using v2 specification compatibility',
-            ),
+            details: expect.stringContaining('Using v2 specification compatibility'),
           },
         ],
         provider: 'test-provider',

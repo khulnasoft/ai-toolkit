@@ -1,18 +1,15 @@
 import { InvalidPromptError } from '@ai-toolkit/provider';
-import {
-  asArray,
-  safeValidateTypes,
-  type ModelMessage,
-} from '@ai-toolkit/provider-utils';
-import { z } from '../util/zod';
+import { ModelMessage, safeValidateTypes, SystemModelMessage } from '@ai-toolkit/provider-utils';
+import { z } from 'zod/v4';
 import { modelMessageSchema } from './message';
-import type { Instructions, Prompt } from './prompt';
+import { Prompt } from './prompt';
+import { asArray } from '../util/as-array';
 
 export type StandardizedPrompt = {
   /**
-   * Instructions.
+   * System message.
    */
-  instructions: Instructions | undefined;
+  system?: string | SystemModelMessage | Array<SystemModelMessage>;
 
   /**
    * Messages.
@@ -20,55 +17,48 @@ export type StandardizedPrompt = {
   messages: ModelMessage[];
 };
 
-/**
- * Converts a prompt input into a standardized prompt with validated model
- * messages.
- *
- * @param prompt - The prompt definition to standardize.
- * Set `allowSystemInMessages` to true to allow system messages in the
- * `prompt` or `messages` fields. System messages in the `instructions`
- * option are always allowed.
- * @returns The standardized prompt.
- * @throws {InvalidPromptError} When the prompt is invalid.
- */
-export async function standardizePrompt({
-  allowSystemInMessages = false,
-  system,
-  instructions = system,
-  prompt,
-  messages,
-}: Prompt): Promise<StandardizedPrompt> {
-  if (prompt == null && messages == null) {
+export async function standardizePrompt(prompt: Prompt): Promise<StandardizedPrompt> {
+  if (prompt.prompt == null && prompt.messages == null) {
     throw new InvalidPromptError({
       prompt,
       message: 'prompt or messages must be defined',
     });
   }
 
-  if (prompt != null && messages != null) {
+  if (prompt.prompt != null && prompt.messages != null) {
     throw new InvalidPromptError({
       prompt,
       message: 'prompt and messages cannot be defined at the same time',
     });
   }
 
-  // validate that instructions is a string or a SystemModelMessage
+  // validate that system is a string or a SystemModelMessage
   if (
-    typeof instructions !== 'string' &&
-    !asArray(instructions).every(message => message.role === 'system')
+    prompt.system != null &&
+    typeof prompt.system !== 'string' &&
+    !asArray(prompt.system).every(
+      message =>
+        typeof message === 'object' &&
+        message !== null &&
+        'role' in message &&
+        message.role === 'system',
+    )
   ) {
     throw new InvalidPromptError({
       prompt,
-      message:
-        'instructions must be a string, SystemModelMessage, or array of SystemModelMessage',
+      message: 'system must be a string, SystemModelMessage, or array of SystemModelMessage',
     });
   }
 
-  if (prompt != null && typeof prompt === 'string') {
-    messages = [{ role: 'user', content: prompt }];
-  } else if (prompt != null && Array.isArray(prompt)) {
-    messages = prompt;
-  } else if (messages == null) {
+  let messages: ModelMessage[];
+
+  if (prompt.prompt != null && typeof prompt.prompt === 'string') {
+    messages = [{ role: 'user', content: prompt.prompt }];
+  } else if (prompt.prompt != null && Array.isArray(prompt.prompt)) {
+    messages = prompt.prompt;
+  } else if (prompt.messages != null) {
+    messages = prompt.messages;
+  } else {
     throw new InvalidPromptError({
       prompt,
       message: 'prompt or messages must be defined',
@@ -79,17 +69,6 @@ export async function standardizePrompt({
     throw new InvalidPromptError({
       prompt,
       message: 'messages must not be empty',
-    });
-  }
-
-  if (
-    !allowSystemInMessages &&
-    messages.some(message => message.role === 'system')
-  ) {
-    throw new InvalidPromptError({
-      prompt,
-      message:
-        'System messages are not allowed in the prompt or messages fields. Use the instructions option instead.',
     });
   }
 
@@ -106,5 +85,8 @@ export async function standardizePrompt({
     });
   }
 
-  return { messages, instructions };
+  return {
+    messages,
+    system: prompt.system,
+  };
 }

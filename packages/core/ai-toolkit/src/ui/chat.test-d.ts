@@ -1,21 +1,13 @@
 import { z } from 'zod/v4';
-import { tool, type ToolSet } from '@ai-toolkit/provider-utils';
-import type { ChatInit } from './chat';
-import type {
-  InferUITools,
-  UIDataTypes,
-  UIMessage,
-  UITools,
-} from './ui-messages';
+import { tool } from '@ai-toolkit/provider-utils';
+import { ChatInit } from './chat';
+import { ToolSet } from '../generate-text/tool-set';
+import { InferUITools, UIDataTypes, UIMessage, UITools } from './ui-messages';
 import { describe, it, expectTypeOf } from 'vitest';
 
 type ToolCallCallback<TOOLS extends ToolSet | UITools> = NonNullable<
   ChatInit<
-    UIMessage<
-      never,
-      UIDataTypes,
-      TOOLS extends ToolSet ? InferUITools<TOOLS> : TOOLS
-    >
+    UIMessage<never, UIDataTypes, TOOLS extends ToolSet ? InferUITools<TOOLS> : TOOLS>
   >['onToolCall']
 >;
 
@@ -33,9 +25,7 @@ describe('onToolCall', () => {
         };
       };
 
-      expectTypeOf<
-        ToolCallArgument<Tools> & { dynamic?: false }
-      >().toMatchTypeOf<{
+      expectTypeOf<ToolCallArgument<Tools> & { dynamic?: false }>().toMatchTypeOf<{
         toolName: 'simple';
         input: number;
       }>();
@@ -49,9 +39,7 @@ describe('onToolCall', () => {
         };
       };
 
-      expectTypeOf<
-        ToolCallArgument<Tools> & { dynamic?: false }
-      >().toMatchTypeOf<{
+      expectTypeOf<ToolCallArgument<Tools> & { dynamic?: false }>().toMatchTypeOf<{
         toolName: 'simple';
         input: number;
       }>();
@@ -74,9 +62,7 @@ describe('onToolCall', () => {
         };
       };
 
-      expectTypeOf<
-        ToolCallArgument<Tools> & { dynamic?: false }
-      >().toMatchTypeOf<
+      expectTypeOf<ToolCallArgument<Tools> & { dynamic?: false }>().toMatchTypeOf<
         | {
             toolName: 'simple';
             input: number;
@@ -106,9 +92,7 @@ describe('onToolCall', () => {
         };
       };
 
-      expectTypeOf<
-        ToolCallArgument<Tools> & { dynamic?: false }
-      >().toMatchTypeOf<
+      expectTypeOf<ToolCallArgument<Tools> & { dynamic?: false }>().toMatchTypeOf<
         | {
             toolName: 'simple';
             input: number;
@@ -135,9 +119,7 @@ describe('onToolCall', () => {
         simple,
       };
 
-      expectTypeOf<
-        ToolCallArgument<typeof tools> & { dynamic?: false }
-      >().toMatchTypeOf<{
+      expectTypeOf<ToolCallArgument<typeof tools> & { dynamic?: false }>().toMatchTypeOf<{
         toolName: 'simple';
         input: number;
       }>();
@@ -152,9 +134,7 @@ describe('onToolCall', () => {
         simple,
       };
 
-      expectTypeOf<
-        ToolCallArgument<typeof tools> & { dynamic?: false }
-      >().toMatchTypeOf<{
+      expectTypeOf<ToolCallArgument<typeof tools> & { dynamic?: false }>().toMatchTypeOf<{
         toolName: 'simple';
         input: number;
       }>();
@@ -183,9 +163,7 @@ describe('onToolCall', () => {
         complex,
       };
 
-      expectTypeOf<
-        ToolCallArgument<typeof tools> & { dynamic?: false }
-      >().toMatchTypeOf<
+      expectTypeOf<ToolCallArgument<typeof tools> & { dynamic?: false }>().toMatchTypeOf<
         | {
             toolName: 'simple';
             input: number;
@@ -217,9 +195,7 @@ describe('onToolCall', () => {
         complex,
       };
 
-      expectTypeOf<
-        ToolCallArgument<typeof tools> & { dynamic?: false }
-      >().toMatchTypeOf<
+      expectTypeOf<ToolCallArgument<typeof tools> & { dynamic?: false }>().toMatchTypeOf<
         | {
             toolName: 'simple';
             input: number;
@@ -233,20 +209,5 @@ describe('onToolCall', () => {
           }
       >();
     });
-  });
-});
-
-describe('messageMetadataSchema', () => {
-  it('accepts a nullish metadata schema when the message id is branded', () => {
-    const metadataSchema = z.object({ value: z.string() }).nullish();
-
-    type MessageId = string & { readonly __brand: 'MessageId' };
-    type Message = UIMessage<z.infer<typeof metadataSchema>> & {
-      id: MessageId;
-    };
-
-    expectTypeOf<typeof metadataSchema>().toMatchTypeOf<
-      NonNullable<ChatInit<Message>['messageMetadataSchema']>
-    >();
   });
 });

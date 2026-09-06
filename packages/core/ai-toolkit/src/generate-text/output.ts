@@ -1,24 +1,18 @@
-import {
-  TypeValidationError,
-  type JSONSchema7,
-  type JSONValue,
-  type LanguageModelV4CallOptions,
-} from '@ai-toolkit/provider';
+import { JSONValue, LanguageModelV3CallOptions, TypeValidationError } from '@ai-toolkit/provider';
 import {
   asSchema,
+  FlexibleSchema,
   resolve,
   safeParseJSON,
   safeValidateTypes,
-  type FlexibleSchema,
 } from '@ai-toolkit/provider-utils';
-import { InvalidArgumentError } from '../error/invalid-argument-error';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
-import type { FinishReason } from '../types/language-model';
-import type { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
-import type { LanguageModelUsage } from '../types/usage';
-import type { DeepPartial } from '../util/deep-partial';
+import { FinishReason } from '../types/language-model';
+import { LanguageModelResponseMetadata } from '../types/language-model-response-metadata';
+import { LanguageModelUsage } from '../types/usage';
+import { DeepPartial } from '../util/deep-partial';
 import { parsePartialJson } from '../util/parse-partial-json';
-import type { EnrichedStreamPart } from './stream-text';
+import { EnrichedStreamPart } from './stream-text';
 
 export interface Output<OUTPUT = any, PARTIAL = any, ELEMENT = any> {
   /**
@@ -29,7 +23,7 @@ export interface Output<OUTPUT = any, PARTIAL = any, ELEMENT = any> {
   /**
    * The response format to use for the model.
    */
-  responseFormat: PromiseLike<LanguageModelV4CallOptions['responseFormat']>;
+  responseFormat: PromiseLike<LanguageModelV3CallOptions['responseFormat']>;
 
   /**
    * Parses the complete output of the model.
@@ -37,7 +31,7 @@ export interface Output<OUTPUT = any, PARTIAL = any, ELEMENT = any> {
   parseCompleteOutput(
     options: { text: string },
     context: {
-      response: Omit<LanguageModelResponseMetadata, 'messages' | 'body'>;
+      response: LanguageModelResponseMetadata;
       usage: LanguageModelUsage;
       finishReason: FinishReason;
     },
@@ -46,9 +40,7 @@ export interface Output<OUTPUT = any, PARTIAL = any, ELEMENT = any> {
   /**
    * Parses the partial output of the model.
    */
-  parsePartialOutput(options: {
-    text: string;
-  }): Promise<{ partial: PARTIAL } | undefined>;
+  parsePartialOutput(options: { text: string }): Promise<{ partial: PARTIAL } | undefined>;
 
   /**
    * Creates a stream transform that emits individual elements as they complete.
@@ -190,8 +182,6 @@ export const object = <OBJECT>({
  * When the model generates a text response, it will return an array of elements.
  *
  * @param element - The schema of the array elements to generate.
- * @param minItems - Optional minimum number of elements to generate.
- * @param maxItems - Optional maximum number of elements to generate.
  * @param name - Optional name of the output that should be generated. Used by some providers for additional LLM guidance, e.g. via tool or schema name.
  * @param description - Optional description of the output that should be generated. Used by some providers for additional LLM guidance, e.g. via tool or schema description.
  *
@@ -199,20 +189,10 @@ export const object = <OBJECT>({
  */
 export const array = <ELEMENT>({
   element: inputElementSchema,
-  minItems,
-  maxItems,
   name,
   description,
 }: {
   element: FlexibleSchema<ELEMENT>;
-  /**
-   * Optional minimum number of elements to generate.
-   */
-  minItems?: number;
-  /**
-   * Optional maximum number of elements to generate.
-   */
-  maxItems?: number;
   /**
    * Optional name of the output that should be generated.
    * Used by some providers for additional LLM guidance, e.g. via tool or schema name.
@@ -224,17 +204,6 @@ export const array = <ELEMENT>({
    */
   description?: string;
 }): Output<Array<ELEMENT>, Array<ELEMENT>, ELEMENT> => {
-  validateArrayBound({ name: 'minItems', value: minItems });
-  validateArrayBound({ name: 'maxItems', value: maxItems });
-
-  if (minItems != null && maxItems != null && minItems > maxItems) {
-    throw new InvalidArgumentError({
-      parameter: 'minItems',
-      value: minItems,
-      message: 'minItems must be less than or equal to maxItems',
-    });
-  }
-
   const elementSchema = asSchema(inputElementSchema);
 
   return {
@@ -242,30 +211,16 @@ export const array = <ELEMENT>({
 
     // JSON schema that describes an array of elements:
     responseFormat: resolve(elementSchema.jsonSchema).then(jsonSchema => {
-      // keep root-level definitions available to root-relative references:
-      const {
-        $schema: _$schema,
-        definitions,
-        $defs,
-        ...itemSchema
-      } = jsonSchema as JSONSchema7 & {
-        $defs?: JSONSchema7['definitions'];
-      };
+      // remove $schema from schema.jsonSchema:
+      const { $schema, ...itemSchema } = jsonSchema;
 
       return {
         type: 'json' as const,
         schema: {
           $schema: 'http://json-schema.org/draft-07/schema#',
-          ...(definitions != null && { definitions }),
-          ...($defs != null && { $defs }),
           type: 'object',
           properties: {
-            elements: {
-              type: 'array',
-              items: itemSchema,
-              ...(minItems != null && { minItems }),
-              ...(maxItems != null && { maxItems }),
-            },
+            elements: { type: 'array', items: itemSchema },
           },
           required: ['elements'],
           additionalProperties: false,
@@ -317,24 +272,6 @@ export const array = <ELEMENT>({
         });
       }
 
-      const lengthValidationError = getArrayLengthValidationError({
-        value: outerValue.elements,
-        minItems,
-        maxItems,
-      });
-
-      if (lengthValidationError != null) {
-        throw new NoObjectGeneratedError({
-          message: 'No object generated: response did not match schema.',
-          cause: lengthValidationError,
-          text,
-          response: context.response,
-          usage: context.usage,
-          finishReason: context.finishReason,
-        });
-      }
-
-      const validatedElements: Array<ELEMENT> = [];
       for (const element of outerValue.elements) {
         const validationResult = await safeValidateTypes({
           value: element,
@@ -351,11 +288,9 @@ export const array = <ELEMENT>({
             finishReason: context.finishReason,
           });
         }
-
-        validatedElements.push(validationResult.value);
       }
 
-      return validatedElements;
+      return outerValue.elements as Array<ELEMENT>;
     },
 
     async parsePartialOutput({ text }: { text: string }) {
@@ -406,28 +341,11 @@ export const array = <ELEMENT>({
     createElementStreamTransform() {
       let publishedElements = 0;
 
-      return new TransformStream<
-        EnrichedStreamPart<any, Array<ELEMENT>>,
-        ELEMENT
-      >({
+      return new TransformStream<EnrichedStreamPart<any, Array<ELEMENT>>, ELEMENT>({
         transform({ partialOutput }, controller) {
           if (partialOutput != null) {
             // Only enqueue new elements that haven't been published yet
-            for (
-              ;
-              publishedElements < partialOutput.length;
-              publishedElements++
-            ) {
-              if (maxItems != null && publishedElements >= maxItems) {
-                controller.error(
-                  getArrayLengthValidationError({
-                    value: partialOutput,
-                    maxItems,
-                  }),
-                );
-                return;
-              }
-
+            for (; publishedElements < partialOutput.length; publishedElements++) {
               controller.enqueue(partialOutput[publishedElements]);
             }
           }
@@ -436,60 +354,6 @@ export const array = <ELEMENT>({
     },
   };
 };
-
-function validateArrayBound({
-  name,
-  value,
-}: {
-  name: 'minItems' | 'maxItems';
-  value: number | undefined;
-}) {
-  if (value == null) {
-    return;
-  }
-
-  if (!Number.isInteger(value)) {
-    throw new InvalidArgumentError({
-      parameter: name,
-      value,
-      message: `${name} must be an integer`,
-    });
-  }
-
-  if (value < 0) {
-    throw new InvalidArgumentError({
-      parameter: name,
-      value,
-      message: `${name} must be greater than or equal to 0`,
-    });
-  }
-}
-
-function getArrayLengthValidationError({
-  value,
-  minItems,
-  maxItems,
-}: {
-  value: Array<unknown>;
-  minItems?: number;
-  maxItems?: number;
-}): TypeValidationError | undefined {
-  if (minItems != null && value.length < minItems) {
-    return new TypeValidationError({
-      value,
-      cause: `elements array must contain at least ${minItems} items`,
-    });
-  }
-
-  if (maxItems != null && value.length > maxItems) {
-    return new TypeValidationError({
-      value,
-      cause: `elements array must contain at most ${maxItems} items`,
-    });
-  }
-
-  return undefined;
-}
 
 /**
  * Output specification for choice generation.
@@ -699,9 +563,7 @@ export const json = ({
 
         case 'repaired-parse':
         case 'successful-parse': {
-          return result.value === undefined
-            ? undefined
-            : { partial: result.value };
+          return result.value === undefined ? undefined : { partial: result.value };
         }
       }
     },

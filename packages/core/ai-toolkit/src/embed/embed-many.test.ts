@@ -1,24 +1,12 @@
-import {
-  InvalidResponseDataError,
-  type EmbeddingModelV4,
-} from '@ai-toolkit/provider';
+import { EmbeddingModelV3 } from '@ai-toolkit/provider';
 import assert from 'node:assert';
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-  vitest,
-} from 'vitest';
+import { beforeEach, describe, expect, it, vi, vitest } from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';
-import { MockEmbeddingModelV2 } from '../test/mock-embedding-model-v2';
-import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';
-import type { Embedding, EmbeddingModelUsage, Warning } from '../types';
+import { MockEmbeddingModelV3 } from '../test/mock-embedding-model-v3';
+import { MockTracer } from '../test/mock-tracer';
+import { Embedding, EmbeddingModelUsage, Warning } from '../types';
 import { createResolvablePromise } from '../util/create-resolvable-promise';
 import { embedMany } from './embed-many';
-import type { EmbedStartEvent, EmbedEndEvent } from './embed-events';
 
 vi.mock('../version', () => {
   return {
@@ -38,48 +26,6 @@ const testValues = [
   'snowy night in the mountains',
 ];
 
-describe('error handling', () => {
-  it('should reject an embedding count mismatch in a single call', async () => {
-    const result = embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: Infinity,
-        doEmbed: async () => ({
-          embeddings: dummyEmbeddings.slice(0, 2),
-          warnings: [],
-        }),
-      }),
-      values: testValues,
-    });
-
-    await expect(result).rejects.toSatisfy(InvalidResponseDataError.isInstance);
-    await expect(result).rejects.toMatchObject({
-      name: 'AI_InvalidResponseDataError',
-      message: 'Expected 3 embeddings, but received 2.',
-      data: dummyEmbeddings.slice(0, 2),
-    });
-  });
-
-  it('should reject an embedding count mismatch in each chunk', async () => {
-    const result = embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 2,
-        doEmbed: async ({ values }) => ({
-          embeddings: values.map(() => dummyEmbeddings[0]).slice(0, -1),
-          warnings: [],
-        }),
-      }),
-      values: testValues,
-    });
-
-    await expect(result).rejects.toSatisfy(InvalidResponseDataError.isInstance);
-    await expect(result).rejects.toMatchObject({
-      name: 'AI_InvalidResponseDataError',
-      message: 'Expected 2 embeddings, but received 1.',
-      data: [dummyEmbeddings[0]],
-    });
-  });
-});
-
 describe('model.supportsParallelCalls', () => {
   it('should not parallelize when false', async () => {
     const events: string[] = [];
@@ -92,7 +38,7 @@ describe('model.supportsParallelCalls', () => {
     ];
 
     const embedManyPromise = embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         supportsParallelCalls: false,
         maxEmbeddingsPerCall: 1,
         doEmbed: async () => {
@@ -118,14 +64,7 @@ describe('model.supportsParallelCalls', () => {
 
     const { embeddings } = await embedManyPromise;
 
-    expect(events).toStrictEqual([
-      'start-0',
-      'end-0',
-      'start-1',
-      'end-1',
-      'start-2',
-      'end-2',
-    ]);
+    expect(events).toStrictEqual(['start-0', 'end-0', 'start-1', 'end-1', 'start-2', 'end-2']);
 
     expect(embeddings).toStrictEqual(dummyEmbeddings);
   });
@@ -141,7 +80,7 @@ describe('model.supportsParallelCalls', () => {
     ];
 
     const embedManyPromise = embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         supportsParallelCalls: true,
         maxEmbeddingsPerCall: 1,
         doEmbed: async () => {
@@ -167,14 +106,7 @@ describe('model.supportsParallelCalls', () => {
 
     const { embeddings } = await embedManyPromise;
 
-    expect(events).toStrictEqual([
-      'start-0',
-      'start-1',
-      'start-2',
-      'end-0',
-      'end-1',
-      'end-2',
-    ]);
+    expect(events).toStrictEqual(['start-0', 'start-1', 'start-2', 'end-0', 'end-1', 'end-2']);
 
     expect(embeddings).toStrictEqual(dummyEmbeddings);
   });
@@ -191,7 +123,7 @@ describe('model.supportsParallelCalls', () => {
 
     const embedManyPromise = embedMany({
       maxParallelCalls: 2,
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         supportsParallelCalls: true,
         maxEmbeddingsPerCall: 1,
         doEmbed: async () => {
@@ -217,14 +149,7 @@ describe('model.supportsParallelCalls', () => {
 
     const { embeddings } = await embedManyPromise;
 
-    expect(events).toStrictEqual([
-      'start-0',
-      'start-1',
-      'end-0',
-      'end-1',
-      'start-2',
-      'end-2',
-    ]);
+    expect(events).toStrictEqual(['start-0', 'start-1', 'end-0', 'end-1', 'start-2', 'end-2']);
 
     expect(embeddings).toStrictEqual(dummyEmbeddings);
   });
@@ -233,7 +158,7 @@ describe('model.supportsParallelCalls', () => {
 describe('result.embedding', () => {
   it('should generate embeddings', async () => {
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 5,
         doEmbed: mockEmbed(testValues, dummyEmbeddings),
       }),
@@ -247,7 +172,7 @@ describe('result.embedding', () => {
     let callCount = 0;
 
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 2,
         doEmbed: async ({ values }) => {
           switch (callCount++) {
@@ -267,118 +192,13 @@ describe('result.embedding', () => {
 
     assert.deepStrictEqual(result.embeddings, dummyEmbeddings);
   });
-
-  it('should split calls when the UTF-8 input byte budget is exceeded', async () => {
-    const model = new MockEmbeddingModelV4({
-      maxEmbeddingsPerCall: 5,
-      maxInputBytesPerCall: 7,
-      doEmbed: async ({ values }) => ({
-        embeddings: values.map(value => [value.length]),
-        warnings: [],
-      }),
-    });
-
-    const result = await embedMany({
-      model,
-      values: ['éé', 'éé', 'abc'],
-    });
-
-    expect(model.doEmbedCalls.map(call => call.values)).toStrictEqual([
-      ['éé'],
-      ['éé', 'abc'],
-    ]);
-    expect(result.embeddings).toStrictEqual([[2], [2], [3]]);
-  });
-
-  it('should split by input bytes without an embedding count limit', async () => {
-    const model = new MockEmbeddingModelV4({
-      maxEmbeddingsPerCall: null,
-      maxInputBytesPerCall: 4,
-      doEmbed: async ({ values }) => ({
-        embeddings: values.map(value => [value.length]),
-        warnings: [],
-      }),
-    });
-
-    await embedMany({
-      model,
-      values: ['ab', 'cd', 'é'],
-    });
-
-    expect(model.doEmbedCalls.map(call => call.values)).toStrictEqual([
-      ['ab', 'cd'],
-      ['é'],
-    ]);
-  });
-
-  it('should combine embedding count and input byte limits in one pass', async () => {
-    const model = new MockEmbeddingModelV4({
-      maxEmbeddingsPerCall: 3,
-      maxInputBytesPerCall: 10,
-      doEmbed: async ({ values }) => ({
-        embeddings: values.map(value => [value.length]),
-        warnings: [],
-      }),
-    });
-
-    await embedMany({
-      model,
-      values: ['12345678', '12', '12', '12345678'],
-    });
-
-    expect(model.doEmbedCalls.map(call => call.values)).toStrictEqual([
-      ['12345678', '12'],
-      ['12', '12345678'],
-    ]);
-  });
-
-  it('should treat an infinite input byte budget as unlimited', async () => {
-    const model = new MockEmbeddingModelV4({
-      maxEmbeddingsPerCall: null,
-      maxInputBytesPerCall: Infinity,
-      doEmbed: async ({ values }) => ({
-        embeddings: values.map(value => [value.length]),
-        warnings: [],
-      }),
-    });
-
-    await embedMany({
-      model,
-      values: ['a', 'b'],
-    });
-
-    expect(model.doEmbedCalls.map(call => call.values)).toStrictEqual([
-      ['a', 'b'],
-    ]);
-  });
-
-  it('should send a value larger than the input byte budget by itself', async () => {
-    const model = new MockEmbeddingModelV4({
-      maxEmbeddingsPerCall: null,
-      maxInputBytesPerCall: 3,
-      doEmbed: async ({ values }) => ({
-        embeddings: values.map(value => [value.length]),
-        warnings: [],
-      }),
-    });
-
-    await embedMany({
-      model,
-      values: ['abcd', 'e'],
-    });
-
-    expect(model.doEmbedCalls.map(call => call.values)).toStrictEqual([
-      ['abcd'],
-      ['e'],
-    ]);
-  });
 });
 
 describe('result.responses', () => {
   it('should include responses in the result', async () => {
     let callCount = 0;
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 1,
 
         doEmbed: async ({ values }) => {
@@ -386,7 +206,7 @@ describe('result.responses', () => {
             case 0:
               assert.deepStrictEqual(values, [testValues[0]]);
               return {
-                embeddings: [dummyEmbeddings[0]],
+                embeddings: dummyEmbeddings,
                 response: {
                   body: { first: true },
                 },
@@ -395,7 +215,7 @@ describe('result.responses', () => {
             case 1:
               assert.deepStrictEqual(values, [testValues[1]]);
               return {
-                embeddings: [dummyEmbeddings[1]],
+                embeddings: dummyEmbeddings,
                 response: {
                   body: { second: true },
                 },
@@ -404,7 +224,7 @@ describe('result.responses', () => {
             case 2:
               assert.deepStrictEqual(values, [testValues[2]]);
               return {
-                embeddings: [dummyEmbeddings[2]],
+                embeddings: dummyEmbeddings,
                 response: {
                   body: { third: true },
                 },
@@ -425,7 +245,7 @@ describe('result.responses', () => {
 describe('result.values', () => {
   it('should include values in the result', async () => {
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 5,
         doEmbed: mockEmbed(testValues, dummyEmbeddings),
       }),
@@ -441,7 +261,7 @@ describe('result.usage', () => {
     let callCount = 0;
 
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 2,
         doEmbed: async () => {
           switch (callCount++) {
@@ -472,7 +292,7 @@ describe('result.usage', () => {
 describe('options.headers', () => {
   it('should set headers', async () => {
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 5,
         doEmbed: async ({ headers }) => {
           assert.deepStrictEqual(headers, {
@@ -495,7 +315,7 @@ describe('options.headers', () => {
 
 describe('options.providerOptions', () => {
   it('should pass provider options to model', async () => {
-    const model = new MockEmbeddingModelV4({
+    const model = new MockEmbeddingModelV3({
       doEmbed: async ({ providerOptions }) => {
         return { embeddings: [[1, 2, 3]], warnings: [] };
       },
@@ -512,6 +332,7 @@ describe('options.providerOptions', () => {
     });
 
     expect(model.doEmbed).toHaveBeenCalledWith({
+      abortSignal: undefined,
       headers: {
         'user-agent': 'ai/0.0.0-test',
       },
@@ -523,6 +344,107 @@ describe('options.providerOptions', () => {
   });
 });
 
+describe('telemetry', () => {
+  let tracer: MockTracer;
+
+  beforeEach(() => {
+    tracer = new MockTracer();
+  });
+
+  it('should not record any telemetry data when not explicitly enabled', async () => {
+    await embedMany({
+      model: new MockEmbeddingModelV3({
+        maxEmbeddingsPerCall: 5,
+        doEmbed: mockEmbed(testValues, dummyEmbeddings),
+      }),
+      values: testValues,
+    });
+
+    assert.deepStrictEqual(tracer.jsonSpans, []);
+  });
+
+  it('should record telemetry data when enabled (multiple calls path)', async () => {
+    let callCount = 0;
+
+    await embedMany({
+      model: new MockEmbeddingModelV3({
+        maxEmbeddingsPerCall: 2,
+        doEmbed: async ({ values }) => {
+          switch (callCount++) {
+            case 0:
+              assert.deepStrictEqual(values, testValues.slice(0, 2));
+              return {
+                embeddings: dummyEmbeddings.slice(0, 2),
+                usage: { tokens: 10 },
+                warnings: [],
+              };
+            case 1:
+              assert.deepStrictEqual(values, testValues.slice(2));
+              return {
+                embeddings: dummyEmbeddings.slice(2),
+                usage: { tokens: 20 },
+                warnings: [],
+              };
+            default:
+              throw new Error('Unexpected call');
+          }
+        },
+      }),
+      values: testValues,
+      experimental_telemetry: {
+        isEnabled: true,
+        functionId: 'test-function-id',
+        metadata: {
+          test1: 'value1',
+          test2: false,
+        },
+        tracer,
+      },
+    });
+
+    expect(tracer.jsonSpans).toMatchSnapshot();
+  });
+
+  it('should record telemetry data when enabled (single call path)', async () => {
+    await embedMany({
+      model: new MockEmbeddingModelV3({
+        maxEmbeddingsPerCall: null,
+        doEmbed: mockEmbed(testValues, dummyEmbeddings, { tokens: 10 }),
+      }),
+      values: testValues,
+      experimental_telemetry: {
+        isEnabled: true,
+        functionId: 'test-function-id',
+        metadata: {
+          test1: 'value1',
+          test2: false,
+        },
+        tracer,
+      },
+    });
+
+    expect(tracer.jsonSpans).toMatchSnapshot();
+  });
+
+  it('should not record telemetry inputs / outputs when disabled', async () => {
+    await embedMany({
+      model: new MockEmbeddingModelV3({
+        maxEmbeddingsPerCall: null,
+        doEmbed: mockEmbed(testValues, dummyEmbeddings, { tokens: 10 }),
+      }),
+      values: testValues,
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: false,
+        recordOutputs: false,
+        tracer,
+      },
+    });
+
+    expect(tracer.jsonSpans).toMatchSnapshot();
+  });
+});
+
 describe('result.providerMetadata', () => {
   it('should include provider metadata when returned by the model', async () => {
     const providerMetadata = {
@@ -530,7 +452,7 @@ describe('result.providerMetadata', () => {
     };
 
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         supportsParallelCalls: false,
         maxEmbeddingsPerCall: 3,
         doEmbed: mockEmbed(
@@ -552,18 +474,6 @@ describe('result.providerMetadata', () => {
 });
 
 describe('result.warnings', () => {
-  let logWarningsSpy: ReturnType<typeof vitest.spyOn>;
-
-  beforeEach(() => {
-    logWarningsSpy = vitest
-      .spyOn(logWarningsModule, 'logWarnings')
-      .mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    logWarningsSpy.mockRestore();
-  });
-
   it('should include warnings in the result (single call path)', async () => {
     const expectedWarnings: Warning[] = [
       {
@@ -573,7 +483,7 @@ describe('result.warnings', () => {
     ];
 
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: null,
         doEmbed: async () => ({
           embeddings: dummyEmbeddings,
@@ -584,21 +494,6 @@ describe('result.warnings', () => {
     });
 
     expect(result.warnings).toStrictEqual(expectedWarnings);
-  });
-
-  it('should default missing v2 provider warnings to an empty array in the single call path', async () => {
-    const result = await embedMany({
-      model: new MockEmbeddingModelV2<string>({
-        maxEmbeddingsPerCall: null,
-        doEmbed: async () => ({
-          embeddings: dummyEmbeddings,
-          usage: { tokens: 3 },
-        }),
-      }),
-      values: testValues,
-    });
-
-    expect(result.warnings).toStrictEqual([]);
   });
 
   it('should aggregate warnings from multiple calls', async () => {
@@ -614,7 +509,7 @@ describe('result.warnings', () => {
     let callCount = 0;
 
     const result = await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 2,
         doEmbed: async () => {
           switch (callCount++) {
@@ -638,48 +533,13 @@ describe('result.warnings', () => {
 
     expect(result.warnings).toStrictEqual([warning1, warning2]);
   });
-
-  it('should default missing v2 provider warnings to an empty array in the chunked path', async () => {
-    let callCount = 0;
-
-    const result = await embedMany({
-      model: new MockEmbeddingModelV2<string>({
-        maxEmbeddingsPerCall: 2,
-        doEmbed: async () => {
-          switch (callCount++) {
-            case 0:
-              return {
-                embeddings: dummyEmbeddings.slice(0, 2),
-                usage: { tokens: 2 },
-              };
-            case 1:
-              return {
-                embeddings: dummyEmbeddings.slice(2),
-                usage: { tokens: 1 },
-              };
-            default:
-              throw new Error('Unexpected call');
-          }
-        },
-      }),
-      values: testValues,
-    });
-
-    expect(result.warnings).toStrictEqual([]);
-  });
 });
 
 describe('logWarnings', () => {
   let logWarningsSpy: ReturnType<typeof vitest.spyOn>;
 
   beforeEach(() => {
-    logWarningsSpy = vitest
-      .spyOn(logWarningsModule, 'logWarnings')
-      .mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
+    logWarningsSpy = vitest.spyOn(logWarningsModule, 'logWarnings');
   });
 
   it('should call logWarnings with the correct warnings (single call path)', async () => {
@@ -691,7 +551,7 @@ describe('logWarnings', () => {
     ];
 
     await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: null,
         doEmbed: async () => ({
           embeddings: dummyEmbeddings,
@@ -722,7 +582,7 @@ describe('logWarnings', () => {
     let callCount = 0;
 
     await embedMany({
-      model: new MockEmbeddingModelV4({
+      model: new MockEmbeddingModelV3({
         maxEmbeddingsPerCall: 2,
         doEmbed: async () => {
           switch (callCount++) {
@@ -753,414 +613,16 @@ describe('logWarnings', () => {
   });
 });
 
-describe('options.onStart', () => {
-  it('should send correct event information', async () => {
-    let startEvent!: EmbedStartEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      telemetry: {
-        functionId: 'test-function',
-      },
-      _internal: {
-        generateCallId: () => 'test-call-id',
-      },
-      onStart: async event => {
-        startEvent = event;
-      },
-    });
-
-    expect(startEvent).toMatchSnapshot();
-  });
-
-  it('should include telemetry fields', async () => {
-    let startEvent!: EmbedStartEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      telemetry: {
-        isEnabled: true,
-        recordInputs: false,
-        recordOutputs: true,
-        functionId: 'embed-many-fn',
-      },
-      onStart: async event => {
-        startEvent = event;
-      },
-    });
-
-    expect(startEvent).not.toHaveProperty('isEnabled');
-    expect(startEvent).not.toHaveProperty('recordInputs');
-    expect(startEvent).not.toHaveProperty('recordOutputs');
-    expect(startEvent).not.toHaveProperty('functionId');
-  });
-
-  it('should accept deprecated experimental_telemetry as an alias for telemetry', async () => {
-    let startEvent!: EmbedStartEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      experimental_telemetry: {
-        isEnabled: true,
-        recordInputs: false,
-        recordOutputs: true,
-        functionId: 'embed-many-fn-deprecated',
-      },
-      onStart: async event => {
-        startEvent = event;
-      },
-    });
-
-    expect(startEvent).not.toHaveProperty('isEnabled');
-    expect(startEvent).not.toHaveProperty('recordInputs');
-    expect(startEvent).not.toHaveProperty('recordOutputs');
-    expect(startEvent).not.toHaveProperty('functionId');
-  });
-
-  it('should include model information', async () => {
-    let startEvent!: EmbedStartEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      onStart: async event => {
-        startEvent = event;
-      },
-    });
-
-    expect(startEvent.provider).toBe('mock-provider');
-    expect(startEvent.modelId).toBe('mock-model-id');
-    expect(startEvent.operationId).toBe('ai.embedMany');
-  });
-
-  it('should be called before doEmbed', async () => {
-    const callOrder: string[] = [];
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: async ({ values }) => {
-          callOrder.push('doEmbed');
-          return { embeddings: dummyEmbeddings, warnings: [] };
-        },
-      }),
-      values: testValues,
-      onStart: async () => {
-        callOrder.push('onStart');
-      },
-    });
-
-    expect(callOrder).toEqual(['onStart', 'doEmbed']);
-  });
-
-  it('should not break embedding when callback throws', async () => {
-    const result = await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      onStart: async () => {
-        throw new Error('callback error');
-      },
-    });
-
-    assert.deepStrictEqual(result.embeddings, dummyEmbeddings);
-  });
-
-  it('should include providerOptions and headers', async () => {
-    let startEvent!: EmbedStartEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      headers: { 'x-custom': 'header-value' },
-      providerOptions: { myProvider: { key: 'value' } },
-      onStart: async event => {
-        startEvent = event;
-      },
-    });
-
-    expect(startEvent.headers).toEqual({
-      'x-custom': 'header-value',
-      'user-agent': 'ai/0.0.0-test',
-    });
-    expect(startEvent.providerOptions).toEqual({
-      myProvider: { key: 'value' },
-    });
-  });
-});
-
-describe('options.onEnd', () => {
-  it('should send correct event information (single call path)', async () => {
-    let endEvent!: EmbedEndEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings, { tokens: 10 }),
-      }),
-      values: testValues,
-      telemetry: {
-        functionId: 'test-function',
-      },
-      _internal: {
-        generateCallId: () => 'test-call-id',
-      },
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(endEvent).toMatchSnapshot();
-  });
-
-  it('should send correct event information (chunked path)', async () => {
-    let endEvent!: EmbedEndEvent;
-    let callCount = 0;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 2,
-        doEmbed: async () => {
-          switch (callCount++) {
-            case 0:
-              return {
-                embeddings: dummyEmbeddings.slice(0, 2),
-                usage: { tokens: 10 },
-                response: { headers: {}, body: {} },
-                warnings: [],
-              };
-            case 1:
-              return {
-                embeddings: dummyEmbeddings.slice(2),
-                usage: { tokens: 5 },
-                response: { headers: {}, body: {} },
-                warnings: [],
-              };
-            default:
-              throw new Error('Unexpected call');
-          }
-        },
-      }),
-      values: testValues,
-      _internal: {
-        generateCallId: () => 'test-call-id',
-      },
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(endEvent.callId).toBe('test-call-id');
-    expect(endEvent.operationId).toBe('ai.embedMany');
-    expect(endEvent.embedding).toEqual(dummyEmbeddings);
-    expect(endEvent.usage).toEqual({ tokens: 15 });
-    expect(endEvent.value).toEqual(testValues);
-    expect(endEvent.response).toHaveLength(2);
-  });
-
-  it('should include embeddings and usage in event', async () => {
-    let endEvent!: EmbedEndEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings, { tokens: 15 }),
-      }),
-      values: testValues,
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(endEvent.embedding).toEqual(dummyEmbeddings);
-    expect(endEvent.usage).toEqual({ tokens: 15 });
-    expect(endEvent.value).toEqual(testValues);
-  });
-
-  it('should include model information', async () => {
-    let endEvent!: EmbedEndEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(endEvent.provider).toBe('mock-provider');
-    expect(endEvent.modelId).toBe('mock-model-id');
-    expect(endEvent.operationId).toBe('ai.embedMany');
-  });
-
-  it('should include responses data', async () => {
-    let endEvent!: EmbedEndEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings, undefined, {
-          headers: { 'x-resp': 'val' },
-          body: { result: 'ok' },
-        }),
-      }),
-      values: testValues,
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(endEvent.response).toEqual([
-      {
-        headers: { 'x-resp': 'val' },
-        body: { result: 'ok' },
-      },
-    ]);
-  });
-
-  it('should be called after doEmbed', async () => {
-    const callOrder: string[] = [];
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: async ({ values }) => {
-          callOrder.push('doEmbed');
-          return { embeddings: dummyEmbeddings, warnings: [] };
-        },
-      }),
-      values: testValues,
-      onEnd: async () => {
-        callOrder.push('onEnd');
-      },
-    });
-
-    expect(callOrder).toEqual(['doEmbed', 'onEnd']);
-  });
-
-  it('should not break embedding when callback throws', async () => {
-    const result = await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      onEnd: async () => {
-        throw new Error('callback error');
-      },
-    });
-
-    assert.deepStrictEqual(result.embeddings, dummyEmbeddings);
-  });
-});
-
-describe('options.onStart and onEnd together', () => {
-  it('should have consistent callId across both events', async () => {
-    let startEvent!: EmbedStartEvent;
-    let endEvent!: EmbedEndEvent;
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      _internal: {
-        generateCallId: () => 'consistent-call-id',
-      },
-      onStart: async event => {
-        startEvent = event;
-      },
-      onEnd: async event => {
-        endEvent = event;
-      },
-    });
-
-    expect(startEvent.callId).toBe('consistent-call-id');
-    expect(endEvent.callId).toBe('consistent-call-id');
-    expect(startEvent.callId).toBe(endEvent.callId);
-  });
-
-  it('should call onStart before doEmbed and onEnd after', async () => {
-    const callOrder: string[] = [];
-
-    await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: async ({ values }) => {
-          callOrder.push('doEmbed');
-          return { embeddings: dummyEmbeddings, warnings: [] };
-        },
-      }),
-      values: testValues,
-      onStart: async () => {
-        callOrder.push('onStart');
-      },
-      onEnd: async () => {
-        callOrder.push('onEnd');
-      },
-    });
-
-    expect(callOrder).toEqual(['onStart', 'doEmbed', 'onEnd']);
-  });
-
-  it('should still call onEnd when onStart throws', async () => {
-    let endCalled = false;
-
-    const result = await embedMany({
-      model: new MockEmbeddingModelV4({
-        maxEmbeddingsPerCall: 5,
-        doEmbed: mockEmbed(testValues, dummyEmbeddings),
-      }),
-      values: testValues,
-      onStart: async () => {
-        throw new Error('start error');
-      },
-      onEnd: async () => {
-        endCalled = true;
-      },
-    });
-
-    assert.deepStrictEqual(result.embeddings, dummyEmbeddings);
-    expect(endCalled).toBe(true);
-  });
-});
-
 function mockEmbed(
   expectedValues: Array<string>,
   embeddings: Array<Embedding>,
   usage?: EmbeddingModelUsage,
-  response: Awaited<ReturnType<EmbeddingModelV4['doEmbed']>>['response'] = {
+  response: Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>['response'] = {
     headers: {},
     body: {},
   },
-  providerMetadata?: Awaited<
-    ReturnType<EmbeddingModelV4['doEmbed']>
-  >['providerMetadata'],
-): EmbeddingModelV4['doEmbed'] {
+  providerMetadata?: Awaited<ReturnType<EmbeddingModelV3['doEmbed']>>['providerMetadata'],
+): EmbeddingModelV3['doEmbed'] {
   return async ({ values }) => {
     assert.deepStrictEqual(expectedValues, values);
     return { embeddings, usage, response, providerMetadata, warnings: [] };

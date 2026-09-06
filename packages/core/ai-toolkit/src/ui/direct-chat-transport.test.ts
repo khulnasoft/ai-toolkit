@@ -1,20 +1,15 @@
-import { tool } from '@ai-toolkit/provider-utils';
-import {
-  convertArrayToReadableStream,
-  convertReadableStreamToArray,
-} from '@ai-toolkit/provider-utils/test';
+import { convertArrayToReadableStream } from '@ai-toolkit/provider-utils/test';
 import { describe, expect, it, beforeEach } from 'vitest';
-import { z } from 'zod/v4';
-import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
+import { MockLanguageModelV3 } from '../test/mock-language-model-v3';
 import { ToolLoopAgent } from '../agent/tool-loop-agent';
 import { DirectChatTransport } from './direct-chat-transport';
 
 describe('DirectChatTransport', () => {
   describe('sendMessages', () => {
-    let mockModel: MockLanguageModelV4;
+    let mockModel: MockLanguageModelV3;
 
     beforeEach(() => {
-      mockModel = new MockLanguageModelV4({
+      mockModel = new MockLanguageModelV3({
         doStream: async () => {
           return {
             stream: convertArrayToReadableStream([
@@ -86,17 +81,13 @@ describe('DirectChatTransport', () => {
       // Check for text streaming chunks
       const textChunks = chunks.filter(
         (chunk: any) =>
-          chunk.type === 'text-start' ||
-          chunk.type === 'text-delta' ||
-          chunk.type === 'text-end',
+          chunk.type === 'text-start' || chunk.type === 'text-delta' || chunk.type === 'text-end',
       );
 
       expect(textChunks.length).toBeGreaterThan(0);
 
       // Check we got text deltas with content
-      const textDeltas = chunks.filter(
-        (chunk: any) => chunk.type === 'text-delta',
-      );
+      const textDeltas = chunks.filter((chunk: any) => chunk.type === 'text-delta');
       expect(textDeltas).toMatchObject([
         { type: 'text-delta', delta: 'Hello' },
         { type: 'text-delta', delta: ', ' },
@@ -107,7 +98,7 @@ describe('DirectChatTransport', () => {
     it('should pass abortSignal to agent', async () => {
       let receivedAbortSignal: AbortSignal | undefined;
 
-      const mockModelWithCapture = new MockLanguageModelV4({
+      const mockModelWithCapture = new MockLanguageModelV3({
         doStream: async options => {
           receivedAbortSignal = options.abortSignal;
           return {
@@ -172,7 +163,7 @@ describe('DirectChatTransport', () => {
     it('should pass agent options to agent', async () => {
       let receivedProviderOptions: unknown;
 
-      const mockModelWithCapture = new MockLanguageModelV4({
+      const mockModelWithCapture = new MockLanguageModelV3({
         doStream: async options => {
           receivedProviderOptions = options.providerOptions;
           return {
@@ -245,7 +236,7 @@ describe('DirectChatTransport', () => {
     });
 
     it('should apply UIMessageStreamOptions', async () => {
-      const mockModelWithReasoning = new MockLanguageModelV4({
+      const mockModelWithReasoning = new MockLanguageModelV3({
         doStream: async () => {
           return {
             stream: convertArrayToReadableStream([
@@ -323,7 +314,7 @@ describe('DirectChatTransport', () => {
     it('should convert UI messages to model messages correctly', async () => {
       let receivedPrompt: unknown;
 
-      const mockModelWithCapture = new MockLanguageModelV4({
+      const mockModelWithCapture = new MockLanguageModelV3({
         doStream: async options => {
           receivedPrompt = options.prompt;
           return {
@@ -426,117 +417,11 @@ describe('DirectChatTransport', () => {
         }),
       ).rejects.toThrow();
     });
-
-    it('should reject stale terminal input for a currently available tool', async () => {
-      const agent = new ToolLoopAgent({
-        model: mockModel,
-        tools: {
-          current: tool({
-            inputSchema: z.object({ current: z.string() }),
-            outputSchema: z.object({ result: z.string() }),
-          }),
-        },
-      });
-      const transport = new DirectChatTransport({ agent });
-
-      await expect(
-        transport.sendMessages({
-          chatId: 'chat-1',
-          messageId: undefined,
-          trigger: 'submit-message',
-          messages: [
-            {
-              id: 'assistant-1',
-              role: 'assistant',
-              parts: [
-                {
-                  type: 'tool-current',
-                  toolCallId: 'call-1',
-                  state: 'output-available',
-                  input: { previous: 'value' } as never,
-                  output: { result: 'done' },
-                },
-              ],
-            },
-          ],
-          abortSignal: undefined,
-        }),
-      ).rejects.toThrowError(
-        'Type validation failed for messages[0].parts[0].input',
-      );
-    });
-
-    it('should continue with terminal tool history when tools are omitted', async () => {
-      const agent = new ToolLoopAgent({ model: mockModel });
-      const transport = new DirectChatTransport({ agent });
-
-      const stream = await transport.sendMessages({
-        chatId: 'chat-1',
-        messageId: undefined,
-        trigger: 'submit-message',
-        messages: [
-          {
-            id: 'assistant-1',
-            role: 'assistant',
-            parts: [
-              {
-                type: 'tool-removed' as never,
-                toolCallId: 'call-1',
-                state: 'output-available',
-                input: { previous: 'value' } as never,
-                output: { result: 'done' } as never,
-              },
-            ],
-          },
-          {
-            id: 'user-1',
-            role: 'user',
-            parts: [{ type: 'text', text: 'continue' }],
-          },
-        ],
-        abortSignal: undefined,
-      });
-
-      await convertReadableStreamToArray(stream);
-
-      expect(mockModel.doStreamCalls).toHaveLength(1);
-      expect(mockModel.doStreamCalls[0].prompt).toMatchObject([
-        {
-          role: 'assistant',
-          content: [
-            {
-              type: 'tool-call',
-              toolCallId: 'call-1',
-              toolName: 'removed',
-              input: { previous: 'value' },
-            },
-          ],
-        },
-        {
-          role: 'tool',
-          content: [
-            {
-              type: 'tool-result',
-              toolCallId: 'call-1',
-              toolName: 'removed',
-              output: {
-                type: 'json',
-                value: { result: 'done' },
-              },
-            },
-          ],
-        },
-        {
-          role: 'user',
-          content: [{ type: 'text', text: 'continue' }],
-        },
-      ]);
-    });
   });
 
   describe('reconnectToStream', () => {
     it('should return null', async () => {
-      const mockModel = new MockLanguageModelV4({
+      const mockModel = new MockLanguageModelV3({
         doStream: async () => {
           return {
             stream: convertArrayToReadableStream([]),

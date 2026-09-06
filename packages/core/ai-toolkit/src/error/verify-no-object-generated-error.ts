@@ -1,17 +1,15 @@
 import { expect } from 'vitest';
 
-import type {
-  FinishReason,
-  LanguageModelResponseMetadata,
-  LanguageModelUsage,
-} from '../types';
+import { FinishReason, LanguageModelResponseMetadata, LanguageModelUsage } from '../types';
 import { NoObjectGeneratedError } from './no-object-generated-error';
 
 export function verifyNoObjectGeneratedError(
   error: unknown,
   expected: {
     message: string;
-    response: Omit<LanguageModelResponseMetadata, 'messages'>;
+    response: LanguageModelResponseMetadata & {
+      body?: string;
+    };
     usage: LanguageModelUsage;
     finishReason: FinishReason;
   },

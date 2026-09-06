@@ -1,36 +1,31 @@
-import type { JSONObject } from '@ai-toolkit/provider';
-import {
-  detectMediaType,
-  withUserAgentSuffix,
-  type ProviderOptions,
-} from '@ai-toolkit/provider-utils';
+import { JSONObject } from '@ai-toolkit/provider';
+import { ProviderOptions, withUserAgentSuffix } from '@ai-toolkit/provider-utils';
 import { NoTranscriptGeneratedError } from '../error/no-transcript-generated-error';
 import { logWarnings } from '../logger/log-warnings';
-import type { DataContent } from '../prompt';
+import { DataContent } from '../prompt';
 import { convertDataContentToUint8Array } from '../prompt/data-content';
-import type { TranscriptionModel } from '../types/transcription-model';
-import type { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
-import { createDownload } from '../util/download/create-download';
+import { TranscriptionModel } from '../types/transcription-model';
+import { TranscriptionModelResponseMetadata } from '../types/transcription-model-response-metadata';
+import { audioMediaTypeSignatures, detectMediaType } from '../util/detect-media-type';
+import { download } from '../util/download/download';
 import { prepareRetries } from '../util/prepare-retries';
-import type { TranscriptionResult } from './transcribe-result';
+import { TranscriptionResult } from './transcribe-result';
 import { VERSION } from '../version';
 import { resolveTranscriptionModel } from '../model/resolve-model';
-import type { Warning } from '../types';
+import { Warning } from '../types';
 /**
- * Generates transcripts using a transcription model.
- *
- * @param model - The transcription model to use.
- * @param audio - The audio data to transcribe as DataContent (string | Uint8Array | ArrayBuffer | Buffer) or a URL.
- * @param providerOptions - Additional provider-specific options that are passed through to the provider
- * as body parameters.
- * @param maxRetries - Maximum number of retries. Set to 0 to disable retries. Default: 2.
- * @param abortSignal - An optional abort signal that can be used to cancel the call.
- * @param headers - Additional HTTP headers to be sent with the request. Only applicable for HTTP-based providers.
- *
- * @returns A result object that contains the generated transcript.
- */
-const defaultDownload = createDownload();
+Generates transcripts using a transcription model.
 
+@param model - The transcription model to use.
+@param audio - The audio data to transcribe as DataContent (string | Uint8Array | ArrayBuffer | Buffer) or a URL.
+@param providerOptions - Additional provider-specific options that are passed through to the provider
+as body parameters.
+@param maxRetries - Maximum number of retries. Set to 0 to disable retries. Default: 2.
+@param abortSignal - An optional abort signal that can be used to cancel the call.
+@param headers - Additional HTTP headers to be sent with the request. Only applicable for HTTP-based providers.
+
+@returns A result object that contains the generated transcript.
+ */
 export async function transcribe({
   model,
   audio,
@@ -38,62 +33,50 @@ export async function transcribe({
   maxRetries: maxRetriesArg,
   abortSignal,
   headers,
-  download: downloadFn = defaultDownload,
 }: {
   /**
-   * The transcription model to use.
-   */
+The transcription model to use.
+     */
   model: TranscriptionModel;
 
   /**
-   * The audio data to transcribe.
+The audio data to transcribe.
    */
   audio: DataContent | URL;
 
   /**
-   * Additional provider-specific options that are passed through to the provider
-   * as body parameters.
-   *
-   * The outer record is keyed by the provider name, and the inner
-   * record is keyed by the provider-specific metadata key.
-   * ```ts
-   * {
-   *   "openai": {
-   *     "temperature": 0
-   *   }
-   * }
-   * ```
-   */
+Additional provider-specific options that are passed through to the provider
+as body parameters.
+
+The outer record is keyed by the provider name, and the inner
+record is keyed by the provider-specific metadata key.
+```ts
+{
+  "openai": {
+    "temperature": 0
+  }
+}
+```
+     */
   providerOptions?: ProviderOptions;
 
   /**
-   * Maximum number of retries per transcript model call. Set to 0 to disable retries.
-   *
-   * @default 2
+Maximum number of retries per transcript model call. Set to 0 to disable retries.
+
+@default 2
    */
   maxRetries?: number;
 
   /**
-   * Abort signal.
-   */
+Abort signal.
+ */
   abortSignal?: AbortSignal;
 
   /**
-   * Additional headers to include in the request.
-   * Only applicable for HTTP-based providers.
-   */
+Additional headers to include in the request.
+Only applicable for HTTP-based providers.
+ */
   headers?: Record<string, string>;
-
-  /**
-   * Custom download function for fetching audio from URLs.
-   * Use `createDownload()` from `ai` to create a download function with custom size limits.
-   *
-   * @default createDownload() (2 GiB limit)
-   */
-  download?: (options: {
-    url: URL;
-    abortSignal?: AbortSignal;
-  }) => Promise<{ data: Uint8Array; mediaType: string | undefined }>;
 }): Promise<TranscriptionResult> {
   const resolvedModel = resolveTranscriptionModel(model);
   if (!resolvedModel) {
@@ -105,14 +88,11 @@ export async function transcribe({
     abortSignal,
   });
 
-  const headersWithUserAgent = withUserAgentSuffix(
-    headers ?? {},
-    `ai/${VERSION}`,
-  );
+  const headersWithUserAgent = withUserAgentSuffix(headers ?? {}, `ai/${VERSION}`);
 
   const audioData =
     audio instanceof URL
-      ? (await downloadFn({ url: audio, abortSignal })).data
+      ? (await download({ url: audio })).data
       : convertDataContentToUint8Array(audio);
 
   const result = await retry(() =>
@@ -124,7 +104,7 @@ export async function transcribe({
       mediaType:
         detectMediaType({
           data: audioData,
-          topLevelType: 'audio',
+          signatures: audioMediaTypeSignatures,
         }) ?? 'audio/wav',
     }),
   );

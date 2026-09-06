@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import { isProviderStreamError } from '@ai-toolkit/provider-utils';
 import { StreamProviderError } from '../error/stream-provider-error';
 
@@ -9,7 +9,7 @@ import { StreamProviderError } from '../error/stream-provider-error';
 export function normalizeStreamProviderError(error: unknown): unknown {
   if (
     isError(error) ||
-    AISDKError.isInstance(error) ||
+    AITOOLKITError.isInstance(error) ||
     StreamProviderError.isInstance(error)
   ) {
     return error;

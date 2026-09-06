@@ -8,7 +8,7 @@
 > `pnpm-workspace.yaml`, `turbo.json`, `CODEOWNERS`, `ADR/`, `tools/scripts/validate-structure.mjs`,
 > `examples/registry.json`, `architecture/`.
 >
-> The original v1.0 proposal (June 2026) used `@ai-sdk/*` / `@vercel/*` names and an
+> The original v1.0 proposal (June 2026) used `@ai-toolkit/*` / `@vercel/*` names and an
 > aspirational layout. This refactor corrects names to `@ai-toolkit/*` / `@khulnasoft/*`
 > and aligns the document with what is actually implemented.
 
@@ -82,7 +82,7 @@ ai-toolkit/
 | Examples `01–06` incl. `04-advanced-patterns`, `05-production-apps`, `06-mcp-integrations` | Actually `01-foundations`, `02-framework-integration`, `03-integrations`, `04-tools` + `registry.json`.                                                                                                                                                           |
 | `tools/{cli,generator,scripts,templates}` + `generate-examples.mjs`, `sync-versions.mjs` … | Actually `tools/{analyze-downloads,create-ai-sdk,eslint-config,generate-llms-txt,scripts,tsconfig}`; scripts are `generate.mjs`, `validate-structure.mjs`, `health-check.mjs`, `inventory.mjs`, `baseline.mjs`, `find-package.mjs`, `migrate-package.mjs`.        |
 | `infra/`, `tests/`, root `scripts/`                                                        | Do not exist. Infra concerns live in `.github/` and `tools/`.                                                                                                                                                                                                     |
-| Turbo `pipeline` with `@ai-sdk/*` filters                                                  | `turbo.json` uses `tasks` with `build:core`, `build:providers`, `build:adapters`, `test:core`, …                                                                                                                                                                  |
+| Turbo `pipeline` with `@ai-toolkit/*` filters                                                  | `turbo.json` uses `tasks` with `build:core`, `build:providers`, `build:adapters`, `test:core`, …                                                                                                                                                                  |
 
 ---
 

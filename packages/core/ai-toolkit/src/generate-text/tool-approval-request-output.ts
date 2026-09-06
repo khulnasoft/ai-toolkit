@@ -1,5 +1,5 @@
-import type { TypedToolCall } from './tool-call';
-import type { ToolSet } from '@ai-toolkit/provider-utils';
+import { TypedToolCall } from './tool-call';
+import { ToolSet } from './tool-set';
 
 /**
  * Output part that indicates that a tool approval request has been made.
@@ -18,21 +18,4 @@ export type ToolApprovalRequestOutput<TOOLS extends ToolSet> = {
    * Tool call that the approval request is for.
    */
   toolCall: TypedToolCall<TOOLS>;
-
-  /**
-   * Reason why the tool call requires approval.
-   */
-  reason?: string;
-
-  /**
-   * Flag indicating whether the tool was automatically approved or denied.
-   *
-   * @default false
-   */
-  isAutomatic?: boolean;
-
-  /**
-   * HMAC-SHA256 signature binding this approval request to its tool call.
-   */
-  signature?: string;
 };

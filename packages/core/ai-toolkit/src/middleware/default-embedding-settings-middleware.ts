@@ -1,22 +1,22 @@
-import type { EmbeddingModelV4CallOptions } from '@ai-toolkit/provider';
-import type { EmbeddingModelMiddleware } from '../types';
+import { EmbeddingModelV3CallOptions } from '@ai-toolkit/provider';
+import { EmbeddingModelMiddleware } from '../types';
 import { mergeObjects } from '../util/merge-objects';
 
 /**
- * Applies default settings for an embedding model.
+ * Applies default settings for a embedding model.
  */
 export function defaultEmbeddingSettingsMiddleware({
   settings,
 }: {
   settings: Partial<{
-    headers?: EmbeddingModelV4CallOptions['headers'];
-    providerOptions?: EmbeddingModelV4CallOptions['providerOptions'];
+    headers?: EmbeddingModelV3CallOptions['headers'];
+    providerOptions?: EmbeddingModelV3CallOptions['providerOptions'];
   }>;
 }): EmbeddingModelMiddleware {
   return {
-    specificationVersion: 'v4',
+    specificationVersion: 'v3',
     transformParams: async ({ params }) => {
-      return mergeObjects(settings, params) as EmbeddingModelV4CallOptions;
+      return mergeObjects(settings, params) as EmbeddingModelV3CallOptions;
     },
   };
 }

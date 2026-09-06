@@ -1,15 +1,13 @@
-import type { LanguageModelV4CallOptions } from '@ai-toolkit/provider';
+import { LanguageModelV3CallOptions } from '@ai-toolkit/provider';
 import { defaultSettingsMiddleware } from './default-settings-middleware';
-import { MockLanguageModelV4 } from '../test/mock-language-model-v4';
+import { MockLanguageModelV3 } from '../test/mock-language-model-v3';
 import { describe, it, expect } from 'vitest';
 
-const BASE_PARAMS: LanguageModelV4CallOptions = {
-  prompt: [
-    { role: 'user', content: [{ type: 'text', text: 'Hello, world!' }] },
-  ],
+const BASE_PARAMS: LanguageModelV3CallOptions = {
+  prompt: [{ role: 'user', content: [{ type: 'text', text: 'Hello, world!' }] }],
 };
 
-const MOCK_MODEL = new MockLanguageModelV4();
+const MOCK_MODEL = new MockLanguageModelV3();
 
 describe('defaultSettingsMiddleware', () => {
   describe('transformParams', () => {

@@ -1,18 +1,18 @@
-import type { LanguageModelV4StreamPart } from '@ai-toolkit/provider';
-import type { LanguageModelMiddleware } from '../types';
+import type { LanguageModelV3StreamPart } from '@ai-toolkit/provider';
+import { LanguageModelMiddleware } from '../types';
 
 /**
  * Simulates streaming chunks with the response from a generate call.
  */
 export function simulateStreamingMiddleware(): LanguageModelMiddleware {
   return {
-    specificationVersion: 'v4',
+    specificationVersion: 'v3',
     wrapStream: async ({ doGenerate }) => {
       const result = await doGenerate();
 
       let id = 0;
 
-      const simulatedStream = new ReadableStream<LanguageModelV4StreamPart>({
+      const simulatedStream = new ReadableStream<LanguageModelV3StreamPart>({
         start(controller) {
           controller.enqueue({
             type: 'stream-start',

@@ -1,51 +1,23 @@
-import {
-  cancelResponseBody,
-  DownloadError,
-  readResponseWithSizeLimit,
-  DEFAULT_MAX_DOWNLOAD_SIZE,
-  fetchWithValidatedRedirects,
-  withUserAgentSuffix,
-  getRuntimeEnvironmentUserAgent,
-} from '@ai-toolkit/provider-utils';
+import { DownloadError } from '@ai-toolkit/provider-utils';
+import { withUserAgentSuffix, getRuntimeEnvironmentUserAgent } from '@ai-toolkit/provider-utils';
 import { VERSION } from '../../version';
 
 /**
  * Download a file from a URL.
  *
  * @param url - The URL to download from.
- * @param maxBytes - Maximum allowed download size in bytes. Defaults to 100 MiB.
- * @param abortSignal - An optional abort signal to cancel the download.
  * @returns The downloaded data and media type.
  *
- * @throws DownloadError if the download fails or exceeds maxBytes.
+ * @throws DownloadError if the download fails.
  */
-export const download = async ({
-  url,
-  maxBytes,
-  abortSignal,
-}: {
-  url: URL;
-  maxBytes?: number;
-  abortSignal?: AbortSignal;
-}) => {
+export const download = async ({ url }: { url: URL }) => {
   const urlText = url.toString();
   try {
-    const headers = withUserAgentSuffix(
-      {},
-      `ai-sdk/${VERSION}`,
-      getRuntimeEnvironmentUserAgent(),
-    );
-
-    const response = await fetchWithValidatedRedirects({
-      url: urlText,
-      headers,
-      abortSignal,
+    const response = await fetch(urlText, {
+      headers: withUserAgentSuffix({}, `ai-toolkit/${VERSION}`, getRuntimeEnvironmentUserAgent()),
     });
 
     if (!response.ok) {
-      // Release the connection before rejecting so an error status from an
-      // attacker-controlled origin cannot leak open sockets.
-      await cancelResponseBody(response);
       throw new DownloadError({
         url: urlText,
         statusCode: response.status,
@@ -53,14 +25,8 @@ export const download = async ({
       });
     }
 
-    const data = await readResponseWithSizeLimit({
-      response,
-      url: urlText,
-      maxBytes: maxBytes ?? DEFAULT_MAX_DOWNLOAD_SIZE,
-    });
-
     return {
-      data,
+      data: new Uint8Array(await response.arrayBuffer()),
       mediaType: response.headers.get('content-type') ?? undefined,
     };
   } catch (error) {

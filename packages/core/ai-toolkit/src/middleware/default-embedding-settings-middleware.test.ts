@@ -1,13 +1,13 @@
-import type { EmbeddingModelV4CallOptions } from '@ai-toolkit/provider';
+import { EmbeddingModelV3CallOptions } from '@ai-toolkit/provider';
 import { defaultEmbeddingSettingsMiddleware } from './default-embedding-settings-middleware';
-import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';
+import { MockEmbeddingModelV3 } from '../test/mock-embedding-model-v3';
 import { describe, it, expect } from 'vitest';
 
-const params: EmbeddingModelV4CallOptions = {
+const params: EmbeddingModelV3CallOptions = {
   values: ['hello world'],
 };
 
-const mockModel = new MockEmbeddingModelV4();
+const mockModel = new MockEmbeddingModelV3();
 
 describe('headers', () => {
   it('should merge headers', async () => {

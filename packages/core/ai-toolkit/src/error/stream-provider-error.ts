@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 
 const name = 'AI_StreamProviderError';
 const marker = `vercel.ai.error.${name}`;
@@ -7,7 +7,7 @@ const symbol = Symbol.for(marker);
 /**
  * Error reported by a provider after a model response stream has started.
  */
-export class StreamProviderError extends AISDKError {
+export class StreamProviderError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   /**
@@ -63,7 +63,7 @@ export class StreamProviderError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is StreamProviderError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }
 

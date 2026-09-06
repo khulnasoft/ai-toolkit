@@ -1,31 +1,24 @@
 import {
   isJSONArray,
   isJSONObject,
+  JSONObject,
+  JSONSchema7,
+  JSONValue,
   TypeValidationError,
   UnsupportedFunctionalityError,
-  type JSONObject,
-  type JSONSchema7,
-  type JSONValue,
 } from '@ai-toolkit/provider';
 import {
   asSchema,
+  FlexibleSchema,
   safeValidateTypes,
-  type FlexibleSchema,
-  type Schema,
-  type ValidationResult,
+  Schema,
+  ValidationResult,
 } from '@ai-toolkit/provider-utils';
 import { NoObjectGeneratedError } from '../error/no-object-generated-error';
-import type {
-  FinishReason,
-  LanguageModelResponseMetadata,
-  LanguageModelUsage,
-} from '../types';
-import {
-  createAsyncIterableStream,
-  type AsyncIterableStream,
-} from '../util/async-iterable-stream';
-import type { DeepPartial } from '../util/deep-partial';
-import type { ObjectStreamPart } from './stream-object-result';
+import { FinishReason, LanguageModelResponseMetadata, LanguageModelUsage } from '../types';
+import { AsyncIterableStream, createAsyncIterableStream } from '../util/async-iterable-stream';
+import { DeepPartial } from '../util/deep-partial';
+import { ObjectStreamPart } from './stream-object-result';
 
 export interface OutputStrategy<PARTIAL, RESULT, ELEMENT_STREAM> {
   readonly type: 'object' | 'array' | 'enum' | 'no-schema';
@@ -52,14 +45,12 @@ export interface OutputStrategy<PARTIAL, RESULT, ELEMENT_STREAM> {
     value: JSONValue | undefined,
     context: {
       text: string;
-      response: Omit<LanguageModelResponseMetadata, 'messages'>;
+      response: LanguageModelResponseMetadata;
       usage: LanguageModelUsage;
     },
   ): Promise<ValidationResult<RESULT>>;
 
-  createElementStream(
-    originalStream: ReadableStream<ObjectStreamPart<PARTIAL>>,
-  ): ELEMENT_STREAM;
+  createElementStream(originalStream: ReadableStream<ObjectStreamPart<PARTIAL>>): ELEMENT_STREAM;
 }
 
 const noSchemaOutputStrategy: OutputStrategy<JSONValue, JSONValue, never> = {
@@ -117,9 +108,7 @@ const objectOutputStrategy = <OBJECT>(
     };
   },
 
-  async validateFinalResult(
-    value: JSONValue | undefined,
-  ): Promise<ValidationResult<OBJECT>> {
+  async validateFinalResult(value: JSONValue | undefined): Promise<ValidationResult<OBJECT>> {
     return safeValidateTypes({ value, schema });
   },
 
@@ -140,20 +129,11 @@ const arrayOutputStrategy = <ELEMENT>(
     // be able to generate an array directly:
     // possible future optimization: use arrays directly when model supports grammar-guided generation
     jsonSchema: async () => {
-      // keep root-level definitions available to root-relative references:
-      const {
-        $schema: _$schema,
-        definitions,
-        $defs,
-        ...itemSchema
-      } = (await schema.jsonSchema) as JSONSchema7 & {
-        $defs?: JSONSchema7['definitions'];
-      };
+      // remove $schema from schema.jsonSchema:
+      const { $schema, ...itemSchema } = await schema.jsonSchema;
 
       return {
         $schema: 'http://json-schema.org/draft-07/schema#',
-        ...(definitions != null && { definitions }),
-        ...($defs != null && { $defs }),
         type: 'object',
         properties: {
           elements: { type: 'array', items: itemSchema },
@@ -163,12 +143,7 @@ const arrayOutputStrategy = <ELEMENT>(
       };
     },
 
-    async validatePartialResult({
-      value,
-      latestObject,
-      isFirstDelta,
-      isFinalDelta,
-    }) {
+    async validatePartialResult({ value, latestObject, isFirstDelta, isFinalDelta }) {
       // check that the value is an object that contains an array of elements:
       if (!isJSONObject(value) || !isJSONArray(value.elements)) {
         return {
@@ -248,7 +223,6 @@ const arrayOutputStrategy = <ELEMENT>(
       }
 
       const inputArray = value.elements as Array<JSONObject>;
-      const resultArray: Array<ELEMENT> = [];
 
       // check that each element in the array is of the correct type:
       for (const element of inputArray) {
@@ -256,15 +230,12 @@ const arrayOutputStrategy = <ELEMENT>(
         if (!result.success) {
           return result;
         }
-        resultArray.push(result.value);
       }
 
-      return { success: true, value: resultArray };
+      return { success: true, value: inputArray as Array<ELEMENT> };
     },
 
-    createElementStream(
-      originalStream: ReadableStream<ObjectStreamPart<ELEMENT[]>>,
-    ) {
+    createElementStream(originalStream: ReadableStream<ObjectStreamPart<ELEMENT[]>>) {
       let publishedElements = 0;
 
       return createAsyncIterableStream(
@@ -276,11 +247,7 @@ const arrayOutputStrategy = <ELEMENT>(
                   const array = chunk.object;
 
                   // publish new elements one by one:
-                  for (
-                    ;
-                    publishedElements < array.length;
-                    publishedElements++
-                  ) {
+                  for (; publishedElements < array.length; publishedElements++) {
                     controller.enqueue(array[publishedElements]);
                   }
 
@@ -294,9 +261,7 @@ const arrayOutputStrategy = <ELEMENT>(
 
                 default: {
                   const _exhaustiveCheck: never = chunk;
-                  throw new Error(
-                    `Unsupported chunk type: ${_exhaustiveCheck}`,
-                  );
+                  throw new Error(`Unsupported chunk type: ${_exhaustiveCheck}`);
                 }
               }
             },
@@ -326,17 +291,14 @@ const enumOutputStrategy = <ENUM extends string>(
       additionalProperties: false,
     }),
 
-    async validateFinalResult(
-      value: JSONValue | undefined,
-    ): Promise<ValidationResult<ENUM>> {
+    async validateFinalResult(value: JSONValue | undefined): Promise<ValidationResult<ENUM>> {
       // check that the value is an object that contains an array of elements:
       if (!isJSONObject(value) || typeof value.result !== 'string') {
         return {
           success: false,
           error: new TypeValidationError({
             value,
-            cause:
-              'value must be an object that contains a string in the "result" property.',
+            cause: 'value must be an object that contains a string in the "result" property.',
           }),
         };
       }
@@ -360,16 +322,13 @@ const enumOutputStrategy = <ENUM extends string>(
           success: false,
           error: new TypeValidationError({
             value,
-            cause:
-              'value must be an object that contains a string in the "result" property.',
+            cause: 'value must be an object that contains a string in the "result" property.',
           }),
         };
       }
 
       const result = value.result as string;
-      const possibleEnumValues = enumValues.filter(enumValue =>
-        enumValue.startsWith(result),
-      );
+      const possibleEnumValues = enumValues.filter(enumValue => enumValue.startsWith(result));
 
       if (value.result.length === 0 || possibleEnumValues.length === 0) {
         return {
@@ -384,8 +343,7 @@ const enumOutputStrategy = <ENUM extends string>(
       return {
         success: true,
         value: {
-          partial:
-            possibleEnumValues.length > 1 ? result : possibleEnumValues[0],
+          partial: possibleEnumValues.length > 1 ? result : possibleEnumValues[0],
           textDelta,
         },
       };

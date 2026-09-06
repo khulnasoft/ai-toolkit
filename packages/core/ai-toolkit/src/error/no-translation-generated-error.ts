@@ -1,4 +1,4 @@
-import { AISDKError } from '@ai-toolkit/provider';
+import { AITOOLKITError } from '@ai-toolkit/provider';
 import type { SpeechTranslationModelResponseMetadata } from '../types/speech-translation-model-response-metadata';
 
 const name = 'AI_NoTranslationGeneratedError';
@@ -8,7 +8,7 @@ const symbol = Symbol.for(marker);
 /**
  * Error that is thrown when no translation was generated.
  */
-export class NoTranslationGeneratedError extends AISDKError {
+export class NoTranslationGeneratedError extends AITOOLKITError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly response: SpeechTranslationModelResponseMetadata;
@@ -23,6 +23,6 @@ export class NoTranslationGeneratedError extends AISDKError {
   }
 
   static isInstance(error: unknown): error is NoTranslationGeneratedError {
-    return AISDKError.hasMarker(error, marker);
+    return AITOOLKITError.hasMarker(error, marker);
   }
 }
