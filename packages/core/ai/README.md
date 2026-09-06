@@ -22,7 +22,8 @@
 </div>
 
 ---
-
+<div align="center">
+  
 ## ✨ Why AI TOOLKIT?
 
 AI TOOLKIT provides a unified TypeScript API for integrating AI models into modern applications without coupling your application architecture to a single provider or UI framework.
@@ -35,6 +36,8 @@ AI TOOLKIT provides a unified TypeScript API for integrating AI models into mode
 * **Framework-friendly** — Integrate with React, Next.js, Svelte, Vue, Solid.js, and Node.js.
 * **Extensible** — Add providers, tools, middleware, and application-specific abstractions.
 * **Production-oriented** — Structured error handling, observability hooks, and predictable APIs.
+
+</div>
 
 ---
 
