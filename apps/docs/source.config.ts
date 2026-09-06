@@ -4,7 +4,7 @@ import {
   geistdocsFrontmatterSchema,
   geistdocsMetaSchema,
   geistShikiTheme,
-} from 'source-config';
+} from '@vercel/geistdocs/source-config';
 import { rehypeCodeDefaultOptions } from 'fumadocs-core/mdx-plugins';
 import { defineDocs } from 'fumadocs-mdx/config';
 
@@ -34,10 +34,17 @@ export default defineGeistdocsSourceConfig({
       themes: { light: geistShikiTheme, dark: geistShikiTheme },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
-        // Supports `{1,3-5}` fence meta produced by the sync-content
-        // transform from the legacy `highlight="1,3-5"` convention.
+        // Supports `{1,3-5}` fence meta. Content that still uses the legacy
+        // `highlight="1,3-5"` attribute convention is normalized to that
+        // notation by `filterMetaString` below.
         transformerMetaHighlight(),
       ],
+      // Normalize the legacy `highlight="1,3-5"` fence-meta attribute to the
+      // `{1,3-5}` notation `transformerMetaHighlight` understands.
+      filterMetaString: meta => meta.replace(/highlight="([^"]+)"/g, '{$1}'),
+      // Content uses non-standard fence languages (`env` for .env files,
+      // `prompt` for plain-text LLM prompts); alias them onto bundled ones.
+      langAlias: { env: 'dotenv', prompt: 'plaintext' },
     },
   },
 });

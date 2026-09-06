@@ -1,0 +1,11 @@
+{
+  "title": "Foundations",
+  "pages": [
+    "overview",
+    "providers-and-models",
+    "prompts",
+    "tools",
+    "streaming",
+    "index"
+  ]
+}

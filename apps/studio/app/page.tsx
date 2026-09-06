@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { Bars } from '@/components/chart/bars';
-import { Donut } from '@/components/chart/donut';
-import { KpiCard } from '@/components/kpi-card';
+import { Bars } from '@ai-toolkit/design/bars';
+import { Donut } from '@ai-toolkit/design/donut';
+import { KpiCard } from '@ai-toolkit/design/kpi-card';
 import {
   GatewayStatusTable,
   TopModelsTable,
 } from '@/components/overview-tables';
 import { PageHeader } from '@/components/page-header';
-import { Panel } from '@/components/panel';
-import { Section } from '@/components/section';
+import { Panel } from '@ai-toolkit/design/panel';
+import { Section } from '@ai-toolkit/design/section';
 import { getGatewayRows } from '@/lib/gateways';
 import {
   getGatewayModels,

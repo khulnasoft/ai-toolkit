@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "title": "Cookbook",
+  "pages": [
+    "guides",
+    "next",
+    "node",
+    "api-servers",
+    "rsc"
+  ]
+}
