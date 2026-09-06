@@ -1,5 +1,5 @@
 import { lang } from 'next/root-params';
-import { getLocalizedPath } from '@/lib/geistdocs/public-path';
+import { getLocalizedPath } from '@/lib/ai-docs/public-path';
 
 const NotFound = async () => {
   const currentLang = await lang();

@@ -1,9 +1,9 @@
-import { createProxy } from '@vercel/geistdocs/proxy';
-import { config as geistdocsConfig } from '@/lib/geistdocs/config';
-import { trackMdRequest } from '@/lib/geistdocs/md-tracking';
+import { createProxy } from '@ai-toolkit/ai-docs/proxy';
+import { config as aiDocsConfig } from '@/lib/ai-docs/config';
+import { trackMdRequest } from '@/lib/ai-docs/md-tracking';
 
 const proxy = createProxy({
-  config: geistdocsConfig,
+  config: aiDocsConfig,
   trackMarkdownRequest: trackMdRequest,
   before: () => null,
   markdownRoutes: [

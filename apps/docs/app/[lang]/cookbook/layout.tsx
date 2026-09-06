@@ -1,6 +1,6 @@
-import { DocsLayout } from '@/components/geistdocs/docs-layout';
-import { getRootLang } from '@/lib/geistdocs/root-params';
-import { cookbookSource } from '@/lib/geistdocs/source';
+import { DocsLayout } from '@/components/ai-docs/docs-layout';
+import { getRootLang } from '@/lib/ai-docs/root-params';
+import { cookbookSource } from '@/lib/ai-docs/source';
 
 const Layout = async ({ children }: LayoutProps<'/[lang]/cookbook'>) => {
   const lang = await getRootLang();

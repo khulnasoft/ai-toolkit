@@ -1,21 +1,7 @@
-import { MobileDocsBar } from '@vercel/geistdocs/mobile-docs-bar';
-import { createDocsPage } from '@vercel/geistdocs/pages/docs';
-import { getMDXComponents } from '@/components/geistdocs/mdx-components';
-import { config } from '@/lib/geistdocs/config';
-import { providersSource } from '@/lib/geistdocs/source';
+import { createFamilyDocsPage } from '@/lib/ai-docs/docs-page';
+import { providersSource } from '@/lib/ai-docs/source';
 
-const providersPage = createDocsPage({
-  config,
-  mdx: ({ link }) => getMDXComponents({ a: link }),
-  openGraph: {
-    images: true,
-  },
-  source: providersSource,
-  tableOfContentPopover: {
-    enabled: false,
-  },
-  renderTop: ({ data }) => <MobileDocsBar toc={data.toc} />,
-});
+const providersPage = createFamilyDocsPage(providersSource);
 
 export default providersPage.Page;
 export const generateStaticParams = providersPage.generateStaticParams;

@@ -1,7 +1,7 @@
-import { getPublicPath } from '@vercel/geistdocs/config';
+import { getPublicPath } from '@ai-toolkit/ai-docs/config';
 import type { MetadataRoute } from 'next';
-import { config } from '@/lib/geistdocs/config';
-import { absoluteUrl } from '@/lib/geistdocs/site-url';
+import { config } from '@/lib/ai-docs/config';
+import { absoluteUrl } from '@/lib/ai-docs/site-url';
 
 export default function robots(): MetadataRoute.Robots {
   return {

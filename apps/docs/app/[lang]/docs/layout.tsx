@@ -1,6 +1,6 @@
-import { DocsLayout } from '@/components/geistdocs/docs-layout';
-import { getRootLang } from '@/lib/geistdocs/root-params';
-import { source } from '@/lib/geistdocs/source';
+import { DocsLayout } from '@/components/ai-docs/docs-layout';
+import { getRootLang } from '@/lib/ai-docs/root-params';
+import { source } from '@/lib/ai-docs/source';
 
 const Layout = async ({ children }: LayoutProps<'/[lang]/docs'>) => {
   const lang = await getRootLang();

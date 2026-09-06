@@ -1,11 +1,11 @@
-import { getPublicPath } from '@vercel/geistdocs/config';
+import { getPublicPath } from '@ai-toolkit/ai-docs/config';
 import { Feed } from 'feed';
 import { cacheLife } from 'next/cache';
 import type { NextRequest } from 'next/server';
-import { title } from '@/geistdocs';
-import { config } from '@/lib/geistdocs/config';
-import { absoluteUrl } from '@/lib/geistdocs/site-url';
-import { sources } from '@/lib/geistdocs/source';
+import { title } from '@/ai-docs';
+import { config } from '@/lib/ai-docs/config';
+import { absoluteUrl } from '@/lib/ai-docs/site-url';
+import { sources } from '@/lib/ai-docs/source';
 
 const sitePath = getPublicPath('/', config.basePath);
 const siteUrl = absoluteUrl(sitePath);

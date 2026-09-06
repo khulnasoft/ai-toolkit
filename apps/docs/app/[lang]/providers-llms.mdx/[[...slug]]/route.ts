@@ -1,5 +1,5 @@
-import { createDocsMarkdownRoute } from '@vercel/geistdocs/routes/llms';
-import { providersSource } from '@/lib/geistdocs/source';
+import { createDocsMarkdownRoute } from '@ai-toolkit/ai-docs/routes/llms';
+import { providersSource } from '@/lib/ai-docs/source';
 
 const route = createDocsMarkdownRoute({
   sources: [providersSource],

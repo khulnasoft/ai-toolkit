@@ -10,7 +10,7 @@
  *   2. Generates a meta.json per directory, ordered by the original numeric
  *      prefixes. Folders whose index.mdx frontmatter has `collapsed: true`
  *      get `defaultOpen: false`.
- *   3. Strips the first in-body `# H1` (geistdocs renders the frontmatter
+ *   3. Strips the first in-body `# H1` (AiDocs renders the frontmatter
  *      title as the page heading).
  *   4. Rewrites code-fence meta: `filename="x"` -> `title="x"` and
  *      `highlight="1,3-5"` -> `{1,3-5}` (transformerMetaHighlight).

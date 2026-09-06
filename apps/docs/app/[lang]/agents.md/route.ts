@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
-import { createAgentsRoute } from '@vercel/geistdocs/routes/agents';
-import { config } from '@/lib/geistdocs/config';
+import { createAgentsRoute } from '@ai-toolkit/ai-docs/routes/agents';
+import { config } from '@/lib/ai-docs/config';
 
 const route = createAgentsRoute({
   config,

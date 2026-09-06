@@ -1,15 +1,15 @@
-import { createSitemapMarkdownRoute } from '@vercel/geistdocs/routes/sitemap';
-import { config } from '@/lib/geistdocs/config';
+import { createSitemapMarkdownRoute } from '@ai-toolkit/ai-docs/routes/sitemap';
+import { config } from '@/lib/ai-docs/config';
 import {
   cookbookSource,
-  geistdocsSource,
+  aiDocsSource,
   providersSource,
-} from '@/lib/geistdocs/source';
+} from '@/lib/ai-docs/source';
 
 export const { GET, generateStaticParams } = createSitemapMarkdownRoute({
   config,
   sources: [
-    { source: geistdocsSource },
+    { source: aiDocsSource },
     { source: providersSource },
     { source: cookbookSource },
   ],

@@ -1,10 +1,10 @@
-import { getPublicPath } from '@vercel/geistdocs/config';
-import { isPageVisibleForSurface } from '@vercel/geistdocs/page-visibility';
+import { getPublicPath } from '@ai-toolkit/ai-docs/config';
+import { isPageVisibleForSurface } from '@ai-toolkit/ai-docs/page-visibility';
 import type { MetadataRoute } from 'next';
 import { cacheLife } from 'next/cache';
-import { config } from '@/lib/geistdocs/config';
-import { absoluteUrl } from '@/lib/geistdocs/site-url';
-import { source } from '@/lib/geistdocs/source';
+import { config } from '@/lib/ai-docs/config';
+import { absoluteUrl } from '@/lib/ai-docs/site-url';
+import { source } from '@/lib/ai-docs/source';
 
 // biome-ignore lint/suspicious/useAwait: Next.js requires cached functions to be async.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

@@ -1,10 +1,10 @@
 import { transformerMetaHighlight } from '@shikijs/transformers';
 import {
-  defineGeistdocsSourceConfig,
-  geistdocsFrontmatterSchema,
-  geistdocsMetaSchema,
+  defineAiDocsSourceConfig,
+  aiDocsFrontmatterSchema,
+  aiDocsMetaSchema,
   geistShikiTheme,
-} from '@vercel/geistdocs/source-config';
+} from '@ai-toolkit/ai-docs/source-config';
 import { rehypeCodeDefaultOptions } from 'fumadocs-core/mdx-plugins';
 import { defineDocs } from 'fumadocs-mdx/config';
 
@@ -12,13 +12,13 @@ const createDocsCollection = (dir: string) =>
   defineDocs({
     dir,
     docs: {
-      schema: geistdocsFrontmatterSchema,
+      schema: aiDocsFrontmatterSchema,
       postprocess: {
         includeProcessedMarkdown: true,
       },
     },
     meta: {
-      schema: geistdocsMetaSchema,
+      schema: aiDocsMetaSchema,
     },
   });
 
@@ -26,10 +26,10 @@ export const docs = createDocsCollection('content/docs');
 export const providers = createDocsCollection('content/providers');
 export const cookbook = createDocsCollection('content/cookbook');
 
-export default defineGeistdocsSourceConfig({
+export default defineAiDocsSourceConfig({
   mdxOptions: {
     rehypeCodeOptions: {
-      // Themes are overridden by defineGeistdocsSourceConfig at runtime, but
+      // Themes are overridden by defineAiDocsSourceConfig at runtime, but
       // required at the type level when passing rehypeCodeOptions.
       themes: { light: geistShikiTheme, dark: geistShikiTheme },
       transformers: [
