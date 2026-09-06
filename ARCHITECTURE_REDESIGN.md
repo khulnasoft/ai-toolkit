@@ -1,6 +1,6 @@
 # AI Toolkit: Enterprise Monorepo Architecture
 
-**Status:** Living document — partially implemented, updated September 2026
+**Status:** Living document — implemented (see §11 for accepted exceptions), updated September 2026
 **Audience:** Principal Engineers, Tech Leads, Contributors
 **Scope:** Domain-organized monorepo for 500+ contributors, 100+ packages
 
@@ -19,8 +19,8 @@
 The monorepo has moved from a flat `packages/` layout to a **domain-driven, layered
 architecture**:
 
-- **Scalability**: domains (`core`, `providers`, `adapters`, `validation`, `special`,
-  `mcp`, `infrastructure`) can be built, tested, and owned independently.
+- **Scalability**: domains (`core`, `providers`, `adapters`, `ui`, `validation`,
+  `special`, `mcp`, `infrastructure`) can be built, tested, and owned independently.
 - **Clarity**: each domain has a `README.md`, a `tsconfig.json`, and `CODEOWNERS` entries.
 - **DX**: `pnpm generate`, `pnpm health-check`, `pnpm inventory`, `pnpm validate-structure`,
   `pnpm find-package` automate onboarding and governance.
@@ -45,24 +45,21 @@ ai-toolkit/
 ├── architecture/                       # domain-mapping, runtime-support, etc.
 ├── .github/workflows/                  # ci.yml, release.yml + ~12 more (see §8)
 ├── turbo.json                          # `tasks` (not `pipeline`); build:core/providers/adapters
-├── pnpm-workspace.yaml                 # domain globs + legacy `packages/*` during migration
+├── pnpm-workspace.yaml                 # domain globs (legacy `packages/*` removed; `packages/mcp` is a package-root)
 ├── package.json                        # root scripts (generate, validate-structure, health-check…)
 │
-├── packages/core/                      # ai, provider-utils, runtime
-├── packages/providers/                 # 30 providers (see §3)
-├── packages/adapters/                  # react, rsc, angular, svelte, vue
-├── packages/ui/                        # elements (@ai-toolkit/elements: chat components + shadcn registry)
+├── packages/core/                      # ai, ai-toolkit, provider-utils, runtime
+├── packages/providers/                 # 32 providers (see §3)
+├── packages/adapters/                  # react, rsc, angular, svelte, vue, langchain, llamaindex
+├── packages/ui/                        # design, elements (@ai-toolkit/elements: chat components + shadcn registry), shadcn-ui
 ├── packages/validation/                # provider (@ai-toolkit/provider), capabilities, valibot
-├── packages/special/                   # gateway, khulnasoft, codemod, devtools
+├── packages/special/                   # ai-docs, codemod, devtools, gateway, khulnasoft
 ├── packages/mcp/                       # single @ai-toolkit/mcp package (split is Outstanding)
-├── packages/infrastructure/            # test-server only
-│
-├── packages/langchain/                 # legacy flat — Outstanding (decision needed)
-├── packages/llamaindex/                # legacy flat — Outstanding (decision needed)
+├── packages/infrastructure/            # test-server only (private, internal)
 │
 ├── examples/                           # 01-foundations, 02-framework-integration,
 │   │                                   # 03-integrations, 04-tools + registry.json (see §7)
-├── apps/docs/ apps/www/                # docs site + marketing site (consumers, per ADR-005)
+├── apps/docs/ apps/www/                # docs site + marketing site (consumers, per ADR-005; apps/studio exists outside this doc)
 ├── content/                            # shared MDX sources consumed by apps/docs
 ├── tools/                              # analyze-downloads, create-ai-sdk, eslint-config,
 │                                       # generate-llms-txt, scripts, tsconfig
@@ -92,22 +89,21 @@ Ownership is enforced by `CODEOWNERS` — this table is a summary, not a copy.
 
 | Domain         | Path                                               | npm scope                                                                                                                                                                  | Stability                      |
 | -------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Core           | `packages/core/`                                   | `ai`, `@ai-toolkit/provider-utils`, `@ai-toolkit/runtime`                                                                                                                  | stable                         |
-| Providers      | `packages/providers/`                              | `@ai-toolkit/{openai,anthropic,google,google-vertex,azure,amazon-bedrock,cohere,mistral,groq,deepinfra,xai,togetherai,fireworks,replicate,openai-compatible,…}` (30 total) | stable per package             |
-| Adapters | `packages/adapters/` | `@ai-toolkit/{react,rsc,angular,svelte,vue}` | stable |
-| UI | `packages/ui/` | `@ai-toolkit/elements` | beta |
+| Core           | `packages/core/`                                   | `ai-toolkit`, `ai` (shim), `@ai-toolkit/provider-utils`, `@ai-toolkit/runtime` | stable                         |
+| Providers      | `packages/providers/`                              | `@ai-toolkit/{openai,anthropic,google,google-vertex,azure,amazon-bedrock,cohere,mistral,groq,deepinfra,xai,togetherai,fireworks,replicate,openai-compatible,bytedance,…}` (32 total) | stable per package             |
+| Adapters | `packages/adapters/` | `@ai-toolkit/{react,rsc,angular,svelte,vue,langchain,llamaindex}` | stable |
+| UI | `packages/ui/` | `@ai-toolkit/elements` (+ `design`, `shadcn-ui` support packages) | beta |
 | Validation     | `packages/validation/`                             | `@ai-toolkit/provider`, `@ai-toolkit/capabilities`, `@ai-toolkit/valibot`                                                                                                  | stable / beta (`capabilities`) |
-| Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft}`                                                                                                                                         | stable                         |
+| Special        | `packages/special/`                                | `@ai-toolkit/{gateway,khulnasoft,codemod,devtools}` (+ private `@ai-toolkit/ai-docs` docs runtime) | stable / internal (`ai-docs`) |
 | MCP            | `packages/mcp/`                                    | `@ai-toolkit/mcp`                                                                                                                                                          | beta                           |
-| Infrastructure | `packages/infrastructure/`                         | `@ai-toolkit/test-server` (internal)                                                                                                                                       | internal                       |
-| Legacy flat    | `packages/{langchain,llamaindex}` | various | see mapping §11 |
+| Infrastructure | `packages/infrastructure/`                         | `@ai-toolkit/test-server` (private, internal)                                                                                                                              | internal                       |
 
 **Ownership rules:**
 
 - Core changes require `@khulnasoft/ai-toolkit-core` approval; breaking changes go through the RFC process.
 - Each Vercel-maintained provider has its own team entry; community providers fall back to `@khulnasoft/ai-toolkit-providers` (see `CODEOWNERS`).
 - Adapters require owner + `@khulnasoft/ai-toolkit-adapters`.
-- `CODEOWNERS` still carries a **Legacy flat structure** section during migration — do not add new flat packages.
+- No legacy flat packages remain — do not add new packages outside a domain group.
 
 ---
 
@@ -146,8 +142,10 @@ as the reference example):
   for Node-only packages. Runtime-neutral packages (`core`, `validation`) must not
   reference Node-only entry points.
 - Governance metadata: `stability` (`stable` | `beta` | `alpha` | `internal`) and
-  `owners` (team handles). Missing metadata is a `validate-structure` warning during
-  migration and an error at the end of migration.
+  `owners` (team handles), enforced as `validate-structure` errors. `exports`
+  conditions (`types`/`import`/`require`/`default`) are likewise errors, except
+  `require` for ESM-only-by-design packages (`rsc`, `google-vertex`, `devtools`,
+  `svelte`), which carry standing warnings pending a CJS-build decision.
 - Errors extend `AITOOLKITError` with the `Symbol.for(marker)` pattern and static
   `isInstance` (see `AGENTS.md` → Error Pattern).
 
@@ -216,7 +214,9 @@ pnpm find-package   # locate a package by name
   sketch (`docs.yml`, `governance.yml`, `biome+prettier+TS` pseudo-YAML) was
   illustrative — read the actual workflow files.
 - **Quality gates**: `pnpm lint`, `pnpm prettier-check`, `pnpm types:check`,
-  `pnpm validate-structure`, `pnpm health-check`.
+  `pnpm validate-structure`, `pnpm health-check` — plus CI jobs `structure`,
+  `health`, `inventory` (`inventory:check` freshness). Root `.eslintrc.js`
+  rejects Node-builtin imports in `core`/`validation` shipped source (ADR-004).
 
 ---
 
@@ -235,7 +235,8 @@ pnpm validate-structure  # governance checks (replaces the proposal's validate-s
 - Shell-script helpers from the proposal (`scripts/setup.sh`, `audit-dependencies.sh`, …)
   were superseded by Node scripts in `tools/scripts/` — use those.
 - PRs: `CODEOWNERS` selects reviewers; CI runs lint, type-check, test,
-  `validate-structure`; production-code PRs need a changeset (`pnpm changeset`,
+  `structure` (`validate-structure`), `health`, `inventory` freshness;
+  production-code PRs need a changeset (`pnpm changeset`,
   default `patch`; minor/major need maintainer approval; never select example packages).
 
 ---
@@ -267,30 +268,34 @@ section), `turbo.json` domain tasks, `tools/scripts/*` generation + validation,
 (`ServerResponse` imports in `core/ai` converted to `import type`; validator
 ignores `import type` and excludes tests, dev `scripts/`, and tooling configs),
 stale `CODEOWNERS` rule cleanup (`providers/_shared/`, `providers/khulnasoft/`,
-`apps/playground/`, legacy block, `examples/04-*`/`05-*` rules), docs-mirror invariant (`content/` ≡
-`apps/docs/content/`, enforced by `validate-structure`; root `content/` is
-canonical as package `prepack` scripts consume it).
+`apps/playground/`, legacy block, `examples/04-*`/`05-*` rules), docs-mirror
+coverage + normalized-freshness check (`content/` canonical, `apps/docs/content/`
+derived Geistdocs tree; 24 site-side fixes backported), export-condition sweep
+(`default` aliases + validator escalation to error), C3 Node-import lint rule
+(root `.eslintrc.js`), `structure`/`health`/`inventory` CI jobs, `inventory
+--check` freshness mode, `@ai-toolkit/test-server` privatized,
+`langchain`/`llamaindex` → `packages/adapters/`, legacy `packages/*` glob
+removed.
 
-**Outstanding:**
+**Outstanding (accepted or awaiting a decision):**
 
 1. ~~Move `packages/{codemod,devtools}` → `packages/special/developer-tools/` (proposal §"special").~~
    Done — moved to `packages/special/{codemod,devtools}` (flat under `special`,
    per `tools/scripts/migrate-package.mjs` `DOMAIN_MAP`; the nested
    `developer-tools/` grouping was dropped as it would require workspace-glob
    and validator changes for no packaging benefit — npm names unchanged).
-2. Decide fate of `packages/{langchain,llamaindex}` (keep flat, move, or extract).
-   Note: `migrate-package.mjs` `DOMAIN_MAP` suggests `validation`, but no
-   decision has been executed.
-3. Decide whether the `packages/mcp` → `{core,server,tools}` split is still wanted; today it is a single package.
-4. `shared` / `telemetry` packages from the proposal were never created — close or re-propose (likely covered by `provider-utils` / `runtime` / observability docs).
+2. ~~Decide fate of `packages/{langchain,llamaindex}` (keep flat, move, or extract).~~
+   Done 2026-09-06 — moved to `packages/adapters/` (framework integrations over
+   `ai`, per `architecture/domain-mapping.md`); zero legacy packages remain.
+3. ~~Decide whether the `packages/mcp` → `{core,server,tools}` split is still wanted; today it is a single package.~~
+   Closed 2026-09-06 — single `@ai-toolkit/mcp` package stays; no split.
+4. ~~`shared` / `telemetry` packages from the proposal were never created — close or re-propose (likely covered by `provider-utils` / `runtime` / observability docs).~~
+   Closed 2026-09-06 — covered by `provider-utils` / `runtime` / observability docs; no new packages.
 5. ~~Retire the `packages/*` legacy workspace glob once 1–2 are done; flip missing
-   `stability`/`owners` metadata from warning to error.~~ Partially done —
-   `stability`/`owners`/`source` metadata backfilled for all 49 packages
-   (provider/adapters owners mapped from `CODEOWNERS`; `langchain`/`llamaindex`
-   carry interim `@khulnasoft/ai-toolkit-maintainers` ownership pending a
-   maintainer decision in item 2). Remaining validator warnings are
-   `exports`-map conditions (`default`/`import`/`require`), deferred as they
-   affect published module resolution.
+   `stability`/`owners` metadata from warning to error.~~ Done 2026-09-06 —
+   legacy glob removed (plus exact-path `packages/mcp` glob, as that domain dir
+   is itself a package); `stability`/`owners` and export-condition checks are
+   errors, `source` remains warning-level.
 6. ~~Reconcile `AGENTS.md` "Key Directories" table (still describes the old flat layout:
    `packages/ai`, `packages/provider`, …) with this document.~~ Done — table now lists
    domain paths; "Adding New Packages" points at `packages/<domain>/<name>`.
@@ -306,7 +311,7 @@ canonical as package `prepack` scripts consume it).
 | `packages/valibot` (legacy path)                         | `packages/validation/valibot`         | `@ai-toolkit/valibot`                |
 | — (new)                                                  | `packages/validation/capabilities`    | `@ai-toolkit/capabilities`           |
 | `packages/{openai,anthropic,…}` (30)                     | `packages/providers/{…}`              | `@ai-toolkit/{…}`                    |
-| `packages/{react,rsc,angular,svelte,vue}` (legacy paths) | `packages/adapters/{…}` | `@ai-toolkit/{…}` |
+| `packages/{react,rsc,angular,svelte,vue,langchain,llamaindex}` | `packages/adapters/{…}` | `@ai-toolkit/{…}` |
 | — (new) | `packages/ui/elements` | `@ai-toolkit/elements` |
 | `packages/gateway` (legacy path)                         | `packages/special/gateway`            | `@ai-toolkit/gateway`                |
 | `packages/khulnasoft` (legacy path)                      | `packages/special/khulnasoft`         | `@ai-toolkit/khulnasoft`             |
@@ -314,13 +319,13 @@ canonical as package `prepack` scripts consume it).
 | `packages/test-server` (legacy path)                     | `packages/infrastructure/test-server` | `@ai-toolkit/test-server` (internal) |
 | `packages/codemod` (legacy path)                         | `packages/special/codemod`            | `@ai-toolkit/codemod`                |
 | `packages/devtools` (legacy path)                        | `packages/special/devtools`           | `@ai-toolkit/devtools`               |
-| `packages/{langchain,llamaindex}`                        | Outstanding (§11)                     | various                              |
+| `packages/{langchain,llamaindex}` (moved 2026-09-06) | `packages/adapters/{langchain,llamaindex}` | `@ai-toolkit/{langchain,llamaindex}` |
 
 > Full historical mapping (including per-provider rows) lives in
 > `architecture/domain-mapping.md` — consult it before moving packages.
 
 ---
 
-**Document version:** 2.0 (refactor of v1.0 proposal)
+**Document version:** 2.1 (migration complete; all §11 items closed)
 **Last updated:** September 2026
-**Status:** Partially implemented — §11 tracks the remainder.
+**Status:** Implemented.

@@ -237,13 +237,9 @@ for (const pkg of packages) {
     );
 
   if (!pkg.manifest.stability)
-    reportWarning(
-      `Package missing stability label: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportError(`Package missing stability label: ${path.relative(ROOT, pkg.dir)}`);
   if (!pkg.manifest.owners)
-    reportWarning(
-      `Package missing owners metadata: ${path.relative(ROOT, pkg.dir)}`,
-    );
+    reportError(`Package missing owners metadata: ${path.relative(ROOT, pkg.dir)}`);
 
   const relDir = path.relative(ROOT, pkg.dir).split(path.sep).join('/');
   const inWorkspace = WORKSPACE_REGEXES.some(({ regex }) => regex.test(relDir));
