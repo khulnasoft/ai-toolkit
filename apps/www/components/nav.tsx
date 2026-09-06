@@ -29,7 +29,11 @@ const navItems: NavItem[] = [
     ],
   },
   { href: '/providers/ai-toolkit-providers', label: 'Providers' },
-  { href: '/gateways', label: 'Gateways' },
+  {
+    label: 'Gateways',
+    href: '/gateways',
+    children: [{ href: '/gateways/models', label: 'Models' }],
+  },
   { href: '/playground', label: 'Playground' },
 ];
 

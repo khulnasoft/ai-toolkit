@@ -10,6 +10,7 @@ const columns = [
       { label: 'Showcase', href: '/resources/showcase' },
       { label: 'Providers', href: '/providers/ai-toolkit-providers' },
       { label: 'Gateways', href: '/gateways' },
+      { label: 'Gateway Models', href: '/gateways/models' },
       { label: 'Playground', href: '/playground' },
     ],
   },

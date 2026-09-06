@@ -1,10 +1,13 @@
 import { GatewayBrowser } from '@/components/gateway-browser';
 import { SectionHeader } from '@/components/section-header';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import {
   gatewayCategoryOf,
   gateways,
   getGatewayCategoriesWithCounts,
 } from '@/lib/gateways';
+import { getGatewayModels } from '@/lib/gateway-models';
 
 export const metadata = {
   title: 'AI Gateways',
@@ -24,6 +27,15 @@ export default function GatewaysPage() {
         title="One API, every model."
         description="Browse AI gateways that unify access to hundreds of models across providers. Add routing, fallbacks, caching, and observability to a single integration."
       />
+      <div className="mt-6 text-center">
+        <Link
+          href="/gateways/models"
+          className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+        >
+          Browse {getGatewayModels().length} gateway models
+          <ArrowUpRight className="size-3.5" />
+        </Link>
+      </div>
       <div className="mt-10">
         <GatewayBrowser
           categories={categories}
