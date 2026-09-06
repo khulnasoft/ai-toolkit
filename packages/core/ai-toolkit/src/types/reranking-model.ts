@@ -1,6 +1,6 @@
-import { RerankingModelV3 } from '@ai-toolkit/provider';
+import type { RerankingModelV3, RerankingModelV4 } from '@ai-toolkit/provider';
 
 /**
- * Reranking model that is used by the AI TOOLKIT.
+ * Reranking model that is used by the AI SDK.
  */
-export type RerankingModel = RerankingModelV3;
+export type RerankingModel = string | RerankingModelV4 | RerankingModelV3;

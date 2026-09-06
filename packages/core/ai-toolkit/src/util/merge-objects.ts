@@ -35,6 +35,11 @@ export function mergeObjects<T extends object, U extends object>(
 
   // Iterate through all keys in the source object
   for (const key in overrides) {
+    // Skip prototype-polluting keys when merging untrusted input
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      continue;
+    }
+
     if (Object.prototype.hasOwnProperty.call(overrides, key)) {
       const overridesValue = overrides[key];
 
@@ -42,7 +47,8 @@ export function mergeObjects<T extends object, U extends object>(
       if (overridesValue === undefined) continue;
 
       // Get the base value if it exists
-      const baseValue = key in base ? base[key as unknown as keyof T] : undefined;
+      const baseValue =
+        key in base ? base[key as unknown as keyof T] : undefined;
 
       // Check if both values are objects that can be deeply merged
       const isSourceObject =

@@ -1,4 +1,4 @@
-import {
+import type {
   LanguageModelV3,
   LanguageModelV3CallOptions,
   LanguageModelV3GenerateResult,
@@ -29,7 +29,9 @@ export class MockLanguageModelV3 implements LanguageModelV3 {
   }: {
     provider?: LanguageModelV3['provider'];
     modelId?: LanguageModelV3['modelId'];
-    supportedUrls?: LanguageModelV3['supportedUrls'] | (() => LanguageModelV3['supportedUrls']);
+    supportedUrls?:
+      | LanguageModelV3['supportedUrls']
+      | (() => LanguageModelV3['supportedUrls']);
     doGenerate?:
       | LanguageModelV3['doGenerate']
       | LanguageModelV3GenerateResult
@@ -45,9 +47,9 @@ export class MockLanguageModelV3 implements LanguageModelV3 {
       this.doGenerateCalls.push(options);
 
       if (typeof doGenerate === 'function') {
-        return doGenerate(options);
+        return await doGenerate(options);
       } else if (Array.isArray(doGenerate)) {
-        return doGenerate[this.doGenerateCalls.length];
+        return doGenerate[this.doGenerateCalls.length - 1];
       } else {
         return doGenerate;
       }
@@ -56,15 +58,17 @@ export class MockLanguageModelV3 implements LanguageModelV3 {
       this.doStreamCalls.push(options);
 
       if (typeof doStream === 'function') {
-        return doStream(options);
+        return await doStream(options);
       } else if (Array.isArray(doStream)) {
-        return doStream[this.doStreamCalls.length];
+        return doStream[this.doStreamCalls.length - 1];
       } else {
         return doStream;
       }
     };
     this._supportedUrls =
-      typeof supportedUrls === 'function' ? supportedUrls : async () => supportedUrls;
+      typeof supportedUrls === 'function'
+        ? supportedUrls
+        : async () => await supportedUrls;
   }
 
   get supportedUrls() {

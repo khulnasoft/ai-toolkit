@@ -1,5 +1,9 @@
-import type { LanguageModelV3Content, LanguageModelV3StreamPart } from '@ai-toolkit/provider';
-import { LanguageModelMiddleware } from '../types/language-model-middleware';
+import type {
+  LanguageModelV4Content,
+  LanguageModelV4StreamPart,
+} from '@ai-toolkit/provider';
+import type { LanguageModelMiddleware } from '../types/language-model-middleware';
+import { createIdMap } from '../util/create-id-map';
 
 /**
  * Default transform function that strips markdown code fences from text.
@@ -9,6 +13,10 @@ function defaultTransform(text: string): string {
     .replace(/^```(?:json)?\s*\n?/, '')
     .replace(/\n?```\s*$/, '')
     .trim();
+}
+
+function stripMarkdownCodeFenceSuffix(text: string): string {
+  return text.replace(/\n?```\s*$/, '').trimEnd();
 }
 
 /**
@@ -34,12 +42,12 @@ export function extractJsonMiddleware(options?: {
   const hasCustomTransform = options?.transform !== undefined;
 
   return {
-    specificationVersion: 'v3',
+    specificationVersion: 'v4',
 
     wrapGenerate: async ({ doGenerate }) => {
       const { content, ...rest } = await doGenerate();
 
-      const transformedContent: LanguageModelV3Content[] = [];
+      const transformedContent: LanguageModelV4Content[] = [];
       for (const part of content) {
         if (part.type !== 'text') {
           transformedContent.push(part);
@@ -60,18 +68,21 @@ export function extractJsonMiddleware(options?: {
       const textBlocks: Record<
         string,
         {
-          startEvent: LanguageModelV3StreamPart;
+          startEvent: LanguageModelV4StreamPart;
           phase: 'prefix' | 'streaming' | 'buffering';
           buffer: string;
           prefixStripped: boolean;
         }
-      > = {};
+      > = createIdMap();
 
       const SUFFIX_BUFFER_SIZE = 12;
 
       return {
         stream: stream.pipeThrough(
-          new TransformStream<LanguageModelV3StreamPart, LanguageModelV3StreamPart>({
+          new TransformStream<
+            LanguageModelV4StreamPart,
+            LanguageModelV4StreamPart
+          >({
             transform: (chunk, controller) => {
               if (chunk.type === 'text-start') {
                 textBlocks[chunk.id] = {
@@ -100,15 +111,21 @@ export function extractJsonMiddleware(options?: {
 
                 if (block.phase === 'prefix') {
                   // Check if we can determine prefix status
-                  if (block.buffer.length > 0 && !block.buffer.startsWith('`')) {
+                  if (
+                    block.buffer.length > 0 &&
+                    !block.buffer.startsWith('`')
+                  ) {
                     block.phase = 'streaming';
                     controller.enqueue(block.startEvent);
                   } else if (block.buffer.startsWith('```')) {
                     // Only strip prefix when we have a newline (fence is complete)
                     if (block.buffer.includes('\n')) {
-                      const prefixMatch = block.buffer.match(/^```(?:json)?\s*\n/);
+                      const prefixMatch =
+                        block.buffer.match(/^```(?:json)?\s*\n/);
                       if (prefixMatch) {
-                        block.buffer = block.buffer.slice(prefixMatch[0].length);
+                        block.buffer = block.buffer.slice(
+                          prefixMatch[0].length,
+                        );
                         block.prefixStripped = true;
                         block.phase = 'streaming';
                         controller.enqueue(block.startEvent);
@@ -119,14 +136,20 @@ export function extractJsonMiddleware(options?: {
                       }
                     }
                     // else keep buffering until we see a newline
-                  } else if (block.buffer.length >= 3 && !block.buffer.startsWith('```')) {
+                  } else if (
+                    block.buffer.length >= 3 &&
+                    !block.buffer.startsWith('```')
+                  ) {
                     block.phase = 'streaming';
                     controller.enqueue(block.startEvent);
                   }
                 }
 
                 // Stream content
-                if (block.phase === 'streaming' && block.buffer.length > SUFFIX_BUFFER_SIZE) {
+                if (
+                  block.phase === 'streaming' &&
+                  block.buffer.length > SUFFIX_BUFFER_SIZE
+                ) {
                   const toStream = block.buffer.slice(0, -SUFFIX_BUFFER_SIZE);
                   block.buffer = block.buffer.slice(-SUFFIX_BUFFER_SIZE);
                   controller.enqueue({
@@ -150,10 +173,15 @@ export function extractJsonMiddleware(options?: {
                     remaining = transform(remaining);
                   } else if (block.prefixStripped) {
                     // strip suffix since prefix already handled
-                    remaining = remaining.replace(/\n?```\s*$/, '').trimEnd();
-                  } else {
-                    // Apply full transform (handles both prefix and suffix)
+                    remaining = stripMarkdownCodeFenceSuffix(remaining);
+                  } else if (block.phase === 'prefix') {
+                    // No text has streamed yet, so the full transform is safe.
                     remaining = transform(remaining);
+                  } else {
+                    // Only strip the suffix. Since earlier text may already have
+                    // streamed, trimming the remaining suffix would remove valid
+                    // leading whitespace at the stream boundary.
+                    remaining = stripMarkdownCodeFenceSuffix(remaining);
                   }
 
                   if (remaining.length > 0) {

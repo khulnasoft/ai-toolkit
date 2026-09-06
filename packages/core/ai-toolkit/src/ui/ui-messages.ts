@@ -1,11 +1,18 @@
-import { InferToolInput, InferToolOutput, Tool, ToolCall } from '@ai-toolkit/provider-utils';
-import { ToolSet } from '../generate-text';
-import { ProviderMetadata } from '../types/provider-metadata';
-import { DeepPartial } from '../util/deep-partial';
-import { ValueOf } from '../util/value-of';
+import type { JSONObject } from '@ai-toolkit/provider';
+import type {
+  InferToolInput,
+  InferToolOutput,
+  Tool,
+  ToolCall,
+  ToolSet,
+} from '@ai-toolkit/provider-utils';
+import type { ProviderMetadata } from '../types/provider-metadata';
+import type { ProviderReference } from '../types/provider-reference';
+import type { DeepPartial } from '../util/deep-partial';
+import type { ValueOf } from '../util/value-of';
 
 /**
-The data types that can be used in the UI message for the UI message data parts.
+ * The data types that can be used in the UI message for the UI message data parts.
  */
 export type UIDataTypes = Record<string, unknown>;
 
@@ -32,7 +39,7 @@ export type InferUITools<TOOLS extends ToolSet> = {
 export type UITools = Record<string, UITool>;
 
 /**
-AI TOOLKIT UI Messages. They are used in the client and to communicate between the frontend and the API routes.
+ * AI SDK UI Messages. They are used in the client and to communicate between the frontend and the API routes.
  */
 export interface UIMessage<
   METADATA = unknown,
@@ -40,41 +47,46 @@ export interface UIMessage<
   TOOLS extends UITools = UITools,
 > {
   /**
-A unique identifier for the message.
+   * A unique identifier for the message.
    */
   id: string;
 
   /**
-The role of the message.
+   * The role of the message.
    */
   role: 'system' | 'user' | 'assistant';
 
   /**
-The metadata of the message.
+   * The metadata of the message.
    */
   metadata?: METADATA;
 
   /**
-The parts of the message. Use this for rendering the message in the UI.
-
-System messages should be avoided (set the system prompt on the server instead).
-They can have text parts.
-
-User messages can have text parts and file parts.
-
-Assistant messages can have text, reasoning, tool invocation, and file parts.
+   * The parts of the message. Use this for rendering the message in the UI.
+   *
+   * System messages should be avoided (set the system prompt on the server instead).
+   * They can have text parts.
+   *
+   * User messages can have text parts and file parts.
+   *
+   * Assistant messages can have text, reasoning, tool invocation, and file parts.
    */
   parts: Array<UIMessagePart<DATA_PARTS, TOOLS>>;
 }
 
-export type UIMessagePart<DATA_TYPES extends UIDataTypes, TOOLS extends UITools> =
+export type UIMessagePart<
+  DATA_TYPES extends UIDataTypes,
+  TOOLS extends UITools,
+> =
   | TextUIPart
+  | CustomContentUIPart
   | ReasoningUIPart
   | ToolUIPart<TOOLS>
   | DynamicToolUIPart
   | SourceUrlUIPart
   | SourceDocumentUIPart
   | FileUIPart
+  | ReasoningFileUIPart
   | DataUIPart<DATA_TYPES>
   | StepStartUIPart;
 
@@ -101,10 +113,32 @@ export type TextUIPart = {
 };
 
 /**
+ * A provider-specific part of a message.
+ */
+export type CustomContentUIPart = {
+  type: 'custom';
+
+  /**
+   * The kind of custom content, in the format `{provider}.{provider-type}`.
+   */
+  kind: `${string}.${string}`;
+
+  /**
+   * The provider metadata.
+   */
+  providerMetadata?: ProviderMetadata;
+};
+
+/**
  * A reasoning part of a message.
  */
 export type ReasoningUIPart = {
   type: 'reasoning';
+
+  /**
+   * The reasoning part ID.
+   */
+  id?: string;
 
   /**
    * The reasoning text.
@@ -152,7 +186,14 @@ export type FileUIPart = {
   type: 'file';
 
   /**
-   * IANA media type of the file.
+   * Either a full IANA media type (`type/subtype`, e.g. `image/png`) or just
+   * the top-level IANA segment (e.g. `image`, `audio`, `video`, `text`).
+   *
+   * `*`-subtype wildcards (e.g. `image/*`) are normalized as equivalent to the
+   * top-level segment alone (e.g. `image`). Providers can use the helpers in
+   * `@ai-toolkit/provider-utils` (`isFullMediaType`, `getTopLevelMediaType`,
+   * `detectMediaType`) to resolve the field according to their API
+   * requirements.
    *
    * @see https://www.iana.org/assignments/media-types/media-types.xhtml
    */
@@ -162,6 +203,38 @@ export type FileUIPart = {
    * Optional filename of the file.
    */
   filename?: string;
+
+  /**
+   * The URL of the file.
+   * It can either be a URL to a hosted file or a [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs).
+   */
+  url: string;
+
+  /**
+   * Provider reference for files uploaded via `uploadFile`.
+   * Maps provider names to provider-specific file identifiers.
+   * When present, takes precedence over `url` in model messages.
+   */
+  providerReference?: ProviderReference;
+
+  /**
+   * The provider metadata.
+   */
+  providerMetadata?: ProviderMetadata;
+};
+
+/**
+ * A reasoning file part of a message.
+ */
+export type ReasoningFileUIPart = {
+  type: 'reasoning-file';
+
+  /**
+   * IANA media type of the file.
+   *
+   * @see https://www.iana.org/assignments/media-types/media-types.xhtml
+   */
+  mediaType: string;
 
   /**
    * The URL of the file.
@@ -190,7 +263,9 @@ export type DataUIPart<DATA_TYPES extends UIDataTypes> = ValueOf<{
   };
 }>;
 
-type asUITool<TOOL extends UITool | Tool> = TOOL extends Tool ? InferUITool<TOOL> : TOOL;
+type asUITool<TOOL extends UITool | Tool> = TOOL extends Tool
+  ? InferUITool<TOOL>
+  : TOOL;
 
 /**
  * Check if a message part is a data part.
@@ -212,6 +287,7 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
    */
   toolCallId: string;
   title?: string;
+  toolMetadata?: JSONObject;
 
   /**
    * Whether the tool call was executed by the provider.
@@ -220,7 +296,7 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
 } & (
   | {
       state: 'input-streaming';
-      input: DeepPartial<asUITool<TOOL>['input']> | undefined;
+      input?: DeepPartial<asUITool<TOOL>['input']> | undefined;
       output?: never;
       errorText?: never;
       callProviderMetadata?: ProviderMetadata;
@@ -243,7 +319,11 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
       approval: {
         id: string;
         approved?: never;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: never;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -255,7 +335,11 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
       approval: {
         id: string;
         approved: boolean;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -264,24 +348,34 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
       output: asUITool<TOOL>['output'];
       errorText?: never;
       callProviderMetadata?: ProviderMetadata;
+      resultProviderMetadata?: ProviderMetadata;
       preliminary?: boolean;
       approval?: {
         id: string;
         approved: true;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
-      state: 'output-error'; // TODO AI TOOLKIT 6: change to 'error' state
+      state: 'output-error'; // TODO AI SDK 6: change to 'error' state
       input: asUITool<TOOL>['input'] | undefined;
-      rawInput?: unknown; // TODO AI TOOLKIT 6: remove this field, input should be unknown
+      rawInput?: unknown; // TODO AI SDK 6: remove this field, input should be unknown
       output?: never;
       errorText: string;
       callProviderMetadata?: ProviderMetadata;
+      resultProviderMetadata?: ProviderMetadata;
       approval?: {
         id: string;
         approved: true;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -293,7 +387,11 @@ export type UIToolInvocation<TOOL extends UITool | Tool> = {
       approval: {
         id: string;
         approved: false;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
 );
@@ -317,6 +415,7 @@ export type DynamicToolUIPart = {
    */
   toolCallId: string;
   title?: string;
+  toolMetadata?: JSONObject;
 
   /**
    * Whether the tool call was executed by the provider.
@@ -325,7 +424,7 @@ export type DynamicToolUIPart = {
 } & (
   | {
       state: 'input-streaming';
-      input: unknown | undefined;
+      input?: unknown;
       output?: never;
       errorText?: never;
       callProviderMetadata?: ProviderMetadata;
@@ -348,7 +447,11 @@ export type DynamicToolUIPart = {
       approval: {
         id: string;
         approved?: never;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: never;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -360,7 +463,11 @@ export type DynamicToolUIPart = {
       approval: {
         id: string;
         approved: boolean;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -369,23 +476,33 @@ export type DynamicToolUIPart = {
       output: unknown;
       errorText?: never;
       callProviderMetadata?: ProviderMetadata;
+      resultProviderMetadata?: ProviderMetadata;
       preliminary?: boolean;
       approval?: {
         id: string;
         approved: true;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
-      state: 'output-error'; // TODO AI TOOLKIT 6: change to 'error' state
+      state: 'output-error'; // TODO AI SDK 6: change to 'error' state
       input: unknown;
       output?: never;
       errorText: string;
       callProviderMetadata?: ProviderMetadata;
+      resultProviderMetadata?: ProviderMetadata;
       approval?: {
         id: string;
         approved: true;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
   | {
@@ -397,7 +514,11 @@ export type DynamicToolUIPart = {
       approval: {
         id: string;
         approved: false;
+        descriptor?: unknown;
+        requestReason?: string;
         reason?: string;
+        isAutomatic?: boolean;
+        signature?: string;
       };
     }
 );
@@ -405,15 +526,37 @@ export type DynamicToolUIPart = {
 /**
  * Type guard to check if a message part is a text part.
  */
-export function isTextUIPart(part: UIMessagePart<UIDataTypes, UITools>): part is TextUIPart {
+export function isTextUIPart(
+  part: UIMessagePart<UIDataTypes, UITools>,
+): part is TextUIPart {
   return part.type === 'text';
+}
+
+/**
+ * Type guard to check if a message part is a custom part.
+ */
+export function isCustomContentUIPart(
+  part: UIMessagePart<UIDataTypes, UITools>,
+): part is CustomContentUIPart {
+  return part.type === 'custom';
 }
 
 /**
  * Type guard to check if a message part is a file part.
  */
-export function isFileUIPart(part: UIMessagePart<UIDataTypes, UITools>): part is FileUIPart {
+export function isFileUIPart(
+  part: UIMessagePart<UIDataTypes, UITools>,
+): part is FileUIPart {
   return part.type === 'file';
+}
+
+/**
+ * Type guard to check if a message part is a reasoning file part.
+ */
+export function isReasoningFileUIPart(
+  part: UIMessagePart<UIDataTypes, UITools>,
+): part is ReasoningFileUIPart {
+  return part.type === 'reasoning-file';
 }
 
 /**
@@ -461,16 +604,13 @@ export function isToolUIPart<TOOLS extends UITools>(
 }
 
 /**
- * @deprecated Use isToolUIPart instead.
- */
-export const isToolOrDynamicToolUIPart = isToolUIPart;
-
-/**
  * Returns the name of the static tool.
  *
  * The possible values are the keys of the tool set.
  */
-export function getStaticToolName<TOOLS extends UITools>(part: ToolUIPart<TOOLS>): keyof TOOLS {
+export function getStaticToolName<TOOLS extends UITools>(
+  part: ToolUIPart<TOOLS>,
+): keyof TOOLS {
   return part.type.split('-').slice(1).join('-') as keyof TOOLS;
 }
 
@@ -480,7 +620,9 @@ export function getStaticToolName<TOOLS extends UITools>(part: ToolUIPart<TOOLS>
  * This function will not restrict the name to the keys of the tool set.
  * If you need to restrict the name to the keys of the tool set, use `getStaticToolName` instead.
  */
-export function getToolName(part: ToolUIPart<UITools> | DynamicToolUIPart): string {
+export function getToolName(
+  part: ToolUIPart<UITools> | DynamicToolUIPart,
+): string {
   return isDynamicToolUIPart(part) ? part.toolName : getStaticToolName(part);
 }
 
@@ -489,21 +631,14 @@ export function getToolName(part: ToolUIPart<UITools> | DynamicToolUIPart): stri
  */
 export const getToolOrDynamicToolName = getToolName;
 
-export type InferUIMessageMetadata<T extends UIMessage> = T extends UIMessage<infer METADATA>
-  ? METADATA
-  : unknown;
+export type InferUIMessageMetadata<T extends UIMessage> =
+  T extends UIMessage<infer METADATA> ? METADATA : unknown;
 
-export type InferUIMessageData<T extends UIMessage> = T extends UIMessage<unknown, infer DATA_TYPES>
-  ? DATA_TYPES
-  : UIDataTypes;
+export type InferUIMessageData<T extends UIMessage> =
+  T extends UIMessage<unknown, infer DATA_TYPES> ? DATA_TYPES : UIDataTypes;
 
-export type InferUIMessageTools<T extends UIMessage> = T extends UIMessage<
-  unknown,
-  UIDataTypes,
-  infer TOOLS
->
-  ? TOOLS
-  : UITools;
+export type InferUIMessageTools<T extends UIMessage> =
+  T extends UIMessage<unknown, UIDataTypes, infer TOOLS> ? TOOLS : UITools;
 
 export type InferUIMessageToolOutputs<UI_MESSAGE extends UIMessage> =
   InferUIMessageTools<UI_MESSAGE>[keyof InferUIMessageTools<UI_MESSAGE>]['output'];
@@ -512,7 +647,9 @@ export type InferUIMessageToolCall<UI_MESSAGE extends UIMessage> =
   | ValueOf<{
       [NAME in keyof InferUIMessageTools<UI_MESSAGE>]: ToolCall<
         NAME & string,
-        InferUIMessageTools<UI_MESSAGE>[NAME] extends { input: infer INPUT } ? INPUT : never
+        InferUIMessageTools<UI_MESSAGE>[NAME] extends { input: infer INPUT }
+          ? INPUT
+          : never
       > & { dynamic?: false };
     }>
   | (ToolCall<string, unknown> & { dynamic: true });

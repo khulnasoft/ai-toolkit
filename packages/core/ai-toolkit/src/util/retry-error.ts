@@ -1,12 +1,15 @@
-import { AITOOLKITError } from '@ai-toolkit/provider';
+import { AISDKError } from '@ai-toolkit/provider';
 
 const name = 'AI_RetryError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export type RetryErrorReason = 'maxRetriesExceeded' | 'errorNotRetryable' | 'abort';
+export type RetryErrorReason =
+  | 'maxRetriesExceeded'
+  | 'errorNotRetryable'
+  | 'abort';
 
-export class RetryError extends AITOOLKITError {
+export class RetryError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   // note: property order determines debugging output
@@ -33,6 +36,6 @@ export class RetryError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is RetryError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

@@ -1,9 +1,13 @@
-import type { LanguageModelV3Content, LanguageModelV3StreamPart } from '@ai-toolkit/provider';
-import { LanguageModelMiddleware } from '../types/language-model-middleware';
+import type {
+  LanguageModelV4Content,
+  LanguageModelV4StreamPart,
+} from '@ai-toolkit/provider';
+import type { LanguageModelMiddleware } from '../types/language-model-middleware';
+import { createIdMap } from '../util/create-id-map';
 import { getPotentialStartIndex } from '../util/get-potential-start-index';
 
 /**
- * Extract an XML-tagged reasoning section from the generated text and exposes it
+ * Extracts an XML-tagged reasoning section from the generated text and exposes it
  * as a `reasoning` property on the result.
  *
  * @param tagName - The name of the XML tag to extract reasoning from.
@@ -23,11 +27,11 @@ export function extractReasoningMiddleware({
   const closingTag = `<\/${tagName}>`;
 
   return {
-    specificationVersion: 'v3',
+    specificationVersion: 'v4',
     wrapGenerate: async ({ doGenerate }) => {
       const { content, ...rest } = await doGenerate();
 
-      const transformedContent: LanguageModelV3Content[] = [];
+      const transformedContent: LanguageModelV4Content[] = [];
       for (const part of content) {
         if (part.type !== 'text') {
           transformedContent.push(part);
@@ -51,7 +55,9 @@ export function extractReasoningMiddleware({
           const match = matches[i];
 
           const beforeMatch = textWithoutReasoning.slice(0, match.index);
-          const afterMatch = textWithoutReasoning.slice(match.index! + match[0].length);
+          const afterMatch = textWithoutReasoning.slice(
+            match.index! + match[0].length,
+          );
 
           textWithoutReasoning =
             beforeMatch +
@@ -87,16 +93,19 @@ export function extractReasoningMiddleware({
           idCounter: number;
           textId: string;
         }
-      > = {};
+      > = createIdMap();
 
-      let delayedTextStart: LanguageModelV3StreamPart | undefined;
+      let delayedTextStart: LanguageModelV4StreamPart | undefined;
 
       return {
         stream: stream.pipeThrough(
-          new TransformStream<LanguageModelV3StreamPart, LanguageModelV3StreamPart>({
+          new TransformStream<
+            LanguageModelV4StreamPart,
+            LanguageModelV4StreamPart
+          >({
             transform: (chunk, controller) => {
               // do not send `text-start` before `reasoning-start`
-              // https://github.com/khulnasoft/ai-toolkit/issues/7774
+              // https://github.com/vercel/ai/issues/7774
               if (chunk.type === 'text-start') {
                 delayedTextStart = chunk;
                 return;
@@ -140,7 +149,8 @@ export function extractReasoningMiddleware({
 
                   if (
                     activeExtraction.isReasoning &&
-                    (activeExtraction.afterSwitch || activeExtraction.isFirstReasoning)
+                    (activeExtraction.afterSwitch ||
+                      activeExtraction.isFirstReasoning)
                   ) {
                     controller.enqueue({
                       type: 'reasoning-start',
@@ -176,9 +186,14 @@ export function extractReasoningMiddleware({
               }
 
               do {
-                const nextTag = activeExtraction.isReasoning ? closingTag : openingTag;
+                const nextTag = activeExtraction.isReasoning
+                  ? closingTag
+                  : openingTag;
 
-                const startIndex = getPotentialStartIndex(activeExtraction.buffer, nextTag);
+                const startIndex = getPotentialStartIndex(
+                  activeExtraction.buffer,
+                  nextTag,
+                );
 
                 // no opening or closing tag found, publish the buffer
                 if (startIndex == null) {
@@ -198,8 +213,19 @@ export function extractReasoningMiddleware({
                     startIndex + nextTag.length,
                   );
 
-                  // reasoning part finished:
                   if (activeExtraction.isReasoning) {
+                    // Emit reasoning-start for empty reasoning blocks (no delta was published).
+                    // This handles both cases:
+                    // - startWithReasoning=false: <think></think> (afterSwitch=true)
+                    // - startWithReasoning=true: immediate </think> (afterSwitch=false)
+                    if (activeExtraction.isFirstReasoning) {
+                      controller.enqueue({
+                        type: 'reasoning-start',
+                        id: `reasoning-${activeExtraction.idCounter}`,
+                      });
+                    }
+
+                    // reasoning part finished:
                     controller.enqueue({
                       type: 'reasoning-end',
                       id: `reasoning-${activeExtraction.idCounter++}`,
@@ -209,7 +235,8 @@ export function extractReasoningMiddleware({
                   activeExtraction.isReasoning = !activeExtraction.isReasoning;
                   activeExtraction.afterSwitch = true;
                 } else {
-                  activeExtraction.buffer = activeExtraction.buffer.slice(startIndex);
+                  activeExtraction.buffer =
+                    activeExtraction.buffer.slice(startIndex);
                   break;
                 }
               } while (true);

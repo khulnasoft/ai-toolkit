@@ -1,11 +1,21 @@
-import { JSONObject, SpeechModelV3 } from '@ai-toolkit/provider';
-import { afterEach, beforeEach, describe, expect, it, vi, vitest } from 'vitest';
+import type { JSONObject, SpeechModelV4 } from '@ai-toolkit/provider';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  vitest,
+} from 'vitest';
 import * as logWarningsModule from '../logger/log-warnings';
-import { MockSpeechModelV3 } from '../test/mock-speech-model-v3';
-import { Warning } from '../types/warning';
+import { MockSpeechModelV4 } from '../test/mock-speech-model-v4';
+import type { Warning } from '../types/warning';
 import { generateSpeech } from './generate-speech';
-import { DefaultGeneratedAudioFile, GeneratedAudioFile } from './generated-audio-file';
-
+import {
+  DefaultGeneratedAudioFile,
+  type GeneratedAudioFile,
+} from './generated-audio-file';
 const audio = new Uint8Array([1, 2, 3, 4]); // Sample audio data
 const testDate = new Date(2024, 0, 1);
 const mockFile = new DefaultGeneratedAudioFile({
@@ -43,7 +53,9 @@ describe('generateSpeech', () => {
   let logWarningsSpy: ReturnType<typeof vitest.spyOn>;
 
   beforeEach(() => {
-    logWarningsSpy = vitest.spyOn(logWarningsModule, 'logWarnings').mockImplementation(() => {});
+    logWarningsSpy = vitest
+      .spyOn(logWarningsModule, 'logWarnings')
+      .mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -54,10 +66,10 @@ describe('generateSpeech', () => {
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
 
-    let capturedArgs!: Parameters<SpeechModelV3['doGenerate']>[0];
+    let capturedArgs!: Parameters<SpeechModelV4['doGenerate']>[0];
 
     await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async args => {
           capturedArgs = args;
           return createMockResponse({
@@ -91,7 +103,7 @@ describe('generateSpeech', () => {
 
   it('should return warnings', async () => {
     const result = await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async () =>
           createMockResponse({
             audio: mockFile,
@@ -133,7 +145,7 @@ describe('generateSpeech', () => {
     ];
 
     await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async () =>
           createMockResponse({
             audio: mockFile,
@@ -153,7 +165,7 @@ describe('generateSpeech', () => {
 
   it('should call logWarnings with empty array when no warnings are present', async () => {
     await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async () =>
           createMockResponse({
             audio: mockFile,
@@ -173,7 +185,7 @@ describe('generateSpeech', () => {
 
   it('should return the audio data', async () => {
     const result = await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async () =>
           createMockResponse({
             audio: mockFile,
@@ -200,7 +212,7 @@ describe('generateSpeech', () => {
     it('should throw NoSpeechGeneratedError when no audio is returned', async () => {
       await expect(
         generateSpeech({
-          model: new MockSpeechModelV3({
+          model: new MockSpeechModelV4({
             doGenerate: async () =>
               createMockResponse({
                 audio: new DefaultGeneratedAudioFile({
@@ -227,7 +239,7 @@ describe('generateSpeech', () => {
     it('should include response headers in error when no audio generated', async () => {
       await expect(
         generateSpeech({
-          model: new MockSpeechModelV3({
+          model: new MockSpeechModelV4({
             doGenerate: async () =>
               createMockResponse({
                 audio: new DefaultGeneratedAudioFile({
@@ -264,7 +276,7 @@ describe('generateSpeech', () => {
     const testHeaders = { 'x-test': 'value' };
 
     const result = await generateSpeech({
-      model: new MockSpeechModelV3({
+      model: new MockSpeechModelV4({
         doGenerate: async () =>
           createMockResponse({
             audio: mockFile,

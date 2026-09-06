@@ -1,10 +1,10 @@
-import { AITOOLKITError, getErrorMessage } from '@ai-toolkit/provider';
+import { AISDKError, getErrorMessage } from '@ai-toolkit/provider';
 
 const name = 'AI_InvalidToolInputError';
 const marker = `vercel.ai.error.${name}`;
 const symbol = Symbol.for(marker);
 
-export class InvalidToolInputError extends AITOOLKITError {
+export class InvalidToolInputError extends AISDKError {
   private readonly [symbol] = true; // used in isInstance
 
   readonly toolName: string;
@@ -28,6 +28,6 @@ export class InvalidToolInputError extends AITOOLKITError {
   }
 
   static isInstance(error: unknown): error is InvalidToolInputError {
-    return AITOOLKITError.hasMarker(error, marker);
+    return AISDKError.hasMarker(error, marker);
   }
 }

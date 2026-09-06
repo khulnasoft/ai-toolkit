@@ -1,17 +1,21 @@
-import { EmbeddingModelV3CallOptions, EmbeddingModelV3Middleware } from '@ai-toolkit/provider';
+import type {
+  EmbeddingModelV4CallOptions,
+  EmbeddingModelV4Middleware,
+} from '@ai-toolkit/provider';
+import { EXPERIMENTAL_EMBEDDING_MODEL_MAX_INPUT_BYTES_PER_CALL } from '@ai-toolkit/provider-utils';
 import { wrapEmbeddingModel } from '../middleware/wrap-embedding-model';
 import { describe, it, expect, vi } from 'vitest';
-import { MockEmbeddingModelV3 } from '../test/mock-embedding-model-v3';
+import { MockEmbeddingModelV4 } from '../test/mock-embedding-model-v4';
 
 describe('wrapEmbeddingModel', () => {
   describe('model property', () => {
     it('should pass through by default', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
       });
 
@@ -20,11 +24,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use middleware overrideModelId if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
           overrideModelId: ({ model }) => 'override-model',
         },
       });
@@ -34,11 +38,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use modelId parameter if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           modelId: 'test-model',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
         modelId: 'override-model',
       });
@@ -50,11 +54,11 @@ describe('wrapEmbeddingModel', () => {
   describe('provider property', () => {
     it('should pass through by default', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
       });
 
@@ -63,11 +67,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use middleware overrideProvider if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
           overrideProvider: ({ model }) => 'override-provider',
         },
       });
@@ -77,11 +81,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use providerId parameter if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           provider: 'test-provider',
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
         providerId: 'override-provider',
       });
@@ -95,9 +99,9 @@ describe('wrapEmbeddingModel', () => {
       const maxEmbeddingsPerCall = 2;
 
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({ maxEmbeddingsPerCall }),
+        model: new MockEmbeddingModelV4({ maxEmbeddingsPerCall }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
       });
 
@@ -106,11 +110,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use middleware overrideSupportedUrls if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           maxEmbeddingsPerCall: 2,
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
           overrideMaxEmbeddingsPerCall: ({ model }) => 3,
         },
       });
@@ -119,14 +123,32 @@ describe('wrapEmbeddingModel', () => {
     });
   });
 
+  describe('max input bytes per call capability', () => {
+    it('should pass through by default', async () => {
+      const wrappedModel = wrapEmbeddingModel({
+        model: new MockEmbeddingModelV4({ maxInputBytesPerCall: 2 }),
+        middleware: {
+          specificationVersion: 'v4',
+        },
+      });
+
+      expect(
+        await Reflect.get(
+          wrappedModel,
+          EXPERIMENTAL_EMBEDDING_MODEL_MAX_INPUT_BYTES_PER_CALL,
+        ),
+      ).toStrictEqual(2);
+    });
+  });
+
   describe('supportsParallelCalls property', () => {
     it('should pass through by default', async () => {
       const supportsParallelCalls = true;
 
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({ supportsParallelCalls }),
+        model: new MockEmbeddingModelV4({ supportsParallelCalls }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
         },
       });
 
@@ -135,11 +157,11 @@ describe('wrapEmbeddingModel', () => {
 
     it('should use middleware overrideSupportsParallelCalls if provided', () => {
       const wrappedModel = wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3({
+        model: new MockEmbeddingModelV4({
           supportsParallelCalls: false,
         }),
         middleware: {
-          specificationVersion: 'v3',
+          specificationVersion: 'v4',
           overrideSupportsParallelCalls: ({ model }) => true,
         },
       });
@@ -149,7 +171,7 @@ describe('wrapEmbeddingModel', () => {
   });
 
   it('should call transformParams middleware for doEmbed', async () => {
-    const mockModel = new MockEmbeddingModelV3({
+    const mockModel = new MockEmbeddingModelV4({
       doEmbed: [],
     });
 
@@ -161,12 +183,12 @@ describe('wrapEmbeddingModel', () => {
     const wrappedModel = wrapEmbeddingModel({
       model: mockModel,
       middleware: {
-        specificationVersion: 'v3',
+        specificationVersion: 'v4',
         transformParams,
       },
     });
 
-    const params: EmbeddingModelV3CallOptions = {
+    const params: EmbeddingModelV4CallOptions = {
       values: [
         'sunny day at the beach',
         'rainy afternoon in the city',
@@ -188,7 +210,7 @@ describe('wrapEmbeddingModel', () => {
   });
 
   it('should call wrapEmbed middleware', async () => {
-    const mockModel = new MockEmbeddingModelV3({
+    const mockModel = new MockEmbeddingModelV4({
       doEmbed: vi.fn().mockResolvedValue('mock result'),
     });
 
@@ -197,12 +219,12 @@ describe('wrapEmbeddingModel', () => {
     const wrappedModel = wrapEmbeddingModel({
       model: mockModel,
       middleware: {
-        specificationVersion: 'v3',
+        specificationVersion: 'v4',
         wrapEmbed,
       },
     });
 
-    const params: EmbeddingModelV3CallOptions = {
+    const params: EmbeddingModelV4CallOptions = {
       values: [
         'sunny day at the beach',
         'rainy afternoon in the city',
@@ -221,7 +243,7 @@ describe('wrapEmbeddingModel', () => {
 
   describe('multiple middlewares', () => {
     it('should call multiple transformParams middlewares in sequence for doEmbed', async () => {
-      const mockModel = new MockEmbeddingModelV3({
+      const mockModel = new MockEmbeddingModelV4({
         doEmbed: [],
       });
 
@@ -239,17 +261,17 @@ describe('wrapEmbeddingModel', () => {
         model: mockModel,
         middleware: [
           {
-            specificationVersion: 'v3',
+            specificationVersion: 'v4',
             transformParams: transformParams1,
           },
           {
-            specificationVersion: 'v3',
+            specificationVersion: 'v4',
             transformParams: transformParams2,
           },
         ],
       });
 
-      const params: EmbeddingModelV3CallOptions = {
+      const params: EmbeddingModelV4CallOptions = {
         values: [
           'sunny day at the beach',
           'rainy afternoon in the city',
@@ -278,35 +300,39 @@ describe('wrapEmbeddingModel', () => {
     });
 
     it('should chain multiple wrapEmbed middlewares in the correct order', async () => {
-      const mockModel = new MockEmbeddingModelV3({
+      const mockModel = new MockEmbeddingModelV4({
         doEmbed: vi.fn().mockResolvedValue('final generate result'),
       });
 
-      const wrapEmbed1 = vi.fn().mockImplementation(async ({ doEmbed, params, model }) => {
-        const result = await doEmbed();
-        return `wrapEmbed1(${result})`;
-      });
+      const wrapEmbed1 = vi
+        .fn()
+        .mockImplementation(async ({ doEmbed, params, model }) => {
+          const result = await doEmbed();
+          return `wrapEmbed1(${result})`;
+        });
 
-      const wrapEmbed2 = vi.fn().mockImplementation(async ({ doEmbed, params, model }) => {
-        const result = await doEmbed();
-        return `wrapEmbed2(${result})`;
-      });
+      const wrapEmbed2 = vi
+        .fn()
+        .mockImplementation(async ({ doEmbed, params, model }) => {
+          const result = await doEmbed();
+          return `wrapEmbed2(${result})`;
+        });
 
       const wrappedModel = wrapEmbeddingModel({
         model: mockModel,
         middleware: [
           {
-            specificationVersion: 'v3',
+            specificationVersion: 'v4',
             wrapEmbed: wrapEmbed1,
           },
           {
-            specificationVersion: 'v3',
+            specificationVersion: 'v4',
             wrapEmbed: wrapEmbed2,
           },
         ],
       });
 
-      const params: EmbeddingModelV3CallOptions = {
+      const params: EmbeddingModelV4CallOptions = {
         values: [
           'sunny day at the beach',
           'rainy afternoon in the city',
@@ -324,19 +350,22 @@ describe('wrapEmbeddingModel', () => {
 
     it('should not mutate the middleware array argument', async () => {
       const middleware1 = {
-        specificationVersion: 'v3',
+        specificationVersion: 'v4',
         wrapStream: vi.fn(),
       };
 
       const middleware2 = {
-        specificationVersion: 'v3',
+        specificationVersion: 'v4',
         wrapStream: vi.fn(),
       };
 
-      const middlewares = [middleware1, middleware2] as EmbeddingModelV3Middleware[];
+      const middlewares = [
+        middleware1,
+        middleware2,
+      ] as EmbeddingModelV4Middleware[];
 
       wrapEmbeddingModel({
-        model: new MockEmbeddingModelV3(),
+        model: new MockEmbeddingModelV4(),
         middleware: middlewares,
       });
 

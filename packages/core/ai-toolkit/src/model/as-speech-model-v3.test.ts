@@ -1,4 +1,4 @@
-import { SpeechModelV2 } from '@ai-toolkit/provider';
+import type { SpeechModelV2 } from '@ai-toolkit/provider';
 import { asSpeechModelV3 } from './as-speech-model-v3';
 import { MockSpeechModelV2 } from '../test/mock-speech-model-v2';
 import { MockSpeechModelV3 } from '../test/mock-speech-model-v3';
@@ -9,7 +9,9 @@ describe('asSpeechModelV3', () => {
   let logWarningSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    logWarningSpy = vi.spyOn(logWarningsModule, 'logWarnings');
+    logWarningSpy = vi
+      .spyOn(logWarningsModule, 'logWarnings')
+      .mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -80,7 +82,9 @@ describe('asSpeechModelV3', () => {
           {
             type: 'compatibility',
             feature: 'specificationVersion',
-            details: expect.stringContaining('Using v2 specification compatibility'),
+            details: expect.stringContaining(
+              'Using v2 specification compatibility',
+            ),
           },
         ],
         provider: 'test-provider',

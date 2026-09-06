@@ -1,12 +1,21 @@
-import { JSONValue } from '@ai-toolkit/provider';
-import { expectTypeOf } from 'vitest';
+import type { JSONValue } from '@ai-toolkit/provider';
+import { describe, expectTypeOf, it } from 'vitest';
 import { z } from 'zod/v4';
-import { AsyncIterableStream } from '../util/async-iterable-stream';
-import { FinishReason } from '../types';
+import type { AsyncIterableStream } from '../util/async-iterable-stream';
+import type { FinishReason } from '../types';
 import { streamObject } from './stream-object';
-import { describe, it } from 'vitest';
 
 describe('streamObject', () => {
+  it('should not accept timeout option', () => {
+    streamObject({
+      schema: z.object({ number: z.number() }),
+      model: undefined!,
+      prompt: 'test',
+      // @ts-expect-error timeout is not supported for the deprecated streamObject API
+      timeout: 5000,
+    });
+  });
+
   it('should have finishReason property with correct type', () => {
     const result = streamObject({
       schema: z.object({ number: z.number() }),
@@ -14,7 +23,9 @@ describe('streamObject', () => {
       prompt: 'test',
     });
 
-    expectTypeOf<typeof result.finishReason>().toEqualTypeOf<Promise<FinishReason>>();
+    expectTypeOf<typeof result.finishReason>().toEqualTypeOf<
+      Promise<FinishReason>
+    >();
   });
 
   it('should support enum types', async () => {
@@ -25,7 +36,9 @@ describe('streamObject', () => {
       prompt: 'test',
     });
 
-    expectTypeOf<typeof result.object>().toEqualTypeOf<Promise<'a' | 'b' | 'c'>>;
+    expectTypeOf<typeof result.object>().toEqualTypeOf<
+      Promise<'a' | 'b' | 'c'>
+    >;
 
     for await (const text of result.partialObjectStream) {
       expectTypeOf(text).toEqualTypeOf<string>();
@@ -39,7 +52,9 @@ describe('streamObject', () => {
       prompt: 'test',
     });
 
-    expectTypeOf<typeof result.object>().toEqualTypeOf<Promise<{ number: number }>>();
+    expectTypeOf<typeof result.object>().toEqualTypeOf<
+      Promise<{ number: number }>
+    >();
   });
 
   it('should support no-schema output mode', async () => {
@@ -64,5 +79,19 @@ describe('streamObject', () => {
       AsyncIterableStream<number[]>
     >();
     expectTypeOf<typeof result.object>().toEqualTypeOf<Promise<number[]>>();
+  });
+
+  it('should support stable start callbacks', () => {
+    streamObject({
+      schema: z.object({ number: z.number() }),
+      model: undefined!,
+      prompt: 'test',
+      onStart: event => {
+        expectTypeOf(event.operationId).toEqualTypeOf<string>();
+      },
+      onStepStart: event => {
+        expectTypeOf(event.stepNumber).toEqualTypeOf<0>();
+      },
+    });
   });
 });

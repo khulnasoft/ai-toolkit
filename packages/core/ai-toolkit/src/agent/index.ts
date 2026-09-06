@@ -3,10 +3,9 @@ export {
   type AgentCallParameters,
   type AgentStreamParameters,
 } from './agent';
-export { type ToolLoopAgentOnFinishCallback } from './tool-loop-agent-on-finish-callback';
-export { type ToolLoopAgentOnStepFinishCallback } from './tool-loop-agent-on-step-finish-callback';
 export {
   type ToolLoopAgentSettings,
+
   /**
    * @deprecated Use `ToolLoopAgentSettings` instead.
    */
@@ -14,6 +13,7 @@ export {
 } from './tool-loop-agent-settings';
 export {
   ToolLoopAgent,
+
   /**
    * @deprecated Use `ToolLoopAgent` instead.
    */

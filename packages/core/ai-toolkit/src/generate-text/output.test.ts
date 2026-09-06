@@ -1,6 +1,10 @@
 import { fail } from 'assert';
+import { TypeValidationError, type JSONSchema7 } from '@ai-toolkit/provider';
+import { jsonSchema } from '@ai-toolkit/provider-utils';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod/v4';
+import { InvalidArgumentError } from '../error/invalid-argument-error';
+import { NoObjectGeneratedError } from '../error/no-object-generated-error';
 import { verifyNoObjectGeneratedError } from '../error/verify-no-object-generated-error';
 import { array, choice, json, object, text } from './output';
 
@@ -45,7 +49,10 @@ describe('Output.text', () => {
 
   describe('parseCompleteOutput', () => {
     it('should return the text as is', async () => {
-      const result = await text1.parseCompleteOutput({ text: 'some output' }, context);
+      const result = await text1.parseCompleteOutput(
+        { text: 'some output' },
+        context,
+      );
       expect(result).toBe('some output');
     });
 
@@ -57,7 +64,10 @@ describe('Output.text', () => {
     it('should handle undefined as string "undefined"', async () => {
       // Output.text() expects a string, so passing undefined would be a type error,
       // but we cast for test purposes to ensure what happens
-      const result = await text1.parseCompleteOutput({ text: undefined as any }, context);
+      const result = await text1.parseCompleteOutput(
+        { text: undefined as any },
+        context,
+      );
       expect(result).toBeUndefined();
     });
   });
@@ -133,7 +143,10 @@ describe('Output.object', () => {
 
   describe('parseCompleteOutput', () => {
     it('should parse the output of the model', async () => {
-      const result = await object1.parseCompleteOutput({ text: `{ "content": "test" }` }, context);
+      const result = await object1.parseCompleteOutput(
+        { text: `{ "content": "test" }` },
+        context,
+      );
 
       expect(result).toStrictEqual({ content: 'test' });
     });
@@ -154,7 +167,10 @@ describe('Output.object', () => {
 
     it('should throw NoObjectGeneratedError when schema validation fails', async () => {
       try {
-        await object1.parseCompleteOutput({ text: `{ "content": 123 }` }, context);
+        await object1.parseCompleteOutput(
+          { text: `{ "content": 123 }` },
+          context,
+        );
         fail('must throw error');
       } catch (error) {
         verifyNoObjectGeneratedError(error, {
@@ -258,6 +274,26 @@ describe('Output.array', () => {
       `);
     });
 
+    it('should include minItems and maxItems in the array schema', async () => {
+      const result = await array({
+        element: z.string(),
+        minItems: 0,
+        maxItems: 3,
+      }).responseFormat;
+
+      expect(result).toMatchObject({
+        schema: {
+          properties: {
+            elements: {
+              type: 'array',
+              minItems: 0,
+              maxItems: 3,
+            },
+          },
+        },
+      });
+    });
+
     it('should include name and description when provided', async () => {
       const arrayWithNameAndDesc = array({
         element: z.object({ content: z.string() }),
@@ -298,6 +334,89 @@ describe('Output.array', () => {
         }
       `);
     });
+
+    it.each(['definitions', '$defs'] as const)(
+      'should preserve root-level %s when wrapping the element schema',
+      async keyword => {
+        const reference =
+          keyword === 'definitions' ? '#/definitions/Shared' : '#/$defs/Shared';
+        const arrayWithDefinitions = array({
+          element: jsonSchema({
+            type: 'object',
+            properties: {
+              shared: { $ref: reference },
+            },
+            required: ['shared'],
+            additionalProperties: false,
+            [keyword]: {
+              Shared: { type: 'string' },
+            },
+          } as JSONSchema7),
+        });
+
+        const result = await arrayWithDefinitions.responseFormat;
+
+        expect(result).toMatchObject({
+          schema: {
+            [keyword]: {
+              Shared: { type: 'string' },
+            },
+            properties: {
+              elements: {
+                items: {
+                  properties: {
+                    shared: { $ref: reference },
+                  },
+                },
+              },
+            },
+          },
+        });
+        const responseSchema = (
+          result as {
+            type: 'json';
+            schema: JSONSchema7;
+          }
+        ).schema;
+        const elementsSchema = responseSchema.properties
+          ?.elements as JSONSchema7;
+        const itemsSchema = elementsSchema.items as JSONSchema7;
+
+        expect(itemsSchema).not.toHaveProperty(keyword);
+      },
+    );
+  });
+
+  describe('bounds validation', () => {
+    it.each([
+      { name: 'minItems', value: -1 },
+      { name: 'minItems', value: 1.5 },
+      { name: 'maxItems', value: -1 },
+      { name: 'maxItems', value: 1.5 },
+    ] as const)('should reject invalid $name values', ({ name, value }) => {
+      expect(() =>
+        array({
+          element: z.string(),
+          [name]: value,
+        }),
+      ).toThrow(InvalidArgumentError);
+    });
+
+    it('should reject minItems greater than maxItems', () => {
+      expect(() =>
+        array({
+          element: z.string(),
+          minItems: 3,
+          maxItems: 2,
+        }),
+      ).toThrow(
+        new InvalidArgumentError({
+          parameter: 'minItems',
+          value: 3,
+          message: 'minItems must be less than or equal to maxItems',
+        }),
+      );
+    });
   });
 
   describe('parseCompleteOutput', () => {
@@ -326,7 +445,10 @@ describe('Output.array', () => {
 
     it('should throw NoObjectGeneratedError when schema validation fails', async () => {
       try {
-        await array1.parseCompleteOutput({ text: `{ "elements": [{ "content": 123 }] }` }, context);
+        await array1.parseCompleteOutput(
+          { text: `{ "elements": [{ "content": 123 }] }` },
+          context,
+        );
         fail('must throw error');
       } catch (error) {
         verifyNoObjectGeneratedError(error, {
@@ -335,6 +457,90 @@ describe('Output.array', () => {
           usage: context.usage,
           finishReason: context.finishReason,
         });
+      }
+    });
+
+    it('should return schema-validated values (with transforms applied)', async () => {
+      const arrayWithTransform = array({
+        element: z
+          .object({ content: z.string() })
+          .transform(val => ({ ...val, extra: true })),
+      });
+
+      const result = await arrayWithTransform.parseCompleteOutput(
+        { text: `{ "elements": [{ "content": "hello" }] }` },
+        context,
+      );
+
+      expect(result).toStrictEqual([{ content: 'hello', extra: true }]);
+    });
+
+    it('should return validated values for multiple elements', async () => {
+      const result = await array1.parseCompleteOutput(
+        {
+          text: `{ "elements": [{ "content": "a" }, { "content": "b" }, { "content": "c" }] }`,
+        },
+        context,
+      );
+
+      expect(result).toStrictEqual([
+        { content: 'a' },
+        { content: 'b' },
+        { content: 'c' },
+      ]);
+    });
+
+    it('should accept output within the configured bounds', async () => {
+      const boundedArray = array({
+        element: z.string(),
+        minItems: 2,
+        maxItems: 3,
+      });
+
+      await expect(
+        boundedArray.parseCompleteOutput(
+          { text: `{ "elements": ["a", "b"] }` },
+          context,
+        ),
+      ).resolves.toStrictEqual(['a', 'b']);
+    });
+
+    it.each([
+      {
+        name: 'below minItems',
+        options: { minItems: 2 },
+        text: `{ "elements": ["a"] }`,
+        cause: 'elements array must contain at least 2 items',
+      },
+      {
+        name: 'above maxItems',
+        options: { maxItems: 2 },
+        text: `{ "elements": ["a", "b", "c"] }`,
+        cause: 'elements array must contain at most 2 items',
+      },
+    ])('should reject output $name', async ({ options, text, cause }) => {
+      const boundedArray = array({
+        element: z.string(),
+        ...options,
+      });
+
+      try {
+        await boundedArray.parseCompleteOutput({ text }, context);
+        fail('must throw error');
+      } catch (error) {
+        verifyNoObjectGeneratedError(error, {
+          message: 'No object generated: response did not match schema.',
+          response: context.response,
+          usage: context.usage,
+          finishReason: context.finishReason,
+        });
+        expect(error).toBeInstanceOf(NoObjectGeneratedError);
+        const validationError = (error as NoObjectGeneratedError).cause;
+        expect(TypeValidationError.isInstance(validationError)).toBe(true);
+        if (!TypeValidationError.isInstance(validationError)) {
+          fail('cause must be a TypeValidationError');
+        }
+        expect(validationError.message).toContain(cause);
       }
     });
   });
@@ -469,18 +675,25 @@ describe('Output.choice', () => {
 
   describe('parseCompleteOutput', () => {
     it('should parse a valid choice output', async () => {
-      const result = await choice1.parseCompleteOutput({ text: `{ "result": "aaa" }` }, context);
+      const result = await choice1.parseCompleteOutput(
+        { text: `{ "result": "aaa" }` },
+        context,
+      );
       expect(result).toBe('aaa');
     });
 
     it('should throw NoObjectGeneratedError if JSON is invalid', async () => {
       await expect(
         choice1.parseCompleteOutput({ text: '{ broken json' }, context),
-      ).rejects.toThrowError('No object generated: could not parse the response.');
+      ).rejects.toThrowError(
+        'No object generated: could not parse the response.',
+      );
     });
 
     it('should throw NoObjectGeneratedError if result is missing', async () => {
-      await expect(choice1.parseCompleteOutput({ text: `{}` }, context)).rejects.toThrowError(
+      await expect(
+        choice1.parseCompleteOutput({ text: `{}` }, context),
+      ).rejects.toThrowError(
         'No object generated: response did not match schema.',
       );
     });
@@ -488,17 +701,23 @@ describe('Output.choice', () => {
     it('should throw NoObjectGeneratedError if result value is not a valid choice', async () => {
       await expect(
         choice1.parseCompleteOutput({ text: `{ "result": "d" }` }, context),
-      ).rejects.toThrowError('No object generated: response did not match schema.');
+      ).rejects.toThrowError(
+        'No object generated: response did not match schema.',
+      );
     });
 
     it('should throw NoObjectGeneratedError if result is not a string', async () => {
       await expect(
         choice1.parseCompleteOutput({ text: `{ "result": 5 }` }, context),
-      ).rejects.toThrowError('No object generated: response did not match schema.');
+      ).rejects.toThrowError(
+        'No object generated: response did not match schema.',
+      );
     });
 
     it('should throw NoObjectGeneratedError if top-level is not an object', async () => {
-      await expect(choice1.parseCompleteOutput({ text: `"a"` }, context)).rejects.toThrowError(
+      await expect(
+        choice1.parseCompleteOutput({ text: `"a"` }, context),
+      ).rejects.toThrowError(
         'No object generated: response did not match schema.',
       );
     });
@@ -615,20 +834,23 @@ describe('Output.json', () => {
 
   describe('parseCompleteOutput', () => {
     it('should parse valid JSON', async () => {
-      const result = await json1.parseCompleteOutput({ text: `{"a": 1, "b": [2,3]}` }, context);
+      const result = await json1.parseCompleteOutput(
+        { text: `{"a": 1, "b": [2,3]}` },
+        context,
+      );
       expect(result).toEqual({ a: 1, b: [2, 3] });
     });
 
     it('should throw if JSON is invalid', async () => {
-      await expect(() => json1.parseCompleteOutput({ text: `{ a: 1 }` }, context)).rejects.toThrow(
-        'No object generated: could not parse the response.',
-      );
+      await expect(() =>
+        json1.parseCompleteOutput({ text: `{ a: 1 }` }, context),
+      ).rejects.toThrow('No object generated: could not parse the response.');
     });
 
     it('should throw if JSON is just text', async () => {
-      await expect(() => json1.parseCompleteOutput({ text: `foo` }, context)).rejects.toThrow(
-        'No object generated: could not parse the response.',
-      );
+      await expect(() =>
+        json1.parseCompleteOutput({ text: `foo` }, context),
+      ).rejects.toThrow('No object generated: could not parse the response.');
     });
   });
 
@@ -644,7 +866,9 @@ describe('Output.json', () => {
       // simulate incomplete/repaired but still valid
       const result = await json1.parsePartialOutput({ text: `{ "foo": 123` });
       // Since parsePartialJson may not be able to repair this, just check it's undefined or a value
-      expect([undefined, { partial: expect.anything() }]).toContainEqual(result);
+      expect([undefined, { partial: expect.anything() }]).toContainEqual(
+        result,
+      );
     });
 
     it('should return undefined for invalid partial', async () => {
