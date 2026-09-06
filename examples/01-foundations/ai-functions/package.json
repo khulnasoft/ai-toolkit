@@ -9,6 +9,7 @@
     "@ai-toolkit/assemblyai": "workspace:*",
     "@ai-toolkit/azure": "workspace:*",
     "@ai-toolkit/baseten": "workspace:*",
+    "@ai-toolkit/bytedance": "workspace:*",
     "@ai-toolkit/cerebras": "workspace:*",
     "@ai-toolkit/cohere": "workspace:*",
     "@ai-toolkit/deepgram": "workspace:*",

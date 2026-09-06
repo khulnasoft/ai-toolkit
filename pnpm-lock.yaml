@@ -134,6 +134,9 @@ importers:
       '@ai-toolkit/black-forest-labs':
         specifier: workspace:*
         version: link:../../../packages/providers/black-forest-labs
+      '@ai-toolkit/bytedance':
+        specifier: workspace:*
+        version: link:../../../packages/providers/bytedance
       '@ai-toolkit/cerebras':
         specifier: workspace:*
         version: link:../../../packages/providers/cerebras
@@ -2301,6 +2304,34 @@ importers:
         version: 3.25.76
 
   packages/providers/black-forest-labs:
+    dependencies:
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.11)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/bytedance:
     dependencies:
       '@ai-toolkit/provider':
         specifier: workspace:*

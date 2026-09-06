@@ -28,6 +28,9 @@
       "path": "packages/providers/baseten"
     },
     {
+      "path": "packages/providers/bytedance"
+    },
+    {
       "path": "packages/providers/black-forest-labs"
     },
     {
