@@ -66,12 +66,21 @@ export function DataTable<T>({
   return (
     <div className="overflow-hidden rounded-xl border border-alpha-border bg-surface-100">
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
+        <table className="w-full min-w-[640px] text-left text-sm">
           <thead>
             <tr className="border-b border-alpha-border bg-surface-200/60">
               {columns.map(column => (
                 <th
                   key={column.id}
+                  aria-sort={
+                    column.sortValue
+                      ? sort?.id === column.id
+                        ? sort.dir === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : 'none'
+                      : undefined
+                  }
                   className={cn(
                     'px-4 py-2.5 font-mono text-[10px] font-medium uppercase tracking-widest text-muted-foreground',
                     column.headerClassName,
