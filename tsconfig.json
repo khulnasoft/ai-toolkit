@@ -148,6 +148,9 @@
       "path": "packages/ui/elements"
     },
     {
+      "path": "packages/ui/shadcn-ui"
+    },
+    {
       "path": "packages/langchain"
     },
     {
