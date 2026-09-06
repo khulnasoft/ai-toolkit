@@ -30,7 +30,7 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 | `packages/mcp`                        | Model Context Protocol implementation (`@ai-toolkit/mcp`)                                    |
 | `packages/validation/valibot`         | Valibot schema adapter (`@ai-toolkit/valibot`)                                               |
 | `packages/infrastructure/test-server` | Internal test utilities (not published)                                                      |
-| `packages/codemod`                    | ⛔ Removed — moved to `packages/special/codemod` (see ARCHITECTURE_REDESIGN.md §11) |
+| `packages/codemod`                    | ⛔ Removed — moved to `packages/special/codemod` (see `architecture/domain-mapping.md`) |
 | `examples/`                           | Example applications in `01-foundations` … `04-tools` (indexed by `registry.json`)           |
 | `content/`                            | Documentation source files (MDX), consumed by `apps/docs`                                    |
 | `contributing/`                       | Contributor guides and documentation                                                         |
@@ -230,9 +230,10 @@ The SDK uses a layered provider architecture following the adapter pattern:
 ### Adding New Packages
 
 1. Create folder under `packages/<domain>/<name>` (e.g., `packages/providers/my-provider`;
-   see ARCHITECTURE_REDESIGN.md §2–3 for the domain layout; move legacy flat
-   packages with `node tools/scripts/migrate-package.mjs <name> --dry-run` first —
-   remaining flat paths are `packages/langchain` and `packages/llamaindex`)
+   see `architecture/domain-mapping.md` for the domain layout; if a flat
+   `packages/<name>` path ever reappears, move it first with
+   `node tools/scripts/migrate-package.mjs <name> --dry-run` — published
+   names must not change)
 2. Add to root `tsconfig.json` references
 3. Run `pnpm update-references` if adding dependencies between packages
 

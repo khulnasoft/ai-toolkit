@@ -364,7 +364,7 @@ cat CODEOWNERS
 
 | File                        | Purpose                                 |
 | --------------------------- | --------------------------------------- |
-| `ARCHITECTURE_REDESIGN.md`  | Full architecture document              |
+| `AGENTS.md` + `architecture/`   | Architecture overview + domain docs     |
 | `CONTRIBUTOR_ONBOARDING.md` | New contributor guide                   |
 | `MIGRATION_PLAN.md`         | Migration implementation guide          |
 | `CODEOWNERS`                | Package ownership & review requirements |
@@ -455,7 +455,7 @@ pnpm build -- --verbose
 - **Found a bug?** GitHub Issues
 - **Need help?** CONTRIBUTOR_ONBOARDING.md
 - **Want to contribute?** See CONTRIBUTING.md
-- **Architecture?** Read ARCHITECTURE_REDESIGN.md
+- **Architecture?** Read AGENTS.md + `architecture/` docs
 - **Decisions?** Check ADR/ directory
 
 ---

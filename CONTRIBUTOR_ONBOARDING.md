@@ -520,7 +520,7 @@ pnpm build -- --verbose
 
 **For guidance:**
 
-- ARCHITECTURE_REDESIGN.md — Understand the overall structure
+- `AGENTS.md` + `architecture/PROJECT-STRUCTURE.md` — Understand the overall structure
 - CONTRIBUTING.md — Contribution guidelines
 - Code comments — Existing implementations
 - Examples — How to use APIs
@@ -536,7 +536,7 @@ pnpm build -- --verbose
 ## Next Steps
 
 1. **Run `pnpm health-check`** — Verify everything works
-2. **Look at `ARCHITECTURE_REDESIGN.md`** — Understand the structure
+2. **Look at `AGENTS.md` and `architecture/`** — Understand the structure
 3. **Find an issue** — Search `good-first-issue` label
 4. **Make your first contribution** — Start small
 5. **Join the community** — Discord, discussions, etc.
@@ -545,7 +545,7 @@ pnpm build -- --verbose
 
 ## Additional Resources
 
-- **Architecture**: `ARCHITECTURE_REDESIGN.md`
+- **Architecture**: `AGENTS.md` + `architecture/` docs
 - **Contributing**: `CONTRIBUTING.md`
 - **Decisions**: `ADR/` directory
 - **Examples**: `examples/` directory
