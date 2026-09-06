@@ -30,14 +30,14 @@ AI TOOLKIT provides a unified TypeScript API for integrating AI models into mode
 
 ### Core principles
 
+</div>
+
 * **Type-safe** — Designed for TypeScript-first development.
 * **Provider-agnostic** — Use multiple AI providers behind a consistent API.
 * **Streaming-first** — Build responsive AI experiences with streaming generation.
 * **Framework-friendly** — Integrate with React, Next.js, Svelte, Vue, Solid.js, and Node.js.
 * **Extensible** — Add providers, tools, middleware, and application-specific abstractions.
 * **Production-oriented** — Structured error handling, observability hooks, and predictable APIs.
-
-</div>
 
 ---
 
