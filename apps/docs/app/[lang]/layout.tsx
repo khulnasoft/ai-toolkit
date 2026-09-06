@@ -1,14 +1,14 @@
 import '../global.css';
-import '@/lib/geistdocs/site-url-warning';
-import { Footer } from '@vercel/geistdocs/footer';
-import { Navbar } from '@vercel/geistdocs/navbar';
+import '@/lib/ai-docs/site-url-warning';
+import { Footer } from '@ai-toolkit/ai-docs/footer';
+import { Navbar } from '@ai-toolkit/ai-docs/navbar';
 import type { Metadata } from 'next';
-import { GeistdocsProvider } from '@/components/geistdocs/provider';
-import { config } from '@/lib/geistdocs/config';
-import { mono, sans } from '@/lib/geistdocs/fonts';
-import { i18n } from '@/lib/geistdocs/i18n';
-import { getRootLang } from '@/lib/geistdocs/root-params';
-import { isSiteUrlConfigured, siteUrl } from '@/lib/geistdocs/site-url';
+import { AiDocsProvider } from '@/components/ai-docs/provider';
+import { config } from '@/lib/ai-docs/config';
+import { mono, sans } from '@/lib/ai-docs/fonts';
+import { i18n } from '@/lib/ai-docs/i18n';
+import { getRootLang } from '@/lib/ai-docs/root-params';
+import { isSiteUrlConfigured, siteUrl } from '@/lib/ai-docs/site-url';
 import { cn } from '@/lib/utils';
 
 export const generateStaticParams = () =>
@@ -28,11 +28,11 @@ const Layout = async ({ children }: LayoutProps<'/[lang]'>) => {
       suppressHydrationWarning
     >
       <body>
-        <GeistdocsProvider basePath={config.basePath} lang={lang}>
+        <AiDocsProvider basePath={config.basePath} lang={lang}>
           <Navbar config={config} />
           {children}
           <Footer />
-        </GeistdocsProvider>
+        </AiDocsProvider>
       </body>
     </html>
   );

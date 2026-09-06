@@ -1,21 +1,7 @@
-import { MobileDocsBar } from '@vercel/geistdocs/mobile-docs-bar';
-import { createDocsPage } from '@vercel/geistdocs/pages/docs';
-import { getMDXComponents } from '@/components/geistdocs/mdx-components';
-import { config } from '@/lib/geistdocs/config';
-import { cookbookSource } from '@/lib/geistdocs/source';
+import { createFamilyDocsPage } from '@/lib/ai-docs/docs-page';
+import { cookbookSource } from '@/lib/ai-docs/source';
 
-const cookbookPage = createDocsPage({
-  config,
-  mdx: ({ link }) => getMDXComponents({ a: link }),
-  openGraph: {
-    images: true,
-  },
-  source: cookbookSource,
-  tableOfContentPopover: {
-    enabled: false,
-  },
-  renderTop: ({ data }) => <MobileDocsBar toc={data.toc} />,
-});
+const cookbookPage = createFamilyDocsPage(cookbookSource);
 
 export default cookbookPage.Page;
 export const generateStaticParams = cookbookPage.generateStaticParams;

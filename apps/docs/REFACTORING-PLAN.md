@@ -1,5 +1,13 @@
 # apps/docs UI Refactoring Plan — Geistdocs design, layout, and components
 
+> Supersede note: this plan originally recommended Track A (consume the
+> published `@vercel/geistdocs` package). The project has since moved to
+> Track B — the runtime is vendored as `@ai-toolkit/ai-docs` in
+> `packages/special/ai-docs` (byte-identical to upstream 1.26.1 plus the
+> ai-docs rebrand; see that package's README for the sync policy). The design,
+> layout, and adapter guidance below still applies; read `@vercel/geistdocs`
+> below as `@ai-toolkit/ai-docs` and `Geistdocs*` symbols as `AiDocs*`.
+
 Source reference: `@vercel/geistdocs@1.26.1` (Apache-2.0,
 `github.com/vercel/geistdocs`, package `packages/geistdocs`). This is the
 package-backed Fumadocs runtime that powers `ai-sdk.dev`, the Vercel docs
@@ -70,9 +78,9 @@ next.config.ts                           createGeistdocs(...)
 - **Radius**: xs 2 / sm 4 / md 6 / lg 8 / xl 12 / 2xl 16 — controls use
   `rounded-md` (6px), cards/panels `rounded-lg`/`xl`, docs container radius
   `--radius: 0.625rem`.
-- **Shadows**: `--ds-shadow-2xs…2xl` plus *border-composed* tokens
+- **Shadows**: `--ds-shadow-2xs…2xl` plus _border-composed_ tokens
   `--ds-shadow-border(-small/medium/large)`, `tooltip`, `menu`, `modal`,
-  `fullscreen`; utility **material-*** surfaces = `box-shadow` (hairline border
+  `fullscreen`; utility **material-\*** surfaces = `box-shadow` (hairline border
   `rgba(0,0,0,.08)` / dark `rgba(255,255,255,.145)`) + `bg-background-100` +
   radius. Focus ring = `0 0 0 2px background-100, 0 0 0 4px blue-900/700`.
 - **Breakpoints**: sm 401 / md 601 / lg 961 / xl 1200 / 2xl 1400 px; sidebar
@@ -95,7 +103,7 @@ copy button, tabs via `CodeBlockTabs`).
 ### Layout anatomy
 
 - **Navbar** (`dist/navbar` + `internal/navbar/navbar-shell`): `sticky top-0
-  z-40 h-16 bg-background-200`, container `max-w-[1448px]`, bottom divider is a
+z-40 h-16 bg-background-200`, container `max-w-[1448px]`, bottom divider is a
   scroll-triggered `shadow-[0_1px_0_0_var(--ds-gray-alpha-400)]` (borderless on
   home routes until scroll, hidden while menus open). Left: logo (`ml-4`) +
   `navbarVariant: "oss"|"standard"` desktop menu; right: Search button
@@ -104,7 +112,7 @@ copy button, tabs via `CodeBlockTabs`).
   tooltips.
 - **Sidebar** (`dist/sidebar`): `w-[300px]`, `pt-14`, sticky under the navbar
   (`--fd-docs-row-1: 4rem`), scroll-fade mask, hidden scrollbar. **Two modes**:
-  - `"sections"` — two-pane flyover: root pane = docs *sections* (Docs /
+  - `"sections"` — two-pane flyover: root pane = docs _sections_ (Docs /
     Providers / Cookbook), clicking one slides to that section's tree with a
     Back header (the ai-sdk.dev pattern).
   - `"tree"` — single tree.
@@ -126,6 +134,7 @@ copy button, tabs via `CodeBlockTabs`).
 ### MDX components
 
 `createMdxComponents(components)` composes:
+
 - `fumadocs-ui/mdx` defaults (incl. `Tabs`/`Tab`, `Callout`/`Note`),
 - `pre → CodeBlock`, `a` → localized link (Geist style, `text-gray-1000 no-underline`),
 - `Callout(Container/Title/Description)`, `CodeBlockTabs(…|List|Trigger|Tab)`,
@@ -185,10 +194,10 @@ AI SDK v6 (`ai` ^6, `@ai-sdk/react` ^3). It pins Transformed deps exactly.
 
 ## 4. Gap analysis
 
-| Geistdocs (package)                              | apps/docs today                        |
-| ------------------------------------------------ | -------------------------------------- |
+| Geistdocs (package)                               | apps/docs today                         |
+| ------------------------------------------------- | --------------------------------------- |
 | Next 16 + React 19 + Tailwind v4 stack            | no renderer (repo baseline Next 15/TW3) |
-| `@vercel/geistdocs` runtime (Apache-2.0)          | renamed to `source-config`, unresolved |
+| `@vercel/geistdocs` runtime (Apache-2.0)          | renamed to `source-config`, unresolved  |
 | Navbar h-16 `bg-background-200` + Ask AI + search | absent                                  |
 | 300px sections/tree sidebar + mobile Sheet        | absent                                  |
 | Docs layout `max-w-[1448px] bg-background-200`    | absent                                  |
@@ -230,6 +239,7 @@ token layer (phase 6) is worth doing locally.
 ## 6. Phased plan (Track A)
 
 ### Phase 0 — Dependency & scaffolding
+
 - `apps/docs/package.json`: add `@vercel/geistdocs@1.26.1` (exact),
   `next@^16.3.3`, `react@^19.2`, `react-dom@^19.2`, `tailwindcss@^4.1`,
   `@tailwindcss/postcss`, `fumadocs-core/ui/mdx` (peer-pinned by the package),
@@ -244,9 +254,10 @@ token layer (phase 6) is worth doing locally.
 - `pnpm install`, update root tsconfig.json refs if `apps/*` are aggregated.
 
 ### Phase 1 — Design tokens & base styles
+
 - `app/styles/geistdocs.css`: `@import "tailwindcss";`
   `@import "fumadocs-ui/css/shadcn.css"; @import "fumadocs-ui/css/preset.css";
-  @import "tw-animate-css"; @import "@vercel/geistdocs/theme.css";`
+@import "tw-animate-css"; @import "@vercel/geistdocs/theme.css";`
   (do NOT re-`@source` the package — `theme.css` already does).
 - `app/global.css` imports geistdocs.css; keep **both light and dark** via
   `next-themes` `ThemeProvider` (package is theme-aware; `www` is dark-only,
@@ -255,16 +266,17 @@ token layer (phase 6) is worth doing locally.
   (`template/lib/geistdocs/fonts.ts`).
 
 ### Phase 2 — Site config & content wiring
+
 - `geistdocs.tsx`: `title = "AI TOOLKIT Documentation"`; `logo` (AI TOOLKIT
   wordmark, `text-gray-1000 text-lg font-semibold tracking-[-3%]`-style);
   `github = { owner: "xeondesk", repo: "ai-toolkit", branch: "main",
-  editPath: "apps/docs/content/{path}" }`; `nav = [Docs, Cookbook, Providers]
-  + GitHub`; Ask AI `prompt` + `suggestions`; `siteId = "ai-toolkit-docs"`;
-  `siteUrl` from env.
+editPath: "apps/docs/content/{path}" }`; `nav = [Docs, Cookbook, Providers]
+  - GitHub`; Ask AI `prompt`+`suggestions`; `siteId = "ai-toolkit-docs"`;
+`siteUrl` from env.
 - `lib/geistdocs/config.tsx`: `defineConfig({ content: [
-  { id: "docs", label: "Docs", dir: "content/docs", route: "/docs" },
-  { id: "providers", label: "Providers", dir: "content/providers", route: "/providers" },
-  { id: "cookbook", label: "Cookbook", dir: "content/cookbook", route: "/cookbook" } ] })`
+{ id: "docs", label: "Docs", dir: "content/docs", route: "/docs" },
+{ id: "providers", label: "Providers", dir: "content/providers", route: "/providers" },
+{ id: "cookbook", label: "Cookbook", dir: "content/cookbook", route: "/cookbook" } ] })`
   → powers the **sections-mode** sidebar switcher and markdown inference.
 - `lib/geistdocs/source.ts`: `createSource` for the three collections.
 - **Sidebar metadata**: add `meta.json` per content folder (`pages` arrays,
@@ -272,6 +284,7 @@ token layer (phase 6) is worth doing locally.
   upstream ai-sdk.dev ordering and labels; drop reliance on numeric prefixes.
 
 ### Phase 3 — Layout shell
+
 - `app/[lang]/layout.tsx`: `Navbar` + `Footer` inside `GeistdocsProvider`;
   h-16 chrome, `max-w-[1448px]` container, scroll divider, Search/Ask AI/GitHub
   action cluster (all package-provided).
@@ -282,6 +295,7 @@ token layer (phase 6) is worth doing locally.
   `@vercel/speed-insights/next`, `ThemeProvider` (docs supports light+dark).
 
 ### Phase 4 — Docs page, actions, AI-readable routes
+
 - `app/[lang]/docs/[[...slug]]/page.tsx`: `createDocsPage` (TOC, OG,
   `renderTop` → `MobileDocsBar`).
 - `proxy.ts`: `createProxy` with markdownRoutes for `/docs`, `/providers`,
@@ -292,6 +306,7 @@ token layer (phase 6) is worth doing locally.
   unless upstream parity is required.
 
 ### Phase 5 — Content components (`components/geistdocs/mdx-components.tsx`)
+
 `createMdxComponents({ ... })` registering the app-owned components the
 content actually uses (fence-safe scan): `Note(Tabs,Tab,Callout)`,
 `Snippet` (512 usages), `Check`/`Cross` (457/323), `GithubLink`, `Browser`,
@@ -303,6 +318,7 @@ not package exports). Confirm no other tag (e.g. `MyUIMessage`) leaks from code
 fences.
 
 ### Phase 6 — Parquet with www/studio (optional)
+
 - Promote the Geist token layer (step 1 tokens) into a shared
   `packages/design` (or vendor `theme.css` into www/studio) so the three apps
   stop drifting. Do **not** retro-apply the full layout to www/studio —
@@ -352,6 +368,7 @@ apps/docs/
 ## 9. Verification
 
 From `apps/docs`:
+
 1. `pnpm install` then `pnpm exec fumadocs dev` (or `pnpm dev`) — collections
    build from `source.config.ts`.
 2. `pnpm type-check` — Next 16 + `@vercel/geistdocs` types resolve.

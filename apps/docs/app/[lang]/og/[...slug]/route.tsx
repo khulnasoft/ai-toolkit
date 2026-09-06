@@ -7,7 +7,7 @@ import {
   getPageImage,
   providersSource,
   source,
-} from '@/lib/geistdocs/source';
+} from '@/lib/ai-docs/source';
 
 // Every source bundle whose pages get generated social cards.
 const bundles = [source, providersSource.source, cookbookSource.source];

@@ -1,6 +1,6 @@
-import { createChatRoute } from '@vercel/geistdocs/routes/chat';
-import { config } from '@/lib/geistdocs/config';
-import { sources } from '@/lib/geistdocs/source';
+import { createChatRoute } from '@ai-toolkit/ai-docs/routes/chat';
+import { config } from '@/lib/ai-docs/config';
+import { sources } from '@/lib/ai-docs/source';
 
 const chatProxyUrl = process.env.GEISTDOCS_CHAT_PROXY_URL;
 const chatProxyToken = process.env.GEISTDOCS_CHAT_PROXY_TOKEN;

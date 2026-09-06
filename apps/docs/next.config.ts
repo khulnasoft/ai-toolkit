@@ -1,12 +1,43 @@
-import { createGeistdocs } from '@vercel/geistdocs/next';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { createAiDocs } from '@ai-toolkit/ai-docs/next';
 import type { NextConfig } from 'next';
 import { exampleRedirects } from './lib/example-redirects';
 
-const withGeistdocs = createGeistdocs();
+const withAiDocs = createAiDocs();
+
+// Native template behavior: in this monorepo, compile @ai-toolkit/ai-docs from
+// its workspace source so edits to the package hot-reload in dev (no
+// rebuild/restart). Published installs have no workspace source, so this is
+// skipped and the prebuilt dist is used as-is.
+const inMonorepo = existsSync(
+  join(process.cwd(), '../../packages/aiDocs/src'),
+);
+
+// Distinct favicon per environment; production keeps the default (no-op).
+const ENV_FAVICONS = {
+  development: '/favicon.development.ico',
+  preview: '/favicon.preview.ico',
+} as const;
+
+const environment = process.env.VERCEL_ENV ?? process.env.NODE_ENV;
+const envFavicon = ENV_FAVICONS[environment as keyof typeof ENV_FAVICONS];
 
 const config: NextConfig = {
+  ...(inMonorepo ? { transpilePackages: ['@ai-toolkit/ai-docs'] } : {}),
   cacheComponents: true,
   partialPrefetching: true,
+  rewrites: () => {
+    if (!envFavicon) {
+      return Promise.resolve([]);
+    }
+
+    return Promise.resolve({
+      beforeFiles: [{ source: '/favicon.ico', destination: envFavicon }],
+      afterFiles: [],
+      fallback: [],
+    });
+  },
   redirects: () => [
     {
       source: '/docs',
@@ -54,4 +85,4 @@ const config: NextConfig = {
   ],
 };
 
-export default withGeistdocs(config);
+export default withAiDocs(config);
