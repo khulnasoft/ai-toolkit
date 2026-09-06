@@ -45,7 +45,13 @@ export function Donut({
     <div
       className={cn('flex flex-col items-center gap-5 sm:flex-row', className)}
     >
-      <svg viewBox="0 0 42 42" className="size-36 shrink-0 -rotate-90">
+      <svg
+        viewBox="0 0 42 42"
+        className="size-36 shrink-0 -rotate-90"
+        role="img"
+        aria-label={`Distribution chart, ${total} total`}
+      >
+        <title>{`Distribution chart, ${total} total`}</title>
         <circle
           cx="21"
           cy="21"

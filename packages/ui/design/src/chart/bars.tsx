@@ -13,6 +13,19 @@ export function Bars({
   data: BarDatum[];
   className?: string;
 }) {
+  if (data.length === 0) {
+    return (
+      <p
+        className={cn(
+          'py-8 text-center text-sm text-muted-foreground',
+          className,
+        )}
+      >
+        No data yet.
+      </p>
+    );
+  }
+
   const max = Math.max(...data.map(datum => datum.value), 1);
 
   return (

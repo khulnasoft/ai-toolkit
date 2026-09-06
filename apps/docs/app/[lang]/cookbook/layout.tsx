@@ -1,0 +1,17 @@
+import { DocsLayout } from '@/components/geistdocs/docs-layout';
+import { getRootLang } from '@/lib/geistdocs/root-params';
+import { cookbookSource } from '@/lib/geistdocs/source';
+
+const Layout = async ({ children }: LayoutProps<'/[lang]/cookbook'>) => {
+  const lang = await getRootLang();
+
+  return (
+    <div className="bg-background-200">
+      <DocsLayout tree={cookbookSource.source.pageTree[lang]}>
+        {children}
+      </DocsLayout>
+    </div>
+  );
+};
+
+export default Layout;
