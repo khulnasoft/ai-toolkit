@@ -44,26 +44,38 @@ const generators = {
     fs.mkdirSync(path.join(targetDir, 'src'), { recursive: true });
     fs.mkdirSync(path.join(targetDir, 'tests'), { recursive: true });
 
-    fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify({
-      name: `@ai-toolkit/${name}`,
-      version: '0.0.1',
-      private: false,
-      type: 'module',
-      scripts: {
-        build: 'tsup',
-        test: 'vitest',
-        'type-check': 'tsc --noEmit',
-      },
-      peerDependencies: {
-        '@ai-toolkit/provider': 'workspace:*',
-      },
-    }, null, 2) + '\n');
+    fs.writeFileSync(
+      path.join(targetDir, 'package.json'),
+      JSON.stringify(
+        {
+          name: `@ai-toolkit/${name}`,
+          version: '0.0.1',
+          private: false,
+          type: 'module',
+          scripts: {
+            build: 'tsup',
+            test: 'vitest',
+            'type-check': 'tsc --noEmit',
+          },
+          peerDependencies: {
+            '@ai-toolkit/provider': 'workspace:*',
+          },
+        },
+        null,
+        2,
+      ) + '\n',
+    );
 
-    fs.writeFileSync(path.join(targetDir, 'src', 'index.ts'), `// ${name} provider
+    fs.writeFileSync(
+      path.join(targetDir, 'src', 'index.ts'),
+      `// ${name} provider
 // TODO: Implement createLanguageModel() and other exports
-`);
+`,
+    );
 
-    fs.writeFileSync(path.join(targetDir, 'README.md'), `# @ai-toolkit/${name}
+    fs.writeFileSync(
+      path.join(targetDir, 'README.md'),
+      `# @ai-toolkit/${name}
 
 ${name} provider for the AI TOOLKIT.
 
@@ -78,7 +90,8 @@ pnpm add @ai-toolkit/${name}
 \`\`\`typescript
 import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolkit/${name}';
 \`\`\`
-`);
+`,
+    );
 
     console.log(`✅ Created provider at packages/providers/${name}`);
   },
@@ -92,24 +105,34 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
     fs.mkdirSync(path.join(targetDir, 'src'), { recursive: true });
     fs.mkdirSync(path.join(targetDir, 'tests'), { recursive: true });
 
-    fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify({
-      name: `@ai-toolkit/${name}`,
-      version: '0.0.1',
-      private: false,
-      type: 'module',
-      scripts: {
-        build: 'tsup',
-        test: 'vitest',
-        'type-check': 'tsc --noEmit',
-      },
-      peerDependencies: {
-        '@ai-toolkit/core': 'workspace:*',
-      },
-    }, null, 2) + '\n');
+    fs.writeFileSync(
+      path.join(targetDir, 'package.json'),
+      JSON.stringify(
+        {
+          name: `@ai-toolkit/${name}`,
+          version: '0.0.1',
+          private: false,
+          type: 'module',
+          scripts: {
+            build: 'tsup',
+            test: 'vitest',
+            'type-check': 'tsc --noEmit',
+          },
+          peerDependencies: {
+            '@ai-toolkit/core': 'workspace:*',
+          },
+        },
+        null,
+        2,
+      ) + '\n',
+    );
 
-    fs.writeFileSync(path.join(targetDir, 'src', 'index.ts'), `// ${name} adapter
+    fs.writeFileSync(
+      path.join(targetDir, 'src', 'index.ts'),
+      `// ${name} adapter
 // TODO: Implement framework-specific wrappers
-`);
+`,
+    );
 
     console.log(`✅ Created adapter at packages/adapters/${name}`);
   },
@@ -117,6 +140,7 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
   example() {
     const levelArg = args.find(a => a.startsWith('--level='));
     const level = levelArg ? levelArg.split('=')[1] : '01-foundations';
+    const categoryOrder = parseInt(level.split('-')[0], 10) || 1;
 
     const targetDir = path.join(ROOT, 'examples', level, name);
     if (fs.existsSync(targetDir)) {
@@ -125,16 +149,30 @@ import { create${name.charAt(0).toUpperCase() + name.slice(1)} } from '@ai-toolk
     }
     fs.mkdirSync(targetDir, { recursive: true });
 
-    fs.writeFileSync(path.join(targetDir, 'example.json'), JSON.stringify({
-      name,
-      description: '',
-      level,
-      createdAt: new Date().toISOString(),
-    }, null, 2) + '\n');
+    fs.writeFileSync(
+      path.join(targetDir, 'example.json'),
+      JSON.stringify(
+        {
+          name,
+          title: name,
+          category: level,
+          categoryOrder,
+          framework: '',
+          primaryProvider: null,
+          description: '',
+          tags: [],
+        },
+        null,
+        2,
+      ) + '\n',
+    );
 
-    fs.writeFileSync(path.join(targetDir, 'index.ts'), `// ${name} example
+    fs.writeFileSync(
+      path.join(targetDir, 'index.ts'),
+      `// ${name} example
 // TODO: Implement example
-`);
+`,
+    );
 
     console.log(`✅ Created example at examples/${level}/${name}`);
   },

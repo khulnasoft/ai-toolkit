@@ -16,23 +16,30 @@ This is a **monorepo** using pnpm workspaces and Turborepo.
 
 ### Key Directories
 
-| Directory                 | Description                                                                          |
-| ------------------------- | ------------------------------------------------------------------------------------ |
-| `packages/ai`             | Main SDK package (`ai` on npm)                                                       |
-| `packages/provider`       | Provider interface specifications (`@ai-toolkit/provider`)                           |
-| `packages/provider-utils` | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)               |
-| `packages/<provider>`     | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.) |
-| `packages/<framework>`    | UI framework integrations (react, vue, svelte, angular, rsc)                         |
-| `packages/codemod`        | Automated migrations for major releases                                              |
-| `examples/`               | Example applications (ai-functions, next-openai, etc.)                               |
-| `content/`                | Documentation source files (MDX)                                                     |
-| `contributing/`           | Contributor guides and documentation                                                 |
-| `tools/`                  | Internal tooling (eslint-config, tsconfig)                                           |
+| Directory                             | Description                                                                                  |
+| ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `packages/core/ai`                    | Main SDK package (`@ai-toolkit/ai` on npm, formerly `ai`)                                   |
+| `packages/validation/provider`        | Provider interface specifications (`@ai-toolkit/provider`)                                   |
+| `packages/core/provider-utils`        | Shared utilities for providers and core (`@ai-toolkit/provider-utils`)                       |
+| `packages/core/runtime`               | Browser-safe runtime contracts (`@ai-toolkit/runtime`; no Node builtins)                     |
+| `packages/validation/capabilities`    | Model capability declarations (`@ai-toolkit/capabilities`)                                   |
+| `packages/providers/<provider>`       | AI provider implementations (openai, anthropic, google, azure, amazon-bedrock, etc.)         |
+| `packages/adapters/<framework>` | UI framework integrations (react, vue, svelte, angular, rsc)                                 |
+| `packages/ui/elements` | React chat components (Conversation, Message, PromptInput) |
+| `packages/special/<package>` | Special-purpose packages (gateway, khulnasoft, codemod, devtools)            |
+| `packages/mcp`                        | Model Context Protocol implementation (`@ai-toolkit/mcp`)                                    |
+| `packages/validation/valibot`         | Valibot schema adapter (`@ai-toolkit/valibot`)                                               |
+| `packages/infrastructure/test-server` | Internal test utilities (not published)                                                      |
+| `packages/codemod`                    | ⛔ Removed — moved to `packages/special/codemod` (see ARCHITECTURE_REDESIGN.md §11) |
+| `examples/`                           | Example applications in `01-foundations` … `04-tools` (indexed by `registry.json`)           |
+| `content/`                            | Documentation source files (MDX), consumed by `apps/docs`                                    |
+| `contributing/`                       | Contributor guides and documentation                                                         |
+| `tools/`                              | Internal tooling (`scripts/`, `eslint-config`, `tsconfig`, …)                                |
 
 ### Core Package Dependencies
 
 ```
-ai ─────────────────┬──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
+@ai-toolkit/ai ─────┬──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
                     │
 @ai-toolkit/<provider> ─┴──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
 ```
@@ -69,7 +76,7 @@ pnpm build          # Build all packages
 
 ### Package-Level Commands
 
-Run these from within a package directory (e.g., `packages/ai`):
+Run these from within a package directory (e.g., `packages/core/ai`):
 
 | Command            | Description                 |
 | ------------------ | --------------------------- |
@@ -91,23 +98,23 @@ pnpm tsx src/stream-text/openai.ts    # Run a specific example
 
 | Function                   | Purpose                    | Package |
 | -------------------------- | -------------------------- | ------- |
-| `generateText`             | Generate text completion   | `ai`    |
-| `streamText`               | Stream text completion     | `ai`    |
-| `generateObject`           | Generate structured output | `ai`    |
-| `streamObject`             | Stream structured output   | `ai`    |
-| `embed` / `embedMany`      | Generate embeddings        | `ai`    |
-| `generateImage`            | Generate images            | `ai`    |
-| `tool`                     | Define a tool              | `ai`    |
-| `jsonSchema` / `zodSchema` | Define schemas             | `ai`    |
+| `generateText`             | Generate text completion   | `@ai-toolkit/ai`    |
+| `streamText`               | Stream text completion     | `@ai-toolkit/ai`    |
+| `generateObject`           | Generate structured output | `@ai-toolkit/ai`    |
+| `streamObject`             | Stream structured output   | `@ai-toolkit/ai`    |
+| `embed` / `embedMany`      | Generate embeddings        | `@ai-toolkit/ai`    |
+| `generateImage`            | Generate images            | `@ai-toolkit/ai`    |
+| `tool`                     | Define a tool              | `@ai-toolkit/ai`    |
+| `jsonSchema` / `zodSchema` | Define schemas             | `@ai-toolkit/ai`    |
 
 ## Import Patterns
 
 | What                                          | Import From                                           |
 | --------------------------------------------- | ----------------------------------------------------- |
-| Core functions (`generateText`, `streamText`) | `ai`                                                  |
-| Tool/schema utilities (`tool`, `jsonSchema`)  | `ai`                                                  |
+| Core functions (`generateText`, `streamText`) | `@ai-toolkit/ai`                                                  |
+| Tool/schema utilities (`tool`, `jsonSchema`)  | `@ai-toolkit/ai`                                                  |
 | Provider implementations                      | `@ai-toolkit/<provider>` (e.g., `@ai-toolkit/openai`) |
-| Error classes                                 | `ai` (re-exports from `@ai-toolkit/provider`)         |
+| Error classes                                 | `@ai-toolkit/ai` (re-exports from `@ai-toolkit/provider`)         |
 | Provider type interfaces (`LanguageModelV3`)  | `@ai-toolkit/provider`                                |
 | Provider implementation utilities             | `@ai-toolkit/provider-utils`                          |
 
@@ -145,6 +152,24 @@ import * as z4 from 'zod/v4';
 
 Never use `JSON.parse` directly in production code to prevent security risks.
 Instead use `parseJSON` or `safeParseJSON` from `@ai-toolkit/provider-utils`.
+
+### Package Export-Condition Conventions (ADR-006)
+
+- Every public package `exports` map must declare `types`, `import`, `require`, and `default` conditions on the `.` entry.
+- Declare `browser` (and `worker`/`edge` where supported) conditions as aliases of the runtime-neutral build, or omit them when the package is Node-only.
+- Runtime-neutral packages (`core`, `validation`) must not reference Node-only entry points under any condition.
+- Reference example: `packages/core/runtime/package.json`.
+
+### Runtime-Neutral Node Import Rule (ADR-004, ADR-008)
+
+- Packages in the `core` and `validation` domains must not import Node builtins (`node:*` or bare like `fs`, `os`) in source, and must not depend on Node builtin packages.
+- Enforcement: `pnpm validate-structure` scans both `dependencies` and source `import` statements for `core`/`validation` packages.
+- `@ai-toolkit/runtime` is the canonical browser-safe contract module; `createRuntimeContext` provides capability detection rather than assuming Node globals.
+
+### Package Governance Metadata (ADR-007)
+
+- Every package declares `stability` (`stable` | `beta` | `alpha` | `internal`) and `owners` (team handles) in `package.json`.
+- Missing metadata is a `validate-structure` warning during migration and an error at the end of the migration.
 
 ### File Naming Conventions
 
@@ -186,7 +211,7 @@ The SDK uses a layered provider architecture following the adapter pattern:
 1. **Specifications** (`@ai-toolkit/provider`): Defines interfaces like `LanguageModelV3`
 2. **Utilities** (`@ai-toolkit/provider-utils`): Shared code for implementing providers
 3. **Providers** (`@ai-toolkit/<provider>`): Concrete implementations for each AI service
-4. **Core** (`ai`): High-level functions like `generateText`, `streamText`, `generateObject`
+4. **Core** (`@ai-toolkit/ai`): High-level functions like `generateText`, `streamText`, `generateObject`
 
 ### Provider Development
 
@@ -203,7 +228,10 @@ The SDK uses a layered provider architecture following the adapter pattern:
 
 ### Adding New Packages
 
-1. Create folder under `packages/<name>`
+1. Create folder under `packages/<domain>/<name>` (e.g., `packages/providers/my-provider`;
+   see ARCHITECTURE_REDESIGN.md §2–3 for the domain layout; move legacy flat
+   packages with `node tools/scripts/migrate-package.mjs <name> --dry-run` first —
+   remaining flat paths are `packages/langchain` and `packages/llamaindex`)
 2. Add to root `tsconfig.json` references
 3. Run `pnpm update-references` if adding dependencies between packages
 

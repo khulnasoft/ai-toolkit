@@ -16,7 +16,7 @@ In our previous example we've been streaming react components from the server to
 import { useState } from 'react';
 import { ClientMessage } from './actions';
 import { useActions, useUIState } from '@ai-toolkit/rsc';
-import { generateId } from 'ai';
+import { generateId } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -76,7 +76,7 @@ import { getMutableAIState, streamUI } from '@ai-toolkit/rsc';
 import { openai } from '@ai-toolkit/openai';
 import { ReactNode } from 'react';
 import { z } from 'zod';
-import { generateId } from 'ai';
+import { generateId } from 'ai-toolkit';
 
 export interface ServerMessage {
   role: 'user' | 'assistant';

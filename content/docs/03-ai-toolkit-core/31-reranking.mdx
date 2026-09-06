@@ -15,7 +15,7 @@ The AI TOOLKIT provides the [`rerank`](/docs/reference/ai-toolkit-core/rerank) f
 You can use it with reranking models, e.g. `cohere.reranking('rerank-v3.5')` or `bedrock.reranking('cohere.rerank-v3-5:0')`.
 
 ```tsx
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 import { cohere } from '@ai-toolkit/cohere';
 
 const documents = [
@@ -43,7 +43,7 @@ console.log(ranking);
 Reranking also supports structured documents (JSON objects), making it ideal for searching through databases, emails, or other structured content:
 
 ```tsx
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 import { cohere } from '@ai-toolkit/cohere';
 
 const documents = [
@@ -76,7 +76,7 @@ The `rerank` function returns a comprehensive result object:
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking, rerankedDocuments, originalDocuments } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -103,7 +103,7 @@ Use `topN` to limit the number of results returned. This is useful for retrievin
 
 ```ts highlight={"7"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -119,7 +119,7 @@ Reranking model settings can be configured using `providerOptions` for provider-
 
 ```ts highlight={"8-12"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -141,7 +141,7 @@ It defaults to `2` retries (3 attempts in total). You can set it to `0` to disab
 
 ```ts highlight={"7"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -159,7 +159,7 @@ that you can use to abort the reranking process or set a timeout.
 
 ```ts highlight={"7"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -176,7 +176,7 @@ that you can use to add custom headers to the reranking request.
 
 ```ts highlight={"7"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -192,7 +192,7 @@ The `rerank` function returns response information that includes the raw provide
 
 ```ts highlight={"4,10"}
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking, response } = await rerank({
   model: cohere.reranking('rerank-v3.5'),

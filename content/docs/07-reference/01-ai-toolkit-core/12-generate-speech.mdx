@@ -10,7 +10,7 @@ description: API Reference for generateSpeech.
 Generates speech audio from text.
 
 ```ts
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
@@ -27,7 +27,7 @@ console.log(audio);
 ### OpenAI
 
 ```ts
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 const { audio } = await generateSpeech({
@@ -40,7 +40,7 @@ const { audio } = await generateSpeech({
 ### ElevenLabs
 
 ```ts
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+import { experimental_generateSpeech as generateSpeech } from 'ai-toolkit';
 import { elevenlabs } from '@ai-toolkit/elevenlabs';
 
 const { audio } = await generateSpeech({
@@ -53,7 +53,7 @@ const { audio } = await generateSpeech({
 ## Import
 
 <Snippet
-  text={`import { experimental_generateSpeech as generateSpeech } from "ai"`}
+  text={`import { experimental_generateSpeech as generateSpeech } from "ai-toolkit"`}
   prompt={false}
 />
 

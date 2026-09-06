@@ -17,6 +17,14 @@
     "paths": { "@/*": ["./*"] },
     "noEmit": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../content/tools-registry/registry.ts",
+    "../../content/gateways-registry/registry.ts",
+    "../../examples/registry.json"
+  ],
   "exclude": ["node_modules"]
 }

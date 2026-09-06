@@ -15,7 +15,7 @@ You can use the `onFinish` callback to record token usage.
 It is called when the stream is finished.
 
 ```ts file='index.ts' highlight={"15-17"}
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = streamObject({
@@ -39,7 +39,7 @@ const result = streamObject({
 The [`streamObject`](/docs/reference/ai-toolkit-core/stream-object) result contains a `usage` promise that resolves to the total token usage.
 
 ```ts file='index.ts' highlight={"29,32"}
-import { streamObject, LanguageModelUsage } from 'ai';
+import { streamObject, LanguageModelUsage } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = streamObject({

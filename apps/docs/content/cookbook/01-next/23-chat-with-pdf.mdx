@@ -22,7 +22,7 @@ Some language models like Anthropic's Claude Sonnet 3.5 and Google's Gemini 2.0 
 Create a route handler that will use Anthropic's Claude model to process messages and PDFs:
 
 ```tsx filename="app/api/chat/route.ts"
-import { convertToModelMessages, streamText, type UIMessage } from 'ai';
+import { convertToModelMessages, streamText, type UIMessage } from 'ai-toolkit';
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
@@ -44,7 +44,7 @@ Create a chat interface that allows uploading PDFs alongside messages:
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { useRef, useState } from 'react';
 
 async function convertFilesToDataURLs(

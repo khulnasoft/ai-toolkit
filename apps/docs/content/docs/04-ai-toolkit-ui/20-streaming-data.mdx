@@ -23,7 +23,7 @@ The data is streamed as part of the response stream using Server-Sent Events.
 First, define your custom message type with data part schemas for type safety:
 
 ```tsx filename="ai/types.ts"
-import { UIMessage } from 'ai';
+import { UIMessage } from 'ai-toolkit';
 
 // Define your custom message type with data part schemas
 export type MyUIMessage = UIMessage<
@@ -53,7 +53,7 @@ import {
   createUIMessageStreamResponse,
   streamText,
   convertToModelMessages,
-} from 'ai';
+} from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import type { MyUIMessage } from '@/ai/types';
 

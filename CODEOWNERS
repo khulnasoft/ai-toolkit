@@ -4,10 +4,10 @@
 # ===== CORE LAYER =====
 packages/core/ @khulnasoft/ai-toolkit-core
 packages/core/ai/ @khulnasoft/ai-toolkit-core
+packages/core/runtime/ @khulnasoft/ai-toolkit-core
 
 # ===== PROVIDER LAYER =====
 packages/providers/ @khulnasoft/ai-toolkit-providers
-packages/providers/_shared/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-providers
 
 # Vercel-maintained providers
 packages/providers/openai/ @khulnasoft/ai-openai
@@ -16,7 +16,6 @@ packages/providers/google/ @khulnasoft/ai-google
 packages/providers/google-vertex/ @khulnasoft/ai-google
 packages/providers/amazon-bedrock/ @khulnasoft/ai-aws
 packages/providers/azure/ @khulnasoft/ai-azure
-packages/providers/khulnasoft/ @khulnasoft/ai-khulnasoft
 
 # Community providers
 packages/providers/groq/ @groq-team @khulnasoft/ai-toolkit-providers
@@ -32,12 +31,18 @@ packages/adapters/angular/ @angular-community @khulnasoft/ai-toolkit-adapters
 packages/adapters/svelte/ @svelte-community @khulnasoft/ai-toolkit-adapters
 packages/adapters/vue/ @vue-community @khulnasoft/ai-toolkit-adapters
 
+# ===== UI LAYER =====
+packages/ui/ @khulnasoft/ai-react-team
+
 # ===== MCP LAYER =====
 packages/mcp/ @khulnasoft/ai-mcp
 
 # ===== SPECIAL & INFRASTRUCTURE =====
 packages/special/ @khulnasoft/ai-toolkit-core
+packages/special/codemod/ @khulnasoft/developer-tools-team
+packages/special/devtools/ @khulnasoft/developer-tools-team
 packages/validation/ @khulnasoft/ai-toolkit-core
+packages/validation/capabilities/ @khulnasoft/ai-toolkit-core
 packages/infrastructure/ @khulnasoft/ai-toolkit-infrastructure
 
 # ===== EXAMPLES =====
@@ -45,12 +50,13 @@ examples/ @khulnasoft/ai-toolkit-developers
 examples/01-foundations/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
 examples/02-framework-integration/ @khulnasoft/ai-toolkit-adapters @khulnasoft/ai-toolkit-developers
 examples/03-integrations/ @khulnasoft/ai-toolkit-providers @khulnasoft/ai-toolkit-developers
-examples/04-advanced-patterns/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
-examples/05-production-apps/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
+examples/04-tools/ @khulnasoft/ai-toolkit-core @khulnasoft/ai-toolkit-developers
 
 # ===== DOCUMENTATION =====
 apps/docs/ @khulnasoft/documentation-team
 apps/www/ @khulnasoft/marketing-team
+apps/ @khulnasoft/ai-toolkit-maintainers
+architecture/ @khulnasoft/ai-toolkit-maintainers
 
 # ===== CONFIGURATION & CI/CD =====
 .github/ @khulnasoft/devops-team
@@ -67,14 +73,3 @@ CODEOWNERS @khulnasoft/ai-toolkit-maintainers
 ARCHITECTURE.md @khulnasoft/ai-toolkit-maintainers
 CONTRIBUTING.md @khulnasoft/ai-toolkit-maintainers
 ADR/ @khulnasoft/ai-toolkit-maintainers
-
-# ===== LEGACY FLAT STRUCTURE (during migration) =====
-packages/ai/ @khulnasoft/ai-toolkit-core
-packages/provider/ @khulnasoft/ai-toolkit-core
-packages/provider-utils/ @khulnasoft/ai-toolkit-core
-packages/codemod/ @khulnasoft/developer-tools-team
-packages/devtools/ @khulnasoft/developer-tools-team
-packages/test-server/ @khulnasoft/ai-toolkit-infrastructure
-packages/gateway/ @khulnasoft/ai-toolkit-core
-packages/valibot/ @khulnasoft/ai-toolkit-core
-packages/mcp/ @khulnasoft/ai-mcp

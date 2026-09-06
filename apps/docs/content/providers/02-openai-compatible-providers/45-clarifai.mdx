@@ -60,7 +60,7 @@ You can use Clarifai language models to generate text with the `generateText` fu
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const clarifai = createOpenAICompatible({
   name: 'clarifai',
@@ -88,7 +88,7 @@ You can also stream text responses from Clarifai models using the `streamText` f
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const clarifai = createOpenAICompatible({
   name: 'clarifai',

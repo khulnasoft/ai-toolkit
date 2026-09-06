@@ -97,7 +97,7 @@ const model = provider.languageModel();
 
 ```javascript
 import { createACPProvider } from '@mcpc-tech/acp-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const provider = createACPProvider({
   command: 'gemini',
@@ -120,7 +120,7 @@ console.log(text);
 
 ```javascript
 import { createACPProvider } from '@mcpc-tech/acp-ai-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const provider = createACPProvider({
   command: 'claude-code-acp',
@@ -146,7 +146,7 @@ Tools are provided to ACP agents through MCP (Model Context Protocol) servers, n
 
 ```javascript
 import { createACPProvider } from '@mcpc-tech/acp-ai-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const provider = createACPProvider({
   command: 'gemini',

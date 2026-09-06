@@ -1,106 +1,157 @@
 {
   "references": [
     {
-      "path": "packages/core"
+      "path": "packages/core/ai"
     },
     {
-      "path": "packages/providers"
+      "path": "packages/core/ai-toolkit"
     },
     {
-      "path": "packages/adapters"
+      "path": "packages/core/provider-utils"
     },
     {
-      "path": "packages/special"
+      "path": "packages/core/runtime"
     },
     {
-      "path": "packages/validation"
+      "path": "packages/providers/amazon-bedrock"
     },
     {
-      "path": "packages/infrastructure"
+      "path": "packages/providers/anthropic"
     },
     {
-      "path": "packages/ai"
+      "path": "packages/providers/assemblyai"
     },
     {
-      "path": "packages/mcp"
+      "path": "packages/providers/azure"
     },
     {
-      "path": "packages/alibaba"
+      "path": "packages/providers/baseten"
     },
     {
-      "path": "packages/amazon-bedrock"
+      "path": "packages/providers/bytedance"
     },
     {
-      "path": "packages/angular"
+      "path": "packages/providers/black-forest-labs"
     },
     {
-      "path": "packages/anthropic"
+      "path": "packages/providers/cerebras"
     },
     {
-      "path": "packages/assemblyai"
+      "path": "packages/providers/cohere"
     },
     {
-      "path": "packages/azure"
+      "path": "packages/providers/deepgram"
     },
     {
-      "path": "packages/black-forest-labs"
+      "path": "packages/providers/deepinfra"
     },
     {
-      "path": "packages/baseten"
+      "path": "packages/providers/deepseek"
     },
     {
-      "path": "packages/bytedance"
+      "path": "packages/providers/elevenlabs"
     },
     {
-      "path": "packages/cerebras"
+      "path": "packages/providers/fal"
     },
     {
-      "path": "packages/codemod"
+      "path": "packages/providers/fireworks"
     },
     {
-      "path": "packages/cohere"
+      "path": "packages/providers/gladia"
     },
     {
-      "path": "packages/deepgram"
+      "path": "packages/providers/google-vertex"
     },
     {
-      "path": "packages/deepinfra"
+      "path": "packages/providers/google"
     },
     {
-      "path": "packages/deepseek"
+      "path": "packages/providers/groq"
     },
     {
-      "path": "packages/elevenlabs"
+      "path": "packages/providers/huggingface"
     },
     {
-      "path": "packages/fal"
+      "path": "packages/providers/hume"
     },
     {
-      "path": "packages/fireworks"
+      "path": "packages/providers/lmnt"
     },
     {
-      "path": "packages/gateway"
+      "path": "packages/providers/luma"
     },
     {
-      "path": "packages/gladia"
+      "path": "packages/providers/mistral"
     },
     {
-      "path": "packages/google"
+      "path": "packages/providers/openai-compatible"
     },
     {
-      "path": "packages/google-vertex"
+      "path": "packages/providers/openai"
     },
     {
-      "path": "packages/groq"
+      "path": "packages/providers/perplexity"
     },
     {
-      "path": "packages/huggingface"
+      "path": "packages/providers/prodia"
     },
     {
-      "path": "packages/hume"
+      "path": "packages/providers/replicate"
     },
     {
-      "path": "packages/klingai"
+      "path": "packages/providers/revai"
+    },
+    {
+      "path": "packages/providers/togetherai"
+    },
+    {
+      "path": "packages/providers/xai"
+    },
+    {
+      "path": "packages/adapters/angular"
+    },
+    {
+      "path": "packages/adapters/react"
+    },
+    {
+      "path": "packages/adapters/rsc"
+    },
+    {
+      "path": "packages/adapters/svelte"
+    },
+    {
+      "path": "packages/adapters/vue"
+    },
+    {
+      "path": "packages/special/gateway"
+    },
+    {
+      "path": "packages/special/khulnasoft"
+    },
+    {
+      "path": "packages/validation/capabilities"
+    },
+    {
+      "path": "packages/validation/provider"
+    },
+    {
+      "path": "packages/validation/valibot"
+    },
+    {
+      "path": "packages/infrastructure/test-server"
+    },
+    {
+      "path": "packages/special/codemod"
+    },
+    {
+      "path": "packages/special/devtools"
+    },
+    {
+      "path": "packages/ui/elements"
+    },
+    {
+      "path": "packages/ui/shadcn-ui"
     },
     {
       "path": "packages/langchain"
@@ -109,68 +160,72 @@
       "path": "packages/llamaindex"
     },
     {
-      "path": "packages/lmnt"
+      "path": "packages/mcp"
     },
     {
-      "path": "packages/luma"
+      "path": "examples/01-foundations/ai-functions"
     },
     {
-      "path": "packages/mistral"
+      "path": "examples/01-foundations/express"
     },
     {
-      "path": "packages/moonshotai"
+      "path": "examples/01-foundations/fastify"
     },
     {
-      "path": "packages/openai"
+      "path": "examples/01-foundations/hono"
     },
     {
-      "path": "packages/openai-compatible"
+      "path": "examples/01-foundations/node-http-server"
     },
     {
-      "path": "packages/open-responses"
+      "path": "examples/02-framework-integration/angular"
     },
     {
-      "path": "packages/perplexity"
+      "path": "examples/02-framework-integration/nest"
     },
     {
-      "path": "packages/provider"
+      "path": "examples/02-framework-integration/next-agent"
     },
     {
-      "path": "packages/provider-utils"
+      "path": "examples/02-framework-integration/next-fastapi"
     },
     {
-      "path": "packages/react"
+      "path": "examples/02-framework-integration/next-langchain"
     },
     {
-      "path": "packages/replicate"
+      "path": "examples/02-framework-integration/next-openai-pages"
     },
     {
-      "path": "packages/revai"
+      "path": "examples/02-framework-integration/next-openai"
     },
     {
-      "path": "packages/rsc"
+      "path": "examples/02-framework-integration/next"
     },
     {
-      "path": "packages/svelte"
+      "path": "examples/02-framework-integration/nuxt-openai"
     },
     {
-      "path": "packages/test-server"
+      "path": "examples/03-integrations/mcp"
     },
     {
-      "path": "packages/togetherai"
+      "path": "examples/03-integrations/next-google-vertex"
     },
     {
-      "path": "packages/valibot"
+      "path": "examples/03-integrations/next-openai-kasada-bot-protection"
     },
     {
-      "path": "packages/khulnasoft"
+      "path": "examples/03-integrations/next-openai-telemetry-sentry"
     },
     {
-      "path": "packages/vue"
+      "path": "examples/03-integrations/next-openai-telemetry"
     },
     {
-      "path": "packages/xai"
+      "path": "examples/03-integrations/next-openai-upstash-rate-limits"
+    },
+    {
+      "path": "examples/04-tools/playground"
     }
   ],
-  "include": []
+  "include": [],
+  "compilerOptions": {}
 }

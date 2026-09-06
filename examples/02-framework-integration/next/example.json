@@ -1,0 +1,10 @@
+{
+  "name": "next",
+  "title": "Next.js Minimal",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": null,
+  "description": "A minimal Next.js example to test persistence, SSR, and stream resume.",
+  "tags": ["nextjs", "ssr", "persistence", "streaming"]
+}

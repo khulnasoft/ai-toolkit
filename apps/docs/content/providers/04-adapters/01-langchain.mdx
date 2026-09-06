@@ -48,7 +48,7 @@ Here is a basic example that uses both the AI TOOLKIT and LangChain together wit
 ```tsx filename="app/api/chat/route.ts"
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 
 export const maxDuration = 30;
 
@@ -117,7 +117,7 @@ export default function Chat() {
 Create agents with tools using LangChain's [`createAgent`](https://docs.langchain.com/oss/javascript/langchain/agents):
 
 ```tsx filename="app/api/agent/route.ts"
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 import { createAgent } from 'langchain';
 import { ChatOpenAI, tools } from '@langchain/openai';
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
@@ -166,7 +166,7 @@ Use the adapter with [LangGraph](https://docs.langchain.com/oss/javascript/langg
 ```tsx filename="app/api/langgraph/route.ts"
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 import { StateGraph, MessagesAnnotation } from '@langchain/langgraph';
 
 export const maxDuration = 30;
@@ -214,7 +214,7 @@ LangChain's [`streamEvents()`](https://docs.langchain.com/oss/javascript/langcha
 ```tsx filename="app/api/stream-events/route.ts"
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
 import { ChatOpenAI } from '@langchain/openai';
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 
 export const maxDuration = 30;
 
@@ -255,7 +255,7 @@ export async function POST(req: Request) {
 LangChain tools can emit custom data events using `config.writer()`. The adapter converts these to typed `data-{type}` parts that can be rendered in the UI or handled via the `onData` callback:
 
 ```tsx filename="app/api/custom-data/route.ts"
-import { createUIMessageStreamResponse, UIMessage } from 'ai';
+import { createUIMessageStreamResponse, UIMessage } from 'ai-toolkit';
 import { createAgent, tool, type ToolRuntime } from 'langchain';
 import { ChatOpenAI } from '@langchain/openai';
 import { toBaseMessages, toUIMessageStream } from '@ai-toolkit/langchain';
@@ -476,7 +476,7 @@ Converts a LangChain/LangGraph stream to an AI TOOLKIT `UIMessageStream`. Automa
 
 ```ts
 import { toUIMessageStream } from '@ai-toolkit/langchain';
-import { createUIMessageStreamResponse } from 'ai';
+import { createUIMessageStreamResponse } from 'ai-toolkit';
 
 // Works with direct model streams
 const modelStream = await model.stream(messages);

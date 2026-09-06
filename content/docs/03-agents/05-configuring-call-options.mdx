@@ -31,7 +31,7 @@ Define call options in three steps:
 Add user context to your agent's prompt at runtime:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -75,7 +75,7 @@ Use `prepareCall` to modify any agent setting. Return only the settings you want
 Choose models based on request characteristics:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -110,7 +110,7 @@ Configure tools based on runtime context:
 
 ```ts
 import { openai } from '@ai-toolkit/openai';
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -154,7 +154,7 @@ Configure provider settings dynamically:
 
 ```ts
 import { openai, OpenAIProviderOptions } from '@ai-toolkit/openai';
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 import { z } from 'zod';
 
 const agent = new ToolLoopAgent({
@@ -185,7 +185,7 @@ await agent.generate({
 Fetch relevant context and inject it into your prompt:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -220,7 +220,7 @@ The `prepareCall` function can be async, enabling you to fetch data before confi
 Modify multiple settings together:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -263,7 +263,7 @@ await agent.generate({
 Pass call options through API routes to your agent:
 
 ```ts filename="app/api/chat/route.ts"
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 import { myAgent } from '@/ai/agents/my-agent';
 
 export async function POST(request: Request) {

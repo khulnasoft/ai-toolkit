@@ -15,7 +15,7 @@ The `dynamicTool` function creates tools where the input and output types are no
 Unlike the regular `tool` function, `dynamicTool` accepts and returns `unknown` types, allowing you to work with tools that have runtime-determined schemas.
 
 ```ts highlight={"1,4,9,10,11"}
-import { dynamicTool } from 'ai';
+import { dynamicTool } from 'ai-toolkit';
 import { z } from 'zod';
 
 export const customTool = dynamicTool({
@@ -35,7 +35,7 @@ export const customTool = dynamicTool({
 
 ## Import
 
-<Snippet text={`import { dynamicTool } from "ai"`} prompt={false} />
+<Snippet text={`import { dynamicTool } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 

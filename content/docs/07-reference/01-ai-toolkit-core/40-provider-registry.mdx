@@ -18,7 +18,7 @@ You can create a registry with multiple providers and models using `createProvid
 ```ts
 import { anthropic } from '@ai-toolkit/anthropic';
 import { createOpenAI } from '@ai-toolkit/openai';
-import { createProviderRegistry } from 'ai';
+import { createProviderRegistry } from 'ai-toolkit';
 
 export const registry = createProviderRegistry({
   // register provider with prefix and default setup:
@@ -54,7 +54,7 @@ You can access language models by using the `languageModel` method on the regist
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { text } = await generateText({
@@ -69,7 +69,7 @@ You can access text embedding models by using the `.embeddingModel` method on th
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { embedding } = await embed({
@@ -84,7 +84,7 @@ You can access image models by using the `imageModel` method on the registry.
 The provider id will become the prefix of the model id: `providerId:modelId`.
 
 ```ts highlight={"5"}
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import { registry } from './registry';
 
 const { image } = await generateImage({
@@ -95,7 +95,7 @@ const { image } = await generateImage({
 
 ## Import
 
-<Snippet text={`import { createProviderRegistry } from "ai"`} prompt={false} />
+<Snippet text={`import { createProviderRegistry } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 

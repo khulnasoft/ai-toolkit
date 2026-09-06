@@ -77,7 +77,7 @@ export default function Page() {
 On the server, we use [`streamText`](/docs/reference/ai-toolkit-core/stream-text) with [`Output.object()`](/docs/reference/ai-toolkit-core/output#output-object) to stream the object generation process.
 
 ```typescript filename='app/api/notifications/route.ts'
-import { streamText, Output } from 'ai';
+import { streamText, Output } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { notificationSchema } from './schema';
 
@@ -139,7 +139,7 @@ export default function ClassifyPage() {
 On the server, use `streamText` with `Output.choice()` to stream the classification result:
 
 ```typescript filename='app/api/classify/route.ts'
-import { streamText, Output } from 'ai';
+import { streamText, Output } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {

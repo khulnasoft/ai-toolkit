@@ -51,7 +51,7 @@ Use the `resume` option in the `useChat` hook to enable stream resumption. When 
 'use client';
 
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport, type UIMessage } from 'ai';
+import { DefaultChatTransport, type UIMessage } from 'ai-toolkit';
 
 export function Chat({
   chatData,
@@ -102,7 +102,7 @@ import {
   generateId,
   streamText,
   type UIMessage,
-} from 'ai';
+} from 'ai-toolkit';
 import { after } from 'next/server';
 import { createResumableStreamContext } from 'resumable-stream';
 
@@ -160,7 +160,7 @@ Create a GET handler at `/api/chat/[id]/stream` that:
 
 ```ts filename="app/api/chat/[id]/stream/route.ts"
 import { readChat } from '@util/chat-store';
-import { UI_MESSAGE_STREAM_HEADERS } from 'ai';
+import { UI_MESSAGE_STREAM_HEADERS } from 'ai-toolkit';
 import { after } from 'next/server';
 import { createResumableStreamContext } from 'resumable-stream';
 
@@ -215,7 +215,7 @@ By default, the `useChat` hook makes a GET request to `/api/chat/[id]/stream` wh
 
 ```tsx filename="app/chat/[chatId]/chat.tsx"
 import { useChat } from '@ai-toolkit/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 
 export function Chat({ chatData, resume }) {
   const { messages, sendMessage } = useChat({

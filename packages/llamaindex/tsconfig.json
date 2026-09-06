@@ -9,7 +9,7 @@
   "exclude": ["dist", "build", "node_modules", "tsup.config.ts"],
   "references": [
     {
-      "path": "../ai"
+      "path": "../core/ai"
     }
   ]
 }

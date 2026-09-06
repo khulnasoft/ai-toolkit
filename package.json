@@ -2,7 +2,7 @@
   "private": true,
   "name": "ai-monorepo",
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --concurrency 1",
     "build:examples": "turbo --filter \"./examples/**\" build",
     "build:packages": "turbo --filter \"./packages/**\" build",
     "build:core": "turbo build:core",
@@ -35,6 +35,8 @@
     "ci:version": "changeset version && node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
     "clean-examples": "node .github/scripts/cleanup-examples-changesets.mjs && pnpm install --no-frozen-lockfile",
     "health-check": "node tools/scripts/health-check.mjs",
+    "inventory": "node tools/scripts/inventory.mjs",
+    "baseline": "node tools/scripts/baseline.mjs",
     "generate": "node tools/scripts/generate.mjs",
     "validate-structure": "node tools/scripts/validate-structure.mjs",
     "find-package": "node tools/scripts/find-package.mjs"

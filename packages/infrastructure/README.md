@@ -2,4 +2,4 @@
 
 Testing utilities, shared test infrastructure, and developer tooling.
 
-**Owner**: @vercel/ai-sdk-infrastructure
+**Owner**: @khulnasoft/ai-toolkit-infrastructure

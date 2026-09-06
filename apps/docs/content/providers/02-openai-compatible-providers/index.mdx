@@ -104,7 +104,7 @@ You can use provider language models to generate text with the `generateText` fu
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const provider = createOpenAICompatible({
   name: 'providerName',
@@ -122,7 +122,7 @@ const { text } = await generateText({
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 type ExampleChatModelIds =
   | 'meta-llama/Llama-3-70b-chat-hf'
@@ -197,7 +197,7 @@ const model = provider.imageModel('model-id');
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const provider = createOpenAICompatible({
   name: 'providerName',
@@ -220,7 +220,7 @@ The OpenAI Compatible provider supports image editing through the `/images/edits
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import fs from 'fs';
 
 const provider = createOpenAICompatible({
@@ -246,7 +246,7 @@ Edit specific parts of an image using a mask:
 
 ```ts
 import { createOpenAICompatible } from '@ai-toolkit/openai-compatible';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 import fs from 'fs';
 
 const provider = createOpenAICompatible({

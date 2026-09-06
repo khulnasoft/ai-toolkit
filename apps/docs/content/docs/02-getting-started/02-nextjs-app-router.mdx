@@ -92,7 +92,7 @@ Replace `xxxxxxxxx` with your actual Vercel AI Gateway API key.
 Create a route handler, `app/api/chat/route.ts` and add the following code:
 
 ```tsx filename="app/api/chat/route.ts"
-import { streamText, UIMessage, convertToModelMessages } from 'ai';
+import { streamText, UIMessage, convertToModelMessages } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {
@@ -129,8 +129,8 @@ model: __MODEL__;
 You can also explicitly import and use the gateway provider in two other equivalent ways:
 
 ```ts
-// Option 1: Import from 'ai' package (included by default)
-import { gateway } from 'ai';
+// Option 1: Import from 'ai-toolkit' package (included by default)
+import { gateway } from 'ai-toolkit';
 model: gateway('anthropic/claude-sonnet-4.5');
 
 // Option 2: Install and import from '@ai-toolkit/gateway' package
@@ -258,7 +258,7 @@ Let's enhance your chatbot by adding a simple weather tool.
 Modify your `app/api/chat/route.ts` file to include the new weather tool:
 
 ```tsx filename="app/api/chat/route.ts" highlight="2,13-27"
-import { streamText, UIMessage, convertToModelMessages, tool } from 'ai';
+import { streamText, UIMessage, convertToModelMessages, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -383,7 +383,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -435,7 +435,7 @@ import {
   convertToModelMessages,
   tool,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 

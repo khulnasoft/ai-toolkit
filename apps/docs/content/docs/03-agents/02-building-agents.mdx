@@ -23,7 +23,7 @@ The ToolLoopAgent class provides a single place to define your agent's behavior.
 Define an agent by instantiating the ToolLoopAgent class with your desired configuration:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const myAgent = new ToolLoopAgent({
@@ -42,7 +42,7 @@ The Agent class accepts all the same settings as `generateText` and `streamText`
 ### Model and System Instructions
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -56,7 +56,7 @@ const agent = new ToolLoopAgent({
 Provide tools that the agent can use to accomplish tasks:
 
 ```ts
-import { ToolLoopAgent, tool } from 'ai';
+import { ToolLoopAgent, tool } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -84,7 +84,7 @@ By default, agents run for 20 steps (`stopWhen: stepCountIs(20)`). In each step,
 To let agents call multiple tools in sequence, configure `stopWhen` to allow more steps. After each tool execution, the agent triggers a new generation where the model can call another tool or generate text:
 
 ```ts
-import { ToolLoopAgent, stepCountIs } from 'ai';
+import { ToolLoopAgent, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -103,7 +103,7 @@ Each step represents one generation (which results in either text or a tool call
 You can combine multiple conditions:
 
 ```ts
-import { ToolLoopAgent, stepCountIs } from 'ai';
+import { ToolLoopAgent, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -122,7 +122,7 @@ Learn more about [loop control and stop conditions](/docs/agents/loop-control).
 Control how the agent uses tools:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -139,7 +139,7 @@ const agent = new ToolLoopAgent({
 You can also force the use of a specific tool:
 
 ```ts
-import { ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -160,7 +160,7 @@ const agent = new ToolLoopAgent({
 Define structured output schemas:
 
 ```ts
-import { ToolLoopAgent, Output, stepCountIs } from 'ai';
+import { ToolLoopAgent, Output, stepCountIs } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 import { z } from 'zod';
 
@@ -317,7 +317,7 @@ Use `createAgentUIStreamResponse()` to create API responses for client applicati
 
 ```ts
 // In your API route (e.g., app/api/chat/route.ts)
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 
 export async function POST(request: Request) {
   const { messages } = await request.json();
@@ -334,7 +334,7 @@ export async function POST(request: Request) {
 You can infer types for your agent's `UIMessage`s:
 
 ```ts
-import { ToolLoopAgent, InferAgentUIMessage } from 'ai';
+import { ToolLoopAgent, InferAgentUIMessage } from 'ai-toolkit';
 
 const myAgent = new ToolLoopAgent({
   // ... configuration

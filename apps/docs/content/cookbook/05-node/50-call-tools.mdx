@@ -10,7 +10,7 @@ Some models allow developers to provide a list of tools that can be called at an
 This is useful for extending the capabilities of a language model to either use logic or data to interact with systems external to the model.
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = await generateText({
@@ -40,7 +40,7 @@ const result = await generateText({
 If the model decides to call a tool, it will generate a tool call. You can access the tool call by checking the `toolCalls` property on the result.
 
 ```ts highlight="31-44"
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
@@ -99,7 +99,7 @@ main().catch(console.error);
 You can access the result of a tool call by checking the `toolResults` property on the result.
 
 ```ts highlight="31-41"
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import dotenv from 'dotenv';
 import { z } from 'zod';
 

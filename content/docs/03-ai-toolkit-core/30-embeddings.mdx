@@ -15,7 +15,7 @@ or phrases or clustering text.
 You can use it with embeddings models, e.g. `openai.embeddingModel('text-embedding-3-large')` or `mistral.embeddingModel('mistral-embed')`.
 
 ```tsx
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 // 'embedding' is a single embedding object (number[])
@@ -36,7 +36,7 @@ e.g. `openai.embeddingModel('text-embedding-3-large')` or `mistral.embeddingMode
 
 ```tsx
 import { openai } from '@ai-toolkit/openai';
-import { embedMany } from 'ai';
+import { embedMany } from 'ai-toolkit';
 
 // 'embeddings' is an array of embedding objects (number[][]).
 // It is sorted in the same order as the input values.
@@ -58,7 +58,7 @@ You can also rank and filter related items based on their similarity.
 
 ```ts highlight={"2,10"}
 import { openai } from '@ai-toolkit/openai';
-import { cosineSimilarity, embedMany } from 'ai';
+import { cosineSimilarity, embedMany } from 'ai-toolkit';
 
 const { embeddings } = await embedMany({
   model: 'openai/text-embedding-3-small',
@@ -77,7 +77,7 @@ Both `embed` and `embedMany` provide token usage information in the `usage` prop
 
 ```ts highlight={"4,9"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding, usage } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -95,7 +95,7 @@ Embedding model settings can be configured using `providerOptions` for provider-
 
 ```ts highlight={"5-9"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -114,7 +114,7 @@ The `embedMany` function now supports parallel processing with configurable `max
 
 ```ts highlight={"4"}
 import { openai } from '@ai-toolkit/openai';
-import { embedMany } from 'ai';
+import { embedMany } from 'ai-toolkit';
 
 const { embeddings, usage } = await embedMany({
   maxParallelCalls: 2, // Limit parallel requests
@@ -135,7 +135,7 @@ It defaults to `2` retries (3 attempts in total). You can set it to `0` to disab
 
 ```ts highlight={"7"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -152,7 +152,7 @@ that you can use to abort the embedding process or set a timeout.
 
 ```ts highlight={"7"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -168,7 +168,7 @@ that you can use to add custom headers to the embedding request.
 
 ```ts highlight={"7"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -183,7 +183,7 @@ Both `embed` and `embedMany` return response information that includes the raw p
 
 ```ts highlight={"4,9"}
 import { openai } from '@ai-toolkit/openai';
-import { embed } from 'ai';
+import { embed } from 'ai-toolkit';
 
 const { embedding, response } = await embed({
   model: 'openai/text-embedding-3-small',
@@ -207,7 +207,7 @@ import {
   embed,
   wrapEmbeddingModel,
   gateway,
-} from 'ai';
+} from 'ai-toolkit';
 
 const embeddingModelWithDefaults = wrapEmbeddingModel({
   model: gateway.embeddingModel('google/gemini-embedding-001'),

@@ -28,7 +28,7 @@ curl -X POST http://localhost:8080
 You can use the `pipeUIMessageStreamToResponse` method to pipe the stream data to the server response.
 
 ```ts filename='index.ts'
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import express, { Request, Response } from 'express';
 
 const app = express();
@@ -56,7 +56,7 @@ import {
   createUIMessageStream,
   pipeUIMessageStreamToResponse,
   streamText,
-} from 'ai';
+} from 'ai-toolkit';
 import express, { Request, Response } from 'express';
 
 const app = express();
@@ -96,7 +96,7 @@ app.listen(8080, () => {
 You can send a text stream to the client using `pipeTextStreamToResponse`.
 
 ```ts filename='index.ts'
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import express, { Request, Response } from 'express';
 
 const app = express();

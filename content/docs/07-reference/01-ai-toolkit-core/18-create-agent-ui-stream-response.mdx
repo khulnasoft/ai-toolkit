@@ -10,14 +10,14 @@ The `createAgentUIStreamResponse` function executes an [Agent](/docs/reference/a
 ## Import
 
 <Snippet
-  text={`import { createAgentUIStreamResponse } from "ai"`}
+  text={`import { createAgentUIStreamResponse } from "ai-toolkit"`}
   prompt={false}
 />
 
 ## Usage
 
 ```ts
-import { ToolLoopAgent, createAgentUIStreamResponse } from 'ai';
+import { ToolLoopAgent, createAgentUIStreamResponse } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -129,7 +129,7 @@ A `Promise<Response>` whose `body` is a streaming UI message output from the age
 ## Example: Next.js API Route Handler
 
 ```ts
-import { createAgentUIStreamResponse } from 'ai';
+import { createAgentUIStreamResponse } from 'ai-toolkit';
 import { MyCustomAgent } from '@/agent/my-custom-agent';
 
 export async function POST(request: Request) {

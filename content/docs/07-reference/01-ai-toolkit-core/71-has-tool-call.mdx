@@ -10,7 +10,7 @@ Creates a stop condition that stops when a specific tool is called.
 This function is used with `stopWhen` in `generateText` and `streamText` to control when a tool-calling loop should stop based on whether a particular tool has been invoked.
 
 ```ts
-import { generateText, hasToolCall } from 'ai';
+import { generateText, hasToolCall } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const result = await generateText({
@@ -26,7 +26,7 @@ const result = await generateText({
 
 ## Import
 
-<Snippet text={`import { hasToolCall } from "ai"`} prompt={false} />
+<Snippet text={`import { hasToolCall } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 
@@ -54,7 +54,7 @@ A `StopCondition` function that returns `true` when the specified tool is called
 Stop when a specific tool is called:
 
 ```ts
-import { generateText, hasToolCall } from 'ai';
+import { generateText, hasToolCall } from 'ai-toolkit';
 
 const result = await generateText({
   model: yourModel,
@@ -71,7 +71,7 @@ const result = await generateText({
 You can combine multiple stop conditions in an array:
 
 ```ts
-import { generateText, hasToolCall, stepCountIs } from 'ai';
+import { generateText, hasToolCall, stepCountIs } from 'ai-toolkit';
 
 const result = await generateText({
   model: yourModel,
@@ -94,7 +94,7 @@ const result = await generateText({
 Common pattern for agents that run until they provide a final answer:
 
 ```ts
-import { generateText, hasToolCall } from 'ai';
+import { generateText, hasToolCall } from 'ai-toolkit';
 
 const result = await generateText({
   model: yourModel,

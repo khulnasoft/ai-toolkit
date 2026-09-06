@@ -78,7 +78,7 @@ You can create language models using the provider instance. The first argument i
 
 ```ts
 import { runpod } from '@runpod/ai-toolkit-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: runpod('qwen/qwen3-32b-awq'),
@@ -96,7 +96,7 @@ const { text } = await generateText({
 
 ```ts
 import { runpod } from '@runpod/ai-toolkit-provider';
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 
 const { textStream } = await streamText({
   model: runpod('qwen/qwen3-32b-awq'),
@@ -134,7 +134,7 @@ const { text } = await generateText({
 ### Tool Calling
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const { text, toolCalls } = await generateText({
@@ -167,7 +167,7 @@ You can still return structured data by instructing the model to return JSON and
 
 ```ts
 import { runpod } from '@runpod/ai-toolkit-provider';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { z } from 'zod';
 
 const RecipeSchema = z.object({
@@ -207,7 +207,7 @@ You can create Runpod image models using the `.imageModel()` factory method.
 
 ```ts
 import { runpod } from '@runpod/ai-toolkit-provider';
-import { generateImage } from 'ai';
+import { generateImage } from 'ai-toolkit';
 
 const { image } = await generateImage({
   model: runpod.imageModel('qwen/qwen-image'),

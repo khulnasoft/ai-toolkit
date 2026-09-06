@@ -1,0 +1,10 @@
+{
+  "name": "next-openai-telemetry",
+  "title": "OpenTelemetry",
+  "category": "03-integrations",
+  "categoryOrder": 3,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT with Next.js and OpenAI to create a streaming chat bot with OpenTelemetry support.",
+  "tags": ["nextjs", "openai", "telemetry", "opentelemetry"]
+}

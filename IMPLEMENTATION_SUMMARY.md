@@ -321,7 +321,7 @@ Every package has an assigned owner via CODEOWNERS.
 
 ### Naming Conventions
 
-**Why `@ai-sdk/{domain}/{package}`?**
+**Why `@ai-toolkit/{domain}/{package}`?**
 
 - Clear namespace
 - Easy to find all providers/adapters

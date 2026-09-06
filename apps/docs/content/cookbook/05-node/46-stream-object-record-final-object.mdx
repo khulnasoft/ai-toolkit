@@ -17,7 +17,7 @@ The `object` parameter contains the final object, or `undefined` if the type val
 There is also an `error` parameter that contains error when e.g. the object does not match the schema.
 
 ```ts file='index.ts' highlight={"15-23"}
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = streamObject({
@@ -48,7 +48,7 @@ The [`streamObject`](/docs/reference/ai-toolkit-core/stream-object) result conta
 The object is fully typed. When the type validation according to the schema fails, the promise will be rejected with a `TypeValidationError`.
 
 ```ts file='index.ts' highlight={"17-26"}
-import { streamObject } from 'ai';
+import { streamObject } from 'ai-toolkit';
 import { z } from 'zod';
 
 const result = streamObject({

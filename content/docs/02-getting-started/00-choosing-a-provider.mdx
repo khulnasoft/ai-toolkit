@@ -8,7 +8,7 @@ description: Learn how to configure and authenticate with AI providers in the AI
 The AI TOOLKIT supports dozens of model providers through [first-party](/providers/ai-toolkit-providers), [OpenAI-compatible](/providers/openai-compatible-providers), and [community](/providers/community-providers) packages.
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const { text } = await generateText({
@@ -42,7 +42,7 @@ AI_GATEWAY_API_KEY=your_api_key_here
 The AI Gateway is the default [global provider](/docs/ai-toolkit-core/provider-management#global-provider-configuration), so you can access models using a simple string:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const { text } = await generateText({
   model: 'anthropic/claude-sonnet-4.5',
@@ -53,8 +53,8 @@ const { text } = await generateText({
 You can also explicitly import and use the gateway provider:
 
 ```ts
-// Option 1: Import from 'ai' package (included by default)
-import { gateway } from 'ai';
+// Option 1: Import from 'ai-toolkit' package (included by default)
+import { gateway } from 'ai-toolkit';
 model: gateway('anthropic/claude-sonnet-4.5');
 
 // Option 2: Install and import from '@ai-toolkit/gateway' package
@@ -95,10 +95,10 @@ See [available providers](/providers/ai-toolkit-providers) for setup instruction
 
 ## Custom Providers
 
-You can build your own provider to integrate any service with the AI TOOLKIT. The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/provider/src/language-model/v3) that ensures compatibility across providers.
+You can build your own provider to integrate any service with the AI TOOLKIT. The AI TOOLKIT provides a [Language Model Specification](https://github.com/khulnasoft/ai-toolkit/tree/main/packages/validation/provider/src/language-model/v3) that ensures compatibility across providers.
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { yourProvider } from 'your-custom-provider';
 
 const { text } = await generateText({

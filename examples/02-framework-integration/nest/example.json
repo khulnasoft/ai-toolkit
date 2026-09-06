@@ -1,0 +1,10 @@
+{
+  "name": "nest",
+  "title": "NestJS",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nest",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT in a Nest.js server to generate and stream text and objects.",
+  "tags": ["nest", "node", "streaming"]
+}

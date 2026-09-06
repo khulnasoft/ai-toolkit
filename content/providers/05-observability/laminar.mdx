@@ -92,7 +92,7 @@ Then, when you call AI TOOLKIT functions in any of your API routes, add the Lami
 
 ```javascript highlight="3,8-11"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { getTracer } from '@lmnr-ai/lmnr';
 
 const { text } = await generateText({
@@ -202,7 +202,7 @@ Then, when you call AI TOOLKIT functions in any of your API routes, add the Lami
 
 ```javascript highlight="3,8-11"
 import { openai } from '@ai-toolkit/openai';
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { getTracer } from '@lmnr-ai/lmnr';
 
 const { text } = await generateText({

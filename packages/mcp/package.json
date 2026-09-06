@@ -6,6 +6,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "files": [
     "dist/**/*",
     "CHANGELOG.md",
@@ -73,5 +74,9 @@
   "keywords": [
     "ai",
     "mcp"
+  ],
+  "stability": "beta",
+  "owners": [
+    "@ai-toolkit/mcp"
   ]
 }

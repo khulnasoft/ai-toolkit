@@ -11,7 +11,7 @@ to smooth out text and reasoning streaming by buffering and releasing complete c
 This creates a more natural reading experience when streaming text and reasoning responses.
 
 ```ts highlight={"6-9"}
-import { smoothStream, streamText } from 'ai';
+import { smoothStream, streamText } from 'ai-toolkit';
 
 const result = streamText({
   model,
@@ -25,7 +25,7 @@ const result = streamText({
 
 ## Import
 
-<Snippet text={`import { smoothStream } from "ai"`} prompt={false} />
+<Snippet text={`import { smoothStream } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 
@@ -71,7 +71,7 @@ This is the preferred approach as it provides accurate word boundaries for CJK a
 </Note>
 
 ```tsx filename="Japanese example with Intl.Segmenter"
-import { smoothStream, streamText } from 'ai';
+import { smoothStream, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const segmenter = new Intl.Segmenter('ja', { granularity: 'word' });
@@ -86,7 +86,7 @@ const result = streamText({
 ```
 
 ```tsx filename="Chinese example with Intl.Segmenter"
-import { smoothStream, streamText } from 'ai';
+import { smoothStream, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });

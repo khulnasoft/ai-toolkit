@@ -1,11 +1,11 @@
 # Core Layer
 
-Foundation packages for the AI TOOLKIT. These provide the core SDK functionality, shared types, and telemetry.
+Foundation packages for the AI TOOLKIT. These provide the core SDK functionality, shared provider utilities, and browser-safe runtime contracts.
 
-**Owner**: @vercel/ai-sdk-core
+**Owner**: @khulnasoft/ai-toolkit-core
 
-| Package | Purpose | Exports |
-|---------|---------|---------|
-| `ai` | Main SDK entry point | generateText, streamText, generateObject, tool |
-| `shared` | Shared types & utilities | Types, error classes, utilities |
-| `telemetry` | Analytics & telemetry | recordTelemetry, getTelemetryData |
+| Package          | npm name                     | Purpose                            | Exports                                        |
+| ---------------- | ---------------------------- | ---------------------------------- | ---------------------------------------------- |
+| `ai`             | `ai`                         | Main SDK entry point               | generateText, streamText, generateObject, tool |
+| `provider-utils` | `@ai-toolkit/provider-utils` | Shared types, utilities, parseJSON | Types, error helpers, utilities                |
+| `runtime`        | `@ai-toolkit/runtime`        | Browser-safe runtime contracts     | createRuntimeContext, capability detection     |

@@ -3,9 +3,14 @@
   "version": "2.0.0",
   "license": "Apache-2.0",
   "sideEffects": false,
+  "stability": "stable",
+  "owners": [
+    "@khulnasoft/ai-toolkit-maintainers"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "files": [
     "dist/**/*",
     "CHANGELOG.md",
@@ -33,7 +38,7 @@
     }
   },
   "dependencies": {
-    "ai": "workspace:*"
+    "ai-toolkit": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "20.17.24",

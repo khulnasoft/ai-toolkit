@@ -71,7 +71,7 @@ import {
   type LanguageModelV3Middleware,
   type LanguageModelV1StreamPart,
   simulateReadableStream,
-} from 'ai';
+} from 'ai-toolkit';
 
 const redis = new Redis({
   url: process.env.KV_URL,
@@ -165,7 +165,7 @@ Finally, you will create an API route for `api/chat` to handle the assistant's m
 
 ```tsx filename='app/api/chat/route.ts'
 import { cacheMiddleware } from '@/ai/middleware';
-import { wrapLanguageModel, streamText, tool } from 'ai';
+import { wrapLanguageModel, streamText, tool } from 'ai-toolkit';
 import { z } from 'zod';
 
 const wrappedModel = wrapLanguageModel({

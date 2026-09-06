@@ -9,12 +9,12 @@ The `createAgentUIStream` function executes an [Agent](/docs/reference/ai-toolki
 
 ## Import
 
-<Snippet text={`import { createAgentUIStream } from "ai"`} prompt={false} />
+<Snippet text={`import { createAgentUIStream } from "ai-toolkit"`} prompt={false} />
 
 ## Usage
 
 ```ts
-import { ToolLoopAgent, createAgentUIStream } from 'ai';
+import { ToolLoopAgent, createAgentUIStream } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 const agent = new ToolLoopAgent({
@@ -103,7 +103,7 @@ A `Promise<AsyncIterableStream<UIMessageChunk>>`, where each yielded chunk is a 
 ## Example
 
 ```ts
-import { createAgentUIStream } from 'ai';
+import { createAgentUIStream } from 'ai-toolkit';
 
 const controller = new AbortController();
 

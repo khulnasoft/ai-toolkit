@@ -15,12 +15,11 @@ A one-page cheat sheet for the AI Toolkit enterprise architecture.
 📦 packages/validation/    Schema validation (Valibot, provider)
 📦 packages/infrastructure/ Testing utilities
 
-📚 examples/               Organized reference implementations
-  ├── 01-foundations/     Basic patterns
-  ├── 02-framework/       React, Next.js, Vue, Angular
-  ├── 03-integrations/    Provider-specific
-  ├── 04-advanced/        Complex patterns
-  └── 05-production/      Full apps
+📚 examples/               Organized reference implementations (see registry.json)
+  ├── 01-foundations/     Basic patterns (ai-functions, express, hono…)
+  ├── 02-framework-integration/ React, Next.js, Angular, Nuxt, Nest
+  ├── 03-integrations/    Provider & observability integrations
+  └── 04-tools/           Developer tools and playgrounds
 
 📖 apps/                   Public-facing applications
   ├── docs/               Main documentation
@@ -59,9 +58,9 @@ pnpm build                      # Build everything
 
 ```bash
 pnpm test                                    # Run all tests
-pnpm test --filter=@ai-sdk/react           # Test one package
-pnpm test:coverage                          # Generate coverage
-pnpm test:integration                       # Integration tests only
+pnpm test --filter=@ai-toolkit/react           # Test one package
+pnpm test:core                                 # Test core domain
+pnpm test:providers                            # Test providers
 ```
 
 ### Code Quality
@@ -85,14 +84,14 @@ pnpm generate example --level=01-foundations --name=my-example
 
 ## Ownership & Review
 
-| Area                             | Owner                      | Review              |
-| -------------------------------- | -------------------------- | ------------------- |
-| `packages/core/`                 | @vercel/ai-sdk-core        | 2 approvals         |
-| `packages/providers/{provider}/` | Provider team              | 1 approval + 1 core |
-| `packages/adapters/`             | Framework teams            | 1 approval          |
-| `examples/`                      | @vercel/ai-sdk-developers  | 1 approval          |
-| `.github/`                       | @vercel/devops-team        | 1 approval          |
-| Root configs                     | @vercel/ai-sdk-maintainers | 1 approval          |
+| Area                             | Owner                          | Review              |
+| -------------------------------- | ------------------------------ | ------------------- |
+| `packages/core/`                 | @khulnasoft/ai-toolkit-core        | 2 approvals         |
+| `packages/providers/{provider}/` | Provider team                  | 1 approval + 1 core |
+| `packages/adapters/`             | Framework teams                | 1 approval          |
+| `examples/`                      | @khulnasoft/ai-toolkit-developers  | 1 approval          |
+| `.github/`                       | @khulnasoft/devops-team        | 1 approval          |
+| Root configs                     | @khulnasoft/ai-toolkit-maintainers | 1 approval          |
 
 **See**: `CODEOWNERS` file for complete mapping
 
@@ -110,9 +109,9 @@ pnpm generate example --level=01-foundations --name=my-example
 **Examples**:
 
 ```typescript
-import { generateText } from '@ai-sdk/core';
-import { useChat } from '@ai-sdk/react';
-import { createOpenAI } from '@ai-sdk/openai';
+import { generateText } from 'ai-toolkit';
+import { useChat } from '@ai-toolkit/react';
+import { createOpenAI } from '@ai-toolkit/openai';
 ```
 
 ### Internal APIs ⚠️
@@ -125,7 +124,7 @@ import { createOpenAI } from '@ai-sdk/openai';
 **Examples**:
 
 ```typescript
-import { CoreTypes } from '@ai-sdk/shared/internal';
+import type { … } from 'ai-toolkit/internal';
 ```
 
 ### Example APIs ℹ️
@@ -139,20 +138,20 @@ import { CoreTypes } from '@ai-sdk/shared/internal';
 ## Package Naming Convention
 
 ```
-@ai-sdk/core                    # Core package
-@ai-sdk/{provider}              # Provider (openai, anthropic, etc.)
-@ai-sdk/{framework}             # Framework (react, vue, angular)
-@ai-sdk/{category}/{subcategory} # Complex packages
-@ai-sdk/{domain}-internal       # Internal packages (not published)
+ai                              # Core SDK entry point (npm `ai`)
+@ai-toolkit/{provider}              # Provider (openai, anthropic, etc.)
+@ai-toolkit/{framework}             # Framework adapter (react, vue, angular)
+@ai-toolkit/{gateway,khulnasoft}    # Special-purpose packages
+@example/{name}                     # Examples (not published)
 ```
 
 **Examples**:
 
-- `@ai-sdk/core` — Main SDK
-- `@ai-sdk/openai` — OpenAI provider
-- `@ai-sdk/react` — React hooks
-- `@ai-sdk/google-vertex` — Google Vertex
-- `@ai-sdk/ai-internal` — Internal utilities
+- `ai` — Main SDK
+- `@ai-toolkit/openai` — OpenAI provider
+- `@ai-toolkit/react` — React hooks
+- `@ai-toolkit/google-vertex` — Google Vertex
+- `@ai-toolkit/test-server` — Internal test utilities
 
 ---
 
@@ -187,7 +186,7 @@ import { CoreTypes } from '@ai-sdk/shared/internal';
 ### 1. Setup
 
 ```bash
-git clone https://github.com/vercel/ai-toolkit
+git clone https://github.com/khulnasoft/ai-toolkit
 cd ai-toolkit
 pnpm install && pnpm health-check
 ```
@@ -206,7 +205,7 @@ git checkout -b feature/my-feature
 code packages/adapters/react/src/use-chat.ts
 
 # Verify
-pnpm test --filter=@ai-sdk/react
+pnpm test --filter=@ai-toolkit/react
 pnpm types:check
 pnpm format
 ```
@@ -236,13 +235,12 @@ Once approved and CI passes, auto-merge happens
 
 ## Testing by Layer
 
-| Layer       | Location                      | Command                              |
-| ----------- | ----------------------------- | ------------------------------------ |
-| Core        | `packages/core/*/tests/`      | `pnpm test --filter="@ai-sdk/core*"` |
-| Providers   | `packages/providers/*/tests/` | `pnpm test --filter="@ai-sdk/*"`     |
-| Adapters    | `packages/adapters/*/tests/`  | `pnpm test --filter="@ai-sdk/react"` |
-| Examples    | `examples/*/tests/`           | `pnpm test --filter="@example/*"`    |
-| Integration | `tests/integration/`          | `pnpm test:integration`              |
+| Layer     | Location                | Command                           |
+| --------- | ----------------------- | --------------------------------- |
+| Core      | `packages/core/*/`      | `pnpm test:core`                  |
+| Providers | `packages/providers/*/` | `pnpm test:providers`             |
+| Adapters  | `packages/adapters/*/`  | `pnpm test:adapters`              |
+| Examples  | `examples/*/*/`         | `pnpm test --filter="@example/*"` |
 
 ---
 
@@ -251,7 +249,8 @@ Once approved and CI passes, auto-merge happens
 ### Core Layer Dependencies
 
 ```
-None (no external deps) → Shared → Telemetry
+ai ──▶ @ai-toolkit/provider-utils ──▶ @ai-toolkit/provider
+@ai-toolkit/runtime + @ai-toolkit/capabilities (no Node builtins; see ADR-004)
 ```
 
 ### Provider Layer Dependencies
@@ -282,7 +281,7 @@ Everything → Examples (test only)
 pnpm generate provider --name=my-provider
 # Creates: packages/providers/my-provider/
 # Implement: createLanguageModel(), export functions
-# Test: pnpm test --filter=@ai-sdk/my-provider
+# Test: pnpm test --filter=@ai-toolkit/my-provider
 ```
 
 ### New Framework Adapter
@@ -309,18 +308,18 @@ pnpm generate example --level=02-framework-integration --name=my-example
 
 ```typescript
 // Core
-import { generateText } from '@ai-sdk/core';
+import { generateText } from 'ai-toolkit';
 
 // Providers
-import { createOpenAI } from '@ai-sdk/openai';
-import { createAnthropic } from '@ai-sdk/anthropic';
+import { createOpenAI } from '@ai-toolkit/openai';
+import { createAnthropic } from '@ai-toolkit/anthropic';
 
 // Adapters
-import { useChat } from '@ai-sdk/react';
-import { useCompletion } from '@ai-sdk/react';
+import { useChat } from '@ai-toolkit/react';
+import { useCompletion } from '@ai-toolkit/react';
 
-// Shared types (internal)
-import type { AIModel } from '@ai-sdk/shared/internal';
+// Internal (subject to change)
+import type { … } from 'ai-toolkit/internal';
 
 // Don't import from examples
 // ❌ import { setupExample } from '../example-setup';
@@ -332,13 +331,13 @@ import type { AIModel } from '@ai-sdk/shared/internal';
 
 ```bash
 pnpm build                                    # Build all
-pnpm build --filter=@ai-sdk/react           # Build one
-pnpm build --filter="@ai-sdk/*"             # Build by pattern
+pnpm build --filter=@ai-toolkit/react           # Build one
+pnpm build --filter="@ai-toolkit/*"             # Build by pattern
 
-pnpm dev --no-cache --concurrency 16        # Dev all
-pnpm dev --filter=@ai-sdk/core              # Dev one
+pnpm dev --no-cache --concurrency 21        # Dev all
+pnpm dev --filter=@ai-toolkit/react              # Dev one
 
-pnpm test --filter=@ai-sdk/react            # Test one
+pnpm test --filter=@ai-toolkit/react            # Test one
 pnpm test --filter="./packages/providers/**" # Test providers
 
 turbo graph                                   # Visualize dependency graph
@@ -353,7 +352,7 @@ turbo graph                                   # Visualize dependency graph
 grep "packages/adapters/react" CODEOWNERS
 
 # Find all files a team owns
-grep "@vercel/ai-react-team" CODEOWNERS
+grep "@khulnasoft/ai-react-team" CODEOWNERS
 
 # See complete ownership
 cat CODEOWNERS
@@ -372,7 +371,7 @@ cat CODEOWNERS
 | `ADR/`                      | Architecture decisions                  |
 | `turbo.json`                | Monorepo task configuration             |
 | `pnpm-workspace.yaml`       | Workspace definition                    |
-| `tsconfig.base.json`        | TypeScript base config                  |
+| `tsconfig.json`             | TypeScript project references           |
 
 ---
 
@@ -394,14 +393,14 @@ find packages -name "package.json" -exec grep '"name": ".*my-package"' {} +
 ### Import path not working?
 
 ```bash
-# Check tsconfig paths
-cat tsconfig.base.json | grep -A 20 '"paths"'
+# Check tsconfig project references
+cat tsconfig.json | grep -A 20 '"references"'
 
 # Check package.json exports
 cat packages/adapters/react/package.json | grep -A 5 '"exports"'
 
 # Verify installation
-ls node_modules/@ai-sdk/ | grep react
+ls node_modules/@ai-toolkit/ | grep react
 ```
 
 ### Tests failing?
@@ -461,5 +460,5 @@ pnpm build -- --verbose
 
 ---
 
-**Last Updated**: June 2026  
-**Status**: Reference v1.0
+**Last Updated**: September 2026
+**Status**: Reference v2.0

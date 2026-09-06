@@ -1,0 +1,10 @@
+{
+  "name": "next-agent",
+  "title": "Next.js Agent",
+  "category": "02-framework-integration",
+  "categoryOrder": 2,
+  "framework": "nextjs",
+  "primaryProvider": "openai",
+  "description": "A minimal example to show code modularization with agents, tools, and components.",
+  "tags": ["nextjs", "agent", "tools", "modularization"]
+}

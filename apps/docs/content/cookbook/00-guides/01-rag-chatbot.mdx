@@ -312,7 +312,7 @@ This will install the [AI TOOLKIT](/docs) and the AI TOOLKIT's React hooks.
 Let’s add a function to generate embeddings. Copy the following code into your `lib/ai/embedding.ts` file.
 
 ```tsx filename="lib/ai/embedding.ts" highlight="1-2,4,13-22"
-import { embedMany } from 'ai';
+import { embedMany } from 'ai-toolkit';
 
 const embeddingModel = 'openai/text-embedding-ada-002';
 
@@ -487,7 +487,7 @@ Create a file at `app/api/chat/route.ts` by running the following command:
 Open the file and add the following code:
 
 ```tsx filename="app/api/chat/route.ts"
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -515,7 +515,7 @@ While you now have a working agent, it isn't doing anything special.
 Let’s add system instructions to refine and restrict the model’s behavior. In this case, you want the model to only use information it has retrieved to generate responses. Update your route handler with the following code:
 
 ```tsx filename="app/api/chat/route.ts" highlight="12-14"
-import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, UIMessage } from 'ai-toolkit';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -551,7 +551,7 @@ Update your route handler with the following code:
 
 ```tsx filename="app/api/chat/route.ts" highlight="18-29"
 import { createResource } from '@/lib/actions/resources';
-import { convertToModelMessages, streamText, tool, UIMessage } from 'ai';
+import { convertToModelMessages, streamText, tool, UIMessage } from 'ai-toolkit';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
@@ -680,7 +680,7 @@ import {
   tool,
   UIMessage,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 
 // Allow streaming responses up to 30 seconds
@@ -723,7 +723,7 @@ The model can now add and embed arbitrary information to your knowledge base. Ho
 To find similar content, you will need to embed the users query, search the database for semantic similarities, then pass those items to the model as context alongside the query. To achieve this, let’s update your embedding logic file (`lib/ai/embedding.ts`):
 
 ```tsx filename="lib/ai/embedding.ts" highlight="1,3-5,27-34,36-49"
-import { embed, embedMany } from 'ai';
+import { embed, embedMany } from 'ai-toolkit';
 import { db } from '../db';
 import { cosineDistance, desc, gt, sql } from 'drizzle-orm';
 import { embeddings } from '../db/schema/embeddings';
@@ -790,7 +790,7 @@ import {
   tool,
   UIMessage,
   stepCountIs,
-} from 'ai';
+} from 'ai-toolkit';
 import { z } from 'zod';
 import { findRelevantContent } from '@/lib/ai/embedding';
 

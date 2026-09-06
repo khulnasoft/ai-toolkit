@@ -167,7 +167,7 @@ for await (const chunk of result.textStream) {
 To allow the model to perform multiple steps without user intervention, use the `stopWhen` parameter. This will automatically send any tool results back to the model to trigger a subsequent generation:
 
 ```ts highlight="1,7"
-import { stepCountIs } from 'ai';
+import { stepCountIs } from 'ai-toolkit';
 
 const stream = streamText({
   model: 'anthropic/claude-sonnet-4-20250514',

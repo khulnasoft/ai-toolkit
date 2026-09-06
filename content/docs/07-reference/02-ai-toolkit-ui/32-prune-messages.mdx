@@ -8,7 +8,7 @@ description: API Reference for pruneMessages.
 The `pruneMessages` function is used to prune or filter an array of `ModelMessage` objects. This is useful for reducing message context (to save tokens), removing intermediate reasoning, or trimming tool calls and empty messages before sending to an LLM.
 
 ```ts filename="app/api/chat/route.ts"
-import { pruneMessages, streamText } from 'ai';
+import { pruneMessages, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
 ## Import
 
-<Snippet text={`import { pruneMessages } from "ai"`} prompt={false} />
+<Snippet text={`import { pruneMessages } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 
@@ -83,7 +83,7 @@ An array of [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) obje
 ## Example Usage
 
 ```ts
-import { pruneMessages } from 'ai';
+import { pruneMessages } from 'ai-toolkit';
 
 const pruned = pruneMessages({
   messages,
@@ -105,4 +105,4 @@ const pruned = pruneMessages({
 
 > **Tip**: `pruneMessages` is typically used prior to sending a context window to an LLM to reduce message/token count, especially after a series of tool-calls and approvals.
 
-For advanced usage and the full list of possible message parts, see [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) and [`pruneMessages` implementation](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/ai/src/generate-text/prune-messages.ts).
+For advanced usage and the full list of possible message parts, see [`ModelMessage`](/docs/reference/ai-toolkit-core/model-message) and [`pruneMessages` implementation](https://github.com/khulnasoft/ai-toolkit/blob/main/packages/core/ai/src/generate-text/prune-messages.ts).

@@ -1,0 +1,10 @@
+{
+  "name": "node-http-server",
+  "title": "Node.js HTTP Server",
+  "category": "01-foundations",
+  "categoryOrder": 1,
+  "framework": "node",
+  "primaryProvider": "openai",
+  "description": "Use the AI TOOLKIT in a simple Node.js HTTP server to generate and stream text and objects.",
+  "tags": ["node", "http", "streaming"]
+}

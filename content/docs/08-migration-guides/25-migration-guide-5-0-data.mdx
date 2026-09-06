@@ -79,7 +79,7 @@ To get proper TypeScript types for your v4 messages, install the v4 package alon
 ```json filename="package.json"
 {
   "dependencies": {
-    "ai": "^5.0.0",
+    "ai-toolkit": "^5.0.0",
     "ai-legacy": "npm:ai@^4.3.2"
   }
 }
@@ -95,7 +95,7 @@ Import v4 types for proper type safety:
 
 ```tsx
 import type { Message as V4Message } from 'ai-legacy';
-import type { UIMessage } from 'ai';
+import type { UIMessage } from 'ai-toolkit';
 ```
 
 ### Step 2: Add Conversion Functions
@@ -108,7 +108,7 @@ import type {
   Message as V4Message,
   UIMessage as LegacyUIMessage,
 } from 'ai-legacy';
-import type { ToolUIPart, UIMessage, UITools } from 'ai';
+import type { ToolUIPart, UIMessage, UITools } from 'ai-toolkit';
 
 export type MyUIMessage = UIMessage<unknown, { custom: any }, UITools>;
 
@@ -451,7 +451,7 @@ import {
   type MyUIMessage,
 } from './conversion';
 import { upsertMessage, loadChat } from './db/actions';
-import { streamText, generateId, convertToModelMessages } from 'ai';
+import { streamText, generateId, convertToModelMessages } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {

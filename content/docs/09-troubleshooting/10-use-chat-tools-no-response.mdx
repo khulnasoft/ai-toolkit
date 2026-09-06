@@ -16,7 +16,7 @@ To resolve this issue, convert the incoming messages to the `ModelMessage` forma
 
 ```tsx highlight="9"
 import { openai } from '@ai-toolkit/openai';
-import { convertToModelMessages, streamText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai-toolkit';
 __PROVIDER_IMPORT__;
 
 export async function POST(req: Request) {

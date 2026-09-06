@@ -57,7 +57,7 @@ On the server side, we need to implement the `getAnswer` function, which will ca
 ```typescript filename='app/actions.ts'
 'use server';
 
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { openai } from '@ai-toolkit/openai';
 
 export async function getAnswer(question: string) {

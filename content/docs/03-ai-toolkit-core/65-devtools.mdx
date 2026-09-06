@@ -37,7 +37,7 @@ pnpm add @ai-toolkit/devtools
 Wrap your language model with the DevTools middleware using [`wrapLanguageModel`](/docs/ai-toolkit-core/middleware):
 
 ```ts
-import { wrapLanguageModel, gateway } from 'ai';
+import { wrapLanguageModel, gateway } from 'ai-toolkit';
 import { devToolsMiddleware } from '@ai-toolkit/devtools';
 
 const model = wrapLanguageModel({
@@ -49,7 +49,7 @@ const model = wrapLanguageModel({
 The wrapped model can be used with any AI TOOLKIT Core function:
 
 ```ts highlight="4"
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model, // wrapped model with DevTools

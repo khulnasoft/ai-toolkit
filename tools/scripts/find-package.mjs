@@ -34,7 +34,15 @@ Usage:
 }
 
 function listPackages() {
-  const domains = ['core', 'providers', 'adapters', 'mcp', 'special', 'validation', 'infrastructure'];
+  const domains = [
+    'core',
+    'providers',
+    'adapters',
+    'mcp',
+    'special',
+    'validation',
+    'infrastructure',
+  ];
   const entries = fs.readdirSync(PACKAGES);
   const domainSet = new Set(domains);
 
@@ -43,9 +51,9 @@ function listPackages() {
   for (const domain of domains) {
     const dir = path.join(PACKAGES, domain);
     if (!fs.existsSync(dir)) continue;
-    const packages = fs.readdirSync(dir).filter(e =>
-      fs.statSync(path.join(dir, e)).isDirectory() && !e.startsWith('.')
-    );
+    const packages = fs
+      .readdirSync(dir)
+      .filter(e => fs.statSync(path.join(dir, e)).isDirectory() && !e.startsWith('.'));
     if (packages.length > 0) {
       console.log(`  ${domain}/`);
       packages.forEach(p => console.log(`    └── ${p}`));
@@ -53,10 +61,9 @@ function listPackages() {
     }
   }
 
-  const unorganized = entries.filter(e =>
-    !domainSet.has(e) &&
-    fs.statSync(path.join(PACKAGES, e)).isDirectory() &&
-    !e.startsWith('.')
+  const unorganized = entries.filter(
+    e =>
+      !domainSet.has(e) && fs.statSync(path.join(PACKAGES, e)).isDirectory() && !e.startsWith('.'),
   );
 
   if (unorganized.length > 0) {

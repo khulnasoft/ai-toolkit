@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "01-foundations",
+      "order": 1,
+      "title": "Foundations",
+      "description": "Core SDK concepts and basic server integrations without a specific framework.",
+      "examples": ["ai-functions", "express", "fastify", "hono", "node-http-server"]
+    },
+    {
+      "id": "02-framework-integration",
+      "order": 2,
+      "title": "Framework Integration",
+      "description": "Framework-specific apps: Next.js, React, Angular, Vue, Nuxt, NestJS, and LangChain.",
+      "examples": [
+        "angular",
+        "nest",
+        "next-agent",
+        "next-fastapi",
+        "next-langchain",
+        "next-openai-pages",
+        "next-openai",
+        "next",
+        "nuxt-openai"
+      ]
+    },
+    {
+      "id": "03-integrations",
+      "order": 3,
+      "title": "Integrations",
+      "description": "Provider, observability, security, and protocol integrations (Vertex AI, MCP, OpenTelemetry, rate limits, bot protection).",
+      "examples": [
+        "mcp",
+        "next-google-vertex",
+        "next-openai-kasada-bot-protection",
+        "next-openai-telemetry-sentry",
+        "next-openai-telemetry",
+        "next-openai-upstash-rate-limits"
+      ]
+    },
+    {
+      "id": "04-tools",
+      "order": 4,
+      "title": "Tools",
+      "description": "Developer tools and interactive playgrounds.",
+      "examples": ["playground"]
+    }
+  ],
+  "examples": [
+    {
+      "name": "ai-functions",
+      "title": "AI Functions",
+      "category": "01-foundations",
+      "categoryOrder": 1,
+      "framework": "multi-provider",
+      "primaryProvider": null,
+      "description": "Scripts and test suites for validating, testing, and iterating on AI functions across providers.",
+      "tags": ["testing", "providers", "multi-provider"],
+      "path": "examples/01-foundations/ai-functions"
+    },
+    {
+      "name": "express",
+      "title": "Express.js",
+      "category": "01-foundations",
+      "categoryOrder": 1,
+      "framework": "express",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT in an Express.js server to generate and stream text and objects.",
+      "tags": ["express", "streaming", "node"],
+      "path": "examples/01-foundations/express"
+    },
+    {
+      "name": "fastify",
+      "title": "Fastify",
+      "category": "01-foundations",
+      "categoryOrder": 1,
+      "framework": "fastify",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT in a Fastify server to generate and stream text and objects.",
+      "tags": ["fastify", "streaming", "node"],
+      "path": "examples/01-foundations/fastify"
+    },
+    {
+      "name": "hono",
+      "title": "Hono",
+      "category": "01-foundations",
+      "categoryOrder": 1,
+      "framework": "hono",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT in a Hono server to generate and stream text and objects.",
+      "tags": ["hono", "streaming", "edge"],
+      "path": "examples/01-foundations/hono"
+    },
+    {
+      "name": "node-http-server",
+      "title": "Node.js HTTP Server",
+      "category": "01-foundations",
+      "categoryOrder": 1,
+      "framework": "node",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT in a simple Node.js HTTP server to generate and stream text and objects.",
+      "tags": ["node", "http", "streaming"],
+      "path": "examples/01-foundations/node-http-server"
+    },
+    {
+      "name": "angular",
+      "title": "Angular Chat",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "angular",
+      "primaryProvider": "openai",
+      "description": "A simple chat application built with Angular that connects to OpenAI models using the AI TOOLKIT.",
+      "tags": ["angular", "chat", "angular-components"],
+      "path": "examples/02-framework-integration/angular"
+    },
+    {
+      "name": "nest",
+      "title": "NestJS",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nest",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT in a Nest.js server to generate and stream text and objects.",
+      "tags": ["nest", "node", "streaming"],
+      "path": "examples/02-framework-integration/nest"
+    },
+    {
+      "name": "next-agent",
+      "title": "Next.js Agent",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "A minimal example to show code modularization with agents, tools, and components.",
+      "tags": ["nextjs", "agent", "tools", "modularization"],
+      "path": "examples/02-framework-integration/next-agent"
+    },
+    {
+      "name": "next-fastapi",
+      "title": "Next.js + FastAPI",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": null,
+      "description": "Use the AI TOOLKIT with Next.js and FastAPI to create AI-powered streaming applications.",
+      "tags": ["nextjs", "fastapi", "streaming", "full-stack"],
+      "path": "examples/02-framework-integration/next-fastapi"
+    },
+    {
+      "name": "next-langchain",
+      "title": "Next.js + LangChain",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Next.js, LangChain, LangGraph, and OpenAI to create AI-powered streaming applications.",
+      "tags": ["nextjs", "langchain", "langgraph", "streaming"],
+      "path": "examples/02-framework-integration/next-langchain"
+    },
+    {
+      "name": "next-openai-pages",
+      "title": "Next.js Pages Router",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with the Next.js pages router and OpenAI to create a ChatGPT-like streaming chat bot.",
+      "tags": ["nextjs", "pages-router", "openai", "chat"],
+      "path": "examples/02-framework-integration/next-openai-pages"
+    },
+    {
+      "name": "next-openai",
+      "title": "Next.js + OpenAI Chat",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Next.js and OpenAI to create a ChatGPT-like AI-powered streaming chat bot.",
+      "tags": ["nextjs", "openai", "chat", "streaming"],
+      "path": "examples/02-framework-integration/next-openai"
+    },
+    {
+      "name": "next",
+      "title": "Next.js Minimal",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nextjs",
+      "primaryProvider": null,
+      "description": "A minimal Next.js example to test persistence, SSR, and stream resume.",
+      "tags": ["nextjs", "ssr", "persistence", "streaming"],
+      "path": "examples/02-framework-integration/next"
+    },
+    {
+      "name": "nuxt-openai",
+      "title": "Nuxt + OpenAI Chat",
+      "category": "02-framework-integration",
+      "categoryOrder": 2,
+      "framework": "nuxt",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Nuxt and OpenAI to create a ChatGPT-like AI-powered streaming chat bot.",
+      "tags": ["nuxt", "vue", "openai", "chat"],
+      "path": "examples/02-framework-integration/nuxt-openai"
+    },
+    {
+      "name": "mcp",
+      "title": "MCP Integration",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "node",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with MCP to convert between MCP and AI TOOLKIT tool calls.",
+      "tags": ["mcp", "tools", "protocol"],
+      "path": "examples/03-integrations/mcp"
+    },
+    {
+      "name": "next-google-vertex",
+      "title": "Google Vertex AI",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "nextjs",
+      "primaryProvider": "google-vertex",
+      "description": "Use the AI TOOLKIT with Next.js and Google Vertex AI to validate the Google Vertex provider on the Edge runtime.",
+      "tags": ["nextjs", "google-vertex", "edge-runtime", "cloud"],
+      "path": "examples/03-integrations/next-google-vertex"
+    },
+    {
+      "name": "next-openai-kasada-bot-protection",
+      "title": "Kasada Bot Protection",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Integration of an AI chat app based on the AI TOOLKIT and Kasada's advanced bot protection solution.",
+      "tags": ["nextjs", "openai", "security", "bot-protection"],
+      "path": "examples/03-integrations/next-openai-kasada-bot-protection"
+    },
+    {
+      "name": "next-openai-telemetry-sentry",
+      "title": "OpenTelemetry + Sentry",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Next.js, OpenAI, and Sentry to create a streaming chat bot with OpenTelemetry support.",
+      "tags": ["nextjs", "openai", "telemetry", "sentry", "opentelemetry"],
+      "path": "examples/03-integrations/next-openai-telemetry-sentry"
+    },
+    {
+      "name": "next-openai-telemetry",
+      "title": "OpenTelemetry",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Next.js and OpenAI to create a streaming chat bot with OpenTelemetry support.",
+      "tags": ["nextjs", "openai", "telemetry", "opentelemetry"],
+      "path": "examples/03-integrations/next-openai-telemetry"
+    },
+    {
+      "name": "next-openai-upstash-rate-limits",
+      "title": "Upstash Rate Limits",
+      "category": "03-integrations",
+      "categoryOrder": 3,
+      "framework": "nextjs",
+      "primaryProvider": "openai",
+      "description": "Use the AI TOOLKIT with Next.js and OpenAI to create a streaming chat bot with rate limits using Vercel KV.",
+      "tags": ["nextjs", "openai", "rate-limiting", "vercel-kv"],
+      "path": "examples/03-integrations/next-openai-upstash-rate-limits"
+    },
+    {
+      "name": "playground",
+      "title": "Playground",
+      "category": "04-tools",
+      "categoryOrder": 4,
+      "framework": "nextjs",
+      "primaryProvider": null,
+      "description": "An interactive web-based playground for experimenting with AI models and providers using the AI TOOLKIT.",
+      "tags": ["nextjs", "playground", "dashboard", "multi-provider"],
+      "path": "examples/04-tools/playground"
+    }
+  ]
+}

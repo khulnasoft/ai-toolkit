@@ -119,7 +119,7 @@ const model = llamaCpp({
 You can use llama.cpp models to generate text with the `generateText` function:
 
 ```ts
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
@@ -143,7 +143,7 @@ try {
 The provider fully supports streaming with `streamText`:
 
 ```ts
-import { streamText } from 'ai';
+import { streamText } from 'ai-toolkit';
 import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp({
@@ -169,7 +169,7 @@ try {
 Generate type-safe JSON objects that conform to a schema using `generateObject`:
 
 ```ts
-import { generateObject } from 'ai';
+import { generateObject } from 'ai-toolkit';
 import { z } from 'zod';
 import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
@@ -222,7 +222,7 @@ const { text } = await generateText({
 You can create embedding models using the `llamaCpp.embedding()` factory method:
 
 ```ts
-import { embed, embedMany } from 'ai';
+import { embed, embedMany } from 'ai-toolkit';
 import { llamaCpp } from 'ai-toolkit-llama-cpp';
 
 const model = llamaCpp.embedding({

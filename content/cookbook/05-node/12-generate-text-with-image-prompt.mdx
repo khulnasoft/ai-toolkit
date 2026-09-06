@@ -11,7 +11,7 @@ Some language models that support vision capabilities accept images as part of t
 ## URL
 
 ```ts file='index.ts'
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 
 const result = await generateText({
   model: 'openai/gpt-4.1',
@@ -41,7 +41,7 @@ console.log(result);
 ## File Buffer
 
 ```ts file='index.ts'
-import { generateText } from 'ai';
+import { generateText } from 'ai-toolkit';
 import fs from 'fs';
 
 const result = await generateText({

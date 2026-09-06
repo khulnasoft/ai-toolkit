@@ -11,7 +11,7 @@ This is ideal for improving search relevance by reordering documents, emails, or
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -22,7 +22,7 @@ const { ranking } = await rerank({
 
 ## Import
 
-<Snippet text={`import { rerank } from "ai"`} prompt={false} />
+<Snippet text={`import { rerank } from "ai-toolkit"`} prompt={false} />
 
 ## API Signature
 
@@ -237,7 +237,7 @@ const { ranking } = await rerank({
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking, rerankedDocuments } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
@@ -264,7 +264,7 @@ console.log(ranking);
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const documents = [
   {
@@ -294,7 +294,7 @@ console.log(ranking[0].document);
 
 ```ts
 import { cohere } from '@ai-toolkit/cohere';
-import { rerank } from 'ai';
+import { rerank } from 'ai-toolkit';
 
 const { ranking } = await rerank({
   model: cohere.reranking('rerank-v3.5'),
