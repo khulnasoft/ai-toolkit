@@ -83,6 +83,43 @@ jobs:
       - name: Run structure validation
         run: pnpm run validate-structure
 
+  scaffolder:
+    name: 'Scaffolder'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run scaffolder golden tests
+        run: pnpm --filter create-ai-provider test
+
+      - name: Scaffold probe packages
+        run: |
+          node tools/create-ai-provider/src/index.js ci-probe-acme -a openai-compatible -m "ci-probe-model" -y --no-install
+          node tools/create-ai-provider/src/index.js ci-probe-agent -a harness-acp -e "ci-probe-agent --acp" -y --no-install
+
+      - name: Validate scaffolded structure
+        run: pnpm run validate-structure
+
+      - name: Remove probe packages
+        run: |
+          rm -rf packages/providers/ci-probe-acme packages/providers/ci-probe-agent
+          git checkout -- tsconfig.json
+
   health:
     name: 'Health'
     runs-on: ubuntu-latest

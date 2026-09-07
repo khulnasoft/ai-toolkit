@@ -39,6 +39,7 @@
     "inventory:check": "node tools/scripts/inventory.mjs --check",
     "baseline": "node tools/scripts/baseline.mjs",
     "generate": "node tools/scripts/generate.mjs",
+    "create-provider": "node tools/create-ai-provider/src/index.js",
     "validate-structure": "node tools/scripts/validate-structure.mjs",
     "find-package": "node tools/scripts/find-package.mjs"
   },

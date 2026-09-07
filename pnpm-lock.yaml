@@ -4241,6 +4241,12 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
+  tools/create-ai-provider:
+    dependencies:
+      chalk:
+        specifier: ^5.6.2
+        version: 5.6.2
+
   tools/create-ai-sdk:
     dependencies:
       chalk:
