@@ -46,6 +46,8 @@ export * from './transcribe';
 export * from './types';
 export * from './ui';
 export * from './ui-message-stream';
+export * from './upload-file';
+export * from './upload-skill';
 export * from './util';
 
 // telemetry types:

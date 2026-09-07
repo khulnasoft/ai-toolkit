@@ -8,6 +8,7 @@ type BaseToolCall = {
   toolCallId: string;
   providerExecuted?: boolean;
   providerMetadata?: ProviderMetadata;
+  toolMetadata?: Record<string, unknown>;
 };
 
 export type StaticToolCall<TOOLS extends ToolSet> = ValueOf<{

@@ -92,7 +92,7 @@ describe('tool type', () => {
 
       expectTypeOf(aTool).toEqualTypeOf<Tool<{ number: number }, 'test'>>();
       expectTypeOf(aTool.execute).toEqualTypeOf<
-        ToolExecuteFunction<{ number: number }, 'test'> | undefined
+        ToolExecuteFunction<{ number: number }, 'test', any> | undefined
       >();
       expectTypeOf(aTool.inputSchema).toEqualTypeOf<FlexibleSchema<{ number: number }>>();
     });

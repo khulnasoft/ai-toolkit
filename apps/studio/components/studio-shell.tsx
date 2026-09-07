@@ -1,8 +1,11 @@
 'use client';
 
 import {
+  ArrowUpRight,
+  BookOpen,
   Cpu,
   Github,
+  Globe2,
   LayoutDashboard,
   LayoutTemplate,
   Layers,
@@ -44,6 +47,19 @@ const sections: {
   },
 ];
 
+const appDestinations = [
+  {
+    label: 'Documentation',
+    href: 'https://studio.khulnasoft.com/docs',
+    icon: BookOpen,
+  },
+  {
+    label: 'Toolkit site',
+    href: 'https://khulnasoft.com',
+    icon: Globe2,
+  },
+];
+
 function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   return (
@@ -81,6 +97,29 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
           </ul>
         </div>
       ))}
+      <div>
+        <p className="eyebrow mb-2 px-2">Toolkit</p>
+        <ul className="space-y-0.5">
+          {appDestinations.map(item => {
+            const Icon = item.icon;
+            return (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={onNavigate}
+                  className="flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-surface-200 hover:text-foreground"
+                >
+                  <Icon className="size-4 text-muted-foreground" />
+                  <span className="flex-1">{item.label}</span>
+                  <ArrowUpRight className="size-3" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }
@@ -94,7 +133,7 @@ function Brand() {
       <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
         <Sparkles className="size-4" />
       </span>
-      AI Studio
+      AI Toolkit
     </Link>
   );
 }

@@ -1,7 +1,11 @@
-import { LanguageModelV3StreamPart, SharedV3Warning } from '@ai-toolkit/provider';
+import {
+  LanguageModelV3StreamPart,
+  SharedV3Warning,
+} from '@ai-toolkit/provider';
 import {
   getErrorMessage,
   IdGenerator,
+  InferToolSetContext,
   ModelMessage,
   SystemModelMessage,
 } from '@ai-toolkit/provider-utils';
@@ -115,6 +119,7 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   abortSignal,
   repairToolCall,
   experimental_context,
+  toolsContext = {} as InferToolSetContext<TOOLS>,
   generateId,
 }: {
   tools: TOOLS | undefined;
@@ -126,13 +131,16 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   abortSignal: AbortSignal | undefined;
   repairToolCall: ToolCallRepairFunction<TOOLS> | undefined;
   experimental_context: unknown;
+  toolsContext?: InferToolSetContext<TOOLS>;
   generateId: IdGenerator;
 }): ReadableStream<SingleRequestTextStreamPart<TOOLS>> {
   // tool results stream
   let toolResultsStreamController: ReadableStreamDefaultController<
     SingleRequestTextStreamPart<TOOLS>
   > | null = null;
-  const toolResultsStream = new ReadableStream<SingleRequestTextStreamPart<TOOLS>>({
+  const toolResultsStream = new ReadableStream<
+    SingleRequestTextStreamPart<TOOLS>
+  >({
     start(controller) {
       toolResultsStreamController = controller;
     },
@@ -148,8 +156,9 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   const toolCallsByToolCallId = new Map<string, TypedToolCall<TOOLS>>();
 
   let canClose = false;
-  let finishChunk: (SingleRequestTextStreamPart<TOOLS> & { type: 'finish' }) | undefined =
-    undefined;
+  let finishChunk:
+    | (SingleRequestTextStreamPart<TOOLS> & { type: 'finish' })
+    | undefined = undefined;
 
   function attemptClose() {
     // close the tool results controller if no more outstanding tool calls
@@ -172,7 +181,9 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
   >({
     async transform(
       chunk: LanguageModelV3StreamPart,
-      controller: TransformStreamDefaultController<SingleRequestTextStreamPart<TOOLS>>,
+      controller: TransformStreamDefaultController<
+        SingleRequestTextStreamPart<TOOLS>
+      >,
     ) {
       const chunkType = chunk.type;
 
@@ -280,6 +291,10 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
                 toolCallId: toolCall.toolCallId,
                 messages,
                 abortSignal,
+                context:
+                  toolsContext[
+                    toolCall.toolName as keyof InferToolSetContext<TOOLS>
+                  ] ?? experimental_context,
                 experimental_context,
               });
             }
@@ -318,12 +333,15 @@ export function runToolsTransformation<TOOLS extends ToolSet>({
                 messages,
                 abortSignal,
                 experimental_context,
+                toolsContext,
                 onPreliminaryToolResult: result => {
                   toolResultsStreamController!.enqueue(result);
                 },
               })
                 .then(result => {
-                  toolResultsStreamController!.enqueue(result);
+                  if (result != null) {
+                    toolResultsStreamController!.enqueue(result.output);
+                  }
                 })
                 .catch(error => {
                   toolResultsStreamController!.enqueue({

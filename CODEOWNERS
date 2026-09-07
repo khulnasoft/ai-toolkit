@@ -3,7 +3,7 @@
 
 # ===== CORE LAYER =====
 packages/core/ @khulnasoft/ai-toolkit-core
-packages/core/ai/ @khulnasoft/ai-toolkit-core
+packages/core/ai-toolkit/ @khulnasoft/ai-toolkit-core
 packages/core/runtime/ @khulnasoft/ai-toolkit-core
 
 # ===== PROVIDER LAYER =====
