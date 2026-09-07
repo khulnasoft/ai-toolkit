@@ -10771,6 +10771,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "messages": [
                 {
@@ -10785,6 +10786,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": "{"",
               "messages": [
@@ -10800,6 +10802,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": "value",
               "messages": [
@@ -10815,6 +10818,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": "":"",
               "messages": [
@@ -10830,6 +10834,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": "Spark",
               "messages": [
@@ -10845,6 +10850,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": "le",
               "messages": [
@@ -10860,6 +10866,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": " Day",
               "messages": [
@@ -10875,6 +10882,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "inputTextDelta": ""}",
               "messages": [
@@ -10890,6 +10898,7 @@ describe('streamText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "input": {
                 "value": "Sparkle Day",

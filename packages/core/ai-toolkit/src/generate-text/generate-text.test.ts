@@ -2886,6 +2886,7 @@ describe('generateText', () => {
           {
             "options": {
               "abortSignal": undefined,
+              "context": undefined,
               "experimental_context": undefined,
               "input": {
                 "value": "value",
