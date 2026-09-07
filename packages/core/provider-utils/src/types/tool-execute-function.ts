@@ -6,7 +6,7 @@ import type { SandboxSession } from './sandbox';
  * Additional options that are sent into each tool execution.
  */
 export interface ToolExecutionOptions<
-  CONTEXT extends Context | unknown | never,
+  CONTEXT extends Context | unknown | never = unknown,
 > {
   /**
    * The ID of the tool call. You can use it e.g. when sending tool-call related information with stream data.
@@ -35,7 +35,14 @@ export interface ToolExecutionOptions<
    * If you need to mutate the context, analyze the tool calls and results
    * in `prepareStep` and update it there.
    */
-  context: CONTEXT;
+   context: CONTEXT;
+
+  /**
+   * Legacy global context. Prefer the typed per-tool `context`.
+   *
+   * @deprecated Use `context` instead.
+   */
+  experimental_context?: unknown;
 
   /**
    * The sandbox environment that the tool is operating in.
@@ -49,7 +56,7 @@ export interface ToolExecutionOptions<
 export type ToolExecuteFunction<
   INPUT,
   OUTPUT,
-  CONTEXT extends Context | unknown | never,
+  CONTEXT extends Context | unknown | never = unknown,
 > = (
   input: INPUT,
   options: ToolExecutionOptions<CONTEXT>,

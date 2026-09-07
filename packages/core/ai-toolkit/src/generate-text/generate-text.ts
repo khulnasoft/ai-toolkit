@@ -7,6 +7,7 @@ import {
   createIdGenerator,
   getErrorMessage,
   IdGenerator,
+  InferToolSetContext,
   ProviderOptions,
   ToolApprovalResponse,
   withUserAgentSuffix,
@@ -16,7 +17,11 @@ import { NoOutputGeneratedError } from '../error';
 import { logWarnings } from '../logger/log-warnings';
 import { resolveLanguageModel } from '../model/resolve-model';
 import { ModelMessage } from '../prompt';
-import { CallSettings, getStepTimeoutMs, getTotalTimeoutMs } from '../prompt/call-settings';
+import {
+  CallSettings,
+  getStepTimeoutMs,
+  getTotalTimeoutMs,
+} from '../prompt/call-settings';
 import { convertToLanguageModelPrompt } from '../prompt/convert-to-language-model-prompt';
 import { createToolModelOutput } from '../prompt/create-tool-model-output';
 import { prepareCallSettings } from '../prompt/prepare-call-settings';
@@ -33,7 +38,11 @@ import { selectTelemetryAttributes } from '../telemetry/select-telemetry-attribu
 import { stringifyForTelemetry } from '../telemetry/stringify-for-telemetry';
 import { TelemetrySettings } from '../telemetry/telemetry-settings';
 import { LanguageModel, ToolChoice } from '../types';
-import { addLanguageModelUsage, asLanguageModelUsage, LanguageModelUsage } from '../types/usage';
+import {
+  addLanguageModelUsage,
+  asLanguageModelUsage,
+  LanguageModelUsage,
+} from '../types/usage';
 import { asArray } from '../util/as-array';
 import { DownloadFunction } from '../util/download/download-function';
 import { mergeObjects } from '../util/merge-objects';
@@ -52,7 +61,11 @@ import { parseToolCall } from './parse-tool-call';
 import { PrepareStepFunction } from './prepare-step';
 import { ResponseMessage } from './response-message';
 import { DefaultStepResult, StepResult } from './step-result';
-import { isStopConditionMet, stepCountIs, StopCondition } from './stop-condition';
+import {
+  isStopConditionMet,
+  stepCountIs,
+  StopCondition,
+} from './stop-condition';
 import { toResponseMessages } from './to-response-messages';
 import { ToolApprovalRequestOutput } from './tool-approval-request-output';
 import { TypedToolCall } from './tool-call';
@@ -179,6 +192,7 @@ export async function generateText<
   experimental_repairToolCall: repairToolCall,
   experimental_download: download,
   experimental_context,
+  toolsContext = {} as InferToolSetContext<TOOLS>,
   _internal: { generateId = originalGenerateId } = {},
   onStepFinish,
   onFinish,
@@ -206,7 +220,9 @@ When the condition is an array, any of the conditions can be met to stop the gen
 
 @default stepCountIs(1)
      */
-    stopWhen?: StopCondition<NoInfer<TOOLS>> | Array<StopCondition<NoInfer<TOOLS>>>;
+    stopWhen?:
+      | StopCondition<NoInfer<TOOLS>>
+      | Array<StopCondition<NoInfer<TOOLS>>>;
 
     /**
 Optional telemetry configuration (experimental).
@@ -285,6 +301,14 @@ A function that attempts to repair a tool call that failed to parse.
     experimental_context?: unknown;
 
     /**
+     * Per-tool context, validated against each tool's `contextSchema`
+     * and passed to `execute` as `options.context`.
+     *
+     * Required when any tool in `tools` declares a required context.
+     */
+    toolsContext?: InferToolSetContext<TOOLS>;
+
+    /**
      * Internal. For test use only. May change without notice.
      */
     _internal?: {
@@ -296,7 +320,8 @@ A function that attempts to repair a tool call that failed to parse.
 
   const totalTimeoutMs = getTotalTimeoutMs(timeout);
   const stepTimeoutMs = getStepTimeoutMs(timeout);
-  const stepAbortController = stepTimeoutMs != null ? new AbortController() : undefined;
+  const stepAbortController =
+    stepTimeoutMs != null ? new AbortController() : undefined;
   const mergedAbortSignal = mergeAbortSignals(
     abortSignal,
     totalTimeoutMs != null ? AbortSignal.timeout(totalTimeoutMs) : undefined,
@@ -310,7 +335,10 @@ A function that attempts to repair a tool call that failed to parse.
 
   const callSettings = prepareCallSettings(settings);
 
-  const headersWithUserAgent = withUserAgentSuffix(headers ?? {}, `ai/${VERSION}`);
+  const headersWithUserAgent = withUserAgentSuffix(
+    headers ?? {},
+    `ai/${VERSION}`,
+  );
 
   const baseTelemetryAttributes = getBaseTelemetryAttributes({
     model,
@@ -352,23 +380,30 @@ A function that attempts to repair a tool call that failed to parse.
         const initialMessages = initialPrompt.messages;
         const responseMessages: Array<ResponseMessage> = [];
 
-        const { approvedToolApprovals, deniedToolApprovals } = collectToolApprovals<TOOLS>({
-          messages: initialMessages,
-        });
+        const { approvedToolApprovals, deniedToolApprovals } =
+          collectToolApprovals<TOOLS>({
+            messages: initialMessages,
+          });
 
         const localApprovedToolApprovals = approvedToolApprovals.filter(
           toolApproval => !toolApproval.toolCall.providerExecuted,
         );
 
-        if (deniedToolApprovals.length > 0 || localApprovedToolApprovals.length > 0) {
+        if (
+          deniedToolApprovals.length > 0 ||
+          localApprovedToolApprovals.length > 0
+        ) {
           const toolOutputs = await executeTools({
-            toolCalls: localApprovedToolApprovals.map(toolApproval => toolApproval.toolCall),
+            toolCalls: localApprovedToolApprovals.map(
+              toolApproval => toolApproval.toolCall,
+            ),
             tools: tools as TOOLS,
             tracer,
             telemetry,
             messages: initialMessages,
             abortSignal: mergedAbortSignal,
             experimental_context,
+            toolsContext,
           });
 
           const toolContent: Array<any> = [];
@@ -379,7 +414,8 @@ A function that attempts to repair a tool call that failed to parse.
               toolCallId: output.toolCallId,
               input: output.input,
               tool: tools?.[output.toolName],
-              output: output.type === 'tool-result' ? output.output : output.error,
+              output:
+                output.type === 'tool-result' ? output.output : output.error,
               errorMode: output.type === 'tool-error' ? 'json' : 'none',
             });
 
@@ -442,7 +478,9 @@ A function that attempts to repair a tool call that failed to parse.
 
         const callSettings = prepareCallSettings(settings);
 
-        let currentModelResponse: Awaited<ReturnType<LanguageModelV3['doGenerate']>> & {
+        let currentModelResponse: Awaited<
+          ReturnType<LanguageModelV3['doGenerate']>
+        > & {
           response: { id: string; timestamp: Date; modelId: string };
         };
         let clientToolCalls: Array<TypedToolCall<TOOLS>> = [];
@@ -452,7 +490,10 @@ A function that attempts to repair a tool call that failed to parse.
         // Track provider-executed tool calls that support deferred results
         // (e.g., code_execution in programmatic tool calling scenarios).
         // These tools may not return their results in the same turn as their call.
-        const pendingDeferredToolCalls = new Map<string, { toolName: string }>();
+        const pendingDeferredToolCalls = new Map<
+          string,
+          { toolName: string }
+        >();
 
         do {
           // Set up step timeout if configured
@@ -472,7 +513,9 @@ A function that attempts to repair a tool call that failed to parse.
               experimental_context,
             });
 
-            const stepModel = resolveLanguageModel(prepareStepResult?.model ?? model);
+            const stepModel = resolveLanguageModel(
+              prepareStepResult?.model ?? model,
+            );
 
             const promptMessages = await convertToLanguageModelPrompt({
               prompt: {
@@ -483,7 +526,8 @@ A function that attempts to repair a tool call that failed to parse.
               download,
             });
 
-            experimental_context = prepareStepResult?.experimental_context ?? experimental_context;
+            experimental_context =
+              prepareStepResult?.experimental_context ?? experimental_context;
 
             const { toolChoice: stepToolChoice, tools: stepTools } =
               await prepareToolsAndToolChoice({
@@ -516,17 +560,21 @@ A function that attempts to repair a tool call that failed to parse.
                     },
                     'ai.prompt.toolChoice': {
                       input: () =>
-                        stepToolChoice != null ? JSON.stringify(stepToolChoice) : undefined,
+                        stepToolChoice != null
+                          ? JSON.stringify(stepToolChoice)
+                          : undefined,
                     },
 
                     // standardized gen-ai llm span attributes:
                     'gen_ai.system': stepModel.provider,
                     'gen_ai.request.model': stepModel.modelId,
-                    'gen_ai.request.frequency_penalty': settings.frequencyPenalty,
+                    'gen_ai.request.frequency_penalty':
+                      settings.frequencyPenalty,
                     'gen_ai.request.max_tokens': settings.maxOutputTokens,
                     'gen_ai.request.presence_penalty': settings.presencePenalty,
                     'gen_ai.request.stop_sequences': settings.stopSequences,
-                    'gen_ai.request.temperature': settings.temperature ?? undefined,
+                    'gen_ai.request.temperature':
+                      settings.temperature ?? undefined,
                     'gen_ai.request.top_k': settings.topK,
                     'gen_ai.request.top_p': settings.topP,
                   },
@@ -570,24 +618,34 @@ A function that attempts to repair a tool call that failed to parse.
                         'ai.response.toolCalls': {
                           output: () => {
                             const toolCalls = asToolCalls(result.content);
-                            return toolCalls == null ? undefined : JSON.stringify(toolCalls);
+                            return toolCalls == null
+                              ? undefined
+                              : JSON.stringify(toolCalls);
                           },
                         },
                         'ai.response.id': responseData.id,
                         'ai.response.model': responseData.modelId,
-                        'ai.response.timestamp': responseData.timestamp.toISOString(),
-                        'ai.response.providerMetadata': JSON.stringify(result.providerMetadata),
+                        'ai.response.timestamp':
+                          responseData.timestamp.toISOString(),
+                        'ai.response.providerMetadata': JSON.stringify(
+                          result.providerMetadata,
+                        ),
 
                         // TODO rename telemetry attributes to inputTokens and outputTokens
                         'ai.usage.promptTokens': result.usage.inputTokens.total,
-                        'ai.usage.completionTokens': result.usage.outputTokens.total,
+                        'ai.usage.completionTokens':
+                          result.usage.outputTokens.total,
 
                         // standardized gen-ai llm span attributes:
-                        'gen_ai.response.finish_reasons': [result.finishReason.unified],
+                        'gen_ai.response.finish_reasons': [
+                          result.finishReason.unified,
+                        ],
                         'gen_ai.response.id': responseData.id,
                         'gen_ai.response.model': responseData.modelId,
-                        'gen_ai.usage.input_tokens': result.usage.inputTokens.total,
-                        'gen_ai.usage.output_tokens': result.usage.outputTokens.total,
+                        'gen_ai.usage.input_tokens':
+                          result.usage.inputTokens.total,
+                        'gen_ai.usage.output_tokens':
+                          result.usage.outputTokens.total,
                       },
                     }),
                   );
@@ -600,7 +658,10 @@ A function that attempts to repair a tool call that failed to parse.
             // parse tool calls:
             const stepToolCalls: TypedToolCall<TOOLS>[] = await Promise.all(
               currentModelResponse.content
-                .filter((part): part is LanguageModelV3ToolCall => part.type === 'tool-call')
+                .filter(
+                  (part): part is LanguageModelV3ToolCall =>
+                    part.type === 'tool-call',
+                )
                 .map(toolCall =>
                   parseToolCall({
                     toolCall,
@@ -611,7 +672,10 @@ A function that attempts to repair a tool call that failed to parse.
                   }),
                 ),
             );
-            const toolApprovalRequests: Record<string, ToolApprovalRequestOutput<TOOLS>> = {};
+            const toolApprovalRequests: Record<
+              string,
+              ToolApprovalRequestOutput<TOOLS>
+            > = {};
 
             // notify the tools that the tool calls are available:
             for (const toolCall of stepToolCalls) {
@@ -633,6 +697,10 @@ A function that attempts to repair a tool call that failed to parse.
                   toolCallId: toolCall.toolCallId,
                   messages: stepInputMessages,
                   abortSignal: mergedAbortSignal,
+                  context:
+                    toolsContext[
+                      toolCall.toolName as keyof InferToolSetContext<TOOLS>
+                    ] ?? experimental_context,
                   experimental_context,
                 });
               }
@@ -673,14 +741,17 @@ A function that attempts to repair a tool call that failed to parse.
             }
 
             // execute client tool calls:
-            clientToolCalls = stepToolCalls.filter(toolCall => !toolCall.providerExecuted);
+            clientToolCalls = stepToolCalls.filter(
+              toolCall => !toolCall.providerExecuted,
+            );
 
             if (tools != null) {
               clientToolOutputs.push(
                 ...(await executeTools({
                   toolCalls: clientToolCalls.filter(
                     toolCall =>
-                      !toolCall.invalid && toolApprovalRequests[toolCall.toolCallId] == null,
+                      !toolCall.invalid &&
+                      toolApprovalRequests[toolCall.toolCallId] == null,
                   ),
                   tools,
                   tracer,
@@ -688,6 +759,7 @@ A function that attempts to repair a tool call that failed to parse.
                   messages: stepInputMessages,
                   abortSignal: mergedAbortSignal,
                   experimental_context,
+                  toolsContext,
                 })),
               );
             }
@@ -702,7 +774,9 @@ A function that attempts to repair a tool call that failed to parse.
               if (tool?.type === 'provider' && tool.supportsDeferredResults) {
                 // Check if this tool call already has a result in the current response
                 const hasResultInResponse = currentModelResponse.content.some(
-                  part => part.type === 'tool-result' && part.toolCallId === toolCall.toolCallId,
+                  part =>
+                    part.type === 'tool-result' &&
+                    part.toolCallId === toolCall.toolCallId,
                 );
                 if (!hasResultInResponse) {
                   pendingDeferredToolCalls.set(toolCall.toolCallId, {
@@ -769,7 +843,8 @@ A function that attempts to repair a tool call that failed to parse.
           // Continue if:
           // 1. There are client tool calls that have all been executed, OR
           // 2. There are pending deferred results from provider-executed tools
-          ((clientToolCalls.length > 0 && clientToolOutputs.length === clientToolCalls.length) ||
+          ((clientToolCalls.length > 0 &&
+            clientToolOutputs.length === clientToolCalls.length) ||
             pendingDeferredToolCalls.size > 0) &&
           // continue until a stop condition is met:
           !(await isStopConditionMet({ stopConditions, steps }))
@@ -780,21 +855,28 @@ A function that attempts to repair a tool call that failed to parse.
           await selectTelemetryAttributes({
             telemetry,
             attributes: {
-              'ai.response.finishReason': currentModelResponse.finishReason.unified,
+              'ai.response.finishReason':
+                currentModelResponse.finishReason.unified,
               'ai.response.text': {
                 output: () => extractTextContent(currentModelResponse.content),
               },
               'ai.response.toolCalls': {
                 output: () => {
                   const toolCalls = asToolCalls(currentModelResponse.content);
-                  return toolCalls == null ? undefined : JSON.stringify(toolCalls);
+                  return toolCalls == null
+                    ? undefined
+                    : JSON.stringify(toolCalls);
                 },
               },
-              'ai.response.providerMetadata': JSON.stringify(currentModelResponse.providerMetadata),
+              'ai.response.providerMetadata': JSON.stringify(
+                currentModelResponse.providerMetadata,
+              ),
 
               // TODO rename telemetry attributes to inputTokens and outputTokens
-              'ai.usage.promptTokens': currentModelResponse.usage.inputTokens.total,
-              'ai.usage.completionTokens': currentModelResponse.usage.outputTokens.total,
+              'ai.usage.promptTokens':
+                currentModelResponse.usage.inputTokens.total,
+              'ai.usage.completionTokens':
+                currentModelResponse.usage.outputTokens.total,
             },
           }),
         );
@@ -873,6 +955,7 @@ async function executeTools<TOOLS extends ToolSet>({
   messages,
   abortSignal,
   experimental_context,
+  toolsContext,
 }: {
   toolCalls: Array<TypedToolCall<TOOLS>>;
   tools: TOOLS;
@@ -881,6 +964,7 @@ async function executeTools<TOOLS extends ToolSet>({
   messages: ModelMessage[];
   abortSignal: AbortSignal | undefined;
   experimental_context: unknown;
+  toolsContext: InferToolSetContext<TOOLS>;
 }): Promise<Array<ToolOutput<TOOLS>>> {
   const toolOutputs = await Promise.all(
     toolCalls.map(async toolCall =>
@@ -892,11 +976,16 @@ async function executeTools<TOOLS extends ToolSet>({
         messages,
         abortSignal,
         experimental_context,
+        toolsContext,
       }),
     ),
   );
 
-  return toolOutputs.filter((output): output is NonNullable<typeof output> => output != null);
+  return toolOutputs
+    .map(result => result?.output)
+    .filter(
+      (output): output is NonNullable<typeof output> => output != null,
+    );
 }
 
 class DefaultGenerateTextResult<TOOLS extends ToolSet, OUTPUT extends Output>
@@ -1052,18 +1141,24 @@ function asContent<TOOLS extends ToolSet>({
         contentParts.push({
           type: 'file' as const,
           file: new DefaultGeneratedFile(part),
-          ...(part.providerMetadata != null ? { providerMetadata: part.providerMetadata } : {}),
+          ...(part.providerMetadata != null
+            ? { providerMetadata: part.providerMetadata }
+            : {}),
         });
         break;
       }
 
       case 'tool-call': {
-        contentParts.push(toolCalls.find(toolCall => toolCall.toolCallId === part.toolCallId)!);
+        contentParts.push(
+          toolCalls.find(toolCall => toolCall.toolCallId === part.toolCallId)!,
+        );
         break;
       }
 
       case 'tool-result': {
-        const toolCall = toolCalls.find(toolCall => toolCall.toolCallId === part.toolCallId);
+        const toolCall = toolCalls.find(
+          toolCall => toolCall.toolCallId === part.toolCallId,
+        );
 
         // Handle deferred results for provider-executed tools (e.g., programmatic tool calling).
         // When a server tool (like code_execution) triggers a client tool, the server tool's
@@ -1071,7 +1166,8 @@ function asContent<TOOLS extends ToolSet>({
         // in the current response.
         if (toolCall == null) {
           const tool = tools?.[part.toolName];
-          const supportsDeferredResults = tool?.type === 'provider' && tool.supportsDeferredResults;
+          const supportsDeferredResults =
+            tool?.type === 'provider' && tool.supportsDeferredResults;
 
           if (!supportsDeferredResults) {
             throw new Error(`Tool call ${part.toolCallId} not found.`);
@@ -1127,7 +1223,9 @@ function asContent<TOOLS extends ToolSet>({
       }
 
       case 'tool-approval-request': {
-        const toolCall = toolCalls.find(toolCall => toolCall.toolCallId === part.toolCallId);
+        const toolCall = toolCalls.find(
+          toolCall => toolCall.toolCallId === part.toolCallId,
+        );
 
         if (toolCall == null) {
           throw new ToolCallNotFoundForApprovalError({

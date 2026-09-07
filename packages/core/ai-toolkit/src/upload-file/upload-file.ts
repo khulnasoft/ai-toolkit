@@ -7,9 +7,9 @@ import {
   convertBase64ToUint8Array,
   detectMediaType,
 } from '@ai-toolkit/provider-utils';
+import type { SharedV4Warning } from '@ai-toolkit/provider';
 import type { ProviderMetadata } from '../types/provider-metadata';
 import type { ProviderReference } from '../types/provider-reference';
-import type { Warning } from '../types/warning';
 import type { UploadFileResult } from './upload-file-result';
 
 /**
@@ -128,7 +128,7 @@ class DefaultUploadFileResult implements UploadFileResult {
   readonly createdAt?: Date;
   readonly expiresAt?: Date;
   readonly providerMetadata?: ProviderMetadata;
-  readonly warnings: Array<Warning>;
+  readonly warnings: Array<SharedV4Warning>;
 
   constructor(options: {
     providerReference: ProviderReference;
@@ -138,7 +138,7 @@ class DefaultUploadFileResult implements UploadFileResult {
     createdAt?: Date;
     expiresAt?: Date;
     providerMetadata?: ProviderMetadata;
-    warnings: Array<Warning>;
+    warnings: Array<SharedV4Warning>;
   }) {
     this.providerReference = options.providerReference;
     this.mediaType = options.mediaType;

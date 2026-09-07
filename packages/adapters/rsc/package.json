@@ -35,7 +35,8 @@
       "types": "./dist/index.d.ts",
       "react-server": "./dist/rsc-server.mjs",
       "module": "./dist/rsc-client.mjs",
-      "import": "./dist/rsc-client.mjs"
+      "import": "./dist/rsc-client.mjs",
+      "default": "./dist/rsc-client.mjs"
     }
   },
   "files": [

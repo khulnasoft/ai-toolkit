@@ -6,11 +6,11 @@
 
 ## 1. Objective
 
-Rename the core SDK package from unscoped `ai` to scoped `@ai-toolkit/ai` (referred to by user as `ai-toolkit`) and, optionally, rename the directory `packages/core/ai` → `packages/core/ai-toolkit` for symmetry. Aligns with ADR-012 / `ARCHITECTURE_REDESIGN.md:151` and repository-wide move to `@ai-toolkit/*` scope.
+Rename the core SDK package from unscoped `ai` to scoped `@ai-toolkit/ai` (referred to by user as `ai-toolkit`) and, optionally, rename the directory `packages/core/ai` → `packages/core/ai-toolkit` for symmetry. Aligns with ADR-012 / `architecture/domain-mapping.md` and repository-wide move to `@ai-toolkit/*` scope.
 
 Two naming interpretations:
 - **Interpretation A (implemented)**: npm name `@ai-toolkit/ai`, directory stays `packages/core/ai` (suffix matches dir). This is what `packages/core/ai/package.json:2` now declares.
-- **Interpretation B (user literal)**: npm name `ai-toolkit` (unscoped) or `@ai-toolkit/ai-toolkit`, directory `packages/core/ai-toolkit`. Requires extra decision — not recommended (breaks `@ai-toolkit/*` consistency, see `ARCHITECTURE_REDESIGN.md:95`).
+- **Interpretation B (user literal)**: npm name `ai-toolkit` (unscoped) or `@ai-toolkit/ai-toolkit`, directory `packages/core/ai-toolkit`. Requires extra decision — not recommended (breaks `@ai-toolkit/*` consistency, see `architecture/domain-mapping.md`).
 
 **Recommendation: proceed with A** — `@ai-toolkit/ai` — and keep directory `packages/core/ai` unless product wants `ai-toolkit` as public alias (then add re-export package, not rename dir).
 
@@ -34,7 +34,7 @@ Remaining scope still on `ai`:
 - `16` `package.json` files still reference `"ai": "workspace:*"` / `"ai": "6.0.45"` via `rg -l '"ai":' --glob 'package.json':16` (examples, adapters, providers, `apps/www/package.json:13`, `packages/ui/elements/package.json:40`, etc.) — note many `packages/providers/*/package.json:70` use keyword `"ai"` not dependency, must filter.
 - `tsconfig.json:4` still references `"path": "packages/core/ai"` (root + ~10 example `tsconfig.json` files, see `examples/04-tools/playground/tsconfig.json:33`, `examples/02-framework-integration/next/tsconfig.json:34`)
 - `pnpm-lock.yaml:78` `version: link:../../packages/core/ai`, `1901: packages/core/ai:` — regenerated on `pnpm install`
-- Docs: `AGENTS.md:21` table row `packages/core/ai | Main SDK package (ai on npm)`, `AGENTS.md:79` `Run these from within ... (e.g. packages/core/ai)`, `AGENTS.md:114` `Import From: ai`, `ARCHITECTURE_REDESIGN.md:302`, `CODEOWNERS:6` `packages/core/ai/ @khulnasoft/ai-toolkit-core`, `content/docs/**` links to `github.com/.../packages/core/ai/src/...`
+- Docs: `AGENTS.md:21` table row `packages/core/ai | Main SDK package (ai on npm)`, `AGENTS.md:79` `Run these from within ... (e.g. packages/core/ai)`, `AGENTS.md:114` `Import From: ai`, `architecture/domain-mapping.md` (ai row), `CODEOWNERS:6` `packages/core/ai/ @khulnasoft/ai-toolkit-core`, `content/docs/**` links to `github.com/.../packages/core/ai/src/...`
 - Codemod fixtures: `packages/special/codemod/src/test/__testfixtures__/**/*.ts` intentionally keep `from 'ai'` as input fixtures — **exclude from bulk rewrite** (see §4)
 
 ## 3. Inventory (quantified)
@@ -46,7 +46,7 @@ Remaining scope still on `ai`:
 | Import specifiers | 2811 occurrences, 206 files | `packages/special/devtools/examples/basic/index.ts:1`, `apps/www/components/hero-example.tsx:1`, `content/docs/**/*.mdx` code blocks |
 | TS references | 12 | `tsconfig.json:4`, `examples/**/tsconfig.json`, `packages/special/gateway` etc. |
 | Workspace / tooling | 4 | `pnpm-workspace.yaml:3` (glob `packages/core/*` — no change needed for dir rename), `pnpm-lock.yaml`, `CODEOWNERS`, `turbo.json` (domain tasks, no filter on `ai` name) |
-| Documentation | ~20 MDX | `apps/docs/content/docs/04-ai-toolkit-ui/21-transport.mdx:163`, `ARCHITECTURE_REDESIGN.md`, `MIGRATION_PLAN.md:151` |
+| Documentation | ~20 MDX | `apps/docs/content/docs/04-ai-toolkit-ui/21-transport.mdx:163`, `MIGRATION_PLAN.md:151` |
 
 ## 4. Strategy
 
@@ -81,7 +81,7 @@ Exclude from codemod:
 4. `AGENTS.md:114` `Import From: ai` → `@ai-toolkit/ai` (and `AGENTS.md:117` Error classes)
 5. `AGENTS.md:214` `Core (ai)` → `Core (@ai-toolkit/ai)`; diagram `ai ──▶` → `@ai-toolkit/ai ──▶`
 6. `CODEOWNERS:6` `packages/core/ai/ @khulnasoft/ai-toolkit-core` — keep (path unchanged)
-7. `ARCHITECTURE_REDESIGN.md:22` `packages/core/ai` → keep, but table `ARCHITECTURE_REDESIGN.md:302` `ai` → `@ai-toolkit/ai`
+7. `packages/core/ai` path → keep, but `architecture/domain-mapping.md` table `ai` → `@ai-toolkit/ai`
 8. `packages/core/ai/AGENTS.md:10` code blocks `from 'ai'` → `from '@ai-toolkit/ai'` (4 blocks)
 9. `packages/core/ai/README.md:5` badge `npm/v/ai-toolkit` already points to `ai-toolkit` — verify; `pnpm add ai-toolkit` references may need `@ai-toolkit/ai`
 
@@ -114,7 +114,7 @@ git mv packages/core/ai packages/core/ai-toolkit
 # update
 # - tsconfig.json:4  path: packages/core/ai-toolkit
 # - all examples/**/tsconfig.json paths
-# - ARCHITECTURE_REDESIGN.md tables
+# - architecture/domain-mapping.md table
 # - CODEOWNERS path
 # - pnpm-workspace.yaml:3  (glob already covers, but document)
 # - tools/scripts/* inventory baseline
@@ -126,7 +126,7 @@ Impact: touches 520 files' relative imports internally — but internal imports 
 - `content/docs/**/*.mdx` code examples `from 'ai'` → `from '@ai-toolkit/ai'` (manual search `content/docs: ~400` hits)
 - `apps/docs` MDX components
 - Changeset: `pnpm changeset` — select `@ai-toolkit/ai` (and `@ai-toolkit/codemod` if bumping codemod), **minor** (breaking import path) — requires maintainer approval per `AGENTS.md:256`
-- Publish: `ai` → deprecated, add `npm deprecate ai "use @ai-toolkit/ai"` or keep `ai` as re-export shim `packages/ai` → `packages/core/ai` (see `ARCHITECTURE_REDESIGN.md:302` legacy re-export) for 6-month grace.
+- Publish: `ai` → deprecated, add `npm deprecate ai "use @ai-toolkit/ai"` or keep `ai` as re-export shim `packages/ai` → `packages/core/ai` (see `architecture/domain-mapping.md` legacy re-export) for 6-month grace.
 
 ## 6. Verification
 
@@ -174,4 +174,4 @@ Total: **~1 week** with 2 PRs (Phase 1+2 together, Phase 3 separate).
 - [ ] `pnpm changeset` (minor) + `pnpm validate-structure`
 
 ---
-*Generated from live inventory: `packages/core/ai/package.json:2`, `tsconfig.json:4`, `pnpm-workspace.yaml:3`, `packages/special/codemod/src/codemods/v6/rename-ai-to-ai-toolkit.ts:3`, `AGENTS.md:21`, `ARCHITECTURE_REDESIGN.md:151`.*
+*Generated from live inventory: `packages/core/ai/package.json:2`, `tsconfig.json:4`, `pnpm-workspace.yaml:3`, `packages/special/codemod/src/codemods/v6/rename-ai-to-ai-toolkit.ts:3`, `AGENTS.md:21`.*

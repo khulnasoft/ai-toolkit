@@ -1,11 +1,13 @@
-import type { SkillsV4UploadSkillResult } from '@ai-toolkit/provider';
+import type {
+  SharedV4Warning,
+  SkillsV4UploadSkillResult,
+} from '@ai-toolkit/provider';
 import type { ProviderReference } from '../types/provider-reference';
-import type { Warning } from '../types/warning';
 
 export type UploadSkillResult = Omit<
   SkillsV4UploadSkillResult,
   'providerReference' | 'warnings'
 > & {
   readonly providerReference: ProviderReference;
-  readonly warnings: Warning[];
+  readonly warnings: SharedV4Warning[];
 };

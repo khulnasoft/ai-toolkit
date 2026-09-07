@@ -1,5 +1,6 @@
 import {
   FlexibleSchema,
+  InferToolSetContext,
   MaybePromiseLike,
   ProviderOptions,
   SystemModelMessage,
@@ -111,9 +112,17 @@ functionality that can be fully encapsulated in the provider.
    *
    * @default undefined
    */
-  experimental_context?: unknown;
+   experimental_context?: unknown;
 
-  /**
+   /**
+    * Per-tool context, validated against each tool's `contextSchema`
+    * and passed to `execute` as `options.context`.
+    *
+    * Required when any tool in `tools` declares a required context.
+    */
+   toolsContext?: InferToolSetContext<TOOLS>;
+
+   /**
 Custom download function to use for URLs.
 
 By default, files are downloaded if the model does not support the URL for the given media type.
@@ -151,6 +160,7 @@ By default, files are downloaded if the model does not support the URL for the g
         | 'activeTools'
         | 'providerOptions'
         | 'experimental_context'
+        | 'toolsContext'
         | 'experimental_download'
       >,
   ) => MaybePromiseLike<
@@ -173,6 +183,7 @@ By default, files are downloaded if the model does not support the URL for the g
       | 'activeTools'
       | 'providerOptions'
       | 'experimental_context'
+      | 'toolsContext'
       | 'experimental_download'
     > &
       Omit<Prompt, 'system'>

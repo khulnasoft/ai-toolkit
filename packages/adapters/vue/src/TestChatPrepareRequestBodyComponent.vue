@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DefaultChatTransport } from '@ai-toolkit/ai';
+import { DefaultChatTransport } from 'ai-toolkit';
 import { computed, ref } from 'vue';
 import { Chat } from './chat.vue';
 

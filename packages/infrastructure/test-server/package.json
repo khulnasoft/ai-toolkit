@@ -1,6 +1,7 @@
 {
   "name": "@ai-toolkit/test-server",
   "version": "2.0.0",
+  "private": true,
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -30,7 +31,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./with-vitest": {
       "types": "./dist/with-vitest.d.ts",
@@ -50,9 +52,6 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "homepage": "https://studio.khulnasoft.com/docs",
   "repository": {
