@@ -12,6 +12,7 @@ export type {
   ToolResultPart,
 } from './content-part';
 export type { DataContent } from './data-content';
+export type { Context } from './context';
 export { executeTool } from './execute-tool';
 export type { ModelMessage } from './model-message';
 export type { ProviderOptions } from './provider-options';
