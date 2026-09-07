@@ -1,3 +1,4 @@
+export { asArray, type Arrayable } from './as-array';
 export * from './combine-headers';
 export { convertAsyncIteratorToReadableStream } from './convert-async-iterator-to-readable-stream';
 export {
@@ -14,6 +15,7 @@ export { downloadBlob } from './download-blob';
 export { DownloadError } from './download-error';
 export * from './fetch-function';
 export { createIdGenerator, generateId, type IdGenerator } from './generate-id';
+export type { HasRequiredKey } from './has-required-key';
 export * from './get-error-message';
 export * from './get-from-api';
 export { getRuntimeEnvironmentUserAgent } from './get-runtime-environment-user-agent';
