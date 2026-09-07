@@ -14,6 +14,7 @@ describe('tool execute function types', () => {
       messages: ModelMessage[];
       abortSignal?: AbortSignal;
       context: { requestId: string };
+      experimental_context?: unknown;
       experimental_sandbox?: SandboxSession;
     }>();
   });

@@ -12,6 +12,7 @@ export type StaticToolError<TOOLS extends ToolSet> = ValueOf<{
     error: unknown;
     providerExecuted?: boolean;
     providerMetadata?: ProviderMetadata;
+    toolMetadata?: Record<string, unknown>;
     dynamic?: false | undefined;
     title?: string;
   };
@@ -25,6 +26,7 @@ export type DynamicToolError = {
   error: unknown;
   providerExecuted?: boolean;
   providerMetadata?: ProviderMetadata;
+  toolMetadata?: Record<string, unknown>;
   dynamic: true;
   title?: string;
 };
