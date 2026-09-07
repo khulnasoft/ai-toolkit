@@ -224,7 +224,7 @@ Set the \`${envPrefix}_API_KEY\` environment variable.
 
 \`\`\`ts
 import { create${pascalName} } from '@ai-toolkit/${name}';
-import { generateText } from '@ai-toolkit/ai';
+import { generateText } from 'ai-toolkit';
 
 const ${camelName} = create${pascalName}();
 

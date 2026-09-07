@@ -1,6 +1,6 @@
+import type { SharedV4Warning } from '@ai-toolkit/provider';
 import type { ProviderMetadata } from '../types/provider-metadata';
 import type { ProviderReference } from '../types/provider-reference';
-import type { Warning } from '../types/warning';
 
 export interface UploadFileResult {
   readonly providerReference: ProviderReference;
@@ -19,5 +19,5 @@ export interface UploadFileResult {
    */
   readonly expiresAt?: Date;
   readonly providerMetadata?: ProviderMetadata;
-  readonly warnings: Array<Warning>;
+  readonly warnings: Array<SharedV4Warning>;
 }

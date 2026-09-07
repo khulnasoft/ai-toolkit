@@ -4,9 +4,6 @@
       "path": "packages/core/ai-toolkit"
     },
     {
-      "path": "packages/core/ai"
-    },
-    {
       "path": "packages/core/provider-utils"
     },
     {

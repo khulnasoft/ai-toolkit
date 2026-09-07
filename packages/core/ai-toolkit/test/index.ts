@@ -16,6 +16,6 @@ export { mockValues } from '../src/test/mock-values';
 import { simulateReadableStream as originalSimulateReadableStream } from '../src/util/simulate-readable-stream';
 
 /**
- * @deprecated Use `simulateReadableStream` from `ai` instead.
+ * @deprecated Use `simulateReadableStream` from `ai-toolkit` instead.
  */
 export const simulateReadableStream = originalSimulateReadableStream;

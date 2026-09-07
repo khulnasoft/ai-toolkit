@@ -141,7 +141,7 @@ const stream = await graph.stream(
 Use `LangSmithDeploymentTransport` with the AI TOOLKIT `useChat` hook to connect directly to a LangGraph deployment from the browser:
 
 ```tsx
-import { useChat } from '@ai-toolkit/ai/react';
+import { useChat } from '@ai-toolkit/react';
 import { LangSmithDeploymentTransport } from '@ai-toolkit/langchain';
 import { useMemo } from 'react';
 

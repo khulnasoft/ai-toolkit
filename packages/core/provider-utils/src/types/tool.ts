@@ -3,41 +3,12 @@ import { FlexibleSchema } from '../schema';
 import { ToolResultOutput } from './content-part';
 import { ModelMessage } from './model-message';
 import { ProviderOptions } from './provider-options';
+import type {
+  ToolExecuteFunction as ToolExecuteFunctionType,
+  ToolExecutionOptions as ToolExecutionOptionsType,
+} from './tool-execute-function';
 
-/**
- * Additional options that are sent into each tool call.
- */
-export interface ToolExecutionOptions {
-  /**
-   * The ID of the tool call. You can use it e.g. when sending tool-call related information with stream data.
-   */
-  toolCallId: string;
-
-  /**
-   * Messages that were sent to the language model to initiate the response that contained the tool call.
-   * The messages **do not** include the system prompt nor the assistant response that contained the tool call.
-   */
-  messages: ModelMessage[];
-
-  /**
-   * An optional abort signal that indicates that the overall operation should be aborted.
-   */
-  abortSignal?: AbortSignal;
-
-  /**
-   * User-defined context.
-   *
-   * Treat the context object as immutable inside tools.
-   * Mutating the context object can lead to race conditions and unexpected results
-   * when tools are called in parallel.
-   *
-   * If you need to mutate the context, analyze the tool calls and results
-   * in `prepareStep` and update it there.
-   *
-   * Experimental (can break in patch releases).
-   */
-  experimental_context?: unknown;
-}
+export type { ToolExecuteFunction, ToolExecutionOptions } from './tool-execute-function';
 
 /**
  * Function that is called to determine if the tool needs approval before it can be executed.
