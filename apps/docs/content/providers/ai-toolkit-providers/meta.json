@@ -31,6 +31,7 @@
     "hume",
     "revai",
     "baseten",
-    "huggingface"
+    "huggingface",
+    "harness-acp"
   ]
 }

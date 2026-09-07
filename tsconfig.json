@@ -70,6 +70,9 @@
       "path": "packages/providers/groq"
     },
     {
+      "path": "packages/providers/harness-acp"
+    },
+    {
       "path": "packages/providers/huggingface"
     },
     {
