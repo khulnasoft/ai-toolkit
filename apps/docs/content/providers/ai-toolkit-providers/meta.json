@@ -32,6 +32,14 @@
     "revai",
     "baseten",
     "huggingface",
-    "harness-acp"
+    "harness-acp",
+    "harness",
+    "harness-claude-code",
+    "harness-cline",
+    "harness-codex",
+    "harness-cursor",
+    "harness-grok-build",
+    "harness-opencode",
+    "harness-pi"
   ]
 }

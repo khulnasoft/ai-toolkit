@@ -1577,6 +1577,43 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
+  examples/04-tools/harness-profiles:
+    dependencies:
+      '@ai-toolkit/harness':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-acp
+      '@ai-toolkit/harness-claude-code':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-claude-code
+      '@ai-toolkit/harness-cline':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-cline
+      '@ai-toolkit/harness-codex':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-codex
+      '@ai-toolkit/harness-cursor':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-cursor
+      '@ai-toolkit/harness-grok-build':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-grok-build
+      '@ai-toolkit/harness-opencode':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-opencode
+      '@ai-toolkit/harness-pi':
+        specifier: workspace:*
+        version: link:../../../packages/providers/harness-pi
+    devDependencies:
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+
   examples/04-tools/playground:
     dependencies:
       '@ai-toolkit/anthropic':
@@ -2902,8 +2939,250 @@ importers:
         specifier: 3.25.76
         version: 3.25.76
 
+  packages/providers/harness:
+    dependencies:
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
   packages/providers/harness-acp:
     dependencies:
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-claude-code:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-cline:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-codex:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-cursor:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-grok-build:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-opencode:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
+      '@ai-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../validation/provider
+      '@ai-toolkit/provider-utils':
+        specifier: workspace:*
+        version: link:../../core/provider-utils
+    devDependencies:
+      '@ai-toolkit/test-server':
+        specifier: workspace:*
+        version: link:../../infrastructure/test-server
+      '@khulnasoft/ai-tsconfig':
+        specifier: workspace:*
+        version: link:../../../tools/tsconfig
+      '@types/node':
+        specifier: 20.17.24
+        version: 20.17.24
+      tsup:
+        specifier: ^8
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.8.3)(yaml@2.9.0)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
+
+  packages/providers/harness-pi:
+    dependencies:
+      '@ai-toolkit/harness-acp':
+        specifier: workspace:*
+        version: link:../harness-acp
       '@ai-toolkit/provider':
         specifier: workspace:*
         version: link:../../validation/provider
@@ -37020,7 +37299,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.1)
       eslint-plugin-react: 7.34.1(eslint@8.57.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.1)
@@ -37110,7 +37389,7 @@ snapshots:
       enhanced-resolve: 5.24.5
       eslint: 8.57.1
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       fast-glob: 3.3.3
       get-tsconfig: 4.8.1
       is-core-module: 2.16.1
@@ -37236,7 +37515,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.1):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
